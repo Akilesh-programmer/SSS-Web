@@ -1,8 +1,16 @@
 import React from "react";
+import CountUp from "react-countup";
+import {
+  FaUserMd,
+  FaCalendarAlt,
+  FaHospitalSymbol,
+  FaAward,
+  FaStar,
+} from "react-icons/fa";
 
 export default function MissionVision() {
   return (
-    <div className="relative bg-white py-12 px-2 md:px-12 flex flex-col md:flex-row items-center justify-center min-h-[420px] overflow-hidden">
+    <div className="relative bg-gradient-to-br from-emerald-50 via-white to-yellow-50 py-12 px-2 md:px-12 flex flex-col md:flex-row items-center justify-center min-h-[520px] overflow-hidden">
       {/* Decorative SVGs */}
       <svg className="absolute top-6 left-10 w-8 h-8" viewBox="0 0 32 32">
         <polygon points="16,0 32,32 0,32" fill="#10b981" />
@@ -21,80 +29,103 @@ export default function MissionVision() {
       </svg>
 
       {/* Mission & Vision Card */}
-      <div className="bg-gray-50 rounded-xl shadow-xl p-8 md:p-12 max-w-xl w-full z-10">
-        <h2 className="text-2xl md:text-3xl font-extrabold text-emerald-900 mb-8">
+      <div className="bg-white/90 rounded-2xl shadow-2xl p-8 md:p-12 max-w-xl w-full z-10 border border-emerald-100">
+        <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 mb-8 tracking-tight">
           Mission & Vision
         </h2>
-        <div className="flex flex-col gap-6">
+        <div className="flex flex-col gap-8">
           <div className="flex items-start gap-4">
-            <span className="font-bold text-emerald-700 min-w-[70px]">
+            <span className="font-semibold text-emerald-700 min-w-[80px] text-base md:text-lg tracking-wide">
               MISSION
             </span>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg">
               To provide every patient with exceptional care, compassion, and
               advanced medical expertise in a safe and welcoming environment.
             </p>
           </div>
           <div className="flex items-start gap-4">
-            <span className="font-bold text-emerald-700 min-w-[70px]">
+            <span className="font-semibold text-emerald-700 min-w-[80px] text-base md:text-lg tracking-wide">
               VISION
             </span>
-            <p className="text-gray-700 leading-relaxed">
+            <p className="text-gray-700 leading-relaxed text-base md:text-lg">
               To be a leader in healthcare innovation, setting new standards for
               excellence and patient satisfaction in our community and beyond.
             </p>
           </div>
         </div>
+        {/* Testimonial */}
+        <div className="bg-emerald-50 rounded-xl shadow px-6 py-4 mt-8 border border-emerald-100">
+          <p className="italic text-gray-700 text-center text-lg">
+            "SSS Super Speciality Hospital truly cares for every patient. Their
+            commitment to excellence and compassion is unmatched."
+          </p>
+          <div className="text-right text-emerald-700 font-medium mt-2">
+            — Patient Testimonial
+          </div>
+        </div>
+        {/* CTA Button */}
+        <div className="flex justify-center mt-6">
+          <button className="bg-emerald-600 text-white rounded-full px-6 py-3 font-semibold shadow-lg hover:bg-emerald-700 transition text-lg">
+            Meet Our Team
+          </button>
+        </div>
       </div>
 
-      {/* Timeline / Stats */}
-      <div className="flex flex-col items-center md:items-start justify-center md:ml-16 mt-10 md:mt-0 z-10">
-        <div className="flex flex-row md:flex-col items-center md:items-start gap-8 md:gap-10">
-          {/* Timeline line */}
-          <div className="hidden md:block absolute left-[55%] top-1/2 transform -translate-y-1/2 h-56 w-2">
-            <svg height="100%" width="100%">
-              <line
-                x1="1"
-                y1="0"
-                x2="1"
-                y2="220"
-                stroke="#fde68a"
-                strokeWidth="4"
-              />
-            </svg>
-          </div>
-          {/* Dots and stats */}
-          <div className="flex flex-col gap-8">
-            <div className="flex items-center gap-4">
-              <span className="w-4 h-4 rounded-full bg-yellow-200 border-2 border-yellow-300" />
-              <div>
-                <span className="text-2xl md:text-3xl font-extrabold text-gray-900">
-                  14,000
-                </span>
-                <div className="text-gray-600 text-sm">patients cared for</div>
+      {/* Premium Timeline / Stats */}
+      <div className="flex flex-col items-center md:items-start justify-center md:ml-16 mt-10 md:mt-0 z-10 w-full max-w-xs">
+        <div className="relative flex flex-col items-center w-full py-4">
+          {/* Vertical pipeline */}
+          <div className="absolute left-1/2 transform -translate-x-1/2 top-8 bottom-8 w-1 bg-yellow-300 z-0" />
+          {/* Timeline items */}
+          <div className="relative z-10 flex flex-col gap-16 w-full">
+            {/* Stat 1 */}
+            <div className="flex flex-col items-center text-center relative">
+              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 border-4 border-yellow-300 shadow-lg text-emerald-700 text-2xl mb-2 z-10">
+                <FaUserMd />
+              </span>
+              <span className="text-2xl font-bold text-gray-900">
+                <CountUp end={14000} duration={2} separator="," />
+              </span>
+              <div className="text-gray-700 text-base">patients cared for</div>
+            </div>
+            {/* Stat 2 */}
+            <div className="flex flex-col items-center text-center relative">
+              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 border-4 border-yellow-300 shadow-lg text-emerald-700 text-2xl mb-2 z-10">
+                <FaCalendarAlt />
+              </span>
+              <span className="text-2xl font-bold text-gray-900">
+                Since <CountUp end={1998} duration={1.5} />
+              </span>
+              <div className="text-gray-700 text-base">
+                serving the community
               </div>
             </div>
-            <div className="flex items-center gap-4">
-              <span className="w-4 h-4 rounded-full bg-yellow-200 border-2 border-yellow-300" />
-              <div>
-                <span className="text-2xl md:text-3xl font-extrabold text-gray-900">
-                  Since 1998
-                </span>
-                <div className="text-gray-600 text-sm">
-                  serving the community
-                </div>
-              </div>
-            </div>
-            <div className="flex items-center gap-4">
-              <span className="w-4 h-4 rounded-full bg-yellow-200 border-2 border-yellow-300" />
-              <div>
-                <span className="text-2xl md:text-3xl font-extrabold text-gray-900">
-                  30+ specialties
-                </span>
-                <div className="text-gray-600 text-sm">expert departments</div>
-              </div>
+            {/* Stat 3 */}
+            <div className="flex flex-col items-center text-center relative">
+              <span className="flex items-center justify-center w-12 h-12 rounded-full bg-yellow-100 border-4 border-yellow-300 shadow-lg text-emerald-700 text-2xl mb-2 z-10">
+                <FaHospitalSymbol />
+              </span>
+              <span className="text-2xl font-bold text-gray-900">
+                <CountUp end={30} duration={1.5} />+
+              </span>
+              <div className="text-gray-700 text-base">expert departments</div>
             </div>
           </div>
+        </div>
+        {/* Awards/Certifications */}
+        <div className="flex gap-4 mt-10 justify-center md:justify-start">
+          <span className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow border border-yellow-100">
+            <FaAward className="text-yellow-500" />
+            <span className="text-sm text-gray-700 font-medium">
+              NABH Accredited
+            </span>
+          </span>
+          <span className="flex items-center gap-2 bg-white rounded-full px-4 py-2 shadow border border-yellow-100">
+            <FaStar className="text-yellow-400" />
+            <span className="text-sm text-gray-700 font-medium">
+              Best Hospital 2024
+            </span>
+          </span>
         </div>
       </div>
     </div>

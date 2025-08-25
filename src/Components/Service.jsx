@@ -51,7 +51,7 @@ const responsive = {
 
 export default function Service() {
   return (
-    <div className="min-h-screen bg-gray-50 flex flex-col items-center justify-start py-8 px-2 md:px-8">
+    <div className="h-[40rem] xl:h-[32rem] bg-gray-50 flex flex-col items-center justify-start px-2 md:px-8">
       {/* Header */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between mb-8">
         <div className="flex items-center gap-3">
