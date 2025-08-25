@@ -6,14 +6,15 @@ import {
   FaTwitter,
   FaFacebook,
 } from "react-icons/fa";
+import sssLogo from "../assets/sss-logo.jpeg";
+import hospitalImg from "../assets/sss-hospital.avif";
 
 export default function Home() {
   return (
     <div
       className="min-h-screen w-full flex flex-col bg-cover bg-center relative"
       style={{
-        backgroundImage:
-          "url('https://images.jdmagicbox.com/v2/comp/erode/b5/9999px424.x424.250603121223.m3b5/catalogue/sss-super-speciality-hospital-thindal-erode-erode-multispeciality-hospitals-4rr18wrrje.jpg')",
+        backgroundImage: `url(${hospitalImg})`,
       }}
     >
       {/* Overlay for readability */}
@@ -34,7 +35,7 @@ export default function Home() {
         <div className="flex items-center gap-2 md:gap-3 mt-3 md:mt-0">
           <div className="bg-white rounded-full p-1 shadow">
             <img
-              src="https://www.ssshospitals.in/images/WhatsApp%20Image%202024-11-22%20at%206.51.51%20PM.jpeg"
+              src={sssLogo}
               alt="SSS Super Speciality Hospital Logo"
               className="w-8 h-8 md:w-12 md:h-12 object-cover rounded-full"
             />
@@ -87,17 +88,17 @@ export default function Home() {
             <div className="flex items-center gap-2 mb-3">
               <div className="flex -space-x-2">
                 <img
-                  src="https://randomuser.me/api/portraits/men/32.jpg"
+                  src={sssLogo}
                   alt="Client 1"
                   className="w-8 h-8 rounded-full border-2 border-white"
                 />
                 <img
-                  src="https://randomuser.me/api/portraits/women/44.jpg"
+                  src={hospitalImg}
                   alt="Client 2"
                   className="w-8 h-8 rounded-full border-2 border-white"
                 />
                 <img
-                  src="https://randomuser.me/api/portraits/men/65.jpg"
+                  src={sssLogo}
                   alt="Client 3"
                   className="w-8 h-8 rounded-full border-2 border-white"
                 />
