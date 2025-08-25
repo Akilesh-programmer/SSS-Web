@@ -49,8 +49,8 @@ export default function MissionVision() {
               VISION
             </span>
             <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-              To lead healthcare innovation, setting new standards for excellence
-              and patient satisfaction in our community and beyond.
+              To lead healthcare innovation, setting new standards for
+              excellence and patient satisfaction in our community and beyond.
             </p>
           </div>
         </div>

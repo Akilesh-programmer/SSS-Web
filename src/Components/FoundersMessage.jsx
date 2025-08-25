@@ -13,6 +13,7 @@ import {
 } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
+import founderImg from "../assets/Sanjith-SSS-Hospitals.jpg";
 
 const milestones = [
   { year: "1998", label: "Hospital Founded" },
@@ -57,36 +58,39 @@ export default function FoundersMessage() {
         initial={{ opacity: 0, y: 40, scale: 0.98 }}
         animate={{ opacity: 1, y: 0, scale: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
-        className="   xl:max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-10 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 md:p-8"
+        className="xl:max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-10 bg-white rounded-2xl shadow-2xl border border-gray-100 p-4 md:p-8"
       >
         {/* Left Column */}
         <div className="flex flex-col gap-7 items-start">
           {/* Founder’s Portrait */}
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-emerald-200 shadow-lg mb-2">
             <img
-              src="https://images.unsplash.com/photo-1511367461989-f85a21fda167?auto=format&fit=facearea&w=256&q=80"
-              alt="Founder"
+              src={founderImg}
+              alt="Dr. S. Sanjith"
               className="w-full h-full object-cover"
             />
           </div>
           {/* Name & Title */}
           <div>
             <div className="text-2xl font-semibold text-emerald-900 tracking-tight">
-              Dr. S. Kumar
+              Dr. S. Sanjith, MD
             </div>
-            <div className="text-sm text-gray-500 mb-2">Founder & Chairman</div>
+            <div className="text-sm text-gray-500 mb-2">
+              Dermatologist & Founder
+            </div>
           </div>
           {/* Founder Bio/About Section */}
           <div className="bg-emerald-50 rounded-xl shadow px-4 py-3 border border-emerald-100 text-gray-700 text-base leading-relaxed mb-2">
             <span className="font-semibold text-emerald-900 mb-1 block">
               About the Founder
             </span>
-            Dr. S. Kumar is a visionary leader in healthcare, with over 25 years of
-            experience in patient care and hospital management. He founded SSS Super
-            Speciality Hospital with a mission to bring world-class medical services to
-            the community. His dedication to innovation, compassion, and excellence has
-            earned the hospital numerous awards and accreditations. Dr. Kumar is known
-            for his hands-on approach, mentoring staff, and always putting patients
+            Dr. S. Sanjith is a visionary dermatologist and healthcare leader
+            with over 25 years of experience in patient care and hospital
+            management. He founded SSS Super Speciality Hospital to provide
+            world-class medical services to the community. His dedication to
+            innovation, compassion, and excellence has earned the hospital
+            numerous awards and accreditations. Dr. Sanjith is known for his
+            hands-on approach, mentoring staff, and always putting patients
             first.
           </div>
           {/* Credentials & Achievements */}
@@ -98,7 +102,8 @@ export default function FoundersMessage() {
               <FaStar className="text-yellow-400" /> Best Hospital 2024
             </span>
             <span className="flex items-center gap-1 text-sm bg-emerald-50 px-3 py-1 rounded-full border border-emerald-100">
-              <FaCalendarAlt className="text-emerald-400" /> 25+ Years Experience
+              <FaCalendarAlt className="text-emerald-400" /> 25+ Years
+              Experience
             </span>
           </div>
           {/* Social Media Links */}
@@ -137,7 +142,7 @@ export default function FoundersMessage() {
             className="text-emerald-700 text-2xl mt-6"
             style={{ fontFamily: "cursive" }}
           >
-            Dr. S. Kumar
+            Dr. S. Sanjith
           </div>
         </div>
         {/* Right Column */}
@@ -199,9 +204,7 @@ export default function FoundersMessage() {
           <div className="flex gap-10 mt-2">
             <div className="flex flex-col items-center">
               <FaUserMd className="text-emerald-600 text-2xl mb-1" />
-              <span className="text-xl font-semibold text-gray-900">
-                25+
-              </span>
+              <span className="text-xl font-semibold text-gray-900">25+</span>
               <span className="text-xs text-gray-500">Years Service</span>
             </div>
             <div className="flex flex-col items-center">
@@ -213,9 +216,7 @@ export default function FoundersMessage() {
             </div>
             <div className="flex flex-col items-center">
               <FaHospitalSymbol className="text-emerald-400 text-2xl mb-1" />
-              <span className="text-xl font-semibold text-gray-900">
-                30+
-              </span>
+              <span className="text-xl font-semibold text-gray-900">30+</span>
               <span className="text-xs text-gray-500">Departments Led</span>
             </div>
           </div>

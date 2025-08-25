@@ -1,18 +1,17 @@
 import React from "react";
 import { BiChevronDown, BiChevronsRight } from "react-icons/bi";
 import { FaPhoneAlt, FaUserMd, FaUserNurse, FaUser } from "react-icons/fa";
+import Lottie from "lottie-react";
+import tealHeart from "../Teal Healthy Heart.json";
 
 export default function Interactions() {
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-emerald-50 via-white to-gray-100 p-4">
-      <div className="w-full max-w-6xl mx-auto">
-        {/* Navigation */}
-       
-
+    <div className="w-full min-h-screen flex justify-center items-center bg-gradient-to-br from-emerald-50 via-white to-gray-100 p-0">
+      <div className="w-full max-w-[1800px] mx-auto px-4 md:px-8">
         {/* Main Content */}
-        <div className="flex flex-col md:flex-row gap-10 items-center md:items-end">
+        <div className="flex flex-col md:flex-row gap-10 items-center md:items-end w-full">
           {/* Left Section */}
-          <div className="flex-1 max-w-xl">
+          <div className="flex-1 max-w-2xl">
             <p className="flex items-center gap-2 text-sm text-emerald-700 mb-3">
               <span className="inline-block w-6 h-6 bg-emerald-100 rounded-full" />
               Trusted by thousands for premium healthcare, anytime.
@@ -41,53 +40,73 @@ export default function Interactions() {
               </button>
             </div>
           </div>
-
-          {/* Right Section - Card */}
-          <div className="w-full md:w-80">
-            <div className="bg-white rounded-2xl shadow-2xl p-6 mb-4 border border-emerald-100">
-              <div className="flex items-center gap-3">
-                <FaUserMd className="w-12 h-12 p-2 rounded-lg bg-emerald-100 text-emerald-700 shadow" />
-                <div>
-                  <div className="text-base font-semibold text-emerald-900">
-                    Online Doctor
+          {/* Right Section - Card and Animation Side by Side */}
+          <div className="flex-1 flex flex-col md:flex-row gap-10 items-start justify-end w-full">
+            {/* Card */}
+            <div className="flex flex-col items-center w-full max-w-[400px]">
+              <div className="bg-white rounded-2xl shadow-2xl p-8 mb-4 border border-emerald-100 w-full">
+                <div className="flex items-center gap-4">
+                  <FaUserMd className="w-12 h-12 p-2 rounded-lg bg-emerald-100 text-emerald-700 shadow" />
+                  <div>
+                    <div className="text-lg font-semibold text-emerald-900">
+                      Online Doctor
+                    </div>
+                    <div className="text-xs text-emerald-500">
+                      Available 24/7
+                    </div>
                   </div>
-                  <div className="text-xs text-emerald-500">Available 24/7</div>
+                </div>
+                <div className="mt-6 flex flex-col gap-4">
+                  <div className="bg-emerald-50 rounded-lg p-4 shadow-sm">
+                    <div className="text-base font-bold text-emerald-700">
+                      13+ Years
+                    </div>
+                    <div className="text-xs text-emerald-500">
+                      Professional Experience
+                    </div>
+                  </div>
+                  <div className="bg-emerald-50 rounded-lg p-4 shadow-sm">
+                    <div className="text-base font-bold text-emerald-700">
+                      3,000+
+                    </div>
+                    <div className="text-xs text-emerald-500">
+                      Satisfied Clients
+                    </div>
+                  </div>
                 </div>
               </div>
-              <div className="mt-4 grid grid-cols-1 gap-2">
-                <div className="bg-emerald-50 rounded-lg p-3 shadow-sm">
-                  <div className="text-sm font-bold text-emerald-700">
-                    13+ Years
-                  </div>
-                  <div className="text-xs text-emerald-500">
-                    Professional Experience
-                  </div>
-                </div>
-                <div className="bg-emerald-50 rounded-lg p-3 mt-2 shadow-sm">
-                  <div className="text-sm font-bold text-emerald-700">
-                    3,000+
-                  </div>
-                  <div className="text-xs text-emerald-500">
-                    Satisfied Clients
-                  </div>
-                </div>
+              {/* Icon avatars row */}
+              <div className="flex items-center gap-2 bg-white rounded-full px-4 py-3 shadow-lg border border-emerald-100 w-full justify-center">
+                <FaUserMd
+                  className="w-8 h-8 text-emerald-700"
+                  title="Doctor 1"
+                />
+                <FaUserNurse
+                  className="w-8 h-8 text-emerald-700"
+                  title="Doctor 2"
+                />
+                <FaUser className="w-8 h-8 text-emerald-700" title="Doctor 3" />
+                <span className="text-xs text-emerald-700 ml-2 font-medium">
+                  Consult 30+ Experts
+                </span>
               </div>
             </div>
-            {/* Icon avatars row */}
-            <div className="flex items-center gap-2 bg-white rounded-full px-3 py-2 shadow-lg border border-emerald-100">
-              <FaUserMd className="w-8 h-8 text-emerald-700" title="Doctor 1" />
-              <FaUserNurse
-                className="w-8 h-8 text-emerald-700"
-                title="Doctor 2"
+            {/* Animated Heart on the right side */}
+            <div className="flex flex-col items-center justify-center w-full h-10 xl:h-auto md:max-w-[400px]">
+              <Lottie
+                animationData={tealHeart}
+                loop={true}
+                style={{
+                  width: "380px",
+                  height: "380px",
+                  maxWidth: "90vw",
+                  maxHeight: "40vw",
+                }}
+                className="md:w-[320px] md:h-[320px] w-[180px] h-[180px]"
               />
-              <FaUser className="w-8 h-8 text-emerald-700" title="Doctor 3" />
-              <span className="text-xs text-emerald-700 ml-2 font-medium">
-                Consult 30+ Experts
-              </span>
             </div>
           </div>
         </div>
-
         {/* Down Arrow */}
         <div className="flex justify-center mt-12">
           <div className="bg-white rounded-full w-14 h-14 flex items-center justify-center shadow-lg text-emerald-700 border border-emerald-200">
