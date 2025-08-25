@@ -30,26 +30,27 @@ export default function MissionVision() {
 
       {/* Mission & Vision Card */}
       <div className="bg-white/90 rounded-2xl shadow-2xl p-8 md:p-12 max-w-xl w-full z-10 border border-emerald-100">
-        <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 mb-8 tracking-tight">
+        <h2 className="text-3xl md:text-4xl font-bold text-emerald-900 mb-8 tracking-tight text-center">
           Mission & Vision
         </h2>
         <div className="flex flex-col gap-8">
-          <div className="flex items-start gap-4">
+          <div className="flex flex-col md:flex-row items-start gap-4">
             <span className="font-semibold text-emerald-700 min-w-[80px] text-base md:text-lg tracking-wide">
               MISSION
             </span>
             <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-              To provide every patient with exceptional care, compassion, and
-              advanced medical expertise in a safe and welcoming environment.
+              To deliver exceptional care and compassion to every patient,
+              combining advanced medical expertise with a safe, welcoming
+              environment.
             </p>
           </div>
-          <div className="flex items-start gap-4">
+          <div className="flex flex-col md:flex-row items-start gap-4">
             <span className="font-semibold text-emerald-700 min-w-[80px] text-base md:text-lg tracking-wide">
               VISION
             </span>
             <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-              To be a leader in healthcare innovation, setting new standards for
-              excellence and patient satisfaction in our community and beyond.
+              To lead healthcare innovation, setting new standards for excellence
+              and patient satisfaction in our community and beyond.
             </p>
           </div>
         </div>
@@ -86,7 +87,7 @@ export default function MissionVision() {
               <span className="text-2xl font-bold text-gray-900">
                 <CountUp end={14000} duration={2} separator="," />
               </span>
-              <div className="text-gray-700 text-base">patients cared for</div>
+              <div className="text-gray-700 text-base">Patients Cared For</div>
             </div>
             {/* Stat 2 */}
             <div className="flex flex-col items-center text-center relative">
@@ -97,7 +98,7 @@ export default function MissionVision() {
                 Since <CountUp end={1998} duration={1.5} />
               </span>
               <div className="text-gray-700 text-base">
-                serving the community
+                Serving the Community
               </div>
             </div>
             {/* Stat 3 */}
@@ -108,7 +109,7 @@ export default function MissionVision() {
               <span className="text-2xl font-bold text-gray-900">
                 <CountUp end={30} duration={1.5} />+
               </span>
-              <div className="text-gray-700 text-base">expert departments</div>
+              <div className="text-gray-700 text-base">Expert Departments</div>
             </div>
           </div>
         </div>

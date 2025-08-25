@@ -71,13 +71,18 @@ export default function Home() {
             <br className="hidden md:block" />
             Find the best hospitals near you in seconds!
           </p>
-          <button className="bg-white rounded-full px-5 md:px-7 py-3 md:py-4 font-semibold text-emerald-900 shadow-xl flex items-center gap-2 md:gap-3 text-base md:text-lg mx-auto hover:bg-emerald-50 transition">
-            Find Hospital <FaArrowRight className="text-emerald-600" />
+          <button
+            className="bg-white rounded-full px-5 md:px-7 py-3 md:py-4 font-semibold text-emerald-900 shadow-xl flex items-center gap-2 md:gap-3 text-base md:text-lg mx-auto hover:bg-emerald-50 transition"
+            as="a"
+            href="https://maps.app.goo.gl/XpWFL8M2emx5sFwx5"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Locate SSS Hospital <FaArrowRight className="text-emerald-600" />
           </button>
         </section>
 
         <section className="w-full hidden md:flex flex-row items-start justify-between mt-12 gap-8">
-       
           <div className="bg-white/90 rounded-2xl shadow-xl p-6 flex flex-col items-center xl:min-w-[420px] max-w-[220px] ml-12">
             <div className="flex items-center gap-2 mb-3">
               <div className="flex -space-x-2">
