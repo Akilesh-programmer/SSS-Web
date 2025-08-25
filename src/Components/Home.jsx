@@ -76,9 +76,8 @@ export default function Home() {
           </button>
         </section>
 
-        {/* Info & Social Section - Hidden on small screens */}
         <section className="w-full hidden md:flex flex-row items-start justify-between mt-12 gap-8">
-          {/* Left Info Card */}
+       
           <div className="bg-white/90 rounded-2xl shadow-xl p-6 flex flex-col items-center xl:min-w-[420px] max-w-[220px] ml-12">
             <div className="flex items-center gap-2 mb-3">
               <div className="flex -space-x-2">
