@@ -127,7 +127,7 @@ export default function Service() {
 
       {/* Description */}
       <div className="w-full max-w-6xl flex flex-col md:flex-row items-center justify-between mt-8 gap-4">
-        <div className="text-gray-700 text-sm max-w-md text-right">
+        <div className="text-gray-700 text-sm max-w-md text-left">
           Book an appointment for personalized consultations, specialized
           treatments, or routine checkups, and take a step towards better
           health.
