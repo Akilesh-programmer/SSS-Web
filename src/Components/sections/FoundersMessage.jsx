@@ -13,7 +13,8 @@ import {
 } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
-import founderImg from "../assets/Sanjith-SSS-Hospitals.jpg";
+import founderImg from "../../assets/Sanjith-SSS-Hospitals.jpg";
+import sssLogo from "../../assets/sss-logo.jpeg";
 
 const milestones = [
   { year: "1998", label: "Hospital Founded" },
@@ -49,9 +50,9 @@ export default function FoundersMessage() {
     <div className="w-full bg-white py-12 px-2 md:px-8 flex flex-col items-center min-h-[700px]">
       {/* Hospital Logo */}
       <img
-        src="https://www.ssshospitals.in/images/WhatsApp%20Image%202024-11-22%20at%206.51.51%20PM.jpeg"
-        alt="Hospital Logo"
-        className="w-16 h-16 rounded-full mb-6 shadow"
+        src={sssLogo}
+        alt="SSS Hospital Logo"
+        className="w-16 h-16 rounded-full mb-6 shadow object-cover border-2 border-emerald-500"
       />
       {/* Professional 2-column grid */}
       <motion.div
