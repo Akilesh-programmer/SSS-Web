@@ -1,8 +1,7 @@
 import {
   FaInstagram,
-  FaLinkedin,
-  FaGithub,
   FaTwitter,
+  FaFacebook,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
@@ -15,21 +14,21 @@ import {
   FaUserMd,
   FaCalendarAlt,
 } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
-  const quickLinks = [
-    { name: "About Us", href: "#about" },
-    { name: "Our Specialties", href: "#specialties" },
-    { name: "Emergency Services", href: "tel:+919876543210" },
-    { name: "Virtual Tour", href: "#virtual-tour" },
-  ];
+  const navigate = useNavigate();
 
-  const scrollToSection = (href) => {
-    if (href.startsWith("#")) {
-      const element = document.querySelector(href);
+  const handleNavigation = (link) => {
+    if (link.action) {
+      link.action();
+    } else if (link.href.startsWith("#")) {
+      const element = document.querySelector(link.href);
       if (element) {
         element.scrollIntoView({ behavior: "smooth" });
       }
+    } else {
+      navigate(link.href);
     }
   };
 
@@ -127,12 +126,12 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <footer className="bg-gray-900 text-white pt-12 pb-8">
+      <footer className="bg-gray-900 text-white pt-8 pb-6">
         <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {/* Hospital Info */}
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-3 mb-4">
                 <img
                   src="/src/assets/sss-logo.jpeg"
                   alt="SSS Hospital Logo"
@@ -147,7 +146,7 @@ export default function Footer() {
                   </p>
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed text-base mb-6">
+              <p className="text-gray-300 leading-relaxed text-base mb-4">
                 Bringing world-class healthcare to the heart of Erode. Your
                 trusted partner in health with comprehensive medical services
                 and 24/7 emergency care.
@@ -156,51 +155,38 @@ export default function Footer() {
               {/* Social Links */}
               <div className="flex gap-4">
                 <a
-                  href="#"
+                  href="https://www.instagram.com/ssshospitals_"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-colors"
                 >
                   <FaInstagram />
                 </a>
                 <a
-                  href="#"
+                  href="https://x.com/sss_hospitals"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-colors"
                 >
                   <FaTwitter />
                 </a>
                 <a
-                  href="#"
+                  href="https://www.facebook.com/profile.php?id=61553553123476"
+                  target="_blank"
+                  rel="noopener noreferrer"
                   className="w-10 h-10 bg-gray-800 rounded-full flex items-center justify-center hover:bg-emerald-600 transition-colors"
                 >
-                  <FaLinkedin />
+                  <FaFacebook />
                 </a>
               </div>
             </div>
 
-            {/* Quick Links */}
-            <div>
-              <h4 className="text-lg font-semibold mb-6 text-emerald-400">
-                Quick Links
-              </h4>
-              <ul className="space-y-3">
-                {quickLinks.map((link, index) => (
-                  <li key={index}>
-                    <button
-                      onClick={() => scrollToSection(link.href)}
-                      className="text-gray-300 hover:text-emerald-400 transition-colors text-left text-base"
-                    >
-                      {link.name}
-                    </button>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
             {/* Contact & Hours */}
             <div>
-              <h4 className="text-lg font-semibold mb-6 text-emerald-400">
+              <h4 className="text-lg font-semibold mb-4 text-emerald-400">
                 Contact & Hours
               </h4>
-              <div className="space-y-4">
+              <div className="space-y-3">
                 <div>
                   <h5 className="font-semibold text-white mb-2 text-base">
                     Hospital Hours
@@ -225,61 +211,76 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Hospital Address & Emergency */}
+            {/* Emergency & Address */}
             <div>
-              <h4 className="text-lg font-semibold mb-6 text-emerald-400">
-                Hospital Address
+              <h4 className="text-lg font-semibold mb-4 text-emerald-400">
+                Emergency & Location
               </h4>
-              <div className="text-gray-300 text-sm leading-relaxed mb-6">
-                167/2C1, Perundurai Rd, Diamond Nagar,
-                <br />
-                Nalliyampalayam, Erode, Tamil Nadu 638009
-              </div>
 
-              {/* Emergency Banner - Clickable */}
+              {/* Emergency Banner - Compact */}
               <div
                 onClick={() => (window.location.href = "tel:+919876543210")}
-                className="bg-red-600 rounded-lg p-4 cursor-pointer hover:bg-red-700 transition-colors"
+                className="bg-red-600 rounded-lg p-3 cursor-pointer hover:bg-red-700 transition-colors mb-3"
               >
-                <div className="flex items-center gap-2 mb-2">
-                  <FaAmbulance className="text-white text-xl" />
-                  <span className="font-bold text-white">24/7 Emergency</span>
+                <div className="flex items-center gap-2 mb-1">
+                  <FaAmbulance className="text-white text-lg" />
+                  <span className="font-bold text-white text-base">
+                    24/7 Emergency
+                  </span>
                 </div>
                 <div className="text-white text-lg font-bold">
                   +91 98765 43210
                 </div>
-                <div className="text-red-100 text-xs mt-1">
-                  Click to call now
-                </div>
+                <div className="text-red-100 text-sm">Click to call now</div>
+              </div>
+
+              <div className="text-gray-300 text-sm leading-relaxed">
+                <div className="font-semibold text-white mb-1">Address</div>
+                167/2C1, Perundurai Rd, Diamond Nagar,
+                <br />
+                Nalliyampalayam, Erode, Tamil Nadu 638009
               </div>
             </div>
           </div>
 
-          {/* Bottom Bar */}
-          <div className="border-t border-gray-800 mt-8 pt-6">
-            <div className="flex flex-col md:flex-row justify-between items-center">
-              <div className="text-gray-400 text-sm mb-4 md:mb-0">
+          {/* Bottom Bar - Single Line Layout */}
+          <div className="border-t border-gray-800 mt-6 pt-4">
+            <div className="flex flex-col lg:flex-row justify-between items-center gap-2 lg:gap-4">
+              <div className="text-gray-400 text-sm">
                 © 2025 SSS Super Speciality Hospital. All rights reserved.
               </div>
-              <div className="flex gap-6 text-sm text-gray-400">
-                <a
-                  href="#"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Privacy Policy
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Terms of Service
-                </a>
-                <a
-                  href="#"
-                  className="hover:text-emerald-400 transition-colors"
-                >
-                  Careers
-                </a>
+              <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
+                <div className="flex gap-4 text-gray-400">
+                  <a
+                    href="/privacy"
+                    className="hover:text-emerald-400 transition-colors"
+                  >
+                    Privacy Policy
+                  </a>
+                  <a
+                    href="/terms"
+                    className="hover:text-emerald-400 transition-colors"
+                  >
+                    Terms of Service
+                  </a>
+                  <a
+                    href="/careers"
+                    className="hover:text-emerald-400 transition-colors"
+                  >
+                    Careers
+                  </a>
+                </div>
+                <div className="text-gray-500">
+                  Website by{" "}
+                  <a
+                    href="https://automconsultancy.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
+                  >
+                    Autom Consultancy Services
+                  </a>
+                </div>
               </div>
             </div>
           </div>

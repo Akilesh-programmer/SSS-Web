@@ -12,10 +12,12 @@ import Service from "./Components/Service";
 import MissionVision from "./Components/sections/MissionVision";
 import FoundersMessage from "./Components/sections/FoundersMessage";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
+import Contact from "./Components/sections/Contact";
 import Footer from "./Components/ui/Footer";
 import DepartmentPage from "./Components/pages/DepartmentPage";
 import DoctorsPage from "./Components/pages/DoctorsPage";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
+import FloatingChatbot from "./Components/ui/FloatingChatbot";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
 import PageWrapper from "./Components/ui/PageWrapper";
@@ -184,7 +186,7 @@ const DoctorsPageWrapper = () => {
   );
 };
 
-// Contact Page - Contact and appointment booking
+// Contact Page - Enhanced contact information and appointment booking
 const ContactPage = () => {
   useEffect(() => {
     // Scroll to top when contact page loads
@@ -194,7 +196,8 @@ const ContactPage = () => {
   return (
     <PageWrapper pageKey="contact-page">
       <Navigation />
-      <div className="pt-20">
+      <Contact key="contact-content" />
+      <div className="pt-16">
         <AppointmentBooking key="appointment-booking" />
       </div>
       <Footer />
@@ -218,6 +221,7 @@ function App() {
           <Route path="/department/:slug" element={<DepartmentPage />} />
         </Routes>
         <FloatingAppointmentButton />
+        <FloatingChatbot />
 
         {/* Global Appointment Popup */}
         <AppointmentPopup

@@ -240,6 +240,7 @@ export const departmentsData = [
         designation: "Founder, Managing Director & Consultant Dermatologist",
         specialization: "Medical & Cosmetic Dermatology",
         experience: "20+ years",
+        image: "/src/assets/Sanjith-SSS-Hospitals.jpg",
         achievements: [
           "Founder of SSS Super Speciality Hospital",
           "Leading dermatology expert in Erode",

@@ -30,14 +30,14 @@ const AppointmentBooking = () => {
         whileInView={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.6 }}
         viewport={{ once: true, amount: 0.3 }}
-        className="text-center bg-white/10 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/20 transition-all duration-300"
+        className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/80 transition-all duration-300 border border-emerald-200/30 shadow-sm hover:shadow-md"
       >
-        <Icon className="text-4xl text-white mb-3 mx-auto" />
-        <div className="text-3xl font-bold text-white mb-2">
+        <Icon className="text-4xl text-emerald-600 mb-3 mx-auto" />
+        <div className="text-3xl font-bold text-gray-800 mb-2">
           {count}
           {suffix}
         </div>
-        <div className="text-emerald-100 text-sm">{label}</div>
+        <div className="text-gray-600 text-sm font-medium">{label}</div>
       </motion.div>
     );
   };
@@ -102,9 +102,9 @@ const AppointmentBooking = () => {
             viewport={{ once: true, amount: 0.2 }}
             className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-16 relative"
           >
-            {/* Gradient header */}
-            <div className="bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-600 text-white p-12 relative">
-              <div className="absolute inset-0 opacity-20">
+            {/* Professional gradient header */}
+            <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 text-gray-800 p-12 relative border-b border-emerald-200/50">
+              <div className="absolute inset-0 opacity-10">
                 <svg
                   width="40"
                   height="40"
@@ -123,8 +123,8 @@ const AppointmentBooking = () => {
                       cx="20"
                       cy="20"
                       r="10"
-                      fill="white"
-                      fillOpacity="0.1"
+                      fill="currentColor"
+                      fillOpacity="0.05"
                     />
                   </pattern>
                   <rect width="100%" height="100%" fill="url(#pattern)" />
@@ -132,10 +132,10 @@ const AppointmentBooking = () => {
               </div>
 
               <div className="relative text-center">
-                <h3 className="text-4xl font-bold mb-4">
+                <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
                   Ready to Book Your Appointment?
                 </h3>
-                <p className="text-emerald-100 text-lg mb-8 max-w-2xl mx-auto">
+                <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
                   Get immediate access to our comprehensive appointment booking
                   system. Choose your preferred doctor, time, and department
                   with just a few clicks.
@@ -145,7 +145,7 @@ const AppointmentBooking = () => {
                   onClick={() => setIsAppointmentOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-white text-emerald-700 px-10 py-4 rounded-2xl font-bold text-xl shadow-lg hover:shadow-xl transition-all duration-300 flex items-center gap-3 mx-auto"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-2xl font-bold text-xl shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-3 mx-auto"
                 >
                   <FaCalendarAlt />
                   Book Appointment Now
@@ -226,88 +226,6 @@ const AppointmentBooking = () => {
                   </p>
                 </motion.div>
               </div>
-            </div>
-          </motion.div>
-
-          {/* Contact Options */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            viewport={{ once: true, amount: 0.2 }}
-            className="grid md:grid-cols-3 gap-8"
-          >
-            {/* Emergency Contact */}
-            <div className="bg-gradient-to-br from-red-50 to-red-100 rounded-2xl p-8 text-center border border-red-200 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-red-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaPhone className="text-2xl text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-red-900 mb-4">
-                Emergency
-              </h3>
-              <p className="text-red-700 mb-4">
-                24/7 emergency medical services
-              </p>
-              <p className="text-3xl font-bold text-red-600 mb-6">
-                +91 9876543210
-              </p>
-              <a
-                href="tel:+919876543210"
-                className="inline-block bg-red-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-red-600 transition-colors"
-              >
-                Call Emergency
-              </a>
-            </div>
-
-            {/* General Contact */}
-            <div className="bg-gradient-to-br from-emerald-50 to-emerald-100 rounded-2xl p-8 text-center border border-emerald-200 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaEnvelope className="text-2xl text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-emerald-900 mb-4">
-                General Inquiry
-              </h3>
-              <p className="text-emerald-700 mb-4">
-                For general questions and information
-              </p>
-              <p className="text-xl font-semibold text-emerald-600 mb-6">
-                info@ssshospital.com
-              </p>
-              <a
-                href="mailto:info@ssshospital.com"
-                className="inline-block bg-emerald-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-emerald-600 transition-colors"
-              >
-                Send Email
-              </a>
-            </div>
-
-            {/* Location */}
-            <div className="bg-gradient-to-br from-blue-50 to-blue-100 rounded-2xl p-8 text-center border border-blue-200 hover:shadow-lg transition-shadow">
-              <div className="w-16 h-16 bg-blue-500 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FaMapMarkerAlt className="text-2xl text-white" />
-              </div>
-              <h3 className="text-2xl font-bold text-blue-900 mb-4">
-                Visit Us
-              </h3>
-              <p className="text-blue-700 mb-4">
-                Come to our hospital for consultation
-              </p>
-              <p className="text-lg text-blue-600 mb-6">
-                Mon-Sat: 9AM-8PM
-                <br />
-                Sunday: Emergency Only
-              </p>
-              <button
-                onClick={() =>
-                  window.open(
-                    "https://www.google.com/maps/place/SSS+superspeciality+hospital/@11.3254179,77.68973,17z/data=!3m1!4b1!4m6!3m5!1s0x3ba96ee50acf6c25:0x737ed856b07b068e!8m2!3d11.3254179!4d77.6923049!16s%2Fg%2F11rd8y7h8v?entry=ttu&g_ep=EgoyMDI1MDEyOS4wIKXMDSoASAFQAw%3D%3D",
-                    "_blank"
-                  )
-                }
-                className="inline-block bg-blue-500 text-white px-6 py-3 rounded-xl font-semibold hover:bg-blue-600 transition-colors cursor-pointer"
-              >
-                Get Directions
-              </button>
             </div>
           </motion.div>
         </div>

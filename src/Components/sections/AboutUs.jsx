@@ -178,14 +178,25 @@ const AboutUs = () => {
           </h3>
           <div className="grid md:grid-cols-3 gap-6">
             {services.map((service, index) => (
-              <div
+              <motion.div
                 key={index}
-                className="bg-gradient-to-br from-emerald-600 to-emerald-700 rounded-xl p-6 text-white shadow-lg hover:shadow-xl transition-shadow"
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                className="bg-gradient-to-br from-white via-emerald-50 to-teal-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-200/50 group"
               >
-                <div className="mb-4">{service.icon}</div>
-                <h4 className="text-xl font-semibold mb-3">{service.title}</h4>
-                <p className="text-emerald-100">{service.description}</p>
-              </div>
+                <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                  {React.cloneElement(service.icon, {
+                    className: "text-2xl text-white",
+                  })}
+                </div>
+                <h4 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-emerald-700 transition-colors">
+                  {service.title}
+                </h4>
+                <p className="text-gray-600 leading-relaxed">
+                  {service.description}
+                </p>
+              </motion.div>
             ))}
           </div>
         </motion.div>
