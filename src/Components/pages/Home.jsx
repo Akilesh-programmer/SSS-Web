@@ -43,7 +43,7 @@ export default function Home() {
         <div className="absolute top-1/2 left-1/4 w-8 h-8 lg:w-16 lg:h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 flex items-center pt-16 lg:pt-24 pb-8 min-h-screen">
+      <div className="relative z-10 flex items-center pt-20 lg:pt-24 pb-8 min-h-screen">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
           <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
@@ -150,11 +150,11 @@ export default function Home() {
               className="relative order-1 lg:order-2"
             >
               {/* Main hospital image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-4 lg:mx-0">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-0 sm:mx-4">
                 <img
                   src={hospitalImg}
                   alt="SSS Hospital"
-                  className="w-full h-64 sm:h-80 lg:h-96 object-cover"
+                  className="w-full h-80 sm:h-80 lg:h-96 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
