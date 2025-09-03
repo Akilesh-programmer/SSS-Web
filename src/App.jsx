@@ -25,10 +25,6 @@ import ErrorBoundary from "./Components/ui/ErrorBoundary";
 
 // Streamlined Home Page Component - Only essential content
 const HomePage = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   return (
     <PageWrapper pageKey="home-page">
       <Navigation />
@@ -136,10 +132,6 @@ const HomePage = () => {
 
 // About Page - Comprehensive about information
 const AboutPage = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   return (
     <PageWrapper pageKey="about-page">
       <Navigation />
@@ -156,10 +148,6 @@ const AboutPage = () => {
 
 // Services Page - All services and departments
 const ServicesPage = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   return (
     <PageWrapper pageKey="services-page">
       <Navigation />
@@ -173,10 +161,6 @@ const ServicesPage = () => {
 
 // Doctors Page - All doctors and medical team
 const DoctorsPageWrapper = () => {
-  useEffect(() => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   return (
     <PageWrapper pageKey="doctors-page">
       <Navigation />
@@ -188,11 +172,6 @@ const DoctorsPageWrapper = () => {
 
 // Contact Page - Enhanced contact information and appointment booking
 const ContactPage = () => {
-  useEffect(() => {
-    // Scroll to top when contact page loads
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  }, []);
-
   return (
     <PageWrapper pageKey="contact-page">
       <Navigation />
