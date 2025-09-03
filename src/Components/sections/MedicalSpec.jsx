@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { getDepartmentBySlug } from "../../data/departmentsData";
@@ -243,6 +243,15 @@ const specialties = [
 export default function MedicalSpec() {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const navigate = useNavigate();
+
+  useEffect(() => {
+    // Force re-render to ensure animations trigger properly
+    const timer = setTimeout(() => {
+      // This forces a re-render to ensure viewport animations work
+      window.dispatchEvent(new Event("resize"));
+    }, 100);
+    return () => clearTimeout(timer);
+  }, []);
 
   const openSpecialtyModal = (specialty) => {
     setSelectedSpecialty(specialty);

@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import {
   FaUserMd,
   FaSearch,
@@ -37,6 +38,24 @@ const DoctorsPage = () => {
   const [viewMode, setViewMode] = useState("grid");
   const [selectedDoctor, setSelectedDoctor] = useState(null);
   const [showDepartmentDropdown, setShowDepartmentDropdown] = useState(false);
+
+  // Handle page navigation and animation resets
+  useEffect(() => {
+    // Scroll to top when navigating to this page
+    window.scrollTo(0, 0);
+
+    // Reset any animation states
+    setSelectedDoctor(null);
+    setShowDepartmentDropdown(false);
+
+    // Add a small delay to ensure proper animation triggers
+    const timer = setTimeout(() => {
+      // Trigger re-render for viewport animations
+      window.dispatchEvent(new Event("resize"));
+    }, 100);
+
+    return () => clearTimeout(timer);
+  }, [location]);
 
   // Enhanced departments with better categorization
   const departments = [
@@ -181,6 +200,7 @@ const DoctorsPage = () => {
       qualification: "MD (DERM)",
       experience: "15+ years",
       availability: "Mon-Sat: 9AM-6PM",
+      image: "/src/assets/Sanjith-SSS-Hospitals.jpg",
       specializations: [
         "Dermatology",
         "Cosmetology",
@@ -805,7 +825,7 @@ const DoctorsPage = () => {
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.45, ease: [0.2, 0.8, 0.2, 1], delay: i * 0.06 },
+      transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1], delay: i * 0.15 },
     }),
   };
 
@@ -835,7 +855,17 @@ const DoctorsPage = () => {
               </button>
 
               <div className="text-center mb-6">
-                <DefaultDoctorAvatar name={doctor.name} size="large" />
+                {doctor.image ? (
+                  <div className="w-32 h-32 mx-auto">
+                    <img
+                      src={doctor.image}
+                      alt={doctor.name}
+                      className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200"
+                    />
+                  </div>
+                ) : (
+                  <DefaultDoctorAvatar name={doctor.name} size="large" />
+                )}
                 <h2 className="text-2xl font-bold text-gray-800 mt-4 mb-2">
                   {doctor.name}
                 </h2>
@@ -1032,7 +1062,7 @@ const DoctorsPage = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white border border-emerald-200 rounded-2xl shadow-xl z-10 max-h-96 overflow-y-auto"
+                    className="absolute bottom-full left-0 right-0 mb-2 bg-white border border-emerald-200 rounded-2xl shadow-xl z-50 max-h-96 overflow-y-auto"
                   >
                     {departments.map((dept) => {
                       const IconComponent = dept.icon;
@@ -1141,10 +1171,20 @@ const DoctorsPage = () => {
                       <>
                         {/* Grid View */}
                         <div className="relative text-center mb-4">
-                          <DefaultDoctorAvatar
-                            name={doctor.name}
-                            size="large"
-                          />
+                          {doctor.image ? (
+                            <div className="w-32 h-32 mx-auto">
+                              <img
+                                src={doctor.image}
+                                alt={doctor.name}
+                                className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200"
+                              />
+                            </div>
+                          ) : (
+                            <DefaultDoctorAvatar
+                              name={doctor.name}
+                              size="large"
+                            />
+                          )}
 
                           {/* Special Badges */}
                           {doctor.isFounder && (
@@ -1218,10 +1258,20 @@ const DoctorsPage = () => {
                       <>
                         {/* List View */}
                         <div className="flex items-center mr-6">
-                          <DefaultDoctorAvatar
-                            name={doctor.name}
-                            size="small"
-                          />
+                          {doctor.image ? (
+                            <div className="w-16 h-16">
+                              <img
+                                src={doctor.image}
+                                alt={doctor.name}
+                                className="w-full h-full rounded-full object-cover shadow-lg border-2 border-emerald-200"
+                              />
+                            </div>
+                          ) : (
+                            <DefaultDoctorAvatar
+                              name={doctor.name}
+                              size="small"
+                            />
+                          )}
                         </div>
 
                         <div className="flex-1">
@@ -1310,33 +1360,37 @@ const DoctorsPage = () => {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.5 }}
-          className="mt-16 bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 rounded-3xl p-8 text-white shadow-2xl"
+          className="mt-16 bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 rounded-3xl p-8 border border-emerald-200/50 shadow-xl"
         >
           <div className="text-center mb-8">
-            <h2 className="text-3xl font-bold mb-2">Our Medical Excellence</h2>
-            <p className="text-emerald-100">
+            <h2 className="text-3xl font-bold mb-2 bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
+              Our Medical Excellence
+            </h2>
+            <p className="text-gray-600">
               Committed to providing the highest standard of healthcare
             </p>
           </div>
 
           <div className="grid md:grid-cols-4 gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold">{doctors.length}+</div>
-              <div className="text-emerald-100">Expert Doctors</div>
+            <div className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-emerald-200/30">
+              <div className="text-3xl font-bold text-emerald-700">
+                {doctors.length}+
+              </div>
+              <div className="text-gray-600 font-medium">Expert Doctors</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">
+            <div className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-emerald-200/30">
+              <div className="text-3xl font-bold text-emerald-700">
                 {departments.length - 1}+
               </div>
-              <div className="text-emerald-100">Specialties</div>
+              <div className="text-gray-600 font-medium">Specialties</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">24/7</div>
-              <div className="text-emerald-100">Emergency Care</div>
+            <div className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-emerald-200/30">
+              <div className="text-3xl font-bold text-emerald-700">24/7</div>
+              <div className="text-gray-600 font-medium">Emergency Care</div>
             </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold">15+</div>
-              <div className="text-emerald-100">Years Experience</div>
+            <div className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-emerald-200/30">
+              <div className="text-3xl font-bold text-emerald-700">15+</div>
+              <div className="text-gray-600 font-medium">Years Experience</div>
             </div>
           </div>
         </motion.div>

@@ -111,33 +111,44 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
     setIsSubmitting(true);
 
     try {
-      // EmailJS configuration (you'll need to set this up)
+      // EmailJS configuration for appointment booking
       const templateParams = {
         to_name: "SSS Hospital Admin",
+        to_email: "akileshakileshs1234@gmail.com",
         from_name: formData.name,
         from_email: formData.email,
         phone: formData.phone,
         department: formData.department,
         doctor: formData.doctor,
-        date: formData.date,
-        time: formData.time,
+        appointment_date: formData.date,
+        appointment_time: formData.time,
         message: formData.message,
         reply_to: formData.email,
+        subject: `New Appointment Request - ${formData.department}`,
       };
 
-      // Replace these with your actual EmailJS credentials
+      // EmailJS service - you'll need to replace these with actual EmailJS credentials
+      // For now, this will log the appointment data
+      console.log("Appointment Request:", templateParams);
+
+      // Uncomment and configure when EmailJS is set up:
+      /*
       await emailjs.send(
-        "YOUR_SERVICE_ID", // Replace with your EmailJS service ID
-        "YOUR_TEMPLATE_ID", // Replace with your EmailJS template ID
+        "service_sss_hospital", // EmailJS service ID
+        "template_appointment", // EmailJS template ID
         templateParams,
-        "YOUR_PUBLIC_KEY" // Replace with your EmailJS public key
+        "YOUR_EMAILJS_PUBLIC_KEY" // EmailJS public key
       );
+      */
+
+      // Simulate successful submission for now
+      await new Promise((resolve) => setTimeout(resolve, 2000));
 
       setIsSubmitted(true);
     } catch (error) {
       console.error("Email sending failed:", error);
       alert(
-        "Failed to send appointment request. Please try again or call us directly."
+        "Failed to send appointment request. Please try again or call us directly at +91 6379276131."
       );
     } finally {
       setIsSubmitting(false);

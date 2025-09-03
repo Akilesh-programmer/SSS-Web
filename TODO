@@ -5,3 +5,6 @@ UI Enhancements,
 Mobile First Check
 Other Enhanced Features.
 Add a Why Us page, or something like that, in that add the feedback and Selvakumar Video.
+If we are are switching page from bottom, then we scrolling to top, at that time all the animations are rendered,
+Then sommetimes when we are coming to Specialiteis page from other pages after we have scrolled, nothing is loading in the Specialities page.
+COntact Page use light colors.

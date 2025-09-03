@@ -3,7 +3,6 @@ import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import {
   FaArrowLeft,
-  FaCalendarAlt,
   FaClock,
   FaMapMarkerAlt,
   FaPhone,
@@ -73,10 +72,6 @@ const DepartmentPage = () => {
     { id: "facilities", label: "Facilities", icon: <FaMicroscope /> },
   ];
 
-  const scrollToAppointment = () => {
-    navigate("/#appointment");
-  };
-
   return (
     <div className="min-h-screen bg-gray-50">
       <Navigation />
@@ -128,13 +123,6 @@ const DepartmentPage = () => {
                   <FaMapMarkerAlt className="text-emerald-300" />
                   <span>SSS Hospital, Erode</span>
                 </div>
-                <button
-                  onClick={scrollToAppointment}
-                  className="bg-emerald-600 hover:bg-emerald-700 text-white px-6 py-2 rounded-lg font-semibold transition-colors flex items-center gap-2"
-                >
-                  <FaCalendarAlt />
-                  Book Appointment
-                </button>
               </div>
             </motion.div>
           </div>
@@ -336,15 +324,8 @@ const DepartmentPage = () => {
 
                         <div className="mt-6 flex gap-3">
                           <button
-                            onClick={scrollToAppointment}
-                            className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2"
-                          >
-                            <FaCalendarAlt />
-                            Book Appointment
-                          </button>
-                          <button
                             onClick={() => openDoctorPopup(doctor)}
-                            className="border border-emerald-600 text-emerald-600 px-4 py-2 rounded-lg hover:bg-emerald-50 transition-colors flex items-center gap-2"
+                            className="bg-emerald-600 text-white px-4 py-2 rounded-lg hover:bg-emerald-700 transition-colors flex items-center gap-2"
                           >
                             <FaUserMd />
                             View Profile
@@ -493,14 +474,14 @@ const DepartmentPage = () => {
                     <p className="text-emerald-100">info@ssshospital.com</p>
                   </div>
                   <div className="flex flex-col items-center">
-                    <FaCalendarAlt className="text-3xl mb-3" />
-                    <h4 className="font-semibold mb-1">Book Online</h4>
-                    <button
-                      onClick={scrollToAppointment}
+                    <FaPhone className="text-3xl mb-3" />
+                    <h4 className="font-semibold mb-1">Call Us</h4>
+                    <a
+                      href="tel:+916379276131"
                       className="bg-white text-emerald-600 px-4 py-2 rounded-lg font-semibold hover:bg-emerald-50 transition-colors"
                     >
-                      Schedule Now
-                    </button>
+                      +91 6379276131
+                    </a>
                   </div>
                 </div>
               </div>
