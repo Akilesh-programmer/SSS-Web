@@ -112,20 +112,20 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 pt-16 lg:pt-20">
       {/* Hero Section */}
-      <section className="relative py-20 bg-gradient-to-r from-emerald-200 to-teal-300 text-emerald-800">
+      <section className="relative py-16 lg:py-20 bg-gradient-to-r from-emerald-200 to-teal-300 text-emerald-800">
         <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-emerald-50/50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 text-center">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-4xl md:text-6xl font-bold mb-6 text-emerald-800">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6 text-emerald-800 px-4">
               Get in Touch
             </h1>
-            <p className="text-xl md:text-2xl text-emerald-700 max-w-3xl mx-auto">
+            <p className="text-lg sm:text-xl lg:text-2xl text-emerald-700 max-w-3xl mx-auto px-4">
               We're here to provide you with exceptional healthcare services.
               Reach out to us anytime.
             </p>
@@ -133,24 +133,24 @@ const Contact = () => {
         </div>
       </section>
 
-      <div className="max-w-7xl mx-auto px-4 py-16">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Quick Actions */}
         <motion.section
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-16"
+          className="mb-12 lg:mb-16"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="text-3xl font-bold text-center mb-12 text-gray-800"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 text-gray-800 px-4"
           >
             Quick Actions
           </motion.h2>
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-3 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8 px-4 sm:px-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
@@ -176,20 +176,23 @@ const Contact = () => {
                   transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.95 }}
-                className={`${action.color} p-8 rounded-2xl shadow-lg cursor-pointer transition-all duration-300 transform hover:shadow-xl`}
+                className={`${action.color} p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg cursor-pointer transition-all duration-300 transform hover:shadow-xl min-h-[140px] sm:min-h-[160px] lg:min-h-[180px] flex flex-col justify-center`}
                 onClick={action.action}
               >
                 <motion.div
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   transition={{ delay: 0.7 + index * 0.1, type: "spring" }}
+                  className="text-center"
                 >
-                  <action.icon className="text-4xl mb-4 mx-auto" />
+                  <action.icon className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-4 mx-auto" />
                 </motion.div>
-                <h3 className="text-xl font-bold text-center mb-2">
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-center mb-1 sm:mb-2">
                   {action.title}
                 </h3>
-                <p className="text-center opacity-90">{action.subtitle}</p>
+                <p className="text-center opacity-90 text-xs sm:text-sm lg:text-base">
+                  {action.subtitle}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -200,18 +203,18 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.5 }}
-            className="text-3xl font-bold text-center mb-12 text-gray-800"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
           >
             Contact Information
           </motion.h2>
           <motion.div
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 lg:gap-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
@@ -237,17 +240,17 @@ const Contact = () => {
                   rotateY: 5,
                   transition: { duration: 0.3 },
                 }}
-                className={`bg-white p-8 rounded-2xl shadow-lg border-l-4 ${
+                className={`bg-white p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg border-l-4 ${
                   info.urgent ? "border-red-400" : "border-emerald-400"
-                } hover:shadow-xl transition-all duration-300 cursor-pointer transform`}
+                } hover:shadow-xl transition-all duration-300 cursor-pointer transform min-h-[200px] sm:min-h-[220px] flex flex-col justify-center`}
                 onClick={() => window.open(info.action)}
               >
                 <motion.div
-                  className={`w-16 h-16 ${
+                  className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${
                     info.urgent
                       ? "bg-gradient-to-r from-red-100 to-pink-100"
                       : "bg-gradient-to-r from-emerald-100 to-teal-100"
-                  } rounded-full flex items-center justify-center mb-6 mx-auto`}
+                  } rounded-full flex items-center justify-center mb-4 sm:mb-6 mx-auto`}
                   initial={{ scale: 0, rotate: -180 }}
                   animate={{ scale: 1, rotate: 0 }}
                   transition={{
@@ -257,18 +260,18 @@ const Contact = () => {
                   }}
                 >
                   <info.icon
-                    className={`text-2xl ${
+                    className={`text-lg sm:text-xl lg:text-2xl ${
                       info.urgent ? "text-red-500" : "text-emerald-500"
                     }`}
                   />
                 </motion.div>
-                <h3 className="text-lg font-bold text-center mb-3 text-gray-800">
+                <h3 className="text-sm sm:text-base lg:text-lg font-bold text-center mb-2 sm:mb-3 text-gray-800">
                   {info.title}
                 </h3>
-                <p className="text-center font-semibold text-gray-700 mb-2">
+                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
                   {info.primary}
                 </p>
-                <p className="text-center text-sm text-gray-600">
+                <p className="text-center text-xs sm:text-sm text-gray-600">
                   {info.secondary}
                 </p>
               </motion.div>
@@ -281,24 +284,24 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.7 }}
-            className="text-3xl font-bold text-center mb-12 text-gray-800"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
           >
             Hospital Hours
           </motion.h2>
           <motion.div
-            className="max-w-4xl mx-auto bg-gradient-to-r from-white to-emerald-50 rounded-2xl shadow-lg p-8"
+            className="max-w-6xl mx-auto bg-gradient-to-r from-white to-emerald-50 rounded-xl sm:rounded-2xl shadow-lg p-4 sm:p-6 lg:p-8"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.8 }}
           >
             <motion.div
-              className="grid grid-cols-1 md:grid-cols-2 gap-6"
+              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 lg:gap-6"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{
@@ -323,21 +326,24 @@ const Contact = () => {
                     backgroundColor: "rgba(16, 185, 129, 0.1)",
                     transition: { duration: 0.2 },
                   }}
-                  className="flex items-center justify-between p-4 bg-gray-50 rounded-lg hover:bg-emerald-50 transition-all duration-300 cursor-pointer"
+                  className="flex flex-col sm:flex-row sm:items-center sm:justify-between p-3 sm:p-4 lg:p-5 bg-gray-50 rounded-lg sm:rounded-xl hover:bg-emerald-50 transition-all duration-300 cursor-pointer shadow-sm hover:shadow-md border border-gray-100 hover:border-emerald-200"
                 >
-                  <div className="flex items-center gap-3">
+                  <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-0">
                     <motion.div
                       initial={{ rotate: -180, scale: 0 }}
                       animate={{ rotate: 0, scale: 1 }}
                       transition={{ delay: 1.1 + index * 0.1, type: "spring" }}
+                      className="flex-shrink-0"
                     >
-                      <FaClock className="text-emerald-500" />
+                      <FaClock className="text-emerald-500 text-lg sm:text-xl" />
                     </motion.div>
-                    <span className="font-semibold text-gray-800">
+                    <span className="font-semibold text-gray-800 text-sm sm:text-base lg:text-lg">
                       {schedule.service}
                     </span>
                   </div>
-                  <span className="text-gray-600">{schedule.hours}</span>
+                  <span className="text-gray-600 text-xs sm:text-sm lg:text-base font-medium sm:text-right pl-6 sm:pl-0">
+                    {schedule.hours}
+                  </span>
                 </motion.div>
               ))}
             </motion.div>
@@ -349,18 +355,18 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mb-16"
+          className="mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.9 }}
-            className="text-3xl font-bold text-center mb-12 text-gray-800"
+            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
           >
             Follow Us
           </motion.h2>
           <motion.div
-            className="flex justify-center gap-6"
+            className="flex justify-center gap-4 sm:gap-6 lg:gap-8"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{
@@ -390,14 +396,14 @@ const Contact = () => {
                   transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.9 }}
-                className={`${social.color} p-4 rounded-full shadow-lg transition-all duration-300 transform hover:shadow-xl`}
+                className={`${social.color} p-3 sm:p-4 lg:p-5 rounded-full shadow-lg transition-all duration-300 transform hover:shadow-xl min-w-[48px] min-h-[48px] sm:min-w-[56px] sm:min-h-[56px] lg:min-w-[64px] lg:min-h-[64px] flex items-center justify-center`}
               >
                 <motion.div
                   initial={{ rotate: -180 }}
                   animate={{ rotate: 0 }}
                   transition={{ delay: 1.2 + index * 0.15, duration: 0.5 }}
                 >
-                  <social.icon className="text-2xl" />
+                  <social.icon className="text-lg sm:text-xl lg:text-2xl" />
                 </motion.div>
               </motion.a>
             ))}
@@ -409,10 +415,10 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="text-center"
+          className="text-center px-4 sm:px-6 lg:px-8"
         >
           <motion.div
-            className="bg-gradient-to-r from-red-100 to-rose-200 text-red-800 p-8 rounded-2xl shadow-lg border-2 border-red-200"
+            className="bg-gradient-to-r from-red-100 to-rose-200 text-red-800 p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg border-2 border-red-200 max-w-2xl mx-auto"
             initial={{ scale: 0.8, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
             transition={{ duration: 0.8, delay: 1.1, type: "spring" }}
@@ -427,10 +433,10 @@ const Contact = () => {
               animate={{ scale: 1, rotate: 0 }}
               transition={{ delay: 1.2, type: "spring", stiffness: 200 }}
             >
-              <FaAmbulance className="text-4xl mb-4 mx-auto" />
+              <FaAmbulance className="text-2xl sm:text-3xl lg:text-4xl mb-3 sm:mb-4 mx-auto" />
             </motion.div>
             <motion.h3
-              className="text-2xl font-bold mb-4"
+              className="text-lg sm:text-xl lg:text-2xl font-bold mb-2 sm:mb-4"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.3, duration: 0.6 }}
@@ -438,7 +444,7 @@ const Contact = () => {
               Medical Emergency?
             </motion.h3>
             <motion.p
-              className="text-xl mb-6"
+              className="text-base sm:text-lg lg:text-xl mb-4 sm:mb-6"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 1.4, duration: 0.6 }}
@@ -456,7 +462,7 @@ const Contact = () => {
                 transition: { duration: 0.2 },
               }}
               whileTap={{ scale: 0.95 }}
-              className="inline-block bg-red-600 text-white px-8 py-4 rounded-lg text-xl font-bold hover:bg-red-700 transition-all duration-300 shadow-lg"
+              className="bg-red-600 text-white px-4 sm:px-6 lg:px-8 py-3 sm:py-4 rounded-lg text-base sm:text-lg lg:text-xl font-bold hover:bg-red-700 transition-all duration-300 shadow-lg min-h-[48px] flex items-center justify-center"
             >
               +91 98765 43210
             </motion.a>

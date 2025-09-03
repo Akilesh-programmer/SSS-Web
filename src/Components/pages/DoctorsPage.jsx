@@ -932,24 +932,24 @@ const DoctorsPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 pt-20">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50 to-emerald-50 pt-16 lg:pt-20">
       {/* Header Section with proper spacing from navbar */}
       <div className="bg-gradient-to-r from-emerald-50 via-teal-50 to-emerald-50 border-b border-emerald-100">
-        <div className="max-w-7xl mx-auto px-4 py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             className="text-center"
           >
-            <div className="flex items-center justify-center mb-6">
-              <div className="p-4 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full mr-4">
-                <FaUserMd className="text-4xl text-emerald-600" />
+            <div className="flex flex-col sm:flex-row items-center justify-center mb-4 lg:mb-6 gap-4">
+              <div className="p-3 lg:p-4 bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full">
+                <FaUserMd className="text-3xl lg:text-4xl text-emerald-600" />
               </div>
-              <h1 className="text-5xl font-bold bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
+              <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent text-center sm:text-left">
                 Our Medical Specialists
               </h1>
             </div>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+            <p className="text-base lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4 lg:px-0">
               Meet our exceptional team of {doctors.length} healthcare
               professionals dedicated to providing world-class medical care with
               expertise, compassion, and innovation.
@@ -958,42 +958,42 @@ const DoctorsPage = () => {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-4 py-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 lg:py-8">
         {/* Enhanced Search and Filter Section */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ delay: 0.2 }}
-          className="mb-8 bg-white/90 backdrop-blur-sm rounded-3xl shadow-xl border border-white/20 p-8"
+          className="mb-6 lg:mb-8 bg-white/90 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-xl border border-white/20 p-4 sm:p-6 lg:p-8"
         >
           {/* Search Bar */}
-          <div className="relative mb-8">
-            <FaSearch className="absolute left-6 top-1/2 transform -translate-y-1/2 text-emerald-400 text-lg" />
+          <div className="relative mb-6 lg:mb-8">
+            <FaSearch className="absolute left-4 lg:left-6 top-1/2 transform -translate-y-1/2 text-emerald-400 text-base lg:text-lg" />
             <input
               type="text"
-              placeholder="Search for doctors by name, specialty, or qualification..."
+              placeholder="Search by name, specialty, or qualification..."
               value={searchTerm}
               onChange={(e) => setSearchTerm(e.target.value)}
-              className="w-full pl-16 pr-6 py-4 border-2 border-emerald-100 rounded-2xl focus:ring-4 focus:ring-emerald-200 focus:border-emerald-400 transition-all duration-300 outline-none text-gray-700 text-lg bg-white/70"
+              className="w-full pl-12 lg:pl-16 pr-12 lg:pr-6 py-3 lg:py-4 border-2 border-emerald-100 rounded-xl lg:rounded-2xl focus:ring-4 focus:ring-emerald-200 focus:border-emerald-400 transition-all duration-300 outline-none text-gray-700 text-sm lg:text-lg bg-white/70"
             />
             {searchTerm && (
               <button
                 onClick={() => setSearchTerm("")}
-                className="absolute right-6 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-emerald-600 transition-colors"
+                className="absolute right-4 lg:right-6 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-emerald-600 transition-colors"
               >
-                <FaTimes className="text-lg" />
+                <FaTimes className="text-base lg:text-lg" />
               </button>
             )}
           </div>
 
           {/* Department Filter - Modern Dropdown Style */}
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-4">
-              <h3 className="text-xl font-semibold text-gray-700">
+          <div className="mb-4 lg:mb-6">
+            <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between mb-4 gap-4">
+              <h3 className="text-lg lg:text-xl font-semibold text-gray-700">
                 Filter by Medical Department
               </h3>
-              <div className="flex items-center gap-4">
-                <span className="text-sm text-gray-500">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-2 sm:gap-4">
+                <span className="text-xs lg:text-sm text-gray-500">
                   Showing {filteredDoctors.length} of {doctors.length} doctors
                 </span>
                 <div className="flex items-center gap-2">
@@ -1142,7 +1142,7 @@ const DoctorsPage = () => {
             exit={{ opacity: 0, y: -20 }}
             className={
               viewMode === "grid"
-                ? "grid md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6"
+                ? "grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6"
                 : "space-y-4"
             }
           >
@@ -1162,8 +1162,10 @@ const DoctorsPage = () => {
                     viewport={{ once: true, amount: 0.2 }}
                     custom={staggerIndex}
                     whileHover={{ scale: 1.02, y: -5 }}
-                    className={`bg-white/90 backdrop-blur-sm rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer ${
-                      viewMode === "list" ? "flex items-center p-6" : "p-6"
+                    className={`bg-white/90 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer ${
+                      viewMode === "list"
+                        ? "flex items-center p-4 sm:p-6"
+                        : "p-4 sm:p-6"
                     }`}
                     onClick={() => setSelectedDoctor(doctor)}
                   >
@@ -1172,7 +1174,7 @@ const DoctorsPage = () => {
                         {/* Grid View */}
                         <div className="relative text-center mb-4">
                           {doctor.image ? (
-                            <div className="w-32 h-32 mx-auto">
+                            <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto">
                               <img
                                 src={doctor.image}
                                 alt={doctor.name}
@@ -1188,12 +1190,12 @@ const DoctorsPage = () => {
 
                           {/* Special Badges */}
                           {doctor.isFounder && (
-                            <div className="absolute -top-2 -right-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-white text-xs px-2 py-1 rounded-full font-bold">
                               Founder
                             </div>
                           )}
                           {doctor.isCEO && (
-                            <div className="absolute -top-2 -right-2 bg-gradient-to-r from-blue-400 to-indigo-500 text-white text-xs px-2 py-1 rounded-full font-bold">
+                            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-gradient-to-r from-blue-400 to-indigo-500 text-white text-xs px-2 py-1 rounded-full font-bold">
                               CEO
                             </div>
                           )}

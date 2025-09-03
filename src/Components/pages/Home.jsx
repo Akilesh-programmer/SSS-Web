@@ -38,32 +38,32 @@ export default function Home() {
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden">
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-teal-100 rounded-full opacity-30 animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse"></div>
+        <div className="absolute top-20 left-4 lg:left-10 w-16 h-16 lg:w-32 lg:h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse"></div>
+        <div className="absolute bottom-20 right-4 lg:right-10 w-12 h-12 lg:w-24 lg:h-24 bg-teal-100 rounded-full opacity-30 animate-bounce"></div>
+        <div className="absolute top-1/2 left-1/4 w-8 h-8 lg:w-16 lg:h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse"></div>
       </div>
 
-      <div className="relative z-10 flex items-center pt-24 pb-8 min-h-screen">
-        <div className="max-w-7xl mx-auto px-4 w-full">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
+      <div className="relative z-10 flex items-center pt-16 lg:pt-24 pb-8 min-h-screen">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
+          <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
             {/* Left Content */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
-              className="space-y-6"
+              className="space-y-6 order-2 lg:order-1"
             >
               {/* Tagline */}
               <motion.div
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.2, duration: 0.6 }}
-                className="flex items-center gap-3"
+                className="flex items-center gap-3 justify-center lg:justify-start"
               >
-                <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center">
-                  <FaHeartbeat className="text-emerald-600 text-xl heart-pulse-red" />
+                <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center">
+                  <FaHeartbeat className="text-emerald-600 text-lg lg:text-xl heart-pulse-red" />
                 </div>
-                <span className="text-emerald-600 font-semibold text-lg">
+                <span className="text-emerald-600 font-semibold text-base lg:text-lg">
                   Your Health, Our Priority
                 </span>
               </motion.div>
@@ -73,7 +73,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-3xl md:text-5xl lg:text-6xl font-bold text-gray-900 leading-tight"
+                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight text-center lg:text-left"
               >
                 The Care You Deserve,{" "}
                 <span className="text-emerald-600 relative">
@@ -93,7 +93,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="text-xl text-gray-600 leading-relaxed max-w-lg"
+                className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0 text-center lg:text-left px-4 lg:px-0"
               >
                 Experience world-class healthcare with cutting-edge technology
                 and compassionate care at SSS Super Speciality Hospital, Erode.
@@ -104,28 +104,38 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
-                className="grid grid-cols-3 gap-6"
+                className="grid grid-cols-3 gap-3 sm:gap-6 max-w-md mx-auto lg:mx-0"
               >
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <FaHospital className="text-emerald-600 text-xl" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <FaHospital className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">30+</p>
-                  <p className="text-sm text-gray-600">ICU Beds</p>
+                  <p className="text-xl lg:text-2xl font-bold text-gray-900">
+                    30+
+                  </p>
+                  <p className="text-xs lg:text-sm text-gray-600">ICU Beds</p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <FaAward className="text-emerald-600 text-xl" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <FaAward className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">25+</p>
-                  <p className="text-sm text-gray-600">Specialities</p>
+                  <p className="text-xl lg:text-2xl font-bold text-gray-900">
+                    25+
+                  </p>
+                  <p className="text-xs lg:text-sm text-gray-600">
+                    Specialities
+                  </p>
                 </div>
                 <div className="text-center">
-                  <div className="w-12 h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
-                    <FaStethoscope className="text-emerald-600 text-xl" />
+                  <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
+                    <FaStethoscope className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-2xl font-bold text-gray-900">24/7</p>
-                  <p className="text-sm text-gray-600">Emergency Care</p>
+                  <p className="text-xl lg:text-2xl font-bold text-gray-900">
+                    24/7
+                  </p>
+                  <p className="text-xs lg:text-sm text-gray-600">
+                    Emergency Care
+                  </p>
                 </div>
               </motion.div>
 
@@ -137,14 +147,14 @@ export default function Home() {
               initial={{ opacity: 0, x: 50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="relative"
+              className="relative order-1 lg:order-2"
             >
               {/* Main hospital image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl">
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-4 lg:mx-0">
                 <img
                   src={hospitalImg}
                   alt="SSS Hospital"
-                  className="w-full h-96 object-cover"
+                  className="w-full h-64 sm:h-80 lg:h-96 object-cover"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
 
@@ -153,19 +163,19 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.6 }}
-                  className="absolute bottom-6 left-6 bg-white/95 backdrop-blur-sm rounded-xl p-4 shadow-lg"
+                  className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 bg-white/95 backdrop-blur-sm rounded-xl p-3 lg:p-4 shadow-lg"
                 >
-                  <p className="text-emerald-600 font-semibold text-sm">
+                  <p className="text-emerald-600 font-semibold text-xs lg:text-sm">
                     Best Hospital in Erode
                   </p>
-                  <p className="text-gray-900 font-bold text-lg">
+                  <p className="text-gray-900 font-bold text-sm lg:text-lg">
                     150+ Beds Available
                   </p>
                 </motion.div>
               </div>
 
               {/* Floating medical icons */}
-              <div className="absolute inset-0 pointer-events-none overflow-hidden">
+              <div className="absolute inset-0 pointer-events-none overflow-hidden hidden lg:block">
                 {[
                   { icon: FaStethoscope, delay: 1.5, x: 15, y: 20 },
                   { icon: FaUserMd, delay: 1.7, x: 70, y: 15 },

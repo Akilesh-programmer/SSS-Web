@@ -35,17 +35,17 @@ export default function Footer() {
   return (
     <>
       {/* Enhanced Map Section */}
-      <div className="w-full bg-gray-50 flex flex-col items-center py-12 px-4">
+      <div className="w-full bg-gray-50 flex flex-col items-center py-8 lg:py-12 px-4">
         <div className="max-w-7xl w-full mx-auto">
-          <h2 className="text-3xl font-bold text-emerald-900 text-center mb-8">
+          <h2 className="text-2xl lg:text-3xl font-bold text-emerald-900 text-center mb-6 lg:mb-8 px-4">
             Visit Our Hospital
           </h2>
-          <div className="flex flex-col lg:flex-row gap-8 items-start">
+          <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
             <div className="flex-1 w-full">
               <iframe
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d978.0317806730119!2d77.68973059999999!3d11.3254179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96ee50acf6c25%3A0x737ed856b07b068e!2sSSS%20superspeciality%20hospital!5e0!3m2!1sen!2sin!4v1756102870333!5m2!1sen!2sin"
                 width="100%"
-                height="400"
+                height="300"
                 style={{
                   border: 0,
                   borderRadius: "1rem",
@@ -55,48 +55,49 @@ export default function Footer() {
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
                 title="SSS Hospital Location"
+                className="lg:h-[400px]"
               ></iframe>
             </div>
 
             <div className="flex-1 w-full lg:pl-8">
-              <div className="bg-white rounded-xl shadow-lg p-6 mb-6">
-                <h3 className="text-xl font-bold text-emerald-900 mb-4 flex items-center gap-2">
+              <div className="bg-white rounded-xl shadow-lg p-4 lg:p-6 mb-4 lg:mb-6">
+                <h3 className="text-lg lg:text-xl font-bold text-emerald-900 mb-3 lg:mb-4 flex items-center gap-2">
                   <FaMapMarkerAlt className="text-emerald-600" /> Hospital
                   Address
                 </h3>
-                <div className="text-gray-700 leading-relaxed mb-4">
+                <div className="text-gray-700 leading-relaxed mb-3 lg:mb-4 text-sm lg:text-base">
                   167/2C1, Perundurai Rd, Diamond Nagar, Nalliyampalayam,
                   <br />
                   Erode, Tamil Nadu 638009
                 </div>
 
-                <div className="grid gap-3">
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <FaPhoneAlt className="text-emerald-600" />
+                <div className="grid gap-2 lg:gap-3">
+                  <div className="flex items-center gap-2 lg:gap-3 text-gray-700 text-sm lg:text-base">
+                    <FaPhoneAlt className="text-emerald-600 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Emergency: </span>
                       <a
                         href="tel:+919876543210"
-                        className="text-emerald-600 hover:underline"
+                        className="text-emerald-600 hover:underline break-all"
                       >
                         +91 98765 43210
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <FaEnvelope className="text-emerald-600" />
+                  <div className="flex items-center gap-2 lg:gap-3 text-gray-700 text-sm lg:text-base">
+                    <FaEnvelope className="text-emerald-600 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">Email: </span>
                       <a
                         href="mailto:info@ssshospital.com"
-                        className="text-emerald-600 hover:underline"
+                        className="text-emerald-600 hover:underline break-all"
                       >
                         info@ssshospital.com
                       </a>
                     </div>
                   </div>
-                  <div className="flex items-center gap-3 text-gray-700">
-                    <FaClock className="text-emerald-600" />
+                  <div className="flex items-center gap-2 lg:gap-3 text-gray-700 text-sm lg:text-base">
+                    <FaClock className="text-emerald-600 flex-shrink-0" />
                     <div>
                       <span className="font-semibold">OPD Hours: </span>
                       Mon-Sat: 9AM-8PM
@@ -106,18 +107,24 @@ export default function Footer() {
               </div>
 
               {/* Quick Stats */}
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                  <FaHeart className="text-3xl text-emerald-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-emerald-900">
+              <div className="grid grid-cols-2 gap-3 lg:gap-4">
+                <div className="bg-emerald-50 rounded-lg p-3 lg:p-4 text-center">
+                  <FaHeart className="text-2xl lg:text-3xl text-emerald-600 mx-auto mb-1 lg:mb-2" />
+                  <div className="text-xl lg:text-2xl font-bold text-emerald-900">
                     150+
                   </div>
-                  <div className="text-sm text-gray-600">Hospital Beds</div>
+                  <div className="text-xs lg:text-sm text-gray-600">
+                    Hospital Beds
+                  </div>
                 </div>
-                <div className="bg-emerald-50 rounded-lg p-4 text-center">
-                  <FaUserMd className="text-3xl text-emerald-600 mx-auto mb-2" />
-                  <div className="text-2xl font-bold text-emerald-900">25+</div>
-                  <div className="text-sm text-gray-600">Specialties</div>
+                <div className="bg-emerald-50 rounded-lg p-3 lg:p-4 text-center">
+                  <FaUserMd className="text-2xl lg:text-3xl text-emerald-600 mx-auto mb-1 lg:mb-2" />
+                  <div className="text-xl lg:text-2xl font-bold text-emerald-900">
+                    25+
+                  </div>
+                  <div className="text-xs lg:text-sm text-gray-600">
+                    Specialties
+                  </div>
                 </div>
               </div>
             </div>
@@ -126,27 +133,27 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <footer className="bg-gray-900 text-white pt-8 pb-6">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      <footer className="bg-gray-900 text-white pt-6 lg:pt-8 pb-4 lg:pb-6">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
             {/* Hospital Info */}
             <div className="lg:col-span-1">
               <div className="flex items-center gap-3 mb-4">
                 <img
                   src="/src/assets/sss-logo.jpeg"
                   alt="SSS Hospital Logo"
-                  className="w-12 h-12 rounded-full object-cover"
+                  className="w-10 h-10 lg:w-12 lg:h-12 rounded-full object-cover"
                 />
                 <div>
-                  <h3 className="text-xl font-bold text-emerald-400">
+                  <h3 className="text-lg lg:text-xl font-bold text-emerald-400">
                     SSS Hospital
                   </h3>
-                  <p className="text-gray-400 text-sm">
+                  <p className="text-gray-400 text-xs lg:text-sm">
                     Excellence in Healthcare
                   </p>
                 </div>
               </div>
-              <p className="text-gray-300 leading-relaxed text-base mb-4">
+              <p className="text-gray-300 leading-relaxed text-sm lg:text-base mb-4">
                 Bringing world-class healthcare to the heart of Erode. Your
                 trusted partner in health with comprehensive medical services
                 and 24/7 emergency care.

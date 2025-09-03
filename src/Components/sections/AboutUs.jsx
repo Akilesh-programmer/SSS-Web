@@ -103,20 +103,23 @@ const AboutUs = () => {
   ];
 
   return (
-    <section id="about" className="py-16 bg-white scroll-mt-40 lg:scroll-mt-44">
-      <div className="max-w-7xl mx-auto px-4">
+    <section
+      id="about"
+      className="py-12 lg:py-16 bg-white scroll-mt-32 lg:scroll-mt-40"
+    >
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main About Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
         >
-          <h2 className="text-4xl font-bold text-emerald-900 mb-6">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-emerald-900 mb-4 lg:mb-6 px-4">
             About SSS Super Speciality Hospital
           </h2>
-          <div className="max-w-4xl mx-auto">
-            <p className="text-lg text-gray-600 leading-relaxed mb-8">
+          <div className="max-w-4xl mx-auto px-4">
+            <p className="text-base lg:text-lg text-gray-600 leading-relaxed mb-6 lg:mb-8">
               <strong className="text-emerald-700">
                 Bringing world-class healthcare to the heart of Erode
               </strong>{" "}
@@ -125,15 +128,14 @@ const AboutUs = () => {
               healthcare services with cutting-edge technology and compassionate
               care.
             </p>
-            <p className="text-lg text-gray-600 leading-relaxed">
+            <p className="text-base lg:text-lg text-gray-600 leading-relaxed">
               As the{" "}
               <strong className="text-emerald-700">
                 Best Super Speciality Hospital In Erode
               </strong>
               , we combine medical excellence with modern infrastructure to
-              provide
+              provide{" "}
               <strong className="text-emerald-700">
-                {" "}
                 "The Care You Deserve; Now Closer Than Ever"
               </strong>
               .
@@ -146,14 +148,14 @@ const AboutUs = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-6 mb-16"
+          className="grid grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6 mb-12 lg:mb-16"
         >
           {stats.map((stat, index) => (
             <div
               key={index}
-              className="text-center bg-emerald-50 rounded-xl p-6 shadow-md hover:shadow-lg transition-shadow"
+              className="text-center bg-emerald-50 rounded-xl p-4 lg:p-6 shadow-md hover:shadow-lg transition-shadow"
             >
-              <div className="text-4xl text-emerald-600 mb-4 flex justify-center">
+              <div className="text-3xl lg:text-4xl text-emerald-600 mb-3 lg:mb-4 flex justify-center">
                 {stat.icon}
               </div>
               <AnimatedCounter
@@ -161,7 +163,9 @@ const AboutUs = () => {
                 duration={2.5}
                 suffix={stat.label === "Hospital Beds" ? "+" : ""}
               />
-              <p className="text-gray-600 font-medium">{stat.label}</p>
+              <p className="text-gray-600 font-medium text-sm lg:text-base">
+                {stat.label}
+              </p>
             </div>
           ))}
         </motion.div>
@@ -171,29 +175,29 @@ const AboutUs = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-16"
+          className="mb-12 lg:mb-16"
         >
-          <h3 className="text-3xl font-bold text-center text-emerald-900 mb-8">
+          <h3 className="text-2xl lg:text-3xl font-bold text-center text-emerald-900 mb-6 lg:mb-8 px-4">
             Our Key Services
           </h3>
-          <div className="grid md:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
             {services.map((service, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white via-emerald-50 to-teal-50 rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-200/50 group"
+                className="bg-gradient-to-br from-white via-emerald-50 to-teal-50 rounded-xl p-4 lg:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-200/50 group"
               >
-                <div className="w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
+                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
                   {React.cloneElement(service.icon, {
-                    className: "text-2xl text-white",
+                    className: "text-lg lg:text-2xl text-white",
                   })}
                 </div>
-                <h4 className="text-xl font-semibold mb-3 text-gray-800 group-hover:text-emerald-700 transition-colors">
+                <h4 className="text-lg lg:text-xl font-semibold mb-2 lg:mb-3 text-gray-800 group-hover:text-emerald-700 transition-colors">
                   {service.title}
                 </h4>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
                   {service.description}
                 </p>
               </motion.div>
