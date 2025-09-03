@@ -145,10 +145,12 @@ const AppointmentBooking = () => {
                   onClick={() => setIsAppointmentOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-10 py-4 rounded-2xl font-bold text-xl shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-3 mx-auto"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg lg:text-xl shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
                 >
-                  <FaCalendarAlt />
-                  Book Appointment Now
+                  <FaCalendarAlt className="text-sm sm:text-base" />
+                  <span className="text-sm sm:text-base lg:text-xl">
+                    Book Appointment Now
+                  </span>
                 </motion.button>
 
                 {/* Hospital Stats */}

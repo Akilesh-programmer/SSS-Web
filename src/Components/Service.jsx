@@ -111,12 +111,12 @@ const Service = () => {
   };
 
   return (
-    <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden min-h-screen">
+    <section className="py-16 lg:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden min-h-screen">
       {/* Background Pattern */}
       <div className="absolute inset-0">
-        <div className="absolute top-20 left-10 w-72 h-72 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-40 right-10 w-72 h-72 bg-gradient-to-br from-cyan-300 to-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2s"></div>
-        <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-gradient-to-br from-purple-300 to-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse animation-delay-4s"></div>
+        <div className="absolute top-10 lg:top-20 left-5 lg:left-10 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
+        <div className="absolute top-20 lg:top-40 right-5 lg:right-10 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-cyan-300 to-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2s"></div>
+        <div className="absolute -bottom-4 lg:-bottom-8 left-1/3 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-purple-300 to-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse animation-delay-4s"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -126,17 +126,17 @@ const Service = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-12 lg:mb-16"
         >
-          <div className="inline-block mb-6">
-            <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 border border-emerald-200">
-              <span className="text-emerald-700 font-semibold text-sm tracking-wide uppercase">
+          <div className="inline-block mb-4 lg:mb-6">
+            <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-4 lg:px-6 py-2 border border-emerald-200">
+              <span className="text-emerald-700 font-semibold text-xs lg:text-sm tracking-wide uppercase">
                 Medical Excellence
               </span>
             </div>
           </div>
 
-          <h2 className="text-5xl lg:text-6xl font-bold mb-8 leading-tight">
+          <h2 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 lg:mb-8 leading-tight px-4">
             <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-cyan-600 bg-clip-text text-transparent">
               Our Medical
             </span>
@@ -146,7 +146,7 @@ const Service = () => {
             </span>
           </h2>
 
-          <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
+          <p className="text-base lg:text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed px-4">
             Discover world-class healthcare across {departments.length}{" "}
             specialized departments, where cutting-edge technology meets
             compassionate care.
@@ -159,7 +159,7 @@ const Service = () => {
           initial="hidden"
           whileInView="visible"
           viewport={{ once: true }}
-          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10"
+          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-10"
         >
           {departments.map((department) => (
             <motion.div
@@ -177,16 +177,16 @@ const Service = () => {
               whileInView="visible"
               viewport={{ once: true, margin: "-50px" }}
             >
-              <div className="relative backdrop-blur-sm rounded-3xl p-6 shadow-xl transition-all duration-500 h-full flex flex-col service-card fixed-height-content overflow-hidden bg-white/95">
+              <div className="relative backdrop-blur-sm rounded-2xl lg:rounded-3xl p-4 lg:p-6 shadow-xl transition-all duration-500 h-full flex flex-col service-card fixed-height-content overflow-hidden bg-white/95">
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-3xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-2xl lg:rounded-3xl transition-all duration-500"></div>
 
                 {/* Shimmer Effect */}
                 <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out"></div>
 
                 {/* Icon Container */}
                 <motion.div
-                  className="relative mb-6 flex justify-center"
+                  className="relative mb-4 lg:mb-6 flex justify-center"
                   initial={{ opacity: 0, scale: 0, rotate: -180 }}
                   whileInView={{
                     opacity: 1,

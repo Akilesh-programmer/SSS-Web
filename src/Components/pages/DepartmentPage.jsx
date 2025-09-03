@@ -77,7 +77,7 @@ const DepartmentPage = () => {
       <Navigation />
 
       {/* Hero Section */}
-      <section className="relative h-96 lg:h-[500px] overflow-hidden">
+      <section className="relative h-64 sm:h-80 lg:h-96 xl:h-[500px] overflow-hidden">
         <div
           className="absolute inset-0 bg-cover bg-center"
           style={{ backgroundImage: `url(${department.heroImage})` }}
@@ -86,7 +86,7 @@ const DepartmentPage = () => {
         </div>
 
         <div className="relative h-full flex items-center">
-          <div className="max-w-7xl mx-auto px-4 w-full">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <motion.div
               initial={{ opacity: 0, y: 30 }}
               animate={{ opacity: 1, y: 0 }}
@@ -95,32 +95,32 @@ const DepartmentPage = () => {
             >
               <button
                 onClick={() => navigate("/")}
-                className="mb-6 flex items-center gap-2 text-emerald-200 hover:text-white transition-colors"
+                className="mb-4 lg:mb-6 flex items-center gap-2 text-emerald-200 hover:text-white transition-colors text-sm lg:text-base"
               >
                 <FaArrowLeft /> Back to Home
               </button>
 
-              <div className="flex items-center gap-4 mb-4">
-                <div className="text-6xl text-emerald-300">
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-4 mb-4">
+                <div className="text-4xl sm:text-5xl lg:text-6xl text-emerald-300">
                   {department.icon}
                 </div>
-                <div>
-                  <h1 className="text-4xl lg:text-6xl font-bold mb-2">
+                <div className="flex-1">
+                  <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-6xl font-bold mb-2 leading-tight">
                     {department.name}
                   </h1>
-                  <p className="text-xl lg:text-2xl text-emerald-200">
+                  <p className="text-base sm:text-lg lg:text-xl xl:text-2xl text-emerald-200">
                     {department.shortDescription}
                   </p>
                 </div>
               </div>
 
-              <div className="flex flex-wrap gap-4 mt-8">
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <FaClock className="text-emerald-300" />
+              <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 mt-6 lg:mt-8">
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2 text-sm lg:text-base">
+                  <FaClock className="text-emerald-300 text-sm lg:text-base" />
                   <span>{department.timings}</span>
                 </div>
-                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-4 py-2">
-                  <FaMapMarkerAlt className="text-emerald-300" />
+                <div className="flex items-center gap-2 bg-white/10 backdrop-blur-sm rounded-lg px-3 sm:px-4 py-2 text-sm lg:text-base">
+                  <FaMapMarkerAlt className="text-emerald-300 text-sm lg:text-base" />
                   <span>SSS Hospital, Erode</span>
                 </div>
               </div>
@@ -130,21 +130,21 @@ const DepartmentPage = () => {
       </section>
 
       {/* Navigation Tabs */}
-      <section className="bg-white shadow-md sticky top-20 z-40">
-        <div className="max-w-7xl mx-auto px-4">
-          <div className="flex overflow-x-auto">
+      <section className="bg-white shadow-md sticky top-16 lg:top-20 z-40">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex overflow-x-auto scrollbar-hide">
             {tabs.map((tab) => (
               <button
                 key={tab.id}
                 onClick={() => setActiveTab(tab.id)}
-                className={`flex items-center gap-2 px-6 py-4 font-semibold transition-colors whitespace-nowrap ${
+                className={`flex items-center gap-2 px-4 sm:px-6 py-3 sm:py-4 font-semibold transition-colors whitespace-nowrap text-sm sm:text-base ${
                   activeTab === tab.id
                     ? "text-emerald-600 border-b-2 border-emerald-600"
                     : "text-gray-600 hover:text-emerald-600"
                 }`}
               >
-                {tab.icon}
-                {tab.label}
+                <span className="text-sm sm:text-base">{tab.icon}</span>
+                <span className="hidden sm:inline">{tab.label}</span>
               </button>
             ))}
           </div>
@@ -152,48 +152,52 @@ const DepartmentPage = () => {
       </section>
 
       {/* Content Sections */}
-      <section className="py-12">
-        <div className="max-w-7xl mx-auto px-4">
+      <section className="py-8 lg:py-12">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Overview Tab */}
           {activeTab === "overview" && (
             <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6 }}
-              className="space-y-12"
+              className="space-y-8 lg:space-y-12"
             >
               {/* Department Description */}
-              <div className="bg-white rounded-xl shadow-lg p-8">
-                <h2 className="text-3xl font-bold text-gray-900 mb-6">
+              <div className="bg-white rounded-xl shadow-lg p-6 lg:p-8">
+                <h2 className="text-2xl lg:text-3xl font-bold text-gray-900 mb-4 lg:mb-6">
                   About Our Department
                 </h2>
-                <p className="text-lg text-gray-700 leading-relaxed mb-6">
+                <p className="text-base lg:text-lg text-gray-700 leading-relaxed mb-4 lg:mb-6">
                   {department.longDescription}
                 </p>
 
-                <div className="grid md:grid-cols-2 gap-8">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-8">
                   <div>
-                    <h3 className="text-xl font-semibold text-emerald-900 mb-4 flex items-center gap-2">
-                      <FaHeartbeat className="text-emerald-600" />
-                      Common Conditions We Treat
+                    <h3 className="text-lg lg:text-xl font-semibold text-emerald-900 mb-3 lg:mb-4 flex items-center gap-2">
+                      <FaHeartbeat className="text-emerald-600 text-lg lg:text-xl" />
+                      <span className="text-sm lg:text-lg">
+                        Common Conditions We Treat
+                      </span>
                     </h3>
                     <div className="grid grid-cols-1 gap-2">
                       {department.commonConditions?.map((condition, index) => (
                         <div
                           key={index}
-                          className="flex items-center gap-2 p-2 bg-emerald-50 rounded-lg"
+                          className="flex items-center gap-2 p-2 lg:p-3 bg-emerald-50 rounded-lg"
                         >
-                          <FaCheckCircle className="text-emerald-600 text-sm" />
-                          <span className="text-gray-700">{condition}</span>
+                          <FaCheckCircle className="text-emerald-600 text-sm flex-shrink-0" />
+                          <span className="text-gray-700 text-sm lg:text-base">
+                            {condition}
+                          </span>
                         </div>
                       ))}
                     </div>
                   </div>
 
                   <div>
-                    <h3 className="text-xl font-semibold text-emerald-900 mb-4 flex items-center gap-2">
-                      <FaProcedures className="text-emerald-600" />
-                      Key Procedures
+                    <h3 className="text-lg lg:text-xl font-semibold text-emerald-900 mb-3 lg:mb-4 flex items-center gap-2">
+                      <FaProcedures className="text-emerald-600 text-lg lg:text-xl" />
+                      <span className="text-sm lg:text-lg">Key Procedures</span>
                     </h3>
                     <div className="grid grid-cols-1 gap-2">
                       {department.procedures?.map((procedure, index) => (
