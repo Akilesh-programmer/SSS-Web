@@ -66,7 +66,7 @@ export default function FoundersMessage() {
           {/* Founder’s Portrait */}
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-emerald-200 shadow-lg mb-2">
             <img
-              src={founderImg}
+              src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg"
               alt="Dr. S. Sanjith"
               className="w-full h-full object-cover"
             />
