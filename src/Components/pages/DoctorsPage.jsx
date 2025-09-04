@@ -200,7 +200,7 @@ const DoctorsPage = () => {
       qualification: "MD (DERM)",
       experience: "15+ years",
       availability: "Mon-Sat: 9AM-6PM",
-      image: "/src/assets/Sanjith-SSS-Hospitals.png",
+      image: "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg",
       specializations: [
         "Dermatology",
         "Cosmetology",
