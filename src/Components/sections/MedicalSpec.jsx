@@ -1,5 +1,4 @@
-import React, { useState, useEffect } from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { getDepartmentBySlug } from "../../data/departmentsData";
 import {
@@ -244,15 +243,6 @@ export default function MedicalSpec() {
   const [selectedSpecialty, setSelectedSpecialty] = useState(null);
   const navigate = useNavigate();
 
-  useEffect(() => {
-    // Force re-render to ensure animations trigger properly
-    const timer = setTimeout(() => {
-      // This forces a re-render to ensure viewport animations work
-      window.dispatchEvent(new Event("resize"));
-    }, 100);
-    return () => clearTimeout(timer);
-  }, []);
-
   const openSpecialtyModal = (specialty) => {
     setSelectedSpecialty(specialty);
   };
@@ -276,13 +266,8 @@ export default function MedicalSpec() {
   return (
     <div id="specialties" className="w-full bg-white py-16 px-4 md:px-8">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true, amount: 0.3 }}
-          transition={{ duration: 0.2, ease: "easeOut" }}
-          className="text-center mb-12"
-        >
+        {/* Header */}
+        <div className="text-center mb-12">
           <h2 className="text-4xl font-bold text-emerald-900 mb-4 tracking-tight">
             Our Medical Specialties
           </h2>
@@ -290,33 +275,32 @@ export default function MedicalSpec() {
             Comprehensive healthcare services with expert specialists and
             state-of-the-art facilities
           </p>
-        </motion.div>
+        </div>
 
+        {/* Cards grid */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 grid-optimized">
           {specialties.map((specialty) => (
-            <motion.div
+            <button
               key={specialty.slug}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, amount: 0.2 }}
-              transition={{
-                duration: 0.15,
-                ease: "easeOut",
-              }}
-              className="group bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-emerald-200 transition-all duration-300 overflow-hidden cursor-pointer hover-optimized"
-              whileHover={{ y: -4 }}
+              className="group bg-white rounded-xl shadow-lg border border-gray-100 hover:shadow-2xl hover:border-emerald-200 transition-all duration-300 overflow-hidden cursor-pointer hover-optimized text-left"
               onClick={() => navigateToDepartment(specialty.slug)}
             >
               <div className="p-6">
+                {/* Icon */}
                 <div className="flex items-center justify-center w-16 h-16 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl mx-auto mb-4 text-white text-2xl group-hover:from-emerald-600 group-hover:to-teal-700 transition-all duration-300">
                   {specialty.icon}
                 </div>
+
+                {/* Text content */}
                 <h3 className="text-lg font-bold text-emerald-900 mb-3 text-center group-hover:text-emerald-700 transition-colors">
                   {specialty.name}
                 </h3>
+
                 <p className="text-gray-600 text-sm leading-relaxed mb-4 text-center">
                   {specialty.description}
                 </p>
+
+                {/* Learn more button */}
                 <div className="border-t border-gray-100 pt-4">
                   <div className="flex items-center justify-center text-emerald-600 text-sm font-medium group-hover:text-emerald-700 transition-colors">
                     <span>Learn More</span>
@@ -324,27 +308,15 @@ export default function MedicalSpec() {
                   </div>
                 </div>
               </div>
-            </motion.div>
+            </button>
           ))}
         </div>
       </div>
 
       {/* Modal for departments without detailed pages */}
       {selectedSpecialty && (
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4"
-          onClick={closeModal}
-        >
-          <motion.div
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
+        <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+          <div className="bg-white rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto">
             <div className="relative p-8">
               <button
                 onClick={closeModal}
@@ -376,7 +348,9 @@ export default function MedicalSpec() {
                   <ul className="space-y-2">
                     {selectedSpecialty.doctors.map((doctor, index) => (
                       <li
-                        key={index}
+                        key={`doctor-${index}-${doctor
+                          .replace(/\s+/g, "-")
+                          .toLowerCase()}`}
                         className="text-gray-700 flex items-center"
                       >
                         <span className="w-2 h-2 bg-emerald-500 rounded-full mr-3"></span>
@@ -400,18 +374,16 @@ export default function MedicalSpec() {
               </div>
 
               <div className="mt-8 text-center">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-8 py-3 rounded-xl font-semibold hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 shadow-lg"
                   onClick={closeModal}
                 >
                   Book Appointment
-                </motion.button>
+                </button>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
       )}
     </div>
   );
