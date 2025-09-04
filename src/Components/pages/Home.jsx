@@ -21,7 +21,7 @@ import {
 import { useOptimizedInView } from "../../hooks/useOptimizedAnimations";
 import sssLogo from "../../assets/sss-logo.jpeg";
 import hospitalImg from "../../assets/sss-hospital.avif";
-import founderImg from "../../assets/Sanjith-SSS-Hospitals.jpg";
+import founderImg from "../../assets/Sanjith-SSS-Hospitals.png";
 
 export default function Home() {
   const scrollToAppointment = () => {

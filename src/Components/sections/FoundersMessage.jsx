@@ -13,7 +13,7 @@ import {
 } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
-import founderImg from "../../assets/Sanjith-SSS-Hospitals.jpg";
+import founderImg from "../../assets/Sanjith-SSS-Hospitals.png";
 import sssLogo from "../../assets/sss-logo.jpeg";
 
 const milestones = [
