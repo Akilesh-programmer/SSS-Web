@@ -1,5 +1,4 @@
 import React from "react";
-import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { getAllDepartments } from "../data/departmentsData";
 import {
@@ -14,11 +13,9 @@ import {
   FaTooth,
   FaChild,
   FaLungs,
-  FaUserNurse,
   FaMicroscope,
   FaUserInjured,
   FaUserFriends,
-  FaUserCheck,
   FaSyringe,
   FaHospital,
   FaCut,
@@ -27,7 +24,6 @@ import {
   FaFlask,
   FaPrescriptionBottleAlt,
   FaPills,
-  FaShieldAlt,
 } from "react-icons/fa";
 
 const Service = () => {
@@ -68,44 +64,6 @@ const Service = () => {
     return departmentIcons[departmentName] || <FaHospital />;
   };
 
-  // Simplified Animation variants
-  const containerVariants = {
-    hidden: {
-      opacity: 0,
-    },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.15,
-        delayChildren: 0.3,
-        when: "beforeChildren",
-        duration: 0.5,
-      },
-    },
-  };
-
-  const cardVariants = {
-    hidden: {
-      opacity: 0,
-      y: 60,
-      scale: 0.8,
-      rotateX: 15,
-    },
-    visible: {
-      opacity: 1,
-      y: 0,
-      scale: 1,
-      rotateX: 0,
-      transition: {
-        duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
-        type: "spring",
-        stiffness: 100,
-        damping: 15,
-      },
-    },
-  };
-
   const handleCardClick = (department) => {
     navigate(`/department/${department.slug}`);
   };
@@ -114,20 +72,14 @@ const Service = () => {
     <section className="py-16 lg:py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-indigo-50 relative overflow-hidden min-h-screen">
       {/* Background Pattern */}
       <div className="absolute inset-0">
-        <div className="absolute top-10 lg:top-20 left-5 lg:left-10 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse"></div>
-        <div className="absolute top-20 lg:top-40 right-5 lg:right-10 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-cyan-300 to-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20 animate-pulse animation-delay-2s"></div>
-        <div className="absolute -bottom-4 lg:-bottom-8 left-1/3 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-purple-300 to-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15 animate-pulse animation-delay-4s"></div>
+        <div className="absolute top-10 lg:top-20 left-5 lg:left-10 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-emerald-300 to-teal-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        <div className="absolute top-20 lg:top-40 right-5 lg:right-10 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-cyan-300 to-blue-400 rounded-full mix-blend-multiply filter blur-3xl opacity-20"></div>
+        <div className="absolute -bottom-4 lg:-bottom-8 left-1/3 w-40 h-40 lg:w-72 lg:h-72 bg-gradient-to-br from-purple-300 to-pink-400 rounded-full mix-blend-multiply filter blur-3xl opacity-15"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Section Header */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="text-center mb-12 lg:mb-16"
-        >
+        <div className="text-center mb-12 lg:mb-16">
           <div className="inline-block mb-4 lg:mb-6">
             <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-4 lg:px-6 py-2 border border-emerald-200">
               <span className="text-emerald-700 font-semibold text-xs lg:text-sm tracking-wide uppercase">
@@ -151,211 +103,116 @@ const Service = () => {
             specialized departments, where cutting-edge technology meets
             compassionate care.
           </p>
-        </motion.div>
+        </div>
 
         {/* Departments Grid */}
-        <motion.div
-          variants={containerVariants}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-          className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-10"
-        >
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-10 grid-optimized">
           {departments.map((department) => (
-            <motion.div
+            <button
               key={department.id}
-              variants={cardVariants}
-              whileHover={{
-                y: -12,
-                scale: 1.03,
-                transition: { duration: 0.4, ease: "easeOut" },
-              }}
-              whileTap={{ scale: 0.98 }}
-              className="group relative cursor-pointer card-container"
+              className="group relative cursor-pointer card-container text-left transform transition-all duration-300 hover:scale-105 hover:-translate-y-2"
               onClick={() => handleCardClick(department)}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true, margin: "-50px" }}
+              type="button"
+              aria-label={`Learn more about ${department.name}`}
             >
-              <div className="relative backdrop-blur-sm rounded-2xl lg:rounded-3xl p-4 lg:p-6 shadow-xl transition-all duration-500 h-full flex flex-col service-card fixed-height-content overflow-hidden bg-white/95">
+              <div className="relative backdrop-blur-sm rounded-2xl lg:rounded-3xl p-4 lg:p-6 shadow-xl hover:shadow-2xl h-full flex flex-col service-card fixed-height-content overflow-hidden bg-white/95 transition-all duration-300 border border-transparent hover:border-emerald-200">
                 {/* Gradient Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-2xl lg:rounded-3xl transition-all duration-500"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-500/5 via-teal-500/5 to-cyan-500/5 opacity-0 group-hover:opacity-100 rounded-2xl lg:rounded-3xl transition-opacity duration-300"></div>
 
-                {/* Shimmer Effect */}
-                <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out"></div>
+                {/* Shimmer Effect on Hover */}
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-500">
+                  <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-1000 ease-out"></div>
+                </div>
 
                 {/* Icon Container */}
-                <motion.div
-                  className="relative mb-4 lg:mb-6 flex justify-center"
-                  initial={{ opacity: 0, scale: 0, rotate: -180 }}
-                  whileInView={{
-                    opacity: 1,
-                    scale: 1,
-                    rotate: 0,
-                    transition: {
-                      delay: 0.2,
-                      duration: 0.6,
-                      type: "spring",
-                      stiffness: 150,
-                      damping: 12,
-                    },
-                  }}
-                  viewport={{ once: true }}
-                >
-                  <div className="relative">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-all duration-300 group-hover:scale-110"></div>
-                    <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-xl group-hover:shadow-2xl transition-all duration-300 group-hover:scale-110">
-                      <div className="text-white text-4xl group-hover:scale-105 transition-transform duration-300">
+                <div className="relative mb-4 lg:mb-6 flex justify-center">
+                  <div className="relative transform transition-transform duration-300 group-hover:scale-110">
+                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl blur-lg opacity-30 group-hover:opacity-50 transition-all duration-300"></div>
+                    <div className="relative inline-flex p-4 rounded-2xl bg-gradient-to-br from-emerald-500 to-teal-600 shadow-xl group-hover:shadow-2xl transition-all duration-300">
+                      <div className="text-white text-4xl transform transition-transform duration-300 group-hover:scale-110">
                         {getDepartmentIcon(department.name)}
                       </div>
                     </div>
                   </div>
-                </motion.div>
+                </div>
 
                 {/* Content */}
-                <motion.div
-                  className="relative flex-grow text-center content-loading"
-                  initial={{ opacity: 0, y: 30 }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      delay: 0.4,
-                      duration: 0.6,
-                      ease: "easeOut",
-                    },
-                  }}
-                  viewport={{ once: true }}
-                >
-                  <motion.h3
-                    className="text-xl font-bold text-gray-800 mb-4 group-hover:text-emerald-600 transition-colors duration-300 min-h-[3rem] flex items-center justify-center department-title"
-                    initial={{ opacity: 0, x: -20 }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                      transition: {
-                        delay: 0.6,
-                        duration: 0.5,
-                      },
-                    }}
-                    viewport={{ once: true }}
-                  >
+                <div className="relative flex-grow text-center content-loading">
+                  <h3 className="text-xl font-bold text-gray-800 group-hover:text-emerald-600 mb-4 min-h-[3rem] flex items-center justify-center department-title transition-colors duration-300">
                     {department.name}
-                  </motion.h3>
+                  </h3>
 
-                  <motion.p
-                    className="text-gray-600 mb-6 leading-relaxed text-sm min-h-[4rem] line-clamp-3 department-desc"
-                    initial={{ opacity: 0, x: 20 }}
-                    whileInView={{
-                      opacity: 1,
-                      x: 0,
-                      transition: {
-                        delay: 0.8,
-                        duration: 0.5,
-                      },
-                    }}
-                    viewport={{ once: true }}
-                  >
+                  <p className="text-gray-600 group-hover:text-gray-700 mb-6 leading-relaxed text-sm min-h-[4rem] line-clamp-3 department-desc transition-colors duration-300">
                     {department.description ||
                       "Comprehensive medical care with expert specialists and advanced treatment options."}
-                  </motion.p>
+                  </p>
 
                   {/* Key Services */}
-                  <motion.div
-                    className="space-y-3 mb-6 min-h-[6rem]"
-                    initial={{ opacity: 0 }}
-                    whileInView={{
-                      opacity: 1,
-                      transition: {
-                        delay: 1.0,
-                        duration: 0.6,
-                        staggerChildren: 0.1,
-                      },
-                    }}
-                    viewport={{ once: true }}
-                  >
+                  <div className="space-y-3 mb-6 min-h-[6rem]">
                     {department.overview?.features
                       ?.slice(0, 3)
                       .map((feature, featureIndex) => (
                         <div
                           key={`${department.id}-feature-${featureIndex}`}
-                          className="flex items-start space-x-3 feature-item"
-                          style={{ animationDelay: `${featureIndex * 0.1}s` }}
+                          className="flex items-start space-x-3 feature-item transform transition-transform duration-300 group-hover:translate-x-1"
                         >
-                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 group-hover:scale-125 transition-transform duration-300 flex-shrink-0 mt-2"></div>
-                          <span className="text-sm text-gray-600 group-hover:text-gray-700 transition-colors duration-300 font-medium text-left leading-relaxed">
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2 transform transition-transform duration-300 group-hover:scale-125"></div>
+                          <span className="text-sm text-gray-600 group-hover:text-gray-700 font-medium text-left leading-relaxed transition-colors duration-300">
                             {feature}
                           </span>
                         </div>
                       )) || (
                       // Fallback content if features are not available
                       <>
-                        <div
-                          className="flex items-start space-x-3 feature-item"
-                          style={{ animationDelay: "0s" }}
-                        >
-                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2"></div>
-                          <span className="text-sm text-gray-600 font-medium text-left leading-relaxed">
+                        <div className="flex items-start space-x-3 feature-item transform transition-transform duration-300 group-hover:translate-x-1">
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2 transform transition-transform duration-300 group-hover:scale-125"></div>
+                          <span className="text-sm text-gray-600 group-hover:text-gray-700 font-medium text-left leading-relaxed transition-colors duration-300">
                             Expert Medical Care
                           </span>
                         </div>
-                        <div
-                          className="flex items-start space-x-3 feature-item"
-                          style={{ animationDelay: "0.1s" }}
-                        >
-                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2"></div>
-                          <span className="text-sm text-gray-600 font-medium text-left leading-relaxed">
+                        <div className="flex items-start space-x-3 feature-item transform transition-transform duration-300 group-hover:translate-x-1">
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2 transform transition-transform duration-300 group-hover:scale-125"></div>
+                          <span className="text-sm text-gray-600 group-hover:text-gray-700 font-medium text-left leading-relaxed transition-colors duration-300">
                             Advanced Treatment
                           </span>
                         </div>
-                        <div
-                          className="flex items-start space-x-3 feature-item"
-                          style={{ animationDelay: "0.2s" }}
-                        >
-                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2"></div>
-                          <span className="text-sm text-gray-600 font-medium text-left leading-relaxed">
+                        <div className="flex items-start space-x-3 feature-item transform transition-transform duration-300 group-hover:translate-x-1">
+                          <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2 transform transition-transform duration-300 group-hover:scale-125"></div>
+                          <span className="text-sm text-gray-600 group-hover:text-gray-700 font-medium text-left leading-relaxed transition-colors duration-300">
                             24/7 Care Available
                           </span>
                         </div>
                       </>
                     )}
-                  </motion.div>
-                </motion.div>
+                  </div>
+                </div>
 
                 {/* Learn More Button */}
-                <motion.div
-                  className="relative mt-auto"
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{
-                    opacity: 1,
-                    y: 0,
-                    transition: {
-                      delay: 1.2,
-                      duration: 0.5,
-                    },
-                  }}
-                  viewport={{ once: true }}
-                >
-                  <motion.button
-                    whileHover={{
-                      scale: 1.05,
-                      y: -2,
-                    }}
-                    whileTap={{ scale: 0.95 }}
-                    className="learn-more-btn w-full py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold opacity-0 group-hover:opacity-100 transform translate-y-4 group-hover:translate-y-0 transition-all duration-500 shadow-lg relative overflow-hidden group-hover:shadow-2xl"
+                <div className="relative mt-auto">
+                  <button
+                    className="learn-more-btn w-full py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold shadow-lg hover:shadow-xl relative overflow-hidden transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 
+                    opacity-100 translate-y-0 
+                    md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleCardClick(department);
                     }}
                   >
-                    <span className="relative z-10">Learn More</span>
-                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-700 opacity-0 transition-opacity duration-300 learn-more-overlay"></div>
-                  </motion.button>
-                </motion.div>
+                    <span className="relative z-10 transition-transform duration-300 hover:scale-105">
+                      Learn More
+                    </span>
+                    <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-700 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
+
+                    {/* Button shimmer effect */}
+                    <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500">
+                      <div className="absolute inset-0 -translate-x-full hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out"></div>
+                    </div>
+                  </button>
+                </div>
               </div>
-            </motion.div>
+            </button>
           ))}
-        </motion.div>
+        </div>
       </div>
 
       <style>{`
@@ -364,14 +221,6 @@ const Service = () => {
           -webkit-line-clamp: 3;
           -webkit-box-orient: vertical;
           overflow: hidden;
-        }
-        
-        .animation-delay-2s {
-          animation-delay: 2s;
-        }
-        
-        .animation-delay-4s {
-          animation-delay: 4s;
         }
         
         /* Ensure consistent card heights and remove border artifacts */
@@ -385,6 +234,12 @@ const Service = () => {
           box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
           background: rgba(255, 255, 255, 0.98) !important;
           backdrop-filter: blur(10px);
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .service-card:hover {
+          box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.15), 0 25px 25px -5px rgba(0, 0, 0, 0.1);
+          transform: translateZ(0);
         }
         
         .service-card::before {
@@ -397,178 +252,68 @@ const Service = () => {
           background: rgba(255, 255, 255, 0.98);
           border-radius: 1.5rem;
           z-index: -1;
-        }
-        
-        /* Enhanced loading transitions with staggered animations */
-        .content-loading {
-          opacity: 0;
-          animation: fadeInUp 0.8s ease-out forwards;
-        }
-        
-        .department-title {
-          opacity: 0;
-          animation: slideInFromLeft 0.8s ease-out 0.1s forwards;
-        }
-        
-        .department-desc {
-          opacity: 0;
-          animation: slideInFromRight 0.8s ease-out 0.2s forwards;
-        }
-        
-        .feature-item {
-          opacity: 0;
-          animation: slideInUp 0.6s ease-out forwards;
-        }
-        
-        /* Learn More button improvements */
-        .learn-more-btn {
-          pointer-events: none;
           transition: all 0.3s ease;
         }
         
-        .group:hover .learn-more-btn {
-          pointer-events: auto;
-          transform: translateY(-4px) scale(1.02) !important;
-          box-shadow: 0 15px 30px rgba(16, 185, 129, 0.3) !important;
+        /* Content styling with smooth transitions */
+        .content-loading {
+          opacity: 1;
+          transition: all 0.3s ease;
         }
         
-        .learn-more-btn:hover .learn-more-overlay {
+        .department-title {
           opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        .department-desc {
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        .feature-item {
+          opacity: 1;
+          transition: all 0.3s ease;
+        }
+        
+        /* Learn More button styling with enhanced hover effects */
+        .learn-more-btn {
+          pointer-events: auto;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform, opacity, box-shadow;
         }
         
         .learn-more-btn:hover {
-          transform: translateY(-6px) scale(1.05) !important;
-          box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4) !important;
+          box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
         }
         
-        /* Fix card hover conflicts and flickering */
+        /* Card container styling with smooth animations */
         .card-container {
-          transition: transform 0.4s ease, box-shadow 0.4s ease;
           transform-origin: center;
           backface-visibility: hidden;
           -webkit-backface-visibility: hidden;
           isolation: isolate;
-          animation: cardSlideIn 0.8s ease-out forwards;
-          opacity: 0;
+          opacity: 1;
           border-radius: 1.5rem;
           overflow: hidden;
+          pointer-events: auto;
+          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+          will-change: transform, box-shadow;
         }
         
-        .card-container:nth-child(1) { animation-delay: 0.1s; }
-        .card-container:nth-child(2) { animation-delay: 0.2s; }
-        .card-container:nth-child(3) { animation-delay: 0.3s; }
-        .card-container:nth-child(4) { animation-delay: 0.4s; }
-        .card-container:nth-child(5) { animation-delay: 0.5s; }
-        .card-container:nth-child(6) { animation-delay: 0.6s; }
-        .card-container:nth-child(7) { animation-delay: 0.7s; }
-        .card-container:nth-child(8) { animation-delay: 0.8s; }
-        
-        @keyframes cardSlideIn {
-          from {
-            opacity: 0;
-            transform: translateY(60px) rotateX(15deg) scale(0.8);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0) rotateX(0deg) scale(1);
-          }
-        }
-        
+        /* Enhanced hover state for card container */
         .card-container:hover {
           z-index: 10;
-          transform: translateY(-8px) scale(1.02) !important;
         }
         
         .service-card {
-          transition: box-shadow 0.4s ease;
           will-change: transform, box-shadow;
           isolation: isolate;
-          border: none !important;
-          outline: none !important;
-          background: rgba(255, 255, 255, 0.98) !important;
-          border-radius: 1.5rem;
-          overflow: hidden;
-        }
-        
-        .group:hover .service-card {
-          box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25), 0 0 0 1px rgba(255,255,255,0.1);
         }
         
         /* Ensure child elements don't have conflicting gray backgrounds */
         .service-card > *:not(.service-card) {
           background: transparent !important;
-        }
-        
-        /* Prevent cursor flickering */
-        .card-container * {
-          pointer-events: none;
-        }
-        
-        .card-container {
-          pointer-events: auto;
-        }
-        
-        .learn-more-btn {
-          pointer-events: none;
-        }
-        
-        .group:hover .learn-more-btn {
-          pointer-events: auto;
-        }
-        
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes slideInFromLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes slideInFromRight {
-          from {
-            opacity: 0;
-            transform: translateX(30px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-        
-        @keyframes slideInUp {
-          from {
-            opacity: 0;
-            transform: translateY(15px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-        
-        @keyframes slideInLeft {
-          from {
-            opacity: 0;
-            transform: translateX(-10px);
-          }
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
         }
         
         /* Fix layout shifts and bullet alignment */
@@ -580,7 +325,7 @@ const Service = () => {
           background: transparent !important;
         }
         
-        /* Smooth bullet point positioning */
+        /* Bullet point positioning */
         .feature-item {
           align-items: flex-start;
         }
@@ -588,32 +333,6 @@ const Service = () => {
         .feature-item .w-2 {
           margin-top: 6px;
           flex-shrink: 0;
-        }
-        
-        /* Loading shimmer effect */
-        .content-loading::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.4),
-            transparent
-          );
-          animation: shimmer 1.5s ease-in-out;
-        }
-        
-        @keyframes shimmer {
-          0% {
-            left: -100%;
-          }
-          100% {
-            left: 100%;
-          }
         }
       `}</style>
     </section>
