@@ -49,7 +49,7 @@ const HomePage = () => {
               {/* Founder Image */}
               <div className="lg:w-1/3 relative">
                 <img
-                  src="/src/assets/Sanjith-SSS-Hospitals.png"
+                  src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg"
                   alt="Dr. S. Sanjith - Founder"
                   className="w-full h-64 lg:h-full object-cover"
                 />

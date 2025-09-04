@@ -740,7 +740,7 @@ const departments = [
         specialization: "Medical & Cosmetic Dermatology",
         qualifications: "MD (DERM)",
         availability: "Mon-Sat: 9AM-6PM",
-        image: "/src/assets/Sanjith-SSS-Hospitals.png",
+        image: "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg",
         achievements: [
           "Founder of SSS Super Speciality Hospital",
           "Expert in Advanced Dermatological Procedures",
