@@ -2,8 +2,6 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaCalendarAlt,
-  FaPhone,
-  FaClock,
   FaHeartbeat,
   FaStethoscope,
   FaUserMd,
@@ -161,68 +159,6 @@ const AppointmentBooking = () => {
                     />
                   ))}
                 </div>
-              </div>
-            </div>
-
-            {/* Features */}
-            <div className="p-12">
-              <div className="grid md:grid-cols-3 gap-8">
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.1 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="text-center group"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-emerald-100 to-emerald-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <FaClock className="text-2xl text-emerald-600" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                    Quick Booking
-                  </h4>
-                  <p className="text-gray-600">
-                    Book your appointment in less than 2 minutes with our
-                    streamlined process.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.2 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="text-center group"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-blue-100 to-blue-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <FaCalendarAlt className="text-2xl text-blue-600" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                    Flexible Scheduling
-                  </h4>
-                  <p className="text-gray-600">
-                    Choose from available time slots that work best for your
-                    schedule.
-                  </p>
-                </motion.div>
-
-                <motion.div
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.3 }}
-                  viewport={{ once: true, amount: 0.3 }}
-                  className="text-center group"
-                >
-                  <div className="w-16 h-16 bg-gradient-to-r from-green-100 to-green-200 rounded-full flex items-center justify-center mx-auto mb-4 group-hover:scale-110 transition-transform">
-                    <FaPhone className="text-2xl text-green-600" />
-                  </div>
-                  <h4 className="text-xl font-semibold text-gray-900 mb-2">
-                    Instant Confirmation
-                  </h4>
-                  <p className="text-gray-600">
-                    Get immediate confirmation via call or message within 24
-                    hours.
-                  </p>
-                </motion.div>
               </div>
             </div>
           </motion.div>

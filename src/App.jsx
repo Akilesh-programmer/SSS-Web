@@ -4,6 +4,7 @@ import Navigation from "./Components/ui/Navigation";
 import Home from "./Components/pages/Home";
 import AboutUs from "./Components/sections/AboutUs";
 import VirtualTour from "./Components/sections/VirtualTour";
+import PatientTestimonials from "./Components/sections/PatientTestimonials";
 import Specialities from "./Components/pages/Specialities";
 import MissionVision from "./Components/sections/MissionVision";
 import FoundersMessage from "./Components/sections/FoundersMessage";
@@ -31,6 +32,7 @@ const HomePage = () => {
         <AboutUs />
       </div>
       <VirtualTour />
+      <PatientTestimonials />
       <FounderSection />
       <AppointmentBooking />
       <div id="contact">
