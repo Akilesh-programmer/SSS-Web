@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import {
   FaMapMarkerAlt,
@@ -6,14 +5,25 @@ import {
   FaEnvelope,
   FaClock,
   FaAmbulance,
-  FaHospital,
-  FaUserMd,
   FaCalendarCheck,
   FaWhatsapp,
   FaFacebook,
   FaInstagram,
   FaTwitter,
 } from "react-icons/fa";
+
+// Helper animation presets to avoid repeating identical motion props
+const riseIn = (delay = 0, duration = 0.8) => ({
+  initial: { opacity: 0, y: 30 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration, delay },
+});
+
+const fadeIn = (delay = 0, duration = 0.6) => ({
+  initial: { opacity: 0, y: 20 },
+  animate: { opacity: 1, y: 0 },
+  transition: { duration, delay },
+});
 
 const Contact = () => {
   const contactInfo = [
@@ -117,11 +127,7 @@ const Contact = () => {
       <section className="relative py-16 lg:py-20 bg-gradient-to-r from-emerald-200 to-teal-300 text-emerald-800">
         <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-emerald-50/50"></div>
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-          >
+          <motion.div {...riseIn(0, 0.8)}>
             <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6 text-emerald-800 px-4">
               Get in Touch
             </h1>
@@ -135,16 +141,9 @@ const Contact = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Quick Actions */}
-        <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="mb-12 lg:mb-16"
-        >
+        <motion.section {...riseIn(0.2, 0.8)} className="mb-12 lg:mb-16">
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
+            {...fadeIn(0.3, 0.6)}
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 text-gray-800 px-4"
           >
             Quick Actions
@@ -200,15 +199,11 @@ const Contact = () => {
 
         {/* Contact Information */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.4 }}
+          {...riseIn(0.4, 0.8)}
           className="mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.5 }}
+            {...fadeIn(0.5, 0.6)}
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
           >
             Contact Information
@@ -281,15 +276,11 @@ const Contact = () => {
 
         {/* Hospital Hours */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.6 }}
+          {...riseIn(0.6, 0.8)}
           className="mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.7 }}
+            {...fadeIn(0.7, 0.6)}
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
           >
             Hospital Hours
@@ -352,15 +343,11 @@ const Contact = () => {
 
         {/* Social Media */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
+          {...riseIn(0.8, 0.8)}
           className="mb-12 sm:mb-16 lg:mb-20 px-4 sm:px-6 lg:px-8"
         >
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.9 }}
+            {...fadeIn(0.9, 0.6)}
             className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
           >
             Follow Us
@@ -412,9 +399,7 @@ const Contact = () => {
 
         {/* Emergency Notice */}
         <motion.section
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
+          {...riseIn(1.0, 0.8)}
           className="text-center px-4 sm:px-6 lg:px-8"
         >
           <motion.div

@@ -20,8 +20,8 @@ const PageWrapper = ({ children, pageKey }) => {
       // Trigger resize to ensure animations work
       window.dispatchEvent(new Event("resize"));
 
-      // Special handling for services page
-      if (pageKey === "services-page") {
+  // Special handling for specialities page
+  if (pageKey === "specialities-page") {
         // Force re-render and animations to display correctly
         document.querySelectorAll(".grid-optimized").forEach((el) => {
           el.style.opacity = "0.99";

@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import {
   FaPlay,
   FaTimes,
@@ -15,6 +15,85 @@ import { motion } from "framer-motion";
 import hospitalVideo from "../../assets/Hospital Full Tour Video.mp4";
 import hospitalImg from "../../assets/sss-hospital.avif";
 
+// Floating icons used in background and modal
+const FloatingIcons = ({ variant = "bg" }) => {
+  const base = [
+    {
+      Icon: FaStethoscope,
+      x: "10%",
+      y: "15%",
+      color: "text-emerald-400/30",
+      delay: 0,
+    },
+    {
+      Icon: FaHeartbeat,
+      x: "85%",
+      y: "20%",
+      color: "text-red-400/30",
+      delay: 0.5,
+    },
+    { Icon: FaUserMd, x: "15%", y: "70%", color: "text-blue-400/30", delay: 1 },
+    {
+      Icon: FaHospital,
+      x: "90%",
+      y: "75%",
+      color: "text-green-400/30",
+      delay: 1.5,
+    },
+    {
+      Icon: FaAmbulance,
+      x: "25%",
+      y: "35%",
+      color: "text-orange-400/30",
+      delay: 2,
+    },
+    {
+      Icon: FaMicroscope,
+      x: "75%",
+      y: "45%",
+      color: "text-purple-400/30",
+      delay: 2.5,
+    },
+    {
+      Icon: FaShieldAlt,
+      x: "45%",
+      y: "80%",
+      color: "text-indigo-400/30",
+      delay: 3,
+    },
+    {
+      Icon: FaCalendarAlt,
+      x: "65%",
+      y: "25%",
+      color: "text-teal-400/30",
+      delay: 3.5,
+    },
+  ];
+
+  // For background we keep slightly smaller icons; for modal make them more visible
+  return base.map((it, idx) => (
+    <motion.div
+      key={`${variant}-icon-${idx}`}
+      initial={{ opacity: 0, scale: 0.6 }}
+      animate={{
+        opacity: [0, 0.7, 0.3, 0.7],
+        scale: [0.6, 1.1, 0.9, 1.2],
+        y: [0, -20, 0],
+      }}
+      transition={{
+        delay: it.delay,
+        duration: variant === "modal" ? 6 : 8,
+        repeat: Infinity,
+        ease: "easeInOut",
+      }}
+      className={`absolute ${variant === "modal" ? "text-5xl" : "text-4xl"}`}
+      style={{ left: it.x, top: it.y }}
+    >
+      <it.Icon className={it.color} />
+    </motion.div>
+  ));
+};
+
 const VirtualTour = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
 
@@ -25,93 +104,12 @@ const VirtualTour = () => {
     >
       {/* Background floating elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100/20 rounded-full opacity-50 animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-teal-100/30 rounded-full opacity-60 animate-bounce"></div>
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-emerald-200/20 rounded-full opacity-40 animate-pulse"></div>
-        <div className="absolute top-1/3 right-1/3 w-20 h-20 bg-blue-100/20 rounded-full opacity-30 animate-bounce"></div>
-
-        {/* Floating medical icons */}
-        {[
-          {
-            icon: FaStethoscope,
-            delay: 0,
-            x: 10,
-            y: 15,
-            color: "text-emerald-400/20",
-          },
-          {
-            icon: FaHeartbeat,
-            delay: 0.5,
-            x: 85,
-            y: 20,
-            color: "text-red-400/20",
-          },
-          { icon: FaUserMd, delay: 1, x: 15, y: 70, color: "text-blue-400/20" },
-          {
-            icon: FaHospital,
-            delay: 1.5,
-            x: 90,
-            y: 75,
-            color: "text-green-400/20",
-          },
-          {
-            icon: FaAmbulance,
-            delay: 2,
-            x: 25,
-            y: 35,
-            color: "text-orange-400/20",
-          },
-          {
-            icon: FaMicroscope,
-            delay: 2.5,
-            x: 75,
-            y: 45,
-            color: "text-purple-400/20",
-          },
-          {
-            icon: FaShieldAlt,
-            delay: 3,
-            x: 45,
-            y: 80,
-            color: "text-indigo-400/20",
-          },
-          {
-            icon: FaCalendarAlt,
-            delay: 3.5,
-            x: 65,
-            y: 25,
-            color: "text-teal-400/20",
-          },
-        ].map((item, i) => (
-          <motion.div
-            key={`floating-bg-${i}`}
-            initial={{ opacity: 0, scale: 0 }}
-            animate={{
-              opacity: [0, 0.6, 0.3, 0.8, 0.2],
-              scale: [0, 1.2, 0.8, 1.5, 0.6],
-              rotate: [0, 180, 360],
-              y: [0, -20, 0, -10, 0],
-            }}
-            transition={{
-              delay: item.delay,
-              duration: 8,
-              repeat: Infinity,
-              repeatType: "reverse",
-              ease: "easeInOut",
-            }}
-            className="absolute text-4xl"
-            style={{
-              left: `${item.x}%`,
-              top: `${item.y}%`,
-            }}
-          >
-            <item.icon className={item.color} />
-          </motion.div>
-        ))}
+        <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100/20 rounded-full opacity-50 animate-pulse" />
+        <div className="absolute bottom-20 right-10 w-24 h-24 bg-teal-100/30 rounded-full opacity-60 animate-bounce" />
+        <FloatingIcons variant="bg" />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        {/* Section Header - Enhanced */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -140,19 +138,18 @@ const VirtualTour = () => {
         </motion.div>
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
-          {/* Video Section - Enhanced */}
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="relative px-4 sm:px-0"
           >
-            {/* Main video container with enhanced styling */}
+            {/* Main video container with restored multi-layer border */}
             <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl group cursor-pointer hover:shadow-3xl transition-all duration-500">
               {/* Elegant border effect with multiple layers */}
               <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-100 to-white p-1 rounded-xl sm:rounded-2xl lg:rounded-3xl">
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/50 via-transparent to-teal-200/50 rounded-xl sm:rounded-2xl lg:rounded-3xl"></div>
-                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/50 to-transparent rounded-xl sm:rounded-2xl lg:rounded-3xl"></div>
+                <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/50 via-transparent to-teal-200/50 rounded-xl sm:rounded-2xl lg:rounded-3xl" />
+                <div className="absolute inset-0 bg-gradient-to-tr from-transparent via-white/50 to-transparent rounded-xl sm:rounded-2xl lg:rounded-3xl" />
               </div>
 
               <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden bg-white p-1 sm:p-2">
@@ -165,18 +162,21 @@ const VirtualTour = () => {
                     />
 
                     {/* Enhanced gradient overlay */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/40 transition-all duration-500"></div>
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent group-hover:from-black/40 transition-all duration-500" />
 
-                    {/* Play Button with Multiple Ripple Effects */}
+                    {/* Play Button with ripple effects */}
                     <button
                       onClick={() => setIsVideoOpen(true)}
                       className="absolute inset-0 flex items-center justify-center group"
+                      aria-label="Open hospital tour video"
                     >
                       <div className="relative">
-                        {/* Multiple ripple animations */}
                         <motion.div
                           className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white/15 rounded-full"
-                          animate={{ scale: [1, 2, 1], opacity: [0.5, 0, 0.5] }}
+                          animate={{
+                            scale: [1, 1.9, 1],
+                            opacity: [0.5, 0, 0.5],
+                          }}
                           transition={{
                             duration: 3,
                             repeat: Infinity,
@@ -184,77 +184,35 @@ const VirtualTour = () => {
                           }}
                         />
                         <motion.div
-                          className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-emerald-300/20 rounded-full"
-                          animate={{
-                            scale: [1, 1.8, 1],
-                            opacity: [0.3, 0, 0.3],
-                          }}
-                          transition={{
-                            duration: 2.5,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 0.5,
-                          }}
-                        />
-                        <motion.div
-                          className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white/10 rounded-full"
-                          animate={{
-                            scale: [1, 1.5, 1],
-                            opacity: [0.4, 0, 0.4],
-                          }}
-                          transition={{
-                            duration: 2,
-                            repeat: Infinity,
-                            ease: "easeInOut",
-                            delay: 1,
-                          }}
-                        />
-
-                        {/* Main play button - Enhanced */}
-                        <motion.div
                           className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white/60"
-                          whileHover={{
-                            scale: 1.2,
-                            backgroundColor: "rgba(255,255,255,1)",
-                          }}
-                          whileTap={{ scale: 0.95 }}
-                          transition={{ duration: 0.3 }}
+                          whileHover={{ scale: 1.15 }}
                         >
                           <FaPlay className="text-emerald-600 text-xl sm:text-2xl lg:text-3xl ml-1 drop-shadow-lg" />
                         </motion.div>
                       </div>
                     </button>
 
-                    {/* Enhanced Video Label */}
-                    <motion.div
-                      className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6 bg-white/95 backdrop-blur-md rounded-lg sm:rounded-xl px-3 sm:px-4 lg:px-6 py-2 sm:py-3 shadow-lg border border-white/20"
-                      initial={{ opacity: 0, y: 20 }}
-                      whileInView={{ opacity: 1, y: 0 }}
-                      transition={{ delay: 0.8, duration: 0.6 }}
-                    >
+                    {/* Video label and duration */}
+                    <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6 bg-white/95 backdrop-blur-md rounded-lg sm:rounded-xl px-3 sm:px-4 lg:px-6 py-2 sm:py-3 shadow-lg border border-white/20">
                       <p className="text-emerald-900 font-bold text-sm sm:text-base lg:text-lg">
                         Hospital Full Tour
                       </p>
                       <p className="text-gray-600 text-xs sm:text-sm">
                         🎬 Click to explore our facilities
                       </p>
-                    </motion.div>
+                    </div>
 
-                    {/* Duration badge */}
-                    <motion.div
-                      className="absolute top-3 sm:top-4 lg:top-6 right-3 sm:right-4 lg:right-6 bg-black/80 backdrop-blur-sm rounded-md sm:rounded-lg px-2 sm:px-3 py-1"
-                      initial={{ opacity: 0, scale: 0.8 }}
-                      whileInView={{ opacity: 1, scale: 1 }}
-                      transition={{ delay: 1, duration: 0.5 }}
-                    >
-                      <p className="text-white text-xs sm:text-sm font-medium">🕒 3:45</p>
-                    </motion.div>
+                    <div className="absolute top-3 sm:top-4 lg:top-6 right-3 sm:right-4 lg:right-6 bg-black/80 backdrop-blur-sm rounded-md sm:rounded-lg px-2 sm:px-3 py-1">
+                      <p className="text-white text-xs sm:text-sm font-medium">
+                        🕒 3:45
+                      </p>
+                    </div>
                   </div>
                 </div>
               </div>
             </div>
 
-            {/* Enhanced Hospital Stats */}
+            {/* Hospital Stats (compact) */}
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8"
               initial={{ opacity: 0, y: 30 }}
@@ -262,37 +220,20 @@ const VirtualTour = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               {[
-                {
-                  number: "150+",
-                  label: "Beds",
-                  icon: "🏥",
-                  color: "from-emerald-500 to-emerald-600",
-                },
-                {
-                  number: "4",
-                  label: "Operating Theatres",
-                  icon: "⚕️",
-                  color: "from-blue-500 to-blue-600",
-                },
-                {
-                  number: "30+",
-                  label: "ICU Beds",
-                  icon: "🚨",
-                  color: "from-red-500 to-red-600",
-                },
+                { number: "150+", label: "Beds", icon: "🏥" },
+                { number: "4", label: "Operating Theatres", icon: "⚕️" },
+                { number: "30+", label: "ICU Beds", icon: "🚨" },
               ].map((stat, index) => (
                 <motion.div
-                  key={`stat-${index}`}
-                  className="bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  whileHover={{ y: -5, transition: { duration: 0.2 } }}
+                  key={index}
+                  className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+                  whileHover={{ y: -5 }}
                   initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.8 + index * 0.2, duration: 0.6 }}
                 >
                   <div className="text-2xl sm:text-3xl mb-2">{stat.icon}</div>
-                  <h3
-                    className={`text-2xl sm:text-3xl font-bold bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}
-                  >
+                  <h3 className="text-2xl sm:text-3xl font-bold">
                     {stat.number}
                   </h3>
                   <p className="text-xs sm:text-sm text-gray-600 font-medium">
@@ -303,14 +244,12 @@ const VirtualTour = () => {
             </motion.div>
           </motion.div>
 
-          {/* Hospital Information - Enhanced */}
           <motion.div
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-6 sm:space-y-8 px-4 sm:px-0"
           >
-            {/* Header with floating accent */}
             <div className="relative">
               <motion.div
                 initial={{ opacity: 0, scale: 0.8 }}
@@ -335,7 +274,6 @@ const VirtualTour = () => {
               </p>
             </div>
 
-            {/* Key Features - Enhanced */}
             <div className="space-y-4 sm:space-y-6">
               {[
                 {
@@ -343,35 +281,34 @@ const VirtualTour = () => {
                   title: "Advanced AI & 3D Cath Lab",
                   description:
                     "State-of-the-art cardiac catheterization laboratory with AI technology",
-                  color: "from-emerald-500 to-emerald-600",
                 },
                 {
                   emoji: "🚑",
                   title: "24/7 Emergency Services",
                   description:
                     "Round-the-clock emergency care with trained paramedics",
-                  color: "from-red-500 to-red-600",
                 },
                 {
                   emoji: "🔬",
                   title: "Modern Diagnostic Center",
                   description:
                     "Advanced radiology and laboratory services for accurate diagnosis",
-                  color: "from-blue-500 to-blue-600",
                 },
               ].map((feature, index) => (
                 <motion.div
-                  key={`feature-${index}`}
+                  key={index}
                   initial={{ opacity: 0, x: 30 }}
                   whileInView={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.5 + index * 0.2, duration: 0.6 }}
-                  whileHover={{ x: 10, transition: { duration: 0.2 } }}
+                  whileHover={{ x: 10 }}
                   className="flex items-start gap-3 sm:gap-4 lg:gap-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
                 >
                   <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br ${feature.color} rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow`}
+                    className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow`}
                   >
-                    <span className="text-white text-lg sm:text-xl lg:text-2xl">{feature.emoji}</span>
+                    <span className="text-white text-lg sm:text-xl lg:text-2xl">
+                      {feature.emoji}
+                    </span>
                   </div>
                   <div className="flex-1">
                     <h4 className="font-bold text-gray-900 text-base sm:text-lg lg:text-xl mb-1 sm:mb-2 group-hover:text-emerald-700 transition-colors">
@@ -387,7 +324,7 @@ const VirtualTour = () => {
           </motion.div>
         </div>
 
-        {/* Enhanced Video Modal */}
+        {/* Video modal with floating icons */}
         {isVideoOpen && (
           <motion.div
             initial={{ opacity: 0 }}
@@ -396,91 +333,8 @@ const VirtualTour = () => {
             className="fixed inset-0 bg-black/20 backdrop-blur-md z-[9999] flex items-center justify-center pt-16 sm:pt-20 pb-4 sm:pb-8 px-2 sm:px-4"
             onClick={() => setIsVideoOpen(false)}
           >
-            {/* Floating medical icons around modal */}
             <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              {[
-                {
-                  icon: FaStethoscope,
-                  delay: 0,
-                  x: 10,
-                  y: 15,
-                  color: "text-emerald-400/60",
-                },
-                {
-                  icon: FaHeartbeat,
-                  delay: 0.5,
-                  x: 85,
-                  y: 20,
-                  color: "text-red-400/60",
-                },
-                {
-                  icon: FaUserMd,
-                  delay: 1,
-                  x: 15,
-                  y: 70,
-                  color: "text-blue-400/60",
-                },
-                {
-                  icon: FaHospital,
-                  delay: 1.5,
-                  x: 90,
-                  y: 75,
-                  color: "text-green-400/60",
-                },
-                {
-                  icon: FaAmbulance,
-                  delay: 2,
-                  x: 25,
-                  y: 35,
-                  color: "text-orange-400/60",
-                },
-                {
-                  icon: FaMicroscope,
-                  delay: 2.5,
-                  x: 75,
-                  y: 45,
-                  color: "text-purple-400/60",
-                },
-                {
-                  icon: FaShieldAlt,
-                  delay: 3,
-                  x: 45,
-                  y: 80,
-                  color: "text-indigo-400/60",
-                },
-                {
-                  icon: FaCalendarAlt,
-                  delay: 3.5,
-                  x: 65,
-                  y: 25,
-                  color: "text-teal-400/60",
-                },
-              ].map((item, i) => (
-                <motion.div
-                  key={`modal-floating-${i}`}
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: [0, 0.8, 0.4, 0.9, 0.3],
-                    scale: [0, 1.5, 1, 1.8, 0.8],
-                    rotate: [0, 180, 360],
-                    y: [0, -30, 0, -15, 0],
-                  }}
-                  transition={{
-                    delay: item.delay,
-                    duration: 6,
-                    repeat: Infinity,
-                    repeatType: "reverse",
-                    ease: "easeInOut",
-                  }}
-                  className="absolute text-4xl"
-                  style={{
-                    left: `${item.x}%`,
-                    top: `${item.y}%`,
-                  }}
-                >
-                  <item.icon className={item.color} />
-                </motion.div>
-              ))}
+              <FloatingIcons variant="modal" />
             </div>
 
             <motion.div
@@ -492,7 +346,6 @@ const VirtualTour = () => {
               onClick={(e) => e.stopPropagation()}
               style={{ aspectRatio: "16/9" }}
             >
-              {/* Close button - Enhanced */}
               <motion.button
                 onClick={() => setIsVideoOpen(false)}
                 whileHover={{
@@ -505,7 +358,6 @@ const VirtualTour = () => {
                 <FaTimes className="text-lg sm:text-xl" />
               </motion.button>
 
-              {/* Video title overlay */}
               <motion.div
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
@@ -520,7 +372,6 @@ const VirtualTour = () => {
                 </p>
               </motion.div>
 
-              {/* Video element */}
               <video
                 src={hospitalVideo}
                 controls

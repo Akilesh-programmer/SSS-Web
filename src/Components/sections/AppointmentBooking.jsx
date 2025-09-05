@@ -1,17 +1,13 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaCalendarAlt,
   FaPhone,
-  FaEnvelope,
   FaClock,
-  FaMapMarkerAlt,
   FaHeartbeat,
   FaStethoscope,
   FaUserMd,
   FaHospital,
-  FaAward,
-  FaUsers,
 } from "react-icons/fa";
 import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
 import AppointmentPopup from "../ui/AppointmentPopup";

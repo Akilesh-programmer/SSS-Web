@@ -1,6 +1,5 @@
-import React from "react";
 import { useNavigate } from "react-router-dom";
-import { getAllDepartments } from "../data/departmentsData";
+import { getAllDepartments } from "../../data/departmentsData";
 import {
   FaHeartbeat,
   FaBrain,
@@ -26,7 +25,7 @@ import {
   FaPills,
 } from "react-icons/fa";
 
-const Service = () => {
+const Specialities = () => {
   const navigate = useNavigate();
   const departments = getAllDepartments();
 
@@ -162,7 +161,6 @@ const Service = () => {
                           </span>
                         </div>
                       )) || (
-                      // Fallback content if features are not available
                       <>
                         <div className="flex items-start space-x-3 feature-item transform transition-transform duration-300 group-hover:translate-x-1">
                           <div className="w-2 h-2 rounded-full bg-gradient-to-r from-emerald-500 to-teal-600 flex-shrink-0 mt-2 transform transition-transform duration-300 group-hover:scale-125"></div>
@@ -190,9 +188,7 @@ const Service = () => {
                 {/* Learn More Button */}
                 <div className="relative mt-auto">
                   <button
-                    className="learn-more-btn w-full py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold shadow-lg hover:shadow-xl relative overflow-hidden transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 
-                    opacity-100 translate-y-0 
-                    md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0"
+                    className="learn-more-btn w-full py-3 px-6 rounded-xl bg-gradient-to-r from-emerald-500 to-teal-600 text-white font-semibold shadow-lg hover:shadow-xl relative overflow-hidden transform transition-all duration-300 hover:scale-105 hover:-translate-y-1 opacity-100 translate-y-0 md:opacity-0 md:group-hover:opacity-100 md:translate-y-4 md:group-hover:translate-y-0"
                     onClick={(e) => {
                       e.stopPropagation();
                       handleCardClick(department);
@@ -202,8 +198,6 @@ const Service = () => {
                       Learn More
                     </span>
                     <div className="absolute inset-0 bg-gradient-to-r from-emerald-600 to-teal-700 opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
-
-                    {/* Button shimmer effect */}
                     <div className="absolute inset-0 opacity-0 hover:opacity-100 transition-opacity duration-500">
                       <div className="absolute inset-0 -translate-x-full hover:translate-x-full bg-gradient-to-r from-transparent via-white/30 to-transparent transition-transform duration-700 ease-out"></div>
                     </div>
@@ -216,127 +210,23 @@ const Service = () => {
       </div>
 
       <style>{`
-        .line-clamp-3 {
-          display: -webkit-box;
-          -webkit-line-clamp: 3;
-          -webkit-box-orient: vertical;
-          overflow: hidden;
-        }
-        
-        /* Ensure consistent card heights and remove border artifacts */
-        .service-card {
-          min-height: 400px;
-          border-radius: 1.5rem !important;
-          overflow: hidden;
-          position: relative;
-          border: none !important;
-          outline: none !important;
-          box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
-          background: rgba(255, 255, 255, 0.98) !important;
-          backdrop-filter: blur(10px);
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        
-        .service-card:hover {
-          box-shadow: 0 32px 64px -12px rgba(0, 0, 0, 0.15), 0 25px 25px -5px rgba(0, 0, 0, 0.1);
-          transform: translateZ(0);
-        }
-        
-        .service-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
-          background: rgba(255, 255, 255, 0.98);
-          border-radius: 1.5rem;
-          z-index: -1;
-          transition: all 0.3s ease;
-        }
-        
-        /* Content styling with smooth transitions */
-        .content-loading {
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        
-        .department-title {
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        
-        .department-desc {
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        
-        .feature-item {
-          opacity: 1;
-          transition: all 0.3s ease;
-        }
-        
-        /* Learn More button styling with enhanced hover effects */
-        .learn-more-btn {
-          pointer-events: auto;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          will-change: transform, opacity, box-shadow;
-        }
-        
-        .learn-more-btn:hover {
-          box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
-        }
-        
-        /* Card container styling with smooth animations */
-        .card-container {
-          transform-origin: center;
-          backface-visibility: hidden;
-          -webkit-backface-visibility: hidden;
-          isolation: isolate;
-          opacity: 1;
-          border-radius: 1.5rem;
-          overflow: hidden;
-          pointer-events: auto;
-          transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-          will-change: transform, box-shadow;
-        }
-        
-        /* Enhanced hover state for card container */
-        .card-container:hover {
-          z-index: 10;
-        }
-        
-        .service-card {
-          will-change: transform, box-shadow;
-          isolation: isolate;
-        }
-        
-        /* Ensure child elements don't have conflicting gray backgrounds */
-        .service-card > *:not(.service-card) {
-          background: transparent !important;
-        }
-        
-        /* Fix layout shifts and bullet alignment */
-        .fixed-height-content {
-          display: flex;
-          flex-direction: column;
-          justify-content: space-between;
-          min-height: 100%;
-          background: transparent !important;
-        }
-        
-        /* Bullet point positioning */
-        .feature-item {
-          align-items: flex-start;
-        }
-        
-        .feature-item .w-2 {
-          margin-top: 6px;
-          flex-shrink: 0;
-        }
+        .line-clamp-3 { display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
+        .service-card { min-height: 400px; border-radius: 1.5rem !important; overflow: hidden; position: relative; border: none !important; outline: none !important; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.1), 0 10px 10px -5px rgba(0,0,0,0.04); background: rgba(255,255,255,0.98) !important; backdrop-filter: blur(10px); transition: all 0.3s cubic-bezier(0.4,0,0.2,1); }
+        .service-card:hover { box-shadow: 0 32px 64px -12px rgba(0,0,0,0.15), 0 25px 25px -5px rgba(0,0,0,0.1); transform: translateZ(0); }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; bottom: 0; background: rgba(255,255,255,0.98); border-radius: 1.5rem; z-index: -1; transition: all 0.3s ease; }
+        .content-loading, .department-title, .department-desc, .feature-item { opacity: 1; transition: all 0.3s ease; }
+        .learn-more-btn { pointer-events: auto; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); will-change: transform, opacity, box-shadow; }
+        .learn-more-btn:hover { box-shadow: 0 20px 40px rgba(16,185,129,0.4); }
+        .card-container { transform-origin: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; isolation: isolate; opacity: 1; border-radius: 1.5rem; overflow: hidden; pointer-events: auto; transition: all 0.3s cubic-bezier(0.4,0,0.2,1); will-change: transform, box-shadow; }
+        .card-container:hover { z-index: 10; }
+        .service-card { will-change: transform, box-shadow; isolation: isolate; }
+        .service-card > *:not(.service-card) { background: transparent !important; }
+        .fixed-height-content { display: flex; flex-direction: column; justify-content: space-between; min-height: 100%; background: transparent !important; }
+        .feature-item { align-items: flex-start; }
+        .feature-item .w-2 { margin-top: 6px; flex-shrink: 0; }
       `}</style>
     </section>
   );
 };
 
-export default Service;
+export default Specialities;

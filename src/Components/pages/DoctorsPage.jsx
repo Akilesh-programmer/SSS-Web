@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { useLocation } from "react-router-dom";
 import {
   FaUserMd,
   FaSearch,
@@ -10,26 +9,13 @@ import {
   FaCalendarAlt,
   FaPhone,
   FaEnvelope,
-  FaStethoscope,
-  FaHeart,
-  FaBrain,
-  FaBone,
-  FaBaby,
-  FaEye,
-  FaTooth,
-  FaLungs,
-  FaTint,
-  FaVenus,
-  FaCut,
-  FaAmbulance,
-  FaPills,
-  FaUserCog,
   FaFilter,
   FaThList,
   FaThLarge,
   FaChevronDown,
   FaInfoCircle,
 } from "react-icons/fa";
+import { departments, doctors } from "../../data/doctorsData";
 
 const DoctorsPage = () => {
   const [searchTerm, setSearchTerm] = useState("");
@@ -57,734 +43,36 @@ const DoctorsPage = () => {
     return () => clearTimeout(timer);
   }, [location]);
 
-  // Enhanced departments with better categorization
-  const departments = [
-    {
-      id: "all",
-      name: "All Specialists",
-      icon: FaUserMd,
-      gradient: "from-emerald-500 to-teal-500",
-      color: "emerald",
-      count: 0,
-    },
-    {
-      id: "cardiology",
-      name: "Cardiology",
-      icon: FaHeart,
-      gradient: "from-red-500 to-pink-500",
-      color: "red",
-      count: 0,
-    },
-    {
-      id: "dermatology",
-      name: "Dermatology",
-      icon: FaUserMd,
-      gradient: "from-orange-500 to-amber-500",
-      color: "orange",
-      count: 0,
-    },
-    {
-      id: "orthopedics",
-      name: "Orthopedics",
-      icon: FaBone,
-      gradient: "from-blue-500 to-indigo-500",
-      color: "blue",
-      count: 0,
-    },
-    {
-      id: "pediatrics",
-      name: "Pediatrics",
-      icon: FaBaby,
-      gradient: "from-pink-500 to-rose-500",
-      color: "pink",
-      count: 0,
-    },
-    {
-      id: "neurology",
-      name: "Neurology",
-      icon: FaBrain,
-      gradient: "from-purple-500 to-violet-500",
-      color: "purple",
-      count: 0,
-    },
-    {
-      id: "emergency",
-      name: "Emergency",
-      icon: FaAmbulance,
-      gradient: "from-red-600 to-red-700",
-      color: "red",
-      count: 0,
-    },
-    {
-      id: "surgery",
-      name: "Surgery",
-      icon: FaCut,
-      gradient: "from-gray-600 to-gray-700",
-      color: "gray",
-      count: 0,
-    },
-    {
-      id: "gynecology",
-      name: "Gynecology",
-      icon: FaVenus,
-      gradient: "from-pink-400 to-rose-400",
-      color: "pink",
-      count: 0,
-    },
-    {
-      id: "urology",
-      name: "Urology",
-      icon: FaTint,
-      gradient: "from-blue-400 to-cyan-400",
-      color: "blue",
-      count: 0,
-    },
-    {
-      id: "nephrology",
-      name: "Nephrology",
-      icon: FaTint,
-      gradient: "from-teal-500 to-cyan-500",
-      color: "teal",
-      count: 0,
-    },
-    {
-      id: "psychiatry",
-      name: "Psychiatry",
-      icon: FaBrain,
-      gradient: "from-indigo-500 to-purple-500",
-      color: "indigo",
-      count: 0,
-    },
-    {
-      id: "ophthalmology",
-      name: "Ophthalmology",
-      icon: FaEye,
-      gradient: "from-green-500 to-emerald-500",
-      color: "green",
-      count: 0,
-    },
-    {
-      id: "anesthesia",
-      name: "Anesthesia",
-      icon: FaPills,
-      gradient: "from-slate-500 to-gray-500",
-      color: "slate",
-      count: 0,
-    },
-    {
-      id: "medicine",
-      name: "Internal Medicine",
-      icon: FaStethoscope,
-      gradient: "from-emerald-600 to-green-600",
-      color: "emerald",
-      count: 0,
-    },
-    {
-      id: "radiology",
-      name: "Radiology",
-      icon: FaUserCog,
-      gradient: "from-violet-500 to-purple-500",
-      color: "violet",
-      count: 0,
-    },
-  ];
+  // Compute department counts without mutating imported data
+  const deptCounts = useMemo(() => {
+    return departments.map((d) => ({
+      ...d,
+      count:
+        d.id === "all"
+          ? doctors.length
+          : doctors.filter((doctor) => doctor.department === d.id).length,
+    }));
+  }, [doctors]);
 
-  // Comprehensive doctors list from hospital data
-  const doctors = [
-    {
-      id: 1,
-      name: "Dr. S. Sanjith",
-      specialty: "Dermatology & Cosmetology",
-      designation: "Founder & Managing Director, Consultant Dermatologist",
-      department: "dermatology",
-      qualification: "MD (DERM)",
-      experience: "15+ years",
-      availability: "Mon-Sat: 9AM-6PM",
-      image: "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg",
-      specializations: [
-        "Dermatology",
-        "Cosmetology",
-        "Skin Care",
-        "Hair Treatment",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Leading dermatology care with expertise and compassionate healing",
-      isFounder: true,
-    },
-    {
-      id: 2,
-      name: "Dr. P. Selvakumar",
-      specialty: "Emergency & Critical Care",
-      designation: "CEO & Medical Director, Senior Consultant",
-      department: "emergency",
-      qualification: "MD, PDCC",
-      experience: "20+ years",
-      availability: "24/7 Emergency",
-      specializations: [
-        "Emergency Medicine",
-        "Critical Care",
-        "Anesthesia",
-        "Trauma Care",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in emergency medicine and critical care management",
-      isCEO: true,
-    },
-    {
-      id: 3,
-      name: "Dr. P. Eswaravel",
-      specialty: "Cardiology",
-      designation: "Consultant Cardiologist",
-      department: "cardiology",
-      qualification: "MD, DCC",
-      experience: "18+ years",
-      availability: "Mon-Fri: 9AM-5PM",
-      specializations: [
-        "Cardiac Care",
-        "Heart Conditions",
-        "Preventive Cardiology",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Expert cardiac care with specialization in managing complex heart conditions",
-    },
-    {
-      id: 4,
-      name: "Dr. S. Natarajan",
-      specialty: "Orthopedic Surgery",
-      designation: "Senior Consultant Orthopedic Surgeon",
-      department: "orthopedics",
-      qualification: "MBBS, MS, DNB (ORTHO), MRCS (EDIN)",
-      experience: "16+ years",
-      availability: "Mon-Sat: 10AM-5PM",
-      specializations: [
-        "Orthopedic Surgery",
-        "Joint Replacement",
-        "Sports Medicine",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Experienced in advanced orthopedic surgeries and precision care",
-    },
-    {
-      id: 5,
-      name: "Dr. P. Ramesh Babu",
-      specialty: "Interventional Cardiology",
-      designation: "Consultant Interventional Cardiologist",
-      department: "cardiology",
-      qualification: "MD, DM (CARD)",
-      experience: "14+ years",
-      availability: "Mon-Fri: 8AM-4PM",
-      specializations: ["Angioplasty", "Stenting", "Cardiac Emergencies"],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Expert in angioplasty, stenting, and managing cardiac emergencies",
-    },
-    {
-      id: 6,
-      name: "Dr. E. Karthikeyan",
-      specialty: "Orthopedic & Hand Surgery",
-      designation: "Consultant Orthopedic, Hand & Micro Surgeon",
-      department: "orthopedics",
-      qualification: "MBBS, MS (Ortho)",
-      experience: "12+ years",
-      availability: "Tue-Sat: 11AM-6PM",
-      specializations: ["Hand Surgery", "Microsurgery", "Trauma Surgery"],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Skilled in complex hand surgeries and microsurgery techniques",
-    },
-    {
-      id: 7,
-      name: "Dr. V. S. Arhichandran",
-      specialty: "Internal Medicine & Cardiology",
-      designation: "Consultant Internal Medicine & Cardiologist",
-      department: "medicine",
-      qualification: "MD (General Medicine), DM (CARD)",
-      experience: "15+ years",
-      availability: "Mon-Fri: 9AM-5PM",
-      specializations: [
-        "Internal Medicine",
-        "Cardiac Treatment",
-        "Preventive Care",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Comprehensive care for internal medicine and advanced cardiac treatment",
-    },
-    {
-      id: 8,
-      name: "Dr. S. Shankar",
-      specialty: "Internal Medicine & Diabetology",
-      designation: "Consultant Internal Medicine & Diabetologist",
-      department: "medicine",
-      qualification: "MD (General Medicine), DM (Diabetology)",
-      experience: "13+ years",
-      availability: "Mon-Sat: 8AM-4PM",
-      specializations: [
-        "Diabetes Management",
-        "Internal Medicine",
-        "Metabolic Disorders",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in diabetes management and internal medicine",
-    },
-    {
-      id: 9,
-      name: "Dr. R. Venkata",
-      specialty: "Internal Medicine & Critical Care",
-      designation:
-        "Consultant Internal Medicine & Senior Critical Care Physician",
-      department: "medicine",
-      qualification: "MD (Internal Medicine), DNB (Critical Care), IFCCM",
-      experience: "16+ years",
-      availability: "24/7 Critical Care",
-      specializations: ["Critical Care", "Internal Medicine", "ICU Management"],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Specializes in managing critical care and complex internal medicine cases",
-    },
-    {
-      id: 10,
-      name: "Dr. S. Shriram Narayanan",
-      specialty: "Urology & Renal Transplant",
-      designation: "Consultant Urologist & Renal Transplant Specialist",
-      department: "urology",
-      qualification: "MBBS, M.Ch (Urology)",
-      experience: "14+ years",
-      availability: "Mon-Sat: 10AM-5PM",
-      specializations: [
-        "Renal Transplantation",
-        "Urological Surgery",
-        "Kidney Stone Treatment",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Expertise in renal transplantation and urological surgeries",
-    },
-    {
-      id: 11,
-      name: "Dr. S. Divakar",
-      specialty: "Surgical Gastroenterology",
-      designation:
-        "Senior Consultant Surgical Gastroenterologist & Laparoscopic Surgeon",
-      department: "surgery",
-      qualification: "MS, FMAS, DIP. LAP",
-      experience: "18+ years",
-      availability: "Mon-Fri: 9AM-5PM",
-      specializations: [
-        "Laparoscopic Surgery",
-        "Gastrointestinal Surgery",
-        "Endoscopy",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Experienced in advanced laparoscopic and gastrointestinal surgeries",
-    },
-    {
-      id: 12,
-      name: "Dr. S. Maharajan",
-      specialty: "Orthopedic & Spine Surgery",
-      designation: "Orthopedic & Spine Surgeon",
-      department: "orthopedics",
-      qualification: "MBBS, MS (Ortho)",
-      experience: "15+ years",
-      availability: "Mon-Sat: 10AM-6PM",
-      specializations: [
-        "Spine Surgery",
-        "Orthopedic Disorders",
-        "Spinal Conditions",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Provides specialized care in spinal conditions and orthopedic disorders",
-    },
-    {
-      id: 13,
-      name: "Dr. S. V. Dhayanithi",
-      specialty: "General Medicine & Critical Care",
-      designation: "Consultant General Medicine, Critical Care & Anesthetist",
-      department: "anesthesia",
-      qualification: "MBBS, MD",
-      experience: "12+ years",
-      availability: "24/7 Emergency",
-      specializations: ["Critical Care", "Anesthesia", "Emergency Medicine"],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Handles critical care and anesthesia with expert knowledge",
-    },
-    {
-      id: 14,
-      name: "Dr. K. Arthikeyan",
-      specialty: "Multi-Specialty Medicine",
-      designation:
-        "Consultant in General Medicine, Critical Care, Diabetology & Optical Care",
-      department: "medicine",
-      qualification: "MBBS, MD",
-      experience: "11+ years",
-      availability: "Mon-Sat: 9AM-5PM",
-      specializations: [
-        "General Medicine",
-        "Critical Care",
-        "Diabetology",
-        "Optical Care",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Multi-disciplinary specialist treating complex internal disorders",
-    },
-    {
-      id: 15,
-      name: "Dr. S. Shivaraman Maratha",
-      specialty: "ENT Surgery",
-      designation: "Consultant ENT Surgeon",
-      department: "surgery",
-      qualification: "MBBS, MS (ENT)",
-      experience: "10+ years",
-      availability: "Mon-Fri: 10AM-5PM",
-      specializations: [
-        "ENT Surgery",
-        "Head & Neck Surgery",
-        "Hearing Disorders",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in ENT and head & neck surgical procedures",
-    },
-    {
-      id: 16,
-      name: "Dr. V. Chandran",
-      specialty: "Neurology",
-      designation: "Consultant Neurologist",
-      department: "neurology",
-      qualification: "MBBS, MD, DM (Neurology)",
-      experience: "14+ years",
-      availability: "Mon-Fri: 9AM-5PM",
-      specializations: [
-        "Neurological Disorders",
-        "Stroke Management",
-        "Epilepsy",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in managing complex neurological conditions",
-    },
-    {
-      id: 17,
-      name: "Dr. B. Abirami Janani",
-      specialty: "Psychiatry",
-      designation: "Consultant Psychiatrist",
-      department: "psychiatry",
-      qualification: "MBBS, MD (Psychiatry)",
-      experience: "8+ years",
-      availability: "Mon-Fri: 10AM-6PM",
-      specializations: [
-        "Mental Health",
-        "Depression",
-        "Anxiety",
-        "Behavioral Therapy",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Specialized in mental health and behavioral therapy",
-    },
-    {
-      id: 18,
-      name: "Dr. S. Chidambaram",
-      specialty: "Nephrology & Hypertension",
-      designation: "Consultant Nephrologist & Hypertension Specialist",
-      department: "nephrology",
-      qualification: "MBBS, MD, DM (Nephrology)",
-      experience: "13+ years",
-      availability: "Mon-Sat: 9AM-5PM",
-      specializations: [
-        "Kidney Disease",
-        "Hypertension",
-        "Dialysis",
-        "Renal Care",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Expert in kidney disease management and hypertension treatment",
-    },
-    {
-      id: 19,
-      name: "Dr. S. Divya Rajan",
-      specialty: "Plastic Surgery",
-      designation: "Consultant Plastic Surgeon",
-      department: "surgery",
-      qualification: "MBBS, M.Ch (Plastic Surgery)",
-      experience: "9+ years",
-      availability: "Tue-Sat: 10AM-5PM",
-      specializations: [
-        "Plastic Surgery",
-        "Reconstructive Surgery",
-        "Aesthetic Surgery",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in plastic and reconstructive surgical procedures",
-    },
-    {
-      id: 20,
-      name: "Dr. M. Praveen Kumar",
-      specialty: "Interventional Cardiology",
-      designation: "Consultant Interventional Cardiologist",
-      department: "cardiology",
-      qualification: "MBBS, MD, DM (Cardiology)",
-      experience: "11+ years",
-      availability: "Mon-Fri: 8AM-4PM",
-      specializations: [
-        "Interventional Cardiology",
-        "Heart Procedures",
-        "Cardiac Catheterization",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Advanced expertise in interventional heart procedures",
-    },
-    {
-      id: 21,
-      name: "Dr. K.L. Sathish Kumar",
-      specialty: "Surgical Gastroenterology",
-      designation:
-        "Senior Consultant Endoscopist & Surgical Gastroenterologist",
-      department: "surgery",
-      qualification: "MBBS, MS, DNB, FRCS (Ed), DNB (Surg Gastro), FMAS",
-      experience: "17+ years",
-      availability: "Mon-Sat: 9AM-5PM",
-      specializations: [
-        "Endoscopy",
-        "Surgical Gastroenterology",
-        "Laparoscopic Surgery",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Expert in endoscopic and laparoscopic gastrointestinal procedures",
-    },
-    {
-      id: 22,
-      name: "Dr. E. Parvathavardhini",
-      specialty: "Pediatrics & Neonatology",
-      designation: "Senior Consultant Pediatrician & Neonatologist",
-      department: "pediatrics",
-      qualification: "MBBS, MD (Pediatrics)",
-      experience: "12+ years",
-      availability: "Mon-Sat: 9AM-6PM",
-      specializations: [
-        "Pediatrics",
-        "Neonatology",
-        "Child Wellness",
-        "Vaccinations",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Specialized in newborn and child wellness care",
-    },
-    {
-      id: 23,
-      name: "Dr. K. Yuvaraja",
-      specialty: "Nephrology & Renal Transplant",
-      designation: "Consultant Nephrologist & Renal Transplant Physician",
-      department: "nephrology",
-      qualification: "MBBS, MD, DM (Nephrology)",
-      experience: "12+ years",
-      availability: "Mon-Sat: 9AM-5PM",
-      specializations: [
-        "Kidney Disease Management",
-        "Dialysis Care",
-        "Renal Transplants",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description:
-        "Expert in kidney disease management and renal transplantation",
-    },
-    {
-      id: 24,
-      name: "Dr. N. Padmanaban",
-      specialty: "Cardiology",
-      designation: "Senior Consultant Cardiologist",
-      department: "cardiology",
-      qualification: "MBBS, MD, DM (Cardiology)",
-      experience: "16+ years",
-      availability: "Mon-Fri: 9AM-6PM",
-      specializations: [
-        "Heart Disease Prevention",
-        "Angioplasty",
-        "Stenting",
-        "Cardiac Emergencies",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in comprehensive cardiac care and prevention",
-    },
-    {
-      id: 25,
-      name: "Dr. R. Premakumari",
-      specialty: "Obstetrics & Gynecology",
-      designation: "Senior Consultant Obstetrician & Gynecologist",
-      department: "gynecology",
-      qualification: "MBBS, MD (OG)",
-      experience: "15+ years",
-      availability: "Mon-Sat: 9AM-6PM",
-      specializations: [
-        "Pregnancy & Delivery",
-        "Women's Wellness",
-        "Gynecological Surgeries",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Comprehensive women's health and pregnancy care",
-    },
-    {
-      id: 26,
-      name: "Dr. S. Gokul Balaji",
-      specialty: "Plastic Surgery",
-      designation: "Consultant Plastic Surgeon",
-      department: "surgery",
-      qualification: "MBBS, M.Ch (Plastic & Reconstructive Surgery)",
-      experience: "10+ years",
-      availability: "Tue-Sat: 10AM-5PM",
-      specializations: [
-        "Plastic Surgery",
-        "Reconstructive Surgery",
-        "Burn Treatment",
-        "Aesthetic Surgery",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in plastic, reconstructive, and aesthetic surgery",
-    },
-    {
-      id: 27,
-      name: "Dr. C.P. Suresh",
-      specialty: "Pediatric Neurology",
-      designation: "Consultant Pediatric Neurologist",
-      department: "neurology",
-      qualification: "MBBS, MD (Pediatrics), DM (Neurology)",
-      experience: "12+ years",
-      availability: "Mon-Fri: 9AM-5PM",
-      specializations: [
-        "Pediatric Neurology",
-        "Child Development Disorders",
-        "Epilepsy in Children",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Specialized in pediatric neurological conditions",
-    },
-    {
-      id: 28,
-      name: "Dr. S.M. Sindoory",
-      specialty: "Ophthalmology",
-      designation: "Consultant Ophthalmologist",
-      department: "ophthalmology",
-      qualification: "MBBS, DO",
-      experience: "11+ years",
-      availability: "Mon-Sat: 9AM-5PM",
-      specializations: [
-        "Eye Care",
-        "Vision Correction",
-        "Cataract Surgery",
-        "Retinal Disorders",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Comprehensive eye care and vision correction services",
-    },
-    {
-      id: 29,
-      name: "Dr. A. Deepica Kumar",
-      specialty: "Psychiatry",
-      designation: "Consultant Psychiatrist",
-      department: "psychiatry",
-      qualification: "MBBS, MD (Psychiatry)",
-      experience: "8+ years",
-      availability: "Mon-Fri: 10AM-6PM",
-      specializations: [
-        "Mental Health",
-        "Depression",
-        "Anxiety",
-        "Behavioral Therapy",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in mental health and psychological well-being",
-    },
-    {
-      id: 30,
-      name: "Dr. Sindhu Karthikeyan",
-      specialty: "Radiology",
-      designation: "Consultant Radiologist",
-      department: "radiology",
-      qualification: "MBBS, DNB (Radiology)",
-      experience: "9+ years",
-      availability: "Mon-Sat: 8AM-6PM",
-      specializations: ["Medical Imaging", "CT Scan", "MRI", "Ultrasound"],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Expert in medical imaging and diagnostic radiology",
-    },
-    {
-      id: 31,
-      name: "Dr. S. Dharun Kumar",
-      specialty: "Urology",
-      designation: "Consultant Urologist",
-      department: "urology",
-      qualification: "MBBS, MS, MCh (Urology)",
-      experience: "10+ years",
-      availability: "Mon-Sat: 9AM-5PM",
-      specializations: [
-        "Urological Surgery",
-        "Kidney Stone Treatment",
-        "Prostate Surgery",
-      ],
-      phone: "+91 7729-888777",
-      email: "info@ssshospitals.in",
-      description: "Comprehensive urological care and surgical expertise",
-    },
-  ];
+  // Memoize selected department lookup
+  const selectedDept = useMemo(() => {
+    return deptCounts.find((d) => d.name === selectedDepartment);
+  }, [deptCounts, selectedDepartment]);
 
-  // Calculate department counts
-  departments.forEach((dept) => {
-    if (dept.id === "all") {
-      dept.count = doctors.length;
-    } else {
-      dept.count = doctors.filter(
-        (doctor) => doctor.department === dept.id
-      ).length;
-    }
-  });
-
-  // Filter doctors based on selected department and search term
-  const filteredDoctors = doctors.filter((doctor) => {
-    const matchesDepartment =
-      selectedDepartment === "All Specialists" ||
-      doctor.department ===
-        selectedDepartment.toLowerCase().replace(/\s+/g, "-");
-    const matchesSearch =
-      doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
-      doctor.qualification.toLowerCase().includes(searchTerm.toLowerCase());
-    return matchesDepartment && matchesSearch;
-  });
+  // Filter doctors based on selected department and search term (memoized)
+  const filteredDoctors = useMemo(() => {
+    return doctors.filter((doctor) => {
+      const matchesDepartment =
+        selectedDepartment === "All Specialists" ||
+        doctor.department ===
+          selectedDepartment.toLowerCase().replace(/\s+/g, "-");
+      const matchesSearch =
+        doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
+        doctor.qualification.toLowerCase().includes(searchTerm.toLowerCase());
+      return matchesDepartment && matchesSearch;
+    });
+  }, [doctors, selectedDepartment, searchTerm]);
 
   const DefaultDoctorAvatar = ({ name, size = "large" }) => {
     const initials = name
@@ -803,20 +91,6 @@ const DoctorsPage = () => {
       </div>
     );
   };
-
-  // Motion variants for staggered entry and card reveal on viewport
-  const containerVariants = {
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.06,
-        delayChildren: 0.06,
-      },
-    },
-  };
-
-  // containerVariants left as-is for compatibility, but we will animate cards individually
-  // so the container should no longer trigger all children at once.
 
   const cardVariant = {
     hidden: { opacity: 0, y: 18, scale: 0.995 },
@@ -1030,23 +304,12 @@ const DoctorsPage = () => {
                 className="w-full md:w-auto bg-white border-2 border-emerald-200 rounded-2xl px-6 py-3 flex items-center justify-between min-w-[300px] hover:border-emerald-300 transition-colors"
               >
                 <div className="flex items-center">
-                  {(() => {
-                    const selectedDept = departments.find(
-                      (d) => d.name === selectedDepartment
-                    );
-                    const IconComponent = selectedDept?.icon;
-                    return (
-                      IconComponent && (
-                        <IconComponent className="mr-3 text-emerald-600" />
-                      )
-                    );
-                  })()}
+                  {selectedDept?.icon && (
+                    <selectedDept.icon className="mr-3 text-emerald-600" />
+                  )}
                   <span className="font-medium">{selectedDepartment}</span>
                   <span className="ml-2 text-sm text-gray-500">
-                    (
-                    {departments.find((d) => d.name === selectedDepartment)
-                      ?.count || 0}
-                    )
+                    ({selectedDept?.count || 0})
                   </span>
                 </div>
                 <FaChevronDown
@@ -1064,7 +327,7 @@ const DoctorsPage = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute bottom-full left-0 right-0 mb-2 bg-white border border-emerald-200 rounded-2xl shadow-xl z-50 max-h-96 overflow-y-auto"
                   >
-                    {departments.map((dept) => {
+                    {deptCounts.map((dept) => {
                       const IconComponent = dept.icon;
                       return (
                         <button
@@ -1080,7 +343,9 @@ const DoctorsPage = () => {
                           }`}
                         >
                           <div className="flex items-center">
-                            <IconComponent className="mr-3 text-emerald-600" />
+                            {IconComponent && (
+                              <IconComponent className="mr-3 text-emerald-600" />
+                            )}
                             <span className="font-medium">{dept.name}</span>
                           </div>
                           <span className="text-sm text-gray-500">
@@ -1382,7 +647,7 @@ const DoctorsPage = () => {
             </div>
             <div className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 shadow-sm border border-emerald-200/30">
               <div className="text-3xl font-bold text-emerald-700">
-                {departments.length - 1}+
+                {deptCounts.length - 1}+
               </div>
               <div className="text-gray-600 font-medium">Specialties</div>
             </div>

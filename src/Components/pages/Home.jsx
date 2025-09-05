@@ -1,14 +1,6 @@
-import React from "react";
 import { motion } from "framer-motion";
 import {
-  FaSearch,
-  FaArrowRight,
-  FaInstagram,
-  FaTwitter,
-  FaFacebook,
-  FaHeart,
   FaAward,
-  FaUsers,
   FaStethoscope,
   FaHeartbeat,
   FaUserMd,
@@ -18,22 +10,9 @@ import {
   FaCalendarAlt,
   FaShieldAlt,
 } from "react-icons/fa";
-import { useOptimizedInView } from "../../hooks/useOptimizedAnimations";
-import sssLogo from "../../assets/sss-logo.jpeg";
 import hospitalImg from "../../assets/sss-hospital.avif";
-import founderImg from "../../assets/Sanjith-SSS-Hospitals.png";
 
 export default function Home() {
-  const scrollToAppointment = () => {
-    document
-      .getElementById("appointment")
-      ?.scrollIntoView({ behavior: "smooth" });
-  };
-
-  const scrollToAbout = () => {
-    document.getElementById("about")?.scrollIntoView({ behavior: "smooth" });
-  };
-
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden">
       {/* Background decorative elements */}

@@ -386,7 +386,7 @@ const FloatingChatbot = () => {
                         onKeyPress={(e) =>
                           e.key === "Enter" && handleSendMessage()
                         }
-                        placeholder="Ask about our services, doctors, appointments..."
+                        placeholder="Ask about our specialities, doctors, appointments..."
                         className="w-full p-3 sm:p-4 pr-12 border-2 border-gray-200 rounded-2xl focus:ring-2 focus:ring-blue-500/20 focus:border-blue-500 outline-none text-sm sm:text-base bg-gray-50 transition-all duration-300 hover:border-gray-300"
                         disabled={isLoading}
                       />
