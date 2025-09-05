@@ -4,7 +4,7 @@ import Navigation from "./Components/ui/Navigation";
 import Home from "./Components/pages/Home";
 import AboutUs from "./Components/sections/AboutUs";
 import VirtualTour from "./Components/sections/VirtualTour";
-import Service from "./Components/Service";
+import Specialities from "./Components/pages/Specialities";
 import MissionVision from "./Components/sections/MissionVision";
 import FoundersMessage from "./Components/sections/FoundersMessage";
 import FounderSection from "./Components/sections/FounderSection";
@@ -56,13 +56,13 @@ const AboutPage = () => {
   );
 };
 
-// Services Page - All services and departments
-const ServicesPage = () => {
+// Specialities Page - All specialities and departments
+const SpecialitiesPage = () => {
   return (
-    <PageWrapper pageKey="services-page">
+    <PageWrapper pageKey="specialities-page">
       <Navigation />
       <div className="pt-20">
-        <Service key="service" />
+        <Specialities key="specialities" />
       </div>
       <Footer />
     </PageWrapper>
@@ -104,7 +104,7 @@ function App() {
         <Routes>
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/specialities" element={<SpecialitiesPage />} />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="/department/:slug" element={<DepartmentPage />} />

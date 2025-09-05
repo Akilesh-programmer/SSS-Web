@@ -5,58 +5,31 @@ import {
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
-  FaGlobe,
-  FaBookOpen,
-  FaBuilding,
   FaClock,
   FaAmbulance,
   FaHeart,
   FaUserMd,
-  FaCalendarAlt,
 } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
 
 export default function Footer() {
-  const navigate = useNavigate();
-
-  const handleNavigation = (link) => {
-    if (link.action) {
-      link.action();
-    } else if (link.href.startsWith("#")) {
-      const element = document.querySelector(link.href);
-      if (element) {
-        element.scrollIntoView({ behavior: "smooth" });
-      }
-    } else {
-      navigate(link.href);
-    }
-  };
-
   return (
-    <>
-      {/* Enhanced Map Section */}
-      <div className="w-full bg-gray-50 flex flex-col items-center py-8 lg:py-12 px-4">
+    <footer className="bg-gray-50">
+      {/* Map + Contact Card */}
+      <div className="w-full flex flex-col items-center py-8 lg:py-12 px-4">
         <div className="max-w-7xl w-full mx-auto">
           <h2 className="text-2xl lg:text-3xl font-bold text-emerald-900 text-center mb-6 lg:mb-8 px-4">
             Visit Our Hospital
           </h2>
+
           <div className="flex flex-col lg:flex-row gap-6 lg:gap-8 items-start">
             <div className="flex-1 w-full">
               <iframe
+                title="SSS Hospital Location"
                 src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d978.0317806730119!2d77.68973059999999!3d11.3254179!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3ba96ee50acf6c25%3A0x737ed856b07b068e!2sSSS%20superspeciality%20hospital!5e0!3m2!1sen!2sin!4v1756102870333!5m2!1sen!2sin"
-                width="100%"
-                height="300"
-                style={{
-                  border: 0,
-                  borderRadius: "1rem",
-                  boxShadow: "0 4px 24px rgba(16,185,129,0.15)",
-                }}
-                allowFullScreen=""
+                className="w-full lg:h-[400px] h-72 rounded-xl shadow-[0_4px_24px_rgba(16,185,129,0.15)]"
                 loading="lazy"
                 referrerPolicy="no-referrer-when-downgrade"
-                title="SSS Hospital Location"
-                className="lg:h-[400px]"
-              ></iframe>
+              />
             </div>
 
             <div className="flex-1 w-full lg:pl-8">
@@ -65,10 +38,10 @@ export default function Footer() {
                   <FaMapMarkerAlt className="text-emerald-600" /> Hospital
                   Address
                 </h3>
+
                 <div className="text-gray-700 leading-relaxed mb-3 lg:mb-4 text-sm lg:text-base">
                   167/2C1, Perundurai Rd, Diamond Nagar, Nalliyampalayam,
-                  <br />
-                  Erode, Tamil Nadu 638009
+                  <br /> Erode, Tamil Nadu 638009
                 </div>
 
                 <div className="grid gap-2 lg:gap-3">
@@ -84,6 +57,7 @@ export default function Footer() {
                       </a>
                     </div>
                   </div>
+
                   <div className="flex items-center gap-2 lg:gap-3 text-gray-700 text-sm lg:text-base">
                     <FaEnvelope className="text-emerald-600 flex-shrink-0" />
                     <div>
@@ -96,6 +70,7 @@ export default function Footer() {
                       </a>
                     </div>
                   </div>
+
                   <div className="flex items-center gap-2 lg:gap-3 text-gray-700 text-sm lg:text-base">
                     <FaClock className="text-emerald-600 flex-shrink-0" />
                     <div>
@@ -106,7 +81,6 @@ export default function Footer() {
                 </div>
               </div>
 
-              {/* Quick Stats */}
               <div className="grid grid-cols-2 gap-3 lg:gap-4">
                 <div className="bg-emerald-50 rounded-lg p-3 lg:p-4 text-center">
                   <FaHeart className="text-2xl lg:text-3xl text-emerald-600 mx-auto mb-1 lg:mb-2" />
@@ -117,6 +91,7 @@ export default function Footer() {
                     Hospital Beds
                   </div>
                 </div>
+
                 <div className="bg-emerald-50 rounded-lg p-3 lg:p-4 text-center">
                   <FaUserMd className="text-2xl lg:text-3xl text-emerald-600 mx-auto mb-1 lg:mb-2" />
                   <div className="text-xl lg:text-2xl font-bold text-emerald-900">
@@ -133,11 +108,10 @@ export default function Footer() {
       </div>
 
       {/* Main Footer */}
-      <footer className="bg-gray-900 text-white pt-6 lg:pt-8 pb-4 lg:pb-6">
+      <div className="bg-gray-900 text-white pt-6 lg:pt-8 pb-4 lg:pb-6">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8">
-            {/* Hospital Info */}
-            <div className="lg:col-span-1">
+            <div>
               <div className="flex items-center gap-3 mb-4">
                 <img
                   src="/src/assets/sss-logo.jpeg"
@@ -153,13 +127,13 @@ export default function Footer() {
                   </p>
                 </div>
               </div>
+
               <p className="text-gray-300 leading-relaxed text-sm lg:text-base mb-4">
                 Bringing world-class healthcare to the heart of Erode. Your
                 trusted partner in health with comprehensive medical services
                 and 24/7 emergency care.
               </p>
 
-              {/* Social Links */}
               <div className="flex gap-4">
                 <a
                   href="https://www.instagram.com/ssshospitals_"
@@ -188,7 +162,6 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Contact & Hours */}
             <div>
               <h4 className="text-lg font-semibold mb-4 text-emerald-400">
                 Contact & Hours
@@ -218,16 +191,14 @@ export default function Footer() {
               </div>
             </div>
 
-            {/* Emergency & Address */}
             <div>
               <h4 className="text-lg font-semibold mb-4 text-emerald-400">
                 Emergency & Location
               </h4>
 
-              {/* Emergency Banner - Compact */}
-              <div
-                onClick={() => (window.location.href = "tel:+919876543210")}
-                className="bg-red-600 rounded-lg p-3 cursor-pointer hover:bg-red-700 transition-colors mb-3"
+              <a
+                href="tel:+919876543210"
+                className="block bg-red-600 rounded-lg p-3 hover:bg-red-700 transition-colors mb-3"
               >
                 <div className="flex items-center gap-2 mb-1">
                   <FaAmbulance className="text-white text-lg" />
@@ -239,23 +210,22 @@ export default function Footer() {
                   +91 98765 43210
                 </div>
                 <div className="text-red-100 text-sm">Click to call now</div>
-              </div>
+              </a>
 
               <div className="text-gray-300 text-sm leading-relaxed">
                 <div className="font-semibold text-white mb-1">Address</div>
                 167/2C1, Perundurai Rd, Diamond Nagar,
-                <br />
-                Nalliyampalayam, Erode, Tamil Nadu 638009
+                <br /> Nalliyampalayam, Erode, Tamil Nadu 638009
               </div>
             </div>
           </div>
 
-          {/* Bottom Bar - Single Line Layout */}
           <div className="border-t border-gray-800 mt-6 pt-4">
             <div className="flex flex-col lg:flex-row justify-between items-center gap-2 lg:gap-4">
               <div className="text-gray-400 text-sm">
                 © 2025 SSS Super Speciality Hospital. All rights reserved.
               </div>
+
               <div className="flex flex-wrap items-center justify-center gap-4 text-sm">
                 <div className="flex gap-4 text-gray-400">
                   <a
@@ -277,6 +247,7 @@ export default function Footer() {
                     Careers
                   </a>
                 </div>
+
                 <div className="text-gray-500">
                   Website by{" "}
                   <a
@@ -292,7 +263,7 @@ export default function Footer() {
             </div>
           </div>
         </div>
-      </footer>
-    </>
+      </div>
+    </footer>
   );
 }

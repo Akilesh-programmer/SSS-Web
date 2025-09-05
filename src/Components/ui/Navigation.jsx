@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
@@ -19,6 +19,107 @@ const Navigation = () => {
   const { openAppointment } = useAppointment();
   const navigate = useNavigate();
   const location = useLocation();
+  // --- Style helpers to avoid repeating large inline objects ---
+  const navStyle = (scrolled) => ({
+    background: scrolled
+      ? "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.9) 50%, rgba(255,255,255,0.88) 100%)"
+      : "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(248,250,252,0.85) 50%, rgba(255,255,255,0.83) 100%)",
+    backdropFilter: "blur(25px) saturate(200%)",
+    WebkitBackdropFilter: "blur(25px) saturate(200%)",
+    borderBottom: "1px solid rgba(255,255,255,0.6)",
+    boxShadow: scrolled
+      ? "0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.8), inset 0 1px 0 rgba(255,255,255,0.9)"
+      : "0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.7), inset 0 1px 0 rgba(255,255,255,0.8)",
+  });
+
+  const emergencyStyle = {
+    background:
+      "linear-gradient(135deg, rgba(220,38,38,0.9) 0%, rgba(239,68,68,0.95) 50%, rgba(220,38,38,0.9) 100%)",
+    backdropFilter: "blur(15px) saturate(150%)",
+    border: "1px solid rgba(255,255,255,0.3)",
+    boxShadow:
+      "0 8px 25px rgba(220,38,38,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
+  };
+
+  const appointmentStyle = {
+    background:
+      "linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.95) 50%, rgba(37,99,235,0.9) 100%)",
+    backdropFilter: "blur(15px) saturate(150%)",
+    border: "1px solid rgba(255,255,255,0.3)",
+    boxShadow:
+      "0 8px 25px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
+  };
+
+  const toggleStyle = {
+    background:
+      "linear-gradient(135deg, rgba(107,114,128,0.1) 0%, rgba(156,163,175,0.08) 50%, rgba(107,114,128,0.06) 100%)",
+    backdropFilter: "blur(12px) saturate(120%)",
+    border: "1px solid rgba(255,255,255,0.4)",
+    boxShadow:
+      "0 4px 15px rgba(107,114,128,0.1), inset 0 1px 0 rgba(255,255,255,0.6)",
+  };
+
+  const overlayStyle = {
+    background:
+      "linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(59,130,246,0.05) 50%, rgba(0,0,0,0.08) 100%)",
+    backdropFilter: "blur(8px) saturate(120%)",
+  };
+
+  const mobileMenuStyle = {
+    background:
+      "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 50%, rgba(255,255,255,0.92) 100%)",
+    backdropFilter: "blur(20px) saturate(180%)",
+    borderTop: "1px solid rgba(255,255,255,0.6)",
+    borderBottom: "1px solid rgba(255,255,255,0.4)",
+    boxShadow:
+      "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8)",
+  };
+
+  const navLinkStyle = (isActive) => ({
+    background: isActive
+      ? "linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(147,197,253,0.08) 50%, rgba(59,130,246,0.05) 100%)"
+      : "transparent",
+    backdropFilter: isActive ? "blur(15px) saturate(150%)" : "none",
+    border: isActive
+      ? "1px solid rgba(59,130,246,0.2)"
+      : "1px solid transparent",
+    boxShadow: isActive
+      ? "0 4px 15px rgba(59,130,246,0.1), inset 0 1px 0 rgba(255,255,255,0.8)"
+      : "none",
+  });
+
+  const mobileNavLinkStyle = (isActive) => ({
+    background: isActive
+      ? "linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(147,197,253,0.08) 50%, rgba(59,130,246,0.06) 100%)"
+      : "transparent",
+    backdropFilter: isActive ? "blur(15px) saturate(150%)" : "none",
+    border: isActive
+      ? "1px solid rgba(59,130,246,0.25)"
+      : "1px solid transparent",
+    boxShadow: isActive
+      ? "0 4px 15px rgba(59,130,246,0.1), inset 0 1px 0 rgba(255,255,255,0.8)"
+      : "none",
+  });
+
+  // Reusable overlay backgrounds and contact styles
+  const overlayBg =
+    "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)";
+  const overlayBgSoft =
+    "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)";
+  const overlayBgStronger =
+    "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)";
+
+  const contactBoxStyle = {
+    background:
+      "linear-gradient(135deg, rgba(59,130,246,0.03) 0%, rgba(147,197,253,0.02) 50%, transparent 100%)",
+    backdropFilter: "blur(8px) saturate(120%)",
+  };
+
+  const contactBadgeStyle = {
+    background:
+      "linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.08) 100%)",
+    backdropFilter: "blur(10px)",
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +155,7 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
-    { name: "Specialities", path: "/services" },
+    { name: "Specialities", path: "/specialities" },
     { name: "Doctors", path: "/doctors" },
     { name: "Contact", path: "/contact" },
   ];
@@ -64,21 +165,11 @@ const Navigation = () => {
       {/* Professional Hospital Navigation */}
       <motion.nav
         initial={{ y: -100 }}
-        animate={{ y: 0 }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        animate={{ y: 0, transition: { duration: 0.25, ease: "easeOut" } }}
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
           isScrolled ? "shadow-2xl" : "shadow-lg"
         }`}
-        style={{
-          background: isScrolled
-            ? "linear-gradient(135deg, rgba(255,255,255,0.85) 0%, rgba(248,250,252,0.9) 50%, rgba(255,255,255,0.88) 100%)"
-            : "linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(248,250,252,0.85) 50%, rgba(255,255,255,0.83) 100%)",
-          backdropFilter: "blur(25px) saturate(200%)",
-          WebkitBackdropFilter: "blur(25px) saturate(200%)",
-          borderBottom: "1px solid rgba(255,255,255,0.6)",
-          boxShadow: isScrolled
-            ? "0 8px 32px rgba(0,0,0,0.12), 0 0 0 1px rgba(255,255,255,0.8), inset 0 1px 0 rgba(255,255,255,0.9)"
-            : "0 4px 24px rgba(0,0,0,0.08), 0 0 0 1px rgba(255,255,255,0.7), inset 0 1px 0 rgba(255,255,255,0.8)",
-        }}
+        style={navStyle(isScrolled)}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-18 lg:h-20">
@@ -126,48 +217,12 @@ const Navigation = () => {
                         ? "text-blue-600"
                         : "text-gray-700 hover:text-blue-600"
                     }`}
-                    style={{
-                      background: isActive
-                        ? "linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(147,197,253,0.08) 50%, rgba(59,130,246,0.05) 100%)"
-                        : "transparent",
-                      backdropFilter: isActive
-                        ? "blur(15px) saturate(150%)"
-                        : "none",
-                      border: isActive
-                        ? "1px solid rgba(59,130,246,0.2)"
-                        : "1px solid transparent",
-                      boxShadow: isActive
-                        ? "0 4px 15px rgba(59,130,246,0.1), inset 0 1px 0 rgba(255,255,255,0.8)"
-                        : "none",
-                    }}
-                    onMouseEnter={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.background =
-                          "linear-gradient(135deg, rgba(59,130,246,0.06) 0%, rgba(147,197,253,0.04) 50%, rgba(59,130,246,0.03) 100%)";
-                        e.currentTarget.style.backdropFilter =
-                          "blur(12px) saturate(120%)";
-                        e.currentTarget.style.border =
-                          "1px solid rgba(59,130,246,0.15)";
-                        e.currentTarget.style.boxShadow =
-                          "0 2px 10px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.6)";
-                      }
-                    }}
-                    onMouseLeave={(e) => {
-                      if (!isActive) {
-                        e.currentTarget.style.background = "transparent";
-                        e.currentTarget.style.backdropFilter = "none";
-                        e.currentTarget.style.border = "1px solid transparent";
-                        e.currentTarget.style.boxShadow = "none";
-                      }
-                    }}
+                    style={navLinkStyle(isActive)}
                   >
                     {/* Glass overlay effect */}
                     <div
                       className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{
-                        background:
-                          "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-                      }}
+                      style={{ background: overlayBg }}
                     ></div>
 
                     <span className="relative z-10">{item.name}</span>
@@ -208,34 +263,12 @@ const Navigation = () => {
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 className="hidden sm:flex items-center space-x-2 px-4 lg:px-6 py-2.5 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300 text-white relative overflow-hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(220,38,38,0.9) 0%, rgba(239,68,68,0.95) 50%, rgba(220,38,38,0.9) 100%)",
-                  backdropFilter: "blur(15px) saturate(150%)",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  boxShadow:
-                    "0 8px 25px rgba(220,38,38,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background =
-                    "linear-gradient(135deg, rgba(239,68,68,0.95) 0%, rgba(220,38,38,1) 50%, rgba(239,68,68,0.95) 100%)";
-                  e.currentTarget.style.boxShadow =
-                    "0 12px 35px rgba(220,38,38,0.4), inset 0 1px 0 rgba(255,255,255,0.5)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background =
-                    "linear-gradient(135deg, rgba(220,38,38,0.9) 0%, rgba(239,68,68,0.95) 50%, rgba(220,38,38,0.9) 100%)";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 25px rgba(220,38,38,0.3), inset 0 1px 0 rgba(255,255,255,0.4)";
-                }}
+                style={emergencyStyle}
               >
                 {/* Glass overlay */}
                 <div
                   className="absolute inset-0 rounded-lg"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-                  }}
+                  style={{ background: overlayBgSoft }}
                 ></div>
                 <div className="relative z-10 flex items-center space-x-2">
                   <FaAmbulance className="text-sm animate-pulse drop-shadow-sm" />
@@ -249,26 +282,7 @@ const Navigation = () => {
                 whileHover={{ scale: 1.02, y: -1 }}
                 whileTap={{ scale: 0.98 }}
                 className="flex items-center space-x-2 px-4 lg:px-6 py-2.5 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300 text-white relative overflow-hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.95) 50%, rgba(37,99,235,0.9) 100%)",
-                  backdropFilter: "blur(15px) saturate(150%)",
-                  border: "1px solid rgba(255,255,255,0.3)",
-                  boxShadow:
-                    "0 8px 25px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background =
-                    "linear-gradient(135deg, rgba(59,130,246,0.95) 0%, rgba(37,99,235,1) 50%, rgba(59,130,246,0.95) 100%)";
-                  e.currentTarget.style.boxShadow =
-                    "0 12px 35px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.5)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background =
-                    "linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.95) 50%, rgba(37,99,235,0.9) 100%)";
-                  e.currentTarget.style.boxShadow =
-                    "0 8px 25px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.4)";
-                }}
+                style={appointmentStyle}
               >
                 {/* Glass overlay */}
                 <div
@@ -290,34 +304,13 @@ const Navigation = () => {
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="lg:hidden p-3 rounded-lg transition-all duration-300 relative overflow-hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(107,114,128,0.1) 0%, rgba(156,163,175,0.08) 50%, rgba(107,114,128,0.06) 100%)",
-                  backdropFilter: "blur(12px) saturate(120%)",
-                  border: "1px solid rgba(255,255,255,0.4)",
-                  boxShadow:
-                    "0 4px 15px rgba(107,114,128,0.1), inset 0 1px 0 rgba(255,255,255,0.6)",
-                }}
-                onMouseEnter={(e) => {
-                  e.currentTarget.style.background =
-                    "linear-gradient(135deg, rgba(107,114,128,0.15) 0%, rgba(156,163,175,0.12) 50%, rgba(107,114,128,0.1) 100%)";
-                  e.currentTarget.style.boxShadow =
-                    "0 6px 20px rgba(107,114,128,0.15), inset 0 1px 0 rgba(255,255,255,0.7)";
-                }}
-                onMouseLeave={(e) => {
-                  e.currentTarget.style.background =
-                    "linear-gradient(135deg, rgba(107,114,128,0.1) 0%, rgba(156,163,175,0.08) 50%, rgba(107,114,128,0.06) 100%)";
-                  e.currentTarget.style.boxShadow =
-                    "0 4px 15px rgba(107,114,128,0.1), inset 0 1px 0 rgba(255,255,255,0.6)";
-                }}
+                // ensure the toggle (and close icon) sits above the mobile overlay
+                style={{ ...toggleStyle, zIndex: 9999 }}
               >
                 {/* Glass overlay */}
                 <div
                   className="absolute inset-0 rounded-lg"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-                  }}
+                  style={{ background: overlayBgSoft }}
                 ></div>
                 <div className="relative z-10 text-gray-700">
                   {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
@@ -337,11 +330,7 @@ const Navigation = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 className="fixed inset-0 z-40 lg:hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(0,0,0,0.1) 0%, rgba(59,130,246,0.05) 50%, rgba(0,0,0,0.08) 100%)",
-                  backdropFilter: "blur(8px) saturate(120%)",
-                }}
+                style={overlayStyle}
                 onClick={() => setIsMenuOpen(false)}
               />
 
@@ -350,15 +339,7 @@ const Navigation = () => {
                 animate={{ opacity: 1, height: "auto" }}
                 exit={{ opacity: 0, height: 0 }}
                 className="lg:hidden relative z-50 shadow-2xl overflow-hidden"
-                style={{
-                  background:
-                    "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 50%, rgba(255,255,255,0.92) 100%)",
-                  backdropFilter: "blur(20px) saturate(180%)",
-                  borderTop: "1px solid rgba(255,255,255,0.6)",
-                  borderBottom: "1px solid rgba(255,255,255,0.4)",
-                  boxShadow:
-                    "0 8px 32px rgba(0,0,0,0.12), inset 0 1px 0 rgba(255,255,255,0.8)",
-                }}
+                style={mobileMenuStyle}
               >
                 <div className="container mx-auto px-4 py-6 space-y-3">
                   {navItems.map((item, index) => {
@@ -378,49 +359,12 @@ const Navigation = () => {
                               ? "text-blue-600"
                               : "text-gray-700 hover:text-blue-600"
                           }`}
-                          style={{
-                            background: isActive
-                              ? "linear-gradient(135deg, rgba(59,130,246,0.12) 0%, rgba(147,197,253,0.08) 50%, rgba(59,130,246,0.06) 100%)"
-                              : "transparent",
-                            backdropFilter: isActive
-                              ? "blur(15px) saturate(150%)"
-                              : "none",
-                            border: isActive
-                              ? "1px solid rgba(59,130,246,0.25)"
-                              : "1px solid transparent",
-                            boxShadow: isActive
-                              ? "0 4px 15px rgba(59,130,246,0.1), inset 0 1px 0 rgba(255,255,255,0.8)"
-                              : "none",
-                          }}
-                          onMouseEnter={(e) => {
-                            if (!isActive) {
-                              e.currentTarget.style.background =
-                                "linear-gradient(135deg, rgba(59,130,246,0.08) 0%, rgba(147,197,253,0.05) 50%, rgba(59,130,246,0.04) 100%)";
-                              e.currentTarget.style.backdropFilter =
-                                "blur(12px) saturate(120%)";
-                              e.currentTarget.style.border =
-                                "1px solid rgba(59,130,246,0.2)";
-                              e.currentTarget.style.boxShadow =
-                                "0 2px 10px rgba(59,130,246,0.08), inset 0 1px 0 rgba(255,255,255,0.6)";
-                            }
-                          }}
-                          onMouseLeave={(e) => {
-                            if (!isActive) {
-                              e.currentTarget.style.background = "transparent";
-                              e.currentTarget.style.backdropFilter = "none";
-                              e.currentTarget.style.border =
-                                "1px solid transparent";
-                              e.currentTarget.style.boxShadow = "none";
-                            }
-                          }}
+                          style={mobileNavLinkStyle(isActive)}
                         >
                           {/* Glass overlay effect */}
                           <div
                             className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            style={{
-                              background:
-                                "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)",
-                            }}
+                            style={{ background: overlayBgStronger }}
                           ></div>
 
                           <div
@@ -452,26 +396,16 @@ const Navigation = () => {
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.3 }}
                     className="mt-6 pt-4 relative"
-                    style={{
-                      borderTop: "1px solid rgba(59,130,246,0.2)",
-                    }}
+                    style={{ borderTop: "1px solid rgba(59,130,246,0.2)" }}
                   >
                     <div className="space-y-3">
                       <div
                         className="flex items-center space-x-3 text-gray-600 p-2 rounded-lg"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, rgba(59,130,246,0.03) 0%, rgba(147,197,253,0.02) 50%, transparent 100%)",
-                          backdropFilter: "blur(8px) saturate(120%)",
-                        }}
+                        style={contactBoxStyle}
                       >
                         <div
                           className="p-2 rounded-full"
-                          style={{
-                            background:
-                              "linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.08) 100%)",
-                            backdropFilter: "blur(10px)",
-                          }}
+                          style={contactBadgeStyle}
                         >
                           <FaPhone className="text-blue-600 text-sm" />
                         </div>
@@ -481,19 +415,11 @@ const Navigation = () => {
                       </div>
                       <div
                         className="flex items-center space-x-3 text-gray-600 p-2 rounded-lg"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, rgba(59,130,246,0.03) 0%, rgba(147,197,253,0.02) 50%, transparent 100%)",
-                          backdropFilter: "blur(8px) saturate(120%)",
-                        }}
+                        style={contactBoxStyle}
                       >
                         <div
                           className="p-2 rounded-full"
-                          style={{
-                            background:
-                              "linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.08) 100%)",
-                            backdropFilter: "blur(10px)",
-                          }}
+                          style={contactBadgeStyle}
                         >
                           <FaEnvelope className="text-blue-600 text-sm" />
                         </div>
@@ -505,34 +431,12 @@ const Navigation = () => {
                         onClick={handleAppointmentClick}
                         whileTap={{ scale: 0.95 }}
                         className="w-full mt-4 py-3 px-4 rounded-lg font-medium flex items-center justify-center space-x-2 transition-all duration-300 text-white relative overflow-hidden"
-                        style={{
-                          background:
-                            "linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.95) 50%, rgba(37,99,235,0.9) 100%)",
-                          backdropFilter: "blur(15px) saturate(150%)",
-                          border: "1px solid rgba(255,255,255,0.3)",
-                          boxShadow:
-                            "0 8px 25px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
-                        }}
-                        onMouseEnter={(e) => {
-                          e.currentTarget.style.background =
-                            "linear-gradient(135deg, rgba(59,130,246,0.95) 0%, rgba(37,99,235,1) 50%, rgba(59,130,246,0.95) 100%)";
-                          e.currentTarget.style.boxShadow =
-                            "0 12px 35px rgba(37,99,235,0.4), inset 0 1px 0 rgba(255,255,255,0.5)";
-                        }}
-                        onMouseLeave={(e) => {
-                          e.currentTarget.style.background =
-                            "linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.95) 50%, rgba(37,99,235,0.9) 100%)";
-                          e.currentTarget.style.boxShadow =
-                            "0 8px 25px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.4)";
-                        }}
+                        style={appointmentStyle}
                       >
                         {/* Glass overlay */}
                         <div
                           className="absolute inset-0 rounded-lg"
-                          style={{
-                            background:
-                              "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-                          }}
+                          style={{ background: overlayBg }}
                         ></div>
                         <div className="relative z-10 flex items-center space-x-2">
                           <FaUserMd className="drop-shadow-sm" />
