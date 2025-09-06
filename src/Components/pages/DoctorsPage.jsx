@@ -50,7 +50,7 @@ const DoctorsPage = () => {
       count:
         d.id === "all"
           ? doctors.length
-          : doctors.filter((doctor) => doctor.department === d.id).length,
+          : doctors.filter((doctor) => doctor.department == d.id).length,
     }));
   }, [doctors]);
 
@@ -62,10 +62,12 @@ const DoctorsPage = () => {
   // Filter doctors based on selected department and search term (memoized)
   const filteredDoctors = useMemo(() => {
     return doctors.filter((doctor) => {
-      const matchesDepartment =
-        selectedDepartment === "All Specialists" ||
-        doctor.department ===
-          selectedDepartment.toLowerCase().replace(/\s+/g, "-");
+      // Determine department match by resolving selected department name to id
+      let matchesDepartment = true;
+      if (selectedDepartment !== "All Specialists") {
+        const dept = departments.find((d) => d.name === selectedDepartment);
+        matchesDepartment = !!dept ? doctor.department == dept.id : false;
+      }
       const matchesSearch =
         doctor.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
         doctor.specialty.toLowerCase().includes(searchTerm.toLowerCase()) ||
@@ -154,50 +156,7 @@ const DoctorsPage = () => {
                   <FaGraduationCap className="mr-3 text-emerald-500" />
                   <span>{doctor.qualification}</span>
                 </div>
-                <div className="flex items-center text-gray-600">
-                  <FaAward className="mr-3 text-amber-500" />
-                  <span>{doctor.experience}</span>
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <FaCalendarAlt className="mr-3 text-emerald-500" />
-                  <span>{doctor.availability}</span>
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <FaPhone className="mr-3 text-emerald-500" />
-                  <span>{doctor.phone}</span>
-                </div>
-                <div className="flex items-center text-gray-600">
-                  <FaEnvelope className="mr-3 text-emerald-500" />
-                  <span>{doctor.email}</span>
-                </div>
               </div>
-
-              <div className="mt-6">
-                <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                  Specializations
-                </h3>
-                <div className="flex flex-wrap gap-2">
-                  {doctor.specializations.map((spec, idx) => (
-                    <span
-                      key={idx}
-                      className="bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium"
-                    >
-                      {spec}
-                    </span>
-                  ))}
-                </div>
-              </div>
-
-              {doctor.description && (
-                <div className="mt-6">
-                  <h3 className="text-lg font-semibold text-gray-800 mb-3">
-                    About
-                  </h3>
-                  <p className="text-gray-600 leading-relaxed">
-                    {doctor.description}
-                  </p>
-                </div>
-              )}
             </div>
           </motion.div>
         </motion.div>
@@ -427,12 +386,11 @@ const DoctorsPage = () => {
                     viewport={{ once: true, amount: 0.2 }}
                     custom={staggerIndex}
                     whileHover={{ scale: 1.02, y: -5 }}
-                    className={`bg-white/90 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer ${
+                    className={`bg-white/90 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 ${
                       viewMode === "list"
                         ? "flex items-center p-4 sm:p-6"
                         : "p-4 sm:p-6"
                     }`}
-                    onClick={() => setSelectedDoctor(doctor)}
                   >
                     {viewMode === "grid" ? (
                       <>
@@ -459,17 +417,8 @@ const DoctorsPage = () => {
                               Founder
                             </div>
                           )}
-                          {doctor.isCEO && (
-                            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-gradient-to-r from-blue-400 to-indigo-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                              CEO
-                            </div>
-                          )}
 
-                          {/* Department Badge */}
-                          <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white/90 backdrop-blur-sm px-3 py-1 rounded-full text-sm font-medium text-emerald-700 border border-emerald-200">
-                            {departments.find((d) => d.id === doctor.department)
-                              ?.name || "General"}
-                          </div>
+                          {/* department tag removed - specialty shown below in the card */}
                         </div>
 
                         <div className="text-center">
@@ -488,36 +437,6 @@ const DoctorsPage = () => {
                               <FaGraduationCap className="mr-2 text-emerald-500" />
                               {doctor.qualification}
                             </div>
-                            <div className="flex items-center justify-center text-gray-500 text-xs">
-                              <FaAward className="mr-2 text-amber-500" />
-                              {doctor.experience}
-                            </div>
-                          </div>
-
-                          {/* Specializations Preview */}
-                          <div className="mb-4">
-                            <div className="flex flex-wrap gap-1 justify-center">
-                              {doctor.specializations
-                                .slice(0, 2)
-                                .map((spec, idx) => (
-                                  <span
-                                    key={idx}
-                                    className="bg-gradient-to-r from-emerald-50 to-teal-50 text-emerald-700 px-2 py-1 rounded-full text-xs border border-emerald-200"
-                                  >
-                                    {spec}
-                                  </span>
-                                ))}
-                              {doctor.specializations.length > 2 && (
-                                <span className="bg-gray-100 text-gray-600 px-2 py-1 rounded-full text-xs border border-gray-200">
-                                  +{doctor.specializations.length - 2}
-                                </span>
-                              )}
-                            </div>
-                          </div>
-
-                          <div className="flex items-center justify-center text-gray-600 text-xs">
-                            <FaCalendarAlt className="mr-2 text-emerald-500" />
-                            {doctor.availability}
                           </div>
                         </div>
                       </>
@@ -552,11 +471,6 @@ const DoctorsPage = () => {
                                   Founder
                                 </span>
                               )}
-                              {doctor.isCEO && (
-                                <span className="bg-gradient-to-r from-blue-400 to-indigo-500 text-white text-xs px-2 py-1 rounded-full font-bold">
-                                  CEO
-                                </span>
-                              )}
                             </div>
                           </div>
 
@@ -567,22 +481,10 @@ const DoctorsPage = () => {
                             {doctor.designation}
                           </p>
 
-                          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                          <div className="text-sm">
                             <div className="flex items-center text-gray-500">
                               <FaGraduationCap className="mr-2 text-emerald-500" />
                               {doctor.qualification}
-                            </div>
-                            <div className="flex items-center text-gray-500">
-                              <FaAward className="mr-2 text-amber-500" />
-                              {doctor.experience}
-                            </div>
-                            <div className="flex items-center text-gray-500">
-                              <FaCalendarAlt className="mr-2 text-emerald-500" />
-                              {doctor.availability}
-                            </div>
-                            <div className="flex items-center text-gray-500">
-                              <FaInfoCircle className="mr-2 text-blue-500" />
-                              Click for details
                             </div>
                           </div>
                         </div>

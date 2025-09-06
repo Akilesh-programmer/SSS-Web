@@ -11,7 +11,6 @@ import FounderSection from "./Components/sections/FounderSection";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
 import Footer from "./Components/ui/Footer";
-import DepartmentPage from "./Components/pages/DepartmentPage";
 import DoctorsPage from "./Components/pages/DoctorsPage";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
 import FloatingChatbot from "./Components/ui/FloatingChatbot";
@@ -108,7 +107,6 @@ function App() {
           <Route path="/specialities" element={<SpecialitiesPage />} />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="/department/:slug" element={<DepartmentPage />} />
         </Routes>
         <FloatingAppointmentButton />
         <FloatingChatbot />
