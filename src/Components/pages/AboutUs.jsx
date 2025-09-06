@@ -17,6 +17,43 @@ import {
 import DoctorsSection from "../sections/Doctors/DoctorsSection";
 
 const AboutUs = () => {
+  // Motion variants for hero
+  const heroTitleVariant = {
+    hidden: { opacity: 0, y: 8, scale: 0.98 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      scale: 1,
+      transition: { duration: 0.5, ease: "easeOut" },
+    },
+  };
+
+  const heroDescVariant = {
+    hidden: { opacity: 0, y: 10 },
+    visible: {
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.5, delay: 0.08, ease: "easeOut" },
+    },
+  };
+
+  const heroAccent = {
+    hidden: { scaleX: 0 },
+    visible: {
+      scaleX: 1,
+      transition: { duration: 0.5, delay: 0.12, ease: "circOut" },
+    },
+  };
+
+  const badgeVariant = {
+    hidden: { opacity: 0, y: 8, scale: 0.98 },
+    visible: (i = 0) => ({
+      opacity: 1,
+      y: 0,
+      transition: { duration: 0.45, delay: 0.08 + i * 0.06 },
+    }),
+    hover: { scale: 1.04, transition: { duration: 0.18 } },
+  };
   // Create individual count animations for each stat
   const AnimatedCounter = ({ end, suffix = "" }) => {
     const { count, ref } = useCountAnimation(end, 2000);
@@ -121,6 +158,117 @@ const AboutUs = () => {
       className="py-12 lg:py-16 bg-white scroll-mt-32 lg:scroll-mt-40"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Hero: Number 1 Multispeciality Hospital in Erode */}
+        <motion.section
+          initial="hidden"
+          whileInView="visible"
+          variants={{
+            hidden: { opacity: 0 },
+            visible: { opacity: 1, transition: { staggerChildren: 0.06 } },
+          }}
+          className="mb-8"
+          viewport={{ once: true }}
+        >
+          <div className="bg-gradient-to-r from-emerald-700 to-teal-500 text-white rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl overflow-hidden">
+            <div className="flex flex-col sm:flex-row sm:items-center sm:justify-between gap-4">
+              <div>
+                <motion.p
+                  variants={heroTitleVariant}
+                  className="uppercase tracking-wider text-sm sm:text-base font-semibold opacity-90"
+                >
+                  No. 1 Multispeciality Hospital in Erode
+                </motion.p>
+                <motion.h1
+                  variants={heroTitleVariant}
+                  className="mt-2 text-2xl sm:text-3xl lg:text-4xl font-extrabold leading-tight max-w-full break-words"
+                >
+                  SSS Super Speciality Hospital — Premier Multispeciality Care
+                </motion.h1>
+                <motion.p
+                  variants={heroDescVariant}
+                  className="mt-2 text-sm sm:text-base opacity-90 max-w-xl break-words"
+                >
+                  Comprehensive care across specialties, world-class clinicians,
+                  and patient-first service — providing trusted healthcare to
+                  Erode and the surrounding region.
+                </motion.p>
+
+                <motion.div
+                  className="mt-3 h-1 w-36 origin-left bg-white/40 rounded-full"
+                  variants={heroAccent}
+                  initial="hidden"
+                  animate="visible"
+                />
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 sm:gap-4">
+                {/* Compact trust badges / quick facts */}
+                <motion.div
+                  variants={badgeVariant}
+                  custom={0}
+                  initial="hidden"
+                  whileInView="visible"
+                  whileHover="hover"
+                  className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-sm sm:text-sm md:px-5 md:py-4 min-h-[64px] w-full sm:w-auto"
+                >
+                  <div className="flex-shrink-0 w-10 sm:w-12 md:w-14 flex items-center justify-center">
+                    <FaBed className="text-white text-2xl sm:text-3xl md:text-4xl" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
+                      150+
+                    </div>
+                    <div className="text-xs sm:text-sm opacity-90 whitespace-nowrap">
+                      Beds
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  variants={badgeVariant}
+                  custom={1}
+                  initial="hidden"
+                  whileInView="visible"
+                  whileHover="hover"
+                  className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-sm sm:text-sm md:px-5 md:py-4 min-h-[64px] w-full sm:w-auto"
+                >
+                  <div className="flex-shrink-0 w-10 sm:w-12 md:w-14 flex items-center justify-center">
+                    <FaUserMd className="text-white text-2xl sm:text-3xl md:text-4xl" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
+                      25+
+                    </div>
+                    <div className="text-xs sm:text-sm opacity-90 whitespace-nowrap">
+                      Specialties
+                    </div>
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  variants={badgeVariant}
+                  custom={2}
+                  initial="hidden"
+                  whileInView="visible"
+                  whileHover="hover"
+                  className="flex items-center gap-3 bg-white/10 backdrop-blur-sm px-4 py-3 rounded-xl text-sm sm:text-sm md:px-5 md:py-4 min-h-[64px] w-full sm:w-auto"
+                >
+                  <div className="flex-shrink-0 w-10 sm:w-12 md:w-14 flex items-center justify-center">
+                    <FaHeartbeat className="text-white text-2xl sm:text-3xl md:text-4xl" />
+                  </div>
+                  <div className="text-left">
+                    <div className="text-lg sm:text-xl md:text-2xl font-extrabold">
+                      30+
+                    </div>
+                    <div className="text-xs sm:text-sm opacity-90 whitespace-nowrap">
+                      ICU Beds
+                    </div>
+                  </div>
+                </motion.div>
+              </div>
+            </div>
+          </div>
+        </motion.section>
         {/* Main About Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -184,85 +332,86 @@ const AboutUs = () => {
         </motion.div>
 
         {/* Our Mission & Vision (placed above Our Services) - only show on About page */}
-        {isAboutPage && (
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="mb-12 lg:mb-16"
-          >
-            <div className="relative max-w-7xl mx-auto px-4">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.6 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
-                >
-                  <div className="flex-1">
-                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
-                      <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
-                      <span className="text-xs font-semibold text-emerald-700 tracking-wide">
-                        MISSION
-                      </span>
-                    </div>
 
-                    <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
-                      Our Mission
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                      To provide comprehensive, compassionate, and accessible
-                      healthcare services that meet the highest standards of
-                      medical excellence, while fostering a healing environment
-                      that respects the dignity and worth of every individual.
-                    </p>
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="mb-12 lg:mb-16"
+        >
+          <div className="relative max-w-7xl mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-stretch">
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.6 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
+              >
+                <div className="flex-1">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
+                    <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
+                    <span className="text-xs font-semibold text-emerald-700 tracking-wide">
+                      MISSION
+                    </span>
                   </div>
-                  <div className="mt-6">
-                    <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full opacity-90" />
-                  </div>
-                </motion.div>
 
-                <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  whileHover={{ y: -6 }}
-                  transition={{ duration: 0.6, delay: 0.06 }}
-                  viewport={{ once: true, amount: 0.2 }}
-                  className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
-                >
-                  <div className="flex-1">
-                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
-                      <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
-                      <span className="text-xs font-semibold text-emerald-700 tracking-wide">
-                        VISION
-                      </span>
-                    </div>
+                  <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
+                    Our Mission
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                    To provide comprehensive, compassionate, and accessible
+                    healthcare services that meet the highest standards of
+                    medical excellence, while fostering a healing environment
+                    that respects the dignity and worth of every individual.
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full opacity-90" />
+                </div>
+              </motion.div>
 
-                    <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
-                      Our Vision
-                    </h4>
-                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
-                      To lead healthcare innovation, setting new standards for
-                      excellence and patient satisfaction in our community and
-                      beyond.
-                    </p>
+              <motion.div
+                initial={{ opacity: 0, y: 12 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                whileHover={{ y: -6 }}
+                transition={{ duration: 0.6, delay: 0.06 }}
+                viewport={{ once: true, amount: 0.2 }}
+                className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
+              >
+                <div className="flex-1">
+                  <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
+                    <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
+                    <span className="text-xs font-semibold text-emerald-700 tracking-wide">
+                      VISION
+                    </span>
                   </div>
-                  <div className="mt-6">
-                    <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full opacity-90 ml-auto" />
-                  </div>
-                </motion.div>
-              </div>
 
-              {/* Decorative dotted separator for larger screens */}
-              <div className="hidden md:flex absolute inset-y-0 left-1/2 transform -translate-x-1/2 items-center pointer-events-none">
-                <div className="h-3/4 border-l-2 border-emerald-300 border-dotted opacity-60" />
-              </div>
+                  <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
+                    Our Vision
+                  </h4>
+                  <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                    To lead healthcare innovation, setting new standards for
+                    excellence and patient satisfaction in our community and
+                    beyond.
+                  </p>
+                </div>
+                <div className="mt-6">
+                  <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full opacity-90 ml-auto" />
+                </div>
+              </motion.div>
             </div>
-          </motion.div>
-        )}
+
+            {/* Decorative separator for larger screens (thicker + accent) */}
+            <div className="hidden md:flex absolute inset-y-0 left-1/2 transform -translate-x-1/2 items-center pointer-events-none">
+              <div className="h-3/4 border-l-2 border-emerald-400 border-dotted opacity-90" />
+              {/* center accent dot */}
+              <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white/95 border-2 border-emerald-300" />
+            </div>
+          </div>
+        </motion.div>
 
         {/* Our Services */}
         <motion.div
@@ -330,10 +479,6 @@ const AboutUs = () => {
             ))}
           </div>
         </motion.div>
-        {/* Doctors Section - inserted after Why Choose Us */}
-        <div className="mt-12">
-          <DoctorsSection />
-        </div>
       </div>
     </section>
   );

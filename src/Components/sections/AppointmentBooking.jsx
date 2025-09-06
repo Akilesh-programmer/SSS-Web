@@ -20,18 +20,24 @@ const AppointmentBooking = () => {
     return (
       <motion.div
         ref={ref}
-        initial={{ opacity: 0, scale: 0.8 }}
-        whileInView={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 0.6 }}
+        initial={{ opacity: 0, y: 8 }}
+        whileInView={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.45 }}
         viewport={{ once: true, amount: 0.3 }}
-        className="text-center bg-white/60 backdrop-blur-sm rounded-2xl p-6 hover:bg-white/80 transition-all duration-300 border border-emerald-200/30 shadow-sm hover:shadow-md"
+        className="group text-center rounded-2xl p-2 sm:p-3 hover:scale-[1.01] transition-transform duration-200"
       >
-        <Icon className="text-4xl text-emerald-600 mb-3 mx-auto" />
-        <div className="text-3xl font-bold text-gray-800 mb-2">
-          {count}
-          {suffix}
+        <div className="bg-gradient-to-br from-emerald-50 to-white/60 rounded-xl p-4 sm:p-5 shadow-md border border-emerald-100/40 hover:shadow-lg transition-shadow duration-200">
+          <Icon className="text-3xl sm:text-4xl md:text-5xl text-emerald-600 mb-3 mx-auto" />
+
+          <div className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-gray-800 mb-1 sm:mb-2">
+            {count}
+            {suffix}
+          </div>
+
+          <div className="text-gray-600 text-sm sm:text-sm md:text-base font-medium">
+            {label}
+          </div>
         </div>
-        <div className="text-gray-600 text-sm font-medium">{label}</div>
       </motion.div>
     );
   };
@@ -147,8 +153,8 @@ const AppointmentBooking = () => {
                   </span>
                 </motion.button>
 
-                {/* Hospital Stats */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-12">
+                {/* Hospital Stats (compact on small screens) */}
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
                   {stats.map((stat, index) => (
                     <StatItem
                       key={index}
