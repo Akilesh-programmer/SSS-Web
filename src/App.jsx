@@ -6,8 +6,6 @@ import AboutUs from "./Components/sections/AboutUs";
 import VirtualTour from "./Components/sections/VirtualTour";
 import PatientTestimonials from "./Components/sections/PatientTestimonials";
 import Specialities from "./Components/pages/Specialities";
-import MissionVision from "./Components/sections/MissionVision";
-import FoundersMessage from "./Components/sections/FoundersMessage";
 import FounderSection from "./Components/sections/FounderSection";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
