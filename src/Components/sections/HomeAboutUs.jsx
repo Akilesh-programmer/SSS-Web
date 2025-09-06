@@ -15,6 +15,7 @@ import {
   FaBed,
 } from "react-icons/fa";
 import DoctorsSection from "./Doctors/DoctorsSection";
+import SpecialitiesPreview from "./SpecialitiesPreview";
 
 const AboutUs = () => {
   // Create individual count animations for each stat
@@ -330,7 +331,12 @@ const AboutUs = () => {
             ))}
           </div>
         </motion.div>
-        {/* Doctors Section - inserted after Why Choose Us */}
+        {/* Specialities preview - inserted after Why Choose Us */}
+        <div className="mt-12">
+          <SpecialitiesPreview count={4} />
+        </div>
+
+        {/* Doctors Section - inserted after specialities preview */}
         <div className="mt-12">
           <DoctorsSection />
         </div>
