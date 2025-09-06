@@ -2,7 +2,8 @@ import { Routes, Route } from "react-router-dom";
 import { useAppointment } from "./contexts/AppointmentContext";
 import Navigation from "./Components/ui/Navigation";
 import Home from "./Components/pages/Home";
-import AboutUs from "./Components/sections/AboutUs";
+import HomeAboutUs from "./Components/sections/HomeAboutUs";
+import AboutUs from "./Components/pages/AboutUs";
 import VirtualTour from "./Components/sections/VirtualTour";
 import PatientTestimonials from "./Components/sections/PatientTestimonials";
 import Specialities from "./Components/pages/Specialities";
@@ -27,7 +28,7 @@ const HomePage = () => {
         <Home />
       </div>
       <div id="about">
-        <AboutUs />
+        <HomeAboutUs />
       </div>
       <VirtualTour />
       <PatientTestimonials />
