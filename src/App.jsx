@@ -50,8 +50,8 @@ const AboutPage = () => {
       <div className="pt-20">
         <AboutUs key="about-us" />
         <VirtualTour key="virtual-tour" />
-        <MissionVision key="mission-vision" />
-        <FoundersMessage key="founders-message" />
+        {/* <MissionVision key="mission-vision" /> */}
+        <FounderSection key="founders-message" />
       </div>
       <Footer />
     </PageWrapper>

@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import { useLocation } from "react-router-dom";
 import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
 import {
   FaHospital,
@@ -10,6 +11,7 @@ import {
   FaAmbulance,
   FaHeartbeat,
   FaStethoscope,
+  FaCoins,
   FaBed,
 } from "react-icons/fa";
 
@@ -50,6 +52,10 @@ const AboutUs = () => {
     },
   ];
 
+  const location = useLocation();
+  const isAboutPage =
+    location.pathname === "/about" || location.pathname.startsWith("/about");
+
   const whyChooseUs = [
     {
       icon: <FaUserMd className="text-3xl text-emerald-600" />,
@@ -80,6 +86,12 @@ const AboutUs = () => {
       title: "24/7 Emergency Services",
       description:
         "Round-the-clock emergency care with quick response times and trained staff",
+    },
+    {
+      icon: <FaCoins className="text-3xl text-emerald-600" />,
+      title: "Affordable Prices",
+      description:
+        "High-quality care at transparent, competitive pricing to make healthcare accessible to everyone",
     },
   ];
 
@@ -170,6 +182,87 @@ const AboutUs = () => {
           ))}
         </motion.div>
 
+        {/* Our Mission & Vision (placed above Our Services) - only show on About page */}
+        {isAboutPage && (
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, amount: 0.2 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-12 lg:mb-16"
+          >
+            <div className="relative max-w-7xl mx-auto px-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-stretch">
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.6 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
+                >
+                  <div className="flex-1">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
+                      <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
+                      <span className="text-xs font-semibold text-emerald-700 tracking-wide">
+                        MISSION
+                      </span>
+                    </div>
+
+                    <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
+                      Our Mission
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                      To provide comprehensive, compassionate, and accessible
+                      healthcare services that meet the highest standards of
+                      medical excellence, while fostering a healing environment
+                      that respects the dignity and worth of every individual.
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full opacity-90" />
+                  </div>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, y: 12 }}
+                  whileInView={{ opacity: 1, y: 0 }}
+                  whileHover={{ y: -6 }}
+                  transition={{ duration: 0.6, delay: 0.06 }}
+                  viewport={{ once: true, amount: 0.2 }}
+                  className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
+                >
+                  <div className="flex-1">
+                    <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
+                      <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
+                      <span className="text-xs font-semibold text-emerald-700 tracking-wide">
+                        VISION
+                      </span>
+                    </div>
+
+                    <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
+                      Our Vision
+                    </h4>
+                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                      To lead healthcare innovation, setting new standards for
+                      excellence and patient satisfaction in our community and
+                      beyond.
+                    </p>
+                  </div>
+                  <div className="mt-6">
+                    <div className="h-1 w-24 bg-gradient-to-r from-emerald-600 to-teal-400 rounded-full opacity-90 ml-auto" />
+                  </div>
+                </motion.div>
+              </div>
+
+              {/* Decorative dotted separator for larger screens */}
+              <div className="hidden md:flex absolute inset-y-0 left-1/2 transform -translate-x-1/2 items-center pointer-events-none">
+                <div className="h-3/4 border-l-2 border-emerald-300 border-dotted opacity-60" />
+              </div>
+            </div>
+          </motion.div>
+        )}
+
         {/* Our Services */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
@@ -235,24 +328,6 @@ const AboutUs = () => {
               </motion.div>
             ))}
           </div>
-        </motion.div>
-
-        {/* Mission Statement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="mt-16 bg-gradient-to-r from-emerald-50 to-emerald-100 rounded-2xl p-8 text-center"
-        >
-          <h3 className="text-3xl font-bold text-emerald-900 mb-4">
-            Our Mission
-          </h3>
-          <p className="text-lg text-gray-700 leading-relaxed max-w-4xl mx-auto">
-            To provide comprehensive, compassionate, and accessible healthcare
-            services that meet the highest standards of medical excellence,
-            while fostering a healing environment that respects the dignity and
-            worth of every individual.
-          </p>
         </motion.div>
       </div>
     </section>
