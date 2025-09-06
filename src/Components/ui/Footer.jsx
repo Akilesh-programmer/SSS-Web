@@ -247,18 +247,6 @@ export default function Footer() {
                     Careers
                   </a>
                 </div>
-
-                <div className="text-gray-500">
-                  Website by{" "}
-                  <a
-                    href="https://automconsultancy.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-emerald-400 hover:text-emerald-300 transition-colors font-medium"
-                  >
-                    Autom Consultancy Services
-                  </a>
-                </div>
               </div>
             </div>
           </div>
