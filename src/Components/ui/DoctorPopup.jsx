@@ -4,11 +4,8 @@ import {
   FaTimes,
   FaUserMd,
   FaGraduationCap,
-  FaClock,
   FaCalendarAlt,
   FaStethoscope,
-  FaAward,
-  FaStar,
   FaPhone,
   FaEnvelope,
   FaHeart,
@@ -121,10 +118,6 @@ const DoctorPopup = ({ isOpen, onClose, doctor }) => {
                   <p className="text-emerald-100 text-lg font-medium mb-1">
                     {doctor.designation}
                   </p>
-                  <div className="flex items-center gap-2 text-emerald-200">
-                    <FaClock className="text-sm" />
-                    <span>{doctor.experience} Experience</span>
-                  </div>
                 </div>
               </div>
             </div>
@@ -142,7 +135,7 @@ const DoctorPopup = ({ isOpen, onClose, doctor }) => {
                   </h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed">
-                  {doctor.qualifications}
+                  {doctor.qualification}
                 </p>
               </div>
 
@@ -157,49 +150,11 @@ const DoctorPopup = ({ isOpen, onClose, doctor }) => {
                   </h3>
                 </div>
                 <p className="text-gray-700 leading-relaxed">
-                  {doctor.specialization}
+                  {doctor.specialty}
                 </p>
               </div>
 
-              {/* Availability */}
-              <div className="bg-gradient-to-r from-purple-50 to-pink-50 rounded-2xl p-6">
-                <div className="flex items-center gap-3 mb-4">
-                  <div className="w-10 h-10 bg-purple-600 rounded-full flex items-center justify-center">
-                    <FaCalendarAlt className="text-white" />
-                  </div>
-                  <h3 className="text-xl font-semibold text-gray-800">
-                    Availability
-                  </h3>
-                </div>
-                <p className="text-gray-700 leading-relaxed">
-                  {doctor.availability}
-                </p>
-              </div>
-
-              {/* Awards & Recognition (if available) */}
-              {doctor.awards && (
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-2xl p-6">
-                  <div className="flex items-center gap-3 mb-4">
-                    <div className="w-10 h-10 bg-yellow-600 rounded-full flex items-center justify-center">
-                      <FaAward className="text-white" />
-                    </div>
-                    <h3 className="text-xl font-semibold text-gray-800">
-                      Awards & Recognition
-                    </h3>
-                  </div>
-                  <ul className="space-y-2">
-                    {doctor.awards.map((award, index) => (
-                      <li
-                        key={index}
-                        className="flex items-center gap-3 text-gray-700"
-                      >
-                        <FaStar className="text-yellow-500 text-sm" />
-                        <span>{award}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
+              {/* Additional details removed to match simplified doctor data shape */}
 
               {/* Contact Actions */}
               <div className="flex gap-4 pt-4">
