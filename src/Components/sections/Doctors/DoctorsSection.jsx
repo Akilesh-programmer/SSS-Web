@@ -18,6 +18,19 @@ const DoctorsSection = ({ limit }) => {
   const [isInView, setIsInView] = useState(false);
   const autoplayRef = useRef(null);
 
+  // Layout constants
+  const GAP = 24; // matches gap-6 (6 * 4px)
+
+  // Helper: calculate scroll amount for one card (width + gap)
+  const getCardAmount = (el) => {
+    if (!el) return 0;
+    const firstChild = el.children[0];
+    const cardWidth = firstChild
+      ? firstChild.clientWidth
+      : Math.floor(el.clientWidth * 0.9);
+    return cardWidth + GAP;
+  };
+
   const items = doctors || [];
   const displayedItems =
     typeof limit === "number" ? items.slice(0, limit) : items;
@@ -51,15 +64,7 @@ const DoctorsSection = ({ limit }) => {
     const start = () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
       autoplayRef.current = setInterval(() => {
-        // scroll by one card (card width + gap) per tick
-        const firstChild = el.children[0];
-        const cardWidth = firstChild
-          ? firstChild.clientWidth
-          : Math.floor(el.clientWidth * 0.9);
-        const gap = 24; // 6 * 4px from gap-6
-        const amount = cardWidth + gap;
-
-        // if at (or near) end, go back to start
+        const amount = getCardAmount(el);
         if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) {
           el.scrollTo({ left: 0, behavior: "smooth" });
         } else {
@@ -132,23 +137,15 @@ const DoctorsSection = ({ limit }) => {
   const scroll = (dir = "right") => {
     const el = listRef.current;
     if (!el) return;
-    // scroll by one card (card width + gap) for arrow clicks
-    const firstChild = el.children[0];
-    const cardWidth = firstChild
-      ? firstChild.clientWidth
-      : Math.floor(el.clientWidth * 0.8);
-    const gap = 24; // matches gap-6 (6 * 4px)
-    const amount = cardWidth + gap;
+    const amount = getCardAmount(el);
 
     if (dir === "right") {
-      // if at (or near) end, wrap to start
       if (el.scrollLeft + el.clientWidth >= el.scrollWidth - 10) {
         el.scrollTo({ left: 0, behavior: "smooth" });
       } else {
         el.scrollBy({ left: amount, behavior: "smooth" });
       }
     } else if (el.scrollLeft <= 10) {
-      // left: at (or near) start -> wrap to end
       el.scrollTo({
         left: el.scrollWidth - el.clientWidth,
         behavior: "smooth",
