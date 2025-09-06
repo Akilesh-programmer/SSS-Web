@@ -155,6 +155,7 @@ const Navigation = () => {
 
   const navItems = [
     { name: "Home", path: "/" },
+    { name: "About Us", path: "/about" },
     { name: "Specialities", path: "/specialities" },
     { name: "Doctors", path: "/doctors" },
     { name: "Contact", path: "/contact" },
