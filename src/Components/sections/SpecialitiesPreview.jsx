@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
 import { getAllDepartments } from "../../data/departmentsData";
@@ -49,8 +48,8 @@ const SpecialitiesPreview = ({ count = 4 }) => {
     Nephrology: <FaPills />,
     Neurology: <FaBrain />,
     "Neuro Surgery": <FaBrain />,
-  Orthopaedics: <FaBone />,
-  Orthopedics: <FaBone />,
+    Orthopaedics: <FaBone />,
+    Orthopedics: <FaBone />,
     Ophthalmology: <FaEye />,
     Paediatrics: <FaChild />,
     Psychiatry: <FaBrain />,
@@ -102,7 +101,12 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                 hidden: { opacity: 0, y: 10 },
                 visible: { opacity: 1, y: 0 },
               }}
-              whileHover={{ y: -8, rotateX: 6, rotateY: -3, boxShadow: "0 28px 50px rgba(2,6,23,0.12)" }}
+              whileHover={{
+                y: -8,
+                rotateX: 6,
+                rotateY: -3,
+                boxShadow: "0 28px 50px rgba(2,6,23,0.12)",
+              }}
               transition={{ duration: 0.45 }}
             >
               {/* decorative accent */}
@@ -136,14 +140,18 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                   }}
                 >
                   <motion.div
-                      initial={{ scale: 0.95 }}
-                      animate={{ scale: [1, 1.04, 1], rotate: [0, 3, 0] }}
-                      transition={{ duration: 4, repeat: Infinity, repeatDelay: 2 }}
-                      whileHover={{ scale: 1.12, rotate: 8 }}
-                      className="text-xl"
-                    >
-                      {getDepartmentIcon(dept.name)}
-                    </motion.div>
+                    initial={{ scale: 0.95 }}
+                    animate={{ scale: [1, 1.04, 1], rotate: [0, 3, 0] }}
+                    transition={{
+                      duration: 4,
+                      repeat: Infinity,
+                      repeatDelay: 2,
+                    }}
+                    whileHover={{ scale: 1.12, rotate: 8 }}
+                    className="text-xl"
+                  >
+                    {getDepartmentIcon(dept.name)}
+                  </motion.div>
                 </motion.div>
                 <div className="flex-1 text-left">
                   <h4 className="text-lg font-semibold text-gray-900">
