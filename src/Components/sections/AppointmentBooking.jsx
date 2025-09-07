@@ -1,4 +1,5 @@
 import { useState } from "react";
+import PropTypes from "prop-types";
 import { motion } from "framer-motion";
 import {
   FaCalendarAlt,
@@ -10,37 +11,44 @@ import {
 import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
 import AppointmentPopup from "../ui/AppointmentPopup";
 
+// Top-level StatItem component (keeps lint happy)
+const StatItem = ({ number, label, icon: Icon, suffix = "" }) => {
+  const { count, ref } = useCountAnimation(number, 2000);
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 8 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.45 }}
+      viewport={{ once: true, amount: 0.3 }}
+      className="group text-center rounded-2xl p-2 sm:p-3 hover:scale-[1.01] transition-transform duration-200 h-full flex w-full"
+    >
+      <div className="bg-gradient-to-br from-emerald-50 to-white/60 rounded-xl p-4 sm:p-5 shadow-md border border-emerald-100/40 hover:shadow-lg transition-shadow duration-200 h-full flex flex-col items-center justify-center w-full">
+        <Icon className="text-3xl sm:text-4xl md:text-5xl text-emerald-600 mb-3 mx-auto" />
+
+        <div className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-gray-800 mb-1 sm:mb-2">
+          {count}
+          {suffix}
+        </div>
+
+        <div className="text-gray-600 text-sm sm:text-sm md:text-base font-medium">
+          {label}
+        </div>
+      </div>
+    </motion.div>
+  );
+};
+
+StatItem.propTypes = {
+  number: PropTypes.number.isRequired,
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.elementType.isRequired,
+  suffix: PropTypes.string,
+};
+
 const AppointmentBooking = () => {
   const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
-
-  // Statistics with counting animations
-  const StatItem = ({ number, label, icon: Icon, suffix = "" }) => {
-    const { count, ref } = useCountAnimation(number, 2500);
-
-    return (
-      <motion.div
-        ref={ref}
-        initial={{ opacity: 0, y: 8 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.45 }}
-        viewport={{ once: true, amount: 0.3 }}
-        className="group text-center rounded-2xl p-2 sm:p-3 hover:scale-[1.01] transition-transform duration-200"
-      >
-        <div className="bg-gradient-to-br from-emerald-50 to-white/60 rounded-xl p-4 sm:p-5 shadow-md border border-emerald-100/40 hover:shadow-lg transition-shadow duration-200">
-          <Icon className="text-3xl sm:text-4xl md:text-5xl text-emerald-600 mb-3 mx-auto" />
-
-          <div className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-gray-800 mb-1 sm:mb-2">
-            {count}
-            {suffix}
-          </div>
-
-          <div className="text-gray-600 text-sm sm:text-sm md:text-base font-medium">
-            {label}
-          </div>
-        </div>
-      </motion.div>
-    );
-  };
 
   const stats = [
     { number: 150, label: "Hospital Beds", icon: FaHospital, suffix: "+" },
@@ -154,10 +162,12 @@ const AppointmentBooking = () => {
                 </motion.button>
 
                 {/* Hospital Stats (compact on small screens) */}
-                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8">
-                  {stats.map((stat, index) => (
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 items-stretch">
+                  {stats.map((stat) => (
                     <StatItem
-                      key={index}
+                      key={(stat.label || "")
+                        .toLowerCase()
+                        .replace(/[^a-z0-9]+/g, "-")}
                       number={stat.number}
                       label={stat.label}
                       icon={stat.icon}

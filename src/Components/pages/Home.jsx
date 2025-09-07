@@ -1,3 +1,4 @@
+import React, { useEffect, useRef, useState } from "react";
 import { motion } from "framer-motion";
 import {
   FaAward,
@@ -11,8 +12,97 @@ import {
   FaShieldAlt,
 } from "react-icons/fa";
 import hospitalImg from "../../assets/sss-hospital.avif";
+import PropTypes from "prop-types";
+
+// Small counter component that animates from 0 -> end when `start` becomes true
+function Counter({
+  end = 0,
+  suffix = "",
+  start = false,
+  duration = 2000,
+  className = "text-xl lg:text-2xl font-bold text-gray-900",
+}) {
+  const [value, setValue] = useState(0);
+  const rafRef = useRef(null);
+  const containerRef = useRef(null);
+  const [visible, setVisible] = useState(false);
+
+  // Observe this counter's visibility and start counting only when visible
+  useEffect(() => {
+    const el = containerRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!visible) return;
+    let startTs = null;
+
+    const step = (ts) => {
+      if (!startTs) startTs = ts;
+      const progress = Math.min((ts - startTs) / duration, 1);
+      const current = Math.round(progress * end);
+      setValue(current);
+      if (progress < 1) {
+        rafRef.current = requestAnimationFrame(step);
+      }
+    };
+
+    rafRef.current = requestAnimationFrame(step);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [visible, end, duration]);
+
+  return (
+    <div ref={containerRef}>
+      <p className={className}>
+        {value}
+        {suffix}
+      </p>
+    </div>
+  );
+}
+
+Counter.propTypes = {
+  end: PropTypes.number,
+  suffix: PropTypes.string,
+  start: PropTypes.bool,
+  duration: PropTypes.number,
+  className: PropTypes.string,
+};
 
 export default function Home() {
+  const indicatorsRef = useRef(null);
+  const [countersStarted, setCountersStarted] = useState(false);
+
+  useEffect(() => {
+    const el = indicatorsRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setCountersStarted(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden">
       {/* Background decorative elements */}
@@ -84,23 +174,20 @@ export default function Home() {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.8, duration: 0.6 }}
                 className="grid grid-cols-3 gap-3 sm:gap-6 max-w-md mx-auto lg:mx-0"
+                ref={indicatorsRef}
               >
                 <div className="text-center">
                   <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <FaHospital className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-xl lg:text-2xl font-bold text-gray-900">
-                    30+
-                  </p>
+                  <Counter end={30} suffix="+" start={countersStarted} />
                   <p className="text-xs lg:text-sm text-gray-600">ICU Beds</p>
                 </div>
                 <div className="text-center">
                   <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <FaAward className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-xl lg:text-2xl font-bold text-gray-900">
-                    25+
-                  </p>
+                  <Counter end={25} suffix="+" start={countersStarted} />
                   <p className="text-xs lg:text-sm text-gray-600">
                     Specialities
                   </p>
@@ -129,27 +216,38 @@ export default function Home() {
               className="relative order-1 lg:order-2"
             >
               {/* Main hospital image */}
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl mx-0 sm:mx-4">
+              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500 mx-0 sm:mx-2 lg:mx-0">
                 <img
                   src={hospitalImg}
                   alt="SSS Hospital"
-                  className="w-full h-80 sm:h-80 lg:h-96 object-cover"
+                  className="w-full h-96 sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover transition-transform duration-700 hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+                <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent"></div>
 
-                {/* Floating stats card */}
+                {/* Floating stats card (moved slightly more left & down) */}
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.6 }}
-                  className="absolute bottom-4 left-4 lg:bottom-6 lg:left-6 bg-white/95 backdrop-blur-sm rounded-xl p-3 lg:p-4 shadow-lg"
+                  className="absolute bottom-2 left-1 lg:bottom-3 lg:left-2 bg-white/95 backdrop-blur-sm rounded-lg p-2 lg:p-3 shadow"
                 >
-                  <p className="text-emerald-600 font-semibold text-xs lg:text-sm">
+                  <p className="text-emerald-600 font-semibold text-[10px] lg:text-xs">
                     Best Hospital in Erode
                   </p>
-                  <p className="text-gray-900 font-bold text-sm lg:text-lg">
-                    150+ Beds Available
-                  </p>
+
+                  <div className="mt-1 flex items-baseline gap-2">
+                    <div className="flex-shrink-0">
+                      <Counter
+                        end={150}
+                        suffix="+"
+                        duration={2000}
+                        className="text-lg lg:text-xl font-bold text-gray-900"
+                      />
+                    </div>
+                    <div className="text-gray-900 font-semibold text-sm lg:text-sm">
+                      Beds Available
+                    </div>
+                  </div>
                 </motion.div>
               </div>
 
@@ -166,7 +264,11 @@ export default function Home() {
                   { icon: FaShieldAlt, delay: 2.9, x: 85, y: 75 },
                 ].map((item, i) => (
                   <motion.div
-                    key={`floating-${i}`}
+                    key={`floating-${
+                      item.icon && item.icon.displayName
+                        ? item.icon.displayName
+                        : "icon"
+                    }-${i}`}
                     initial={{ opacity: 0, scale: 0, rotate: -180 }}
                     animate={{
                       opacity: [0, 0.6, 0.4, 0.7],

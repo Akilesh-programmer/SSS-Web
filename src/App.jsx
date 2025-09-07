@@ -29,9 +29,9 @@ const HomePage = () => {
       <div id="about">
         <HomeAboutUs />
       </div>
+      <FounderSection />
       <VirtualTour />
       <PatientTestimonials />
-      <FounderSection />
       <AppointmentBooking />
       <div id="contact">
         <Footer />

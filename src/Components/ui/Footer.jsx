@@ -1,3 +1,5 @@
+import React, { useRef, useEffect, useState } from "react";
+import PropTypes from "prop-types";
 import {
   FaInstagram,
   FaTwitter,
@@ -10,6 +12,67 @@ import {
   FaHeart,
   FaUserMd,
 } from "react-icons/fa";
+
+// Small Counter component: counts 0 -> end over `duration` ms when visible
+function Counter({
+  end = 0,
+  suffix = "",
+  duration = 2000,
+  className = "text-xl lg:text-2xl font-bold text-emerald-900",
+}) {
+  const [value, setValue] = useState(0);
+  const rafRef = useRef(null);
+  const elRef = useRef(null);
+  const [started, setStarted] = useState(false);
+
+  useEffect(() => {
+    const el = elRef.current;
+    if (!el) return;
+    const obs = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setStarted(true);
+          obs.unobserve(el);
+        }
+      },
+      { threshold: 0.3 }
+    );
+    obs.observe(el);
+    return () => obs.disconnect();
+  }, []);
+
+  useEffect(() => {
+    if (!started) return;
+    let startTs = null;
+    const step = (ts) => {
+      if (!startTs) startTs = ts;
+      const progress = Math.min((ts - startTs) / duration, 1);
+      const current = Math.round(progress * end);
+      setValue(current);
+      if (progress < 1) rafRef.current = requestAnimationFrame(step);
+    };
+    rafRef.current = requestAnimationFrame(step);
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+    };
+  }, [started, end, duration]);
+
+  return (
+    <div ref={elRef}>
+      <div className={className}>
+        {value}
+        {suffix}
+      </div>
+    </div>
+  );
+}
+
+Counter.propTypes = {
+  end: PropTypes.number,
+  suffix: PropTypes.string,
+  duration: PropTypes.number,
+  className: PropTypes.string,
+};
 
 export default function Footer() {
   return (
@@ -84,9 +147,12 @@ export default function Footer() {
               <div className="grid grid-cols-2 gap-3 lg:gap-4">
                 <div className="bg-emerald-50 rounded-lg p-3 lg:p-4 text-center">
                   <FaHeart className="text-2xl lg:text-3xl text-emerald-600 mx-auto mb-1 lg:mb-2" />
-                  <div className="text-xl lg:text-2xl font-bold text-emerald-900">
-                    150+
-                  </div>
+                  <Counter
+                    end={150}
+                    suffix="+"
+                    duration={2000}
+                    className="text-xl lg:text-2xl font-bold text-emerald-900 mx-auto"
+                  />
                   <div className="text-xs lg:text-sm text-gray-600">
                     Hospital Beds
                   </div>
@@ -94,9 +160,12 @@ export default function Footer() {
 
                 <div className="bg-emerald-50 rounded-lg p-3 lg:p-4 text-center">
                   <FaUserMd className="text-2xl lg:text-3xl text-emerald-600 mx-auto mb-1 lg:mb-2" />
-                  <div className="text-xl lg:text-2xl font-bold text-emerald-900">
-                    25+
-                  </div>
+                  <Counter
+                    end={25}
+                    suffix="+"
+                    duration={2000}
+                    className="text-xl lg:text-2xl font-bold text-emerald-900 mx-auto"
+                  />
                   <div className="text-xs lg:text-sm text-gray-600">
                     Specialties
                   </div>
