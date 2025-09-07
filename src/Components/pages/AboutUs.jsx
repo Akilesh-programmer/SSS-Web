@@ -16,11 +16,14 @@ import {
   FaAmbulance,
 } from "react-icons/fa";
 
-// Counter component for stats
-const AnimatedCounter = ({ end, suffix = "" }) => {
+// Counter component for stats (accepts className so we can reuse with different color schemes)
+const AnimatedCounter = ({ end, suffix = "", className = "" }) => {
   const { count, ref } = useCountAnimation(end, 2000);
   return (
-    <div ref={ref} className="text-4xl lg:text-5xl font-bold text-white mb-2">
+    <div
+      ref={ref}
+      className={`text-4xl lg:text-5xl font-bold mb-2 ${className}`}
+    >
       {count}
       {suffix}
     </div>
@@ -30,6 +33,7 @@ const AnimatedCounter = ({ end, suffix = "" }) => {
 AnimatedCounter.propTypes = {
   end: PropTypes.number.isRequired,
   suffix: PropTypes.string,
+  className: PropTypes.string,
 };
 
 const AboutUs = () => {
@@ -123,7 +127,7 @@ const AboutUs = () => {
               </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 bg-clip-text text-transparent mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
               Excellence in Healthcare
             </h1>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
@@ -139,25 +143,28 @@ const AboutUs = () => {
             initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
-            className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-20"
+            className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-12"
           >
-            <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
-              <motion.div variants={slideInFromLeft} className="p-8 lg:p-12">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
+              <motion.div
+                variants={slideInFromLeft}
+                className="p-6 sm:p-8 lg:p-12 order-2 lg:order-1"
+              >
                 <div className="flex items-center gap-3 mb-6">
-                  <FaQuoteLeft className="text-3xl text-emerald-600" />
-                  <span className="text-emerald-600 font-semibold text-lg">
+                  <FaQuoteLeft className="text-3xl text-teal-600" />
+                  <span className="text-teal-600 font-semibold text-lg">
                     Our Chairman
                   </span>
                 </div>
 
-                <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+                <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
                   S.SARAVANA BHAVAN
                 </h2>
-                <p className="text-emerald-600 font-semibold text-lg mb-6">
+                <p className="text-teal-600 font-semibold text-base sm:text-lg mb-6">
                   CHAIRMAN
                 </p>
 
-                <blockquote className="text-gray-700 text-lg leading-relaxed italic">
+                <blockquote className="text-gray-700 text-base sm:text-lg leading-relaxed italic">
                   "At SSS Super Speciality Hospital, We believe in combining
                   medical excellence with a personal touch in providing hope,
                   care and cure. We offer medical treatment with a motherly
@@ -166,18 +173,18 @@ const AboutUs = () => {
                   the people of Erode and beyond."
                 </blockquote>
               </motion.div>
-
-              <motion.div variants={slideInFromRight} className="relative">
-                <div className="relative p-8 lg:p-12">
-                  <div className="relative w-80 h-80 lg:w-96 lg:h-96 mx-auto">
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-2xl transform rotate-6"></div>
-                    <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-white rounded-2xl border-4 border-white shadow-xl">
-                      <img
-                        src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/1.png"
-                        alt="S.Saravana Bhavan - Chairman"
-                        className="w-full h-full object-cover rounded-xl"
-                      />
-                    </div>
+              <motion.div
+                variants={slideInFromRight}
+                className="relative p-6 sm:p-8 lg:p-12 flex justify-center items-center order-1 lg:order-2"
+              >
+                <div className="relative w-44 h-44 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 mx-auto">
+                  <div className="absolute inset-0 bg-gradient-to-br from-teal-300 to-emerald-100 rounded-2xl transform rotate-3" />
+                  <div className="absolute inset-0 bg-gradient-to-br from-white to-emerald-50 rounded-2xl border-2 border-white shadow-md overflow-hidden">
+                    <img
+                      src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/1.png"
+                      alt="S.Saravana Bhavan - Chairman"
+                      className="w-full h-full object-cover rounded-xl"
+                    />
                   </div>
                 </div>
               </motion.div>
@@ -187,7 +194,7 @@ const AboutUs = () => {
       </section>
 
       {/* Hospital Stats */}
-  <section className="py-12 bg-gradient-to-r from-emerald-600 to-teal-500 relative">
+      <section className="py-12 bg-gradient-to-r from-gray-50 via-blue-50 to-slate-50 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -199,11 +206,15 @@ const AboutUs = () => {
               <motion.div
                 key={stat.label}
                 variants={fadeInUp}
-                className="text-center bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20"
+                className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 shadow-sm hover:shadow-md transition-all duration-300"
               >
-                <stat.icon className="text-4xl lg:text-5xl text-white mb-4 mx-auto" />
-                <AnimatedCounter end={stat.number} suffix={stat.suffix} />
-                <p className="text-white/90 text-sm lg:text-base font-medium">
+                <stat.icon className="text-4xl lg:text-5xl text-slate-500 mb-4 mx-auto" />
+                <AnimatedCounter
+                  end={stat.number}
+                  suffix={stat.suffix}
+                  className="text-slate-700"
+                />
+                <p className="text-slate-600 text-sm lg:text-base font-medium">
                   {stat.label}
                 </p>
               </motion.div>
@@ -246,7 +257,7 @@ const AboutUs = () => {
       </section>
 
       {/* Mission & Vision */}
-  <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
+      <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -355,7 +366,7 @@ const AboutUs = () => {
               </span>
             </motion.div>
 
-            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 bg-clip-text text-transparent mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
               Our Vision in Healthcare Delivery
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -404,7 +415,7 @@ const AboutUs = () => {
       </section>
 
       {/* Leadership Section */}
-  <section className="py-12 lg:py-16">
+      <section className="py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -413,7 +424,7 @@ const AboutUs = () => {
             className="text-center mb-12"
           >
             <div className="flex items-center justify-center gap-3 mb-6">
-              <FaUserMd className="text-3xl text-emerald-600" />
+              <FaUserMd className="text-3xl text-teal-600" />
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
                 Meet Our Pillars
               </h2>
@@ -455,7 +466,7 @@ const AboutUs = () => {
                       <h3 className="text-xl font-bold text-gray-900 mb-2">
                         {leader.name}
                       </h3>
-                      <p className="text-emerald-600 font-semibold mb-3">
+                      <p className="text-teal-600 font-semibold mb-3">
                         {leader.position}
                       </p>
                       <p className="text-gray-600 text-sm leading-relaxed">
@@ -471,11 +482,11 @@ const AboutUs = () => {
       </section>
 
       {/* Care Units & Facilities */}
-      <section className="py-12 lg:py-16 bg-gradient-to-r from-emerald-600 to-teal-500 relative overflow-hidden">
+      <section className="py-12 lg:py-16 bg-gradient-to-r from-slate-100 via-gray-50 to-blue-50 relative overflow-hidden">
         {/* Background decoration */}
         <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-white/10 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-white/5 rounded-full blur-2xl" />
+          <div className="absolute top-10 left-10 w-40 h-40 bg-white/30 rounded-full blur-3xl" />
+          <div className="absolute bottom-10 right-10 w-32 h-32 bg-slate-100/40 rounded-full blur-2xl" />
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -489,17 +500,17 @@ const AboutUs = () => {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block bg-white/20 backdrop-blur-md rounded-full px-6 py-2 mb-6"
+              className="inline-block bg-white/60 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-slate-200/30"
             >
-              <span className="text-white font-semibold text-sm">
+              <span className="text-slate-600 font-semibold text-sm">
                 🏥 SPECIALIZED CARE UNITS
               </span>
             </motion.div>
 
-            <h2 className="text-3xl lg:text-4xl font-bold text-white mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold text-slate-700 mb-6">
               Advanced Care Facilities
             </h2>
-            <p className="text-xl text-white/90 max-w-3xl mx-auto">
+            <p className="text-xl text-slate-600 max-w-3xl mx-auto">
               State-of-the-art specialized units designed for comprehensive
               patient care
             </p>
@@ -520,13 +531,16 @@ const AboutUs = () => {
               <motion.div
                 key={unit.label}
                 variants={fadeInUp}
-                className="text-center bg-white/10 backdrop-blur-md rounded-2xl p-6 border border-white/20 hover:bg-white/20 transition-all duration-300"
+                className="text-center bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/40 hover:bg-white/80 hover:shadow-md transition-all duration-300"
               >
-                <unit.icon className="text-4xl lg:text-5xl text-white mb-4 mx-auto" />
-                <div className="text-3xl lg:text-4xl font-bold text-white mb-2">
-                  <AnimatedCounter end={unit.number} />
+                <unit.icon className="text-4xl lg:text-5xl text-slate-500 mb-4 mx-auto" />
+                <div className="text-3xl lg:text-4xl font-bold text-slate-700 mb-2">
+                  <AnimatedCounter
+                    end={unit.number}
+                    className="text-slate-700"
+                  />
                 </div>
-                <p className="text-white/90 text-sm lg:text-base font-medium">
+                <p className="text-slate-600 text-sm lg:text-base font-medium">
                   {unit.label}
                 </p>
               </motion.div>
@@ -555,7 +569,7 @@ const AboutUs = () => {
               </span>
             </motion.div>
 
-            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 bg-clip-text text-transparent mb-6">
+            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
               Excellence in Critical Care
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -623,7 +637,7 @@ const AboutUs = () => {
                           {care.title}
                         </h3>
                         <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
-                          <span className="text-emerald-600 font-bold text-sm">
+                          <span className="text-emerald-700 font-bold text-sm">
                             {index + 1}
                           </span>
                         </div>
@@ -645,7 +659,7 @@ const AboutUs = () => {
       </section>
 
       {/* Why Choose Us */}
-  <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
+      <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
             initial="hidden"
@@ -711,7 +725,7 @@ const AboutUs = () => {
                 variants={fadeInUp}
                 className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-emerald-100"
               >
-                <feature.icon className="text-3xl text-emerald-600 mb-4" />
+                <feature.icon className="text-3xl text-teal-600 mb-4" />
                 <h3 className="text-xl font-bold text-gray-900 mb-3">
                   {feature.title}
                 </h3>
