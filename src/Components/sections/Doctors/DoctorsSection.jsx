@@ -6,7 +6,6 @@ import {
   FaChevronLeft,
   FaChevronRight,
   FaGraduationCap,
-  FaStethoscope,
 } from "react-icons/fa";
 import { doctors } from "../../../data/doctorsData";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
@@ -375,25 +374,23 @@ const DoctorsSection = ({ limit }) => {
                     {/* Doctor Image */}
                     <div className="relative mb-6">
                       <motion.div
-                        whileHover={{ scale: 1.05 }}
-                        transition={{ duration: 0.3 }}
-                        className="relative w-24 h-24 mx-auto"
+                        whileHover={{ scale: 1.03 }}
+                        transition={{ duration: 0.25 }}
+                        className="relative w-32 h-32 sm:w-36 lg:w-40 mx-auto"
                       >
                         {doctor.image ? (
                           <img
                             src={doctor.image}
                             alt={doctor.name}
-                            className="w-full h-full rounded-full object-cover border-4 border-blue-100 group-hover:border-blue-200 transition-colors duration-300"
+                            className="w-full h-full rounded-full object-cover border-4 border-blue-100 transition-colors duration-300"
                           />
                         ) : (
                           <DefaultDoctorAvatar
                             name={doctor.name}
-                            className="w-full h-full border-4 border-blue-100 group-hover:border-blue-200"
+                            className="w-full h-full border-4 border-blue-100"
                           />
                         )}
-                        <div className="absolute -bottom-1 -right-1 bg-blue-600 rounded-full p-2">
-                          <FaStethoscope className="text-white text-sm" />
-                        </div>
+                        {/* removed overlay icon to give image more space */}
                       </motion.div>
                     </div>
 
