@@ -12,8 +12,40 @@ import {
   FaCalendarAlt,
 } from "react-icons/fa";
 import { motion } from "framer-motion";
+import PropTypes from "prop-types";
+import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
 import hospitalVideo from "../../assets/Hospital Full Tour Video.mp4";
 import hospitalImg from "../../assets/sss-hospital.avif";
+
+// Individual stat component using hook for visibility-triggered counting
+const TourStat = ({ value, suffix = "", label, icon, delay = 0 }) => {
+  const { count, ref } = useCountAnimation(value, 2000);
+  return (
+    <motion.div
+      ref={ref}
+      className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+      whileHover={{ y: -5 }}
+      initial={{ opacity: 0, y: 20 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{ delay, duration: 0.6 }}
+    >
+      <div className="text-2xl sm:text-3xl mb-2">{icon}</div>
+      <h3 className="text-2xl sm:text-3xl font-bold">
+        {count}
+        {suffix}
+      </h3>
+      <p className="text-xs sm:text-sm text-gray-600 font-medium">{label}</p>
+    </motion.div>
+  );
+};
+
+TourStat.propTypes = {
+  value: PropTypes.number.isRequired,
+  suffix: PropTypes.string,
+  label: PropTypes.string.isRequired,
+  icon: PropTypes.node,
+  delay: PropTypes.number,
+};
 
 // Floating icons used in background and modal
 const FloatingIcons = ({ variant = "bg" }) => {
@@ -220,27 +252,29 @@ const VirtualTour = () => {
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               {[
-                { number: "150+", label: "Beds", icon: "🏥" },
-                { number: "4", label: "Operating Theatres", icon: "⚕️" },
-                { number: "30+", label: "ICU Beds", icon: "🚨" },
-              ].map((stat, index) => (
-                <motion.div
-                  key={index}
-                  className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
-                  whileHover={{ y: -5 }}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.8 + index * 0.2, duration: 0.6 }}
-                >
-                  <div className="text-2xl sm:text-3xl mb-2">{stat.icon}</div>
-                  <h3 className="text-2xl sm:text-3xl font-bold">
-                    {stat.number}
-                  </h3>
-                  <p className="text-xs sm:text-sm text-gray-600 font-medium">
-                    {stat.label}
-                  </p>
-                </motion.div>
-              ))}
+                { value: 150, suffix: "+", label: "Beds", icon: "🏥" },
+                {
+                  value: 4,
+                  suffix: "",
+                  label: "Operating Theatres",
+                  icon: "⚕️",
+                },
+                { value: 30, suffix: "+", label: "ICU Beds", icon: "🚨" },
+              ].map((stat, index) => {
+                const key = (stat.label || "")
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-");
+                return (
+                  <TourStat
+                    key={key}
+                    value={stat.value}
+                    suffix={stat.suffix}
+                    label={stat.label}
+                    icon={stat.icon}
+                    delay={0.8 + index * 0.2}
+                  />
+                );
+              })}
             </motion.div>
           </motion.div>
 
@@ -294,32 +328,37 @@ const VirtualTour = () => {
                   description:
                     "Advanced radiology and laboratory services for accurate diagnosis",
                 },
-              ].map((feature, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.5 + index * 0.2, duration: 0.6 }}
-                  whileHover={{ x: 10 }}
-                  className="flex items-start gap-3 sm:gap-4 lg:gap-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
-                >
-                  <div
-                    className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow`}
+              ].map((feature, index) => {
+                const key = (feature.title || "")
+                  .toLowerCase()
+                  .replace(/[^a-z0-9]+/g, "-");
+                return (
+                  <motion.div
+                    key={key}
+                    initial={{ opacity: 0, x: 30 }}
+                    whileInView={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.5 + index * 0.2, duration: 0.6 }}
+                    whileHover={{ x: 10 }}
+                    className="flex items-start gap-3 sm:gap-4 lg:gap-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
                   >
-                    <span className="text-white text-lg sm:text-xl lg:text-2xl">
-                      {feature.emoji}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h4 className="font-bold text-gray-900 text-base sm:text-lg lg:text-xl mb-1 sm:mb-2 group-hover:text-emerald-700 transition-colors">
-                      {feature.title}
-                    </h4>
-                    <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                      {feature.description}
-                    </p>
-                  </div>
-                </motion.div>
-              ))}
+                    <div
+                      className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow`}
+                    >
+                      <span className="text-white text-lg sm:text-xl lg:text-2xl">
+                        {feature.emoji}
+                      </span>
+                    </div>
+                    <div className="flex-1">
+                      <h4 className="font-bold text-gray-900 text-base sm:text-lg lg:text-xl mb-1 sm:mb-2 group-hover:text-emerald-700 transition-colors">
+                        {feature.title}
+                      </h4>
+                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
+                  </motion.div>
+                );
+              })}
             </div>
           </motion.div>
         </div>

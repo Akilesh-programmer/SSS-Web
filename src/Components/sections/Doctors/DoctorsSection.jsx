@@ -1,11 +1,13 @@
 import { useRef, useState, useEffect } from "react";
 import PropTypes from "prop-types";
 import { motion } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   FaUserMd,
   FaChevronLeft,
   FaChevronRight,
   FaGraduationCap,
+  FaArrowRight,
 } from "react-icons/fa";
 import { doctors } from "../../../data/doctorsData";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
@@ -13,6 +15,7 @@ import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
 const DoctorsSection = ({ limit }) => {
   const listRef = useRef(null);
   const sectionRef = useRef(null);
+  const navigate = useNavigate();
   // modal state removed — clicking a card no longer opens a popup
   const [isInView, setIsInView] = useState(false);
   const autoplayRef = useRef(null);
@@ -465,6 +468,19 @@ const DoctorsSection = ({ limit }) => {
               );
             })}
           </motion.div>
+
+          {/* See all doctors button (responsive, modern) */}
+          <div className="text-center mt-8 lg:mt-10">
+            <motion.button
+              whileHover={{ scale: 1.03 }}
+              whileTap={{ scale: 0.98 }}
+              onClick={() => navigate("/doctors")}
+              className="inline-flex items-center justify-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300"
+            >
+              See all doctors
+              <FaArrowRight className="ml-1" />
+            </motion.button>
+          </div>
         </motion.div>
       </div>
 

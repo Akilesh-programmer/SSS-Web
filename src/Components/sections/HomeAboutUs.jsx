@@ -78,41 +78,6 @@ const AboutUs = () => {
       className="py-12 lg:py-16 bg-white scroll-mt-32 lg:scroll-mt-40"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        {/* Our Services */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.3 }}
-          className="mb-12 lg:mb-16"
-        >
-          <h3 className="text-2xl lg:text-3xl font-bold text-center text-emerald-900 mb-6 lg:mb-8 px-4">
-            Our Key Services
-          </h3>
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-4 lg:gap-6">
-            {services.map((service, index) => (
-              <motion.div
-                key={index}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-gradient-to-br from-white via-emerald-50 to-teal-50 rounded-xl p-4 lg:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-emerald-200/50 group"
-              >
-                <div className="w-12 h-12 lg:w-14 lg:h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-xl flex items-center justify-center mb-3 lg:mb-4 group-hover:scale-110 transition-transform duration-300 shadow-md">
-                  {React.cloneElement(service.icon, {
-                    className: "text-lg lg:text-2xl text-white",
-                  })}
-                </div>
-                <h4 className="text-lg lg:text-xl font-semibold mb-2 lg:mb-3 text-gray-800 group-hover:text-emerald-700 transition-colors">
-                  {service.title}
-                </h4>
-                <p className="text-gray-600 leading-relaxed text-sm lg:text-base">
-                  {service.description}
-                </p>
-              </motion.div>
-            ))}
-          </div>
-        </motion.div>
-
         {/* Why Choose Us Section */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
