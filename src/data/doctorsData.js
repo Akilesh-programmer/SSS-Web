@@ -165,7 +165,7 @@ export const doctors = [
       "Sr. Consultant Endoscopist, Surgical Gastroenterologist & Laproscopic Surgeon",
     department: [9, 8],
     qualification: "MBBS, MS (Gen Surg), FRCS (Ed), DBB (Surg Gastro), FMAS",
-    image: "",
+    image: "https://github.com/Akilesh-programmer/SSS-Web/blob/dev/src/assets/doctor_photos/33.png",
     isFounder: false,
   },
   {
