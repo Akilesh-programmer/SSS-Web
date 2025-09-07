@@ -16,7 +16,7 @@ const FounderSection = () => {
             {/* Founder Image */}
             <div className="lg:w-1/3 relative">
               <img
-                src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg"
+                src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/Sanjith-SSS-Hospitals.png"
                 alt="Dr. S. Sanjith - Founder"
                 className="w-full h-64 lg:h-full object-cover"
               />
