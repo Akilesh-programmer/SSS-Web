@@ -9,7 +9,7 @@ import {
   FaGraduationCap,
   FaArrowRight,
 } from "react-icons/fa";
-import { doctors } from "../../../data/doctorsData";
+import { doctors } from "../../../data/DoctorDepartmentData";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
 
 const DoctorsSection = ({ limit }) => {
@@ -379,7 +379,7 @@ const DoctorsSection = ({ limit }) => {
                       <motion.div
                         whileHover={{ scale: 1.03 }}
                         transition={{ duration: 0.25 }}
-                        className="relative w-32 h-32 sm:w-36 lg:w-40 mx-auto"
+                        className="relative w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 mx-auto"
                       >
                         {doctor.image ? (
                           <img
