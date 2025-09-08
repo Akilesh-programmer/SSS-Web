@@ -1,16 +1,16 @@
-import React, { useRef, useEffect, useState } from "react";
+import { useRef, useEffect, useState } from "react";
 import PropTypes from "prop-types";
 import {
   FaInstagram,
   FaTwitter,
   FaFacebook,
+  FaYoutube,
+  FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
   FaClock,
   FaAmbulance,
-  FaHeart,
-  FaUserMd,
 } from "react-icons/fa";
 
 // Small Counter component: counts 0 -> end over `duration` ms when visible
@@ -83,11 +83,11 @@ export default function Footer() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
             {/* Hospital Info */}
             <div className="lg:col-span-1">
-              <div className="flex items-center gap-3 mb-6">
+              <div className="flex items-center gap-4 mb-6">
                 <img
-                  src="/src/assets/sss-logo.jpeg"
+                  src="/src/assets/SSS-full-logo.jpg"
                   alt="SSS Hospital Logo"
-                  className="w-12 h-12 lg:w-14 lg:h-14 rounded-full object-cover ring-2 ring-teal-500/20"
+                  className="w-24 h-18 lg:w-28 lg:h-20 rounded-lg object-cover ring-2 ring-teal-500/20 shadow-md"
                 />
                 <div>
                   <h3 className="text-xl lg:text-2xl font-bold text-teal-300">
@@ -110,7 +110,7 @@ export default function Footer() {
                   href="https://www.instagram.com/ssshospitals_"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-teal-600 hover:scale-105 transition-all duration-200 shadow-lg"
+                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-pink-600 hover:scale-105 transition-all duration-200 shadow-lg"
                 >
                   <FaInstagram className="text-lg" />
                 </a>
@@ -118,7 +118,7 @@ export default function Footer() {
                   href="https://x.com/sss_hospitals"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-teal-600 hover:scale-105 transition-all duration-200 shadow-lg"
+                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-blue-500 hover:scale-105 transition-all duration-200 shadow-lg"
                 >
                   <FaTwitter className="text-lg" />
                 </a>
@@ -126,9 +126,25 @@ export default function Footer() {
                   href="https://www.facebook.com/profile.php?id=61553553123476"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-teal-600 hover:scale-105 transition-all duration-200 shadow-lg"
+                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:scale-105 transition-all duration-200 shadow-lg"
                 >
                   <FaFacebook className="text-lg" />
+                </a>
+                <a
+                  href="https://www.youtube.com/@SSS_Hospitals"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-red-600 hover:scale-105 transition-all duration-200 shadow-lg"
+                >
+                  <FaYoutube className="text-lg" />
+                </a>
+                <a
+                  href="https://www.linkedin.com/company/sss-hospitals"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-blue-700 hover:scale-105 transition-all duration-200 shadow-lg"
+                >
+                  <FaLinkedin className="text-lg" />
                 </a>
               </div>
             </div>

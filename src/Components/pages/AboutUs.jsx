@@ -114,60 +114,73 @@ const AboutUs = () => {
             initial="hidden"
             whileInView="visible"
             variants={fadeInUp}
-            className="text-center mb-12"
+            className="text-center mb-16"
           >
             <motion.div
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-6"
+              className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-8"
             >
               <span className="text-emerald-700 font-semibold text-sm">
                 🏥 ABOUT SSS HOSPITAL
               </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
+            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-8">
               Excellence in Healthcare
             </h1>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              SSS Super Speciality Hospital is a modern multi-speciality
-              hospital situated on the Erode–Coimbatore highway in Erode.
-              Established in May 2025, we have grown into a 150-bedded facility
-              with state-of-the-art technology.
-            </p>
-          </motion.div>
-        </div>
-      </section>
 
-      {/* About Hospital Content */}
-      <section className="py-16 lg:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInUp}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              About SSS Super Speciality Hospital
-            </h2>
-            <div className="max-w-4xl mx-auto text-lg text-gray-600 leading-relaxed space-y-4">
-              <p>
+            <div className="max-w-5xl mx-auto space-y-6">
+              <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed font-medium">
                 SSS Super Speciality Hospital is a modern multi-speciality
-                hospital situated on the Erode–Coimbatore highway in Erode. Its
-                prime location makes it easily accessible not only from Erode,
-                but also from Perundurai, Sankagiri, Tiruchengode, Bhavani, and
-                Karur.
+                healthcare facility strategically located on the
+                Erode–Coimbatore highway, making quality healthcare accessible
+                to communities across Erode, Perundurai, Sankagiri,
+                Tiruchengode, Bhavani, and Karur.
               </p>
-              <p>
-                Established in May 2025, SSS began as a multi-speciality
-                hospital with 25 broad and super-speciality consultants. Today,
-                it has grown into a 150-bedded facility, equipped with
-                state-of-the-art technology and supported by highly experienced
-                specialists and paramedical staff — making us the preferred
-                choice for comprehensive healthcare.
-              </p>
+
+              <div className="grid md:grid-cols-2 gap-8 mt-12">
+                <motion.div
+                  initial={{ opacity: 0, x: -30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.4, duration: 0.8 }}
+                  className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
+                    <h3 className="text-xl font-bold text-gray-800">
+                      Our Journey
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    Established in May 2025, we began as a multi-speciality
+                    hospital with 25 broad and super-speciality consultants.
+                    Today, we have evolved into a comprehensive 150-bedded
+                    facility.
+                  </p>
+                </motion.div>
+
+                <motion.div
+                  initial={{ opacity: 0, x: 30 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
+                  className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
+                >
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
+                    <h3 className="text-xl font-bold text-gray-800">
+                      Our Excellence
+                    </h3>
+                  </div>
+                  <p className="text-gray-600 leading-relaxed">
+                    Equipped with state-of-the-art technology and supported by
+                    highly experienced specialists and paramedical staff, we are
+                    the preferred choice for comprehensive healthcare in the
+                    region.
+                  </p>
+                </motion.div>
+              </div>
             </div>
           </motion.div>
         </div>
