@@ -157,7 +157,10 @@ const Navigation = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Specialities", path: "/specialities" },
+    { name: "Services", path: "/services" },
     { name: "Doctors", path: "/doctors" },
+    { name: "Packages", path: "/packages" },
+    { name: "Messages", path: "/messages" },
     { name: "Contact", path: "/contact" },
   ];
 
@@ -176,7 +179,7 @@ const Navigation = () => {
           <div className="flex justify-between items-center h-18 lg:h-20">
             {/* Professional Logo Section */}
             <motion.div
-              className="flex items-center space-x-4 cursor-pointer relative group"
+              className="flex items-center space-x-3 cursor-pointer relative group"
               onClick={() => handleNavigation("/")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
@@ -188,20 +191,21 @@ const Navigation = () => {
                 <img
                   src={sssLogo}
                   alt="SSS Hospitals"
-                  className="h-12 w-12 lg:h-14 lg:w-14 rounded-xl object-cover shadow-md ring-2 ring-white/80"
+                  className="h-12 w-12 lg:h-14 lg:w-14 rounded-lg object-contain bg-white p-1.5 shadow-lg ring-1 ring-emerald-200"
                 />
                 {/* Professional overlay */}
-                <div className="absolute inset-0 rounded-xl bg-gradient-to-br from-white/20 to-transparent pointer-events-none"></div>
+                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-emerald-100/30 to-transparent pointer-events-none"></div>
               </div>
 
               <div className="hidden sm:block relative z-10">
-                <h1 className="text-2xl lg:text-3xl font-bold text-gray-800 tracking-tight">
-                  <span className="text-blue-600">SSS</span>{" "}
-                  <span className="text-gray-700">Hospitals</span>
+                <h1 className="font-bold text-gray-800 tracking-tight leading-none">
+                  <span className="text-lg lg:text-xl text-emerald-600 block">
+                    SSS
+                  </span>
+                  <span className="text-xs lg:text-sm text-gray-600 font-medium">
+                    Hospitals
+                  </span>
                 </h1>
-                <p className="text-sm text-gray-500 font-medium tracking-wide">
-                  Excellence in Healthcare
-                </p>
               </div>
             </motion.div>
 
@@ -277,27 +281,7 @@ const Navigation = () => {
                 </div>
               </motion.button>
 
-              {/* Appointment Button with Enhanced Glassmorphism */}
-              <motion.button
-                onClick={handleAppointmentClick}
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="flex items-center space-x-2 px-4 lg:px-6 py-2.5 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300 text-white relative overflow-hidden"
-                style={appointmentStyle}
-              >
-                {/* Glass overlay */}
-                <div
-                  className="absolute inset-0 rounded-lg"
-                  style={{
-                    background:
-                      "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)",
-                  }}
-                ></div>
-                <div className="relative z-10 flex items-center space-x-2">
-                  <FaCalendarCheck className="text-sm drop-shadow-sm" />
-                  <span className="drop-shadow-sm">Book Appointment</span>
-                </div>
-              </motion.button>
+              {/* Appointment button removed as requested */}
 
               {/* Mobile Menu Toggle with Glassmorphism */}
               <motion.button
