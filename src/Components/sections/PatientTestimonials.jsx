@@ -405,7 +405,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.2 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
             viewport={{ once: true }}
             className="mt-12 flex justify-center items-center space-x-3"
           >
@@ -420,7 +420,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                   initial={{ scale: 0 }}
                   whileInView={{ scale: 1 }}
                   transition={{
-                    delay: 1.4 + i * 0.1,
+                    delay: 0.8 + i * 0.05,
                     type: "spring",
                     stiffness: 400,
                     damping: 15,

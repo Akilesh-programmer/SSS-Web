@@ -141,7 +141,7 @@ const Navigation = () => {
   };
 
   const handleEmergencyClick = () => {
-    window.location.href = "tel:+919876543210";
+    window.location.href = "tel:+91 8925931193";
   };
 
   const handleNavigation = (path) => {

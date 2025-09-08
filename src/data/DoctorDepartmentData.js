@@ -107,7 +107,7 @@ export const doctors = [
     name: "Dr. S. Sanjith",
     specialty: "Dermatology & Cosmetology",
     designation: "Founder & Managing Director, Consultant Dermatologist",
-    department: [1],
+    department: [5],
     qualification: "MD (DERM)",
     image:
       "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/2.png",
@@ -254,7 +254,7 @@ export const doctors = [
     specialty: "Orthopaedics",
     designation: "Consultant Orthopaedic, Hand &  Microsurgeon",
     department: [16],
-    qualification: "",
+    qualification: "MBBS, MS (ORTHO), DNB (ORTHO), MNAMS, MRCS, MCH(Hand & Microsurgery)",
     image:
       "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/9.png",
     isFounder: false,
@@ -375,7 +375,7 @@ export const doctors = [
     specialty: "General Surgeon",
     designation: "Consultant - General Surgeon",
     department: [8],
-    qualification: "",
+    qualification: "MBBS, MS (GEN Surgery), FIAGES, FALS (HERNIA)",
     image:
       "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/25.png",
     isFounder: false,
@@ -420,7 +420,7 @@ export const doctors = [
     specialty: "Plastic Surgeon",
     designation: "Consultant - Plastic Surgeon",
     department: [21],
-    qualification: "",
+    qualification: "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
     image:
       "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/28.png",
     isFounder: false,

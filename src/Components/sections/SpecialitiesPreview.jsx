@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 import { motion } from "framer-motion";
 import { useNavigate } from "react-router-dom";
-import { departments as allDepartments } from "../../data/doctorsData";
+import { departments as allDepartments } from "../../data/DoctorDepartmentData";
 import PropTypes from "prop-types";
 import {
   FaHeartbeat,

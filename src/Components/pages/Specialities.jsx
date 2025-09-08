@@ -1,4 +1,4 @@
-import { departments } from "../../data/doctorsData";
+import { departments } from "../../data/DoctorDepartmentData";
 import {
   FaHeartbeat,
   FaBrain,

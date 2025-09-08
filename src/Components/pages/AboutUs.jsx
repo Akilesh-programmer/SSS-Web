@@ -12,7 +12,6 @@ import {
   FaCoins,
   FaBed,
   FaQuoteLeft,
-  FaGraduationCap,
   FaAmbulance,
 } from "react-icons/fa";
 
@@ -92,7 +91,7 @@ const AboutUs = () => {
       name: "DR P.SELVAKUMAR, MD., PDCC",
       position: "CEO & MEDICAL DIRECTOR",
       image:
-        "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.png",
+        "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.jpeg",
       description:
         "Driving medical excellence and strategic healthcare initiatives.",
     },
@@ -457,9 +456,7 @@ const AboutUs = () => {
                           className="w-full h-full object-cover"
                         />
                       </div>
-                      <div className="absolute -bottom-2 -right-2 w-8 h-8 bg-emerald-500 rounded-full flex items-center justify-center">
-                        <FaGraduationCap className="text-white text-sm" />
-                      </div>
+                      {/* graduation badge removed per request */}
                     </div>
 
                     <div className="text-center sm:text-left flex-1">
