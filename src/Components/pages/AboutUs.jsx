@@ -192,35 +192,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Hospital Stats */}
-      <section className="py-12 bg-gradient-to-r from-gray-50 via-blue-50 to-slate-50 relative">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={staggerContainer}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8"
-          >
-            {stats.map((stat, index) => (
-              <motion.div
-                key={stat.label}
-                variants={fadeInUp}
-                className="text-center bg-white/80 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/50 shadow-sm hover:shadow-md transition-all duration-300"
-              >
-                <stat.icon className="text-4xl lg:text-5xl text-slate-500 mb-4 mx-auto" />
-                <AnimatedCounter
-                  end={stat.number}
-                  suffix={stat.suffix}
-                  className="text-slate-700"
-                />
-                <p className="text-slate-600 text-sm lg:text-base font-medium">
-                  {stat.label}
-                </p>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      
 
       {/* About Hospital Content */}
       <section className="py-16 lg:py-24">
@@ -339,79 +311,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Vision Section */}
-      <section className="py-16 lg:py-24 bg-gradient-to-br from-emerald-50 to-white relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute top-0 left-0 w-full h-full pointer-events-none">
-          <div className="absolute top-20 right-10 w-32 h-32 bg-emerald-200 rounded-full opacity-10 animate-pulse" />
-          <div className="absolute bottom-20 left-10 w-24 h-24 bg-teal-200 rounded-full opacity-15 animate-bounce" />
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInUp}
-            className="text-center mb-12"
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-6"
-            >
-              <span className="text-emerald-700 font-semibold text-sm">
-                🎯 OUR VISION
-              </span>
-            </motion.div>
-
-            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
-              Our Vision in Healthcare Delivery
-            </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Five core principles that drive our commitment to exceptional
-              healthcare
-            </p>
-          </motion.div>
-
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8"
-          >
-            {visionPoints.map((point, index) => (
-              <motion.div
-                key={point.slice(0, 20)}
-                variants={fadeInUp}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-emerald-100 relative overflow-hidden"
-              >
-                {/* Background gradient on hover */}
-                <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-
-                <div className="relative z-10">
-                  <div className="flex items-center gap-4 mb-4">
-                    <div className="flex-shrink-0 w-12 h-12 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
-                      <span className="text-white font-bold text-lg">
-                        {index + 1}
-                      </span>
-                    </div>
-                    <div className="h-1 flex-1 bg-gradient-to-r from-emerald-200 to-teal-200 rounded-full" />
-                  </div>
-
-                  <p className="text-gray-700 leading-relaxed font-medium group-hover:text-gray-800 transition-colors duration-300">
-                    {point}
-                  </p>
-
-                  {/* Bottom accent */}
-                  <div className="mt-6 h-1 w-16 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full opacity-60 group-hover:opacity-100 group-hover:w-24 transition-all duration-500" />
-                </div>
-              </motion.div>
-            ))}
-          </motion.div>
-        </div>
-      </section>
+      
 
       {/* Leadership Section */}
       <section className="py-12 lg:py-16">

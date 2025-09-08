@@ -74,21 +74,21 @@ const Specialities = () => {
   };
 
   return (
-    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-blue-50 to-indigo-50 relative overflow-hidden min-h-screen">
+    <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-emerald-50 to-teal-50 relative overflow-hidden min-h-screen">
       {/* Subtle Professional Background Elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         {/* Gentle floating shapes */}
-        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-blue-300/10 to-purple-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float"></div>
+        <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-emerald-200/8 to-teal-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float"></div>
         <div className="absolute top-40 right-10 w-80 h-80 bg-gradient-to-br from-emerald-300/10 to-teal-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float-delayed"></div>
-        <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-gradient-to-br from-blue-300/8 to-indigo-400/8 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float-slow"></div>
+        <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-gradient-to-br from-emerald-200/10 to-teal-300/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float-slow"></div>
       </div>
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Professional Header Section */}
         <div className="text-center mb-16 lg:mb-20">
           <div className="inline-block mb-6 opacity-0 animate-fadeInUp">
-            <div className="bg-gradient-to-r from-blue-100 to-indigo-100 rounded-full px-6 py-3 border border-blue-200 shadow-sm">
-              <span className="text-blue-700 font-semibold text-sm tracking-wide uppercase">
+            <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-3 border border-emerald-200 shadow-sm">
+              <span className="text-emerald-700 font-semibold text-sm tracking-wide uppercase">
                 Medical Excellence
               </span>
             </div>
@@ -98,11 +98,11 @@ const Specialities = () => {
             className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight opacity-0 animate-fadeInUp"
             style={{ animationDelay: "200ms" }}
           >
-            <span className="bg-gradient-to-r from-blue-600 via-indigo-600 to-blue-700 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent">
               Our Medical
             </span>
             <br />
-            <span className="bg-gradient-to-r from-indigo-600 via-blue-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 bg-clip-text text-transparent">
               Specialities
             </span>
           </h1>
@@ -112,7 +112,7 @@ const Specialities = () => {
             style={{ animationDelay: "400ms" }}
           >
             Comprehensive healthcare services across{" "}
-            <span className="font-semibold text-blue-600">
+            <span className="font-semibold text-emerald-600">
               {hospitalDepartments.length}
             </span>{" "}
             specialized departments, delivering exceptional medical care with
@@ -132,7 +132,7 @@ const Specialities = () => {
                 tabIndex={0}
                 className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-gray-100 cursor-pointer transition-all duration-300 ease-out opacity-0 animate-fadeInUp ${
                   isHovered
-                    ? "shadow-lg -translate-y-1 scale-102 border-blue-200"
+                    ? "shadow-lg -translate-y-1 scale-102 border-emerald-200"
                     : "hover:shadow-md hover:-translate-y-0.5"
                 }`}
                 style={{
@@ -149,7 +149,7 @@ const Specialities = () => {
               >
                 {/* Subtle gradient overlay */}
                 <div
-                  className={`absolute inset-0 bg-gradient-to-br from-blue-500/3 via-indigo-500/2 to-blue-500/3 rounded-2xl transition-opacity duration-300 ${
+                  className={`absolute inset-0 bg-gradient-to-br from-emerald-200/4 via-teal-200/4 to-emerald-200/4 rounded-2xl transition-opacity duration-300 ${
                     isHovered ? "opacity-100" : "opacity-0"
                   }`}
                 ></div>
@@ -163,14 +163,14 @@ const Specialities = () => {
                   >
                     {/* Subtle icon glow */}
                     <div
-                      className={`absolute inset-0 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl blur-lg transition-opacity duration-300 ${
+                      className={`absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl blur-lg transition-opacity duration-300 ${
                         isHovered ? "opacity-20" : "opacity-10"
                       }`}
                     ></div>
 
                     {/* Icon container */}
                     <div
-                      className={`relative inline-flex p-4 rounded-xl bg-gradient-to-br from-blue-500 to-indigo-600 transition-all duration-300 ${
+                      className={`relative inline-flex p-4 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 transition-all duration-300 ${
                         isHovered ? "shadow-lg" : "shadow-md"
                       }`}
                     >
@@ -185,7 +185,7 @@ const Specialities = () => {
                 <div className="relative text-center">
                   <h3
                     className={`text-xl font-bold leading-tight mb-3 transition-colors duration-300 ${
-                      isHovered ? "text-blue-600" : "text-gray-800"
+                      isHovered ? "text-emerald-600" : "text-gray-800"
                     }`}
                   >
                     {department.name}
@@ -193,7 +193,7 @@ const Specialities = () => {
 
                   {/* Simple decorative line */}
                   <div
-                    className={`mx-auto h-0.5 bg-gradient-to-r from-blue-500 to-indigo-600 rounded-full transition-all duration-400 ${
+                    className={`mx-auto h-0.5 bg-gradient-to-r from-emerald-500 to-teal-600 rounded-full transition-all duration-400 ${
                       isHovered ? "w-12" : "w-0"
                     }`}
                   ></div>
@@ -209,7 +209,7 @@ const Specialities = () => {
           style={{ animationDelay: "1000ms" }}
         >
           <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-gray-200">
-            <FaHospital className="text-blue-600 w-5 h-5" />
+            <FaHospital className="text-emerald-600 w-5 h-5" />
             <span className="text-gray-700 font-medium">
               {hospitalDepartments.length} Specialized Departments
             </span>
