@@ -166,6 +166,20 @@ const Navigation = () => {
 
   return (
     <>
+      {/* Mobile overlay moved outside the nav so it blurs the full viewport (including area below the navbar) */}
+      <AnimatePresence>
+        {isMenuOpen && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-40 lg:hidden"
+            style={overlayStyle}
+            onClick={() => setIsMenuOpen(false)}
+          />
+        )}
+      </AnimatePresence>
+
       {/* Professional Hospital Navigation */}
       <motion.nav
         initial={{ y: -100 }}
@@ -308,25 +322,14 @@ const Navigation = () => {
         {/* Enhanced Mobile Menu with Glassmorphism */}
         <AnimatePresence>
           {isMenuOpen && (
-            <>
-              {/* Enhanced glassmorphism background overlay */}
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                className="fixed inset-0 z-40 lg:hidden"
-                style={overlayStyle}
-                onClick={() => setIsMenuOpen(false)}
-              />
-
-              <motion.div
-                initial={{ opacity: 0, height: 0 }}
-                animate={{ opacity: 1, height: "auto" }}
-                exit={{ opacity: 0, height: 0 }}
-                className="lg:hidden relative z-50 shadow-2xl overflow-hidden"
-                style={mobileMenuStyle}
-              >
-                <div className="container mx-auto px-4 py-6 space-y-3">
+            <motion.div
+              initial={{ opacity: 0, height: 0 }}
+              animate={{ opacity: 1, height: "auto" }}
+              exit={{ opacity: 0, height: 0 }}
+              className="lg:hidden relative z-50 shadow-2xl overflow-hidden"
+              style={mobileMenuStyle}
+            >
+              <div className="container mx-auto px-4 py-6 space-y-3">
                   {navItems.map((item, index) => {
                     const isActive = location.pathname === item.path;
                     return (
@@ -378,7 +381,6 @@ const Navigation = () => {
                   {/* Mobile contact info removed per mobile UX requirements (phone/email/Book Appointment) */}
                 </div>
               </motion.div>
-            </>
           )}
         </AnimatePresence>
       </motion.nav>
