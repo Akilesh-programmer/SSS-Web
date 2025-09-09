@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaTimes,
@@ -15,8 +15,11 @@ import {
   FaMicroscope,
 } from "react-icons/fa";
 import DefaultDoctorAvatar from "./DefaultDoctorAvatar";
+import CallModal from "./CallModal";
 
 const DoctorPopup = ({ isOpen, onClose, doctor }) => {
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+
   if (!doctor) return null;
 
   return (
@@ -159,6 +162,7 @@ const DoctorPopup = ({ isOpen, onClose, doctor }) => {
               {/* Contact Actions */}
               <div className="flex gap-4 pt-4">
                 <motion.button
+                  onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="flex-1 bg-gradient-to-r from-emerald-600 to-emerald-700 text-white py-4 px-6 rounded-xl font-semibold flex items-center justify-center gap-3 shadow-lg hover:shadow-xl transition-shadow"
@@ -187,6 +191,16 @@ const DoctorPopup = ({ isOpen, onClose, doctor }) => {
           </motion.div>
         </motion.div>
       )}
+
+      {/* Call Modal */}
+      <CallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+        title="Book Appointment with Dr."
+        primaryNumber="0424 - 2888777"
+        secondaryNumber="+91 7729 888777"
+        whatsappNumber="+91 7729 888777"
+      />
     </AnimatePresence>
   );
 };

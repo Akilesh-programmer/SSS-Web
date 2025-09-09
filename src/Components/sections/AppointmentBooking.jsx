@@ -9,7 +9,7 @@ import {
   FaHospital,
 } from "react-icons/fa";
 import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
-import AppointmentPopup from "../ui/AppointmentPopup";
+import CallModal from "../ui/CallModal";
 
 // Top-level StatItem component (keeps lint happy)
 const StatItem = ({ number, label, icon: Icon, suffix = "" }) => {
@@ -48,7 +48,7 @@ StatItem.propTypes = {
 };
 
 const AppointmentBooking = () => {
-  const [isAppointmentOpen, setIsAppointmentOpen] = useState(false);
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
 
   const stats = [
     { number: 150, label: "Hospital Beds", icon: FaHospital, suffix: "+" },
@@ -150,7 +150,7 @@ const AppointmentBooking = () => {
                 </p>
 
                 <motion.button
-                  onClick={() => setIsAppointmentOpen(true)}
+                  onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg lg:text-xl shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
@@ -181,10 +181,14 @@ const AppointmentBooking = () => {
         </div>
       </section>
 
-      {/* Appointment Popup */}
-      <AppointmentPopup
-        isOpen={isAppointmentOpen}
-        onClose={() => setIsAppointmentOpen(false)}
+      {/* Call Modal */}
+      <CallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+        title="Book Appointment"
+        primaryNumber="0424 - 2888777"
+        secondaryNumber="+91 7729 888777"
+        whatsappNumber="+91 7729 888777"
       />
     </>
   );

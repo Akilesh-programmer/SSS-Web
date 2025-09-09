@@ -14,6 +14,7 @@ import {
   FaYoutube,
   FaLinkedin,
 } from "react-icons/fa";
+import CallModal from "../ui/CallModal";
 
 // Helper animation presets to avoid repeating identical motion props
 const riseIn = (delay = 0, duration = 0.8) => ({
@@ -70,28 +71,12 @@ const Contact = () => {
     },
   ];
 
-  // Modal state for dialing choices
-  const [dialModalOpen, setDialModalOpen] = useState(false);
-  const [dialOptions, setDialOptions] = useState({
-    primary: "",
-    secondary: "",
-  });
-  const [modalTitle, setModalTitle] = useState("Call SSS Hospital");
-
-  const openDialModal = (title, primary, secondary) => {
-    setModalTitle(title || "Call SSS Hospital");
-    setDialOptions({ primary: primary || "", secondary: secondary || "" });
-    setDialModalOpen(true);
-  };
-
-  const closeDialModal = () => {
-    setDialModalOpen(false);
-    setDialOptions({ primary: "", secondary: "" });
-  };
+  // Modal state for call options
+  const [callModalOpen, setCallModalOpen] = useState(false);
 
   const handleInfoClick = (info) => {
     if (info.id === "hospital-lines") {
-      openDialModal("Call SSS Hospital", info.primary, info.secondary);
+      setCallModalOpen(true);
       return;
     }
     if (!info.action) return;
@@ -106,18 +91,7 @@ const Contact = () => {
 
   const handleQuickAction = (action) => {
     if (action.id === "book-appointment") {
-      // open the same modal content as Hospital Lines
-      const hospital = contactInfo.find((c) => c.id === "hospital-lines");
-      if (hospital) {
-        openDialModal(
-          "Call SSS Hospital",
-          hospital.primary,
-          hospital.secondary
-        );
-        return;
-      }
-      // fallback: show appointment number
-      openDialModal("Book Appointment", "+91 63792 76131", "");
+      setCallModalOpen(true);
       return;
     }
     try {
@@ -413,73 +387,15 @@ const Contact = () => {
           </motion.div>
         </motion.section>
 
-        {/* Dial modal for Hospital Lines */}
-        {dialModalOpen && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center px-4 sm:px-6">
-            <button
-              type="button"
-              aria-label="Close dialog"
-              className="absolute inset-0 bg-black/50"
-              onClick={closeDialModal}
-            />
-            <div className="relative bg-white rounded-xl shadow-xl max-w-md w-full p-6">
-              <h3 className="text-lg font-semibold text-slate-800 mb-3">
-                {modalTitle}
-              </h3>
-              <p className="text-sm text-slate-500 mb-4">
-                Select a number to place the call
-              </p>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <a
-                  href={`tel:${dialOptions.primary.replace(/[^0-9+]/g, "")}`}
-                  onClick={closeDialModal}
-                  className="flex items-center gap-3 px-4 py-3 rounded-lg border border-slate-200 hover:shadow-md transition-colors bg-white"
-                >
-                  <span className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
-                    <FaPhone className="text-lg" />
-                  </span>
-                  <div className="flex-1">
-                    <div className="text-sm font-semibold text-slate-800 whitespace-nowrap">
-                      {dialOptions.primary}
-                    </div>
-                    <div className="text-xs text-slate-500">Tap to call</div>
-                  </div>
-                </a>
-
-                {dialOptions.secondary && (
-                  <a
-                    href={`tel:${dialOptions.secondary.replace(
-                      /[^0-9+]/g,
-                      ""
-                    )}`}
-                    onClick={closeDialModal}
-                    className="flex items-center gap-3 px-4 py-3 rounded-lg border border-slate-200 hover:shadow-md transition-colors bg-white"
-                  >
-                    <span className="inline-flex items-center justify-center w-10 h-10 rounded-md bg-emerald-50 text-emerald-600 ring-1 ring-emerald-100">
-                      <FaPhone className="text-lg" />
-                    </span>
-                    <div className="flex-1">
-                      <div className="text-sm font-semibold text-slate-800 whitespace-nowrap">
-                        {dialOptions.secondary}
-                      </div>
-                      <div className="text-xs text-slate-500">Tap to call</div>
-                    </div>
-                  </a>
-                )}
-              </div>
-
-              <div className="mt-4 flex justify-end">
-                <button
-                  onClick={closeDialModal}
-                  className="px-4 py-2 text-sm bg-slate-100 rounded-lg hover:bg-slate-200"
-                >
-                  Close
-                </button>
-              </div>
-            </div>
-          </div>
-        )}
+        {/* Call Modal */}
+        <CallModal
+          isOpen={callModalOpen}
+          onClose={() => setCallModalOpen(false)}
+          title="Contact SSS Hospital"
+          primaryNumber="0424 - 2888777"
+          secondaryNumber="+91 7729 888777"
+          whatsappNumber="+91 7729 888777"
+        />
       </div>
     </div>
   );

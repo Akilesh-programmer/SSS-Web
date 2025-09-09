@@ -12,7 +12,7 @@ import {
 } from "react-icons/fa";
 
 const FloatingChatbot = () => {
-  const [isVisible, setIsVisible] = useState(false);
+  const [isVisible, setIsVisible] = useState(true); // Visible on page load
   const [isChatOpen, setIsChatOpen] = useState(false);
   const [messages, setMessages] = useState([
     {
@@ -32,12 +32,8 @@ const FloatingChatbot = () => {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
-    const handleScroll = () => {
-      setIsVisible(window.scrollY > 300);
-    };
-
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
+    // Keep chatbot visible on page load
+    setIsVisible(true);
   }, []);
 
   // Initialize speech recognition

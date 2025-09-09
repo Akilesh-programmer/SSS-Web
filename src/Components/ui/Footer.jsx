@@ -247,15 +247,17 @@ export default function Footer() {
               <span> Erode - 638 009</span>
             </div>
 
-            <a
-              href="https://maps.google.com/?q=SSS+Hospital+Erode"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-3 py-2 rounded-lg transition-colors text-xs font-medium"
-            >
-              <FaMapMarkerAlt className="text-xs" />
-              Directions
-            </a>
+            <div className="mt-2 flex justify-center lg:justify-start">
+              <a
+                href="https://maps.google.com/?q=SSS+Hospital+Erode"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-3 py-2 rounded-lg transition-colors text-xs font-medium"
+              >
+                <FaMapMarkerAlt className="text-xs" />
+                Directions
+              </a>
+            </div>
           </div>
         </div>
 
