@@ -17,6 +17,7 @@ import Footer from "./Components/ui/Footer";
 import DoctorsPage from "./Components/pages/DoctorsPage";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
 import FloatingChatbot from "./Components/ui/FloatingChatbot";
+import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
 import PageWrapper from "./Components/ui/PageWrapper";
@@ -149,6 +150,7 @@ function App() {
         </Routes>
         <FloatingAppointmentButton />
         <FloatingChatbot />
+        <ScrollToTopButton />
 
         {/* Global Appointment Popup */}
         <AppointmentPopup

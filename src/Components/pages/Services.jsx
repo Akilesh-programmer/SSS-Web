@@ -83,6 +83,11 @@ const Services = () => {
       icon: FaShieldAlt,
       color: "bg-green-500",
     },
+    {
+      name: "Insurance",
+      icon: FaShieldAlt,
+      color: "bg-emerald-600",
+    },
     { name: "24x7 Pharmacy", icon: FaCapsules, color: "bg-yellow-500" },
     { name: "24x7 Clinical Laboratory", icon: FaFlask, color: "bg-violet-500" },
     { name: "Holter Monitoring", icon: FaChartLine, color: "bg-rose-500" },
