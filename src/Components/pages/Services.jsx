@@ -178,14 +178,7 @@ const Services = () => {
                         className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="font-bold text-lg mb-1">
-                          {image.title}
-                        </h3>
-                        <p className="text-sm opacity-90">
-                          Premium medical facility
-                        </p>
-                      </div>
+                      {/* hover text removed per request */}
                     </motion.div>
                   ))}
               </div>
@@ -233,14 +226,7 @@ const Services = () => {
                         className="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                      <div className="absolute bottom-0 left-0 right-0 p-4 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                        <h3 className="font-bold text-lg mb-1">
-                          {image.title}
-                        </h3>
-                        <p className="text-sm opacity-90">
-                          Premium medical facility
-                        </p>
-                      </div>
+                      {/* hover text removed per request */}
                     </motion.div>
                   ))}
               </div>
@@ -292,11 +278,7 @@ const Services = () => {
                             className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <h3 className="font-bold text-sm mb-1">
-                              {serviceImages[imageIndex].title}
-                            </h3>
-                          </div>
+                          {/* hover text removed per request */}
                         </motion.div>
 
                         <div className="space-y-3">
@@ -363,11 +345,7 @@ const Services = () => {
                             className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
                           />
                           <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          <div className="absolute bottom-0 left-0 right-0 p-3 text-white transform translate-y-full group-hover:translate-y-0 transition-transform duration-300">
-                            <h3 className="font-bold text-sm mb-1">
-                              {serviceImages[imageIndex].title}
-                            </h3>
-                          </div>
+                          {/* hover text removed per request */}
                         </motion.div>
                       </>
                     )}
