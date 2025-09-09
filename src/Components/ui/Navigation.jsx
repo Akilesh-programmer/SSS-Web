@@ -375,63 +375,7 @@ const Navigation = () => {
                     );
                   })}
 
-                  {/* Mobile Contact Info with Glassmorphism */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.3 }}
-                    className="mt-6 pt-4 relative"
-                    style={{ borderTop: "1px solid rgba(59,130,246,0.2)" }}
-                  >
-                    <div className="space-y-3">
-                      <div
-                        className="flex items-center space-x-3 text-gray-600 p-2 rounded-lg"
-                        style={contactBoxStyle}
-                      >
-                        <div
-                          className="p-2 rounded-full"
-                          style={contactBadgeStyle}
-                        >
-                          <FaPhone className="text-blue-600 text-sm" />
-                        </div>
-                        <span className="text-sm font-medium">
-                          +91 98765 43210
-                        </span>
-                      </div>
-                      <div
-                        className="flex items-center space-x-3 text-gray-600 p-2 rounded-lg"
-                        style={contactBoxStyle}
-                      >
-                        <div
-                          className="p-2 rounded-full"
-                          style={contactBadgeStyle}
-                        >
-                          <FaEnvelope className="text-blue-600 text-sm" />
-                        </div>
-                        <span className="text-sm font-medium">
-                          info@ssshospital.com
-                        </span>
-                      </div>
-                      <motion.button
-                        onClick={handleAppointmentClick}
-                        whileTap={{ scale: 0.95 }}
-                        className="w-full mt-4 py-3 px-4 rounded-lg font-medium flex items-center justify-center space-x-2 transition-all duration-300 text-white relative overflow-hidden"
-                        style={appointmentStyle}
-                      >
-                        {/* Glass overlay */}
-                        <div
-                          className="absolute inset-0 rounded-lg"
-                          style={{ background: overlayBg }}
-                        ></div>
-                        <div className="relative z-10 flex items-center space-x-2">
-                          <FaUserMd className="drop-shadow-sm" />
-                          <span className="drop-shadow-sm">
-                            Book Appointment
-                          </span>
-                        </div>
-                      </motion.button>
-                    </div>
-                  </motion.div>
+                  {/* Mobile contact info removed per mobile UX requirements (phone/email/Book Appointment) */}
                 </div>
               </motion.div>
             </>
