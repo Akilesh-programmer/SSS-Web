@@ -110,7 +110,7 @@ const Services = () => {
       src: img2,
       title: "Modern Operating Rooms",
     },
-    { src: "/src/assets/services_photos/3.png", title: "Emergency Care Unit" },
+    { src: img3, title: "Emergency Care Unit" },
     {
       src: img4,
       title: "Patient Care Facilities",
