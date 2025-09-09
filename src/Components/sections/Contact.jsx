@@ -265,12 +265,12 @@ const Contact = () => {
                   transition={{ delay: 0.7 + index * 0.1, type: "spring" }}
                   className="text-center"
                 >
-                  <action.icon className="text-2xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-4 mx-auto" />
+                  <action.icon className="text-3xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-4 mx-auto" />
                 </motion.div>
                 <h3 className="text-base sm:text-lg lg:text-xl font-bold text-center mb-1 sm:mb-2">
                   {action.title}
                 </h3>
-                <p className="text-center opacity-90 text-xs sm:text-sm lg:text-base">
+                <p className="text-center opacity-90 text-sm sm:text-sm lg:text-base">
                   {action.subtitle}
                 </p>
               </motion.div>
@@ -322,7 +322,7 @@ const Contact = () => {
                 onClick={() => handleInfoClick(info)}
               >
                 <motion.div
-                  className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 ${
+                  className={`w-14 h-14 sm:w-16 sm:h-16 lg:w-20 lg:h-20 ${
                     info.urgent
                       ? "bg-gradient-to-r from-red-100 to-pink-100"
                       : "bg-gradient-to-r from-emerald-100 to-teal-100"
@@ -336,18 +336,18 @@ const Contact = () => {
                   }}
                 >
                   <info.icon
-                    className={`text-lg sm:text-xl lg:text-2xl ${
+                    className={`text-xl sm:text-2xl lg:text-3xl ${
                       info.urgent ? "text-red-500" : "text-emerald-500"
                     }`}
                   />
                 </motion.div>
-                <h3 className="text-sm sm:text-base lg:text-lg font-bold text-center mb-2 sm:mb-3 text-gray-800">
+                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-center mb-2 sm:mb-3 text-gray-800">
                   {info.title}
                 </h3>
-                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
+                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-sm sm:text-sm lg:text-base">
                   {info.primary}
                 </p>
-                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-xs sm:text-sm lg:text-base">
+                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-sm sm:text-sm lg:text-base">
                   {info.secondary}
                 </p>
               </motion.div>

@@ -330,57 +330,57 @@ const Navigation = () => {
               style={mobileMenuStyle}
             >
               <div className="container mx-auto px-4 py-6 space-y-3">
-                  {navItems.map((item, index) => {
-                    const isActive = location.pathname === item.path;
-                    return (
-                      <motion.div
-                        key={item.name}
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ delay: index * 0.1 }}
+                {navItems.map((item, index) => {
+                  const isActive = location.pathname === item.path;
+                  return (
+                    <motion.div
+                      key={item.name}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ delay: index * 0.1 }}
+                    >
+                      <Link
+                        to={item.path}
+                        onClick={() => setIsMenuOpen(false)}
+                        className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 relative overflow-hidden group ${
+                          isActive
+                            ? "text-blue-600"
+                            : "text-gray-700 hover:text-blue-600"
+                        }`}
+                        style={mobileNavLinkStyle(isActive)}
                       >
-                        <Link
-                          to={item.path}
-                          onClick={() => setIsMenuOpen(false)}
-                          className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 relative overflow-hidden group ${
+                        {/* Glass overlay effect */}
+                        <div
+                          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                          style={{ background: overlayBgStronger }}
+                        ></div>
+
+                        <div
+                          className={`relative z-10 w-3 h-3 rounded-full transition-all duration-300 ${
                             isActive
-                              ? "text-blue-600"
-                              : "text-gray-700 hover:text-blue-600"
+                              ? "scale-125 shadow-md"
+                              : "group-hover:scale-125"
                           }`}
-                          style={mobileNavLinkStyle(isActive)}
-                        >
-                          {/* Glass overlay effect */}
-                          <div
-                            className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                            style={{ background: overlayBgStronger }}
-                          ></div>
+                          style={{
+                            background: isActive
+                              ? "linear-gradient(135deg, rgba(59,130,246,0.9) 0%, rgba(37,99,235,1) 50%, rgba(59,130,246,0.9) 100%)"
+                              : "linear-gradient(135deg, rgba(107,114,128,0.6) 0%, rgba(156,163,175,0.8) 50%, rgba(107,114,128,0.6) 100%)",
+                            boxShadow: isActive
+                              ? "0 2px 8px rgba(59,130,246,0.4)"
+                              : "0 1px 4px rgba(107,114,128,0.2)",
+                          }}
+                        ></div>
+                        <span className="relative z-10 font-semibold">
+                          {item.name}
+                        </span>
+                      </Link>
+                    </motion.div>
+                  );
+                })}
 
-                          <div
-                            className={`relative z-10 w-3 h-3 rounded-full transition-all duration-300 ${
-                              isActive
-                                ? "scale-125 shadow-md"
-                                : "group-hover:scale-125"
-                            }`}
-                            style={{
-                              background: isActive
-                                ? "linear-gradient(135deg, rgba(59,130,246,0.9) 0%, rgba(37,99,235,1) 50%, rgba(59,130,246,0.9) 100%)"
-                                : "linear-gradient(135deg, rgba(107,114,128,0.6) 0%, rgba(156,163,175,0.8) 50%, rgba(107,114,128,0.6) 100%)",
-                              boxShadow: isActive
-                                ? "0 2px 8px rgba(59,130,246,0.4)"
-                                : "0 1px 4px rgba(107,114,128,0.2)",
-                            }}
-                          ></div>
-                          <span className="relative z-10 font-semibold">
-                            {item.name}
-                          </span>
-                        </Link>
-                      </motion.div>
-                    );
-                  })}
-
-                  {/* Mobile contact info removed per mobile UX requirements (phone/email/Book Appointment) */}
-                </div>
-              </motion.div>
+                {/* Mobile contact info removed per mobile UX requirements (phone/email/Book Appointment) */}
+              </div>
+            </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
