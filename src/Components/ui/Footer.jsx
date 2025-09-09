@@ -77,209 +77,196 @@ Counter.propTypes = {
 
 export default function Footer() {
   return (
-    <footer className="bg-gray-50">
-      {/* Main Footer */}
-      <div className="bg-slate-900 text-slate-50 pt-8 lg:pt-12 pb-6 lg:pb-8">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-10">
-            {/* Hospital Info */}
-            <div className="lg:col-span-1">
-              <div className="flex items-center gap-4 mb-6">
+    <footer className="bg-slate-900 text-slate-50">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
+        {/* Main Footer Content */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
+          {/* Hospital Info - Enhanced */}
+          <div className="lg:col-span-4">
+            <div className="flex items-start gap-4 mb-4">
+              <div className="w-30 h-15 rounded-md bg-white p-1 flex items-center justify-center shadow-lg flex-shrink-0">
                 <img
                   src={logoFull}
                   alt="SSS Hospital Logo"
-                  className="w-24 h-18 lg:w-28 lg:h-20 rounded-lg object-cover ring-2 ring-teal-500/20 shadow-md"
+                  className="max-w-full max-h-full object-contain rounded-sm"
                 />
-                <div>
-                  <h3 className="text-xl lg:text-2xl font-bold text-teal-300">
-                    SSS Hospital
-                  </h3>
-                  <p className="text-gray-400 text-sm">
-                    Excellence in Healthcare
-                  </p>
-                </div>
               </div>
-
-              <p className="text-gray-300 leading-relaxed text-sm lg:text-base mb-6">
-                Bringing world-class healthcare to the heart of Erode. Your
-                trusted partner in health with comprehensive medical services
-                available 24/7.
-              </p>
-
-              <div className="flex gap-3">
-                <a
-                  href="https://www.instagram.com/ssshospitals_"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-pink-600 hover:scale-105 transition-all duration-200 shadow-lg"
-                >
-                  <FaInstagram className="text-lg" />
-                </a>
-                <a
-                  href="https://x.com/sss_hospitals"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-blue-500 hover:scale-105 transition-all duration-200 shadow-lg"
-                >
-                  <FaTwitter className="text-lg" />
-                </a>
-                <a
-                  href="https://www.facebook.com/profile.php?id=61553553123476"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-blue-600 hover:scale-105 transition-all duration-200 shadow-lg"
-                >
-                  <FaFacebook className="text-lg" />
-                </a>
-                <a
-                  href="https://www.youtube.com/@SSS_Hospitals"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-red-600 hover:scale-105 transition-all duration-200 shadow-lg"
-                >
-                  <FaYoutube className="text-lg" />
-                </a>
-                <a
-                  href="https://www.linkedin.com/company/sss-hospitals"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-11 h-11 bg-slate-800 rounded-xl flex items-center justify-center hover:bg-blue-700 hover:scale-105 transition-all duration-200 shadow-lg"
-                >
-                  <FaLinkedin className="text-lg" />
-                </a>
+              <div className="flex-1">
+                <h3 className="text-xl lg:text-2xl font-bold text-teal-300 mb-1">
+                  SSS Hospital
+                </h3>
+                <p className="text-gray-400 text-sm font-medium">
+                  Excellence in Healthcare
+                </p>
+                {/* EST. 2020 removed per request */}
               </div>
             </div>
 
-            {/* Contact Information */}
-            <div className="lg:col-span-1">
-              <h4 className="text-lg lg:text-xl font-bold mb-5 text-teal-300 flex items-center gap-2">
-                <FaPhoneAlt className="text-base" />
-                Contact Us
-              </h4>
+            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+              Bringing world-class healthcare to Erode with comprehensive
+              medical services available 24/7.
+            </p>
 
-              <div className="space-y-4">
-                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                  <h5 className="font-semibold text-white mb-2 text-sm uppercase tracking-wide">
-                    Hospital Lines
-                  </h5>
-                  <div className="space-y-2">
-                    <a
-                      href="tel:04242888777"
-                      aria-label="Call 0424 2888777"
-                      className="flex items-center gap-3 px-4 py-3 rounded-md text-teal-300 hover:text-teal-200 transition-colors text-sm lg:text-base font-medium w-full justify-center md:w-auto md:justify-start focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 cursor-pointer"
-                    >
-                      <FaPhoneAlt className="text-teal-300 flex-shrink-0" />
-                      <span>0424 - 2888777</span>
-                    </a>
+            {/* Social Media - Compact */}
+            <div className="flex gap-2">
+              <a
+                href="https://www.instagram.com/ssshospitals_"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors"
+              >
+                <FaInstagram className="text-sm" />
+              </a>
+              <a
+                href="https://x.com/sss_hospitals"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
+              >
+                <FaTwitter className="text-sm" />
+              </a>
+              <a
+                href="https://www.facebook.com/profile.php?id=61553553123476"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
+              >
+                <FaFacebook className="text-sm" />
+              </a>
+              <a
+                href="https://www.youtube.com/@SSS_Hospitals"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors"
+              >
+                <FaYoutube className="text-sm" />
+              </a>
+              <a
+                href="https://www.linkedin.com/company/sss-hospitals"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
+              >
+                <FaLinkedin className="text-sm" />
+              </a>
+            </div>
+          </div>
 
-                    <a
-                      href="tel:+917729888777"
-                      aria-label="Call +91 7729 888777"
-                      className="flex items-center gap-3 px-4 py-3 rounded-md text-teal-300 hover:text-teal-200 transition-colors text-sm lg:text-base font-medium w-full justify-center md:w-auto md:justify-start focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 cursor-pointer"
-                    >
-                      <FaPhoneAlt className="text-teal-300 flex-shrink-0" />
-                      <span>+91 7729 888777</span>
-                    </a>
-                  </div>
-                </div>
+          {/* Contact Information - Streamlined */}
+          <div className="lg:col-span-3">
+            <h4 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
+              <FaPhoneAlt className="text-sm" />
+              Contact
+            </h4>
 
-                <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                  <h5 className="font-semibold text-white mb-2 text-sm uppercase tracking-wide">
-                    Email
-                  </h5>
+            <div className="space-y-3">
+              <div>
+                <p className="text-gray-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                  Hospital Lines
+                </p>
+                <div className="space-y-1">
                   <a
-                    href="mailto:info@ssshospitals.in"
-                    aria-label="Email info@ssshospitals.in"
-                    className="flex items-center gap-3 px-4 py-3 rounded-md text-teal-300 hover:text-teal-200 transition-colors text-sm lg:text-base break-all w-full justify-center md:w-auto md:justify-start focus:outline-none focus:ring-2 focus:ring-teal-300 focus:ring-offset-2 cursor-pointer"
+                    href="tel:04242888777"
+                    className="flex items-center gap-2 text-teal-300 hover:text-teal-200 transition-colors text-sm"
                   >
-                    <FaEnvelope className="text-teal-300 flex-shrink-0" />
-                    <span>info@ssshospitals.in</span>
+                    <FaPhoneAlt className="text-xs" />
+                    0424 - 2888777
+                  </a>
+                  <a
+                    href="tel:+917729888777"
+                    className="flex items-center gap-2 text-teal-300 hover:text-teal-200 transition-colors text-sm"
+                  >
+                    <FaPhoneAlt className="text-xs" />
+                    +91 7729 888777
                   </a>
                 </div>
               </div>
-            </div>
 
-            {/* Emergency & Availability */}
-            <div className="lg:col-span-1">
-              <h4 className="text-lg lg:text-xl font-bold mb-5 text-red-400 flex items-center gap-2">
-                <FaAmbulance className="text-base" />
-                Emergency
-              </h4>
-
-              <div className="space-y-4">
+              <div>
+                <p className="text-gray-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                  Email
+                </p>
                 <a
-                  href="tel:+918925931193"
-                  className="block bg-red-600 rounded-xl p-4 hover:bg-red-700 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 cursor-pointer"
-                  aria-label="Click to call ambulance 89259 31193"
+                  href="mailto:info@ssshospitals.in"
+                  className="flex items-center gap-2 text-teal-300 hover:text-teal-200 transition-colors text-sm"
                 >
-                  <div className="flex items-center gap-3 mb-2">
-                    <FaAmbulance className="text-white text-lg" />
-                    <span className="font-bold text-white text-base">
-                      Click to Call Ambulance
-                    </span>
-                  </div>
-                  <div className="text-white text-lg lg:text-xl font-bold">
-                    89259 31193
-                  </div>
-                  <div className="text-red-100 text-sm">
-                    24/7 Emergency Response
-                  </div>
+                  <FaEnvelope className="text-xs" />
+                  info@ssshospitals.in
                 </a>
+              </div>
 
-                <div className="bg-teal-900/30 rounded-lg p-4 border border-teal-500/20">
-                  <div className="flex items-center gap-2 mb-2">
-                    <FaClock className="text-teal-400" />
-                    <span className="font-semibold text-teal-300 text-sm uppercase tracking-wide">
-                      Availability
-                    </span>
+              <div className="flex items-center gap-2 bg-teal-900/20 rounded-lg p-2">
+                <FaClock className="text-teal-400 text-sm" />
+                <div>
+                  <div className="text-white font-semibold text-sm">
+                    24/7 Available
                   </div>
-                  <div className="text-white font-bold text-base">
-                    24/7 Healthcare Services
-                  </div>
-                  <div className="text-teal-200 text-sm">
+                  <div className="text-teal-200 text-xs">
                     Always here for you
                   </div>
                 </div>
               </div>
             </div>
-
-            {/* Location */}
-            <div className="lg:col-span-1">
-              <h4 className="text-lg lg:text-xl font-bold mb-5 text-teal-300 flex items-center gap-2">
-                <FaMapMarkerAlt className="text-base" />
-                Location
-              </h4>
-
-              <div className="bg-slate-800/50 rounded-lg p-4 border border-slate-700/50">
-                <div className="text-gray-300 text-sm lg:text-base leading-relaxed">
-                  <div className="font-semibold text-white mb-2">Address</div>
-                  167/2C1, Perundurai Road,
-                  <br />
-                  Opp to SBI Bank, URC Nagar,
-                  <br />
-                  Erode - 638 009
-                </div>
-              </div>
-
-              <div className="mt-4 text-center">
-                <a
-                  href="https://maps.google.com/?q=SSS+Hospital+Erode"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-4 py-2 rounded-lg transition-colors text-sm font-medium"
-                >
-                  <FaMapMarkerAlt />
-                  Get Directions
-                </a>
-              </div>
-            </div>
           </div>
 
-          <div className="border-t border-slate-800 mt-6 pt-4">
-            <div className="flex justify-center items-center py-2">
-              <div className="text-slate-400 text-sm text-center">
-                © 2025 SSS Super Speciality Hospital. All rights reserved.
+          {/* Emergency - Prominent */}
+          <div className="lg:col-span-3">
+            <h4 className="text-lg font-bold mb-4 text-red-400 flex items-center gap-2">
+              <FaAmbulance className="text-sm" />
+              Emergency
+            </h4>
+
+            <a
+              href="tel:+918925931193"
+              className="block bg-gradient-to-r from-red-600 to-red-700 rounded-xl p-4 hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+            >
+              <div className="flex items-center gap-3 mb-2">
+                <FaAmbulance className="text-white text-lg" />
+                <span className="font-bold text-white text-sm">
+                  Emergency Call
+                </span>
               </div>
+              <div className="text-white text-lg font-bold">89259 31193</div>
+              <div className="text-red-100 text-xs">24/7 Response Team</div>
+            </a>
+          </div>
+
+          {/* Location - Compact */}
+          <div className="lg:col-span-2">
+            <h4 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
+              <FaMapMarkerAlt className="text-sm" />
+              Location
+            </h4>
+
+            <div className="text-gray-300 text-sm leading-relaxed mb-4">
+              <div className="font-semibold text-white mb-1">Address</div>
+              <span>167/2C1, Perundurai Road, </span>
+              <span className="whitespace-nowrap">
+                Opp to SBI Bank, URC Nagar,
+              </span>
+              <span> Erode - 638 009</span>
+            </div>
+
+            <a
+              href="https://maps.google.com/?q=SSS+Hospital+Erode"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-3 py-2 rounded-lg transition-colors text-xs font-medium"
+            >
+              <FaMapMarkerAlt className="text-xs" />
+              Directions
+            </a>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-slate-800 mt-8 pt-4">
+          <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+            <div className="text-slate-400 text-sm">
+              © 2025 SSS Super Speciality Hospital. All rights reserved.
+            </div>
+            <div className="text-slate-400 text-sm">
+              {/* Footer badges removed per request */}
             </div>
           </div>
         </div>
