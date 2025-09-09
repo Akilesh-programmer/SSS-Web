@@ -125,9 +125,6 @@ const ContactPage = () => {
     <PageWrapper pageKey="contact-page">
       <Navigation />
       <Contact key="contact-content" />
-      <div className="pt-16">
-        <AppointmentBooking key="appointment-booking" />
-      </div>
       <Footer />
     </PageWrapper>
   );
