@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import logoFull from "../../assets/SSS-full-logo.png";
 import PropTypes from "prop-types";
 import {
   FaInstagram,
@@ -85,7 +86,7 @@ export default function Footer() {
             <div className="lg:col-span-1">
               <div className="flex items-center gap-4 mb-6">
                 <img
-                  src="/src/assets/SSS-full-logo.png"
+                  src={logoFull}
                   alt="SSS Hospital Logo"
                   className="w-24 h-18 lg:w-28 lg:h-20 rounded-lg object-cover ring-2 ring-teal-500/20 shadow-md"
                 />
