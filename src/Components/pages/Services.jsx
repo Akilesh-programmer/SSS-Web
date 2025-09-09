@@ -240,125 +240,102 @@ const Services = () => {
             </motion.div>
           </div>
 
-          {/* Mobile Layout: Alternating Columns */}
+          {/* Mobile Layout: Professional Medical Design */}
           <div className="block lg:hidden">
             <motion.div
               initial="hidden"
               animate="visible"
               variants={staggerContainer}
-              className="space-y-8 mb-16"
+              className="space-y-12"
             >
-              {/* Create alternating rows for mobile */}
-              {Array.from({
-                length: Math.ceil(
-                  Math.max(servicesWithIcons.length, serviceImages.length) / 3
-                ),
-              }).map((_, rowIndex) => {
-                const isEvenRow = rowIndex % 2 === 0;
-                const servicesStart = rowIndex * 3;
-                const servicesEnd = servicesStart + 3;
-                const imageIndex = rowIndex % serviceImages.length;
-                const currentServices = servicesWithIcons.slice(
-                  servicesStart,
-                  servicesEnd
-                );
-
-                if (currentServices.length === 0) return null;
-
-                const rowKey =
-                  currentServices[0]?.name ||
-                  serviceImages[imageIndex]?.title ||
-                  `row-${rowIndex}`;
-                return (
-                  <div key={rowKey} className="grid grid-cols-2 gap-4">
-                    {isEvenRow ? (
-                      <>
-                        {/* Even rows: Image left, Services right */}
-                        <motion.div
-                          variants={cardVariant}
-                          whileHover={{ scale: 1.05 }}
-                          className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 group"
-                        >
-                          <img
-                            src={serviceImages[imageIndex].src}
-                            alt={serviceImages[imageIndex].title}
-                            className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          {/* hover text removed per request */}
-                        </motion.div>
-
-                        <div className="space-y-3">
-                          {currentServices.map((service) => {
-                            const IconComponent = service.icon;
-                            return (
-                              <motion.div
-                                key={service.name}
-                                variants={cardVariant}
-                                whileHover={{ y: -3, scale: 1.02 }}
-                                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-3 border border-emerald-100 group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <div
-                                    className={`flex items-center justify-center w-10 h-10 ${service.color} text-white rounded-lg group-hover:scale-110 transition-transform duration-300`}
-                                  >
-                                    <IconComponent className="w-5 h-5" />
-                                  </div>
-                                  <h3 className="text-xs font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight">
-                                    {service.name}
-                                  </h3>
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-                      </>
-                    ) : (
-                      <>
-                        {/* Odd rows: Services left, Image right */}
-                        <div className="space-y-3">
-                          {currentServices.map((service) => {
-                            const IconComponent = service.icon;
-                            return (
-                              <motion.div
-                                key={service.name}
-                                variants={cardVariant}
-                                whileHover={{ y: -3, scale: 1.02 }}
-                                className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 p-3 border border-emerald-100 group"
-                              >
-                                <div className="flex items-center gap-3">
-                                  <div
-                                    className={`flex items-center justify-center w-10 h-10 ${service.color} text-white rounded-lg group-hover:scale-110 transition-transform duration-300`}
-                                  >
-                                    <IconComponent className="w-5 h-5" />
-                                  </div>
-                                  <h3 className="text-xs font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight">
-                                    {service.name}
-                                  </h3>
-                                </div>
-                              </motion.div>
-                            );
-                          })}
-                        </div>
-
-                        <motion.div
-                          variants={cardVariant}
-                          whileHover={{ scale: 1.05 }}
-                          className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-300 group"
-                        >
-                          <img
-                            src={serviceImages[imageIndex].src}
-                            alt={serviceImages[imageIndex].title}
-                            className="w-full h-40 object-cover group-hover:scale-110 transition-transform duration-500"
-                          />
-                          <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                          {/* hover text removed per request */}
-                        </motion.div>
-                      </>
-                    )}
+              {/* Services Section */}
+              <div className="mb-12">
+                <motion.div variants={cardVariant} className="text-center mb-8">
+                  <div className="inline-flex items-center gap-2 bg-emerald-50 px-4 py-2 rounded-full border border-emerald-200 mb-4">
+                    <FaStethoscope className="text-emerald-600 text-sm" />
+                    <span className="text-emerald-700 font-semibold text-sm">
+                      Our Services
+                    </span>
                   </div>
-                );
-              })}
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                    Comprehensive Medical Care
+                  </h2>
+                  <p className="text-gray-600 text-sm leading-relaxed max-w-sm mx-auto">
+                    Advanced healthcare services available 24/7
+                  </p>
+                </motion.div>
+
+                <div className="grid grid-cols-1 gap-4">
+                  {servicesWithIcons.map((service, index) => {
+                    const IconComponent = service.icon;
+                    return (
+                      <motion.div
+                        key={service.name}
+                        variants={cardVariant}
+                        whileHover={{ y: -2, scale: 1.01 }}
+                        className="bg-white rounded-2xl shadow-md hover:shadow-lg transition-all duration-300 p-5 border border-gray-100 group"
+                      >
+                        <div className="flex items-start gap-4">
+                          {/* Fixed-size icon container */}
+                          <div
+                            className={`flex items-center justify-center w-12 h-12 ${service.color} text-white rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 flex-shrink-0`}
+                          >
+                            <IconComponent className="w-6 h-6" />
+                          </div>
+
+                          {/* Service content */}
+                          <div className="flex-1 min-w-0">
+                            <h3 className="text-base font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight">
+                              {service.name}
+                            </h3>
+                          </div>
+                        </div>
+                      </motion.div>
+                    );
+                  })}
+                </div>
+              </div>
+
+              {/* Facilities Gallery Section */}
+              <div className="mb-12">
+                <motion.div variants={cardVariant} className="text-center mb-8">
+                  <div className="inline-flex items-center gap-2 bg-teal-50 px-4 py-2 rounded-full border border-teal-200 mb-4">
+                    <FaShieldAlt className="text-teal-600 text-sm" />
+                    <span className="text-teal-700 font-semibold text-sm">
+                      Our Facilities
+                    </span>
+                  </div>
+                  <h2 className="text-2xl font-bold text-gray-800 mb-2">
+                    State-of-the-Art Infrastructure
+                  </h2>
+                  <p className="text-gray-600 text-sm leading-relaxed max-w-sm mx-auto">
+                    Modern medical equipment and patient-centered facilities
+                  </p>
+                </motion.div>
+
+                <div className="space-y-4">
+                  {serviceImages.map((image, index) => (
+                    <motion.div
+                      key={image.title}
+                      variants={cardVariant}
+                      whileHover={{ scale: 1.02 }}
+                      className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-xl transition-all duration-300 group"
+                    >
+                      <img
+                        src={image.src}
+                        alt={image.title}
+                        className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-500"
+                      />
+                      <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/60 via-transparent to-transparent" />
+
+                      {/* Professional overlay content */}
+                      {/* image overlay text removed per request */}
+                    </motion.div>
+                  ))}
+                </div>
+              </div>
+
+              {/* Emergency CTA removed per request */}
             </motion.div>
           </div>
 
