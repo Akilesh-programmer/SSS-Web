@@ -272,11 +272,12 @@ const Services = () => {
 
                 if (currentServices.length === 0) return null;
 
+                const rowKey =
+                  currentServices[0]?.name ||
+                  serviceImages[imageIndex]?.title ||
+                  `row-${rowIndex}`;
                 return (
-                  <div
-                    key={`mobile-row-${rowIndex}`}
-                    className="grid grid-cols-2 gap-4"
-                  >
+                  <div key={rowKey} className="grid grid-cols-2 gap-4">
                     {isEvenRow ? (
                       <>
                         {/* Even rows: Image left, Services right */}
@@ -376,28 +377,7 @@ const Services = () => {
             </motion.div>
           </div>
 
-          {/* Call-to-Action Section */}
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="text-center bg-gradient-to-r from-emerald-50 to-teal-50 rounded-3xl p-8 lg:p-12 border border-emerald-100"
-          >
-            <h3 className="text-2xl lg:text-3xl font-bold text-gray-800 mb-4">
-              Ready to Experience Excellence in Healthcare?
-            </h3>
-            <p className="text-gray-600 mb-6 max-w-2xl mx-auto">
-              Our comprehensive services and state-of-the-art facilities are
-              designed to provide you with the highest quality medical care.
-            </p>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="bg-gradient-to-r from-emerald-500 to-teal-500 text-white font-semibold px-8 py-3 rounded-xl hover:from-emerald-600 hover:to-teal-600 transition-all duration-300 shadow-lg hover:shadow-xl"
-            >
-              Book Your Appointment
-            </motion.button>
-          </motion.div>
+          {/* Call-to-Action Section removed per request */}
         </div>
       </section>
     </div>
