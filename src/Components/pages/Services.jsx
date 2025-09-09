@@ -21,6 +21,13 @@ import {
   FaTools,
   FaCogs,
 } from "react-icons/fa";
+import img1 from "../../assets/services_photos/1.png";
+import img2 from "../../assets/services_photos/2.png";
+import img3 from "../../assets/services_photos/3.png";
+import img4 from "../../assets/services_photos/4.png";
+import img5 from "../../assets/services_photos/5.png";
+import img6 from "../../assets/services_photos/6.png";
+import img7 from "../../assets/services_photos/7.png";
 
 const Services = () => {
   const fadeInUp = {
@@ -96,21 +103,21 @@ const Services = () => {
 
   const serviceImages = [
     {
-      src: "/src/assets/services_photos/1.png",
+      src: img1,
       title: "Advanced Medical Equipment",
     },
     {
-      src: "/src/assets/services_photos/2.png",
+      src: img2,
       title: "Modern Operating Rooms",
     },
     { src: "/src/assets/services_photos/3.png", title: "Emergency Care Unit" },
     {
-      src: "/src/assets/services_photos/4.png",
+      src: img4,
       title: "Patient Care Facilities",
     },
-    { src: "/src/assets/services_photos/5.png", title: "Diagnostic Services" },
-    { src: "/src/assets/services_photos/6.png", title: "Critical Care Unit" },
-    { src: "/src/assets/services_photos/7.png", title: "Medical Technology" },
+    { src: img5, title: "Diagnostic Services" },
+    { src: img6, title: "Critical Care Unit" },
+    { src: img7, title: "Medical Technology" },
   ];
 
   return (
