@@ -10,10 +10,9 @@ import {
   FaWhatsapp,
   FaFacebook,
   FaInstagram,
-  FaTwitter,
   FaYoutube,
-  FaLinkedin,
 } from "react-icons/fa";
+import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
 
 // Helper animation presets to avoid repeating identical motion props
@@ -66,7 +65,7 @@ const Contact = () => {
       title: "Address",
       primary: "167/2C1, Perundurai Road",
       secondary: "Opp to SBI Bank, URC Nagar, Erode - 638 009",
-      action: "https://maps.google.com/?q=SSS+Hospital+Erode",
+      action: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
       urgent: false,
     },
   ];
@@ -138,7 +137,7 @@ const Contact = () => {
       id: "facebook",
       icon: FaFacebook,
       name: "Facebook",
-      url: "https://www.facebook.com/profile.php?id=61553553123476",
+      url: "https://www.facebook.com/SSS.Superspeciality.Hospital",
       color:
         "bg-gradient-to-r from-blue-100 to-indigo-200 hover:from-blue-200 hover:to-indigo-300 text-blue-600 hover:text-blue-700",
     },
@@ -146,15 +145,15 @@ const Contact = () => {
       id: "instagram",
       icon: FaInstagram,
       name: "Instagram",
-      url: "https://www.instagram.com/ssshospitals_",
+      url: "https://www.instagram.com/sss_superspeciality_hospital",
       color:
         "bg-gradient-to-r from-pink-100 to-purple-200 hover:from-pink-200 hover:to-purple-300 text-pink-600 hover:text-pink-700",
     },
     {
-      id: "twitter",
-      icon: FaTwitter,
-      name: "Twitter",
-      url: "https://x.com/sss_hospitals",
+      id: "x",
+      icon: SiX,
+      name: "X",
+      url: "https://x.com/sss_hospital_ed",
       color:
         "bg-gradient-to-r from-sky-100 to-blue-200 hover:from-sky-200 hover:to-blue-300 text-sky-600 hover:text-sky-700",
     },
@@ -162,17 +161,9 @@ const Contact = () => {
       id: "youtube",
       icon: FaYoutube,
       name: "YouTube",
-      url: "https://www.youtube.com/@SSS_Hospitals",
+      url: "https://www.youtube.com/@SSSHospital-ed",
       color:
         "bg-gradient-to-r from-red-100 to-rose-200 hover:from-red-200 hover:to-rose-300 text-red-600 hover:text-red-700",
-    },
-    {
-      id: "linkedin",
-      icon: FaLinkedin,
-      name: "LinkedIn",
-      url: "https://www.linkedin.com/company/sss-hospitals",
-      color:
-        "bg-gradient-to-r from-blue-100 to-indigo-200 hover:from-blue-200 hover:to-indigo-300 text-blue-700 hover:text-blue-800",
     },
   ];
 

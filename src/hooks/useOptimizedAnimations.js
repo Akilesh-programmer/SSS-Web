@@ -115,6 +115,10 @@ export const useCountAnimation = (endValue, duration = 2000) => {
           };
 
           requestAnimationFrame(animate);
+        } else if (!entry.isIntersecting && hasAnimated) {
+          // Reset when element goes out of view
+          setHasAnimated(false);
+          setCount(0);
         }
       },
       { threshold: 0.3, rootMargin: "0px 0px -50px 0px" }

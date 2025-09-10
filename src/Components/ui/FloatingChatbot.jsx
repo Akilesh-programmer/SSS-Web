@@ -1,14 +1,14 @@
 import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import {
-  FaRobot,
+  FaUserMd,
   FaComments,
   FaPaperPlane,
   FaTimes,
   FaUser,
   FaMicrophone,
   FaStop,
-  FaHospital,
+  FaStethoscope,
 } from "react-icons/fa";
 
 const FloatingChatbot = () => {
@@ -249,7 +249,7 @@ const FloatingChatbot = () => {
                 <div className="flex items-center justify-between">
                   <div className="flex items-center gap-3">
                     <div className="w-10 h-10 sm:w-12 sm:h-12 bg-white/20 rounded-xl flex items-center justify-center backdrop-blur-sm">
-                      <FaRobot className="text-lg sm:text-xl" />
+                      <FaUserMd className="text-lg sm:text-xl" />
                     </div>
                     <div>
                       <h3 className="text-lg sm:text-xl font-semibold">
@@ -299,7 +299,7 @@ const FloatingChatbot = () => {
                         {message.type === "user" ? (
                           <FaUser className="text-sm" />
                         ) : (
-                          <FaRobot className="text-sm" />
+                          <FaStethoscope className="text-sm" />
                         )}
                       </div>
 
@@ -340,7 +340,7 @@ const FloatingChatbot = () => {
                   >
                     <div className="flex items-start gap-3 max-w-[80%]">
                       <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-r from-gray-100 to-gray-200 text-gray-600 flex items-center justify-center">
-                        <FaRobot className="text-sm" />
+                        <FaStethoscope className="text-sm" />
                       </div>
                       <div className="bg-white rounded-2xl px-4 py-3 shadow-sm border border-gray-100">
                         <div className="flex items-center gap-2">

@@ -4,22 +4,18 @@ import {
   FaAmbulance,
   FaHeartbeat,
   FaStethoscope,
-  FaCog,
   FaBaby,
-  FaTint,
-  FaProcedures,
   FaXRay,
-  FaEye,
-  FaBed,
   FaShieldAlt,
   FaCapsules,
-  FaFlask,
-  FaChartLine,
   FaBrain,
-  FaVolumeUp,
   FaLungs,
-  FaTools,
-  FaCogs,
+  FaUserMd,
+  FaHospital,
+  FaMicroscope,
+  FaSyringe,
+  FaHeart,
+  FaFileMedical,
 } from "react-icons/fa";
 import img1 from "../../assets/services_photos/1.png";
 import img2 from "../../assets/services_photos/2.png";
@@ -55,32 +51,36 @@ const Services = () => {
     { name: "24x7 Ambulance", icon: FaAmbulance, color: "bg-red-500" },
     {
       name: "24x7 Emergency & Critical Care Unit",
-      icon: FaHeartbeat,
+      icon: FaHeart,
       color: "bg-emerald-500",
     },
     { name: "24x7 CT Scan", icon: FaXRay, color: "bg-blue-500" },
-    { name: "Advanced AI and 3D Cathlab", icon: FaCog, color: "bg-purple-500" },
+    {
+      name: "Advanced AI and 3D Cathlab",
+      icon: FaHeartbeat,
+      color: "bg-purple-500",
+    },
     {
       name: "Labour Room with VIP Labour Suite",
       icon: FaBaby,
       color: "bg-pink-500",
     },
-    { name: "Dialysis", icon: FaTint, color: "bg-cyan-500" },
+    { name: "Dialysis", icon: FaUserMd, color: "bg-cyan-500" },
     {
       name: "ECG/Echo/Treadmill Testing (TMT)",
-      icon: FaProcedures,
+      icon: FaStethoscope,
       color: "bg-indigo-500",
     },
     { name: "24x7 Digital X-ray", icon: FaXRay, color: "bg-gray-500" },
-    { name: "Endoscopy Services", icon: FaEye, color: "bg-orange-500" },
+    { name: "Endoscopy Services", icon: FaMicroscope, color: "bg-orange-500" },
     {
       name: "Rooms in all Categories Including Suite Rooms",
-      icon: FaBed,
+      icon: FaHospital,
       color: "bg-teal-500",
     },
     {
       name: "Preventive Health Checkup",
-      icon: FaShieldAlt,
+      icon: FaFileMedical,
       color: "bg-green-500",
     },
     {
@@ -89,12 +89,16 @@ const Services = () => {
       color: "bg-emerald-600",
     },
     { name: "24x7 Pharmacy", icon: FaCapsules, color: "bg-yellow-500" },
-    { name: "24x7 Clinical Laboratory", icon: FaFlask, color: "bg-violet-500" },
-    { name: "Holter Monitoring", icon: FaChartLine, color: "bg-rose-500" },
+    {
+      name: "24x7 Clinical Laboratory",
+      icon: FaMicroscope,
+      color: "bg-violet-500",
+    },
+    { name: "Holter Monitoring", icon: FaHeartbeat, color: "bg-rose-500" },
     { name: "EEG", icon: FaBrain, color: "bg-amber-500" },
     {
       name: "24x7 Ultrasound & Colour Doppler",
-      icon: FaVolumeUp,
+      icon: FaStethoscope,
       color: "bg-lime-500",
     },
     {
@@ -102,8 +106,12 @@ const Services = () => {
       icon: FaLungs,
       color: "bg-sky-500",
     },
-    { name: "CSSD", icon: FaTools, color: "bg-stone-500" },
-    { name: "Modular Operating Rooms", icon: FaCogs, color: "bg-emerald-600" },
+    { name: "CSSD", icon: FaFileMedical, color: "bg-stone-500" },
+    {
+      name: "Modular Operating Rooms",
+      icon: FaSyringe,
+      color: "bg-emerald-600",
+    },
   ];
 
   const serviceImages = [
@@ -210,7 +218,15 @@ const Services = () => {
                         <div
                           className={`flex items-center justify-center w-12 h-12 ${service.color} text-white rounded-xl mb-3 mx-auto group-hover:scale-110 transition-transform duration-300`}
                         >
-                          <IconComponent className="w-6 h-6" />
+                          {service.image ? (
+                            <img
+                              src={service.image}
+                              alt={service.name}
+                              className="w-6 h-6 object-contain"
+                            />
+                          ) : (
+                            <IconComponent className="w-6 h-6" />
+                          )}
                         </div>
                         <h3 className="text-sm font-bold text-gray-800 text-center group-hover:text-emerald-600 transition-colors leading-tight">
                           {service.name}
@@ -285,7 +301,15 @@ const Services = () => {
                           <div
                             className={`flex items-center justify-center w-12 h-12 ${service.color} text-white rounded-xl shadow-md group-hover:scale-105 transition-transform duration-300 flex-shrink-0`}
                           >
-                            <IconComponent className="w-6 h-6" />
+                            {service.image ? (
+                              <img
+                                src={service.image}
+                                alt={service.name}
+                                className="w-6 h-6 object-contain"
+                              />
+                            ) : (
+                              <IconComponent className="w-6 h-6" />
+                            )}
                           </div>
 
                           {/* Service content */}

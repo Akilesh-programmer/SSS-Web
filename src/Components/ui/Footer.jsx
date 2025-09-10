@@ -3,7 +3,6 @@ import logoFull from "../../assets/SSS-full-logo.png";
 import PropTypes from "prop-types";
 import {
   FaInstagram,
-  FaTwitter,
   FaFacebook,
   FaYoutube,
   FaLinkedin,
@@ -13,6 +12,7 @@ import {
   FaClock,
   FaAmbulance,
 } from "react-icons/fa";
+import { SiX } from "react-icons/si";
 
 // Small Counter component: counts 0 -> end over `duration` ms when visible
 function Counter({
@@ -31,16 +31,19 @@ function Counter({
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !started) {
           setStarted(true);
-          obs.unobserve(el);
+        } else if (!entry.isIntersecting && started) {
+          // Reset when element goes out of view
+          setStarted(false);
+          setValue(0);
         }
       },
       { threshold: 0.3 }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [started]);
 
   useEffect(() => {
     if (!started) return;
@@ -110,7 +113,7 @@ export default function Footer() {
             {/* Social Media - Compact */}
             <div className="flex gap-2">
               <a
-                href="https://www.instagram.com/ssshospitals_"
+                href="https://www.instagram.com/sss_superspeciality_hospital"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors"
@@ -118,15 +121,15 @@ export default function Footer() {
                 <FaInstagram className="text-sm" />
               </a>
               <a
-                href="https://x.com/sss_hospitals"
+                href="https://x.com/sss_hospital_ed"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
               >
-                <FaTwitter className="text-sm" />
+                <SiX className="text-sm" />
               </a>
               <a
-                href="https://www.facebook.com/profile.php?id=61553553123476"
+                href="https://www.facebook.com/SSS.Superspeciality.Hospital"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
@@ -134,20 +137,12 @@ export default function Footer() {
                 <FaFacebook className="text-sm" />
               </a>
               <a
-                href="https://www.youtube.com/@SSS_Hospitals"
+                href="https://www.youtube.com/@SSSHospital-ed"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors"
               >
                 <FaYoutube className="text-sm" />
-              </a>
-              <a
-                href="https://www.linkedin.com/company/sss-hospitals"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-700 transition-colors"
-              >
-                <FaLinkedin className="text-sm" />
               </a>
             </div>
           </div>
@@ -249,7 +244,7 @@ export default function Footer() {
 
             <div className="mt-2 flex justify-center lg:justify-start">
               <a
-                href="https://maps.google.com/?q=SSS+Hospital+Erode"
+                href="https://maps.app.goo.gl/2xkTddYbxgtg8dec7"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-3 py-2 rounded-lg transition-colors text-xs font-medium"

@@ -9,7 +9,7 @@ import {
   FaMicroscope,
   FaHeartbeat,
   FaStethoscope,
-  FaCoins,
+  FaHandHoldingMedical,
   FaBed,
   FaQuoteLeft,
   FaAmbulance,
@@ -568,10 +568,10 @@ const AboutUs = () => {
                   "Round-the-clock emergency care with quick response times and trained staff",
               },
               {
-                icon: FaCoins,
-                title: "Affordable Prices",
+                icon: FaHandHoldingMedical,
+                title: "Affordable Care",
                 description:
-                  "High-quality care at transparent, competitive pricing for everyone",
+                  "High-quality medical care with transparent, competitive pricing for everyone",
               },
             ].map((feature, index) => (
               <motion.div

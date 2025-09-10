@@ -21,6 +21,8 @@ const DoctorsPage = () => {
   // ...existing code...
   const [searchSuggestions, setSearchSuggestions] = useState([]);
   const [showSuggestions, setShowSuggestions] = useState(false);
+  const [selectedDoctor, setSelectedDoctor] = useState(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
 
   // Debounce search term for performance
   useEffect(() => {
@@ -198,6 +200,18 @@ const DoctorsPage = () => {
     setSelectedDepartments([]);
     setSortBy("default");
     setShowSuggestions(false);
+  }, []);
+
+  // Handle doctor card click
+  const handleDoctorClick = useCallback((doctor) => {
+    setSelectedDoctor(doctor);
+    setIsModalOpen(true);
+  }, []);
+
+  // Close modal
+  const closeModal = useCallback(() => {
+    setIsModalOpen(false);
+    setTimeout(() => setSelectedDoctor(null), 300);
   }, []);
 
   const DefaultDoctorAvatar = ({ name, size = "large" }) => {
@@ -494,11 +508,11 @@ const DoctorsPage = () => {
                     key={doctor.id}
                     variants={cardVariant}
                     initial="hidden"
-                    whileInView="visible"
-                    viewport={{ once: false, amount: 0.2 }}
+                    animate="visible"
                     custom={staggerIndex}
                     whileHover={{ scale: 1.02, y: -5 }}
                     className="bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer p-4 sm:p-6"
+                    onClick={() => handleDoctorClick(doctor)}
                   >
                     {/* Grid View */}
                     <div className="relative text-center mb-4">
@@ -586,7 +600,135 @@ const DoctorsPage = () => {
       </div>
 
       {/* Doctor Detail Modal */}
-      {/* Doctor modal removed - no card popup */}
+      <AnimatePresence>
+        {isModalOpen && selectedDoctor && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={closeModal}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", damping: 25, stiffness: 300 }}
+              className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Modal Header */}
+              <div className="relative bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 p-6 sm:p-8 rounded-t-3xl">
+                <button
+                  onClick={closeModal}
+                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                >
+                  <FaTimes className="text-lg" />
+                </button>
+
+                <div className="flex flex-col sm:flex-row items-center gap-6">
+                  {selectedDoctor.image ? (
+                    <div className="w-24 h-24 sm:w-32 sm:h-32">
+                      <img
+                        src={selectedDoctor.image}
+                        alt={selectedDoctor.name}
+                        className="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-lg"
+                      />
+                    </div>
+                  ) : (
+                    <DefaultDoctorAvatar
+                      name={selectedDoctor.name}
+                      size="large"
+                    />
+                  )}
+
+                  <div className="text-center sm:text-left flex-1">
+                    <div className="flex items-center gap-3 justify-center sm:justify-start mb-2">
+                      <h2 className="text-2xl sm:text-3xl font-bold">
+                        {selectedDoctor.name}
+                      </h2>
+                      {selectedDoctor.isFounder && (
+                        <span className="bg-amber-400 text-amber-900 text-xs px-3 py-1 rounded-full font-bold">
+                          Founder
+                        </span>
+                      )}
+                      {selectedDoctor.designation &&
+                        /ceo/i.test(selectedDoctor.designation) && (
+                          <span className="bg-purple-400 text-purple-900 text-xs px-3 py-1 rounded-full font-bold">
+                            CEO
+                          </span>
+                        )}
+                    </div>
+                    <p className="text-emerald-700 font-semibold text-lg mb-1">
+                      {selectedDoctor.specialty}
+                    </p>
+                    <p className="text-emerald-700/80 text-sm">
+                      {selectedDoctor.designation}
+                    </p>
+                  </div>
+                </div>
+              </div>
+
+              {/* Modal Content */}
+              <div className="p-6 sm:p-8 space-y-6">
+                {/* Qualifications Section */}
+                <div className="bg-gradient-to-r from-emerald-50 to-teal-50 rounded-2xl p-6 border border-emerald-100">
+                  <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
+                      <FaGraduationCap className="text-white text-lg" />
+                    </div>
+                    <h3 className="text-xl font-bold text-gray-800">
+                      Qualifications
+                    </h3>
+                  </div>
+                  <p className="text-gray-700 leading-relaxed">
+                    {selectedDoctor.qualification}
+                  </p>
+                </div>
+
+                {/* Experience & Specialty Section */}
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                  <div className="bg-blue-50 rounded-2xl p-6 border border-blue-100">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-indigo-500 rounded-full flex items-center justify-center">
+                        <FaStethoscope className="text-white text-lg" />
+                      </div>
+                      <h4 className="font-bold text-gray-800">Specialty</h4>
+                    </div>
+                    <p className="text-gray-700 font-semibold">
+                      {selectedDoctor.specialty}
+                    </p>
+                  </div>
+
+                  <div className="bg-purple-50 rounded-2xl p-6 border border-purple-100">
+                    <div className="flex items-center gap-3 mb-3">
+                      <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-pink-500 rounded-full flex items-center justify-center">
+                        <FaUserMd className="text-white text-lg" />
+                      </div>
+                      <h4 className="font-bold text-gray-800">Department</h4>
+                    </div>
+                    <p className="text-gray-700 font-semibold">
+                      {Array.isArray(selectedDoctor.department)
+                        ? selectedDoctor.department
+                            .map(
+                              (deptId) =>
+                                departments.find((d) => d.id === deptId)?.name
+                            )
+                            .filter(Boolean)
+                            .join(", ")
+                        : departments.find(
+                            (d) => d.id === selectedDoctor.department
+                          )?.name || "General Medicine"}
+                    </p>
+                  </div>
+                </div>
+
+                {/* Removed action buttons and hospital info per request */}
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </div>
   );
 };

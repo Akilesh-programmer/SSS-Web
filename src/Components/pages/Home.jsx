@@ -92,16 +92,18 @@ export default function Home() {
     if (!el) return;
     const obs = new IntersectionObserver(
       ([entry]) => {
-        if (entry.isIntersecting) {
+        if (entry.isIntersecting && !countersStarted) {
           setCountersStarted(true);
-          obs.unobserve(el);
+        } else if (!entry.isIntersecting && countersStarted) {
+          // Reset when element goes out of view
+          setCountersStarted(false);
         }
       },
       { threshold: 0.3 }
     );
     obs.observe(el);
     return () => obs.disconnect();
-  }, []);
+  }, [countersStarted]);
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden">
