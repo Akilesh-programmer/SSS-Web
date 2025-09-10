@@ -8,7 +8,7 @@ import {
   FaMicroscope,
   FaAmbulance,
   FaStethoscope,
-  FaCoins,
+  FaHandHoldingMedical,
 } from "react-icons/fa";
 import DoctorsSection from "./Doctors/DoctorsSection";
 import SpecialitiesPreview from "./SpecialitiesPreview";
@@ -46,8 +46,8 @@ const AboutUs = () => {
         "Round-the-clock emergency care with quick response times and trained staff",
     },
     {
-      icon: <FaCoins className="text-3xl text-emerald-600" />,
-      title: "Affordable Prices",
+      icon: <FaHandHoldingMedical className="text-3xl text-emerald-600" />,
+      title: "Affordable Care",
       description:
         "High-quality care at transparent, competitive pricing to make healthcare accessible to everyone",
     },
