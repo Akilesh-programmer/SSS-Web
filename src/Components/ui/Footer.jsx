@@ -262,8 +262,17 @@ export default function Footer() {
             <div className="text-slate-400 text-sm">
               © 2025 SSS Super Speciality Hospital. All rights reserved.
             </div>
-            <div className="text-slate-400 text-sm">
-              {/* Footer badges removed per request */}
+            <div className="text-slate-400 text-sm flex flex-col sm:flex-row items-center gap-2">
+              <span>Website by</span>
+              <a
+                href="https://www.automconsultancy.in/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="text-teal-300 hover:text-teal-200 font-semibold ml-1"
+                aria-label="Autom Consultancy Services website"
+              >
+                Autom Consultancy Services
+              </a>
             </div>
           </div>
         </div>
