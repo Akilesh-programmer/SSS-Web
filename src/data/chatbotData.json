@@ -1,0 +1,233 @@
+{
+  "hospital": {
+    "name": "SSS Super Speciality Hospital",
+    "tagline": "Behind Every Healing Touch, There's a Doctor Who Cares Beyond the Cure.",
+    "description": "Bringing world-class healthcare to the heart of Erode with advanced technology, expert doctors, and compassionate care.",
+    "founded": "May 2025",
+    "location": "167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar, Erode – 638 009",
+    "contact": {
+      "phone": ["0424-2888777", "+91 7729 888777", "+91 89259 31193"],
+      "email": "info@ssshospitals.in",
+      "emergency_helpline": "+91 7729 888777",
+      "website": "https://www.ssshospital.in"
+    },
+    "leadership": {
+      "founder": {
+        "name": "Dr. S. Sanjith",
+        "qualification": "MD (DERM)",
+        "role": "Managing Director & Consultant Dermatologist"
+      },
+      "ceo": {
+        "name": "Dr. P. Selvakumar",
+        "qualification": "MD, PDCC",
+        "role": "CEO & Medical Director, Senior Consultant – Emergency, Critical Care & Anaesthesia"
+      },
+      "chairman": {
+        "name": "S. Saravana Bhavan",
+        "role": "Chairman"
+      }
+    },
+    "facilities": {
+      "beds": 150,
+      "icu_beds": 30,
+      "operating_theatres": 4,
+      "cath_lab": "Advanced AI & 3D Cath Labs",
+      "infrastructure": [
+        "150 bedded super speciality hospital",
+        "30 bedded modern ICU",
+        "4 state-of-the-art operating theatres",
+        "Advanced AI & 3D Cath Labs",
+        "Modern diagnostic center",
+        "Ambulance fleet"
+      ],
+      "specialized_units": {
+        "emergency_unit": 9,
+        "nicu": 7,
+        "surgical_unit": 9,
+        "medical_icu": 18
+      },
+      "ambulance": {
+        "gps_enabled": true,
+        "available_24_7": true,
+        "features": [
+          "GPS-enabled tracking",
+          "Expert paramedic team",
+          "Fully equipped",
+          "Punctual and available 24/7"
+        ]
+      }
+    },
+    "departments": [
+      { "id": 1, "name": "All Specialists", "doctors": [] },
+      { "id": 2, "name": "Accident & Emergency Care", "doctors": [2, 15, 16, 17] },
+      { "id": 3, "name": "Anaesthesiology", "doctors": [2, 15, 17] },
+      { "id": 4, "name": "Cardiology", "doctors": [5, 7] },
+      { "id": 5, "name": "Dermatology & Cosmetology", "doctors": [1] },
+      { "id": 6, "name": "Dental & Oral and Maxillofacial Surgery", "doctors": [19] },
+      { "id": 7, "name": "ENT & Head & Neck", "doctors": [18] },
+      { "id": 8, "name": "General Surgery", "doctors": [6, 25] },
+      { "id": 9, "name": "Gastroenterology", "doctors": [6] },
+      { "id": 10, "name": "Internal Medicine", "doctors": [9, 10] },
+      { "id": 11, "name": "Master Health Checkup", "doctors": [24] },
+      { "id": 12, "name": "Nephrology", "doctors": [11] },
+      { "id": 13, "name": "Neurology", "doctors": [20, 21] },
+      { "id": 14, "name": "Neuro Surgery", "doctors": [21] },
+      { "id": 15, "name": "Obstetrics & Gynaecology", "doctors": [4] },
+      { "id": 16, "name": "Orthopaedics", "doctors": [3, 13, 14] },
+      { "id": 17, "name": "Ophthalmology", "doctors": [22] },
+      { "id": 18, "name": "Paediatrics", "doctors": [8] },
+      { "id": 19, "name": "Pharmacy", "doctors": [] },
+      { "id": 20, "name": "Physiotherapy", "doctors": [] },
+      { "id": 21, "name": "Plastic Surgery", "doctors": [28, 29] },
+      { "id": 22, "name": "Pulmonology", "doctors": [26] },
+      { "id": 23, "name": "Psychiatry", "doctors": [27] },
+      { "id": 24, "name": "Radiology", "doctors": [23] },
+      { "id": 25, "name": "Urology", "doctors": [12] },
+      { "id": 26, "name": "Vascular Surgery", "doctors": [] }
+    ],
+    "doctors": [
+      {
+        "id": 1,
+        "name": "Dr. S. Sanjith",
+        "specialty": "Dermatology & Cosmetology",
+        "role": "Founder & Managing Director, Consultant Dermatologist",
+        "qualification": "MD (DERM)",
+        "department": [5],
+        "isFounder": true,
+        "image": "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/2.png"
+      },
+      {
+        "id": 2,
+        "name": "Dr. P. Selvakumar",
+        "specialty": "Emergency, Critical Care & Anaesthesia",
+        "role": "CEO & Medical Director, Senior Consultant",
+        "qualification": "MD, PDCC",
+        "department": [2, 3],
+        "isFounder": false,
+        "image": "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.jpeg"
+      },
+      {
+        "id": 3,
+        "name": "Dr. S. Natarajan",
+        "specialty": "Orthopaedics",
+        "role": "Senior Consultant Orthopedic Surgeon",
+        "qualification": "MBBS, MS (ORTHO), D.ORTHO",
+        "department": [16],
+        "isFounder": false,
+        "image": "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/7.png"
+      },
+      {
+        "id": 4,
+        "name": "Dr. P. Eswaravel",
+        "specialty": "Cardiology",
+        "role": "Consultant Cardiologist",
+        "department": [4],
+        "isFounder": false
+      },
+      {
+        "id": 5,
+        "name": "Dr. S. Premkumari",
+        "specialty": "Obstetrics & Diabetology",
+        "role": "Senior Consultant Obstetrician & Diabetologist",
+        "department": [15],
+        "isFounder": false
+      },
+      {
+        "id": 6,
+        "name": "Dr. P. Ramesh Babu",
+        "specialty": "Cardiology",
+        "role": "Consultant Interventional Cardiologist",
+        "department": [4],
+        "isFounder": false
+      },
+      {
+        "id": 7,
+        "name": "Dr. E. Karthikeyan",
+        "specialty": "Orthopaedics & Hand Surgery",
+        "role": "Consultant Orthopedic, Hand & Micro Surgeon",
+        "department": [16],
+        "isFounder": false
+      },
+      {
+        "id": 8,
+        "name": "Dr. V. S. Arhichandran",
+        "specialty": "Internal Medicine & Cardiology",
+        "role": "Consultant Internal Medicine & Cardiologist",
+        "department": [10, 4],
+        "isFounder": false
+      },
+      {
+        "id": 9,
+        "name": "Dr. S. Shankar",
+        "specialty": "Internal Medicine & Diabetology",
+        "role": "Consultant Internal Medicine & Diabetologist",
+        "department": [10],
+        "isFounder": false
+      },
+      {
+        "id": 10,
+        "name": "Dr. R. Venkata",
+        "specialty": "Internal Medicine & Critical Care",
+        "role": "Consultant Internal Medicine & Senior Critical Care Physician",
+        "department": [10, 2],
+        "isFounder": false
+      },
+      {
+        "id": 11,
+        "name": "Dr. S. Shriram Narayanan",
+        "specialty": "Urology & Renal Transplant",
+        "role": "Consultant Urologist",
+        "department": [25],
+        "isFounder": false
+      }
+    ],
+    "packages": {
+      "family_health_card": {
+        "price": "₹999",
+        "benefits": "20% off on treatments, consultations, and services for 365 days"
+      },
+      "health_packages": [
+        {
+          "name": "Diabetic Health Checkup",
+          "price": "₹900",
+          "tests": ["CBC", "FBS", "PPBS", "HbA1C", "Sr. Creatinine", "Urine Complete", "Diet Counselling"]
+        },
+        {
+          "name": "Basic Master Health Checkup",
+          "price": "₹1,250",
+          "tests": ["CBC", "FBS", "PPBS", "HbA1C", "Lipid Profile", "RFT", "TSH", "Urine Complete", "ECG", "Diet Counselling"]
+        },
+        {
+          "name": "Employment Checkup",
+          "price": "₹1,400",
+          "tests": ["CBC", "RBS", "HbA1C", "Urine Complete", "RFT", "ECG", "Chest X-Ray", "Gen Medicine Opinion", "Diet Counselling"]
+        },
+        {
+          "name": "Advanced Health Checkup",
+          "price": "₹4,250",
+          "tests": ["CBC", "FBS", "PPBS", "HbA1C", "Lipid Profile", "RFT", "LFT", "TSH", "FT3, FT4", "Urine Complete", "Chest X-Ray", "ECG", "ECHO", "USG (Abdomen & Pelvic)", "Gen Medicine Opinion", "Ophthal Opinion", "Diet Counselling"]
+        },
+        {
+          "name": "Comprehensive Health Checkup (Without TMT)",
+          "price": "₹5,300",
+          "tests": ["CBC", "FBS", "PPBS", "HbA1C", "Lipid Profile", "RFT", "LFT", "TSH", "FT3, FT4", "Urine Complete", "PSA", "ECG", "ECHO", "USG (Abdomen & Pelvic)", "Chest X-Ray", "Gen Medicine Opinion", "Ophthal Opinion", "Dental Opinion", "Diet Counselling"]
+        },
+        {
+          "name": "Comprehensive Health Checkup (With TMT)",
+          "price": "₹6,500",
+          "tests": ["CBC", "FBS", "PPBS", "HbA1C", "Lipid Profile", "RFT", "LFT", "TSH", "FT3, FT4", "Urine Complete", "ECG", "ECHO", "USG (Abdomen & Pelvic)", "Chest X-Ray", "TMT", "Gen Medicine Opinion", "Ophthal Opinion", "Dental Opinion", "Diet Counselling"]
+        }
+      ]
+    },
+    "mission_vision": {
+      "mission": "To provide comprehensive, compassionate, and accessible healthcare services that meet the highest standards of medical excellence, while fostering a healing environment that respects the dignity and worth of every individual.",
+      "vision": "To lead healthcare innovation, setting new standards for excellence and patient satisfaction in our community and beyond."
+    },
+    "socials": {
+      "youtube": "https://www.youtube.com/@SSSHospital-ed",
+      "twitter": "https://x.com/sss_hospital_ed",
+      "instagram": "https://www.instagram.com/sss_superspeciality_hospital",
+      "facebook": "https://www.facebook.com/SSS.Superspeciality.Hospital"
+    }
+  }
+}
