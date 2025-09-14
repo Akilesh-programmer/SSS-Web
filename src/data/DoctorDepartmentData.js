@@ -330,7 +330,7 @@ export const doctors = [
     name: "Dr. P. Viggnesh",
     specialty: "Neurologist",
     designation: "Consultant - Brain & Spine Surgeon",
-    department: [],
+    department: [13, 14],
     qualification: "MBBS, MS, MCH, (NEURO SURGERY)",
     image:
       "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/21.png",
