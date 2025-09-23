@@ -47,23 +47,23 @@ const FounderCard = () => {
 
         <motion.div
           variants={slideInFromRight}
-          className="py-8 pl-1 pr-6 sm:py-8 sm:pl-2 sm:pr-8 lg:py-9 lg:pl-3 lg:pr-10 order-2 lg:order-2"
+          className="py-8 px-6 sm:py-8 sm:px-8 lg:py-9 lg:pl-3 lg:pr-10 order-2 lg:order-2 flex flex-col items-center lg:items-start text-center lg:text-left mx-auto lg:mx-0 max-w-lg lg:max-w-none"
         >
-          <div className="flex items-center gap-3 mb-6">
+          <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
             <FaQuoteLeft className="text-3xl text-emerald-600" />
             <span className="text-emerald-600 font-semibold text-lg">
               Our Founder
             </span>
           </div>
 
-          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4">
+          <h2 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 text-center lg:text-left">
             {name}
           </h2>
-          <p className="text-emerald-600 font-semibold text-base sm:text-lg mb-6">
+          <p className="text-emerald-600 font-semibold text-base sm:text-lg mb-6 text-center lg:text-left">
             {title}
           </p>
 
-          <blockquote className="text-gray-700 text-base sm:text-lg leading-7 italic text-justify">
+          <blockquote className="text-gray-700 text-base sm:text-lg leading-7 italic text-justify mx-auto lg:mx-0">
             {quote}
           </blockquote>
         </motion.div>
