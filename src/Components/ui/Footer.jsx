@@ -86,8 +86,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Hospital Info - Enhanced */}
           <div className="lg:col-span-4">
-            <div className="flex items-start gap-4 mb-4">
-              <div className="w-30 h-15 rounded-md bg-white p-1 flex items-center justify-center shadow-lg flex-shrink-0">
+            <div className="flex items-center gap-3 mb-4">
+              <div className="w-30 h-18 rounded-md bg-white p-1 flex items-center justify-center shadow-lg flex-shrink-0">
                 <img
                   src={logoFull}
                   alt="SSS Hospital Logo"
@@ -95,9 +95,12 @@ export default function Footer() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-xl lg:text-2xl font-bold text-teal-300 mb-1">
-                  SSS Hospital
+                <h3 className="text-2xl md:text-3xl font-bold text-teal-300 mb-1">
+                  SSS Super
                 </h3>
+                <h4 className="text-base md:text-lg font-semibold text-teal-200 -mt-1">
+                  Speciality Hospital
+                </h4>
                 <p className="text-gray-400 text-sm font-medium">
                   Excellence in Healthcare
                 </p>

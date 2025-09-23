@@ -190,7 +190,7 @@ const Navigation = () => {
         style={navStyle(isScrolled)}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-18 lg:h-20">
+          <div className="flex justify-between items-center h-14 lg:h-16">
             {/* Professional Logo Section */}
             <motion.div
               className="flex items-center space-x-3 cursor-pointer relative group"
@@ -204,21 +204,31 @@ const Navigation = () => {
               <div className="relative">
                 <img
                   src={sssLogo}
-                  alt="SSS Hospitals"
-                  className="h-12 w-12 lg:h-14 lg:w-14 rounded-lg object-contain bg-white p-1.5 shadow-lg ring-1 ring-emerald-200"
+                  alt="SSS Super Speciality Hospital Logo"
+                  className="h-10 w-10 lg:h-12 lg:w-12 rounded-lg object-contain bg-white p-1 shadow-lg ring-1 ring-emerald-200"
                 />
                 {/* Professional overlay */}
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-emerald-100/30 to-transparent pointer-events-none"></div>
               </div>
 
-              <div className="hidden sm:block relative z-10">
+              <div className="relative z-10 text-center max-w-xs sm:max-w-none">
                 <h1 className="font-bold text-gray-800 tracking-tight leading-none">
-                  <span className="text-lg lg:text-xl text-emerald-600 block">
-                    SSS
+                  {/* Mobile single-line */}
+                  <span className="sm:hidden text-base md:text-lg text-emerald-600 block text-center whitespace-nowrap font-bold">
+                    SSS Super Speciality Hospital
                   </span>
-                  <span className="text-xs lg:text-sm text-gray-600 font-medium">
-                    Hospitals
+
+                  {/* Two-line for sm+ - first line larger, second line slightly smaller to balance length */}
+                  <span className="hidden sm:block">
+                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl text-emerald-600 block text-center leading-none font-bold">
+                      SSS Super
+                    </span>
+                    <span className="text-xs sm:text-sm md:text-base lg:text-lg text-emerald-600 block text-center font-bold -mt-0.5">
+                      Speciality Hospital
+                    </span>
                   </span>
+
+                  <span className="sr-only">SSS Super Speciality Hospital</span>
                 </h1>
               </div>
             </motion.div>
