@@ -530,7 +530,7 @@ const DoctorsPage = () => {
 
                       {/* Special Badges */}
                       {doctor.isFounder && (
-                        <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-gradient-to-r from-amber-400 to-yellow-500 text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg">
+                        <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-bold shadow-md ring-1 ring-amber-200">
                           Founder
                         </div>
                       )}
@@ -648,7 +648,7 @@ const DoctorsPage = () => {
                         {selectedDoctor.name}
                       </h2>
                       {selectedDoctor.isFounder && (
-                        <span className="bg-amber-400 text-amber-900 text-xs px-3 py-1 rounded-full font-bold">
+                        <span className="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full font-bold ring-1 ring-amber-200">
                           Founder
                         </span>
                       )}
