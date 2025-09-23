@@ -33,7 +33,7 @@ const CeoCard = () => {
           variants={slideInFromLeft}
           className="relative flex justify-center items-center order-1 lg:order-2"
         >
-          <div className="relative w-44 h-44 sm:w-64 sm:h-64 md:w-72 md:h-72 lg:w-96 lg:h-96 mx-auto">
+          <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto">
             <div className="absolute inset-0 bg-gradient-to-bl from-emerald-300 to-teal-100 rounded-2xl transform -rotate-3" />
             <div className="absolute inset-0 bg-gradient-to-bl from-white to-emerald-50 rounded-2xl border-2 border-white shadow-md overflow-hidden">
               <img
@@ -47,19 +47,19 @@ const CeoCard = () => {
 
         <motion.div
           variants={slideInFromRight}
-          className="py-4 pl-6 pr-1 sm:py-6 sm:pl-8 sm:pr-2 lg:py-8 lg:pl-10 lg:pr-3 order-2 lg:order-1 flex flex-col h-full justify-center"
+          className="py-6 px-6 pr-1 sm:py-6 sm:px-8 sm:pr-2 lg:py-8 lg:pl-10 lg:pr-3 order-2 lg:order-1 flex flex-col h-full justify-center items-center lg:items-start text-center lg:text-left mx-auto lg:mx-0 max-w-lg lg:max-w-none"
         >
-          <div className="flex items-center gap-3 mb-4">
+          <div className="flex items-center gap-3 mb-4 justify-center lg:justify-start">
             <FaQuoteLeft className="text-3xl text-emerald-600" />
             <span className="text-emerald-600 font-semibold text-lg">
               Our CEO
             </span>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 md:whitespace-nowrap">
+          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 md:whitespace-nowrap text-center lg:text-left">
             {name}
           </h3>
-          <p className="text-emerald-600 font-semibold text-base sm:text-lg mb-4">
+          <p className="text-emerald-600 font-semibold text-base sm:text-lg mb-4 text-center lg:text-left">
             {position}
           </p>
 
