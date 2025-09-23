@@ -9,7 +9,6 @@ import PatientTestimonials from "./Components/sections/PatientTestimonials";
 import Specialities from "./Components/pages/Specialities";
 import Services from "./Components/pages/Services";
 import Packages from "./Components/pages/Packages";
-import Messages from "./Components/pages/Messages";
 import FounderSection from "./Components/sections/FounderSection";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
@@ -96,19 +95,6 @@ const PackagesPage = () => {
   );
 };
 
-// Messages Page - Chairman and Founder messages
-const MessagesPage = () => {
-  return (
-    <PageWrapper pageKey="messages-page">
-      <Navigation />
-      <div className="pt-20">
-        <Messages key="messages" />
-      </div>
-      <Footer />
-    </PageWrapper>
-  );
-};
-
 // Doctors Page - All doctors and medical team
 const DoctorsPageWrapper = () => {
   return (
@@ -145,7 +131,6 @@ function App() {
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
-          <Route path="/messages" element={<MessagesPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <FloatingAppointmentButton />

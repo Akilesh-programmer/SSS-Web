@@ -160,7 +160,6 @@ const Navigation = () => {
     { name: "Services", path: "/services" },
     { name: "Doctors", path: "/doctors" },
     { name: "Packages", path: "/packages" },
-    { name: "Messages", path: "/messages" },
     { name: "Contact", path: "/contact" },
   ];
 

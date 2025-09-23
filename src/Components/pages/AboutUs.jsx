@@ -13,8 +13,11 @@ import {
   FaBed,
   FaQuoteLeft,
   FaAmbulance,
+  FaUsers,
 } from "react-icons/fa";
-import Chairman from "./Chairman";
+import ChairmanCard from "../ui/ChairmanCard";
+import FounderCard from "../ui/FounderCard";
+import CeoCard from "../ui/CeoCard";
 
 // Counter component for stats (accepts className so we can reuse with different color schemes)
 const AnimatedCounter = ({ end, suffix = "", className = "" }) => {
@@ -42,7 +45,6 @@ const AboutUs = () => {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
   };
-
   const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
@@ -94,7 +96,14 @@ const AboutUs = () => {
       image:
         "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.jpeg",
       description:
-        "Driving medical excellence and strategic healthcare initiatives.",
+        "An experienced Anaesthesiologist and ICU leader with a track record of operational excellence across leading tertiary hospitals. Dr. Selvakumar brings strong clinical governance, critical care expertise, and process-driven leadership to SSS Super Speciality Hospital.",
+      timeline: [
+        "1997 – 2000: Apollo Hospital, Greams Road, Chennai",
+        "2000 – 2015: Apollo Hospital, Madurai",
+        "2015 – 2022: Velammal Super Speciality Hospital, Madurai",
+        "2022 – 2024: KMCH Super Speciality Hospital, Erode",
+        "2024 onwards: SSS Super Speciality Hospital, Erode",
+      ],
     },
   ];
 
@@ -270,7 +279,7 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Leadership Section */}
+      {/* Leadership Messages (Chairman + Founder) */}
       <section className="py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
@@ -280,57 +289,30 @@ const AboutUs = () => {
             className="text-center mb-12"
           >
             <div className="flex items-center justify-center gap-3 mb-6">
-              <FaUserMd className="text-3xl text-teal-600" />
+              <FaUsers className="text-3xl text-teal-600" />
               <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                Meet Our Pillars
+                Leadership Messages
               </h2>
             </div>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our experienced leadership team drives excellence in healthcare
-              delivery
+              Discover the vision and commitment that drive SSS Super Speciality
+              Hospital through the words of our Chairman and Founder.
             </p>
           </motion.div>
 
+          {/* Chairman and Founder cards (extracted components) */}
+          <ChairmanCard />
+
+          <FounderCard />
+
+          {/* Render remaining leadership (e.g., CEO) below messages */}
           <motion.div
             initial="hidden"
             whileInView="visible"
             variants={staggerContainer}
-            className="grid lg:grid-cols-2 gap-8 lg:gap-12"
+            className="space-y-8"
           >
-            {leadership.map((leader, index) => (
-              <motion.div
-                key={leader.name}
-                variants={fadeInUp}
-                className="bg-white rounded-2xl shadow-2xl overflow-hidden hover:shadow-3xl transition-shadow duration-500"
-              >
-                <div className="p-8">
-                  <div className="flex flex-col sm:flex-row items-center gap-6">
-                    <div className="relative">
-                      <div className="w-32 h-32 rounded-2xl overflow-hidden border-4 border-emerald-100 shadow-lg">
-                        <img
-                          src={leader.image}
-                          alt={leader.name}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-                      {/* graduation badge removed per request */}
-                    </div>
-
-                    <div className="text-center sm:text-left flex-1">
-                      <h3 className="text-xl font-bold text-gray-900 mb-2">
-                        {leader.name}
-                      </h3>
-                      <p className="text-teal-600 font-semibold mb-3">
-                        {leader.position}
-                      </p>
-                      <p className="text-gray-600 text-sm leading-relaxed">
-                        {leader.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </motion.div>
-            ))}
+            <CeoCard />
           </motion.div>
         </div>
       </section>
