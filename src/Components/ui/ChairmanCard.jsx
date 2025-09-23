@@ -50,7 +50,7 @@ const ChairmanCard = () => {
           <blockquote className="text-gray-700 text-base sm:text-lg leading-7 italic text-justify">
             {quote}
           </blockquote>
-        </motion.div>
+        </motion.div> 
 
         <motion.div
           variants={slideInFromRight}
