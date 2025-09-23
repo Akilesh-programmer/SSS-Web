@@ -101,7 +101,7 @@ const AboutUs = () => {
   return (
     <div className="bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden">
       {/* Hero Section with Chairman */}
-      <section className="py-12 lg:py-16 relative">
+      <section className="pt-6 pb-10 lg:pt-8 lg:pb-12 relative">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse" />
@@ -112,19 +112,17 @@ const AboutUs = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
-            whileInView="visible"
+            animate="visible"
             variants={fadeInUp}
             className="text-center mb-16"
           >
             <motion.div
               initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
+              animate={{ scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-8"
             >
-              <span className="text-emerald-700 font-semibold text-sm">
-                🏥 ABOUT SSS HOSPITAL
-              </span>
+              {/* Tag removed as requested */}
             </motion.div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-8">
@@ -132,18 +130,20 @@ const AboutUs = () => {
             </h1>
 
             <div className="max-w-5xl mx-auto space-y-6">
-              <p className="text-xl lg:text-2xl text-gray-700 leading-relaxed font-medium">
-                SSS Super Speciality Hospital is a modern multi-speciality
-                healthcare facility strategically located on the
-                Erode–Coimbatore highway, making quality healthcare accessible
-                to communities across Erode, Perundurai, Sankagiri,
-                Tiruchengode, Bhavani, and Karur.
+              <p className="text-lg lg:text-xl text-gray-700 leading-relaxed font-medium">
+                SSS Super Speciality Hospital is a leading multi-speciality
+                hospital offering best-in-class medical services. With a
+                paramount focus on patient care, safety, and satisfaction, we
+                are committed to delivering exemplary healthcare services that
+                go beyond conventional standards. Based in Erode, SSS Super
+                Speciality Hospital is an integrated healthcare delivery
+                provider dedicated to excellence in medical care.
               </p>
 
               <div className="grid md:grid-cols-2 gap-8 mt-12">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.4, duration: 0.8 }}
                   className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
                 >
@@ -163,7 +163,7 @@ const AboutUs = () => {
 
                 <motion.div
                   initial={{ opacity: 0, x: 30 }}
-                  whileInView={{ opacity: 1, x: 0 }}
+                  animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
                   className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
                 >
