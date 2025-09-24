@@ -1,4 +1,13 @@
 import { departments } from "../../data/DoctorDepartmentData";
+import { useNavigate } from "react-router-dom";
+
+// Utility function to create URL slug from department name
+const createSlug = (name) => {
+  return name
+    .toLowerCase()
+    .replace(/\s+/g, "-")
+    .replace(/[^\w-]+/g, "");
+};
 import {
   FaHeartbeat,
   FaBrain,
@@ -28,11 +37,17 @@ import { useState } from "react";
 
 const Specialities = () => {
   const [hoveredCard, setHoveredCard] = useState(null);
+  const navigate = useNavigate();
 
   // Filter out "All Specialists" as it's not a specific department
   const hospitalDepartments = departments.filter(
     (dept) => dept.name !== "All Specialists"
   );
+
+  const handleDepartmentClick = (departmentName) => {
+    const slug = createSlug(departmentName);
+    navigate(`/department/${slug}`);
+  };
 
   // Icon mapping for each department - Enhanced with professional medical icons
   const departmentIcons = {
@@ -81,8 +96,8 @@ const Specialities = () => {
 
       <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         {/* Professional Header Section */}
-        <div className="text-center mb-16 lg:mb-20">
-          <div className="inline-block mb-6 opacity-0 animate-fadeInUp">
+        <div className="text-center mb-12 lg:mb-16">
+          <div className="inline-block mb-4 opacity-0 animate-fadeInUp">
             <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-3 border border-emerald-200 shadow-sm">
               <span className="text-emerald-700 font-semibold text-sm tracking-wide uppercase">
                 Medical Excellence
@@ -136,9 +151,11 @@ const Specialities = () => {
                 }}
                 onMouseEnter={() => setHoveredCard(department.id)}
                 onMouseLeave={() => setHoveredCard(null)}
+                onClick={() => handleDepartmentClick(department.name)}
                 onKeyDown={(e) => {
                   if (e.key === "Enter" || e.key === " ") {
-                    setHoveredCard(department.id);
+                    e.preventDefault();
+                    handleDepartmentClick(department.name);
                   }
                 }}
                 onBlur={() => setHoveredCard(null)}
@@ -193,6 +210,33 @@ const Specialities = () => {
                       isHovered ? "w-12" : "w-0"
                     }`}
                   ></div>
+
+                  {/* Professional View Details Button - Visible on mobile, hover-based on desktop */}
+                  <div
+                    className={`mt-3 transition-all duration-300 ${
+                      isHovered
+                        ? "opacity-100 transform translate-y-0"
+                        : "opacity-100 md:opacity-0 transform translate-y-0 md:translate-y-2"
+                    }`}
+                  >
+                    <div className="inline-flex items-center px-4 py-2 bg-gradient-to-r from-emerald-500 to-teal-600 text-white text-sm font-medium rounded-lg shadow-md hover:shadow-lg hover:from-emerald-600 hover:to-teal-700 transition-all duration-300 group-hover:scale-105">
+                      <span>View Details</span>
+                      <svg
+                        className="ml-2 w-4 h-4 transition-transform duration-300 group-hover:translate-x-1"
+                        fill="none"
+                        stroke="currentColor"
+                        viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg"
+                      >
+                        <path
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth={2}
+                          d="M9 5l7 7-7 7"
+                        />
+                      </svg>
+                    </div>
+                  </div>
                 </div>
               </div>
             );
