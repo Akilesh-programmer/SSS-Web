@@ -15,6 +15,12 @@ import {
 import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
 
+// BG_Photos imports for hero section background
+import BG_DSC03391 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG_DSC03392 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG_IMG20250923WA0015 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG_IMG20250923WA0029 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+
 // Helper animation presets to avoid repeating identical motion props
 const riseIn = (delay = 0, duration = 0.8) => ({
   initial: { opacity: 0, y: 30 },
@@ -29,6 +35,19 @@ const fadeIn = (delay = 0, duration = 0.6) => ({
 });
 
 const Contact = () => {
+  // Background images array for hero section
+  const bgPhotos = [
+    BG_DSC03391,
+    BG_DSC03392,
+    BG_IMG20250923WA0015,
+    BG_IMG20250923WA0029,
+  ];
+
+  // Function to get hero background image
+  const getHeroBgImage = () => {
+    // Using index 3 (BG_IMG20250923WA0029) for Contact page
+    return bgPhotos[3];
+  };
   // Contact information copied from Footer (keep in sync with Footer.jsx)
   const contactInfo = [
     {
@@ -168,22 +187,60 @@ const Contact = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50 pt-16 lg:pt-20">
-      {/* Hero Section */}
-      <section className="relative py-16 lg:py-20 bg-gradient-to-r from-emerald-200 to-teal-300 text-emerald-800">
-        <div className="absolute inset-0 bg-gradient-to-r from-white/30 to-emerald-50/50"></div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <motion.div {...riseIn(0, 0.8)}>
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 lg:mb-6 text-emerald-800 px-4">
-              Get in Touch
-            </h1>
-            <p className="text-lg sm:text-xl lg:text-2xl text-emerald-700 max-w-3xl mx-auto px-4">
-              We're here to provide you with exceptional healthcare services.
-              Reach out to us anytime.
-            </p>
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
+      {/* Hero Section with BG_Photos Background */}
+      <motion.section
+        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${getHeroBgImage()})`,
+          }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          {/* Contact Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
+          >
+            <FaPhone className="text-base md:text-xl mr-2 md:mr-3" />
+            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
+              Contact Us
+            </span>
           </motion.div>
+
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
+          >
+            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+              Get in Touch
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl text-white/90 mb-8"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+          >
+            We're here to provide exceptional healthcare services 24/7
+          </motion.p>
         </div>
-      </section>
+      </motion.section>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Quick Actions */}

@@ -19,6 +19,25 @@ import ChairmanCard from "../ui/ChairmanCard";
 import FounderCard from "../ui/FounderCard";
 import CeoCard from "../ui/CeoCard";
 
+// BG Photos for hero background
+import BG_DSC03391 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG_DSC03392 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG_IMG20250923WA0015 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG_IMG20250923WA0029 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+
+// BG Photos array for hero backgrounds
+const bgPhotos = [
+  BG_DSC03391,
+  BG_DSC03392,
+  BG_IMG20250923WA0015,
+  BG_IMG20250923WA0029,
+];
+
+// Function to get hero background image (using second image for AboutUs)
+const getHeroBgImage = () => {
+  return bgPhotos[1]; // Use second image for AboutUs
+};
+
 // Counter component for stats (accepts className so we can reuse with different color schemes)
 const AnimatedCounter = ({ end, suffix = "", className = "" }) => {
   const { count, ref } = useCountAnimation(end, 2000);
@@ -109,13 +128,66 @@ const AboutUs = () => {
 
   return (
     <div className="bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden">
-      {/* Hero Section with Chairman */}
-      <section className="pt-6 pb-10 lg:pt-8 lg:pb-12 relative">
-        {/* Background decorative elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-24 h-24 bg-teal-100 rounded-full opacity-30 animate-bounce" />
-          <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse" />
+      {/* Hero Section with BG_Photos Background */}
+      <motion.section
+        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${getHeroBgImage()})`,
+          }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          {/* Medical Excellence Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
+          >
+            <FaHospital className="text-base md:text-xl mr-2 md:mr-3" />
+            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
+              Excellence in Healthcare
+            </span>
+          </motion.div>
+
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
+          >
+            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+              About SSS Hospital
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl text-white/90 mb-8"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+          >
+            Leading Multi-Specialty Healthcare with Compassionate Care
+          </motion.p>
+        </div>
+      </motion.section>
+
+      {/* About Content Section with enhanced design */}
+      <section className="py-20 bg-gradient-to-br from-white to-emerald-50/30 relative">
+        {/* Subtle background pattern */}
+        <div className="absolute inset-0 opacity-5">
+          <div className="absolute top-10 left-10 w-32 h-32 border border-emerald-300 rounded-full"></div>
+          <div className="absolute bottom-10 right-10 w-24 h-24 border border-teal-300 rounded-full"></div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
@@ -134,12 +206,17 @@ const AboutUs = () => {
               {/* Tag removed as requested */}
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-8">
-              Excellence in Healthcare
-            </h1>
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-8">
+              Our Healthcare Excellence
+            </h2>
 
             <div className="max-w-5xl mx-auto space-y-6">
-              <p className="text-lg lg:text-xl text-gray-700 leading-relaxed font-medium">
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="text-lg lg:text-xl text-gray-700 leading-relaxed font-medium"
+              >
                 SSS Super Speciality Hospital is a leading multi-speciality
                 hospital offering best-in-class medical services. With a
                 paramount focus on patient care, safety, and satisfaction, we
@@ -147,13 +224,13 @@ const AboutUs = () => {
                 go beyond conventional standards. Based in Erode, SSS Super
                 Speciality Hospital is an integrated healthcare delivery
                 provider dedicated to excellence in medical care.
-              </p>
+              </motion.p>
 
               <div className="grid md:grid-cols-2 gap-8 mt-12">
                 <motion.div
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.4, duration: 0.8 }}
+                  transition={{ delay: 0.6, duration: 0.8 }}
                   className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
                 >
                   <div className="flex items-center gap-3 mb-4">
@@ -173,7 +250,7 @@ const AboutUs = () => {
                 <motion.div
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.6, duration: 0.8 }}
+                  transition={{ delay: 0.8, duration: 0.8 }}
                   className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
                 >
                   <div className="flex items-center gap-3 mb-4">
