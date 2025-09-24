@@ -14,6 +14,7 @@ import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
 import Footer from "./Components/ui/Footer";
 import DoctorsPage from "./Components/pages/DoctorsPage";
+import DepartmentPageLayout from "./Components/pages/departments/DepartmentPageLayout";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
 import FloatingChatbot from "./Components/ui/FloatingChatbot";
 import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
@@ -128,6 +129,10 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/specialities" element={<SpecialitiesPage />} />
+          <Route
+            path="/department/:departmentSlug"
+            element={<DepartmentPageLayout />}
+          />
           <Route path="/services" element={<ServicesPage />} />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
