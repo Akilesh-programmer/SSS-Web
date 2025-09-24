@@ -10,7 +10,26 @@ import {
   FaStar,
 } from "react-icons/fa";
 
+// BG_Photos imports for hero section background
+import BG_DSC03391 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG_DSC03392 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG_IMG20250923WA0015 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG_IMG20250923WA0029 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+
 const Packages = () => {
+  // Background images array for hero section
+  const bgPhotos = [
+    BG_DSC03391,
+    BG_DSC03392,
+    BG_IMG20250923WA0015,
+    BG_IMG20250923WA0029,
+  ];
+
+  // Function to get hero background image
+  const getHeroBgImage = () => {
+    // Using index 1 (BG_DSC03392) for Packages page
+    return bgPhotos[1];
+  };
   const fadeInUp = {
     hidden: { opacity: 0, y: 30 },
     visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
@@ -191,6 +210,60 @@ const Packages = () => {
         }
       `}</style>
 
+      {/* Hero Section with BG_Photos Background */}
+      <motion.section
+        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
+        initial={{ opacity: 0, scale: 1.05 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2, ease: "easeOut" }}
+      >
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
+          style={{
+            backgroundImage: `url(${getHeroBgImage()})`,
+          }}
+          initial={{ scale: 1.1 }}
+          animate={{ scale: 1 }}
+          transition={{ duration: 1.5, ease: "easeOut" }}
+        />
+        <div className="absolute inset-0 bg-black/50" />
+
+        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
+          {/* Packages Badge */}
+          <motion.div
+            initial={{ opacity: 0, y: -20, scale: 0.9 }}
+            animate={{ opacity: 1, y: 0, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
+            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
+          >
+            <FaShieldAlt className="text-base md:text-xl mr-2 md:mr-3" />
+            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
+              Health Packages
+            </span>
+          </motion.div>
+
+          <motion.h1
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
+            initial={{ y: 50, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
+          >
+            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
+              Comprehensive Health Packages
+            </span>
+          </motion.h1>
+
+          <motion.p
+            className="text-lg md:text-xl text-white/90 mb-8"
+            initial={{ y: 30, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
+          >
+            Preventive Healthcare Plans Tailored for Your Well-being
+          </motion.p>
+        </div>
+      </motion.section>
+
       {/* Background decorative elements */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
         <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse" />
@@ -199,8 +272,8 @@ const Packages = () => {
         <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-emerald-50 rounded-full opacity-20" />
       </div>
 
-      {/* Header Section */}
-      <section className="py-16 lg:py-20 relative">
+      {/* Packages Content Section */}
+      <section className="py-20 bg-gradient-to-br from-white to-emerald-50/30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
             initial="hidden"
@@ -220,9 +293,9 @@ const Packages = () => {
               </span>
             </motion.div>
 
-            <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
+            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
               Health Checkup Packages
-            </h1>
+            </h2>
             <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
               Comprehensive health screening packages designed to detect early
               signs of health issues and maintain your overall well-being.
