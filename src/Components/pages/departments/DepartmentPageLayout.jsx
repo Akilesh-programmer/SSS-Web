@@ -224,11 +224,12 @@ const InfrastructureGallery = () => {
         </div>
       )}
 
-      {/* Modal for enlarged view */}
+      {/* Modal for enlarged view (blurred backdrop instead of heavy black shade) */}
       {selectedImage && (
         <div
-          className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent"
           onClick={closeModal}
+          style={{ backdropFilter: "blur(8px)" }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -240,19 +241,30 @@ const InfrastructureGallery = () => {
             <img
               src={selectedImage.src}
               alt={selectedImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
             />
+            {/* Fixed top-right close button (below navbar) */}
             <button
               onClick={closeModal}
-              className="absolute top-4 right-4 text-white text-2xl bg-black/50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition-colors"
+              aria-label="Close image"
+              className="fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70"
             >
-              ×
+              <svg
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                className="w-5 h-5"
+                aria-hidden="true"
+              >
+                <line x1="18" y1="6" x2="6" y2="18" />
+                <line x1="6" y1="6" x2="18" y2="18" />
+              </svg>
             </button>
-            <div className="absolute bottom-4 left-4 right-4 text-center">
-              <p className="text-white text-lg font-medium bg-black/50 rounded-lg px-4 py-2">
-                {selectedImage.alt}
-              </p>
-            </div>
+            {/* No caption shown here by design (image-only modal) */}
           </motion.div>
         </div>
       )}
@@ -520,17 +532,36 @@ const DepartmentPageLayout = () => {
                         }}
                         className="group cursor-pointer"
                         onClick={() => {
-                          // Set up modal functionality
+                          // Create a blurred backdrop modal (no heavy black shade)
                           const modal = document.createElement("div");
                           modal.className =
-                            "fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4";
+                            "fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent";
+                          // Apply backdrop blur inline for broader compatibility
+                          modal.style.backdropFilter = "blur(8px)";
                           modal.innerHTML = `
                           <div class="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center">
-                            <img src="${photo.src}" alt="" class="max-w-full max-h-full object-contain rounded-lg" />
-                            <button onclick="this.parentElement.parentElement.remove()" class="absolute top-4 right-4 text-white text-2xl bg-black/50 rounded-full w-10 h-10 flex items-center justify-center hover:bg-black/70 transition-colors">×</button>
+                            <img src="${photo.src}" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
                           </div>
                         `;
+                          // Create a fixed close button positioned under the navbar so it's outside the image
+                          const closeBtn = document.createElement("button");
+                          closeBtn.setAttribute("aria-label", "Close image");
+                          closeBtn.className =
+                            "fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70";
+                          closeBtn.innerHTML = `
+                            <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5' aria-hidden='true'>
+                              <line x1='18' y1='6' x2='6' y2='18' />
+                              <line x1='6' y1='6' x2='18' y2='18' />
+                            </svg>
+                          `;
+                          closeBtn.onclick = () => {
+                            // remove modal and button
+                            modal.remove();
+                            closeBtn.remove();
+                          };
+                          document.body.appendChild(closeBtn);
                           document.body.appendChild(modal);
+                          // Close when clicking on backdrop
                           modal.addEventListener("click", (e) => {
                             if (e.target === modal) modal.remove();
                           });
