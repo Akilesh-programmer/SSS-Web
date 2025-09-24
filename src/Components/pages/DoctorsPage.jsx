@@ -233,13 +233,17 @@ const DoctorsPage = () => {
   };
 
   const cardVariant = {
-    hidden: { opacity: 0, y: 18, scale: 0.995 },
+    hidden: { opacity: 0, y: 30, scale: 0.95 },
     // visible is a function so we can use the motion `custom` prop to stagger within a row
     visible: (i = 0) => ({
       opacity: 1,
       y: 0,
       scale: 1,
-      transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1], delay: i * 0.15 },
+      transition: {
+        duration: 1.2,
+        ease: [0.2, 0.65, 0.3, 0.9],
+        delay: i * 0.25,
+      },
     }),
   };
 
@@ -555,14 +559,15 @@ const DoctorsPage = () => {
                       </p>
 
                       <div className="space-y-1 mb-4">
-                        <div className="flex items-start justify-center text-gray-500 text-sm gap-2">
-                          <FaGraduationCap className="flex-shrink-0 text-emerald-500 text-xl mt-0.5" />
-                          <span className="leading-tight break-words text-sm">
-                            {doctor.qualification.length > 50
-                              ? `${doctor.qualification.substring(0, 50)}...`
-                              : doctor.qualification}
-                          </span>
-                        </div>
+                        {doctor.qualification && (
+                          <div className="bg-gray-50 rounded-lg p-2 mb-3">
+                            <p className="text-gray-700 text-xs font-medium text-center">
+                              {doctor.qualification.length > 50
+                                ? `${doctor.qualification.substring(0, 50)}...`
+                                : doctor.qualification}
+                            </p>
+                          </div>
+                        )}
                       </div>
 
                       {/* Quick Action Button removed per request */}
