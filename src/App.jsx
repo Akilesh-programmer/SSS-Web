@@ -133,7 +133,7 @@ function App() {
             path="/department/:departmentSlug"
             element={<DepartmentPageLayout />}
           />
-          <Route path="/services" element={<ServicesPage />} />
+          <Route path="/infrastructure" element={<ServicesPage />} />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/contact" element={<ContactPage />} />

@@ -52,6 +52,14 @@ import {
   FaBookMedical,
   FaNotesMedical,
   FaProcedures,
+  FaUserNurse,
+  FaMedkit,
+  FaTint,
+  FaRadiation,
+  FaBaby,
+  FaWheelchair,
+  FaBandAid,
+  FaCut,
 } from "react-icons/fa";
 import { useState } from "react";
 
@@ -69,7 +77,7 @@ const Specialities = () => {
     navigate(`/department/${slug}`);
   };
 
-  // Icon mapping for each department - Enhanced with professional medical icons
+  // Icon mapping for each department - Enhanced with more appropriate medical icons
   const departmentIcons = {
     "Accident & Emergency Care": <FaAmbulance className="w-8 h-8" />,
     Anaesthesiology: <FaSyringe className="w-8 h-8" />,
@@ -77,21 +85,21 @@ const Specialities = () => {
     "Dermatology and Cosmetology": <FaHandHoldingMedical className="w-8 h-8" />,
     "Dental & Oral and Maxillofacial Surgery": <FaTooth className="w-8 h-8" />,
     "ENT & Head & Neck": <FaStethoscope className="w-8 h-8" />,
-    "General Surgery": <FaProcedures className="w-8 h-8" />,
+    "General Surgery": <FaCut className="w-8 h-8" />,
     Gastroenterology: <FaMicroscope className="w-8 h-8" />,
     "Internal Medicine": <FaUserMd className="w-8 h-8" />,
     "Master Health Check up": <FaFileMedical className="w-8 h-8" />,
-    Nephrology: <FaBookMedical className="w-8 h-8" />,
+    Nephrology: <FaTint className="w-8 h-8" />,
     Neurology: <FaBrain className="w-8 h-8" />,
     "Neuro Surgery": <FaBrain className="w-8 h-8" />,
-    "Obstetrics & Gynaecology": <FaChild className="w-8 h-8" />,
+    "Obstetrics & Gynaecology": <FaBaby className="w-8 h-8" />,
     Orthopaedics: <FaBone className="w-8 h-8" />,
     Ophthalmology: <FaEye className="w-8 h-8" />,
     Paediatrics: <FaChild className="w-8 h-8" />,
     Physiotherapy: <FaHands className="w-8 h-8" />,
     "Plastic Surgery": <FaClinicMedical className="w-8 h-8" />,
     Pulmonology: <FaLungs className="w-8 h-8" />,
-    Psychiatry: <FaNotesMedical className="w-8 h-8" />,
+    Psychiatry: <FaBrain className="w-8 h-8" />,
     Radiology: <FaXRay className="w-8 h-8" />,
     Urology: <FaFlask className="w-8 h-8" />,
     "Vascular Surgery": <FaHeart className="w-8 h-8" />,
