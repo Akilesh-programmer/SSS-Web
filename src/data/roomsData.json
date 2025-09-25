@@ -1,0 +1,16 @@
+{
+  "rooms": [
+    { "id": 1, "category": "GENERAL WARD" },
+    { "id": 2, "category": "SEMI PRIVATE ROOM" },
+    { "id": 3, "category": "SEMI PRIVATE ROOM (A/C)" },
+    { "id": 4, "category": "PRIVATE ROOM" },
+    { "id": 5, "category": "PRIVATE ROOM (A/C)" },
+    { "id": 6, "category": "DELUXE ROOM" },
+    { "id": 7, "category": "SUITE ROOM (SMALL)" },
+    { "id": 8, "category": "SUITE ROOM (BIG)" },
+    { "id": 9, "category": "EMR OBSERVATION" },
+    { "id": 10, "category": "DAYCARE OBSERVATION" },
+    { "id": 11, "category": "OPHTHAL DAYCARE" },
+    { "id": 12, "category": "POST OP RECOVERY" }
+  ]
+}

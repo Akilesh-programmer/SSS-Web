@@ -8,6 +8,18 @@ import {
   FaShieldAlt,
   FaBaby,
   FaStar,
+  FaTint,
+  FaMicroscope,
+  FaFlask,
+  FaXRay,
+  FaEye,
+  FaBrain,
+  FaLungs,
+  FaFileMedical,
+  FaVials,
+  FaClinicMedical,
+  FaBookMedical,
+  FaCapsules,
 } from "react-icons/fa";
 
 // BG_Photos imports for hero section background
@@ -55,7 +67,7 @@ const Packages = () => {
     {
       name: "Diabetic Health Checkup",
       price: "₹900",
-      icon: FaHeartbeat,
+      icon: FaTint,
       color: "bg-red-500",
       tests: [
         "CBC",
@@ -90,7 +102,7 @@ const Packages = () => {
     {
       name: "Employment Checkup",
       price: "₹1,400",
-      icon: FaUserMd,
+      icon: FaFileMedical,
       color: "bg-blue-500",
       tests: [
         "CBC",
@@ -134,7 +146,7 @@ const Packages = () => {
     {
       name: "Comprehensive Health Checkup (Without TMT)",
       price: "₹5,300",
-      icon: FaBaby,
+      icon: FaBookMedical,
       color: "bg-indigo-500",
       tests: [
         "CBC",
@@ -162,7 +174,7 @@ const Packages = () => {
     {
       name: "Comprehensive Health Checkup (With TMT)",
       price: "₹6,500",
-      icon: FaStar,
+      icon: FaHeartbeat,
       color: "bg-teal-500",
       tests: [
         "CBC",
