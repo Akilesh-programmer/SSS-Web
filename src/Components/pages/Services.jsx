@@ -230,26 +230,7 @@ const Services = () => {
             variants={fadeInUp}
             className="text-center mb-16"
           >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-8"
-            >
-              <FaStethoscope className="inline mr-2 text-emerald-700" />
-              <span className="text-emerald-700 font-semibold text-sm">
-                HEALTHCARE SERVICES
-              </span>
-            </motion.div>
-
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
-              Our Medical Services & Facilities
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Comprehensive healthcare services delivered with cutting-edge
-              technology and compassionate care, available 24/7 for your peace
-              of mind.
-            </p>
+            {/* Duplicate header removed (title is shown in hero) */}
           </motion.div>
 
           {/* Desktop Layout: Images on sides, Services in center */}

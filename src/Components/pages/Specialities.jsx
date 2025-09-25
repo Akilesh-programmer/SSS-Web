@@ -171,41 +171,7 @@ const Specialities = () => {
         </div>
 
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Professional Header Section */}
-          <div className="text-center mb-12 lg:mb-16">
-            <div className="inline-block mb-4 opacity-0 animate-fadeInUp">
-              <div className="bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-3 border border-emerald-200 shadow-sm">
-                <span className="text-emerald-700 font-semibold text-sm tracking-wide uppercase">
-                  Medical Excellence
-                </span>
-              </div>
-            </div>
-
-            <h1
-              className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold mb-8 leading-tight opacity-0 animate-fadeInUp"
-              style={{ animationDelay: "200ms" }}
-            >
-              <span className="bg-gradient-to-r from-emerald-600 via-teal-600 to-emerald-700 bg-clip-text text-transparent">
-                Our Medical
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-teal-600 via-emerald-600 to-teal-700 bg-clip-text text-transparent">
-                Specialities
-              </span>
-            </h1>
-
-            <p
-              className="text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed opacity-0 animate-fadeInUp"
-              style={{ animationDelay: "400ms" }}
-            >
-              Comprehensive healthcare services across{" "}
-              <span className="font-semibold text-emerald-600">
-                {hospitalDepartments.length}
-              </span>{" "}
-              specialized departments, delivering exceptional medical care with
-              cutting-edge technology and compassionate expertise.
-            </p>
-          </div>
+          {/* Duplicate header removed (title is shown in hero) */}
 
           {/* Professional Departments Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
