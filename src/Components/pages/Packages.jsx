@@ -8,6 +8,18 @@ import {
   FaShieldAlt,
   FaBaby,
   FaStar,
+  FaTint,
+  FaMicroscope,
+  FaFlask,
+  FaXRay,
+  FaEye,
+  FaBrain,
+  FaLungs,
+  FaFileMedical,
+  FaVials,
+  FaClinicMedical,
+  FaBookMedical,
+  FaCapsules,
 } from "react-icons/fa";
 
 // BG_Photos imports for hero section background
@@ -55,7 +67,7 @@ const Packages = () => {
     {
       name: "Diabetic Health Checkup",
       price: "₹900",
-      icon: FaHeartbeat,
+      icon: FaTint,
       color: "bg-red-500",
       tests: [
         "CBC",
@@ -90,7 +102,7 @@ const Packages = () => {
     {
       name: "Employment Checkup",
       price: "₹1,400",
-      icon: FaUserMd,
+      icon: FaFileMedical,
       color: "bg-blue-500",
       tests: [
         "CBC",
@@ -134,7 +146,7 @@ const Packages = () => {
     {
       name: "Comprehensive Health Checkup (Without TMT)",
       price: "₹5,300",
-      icon: FaBaby,
+      icon: FaBookMedical,
       color: "bg-indigo-500",
       tests: [
         "CBC",
@@ -162,7 +174,7 @@ const Packages = () => {
     {
       name: "Comprehensive Health Checkup (With TMT)",
       price: "₹6,500",
-      icon: FaStar,
+      icon: FaHeartbeat,
       color: "bg-teal-500",
       tests: [
         "CBC",
@@ -275,32 +287,7 @@ const Packages = () => {
       {/* Packages Content Section */}
       <section className="py-20 bg-gradient-to-br from-white to-emerald-50/30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <motion.div
-            initial="hidden"
-            animate="visible"
-            variants={fadeInUp}
-            className="text-center mb-16"
-          >
-            <motion.div
-              initial={{ scale: 0 }}
-              animate={{ scale: 1 }}
-              transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-8"
-            >
-              <FaStethoscope className="inline mr-2 text-emerald-700" />
-              <span className="text-emerald-700 font-semibold text-sm">
-                HEALTH PACKAGES
-              </span>
-            </motion.div>
-
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
-              Health Checkup Packages
-            </h2>
-            <p className="text-xl text-gray-600 max-w-4xl mx-auto leading-relaxed">
-              Comprehensive health screening packages designed to detect early
-              signs of health issues and maintain your overall well-being.
-            </p>
-          </motion.div>
+          {/* Duplicate header removed (title is shown in hero) */}
 
           {/* Packages Grid */}
           <motion.div
