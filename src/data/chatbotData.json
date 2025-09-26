@@ -94,7 +94,7 @@
         "qualification": "MD (DERM)",
         "department": [5],
         "isFounder": true,
-        "image": "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/2.png"
+  "image": "doctor_photos/2.png"
       },
       {
         "id": 2,
@@ -104,7 +104,7 @@
         "qualification": "MD, PDCC",
         "department": [2, 3],
         "isFounder": false,
-        "image": "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.jpeg"
+  "image": "doctor_photos/3.jpeg"
       },
       {
         "id": 3,
@@ -114,7 +114,7 @@
         "qualification": "MBBS, MS (ORTHO), D.ORTHO",
         "department": [16],
         "isFounder": false,
-        "image": "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/7.png"
+  "image": "doctor_photos/7.png"
       },
       {
         "id": 4,

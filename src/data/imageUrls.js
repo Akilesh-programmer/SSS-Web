@@ -1,23 +1,34 @@
-// Centralized helpers for raw GitHub-hosted asset URLs
-// Adjust OWNER, REPO, and BRANCH if the repository naming/branching changes.
-export const GITHUB_OWNER = "Akilesh-programmer";
-export const GITHUB_REPO = "SSS-Web";
-export const GITHUB_BRANCH = "dev"; // change if deploying from another branch
+// Local asset resolver replacing previous remote GitHub raw URL helper.
+// Usage remains: raw("BG_Photos/DSC03391.JPG") -> resolved build URL via Vite.
 
-// Base raw prefix
-export const RAW_BASE = `https://raw.githubusercontent.com/${GITHUB_OWNER}/${GITHUB_REPO}/${GITHUB_BRANCH}/src/assets`;
+// Eagerly import all files under /src/assets (relative path from this file is ../assets)
+const modules = import.meta.glob("../assets/**", {
+  eager: true,
+  import: "default",
+});
 
-// Helper to build a raw asset URL given a path relative to src/assets
+// Build a normalized lookup: key is path relative to assets root (e.g. 'doctor_photos/2.png')
+const assetMap = {};
+for (const [fullPath, mod] of Object.entries(modules)) {
+  // fullPath examples: '../assets/doctor_photos/2.png'
+  const rel = fullPath.split("/assets/")[1];
+  if (rel) assetMap[rel] = mod;
+}
+
+// Helper: returns local processed URL for given relative path inside src/assets
 export const raw = (relativePath) => {
-  if (!relativePath) return RAW_BASE;
-  // Encode each segment to safely handle spaces and special characters
-  return `${RAW_BASE}/${relativePath
-    .split("/")
-    .map(encodeURIComponent)
-    .join("/")}`;
+  if (!relativePath) return "";
+  const direct = assetMap[relativePath];
+  if (direct) return direct;
+  // Attempt case-insensitive fallback
+  const lowerKey = relativePath.toLowerCase();
+  const ciMatch = Object.entries(assetMap).find(
+    ([k]) => k.toLowerCase() === lowerKey
+  );
+  if (ciMatch) return ciMatch[1];
+  console.warn("[raw] asset not found:", relativePath);
+  return "";
 };
 
-// Example usage (reference only, not imported automatically):
-// const doctor2 = raw("doctor_photos/2.png");
-// const infra1 = raw("Infrastructure_Photos/DSC03356.JPG");
-// const bg1 = raw("BG_Photos/DSC03391.JPG");
+// (Optional) Export map for advanced usages
+export const __ASSET_MAP__ = assetMap;
