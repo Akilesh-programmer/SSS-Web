@@ -1,12 +1,11 @@
 import { useRef, useEffect, useState } from "react";
-import { raw } from "../../data/imageUrls";
-const logoFull = raw("SSS-full-logo.png");
+import logoFullLocal from "../../assets/SSS-full-logo.png";
+const logoFull = logoFullLocal;
 import PropTypes from "prop-types";
 import {
   FaInstagram,
   FaFacebook,
   FaYoutube,
-  FaLinkedin,
   FaMapMarkerAlt,
   FaPhoneAlt,
   FaEnvelope,
