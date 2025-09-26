@@ -22,19 +22,15 @@ import {
   FaCapsules,
 } from "react-icons/fa";
 
-// BG_Photos imports for hero section background
-import BG_DSC03391 from "../../assets/BG_Photos/DSC03391.JPG";
-import BG_DSC03392 from "../../assets/BG_Photos/DSC03392.JPG";
-import BG_IMG20250923WA0015 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG_IMG20250923WA0029 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+import { raw } from "../../data/imageUrls";
 
 const Packages = () => {
   // Background images array for hero section
   const bgPhotos = [
-    BG_DSC03391,
-    BG_DSC03392,
-    BG_IMG20250923WA0015,
-    BG_IMG20250923WA0029,
+    raw("BG_Photos/DSC03391.JPG"),
+    raw("BG_Photos/DSC03392.JPG"),
+    raw("BG_Photos/IMG-20250923-WA0015.jpg"),
+    raw("BG_Photos/IMG-20250923-WA0029.jpg"),
   ];
 
   // Function to get hero background image

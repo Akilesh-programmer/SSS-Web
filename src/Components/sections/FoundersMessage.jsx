@@ -13,8 +13,9 @@ import {
 } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
-import founderImg from "../../assets/Sanjith-SSS-Hospitals.png";
-import sssLogo from "../../assets/sss-logo.jpeg";
+import { raw } from "../../data/imageUrls";
+const founderImg = raw("Sanjith-SSS-Hospitals.png");
+const sssLogo = raw("sss-logo.jpeg");
 
 const milestones = [
   { year: "1998", label: "Hospital Founded" },
@@ -53,6 +54,7 @@ export default function FoundersMessage() {
         src={sssLogo}
         alt="SSS Hospital Logo"
         className="w-16 h-16 rounded-full mb-6 shadow object-cover border-2 border-emerald-500"
+        loading="lazy"
       />
       {/* Professional 2-column grid */}
       <motion.div
@@ -66,9 +68,10 @@ export default function FoundersMessage() {
           {/* Founder’s Portrait */}
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-emerald-200 shadow-lg mb-2">
             <img
-              src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/refs/heads/dev/src/assets/Sanjith-SSS-Hospitals.jpg"
+              src={founderImg}
               alt="Dr. S. Sanjith"
               className="w-full h-full object-cover"
+              loading="lazy"
             />
           </div>
           {/* Name & Title */}
