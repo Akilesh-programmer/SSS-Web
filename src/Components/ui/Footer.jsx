@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import logoFull from "../../assets/SSS-full-logo.png";
+import { raw } from "../../data/imageUrls";
+const logoFull = raw("SSS-full-logo.png");
 import PropTypes from "prop-types";
 import {
   FaInstagram,
