@@ -14,8 +14,9 @@ import {
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
-import hospitalVideo from "../../assets/Hospital Full Tour Video.mp4";
-import hospitalImg from "../../assets/sss-hospital.avif";
+import { raw } from "../../data/imageUrls";
+const hospitalVideo = raw("Hospital Full Tour Video.mp4");
+const hospitalImg = raw("sss-hospital.avif");
 
 // Individual stat component using hook for visibility-triggered counting
 const TourStat = ({ value, suffix = "", label, icon, delay = 0 }) => {

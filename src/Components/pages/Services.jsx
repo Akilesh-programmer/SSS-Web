@@ -1,6 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
-import { useRef } from "react";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -9,9 +8,7 @@ import {
   FaXRay,
   FaShieldAlt,
   FaCapsules,
-  FaBrain,
   FaLungs,
-  FaUserMd,
   FaHospital,
   FaMicroscope,
   FaBed,
@@ -19,63 +16,29 @@ import {
   FaClock,
   FaFlask,
   FaFileMedical,
-  FaCog,
-  FaHands,
-  FaWheelchair,
   FaTint,
-  FaCalendarAlt,
   FaCreditCard,
-  FaVials,
   FaWaveSquare,
-  FaSpa,
-  FaMoon,
-  FaUserTie,
   FaCrown,
   FaHome,
   FaProcedures,
   FaClinicMedical,
   FaHandHoldingMedical,
-  FaTooth,
-  FaBookMedical,
   FaRadiation,
-  FaNotesMedical,
 } from "react-icons/fa";
 
 // BG Photos for hero background
-import BG_DSC03391 from "../../assets/BG_Photos/DSC03391.JPG";
-import BG_DSC03392 from "../../assets/BG_Photos/DSC03392.JPG";
-import BG_IMG20250923WA0015 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG_IMG20250923WA0029 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+// Use centralized raw GitHub URL builder
+import { raw } from "../../data/imageUrls";
 
 // Infrastructure Photos imports (all 21 images)
-import infra1 from "../../assets/Infrastructure_Photos/DSC03356.JPG";
-import infra2 from "../../assets/Infrastructure_Photos/DSC03360.JPG";
-import infra3 from "../../assets/Infrastructure_Photos/DSC03365.JPG";
-import infra4 from "../../assets/Infrastructure_Photos/DSC03386.JPG";
-import infra5 from "../../assets/Infrastructure_Photos/DSC03388.JPG";
-import infra6 from "../../assets/Infrastructure_Photos/DSC03412.JPG";
-import infra7 from "../../assets/Infrastructure_Photos/DSC03426.JPG";
-import infra8 from "../../assets/Infrastructure_Photos/DSC03427.JPG";
-import infra9 from "../../assets/Infrastructure_Photos/DSC03428.JPG";
-import infra10 from "../../assets/Infrastructure_Photos/DSC03434.JPG";
-import infra11 from "../../assets/Infrastructure_Photos/DSC03435.JPG";
-import infra12 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
-import infra13 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
-import infra14 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
-import infra15 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
-import infra16 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
-import infra17 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
-import infra18 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
-import infra19 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
-import infra20 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
-import infra21 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [
-  BG_DSC03391,
-  BG_DSC03392,
-  BG_IMG20250923WA0015,
-  BG_IMG20250923WA0029,
+  raw("BG_Photos/DSC03391.JPG"),
+  raw("BG_Photos/DSC03392.JPG"),
+  raw("BG_Photos/IMG-20250923-WA0015.jpg"),
+  raw("BG_Photos/IMG-20250923-WA0029.jpg"),
 ];
 
 // Function to get hero background image (using third image for Services/Infrastructure)
@@ -101,27 +64,81 @@ const Services = () => {
 
   // Infrastructure photos array
   const infrastructureImages = [
-    { src: infra1, alt: "Hospital Infrastructure" },
-    { src: infra2, alt: "Medical Facility" },
-    { src: infra3, alt: "Hospital Equipment" },
-    { src: infra4, alt: "Healthcare Infrastructure" },
-    { src: infra5, alt: "Medical Technology" },
-    { src: infra6, alt: "Hospital Interior" },
-    { src: infra7, alt: "Medical Facility" },
-    { src: infra8, alt: "Healthcare Equipment" },
-    { src: infra9, alt: "Hospital Infrastructure" },
-    { src: infra10, alt: "Medical Center" },
-    { src: infra11, alt: "Healthcare Facility" },
-    { src: infra12, alt: "Hospital Interior" },
-    { src: infra13, alt: "Medical Infrastructure" },
-    { src: infra14, alt: "Healthcare Technology" },
-    { src: infra15, alt: "Hospital Equipment" },
-    { src: infra16, alt: "Medical Facility" },
-    { src: infra17, alt: "Healthcare Infrastructure" },
-    { src: infra18, alt: "Hospital Interior" },
-    { src: infra19, alt: "Medical Technology" },
-    { src: infra20, alt: "Healthcare Facility" },
-    { src: infra21, alt: "Hospital Infrastructure" },
+    {
+      src: raw("Infrastructure_Photos/DSC03356.JPG"),
+      alt: "Hospital Infrastructure",
+    },
+    { src: raw("Infrastructure_Photos/DSC03360.JPG"), alt: "Medical Facility" },
+    {
+      src: raw("Infrastructure_Photos/DSC03365.JPG"),
+      alt: "Hospital Equipment",
+    },
+    {
+      src: raw("Infrastructure_Photos/DSC03386.JPG"),
+      alt: "Healthcare Infrastructure",
+    },
+    {
+      src: raw("Infrastructure_Photos/DSC03388.JPG"),
+      alt: "Medical Technology",
+    },
+    {
+      src: raw("Infrastructure_Photos/DSC03412.JPG"),
+      alt: "Hospital Interior",
+    },
+    { src: raw("Infrastructure_Photos/DSC03426.JPG"), alt: "Medical Facility" },
+    {
+      src: raw("Infrastructure_Photos/DSC03427.JPG"),
+      alt: "Healthcare Equipment",
+    },
+    {
+      src: raw("Infrastructure_Photos/DSC03428.JPG"),
+      alt: "Hospital Infrastructure",
+    },
+    { src: raw("Infrastructure_Photos/DSC03434.JPG"), alt: "Medical Center" },
+    {
+      src: raw("Infrastructure_Photos/DSC03435.JPG"),
+      alt: "Healthcare Facility",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0016.jpg"),
+      alt: "Hospital Interior",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0018.jpg"),
+      alt: "Medical Infrastructure",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0019.jpg"),
+      alt: "Healthcare Technology",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0020.jpg"),
+      alt: "Hospital Equipment",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0023.jpg"),
+      alt: "Medical Facility",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0026.jpg"),
+      alt: "Healthcare Infrastructure",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0027.jpg"),
+      alt: "Hospital Interior",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0028.jpg"),
+      alt: "Medical Technology",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0030.jpg"),
+      alt: "Healthcare Facility",
+    },
+    {
+      src: raw("Infrastructure_Photos/IMG-20250923-WA0032.jpg"),
+      alt: "Hospital Infrastructure",
+    },
   ];
 
   // Updated medical services with more appropriate icons
@@ -414,12 +431,7 @@ const Services = () => {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Desktop Layout: Continuous Images on sides, Combined Content in center */}
           <div className="hidden lg:block">
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={containerVariants}
-              className="grid grid-cols-12 gap-8"
-            >
+            <div className="grid grid-cols-12 gap-8">
               {/* Left Images Column - Continuous for both sections */}
               <div className="col-span-3 space-y-12">
                 {infrastructureImages.slice(0, 10).map((image, index) => (
@@ -638,17 +650,13 @@ const Services = () => {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
 
           {/* Mobile Layout */}
           <div className="block lg:hidden space-y-12">
             {/* Medical Services Section */}
-            <motion.div
-              initial="hidden"
-              animate={isInView ? "visible" : "hidden"}
-              variants={containerVariants}
-            >
+            <div>
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-4 py-2 mb-4 border border-emerald-200">
                   <FaStethoscope className="text-emerald-600" />
@@ -693,10 +701,10 @@ const Services = () => {
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
 
             {/* Room Categories Section */}
-            <motion.div variants={containerVariants}>
+            <div>
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-4 py-2 mb-4 border border-emerald-200">
                   <FaBed className="text-emerald-600" />
@@ -741,10 +749,10 @@ const Services = () => {
                   );
                 })}
               </div>
-            </motion.div>
+            </div>
 
             {/* Infrastructure Images Gallery for Mobile */}
-            <motion.div variants={containerVariants}>
+            <div>
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-100 to-slate-100 rounded-full px-4 py-2 mb-4 border border-gray-200">
                   <FaHospital className="text-gray-600" />
@@ -821,7 +829,7 @@ const Services = () => {
                   </motion.div>
                 ))}
               </div>
-            </motion.div>
+            </div>
           </div>
         </div>
       </section>

@@ -11,7 +11,8 @@ import {
   FaCalendarAlt,
   FaShieldAlt,
 } from "react-icons/fa";
-import hospitalImg from "../../assets/sss-hospital.avif";
+import { raw } from "../../data/imageUrls";
+const hospitalImg = raw("sss-hospital.avif");
 import PropTypes from "prop-types";
 
 // Small counter component that animates from 0 -> end when `start` becomes true
