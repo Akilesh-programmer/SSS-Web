@@ -68,8 +68,27 @@ const Gallery = () => {
     () =>
       infrastructureImageList.map((path, i) => {
         const map = [
-          INF1, INF2, INF3, INF4, INF5, INF6, INF7, INF8, INF9, INF10, INF11,
-          INF12, INF13, INF14, INF15, INF16, INF17, INF18, INF19, INF20, INF21,
+          INF1,
+          INF2,
+          INF3,
+          INF4,
+          INF5,
+          INF6,
+          INF7,
+          INF8,
+          INF9,
+          INF10,
+          INF11,
+          INF12,
+          INF13,
+          INF14,
+          INF15,
+          INF16,
+          INF17,
+          INF18,
+          INF19,
+          INF20,
+          INF21,
         ];
         return {
           id: path + i,

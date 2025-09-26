@@ -2,13 +2,16 @@
 // Usage remains: raw("BG_Photos/DSC03391.JPG") -> resolved build URL via Vite.
 
 // Eagerly import all files under /src/assets (relative path from this file is ../assets)
-const modules = import.meta.glob("../assets/**", { eager: true, import: "default" });
+const modules = import.meta.glob("../assets/**", {
+  eager: true,
+  import: "default",
+});
 
 // Build a normalized lookup: key is path relative to assets root (e.g. 'doctor_photos/2.png')
 const assetMap = {};
 for (const [fullPath, mod] of Object.entries(modules)) {
   // fullPath examples: '../assets/doctor_photos/2.png'
-  const rel = fullPath.split('/assets/')[1];
+  const rel = fullPath.split("/assets/")[1];
   if (rel) assetMap[rel] = mod;
 }
 

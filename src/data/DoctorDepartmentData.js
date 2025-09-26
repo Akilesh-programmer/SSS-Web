@@ -272,7 +272,8 @@ export const doctors = [
     specialty: "Orthopaedics",
     designation: "Consultant Orthopaedic, Hand &  Microsurgeon",
     department: [16],
-    qualification: "MBBS, MS (ORTHO), DNB (ORTHO), MNAMS, MRCS, MCH(Hand & Microsurgery)",
+    qualification:
+      "MBBS, MS (ORTHO), DNB (ORTHO), MNAMS, MRCS, MCH(Hand & Microsurgery)",
     image: doc14,
     isFounder: false,
   },
@@ -423,7 +424,8 @@ export const doctors = [
     specialty: "Plastic Surgeon",
     designation: "Consultant - Plastic Surgeon",
     department: [21],
-    qualification: "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
+    qualification:
+      "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
     image: doc29,
     isFounder: false,
   },
