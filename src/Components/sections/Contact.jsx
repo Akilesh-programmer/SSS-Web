@@ -15,7 +15,10 @@ import {
 import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
 
-import { raw } from "../../data/imageUrls";
+import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
 
 // Helper animation presets to avoid repeating identical motion props
 const riseIn = (delay = 0, duration = 0.8) => ({
@@ -32,12 +35,7 @@ const fadeIn = (delay = 0, duration = 0.6) => ({
 
 const Contact = () => {
   // Background images array for hero section
-  const bgPhotos = [
-    raw("BG_Photos/DSC03391.JPG"),
-    raw("BG_Photos/DSC03392.JPG"),
-    raw("BG_Photos/IMG-20250923-WA0015.jpg"),
-    raw("BG_Photos/IMG-20250923-WA0029.jpg"),
-  ];
+  const bgPhotos = [BG1, BG2, BG3, BG4];
 
   // Function to get hero background image
   const getHeroBgImage = () => {

@@ -20,15 +20,17 @@ import FounderCard from "../ui/FounderCard";
 import CeoCard from "../ui/CeoCard";
 
 // BG Photos for hero background
-import { raw } from "../../data/imageUrls";
+// Explicitly import background images (Option A) instead of using raw() helper
+import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+// Import doctor images used in leadership array (remove remote URLs)
+import doc2 from "../../assets/doctor_photos/2.png";
+import doc3 from "../../assets/doctor_photos/3.jpeg";
 
 // BG Photos array for hero backgrounds
-const bgPhotos = [
-  raw("BG_Photos/DSC03391.JPG"),
-  raw("BG_Photos/DSC03392.JPG"),
-  raw("BG_Photos/IMG-20250923-WA0015.jpg"),
-  raw("BG_Photos/IMG-20250923-WA0029.jpg"),
-];
+const bgPhotos = [BG1, BG2, BG3, BG4];
 
 // Function to get hero background image (using second image for AboutUs)
 const getHeroBgImage = () => {
@@ -97,20 +99,19 @@ const AboutUs = () => {
     "Multi-specialty hospital with high-tech facility near your door step",
   ];
 
+  // Local leadership data retained (currently unused in render) with local image imports
   const leadership = [
     {
       name: "DR S.SANJITH, MD (DERM)",
       position: "MANAGING DIRECTOR",
-      image:
-        "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/2.png",
+      image: doc2,
       description:
         "Leading with expertise in dermatology and comprehensive healthcare management.",
     },
     {
       name: "DR P.SELVAKUMAR, MD., PDCC",
       position: "CEO & MEDICAL DIRECTOR",
-      image:
-        "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.jpeg",
+      image: doc3,
       description:
         "An experienced Anaesthesiologist and ICU leader with a track record of operational excellence across leading tertiary hospitals. Dr. Selvakumar brings strong clinical governance, critical care expertise, and process-driven leadership to SSS Super Speciality Hospital.",
       timeline: [

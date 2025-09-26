@@ -11,15 +11,14 @@ import {
 import { FaSort, FaFilterCircleXmark } from "react-icons/fa6";
 import { departments, doctors } from "../../data/DoctorDepartmentData";
 
-import { raw } from "../../data/imageUrls";
+// Local background images
+import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
 
 // BG Photos array for hero backgrounds
-const bgPhotos = [
-  raw("BG_Photos/DSC03391.JPG"),
-  raw("BG_Photos/DSC03392.JPG"),
-  raw("BG_Photos/IMG-20250923-WA0015.jpg"),
-  raw("BG_Photos/IMG-20250923-WA0029.jpg"),
-];
+const bgPhotos = [BG1, BG2, BG3, BG4];
 
 // Function to get hero background image (using third image for DoctorsPage)
 const getHeroBgImage = () => {
