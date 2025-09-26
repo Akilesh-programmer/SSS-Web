@@ -4,20 +4,13 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
 import { raw } from "../../data/imageUrls";
 const sssLogo = raw("sss-logo.jpeg");
-import {
-  FaBars,
-  FaTimes,
-  FaPhone,
-  FaEnvelope,
-  FaCalendarCheck,
-  FaUserMd,
-  FaAmbulance,
-} from "react-icons/fa";
+import { FaBars, FaTimes, FaAmbulance } from "react-icons/fa";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const { openAppointment } = useAppointment();
+  // Appointment context retained for potential future use (no direct call right now)
+  useAppointment();
   const navigate = useNavigate();
   const location = useLocation();
   // --- Style helpers to avoid repeating large inline objects ---
@@ -40,15 +33,6 @@ const Navigation = () => {
     border: "1px solid rgba(255,255,255,0.3)",
     boxShadow:
       "0 8px 25px rgba(220,38,38,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
-  };
-
-  const appointmentStyle = {
-    background:
-      "linear-gradient(135deg, rgba(37,99,235,0.9) 0%, rgba(59,130,246,0.95) 50%, rgba(37,99,235,0.9) 100%)",
-    backdropFilter: "blur(15px) saturate(150%)",
-    border: "1px solid rgba(255,255,255,0.3)",
-    boxShadow:
-      "0 8px 25px rgba(37,99,235,0.3), inset 0 1px 0 rgba(255,255,255,0.4)",
   };
 
   const toggleStyle = {
@@ -110,18 +94,6 @@ const Navigation = () => {
   const overlayBgStronger =
     "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)";
 
-  const contactBoxStyle = {
-    background:
-      "linear-gradient(135deg, rgba(59,130,246,0.03) 0%, rgba(147,197,253,0.02) 50%, transparent 100%)",
-    backdropFilter: "blur(8px) saturate(120%)",
-  };
-
-  const contactBadgeStyle = {
-    background:
-      "linear-gradient(135deg, rgba(59,130,246,0.1) 0%, rgba(37,99,235,0.08) 100%)",
-    backdropFilter: "blur(10px)",
-  };
-
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 50);
@@ -135,11 +107,6 @@ const Navigation = () => {
   useEffect(() => {
     setIsMenuOpen(false);
   }, [location.pathname]);
-
-  const handleAppointmentClick = () => {
-    openAppointment();
-    setIsMenuOpen(false);
-  };
 
   const handleEmergencyClick = () => {
     window.location.href = "tel:+91 8925931193";
@@ -159,6 +126,7 @@ const Navigation = () => {
     { name: "About Us", path: "/about" },
     { name: "Specialities", path: "/specialities" },
     { name: "Infrastructure", path: "/infrastructure" },
+    { name: "Gallery", path: "/gallery" },
     { name: "Doctors", path: "/doctors" },
     { name: "Packages", path: "/packages" },
     { name: "Contact", path: "/contact" },

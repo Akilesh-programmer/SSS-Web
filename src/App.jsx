@@ -9,6 +9,7 @@ import PatientTestimonials from "./Components/sections/PatientTestimonials";
 import Specialities from "./Components/pages/Specialities";
 import Services from "./Components/pages/Services";
 import Packages from "./Components/pages/Packages";
+import Gallery from "./Components/pages/Gallery";
 import FounderSection from "./Components/sections/FounderSection";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
@@ -134,6 +135,18 @@ function App() {
             element={<DepartmentPageLayout />}
           />
           <Route path="/infrastructure" element={<ServicesPage />} />
+          <Route
+            path="/gallery"
+            element={
+              <PageWrapper pageKey="gallery-page">
+                <Navigation />
+                <div className="pt-20">
+                  <Gallery />
+                </div>
+                <Footer />
+              </PageWrapper>
+            }
+          />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/contact" element={<ContactPage />} />
