@@ -14,15 +14,35 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-import { raw } from "../../../data/imageUrls";
+// Local background and infrastructure images
+import BG1 from "../../../assets/BG_Photos/DSC03391.JPG";
+import BG2 from "../../../assets/BG_Photos/DSC03392.JPG";
+import BG3 from "../../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG4 from "../../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+import INF1 from "../../../assets/Infrastructure_Photos/DSC03356.JPG";
+import INF2 from "../../../assets/Infrastructure_Photos/DSC03360.JPG";
+import INF3 from "../../../assets/Infrastructure_Photos/DSC03365.JPG";
+import INF4 from "../../../assets/Infrastructure_Photos/DSC03386.JPG";
+import INF5 from "../../../assets/Infrastructure_Photos/DSC03388.JPG";
+import INF6 from "../../../assets/Infrastructure_Photos/DSC03412.JPG";
+import INF7 from "../../../assets/Infrastructure_Photos/DSC03426.JPG";
+import INF8 from "../../../assets/Infrastructure_Photos/DSC03427.JPG";
+import INF9 from "../../../assets/Infrastructure_Photos/DSC03428.JPG";
+import INF10 from "../../../assets/Infrastructure_Photos/DSC03434.JPG";
+import INF11 from "../../../assets/Infrastructure_Photos/DSC03435.JPG";
+import INF12 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
+import INF13 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
+import INF14 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
+import INF15 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
+import INF16 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
+import INF17 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
+import INF18 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
+import INF19 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
+import INF20 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
+import INF21 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
 
 // BG Photos array for hero backgrounds (alternating)
-const bgPhotos = [
-  raw("BG_Photos/DSC03391.JPG"),
-  raw("BG_Photos/DSC03392.JPG"),
-  raw("BG_Photos/IMG-20250923-WA0015.jpg"),
-  raw("BG_Photos/IMG-20250923-WA0029.jpg"),
-];
+const bgPhotos = [BG1, BG2, BG3, BG4];
 
 // Function to get hero background image for department
 const getHeroBgImage = (departmentId) => {
@@ -32,27 +52,27 @@ const getHeroBgImage = (departmentId) => {
 
 // Infrastructure photos for content integration
 const infrastructurePhotos = [
-  { src: raw("Infrastructure_Photos/DSC03356.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03360.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03365.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03386.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03388.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03412.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03426.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03427.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03428.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03434.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/DSC03435.JPG"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0016.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0018.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0019.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0020.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0023.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0026.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0027.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0028.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0030.jpg"), alt: "" },
-  { src: raw("Infrastructure_Photos/IMG-20250923-WA0032.jpg"), alt: "" },
+  { src: INF1, alt: "" },
+  { src: INF2, alt: "" },
+  { src: INF3, alt: "" },
+  { src: INF4, alt: "" },
+  { src: INF5, alt: "" },
+  { src: INF6, alt: "" },
+  { src: INF7, alt: "" },
+  { src: INF8, alt: "" },
+  { src: INF9, alt: "" },
+  { src: INF10, alt: "" },
+  { src: INF11, alt: "" },
+  { src: INF12, alt: "" },
+  { src: INF13, alt: "" },
+  { src: INF14, alt: "" },
+  { src: INF15, alt: "" },
+  { src: INF16, alt: "" },
+  { src: INF17, alt: "" },
+  { src: INF18, alt: "" },
+  { src: INF19, alt: "" },
+  { src: INF20, alt: "" },
+  { src: INF21, alt: "" },
 ];
 
 // Function to get infrastructure photos for each department (different sets)

@@ -1,5 +1,6 @@
 import { motion } from "framer-motion";
 import { FaUserMd, FaAward, FaHeart, FaUsers } from "react-icons/fa";
+import founderPortrait from "../../assets/Sanjith-SSS-Hospitals.png";
 
 const FounderSection = () => {
   return (
@@ -16,7 +17,7 @@ const FounderSection = () => {
             {/* Founder Image */}
             <div className="lg:w-1/3 relative">
               <img
-                src="https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/Sanjith-SSS-Hospitals.png"
+                src={founderPortrait}
                 alt="Dr. S. Sanjith - Founder"
                 className="w-full h-64 lg:h-full object-cover"
               />

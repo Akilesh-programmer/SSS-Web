@@ -27,19 +27,39 @@ import {
   FaRadiation,
 } from "react-icons/fa";
 
-// BG Photos for hero background
-// Use centralized raw GitHub URL builder
-import { raw } from "../../data/imageUrls";
+// Explicit local imports for background photos (Option A)
+import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+
+// Explicit local imports for infrastructure photos
+import INF1 from "../../assets/Infrastructure_Photos/DSC03356.JPG";
+import INF2 from "../../assets/Infrastructure_Photos/DSC03360.JPG";
+import INF3 from "../../assets/Infrastructure_Photos/DSC03365.JPG";
+import INF4 from "../../assets/Infrastructure_Photos/DSC03386.JPG";
+import INF5 from "../../assets/Infrastructure_Photos/DSC03388.JPG";
+import INF6 from "../../assets/Infrastructure_Photos/DSC03412.JPG";
+import INF7 from "../../assets/Infrastructure_Photos/DSC03426.JPG";
+import INF8 from "../../assets/Infrastructure_Photos/DSC03427.JPG";
+import INF9 from "../../assets/Infrastructure_Photos/DSC03428.JPG";
+import INF10 from "../../assets/Infrastructure_Photos/DSC03434.JPG";
+import INF11 from "../../assets/Infrastructure_Photos/DSC03435.JPG";
+import INF12 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
+import INF13 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
+import INF14 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
+import INF15 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
+import INF16 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
+import INF17 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
+import INF18 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
+import INF19 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
+import INF20 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
+import INF21 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
 
 // Infrastructure Photos imports (all 21 images)
 
 // BG Photos array for hero backgrounds
-const bgPhotos = [
-  raw("BG_Photos/DSC03391.JPG"),
-  raw("BG_Photos/DSC03392.JPG"),
-  raw("BG_Photos/IMG-20250923-WA0015.jpg"),
-  raw("BG_Photos/IMG-20250923-WA0029.jpg"),
-];
+const bgPhotos = [BG1, BG2, BG3, BG4];
 
 // Function to get hero background image (using third image for Services/Infrastructure)
 const getHeroBgImage = () => {
@@ -64,81 +84,27 @@ const Services = () => {
 
   // Infrastructure photos array
   const infrastructureImages = [
-    {
-      src: raw("Infrastructure_Photos/DSC03356.JPG"),
-      alt: "Hospital Infrastructure",
-    },
-    { src: raw("Infrastructure_Photos/DSC03360.JPG"), alt: "Medical Facility" },
-    {
-      src: raw("Infrastructure_Photos/DSC03365.JPG"),
-      alt: "Hospital Equipment",
-    },
-    {
-      src: raw("Infrastructure_Photos/DSC03386.JPG"),
-      alt: "Healthcare Infrastructure",
-    },
-    {
-      src: raw("Infrastructure_Photos/DSC03388.JPG"),
-      alt: "Medical Technology",
-    },
-    {
-      src: raw("Infrastructure_Photos/DSC03412.JPG"),
-      alt: "Hospital Interior",
-    },
-    { src: raw("Infrastructure_Photos/DSC03426.JPG"), alt: "Medical Facility" },
-    {
-      src: raw("Infrastructure_Photos/DSC03427.JPG"),
-      alt: "Healthcare Equipment",
-    },
-    {
-      src: raw("Infrastructure_Photos/DSC03428.JPG"),
-      alt: "Hospital Infrastructure",
-    },
-    { src: raw("Infrastructure_Photos/DSC03434.JPG"), alt: "Medical Center" },
-    {
-      src: raw("Infrastructure_Photos/DSC03435.JPG"),
-      alt: "Healthcare Facility",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0016.jpg"),
-      alt: "Hospital Interior",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0018.jpg"),
-      alt: "Medical Infrastructure",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0019.jpg"),
-      alt: "Healthcare Technology",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0020.jpg"),
-      alt: "Hospital Equipment",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0023.jpg"),
-      alt: "Medical Facility",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0026.jpg"),
-      alt: "Healthcare Infrastructure",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0027.jpg"),
-      alt: "Hospital Interior",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0028.jpg"),
-      alt: "Medical Technology",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0030.jpg"),
-      alt: "Healthcare Facility",
-    },
-    {
-      src: raw("Infrastructure_Photos/IMG-20250923-WA0032.jpg"),
-      alt: "Hospital Infrastructure",
-    },
+    { src: INF1, alt: "Hospital Infrastructure" },
+    { src: INF2, alt: "Medical Facility" },
+    { src: INF3, alt: "Hospital Equipment" },
+    { src: INF4, alt: "Healthcare Infrastructure" },
+    { src: INF5, alt: "Medical Technology" },
+    { src: INF6, alt: "Hospital Interior" },
+    { src: INF7, alt: "Medical Facility" },
+    { src: INF8, alt: "Healthcare Equipment" },
+    { src: INF9, alt: "Hospital Infrastructure" },
+    { src: INF10, alt: "Medical Center" },
+    { src: INF11, alt: "Healthcare Facility" },
+    { src: INF12, alt: "Hospital Interior" },
+    { src: INF13, alt: "Medical Infrastructure" },
+    { src: INF14, alt: "Healthcare Technology" },
+    { src: INF15, alt: "Hospital Equipment" },
+    { src: INF16, alt: "Medical Facility" },
+    { src: INF17, alt: "Healthcare Infrastructure" },
+    { src: INF18, alt: "Hospital Interior" },
+    { src: INF19, alt: "Medical Technology" },
+    { src: INF20, alt: "Healthcare Facility" },
+    { src: INF21, alt: "Hospital Infrastructure" },
   ];
 
   // Updated medical services with more appropriate icons

@@ -1,10 +1,10 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
+import founderImgLocal from "../../assets/doctor_photos/2.png";
 
 const FounderCard = () => {
-  const imageSrc =
-    "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/2.png";
+  const imageSrc = founderImgLocal;
   const name = "DR. S. SANJITH, MD (DERM)";
   const title = "FOUNDER & MANAGING DIRECTOR";
   const quote = `Our vision at SSS Super Speciality Hospital extends beyond medical treatment – we are committed to creating a healing environment where innovation meets compassion. As we continue to grow and evolve, our dedication remains unwavering: to provide world-class healthcare that transforms lives and strengthens our community. Every patient who walks through our doors receives not just medical expertise, but the care and attention they deserve on their journey to wellness.`;

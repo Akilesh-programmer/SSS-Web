@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
-import { raw } from "../../data/imageUrls";
-const sssLogo = raw("sss-logo.jpeg");
+import sssLogoLocal from "../../assets/sss-logo.jpeg";
+const sssLogo = sssLogoLocal;
 import { FaBars, FaTimes, FaAmbulance } from "react-icons/fa";
 
 const Navigation = () => {

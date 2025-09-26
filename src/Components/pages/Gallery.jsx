@@ -1,6 +1,32 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { raw } from "../../data/imageUrls";
+import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
+import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
+import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
+import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+import INF1 from "../../assets/Infrastructure_Photos/DSC03356.JPG";
+import INF2 from "../../assets/Infrastructure_Photos/DSC03360.JPG";
+import INF3 from "../../assets/Infrastructure_Photos/DSC03365.JPG";
+import INF4 from "../../assets/Infrastructure_Photos/DSC03386.JPG";
+import INF5 from "../../assets/Infrastructure_Photos/DSC03388.JPG";
+import INF6 from "../../assets/Infrastructure_Photos/DSC03412.JPG";
+import INF7 from "../../assets/Infrastructure_Photos/DSC03426.JPG";
+import INF8 from "../../assets/Infrastructure_Photos/DSC03427.JPG";
+import INF9 from "../../assets/Infrastructure_Photos/DSC03428.JPG";
+import INF10 from "../../assets/Infrastructure_Photos/DSC03434.JPG";
+import INF11 from "../../assets/Infrastructure_Photos/DSC03435.JPG";
+import INF12 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
+import INF13 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
+import INF14 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
+import INF15 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
+import INF16 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
+import INF17 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
+import INF18 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
+import INF19 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
+import INF20 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
+import INF21 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
+import hospitalVideo from "../../assets/Hospital Full Tour Video.mp4";
+import hospitalImg from "../../assets/sss-hospital.avif";
 import { FaHospital, FaPlayCircle, FaTimes } from "react-icons/fa";
 
 // Central list of infrastructure images
@@ -28,16 +54,10 @@ const infrastructureImageList = [
   "Infrastructure_Photos/IMG-20250923-WA0032.jpg",
 ];
 
-const videoUrl = raw("Hospital Full Tour Video.mp4");
-const hospitalImg = raw("sss-hospital.avif");
+const videoUrl = hospitalVideo;
 
 // BG Photos array for hero backgrounds (reuse style consistency with other pages)
-const bgPhotos = [
-  raw("BG_Photos/DSC03391.JPG"),
-  raw("BG_Photos/DSC03392.JPG"),
-  raw("BG_Photos/IMG-20250923-WA0015.jpg"),
-  raw("BG_Photos/IMG-20250923-WA0029.jpg"),
-];
+const bgPhotos = [BG1, BG2, BG3, BG4];
 
 const getHeroBgImage = () => bgPhotos[3]; // choose 4th image similar to Specialities
 
@@ -46,11 +66,36 @@ const Gallery = () => {
 
   const images = useMemo(
     () =>
-      infrastructureImageList.map((path, i) => ({
-        id: path + i,
-        src: raw(path),
-        alt: "Hospital Infrastructure Photo " + (i + 1),
-      })),
+      infrastructureImageList.map((path, i) => {
+        const map = [
+          INF1,
+          INF2,
+          INF3,
+          INF4,
+          INF5,
+          INF6,
+          INF7,
+          INF8,
+          INF9,
+          INF10,
+          INF11,
+          INF12,
+          INF13,
+          INF14,
+          INF15,
+          INF16,
+          INF17,
+          INF18,
+          INF19,
+          INF20,
+          INF21,
+        ];
+        return {
+          id: path + i,
+          src: map[i],
+          alt: "Hospital Infrastructure Photo " + (i + 1),
+        };
+      }),
     []
   );
 

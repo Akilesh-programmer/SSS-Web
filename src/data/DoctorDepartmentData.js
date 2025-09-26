@@ -101,6 +101,37 @@ export const departments = [
   },
 ];
 
+// Local image imports replacing previous hardcoded GitHub raw URLs
+import doc1 from "../assets/doctor_photos/2.png"; // Founder (id 1)
+import doc2 from "../assets/doctor_photos/3.jpeg"; // CEO (id 2)
+import doc3 from "../assets/doctor_photos/7.png";
+import doc4 from "../assets/doctor_photos/12.png";
+import doc5 from "../assets/doctor_photos/10.png";
+import doc6 from "../assets/doctor_photos/33.png";
+import doc7 from "../assets/doctor_photos/11.png";
+import doc8 from "../assets/doctor_photos/13.png";
+import doc9 from "../assets/doctor_photos/14.png";
+import doc10 from "../assets/doctor_photos/15.png";
+import doc11 from "../assets/doctor_photos/16.png";
+import doc12 from "../assets/doctor_photos/17.png";
+import doc13 from "../assets/doctor_photos/8.png";
+import doc14 from "../assets/doctor_photos/9.png";
+import doc15 from "../assets/doctor_photos/4.png";
+import doc16 from "../assets/doctor_photos/5.png";
+import doc17 from "../assets/doctor_photos/6.png";
+import doc18 from "../assets/doctor_photos/18.png";
+import doc19 from "../assets/doctor_photos/19.png";
+import doc20 from "../assets/doctor_photos/20.png";
+import doc21 from "../assets/doctor_photos/21.png";
+import doc22 from "../assets/doctor_photos/22.png";
+import doc23 from "../assets/doctor_photos/23.png";
+import doc24 from "../assets/doctor_photos/24.png";
+import doc25 from "../assets/doctor_photos/25.png";
+import doc26 from "../assets/doctor_photos/26.png";
+import doc27 from "../assets/doctor_photos/29.png";
+import doc28 from "../assets/doctor_photos/27.png";
+import doc29 from "../assets/doctor_photos/28.png";
+
 export const doctors = [
   {
     id: 1,
@@ -109,8 +140,7 @@ export const doctors = [
     designation: "Founder & Managing Director, Consultant Dermatologist",
     department: [5],
     qualification: "MD (DERM)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/2.png",
+    image: doc1,
     isFounder: true,
   },
   {
@@ -120,8 +150,7 @@ export const doctors = [
     designation: "CEO & Medical Director, Senior Consultant",
     department: [2, 3],
     qualification: "MD, PDCC",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/3.jpeg",
+    image: doc2,
     isFounder: false,
   },
   {
@@ -131,8 +160,7 @@ export const doctors = [
     designation: "Senior Consultant, Orthopedic Surgeon",
     department: [16],
     qualification: "MBBS, MS (ORTHO), D.ORTHO",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/7.png",
+    image: doc3,
     isFounder: false,
   },
   {
@@ -142,8 +170,7 @@ export const doctors = [
     designation: "Senior Consultant, Obstetrician & Gynaecologist",
     department: [15],
     qualification: "MBBS, MD (OG)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/12.png",
+    image: doc4,
     isFounder: false,
   },
   {
@@ -153,8 +180,7 @@ export const doctors = [
     designation: "Senior Consultant, Interventional Cardiologist",
     department: [4],
     qualification: "MBBS, MD, DM (CARDIO)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/10.png",
+    image: doc5,
     isFounder: false,
   },
   {
@@ -165,8 +191,7 @@ export const doctors = [
       "Sr. Consultant Endoscopist, Surgical Gastroenterologist & Laproscopic Surgeon",
     department: [9, 8],
     qualification: "MBBS, MS (Gen Surg), FRCS (Ed), DBB (Surg Gastro), FMAS",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/33.png",
+    image: doc6,
     isFounder: false,
   },
   {
@@ -176,8 +201,7 @@ export const doctors = [
     designation: "Consultant Interventional Cardiologist",
     department: [4],
     qualification: "MBBS, MD, DM (CARDIO)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/11.png",
+    image: doc7,
     isFounder: false,
   },
   {
@@ -188,8 +212,7 @@ export const doctors = [
       "Senior Consultant Pediatrician & Neonatologist / Lactation Consultant",
     department: [18],
     qualification: "MBBS, MD (PAED)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/13.png",
+    image: doc8,
     isFounder: false,
   },
   {
@@ -199,8 +222,7 @@ export const doctors = [
     designation: "Senior Consultant - Internal Medicine and Diabetologist",
     department: [10],
     qualification: "MBBS, MD (Internal Medicine & DIAB)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/14.png",
+    image: doc9,
     isFounder: false,
   },
   {
@@ -210,8 +232,7 @@ export const doctors = [
     designation: "Consultant - Internal Medicine and Diabetologist",
     department: [10],
     qualification: "MBBS, MD (Internal Medicine)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/15.png",
+    image: doc10,
     isFounder: false,
   },
   {
@@ -221,8 +242,7 @@ export const doctors = [
     designation: "Consultant - Nephrologist & Renal Transplant Physician",
     department: [12],
     qualification: "MBBS, MD, DM (Nephro)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/16.png",
+    image: doc11,
     isFounder: false,
   },
   {
@@ -233,8 +253,7 @@ export const doctors = [
       "Consultant - Urologist & Andrologist, Renal Transplant Surgeon",
     department: [25],
     qualification: "MBBS, MS, MCH (Urology)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/17.png",
+    image: doc12,
     isFounder: false,
   },
   {
@@ -244,8 +263,7 @@ export const doctors = [
     designation: "Consultant - Orthopaedic & Arthroscopic Surgeon",
     department: [16],
     qualification: "MBBS, MS (ORTHO), FASM, ISAKOS",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/8.png",
+    image: doc13,
     isFounder: false,
   },
   {
@@ -254,9 +272,9 @@ export const doctors = [
     specialty: "Orthopaedics",
     designation: "Consultant Orthopaedic, Hand &  Microsurgeon",
     department: [16],
-    qualification: "MBBS, MS (ORTHO), DNB (ORTHO), MNAMS, MRCS, MCH(Hand & Microsurgery)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/9.png",
+    qualification:
+      "MBBS, MS (ORTHO), DNB (ORTHO), MNAMS, MRCS, MCH(Hand & Microsurgery)",
+    image: doc14,
     isFounder: false,
   },
   {
@@ -266,8 +284,7 @@ export const doctors = [
     designation: "Consultant - Emergency, Critical Care & Anaesthesia",
     department: [3, 2],
     qualification: "MBBS, MD, DNB",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/4.png",
+    image: doc15,
     isFounder: false,
   },
   {
@@ -277,8 +294,7 @@ export const doctors = [
     designation: "Consultant - Emergency & Critical Care",
     department: [2],
     qualification: "MBBS, MRCEM, MEM, F.DIAB",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/5.png",
+    image: doc16,
     isFounder: false,
   },
   {
@@ -288,8 +304,7 @@ export const doctors = [
     designation: "Emergency, Critical Care & Anaesthesia",
     department: [2, 3],
     qualification: "MBBS, MD (ANAES)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/6.png",
+    image: doc17,
     isFounder: false,
   },
   {
@@ -299,8 +314,7 @@ export const doctors = [
     designation: "Consultant - ENT Surgeon",
     department: [7],
     qualification: "MBBS, MS (ENT)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/18.png",
+    image: doc18,
     isFounder: false,
   },
   {
@@ -310,8 +324,7 @@ export const doctors = [
     designation: "Consultant - Dental & OMFS Surgeon",
     department: [6],
     qualification: "BDS, MDS",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/19.png",
+    image: doc19,
     isFounder: false,
   },
   {
@@ -321,8 +334,7 @@ export const doctors = [
     designation: "Consultant - Neurologist",
     department: [13],
     qualification: "MBBS, MD (PAED), DM (NEURO)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/20.png",
+    image: doc20,
     isFounder: false,
   },
   {
@@ -332,8 +344,7 @@ export const doctors = [
     designation: "Consultant - Brain & Spine Surgeon",
     department: [13, 14],
     qualification: "MBBS, MS, MCH, (NEURO SURGERY)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/21.png",
+    image: doc21,
     isFounder: false,
   },
   {
@@ -343,8 +354,7 @@ export const doctors = [
     designation: "Consultant - PHACO Comprehensive Ophthalmologist",
     department: [17],
     qualification: "MBBS, DO",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/22.png",
+    image: doc22,
     isFounder: false,
   },
   {
@@ -354,8 +364,7 @@ export const doctors = [
     designation: "Consultant - Radiologist",
     department: [24],
     qualification: "MBBS, DNB (Radiology)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/23.png",
+    image: doc23,
     isFounder: false,
   },
   {
@@ -365,8 +374,7 @@ export const doctors = [
     designation: "Consultant - Master Health Checkup",
     department: [11],
     qualification: "MBBS, DCH",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/24.png",
+    image: doc24,
     isFounder: false,
   },
   {
@@ -376,8 +384,7 @@ export const doctors = [
     designation: "Consultant - General Surgeon",
     department: [8],
     qualification: "MBBS, MS (GEN Surgery), FIAGES, FALS (HERNIA)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/25.png",
+    image: doc25,
     isFounder: false,
   },
   {
@@ -387,8 +394,7 @@ export const doctors = [
     designation: "Senior Consultant Pulmonologist",
     department: [22],
     qualification: "MBBS, DTED, DNB, EDARM",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/26.png",
+    image: doc26,
     isFounder: false,
   },
   {
@@ -398,8 +404,7 @@ export const doctors = [
     designation: "Consultant Psychiatrist",
     department: [23],
     qualification: "MBBS, MD (Psychiatry)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/29.png",
+    image: doc27,
     isFounder: false,
   },
   {
@@ -410,8 +415,7 @@ export const doctors = [
       "Consultant - Plastic Reconstructive Aesthetic Hand Diabetic Foot & Microvascular Surgeon",
     department: [21],
     qualification: "MBBS, MS, MCH (Plastic Surgery)",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/27.png",
+    image: doc28,
     isFounder: false,
   },
   {
@@ -420,9 +424,9 @@ export const doctors = [
     specialty: "Plastic Surgeon",
     designation: "Consultant - Plastic Surgeon",
     department: [21],
-    qualification: "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
-    image:
-      "https://raw.githubusercontent.com/Akilesh-programmer/SSS-Web/dev/src/assets/doctor_photos/28.png",
+    qualification:
+      "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
+    image: doc29,
     isFounder: false,
   },
 ];
