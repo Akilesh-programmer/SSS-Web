@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
 import UniversalOptimizedImage from "./UniversalOptimizedImage";
-const sssLogo = sssLogoLocal;
+import sssLogoLocal from "../../assets/SSS-full-logo.png";
 import { FaBars, FaTimes, FaAmbulance } from "react-icons/fa";
 
 const Navigation = () => {
