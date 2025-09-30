@@ -1,5 +1,5 @@
-import React, { useState, useRef } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
+import { useState, ref } from "react";
 import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaAmbulance,
@@ -68,9 +68,6 @@ const getHeroBgImage = () => {
 };
 
 const Services = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
-
   // Image modal state
   const [selectedImage, setSelectedImage] = useState(null);
 
@@ -362,7 +359,7 @@ const Services = () => {
         {/* Background Image with Overlay */}
         <UniversalOptimizedImage
           mode="background"
-          imageId="bg-3"
+          src={getHeroBgImage()}
           className="absolute inset-0"
           backgroundSize="cover"
           backgroundPosition="center"

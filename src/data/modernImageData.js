@@ -411,24 +411,17 @@ export class ModernImageManager {
         if (url) {
           this.preloadedImages.add(imageData.id);
 
-          // Create preload link
-          const link = document.createElement("link");
-          link.rel = "preload";
-          link.as = "image";
-          link.href = url;
-          if (imageData.sizes) link.imagesizes = imageData.sizes;
-          document.head.appendChild(link);
+          // Cache the image without creating preload links to avoid warnings
+          const img = new Image();
+          img.src = url;
         }
       } catch (error) {
-        console.warn(
-          `Failed to preload critical image ${imageData.id}:`,
-          error
-        );
+        // Failed to preload critical image silently
       }
     });
 
     await Promise.allSettled(preloadPromises);
-    console.log(`Preloaded ${this.preloadedImages.size} critical images`);
+    // Critical images preloaded silently
   }
 
   /**
@@ -535,6 +528,6 @@ export const ImageHelpers = {
 if (typeof window !== "undefined") {
   // Preload critical images after a short delay to not block initial render
   setTimeout(() => {
-    imageManager.preloadCriticalImages().catch(console.warn);
+    imageManager.preloadCriticalImages().catch(() => {});
   }, 100);
 }

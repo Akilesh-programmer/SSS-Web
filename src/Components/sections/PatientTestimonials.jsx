@@ -161,39 +161,35 @@ const PatientTestimonials = ({ limit = 6 }) => {
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.4, scale: 1 }}
+          initial={{ opacity: 0.4, scale: 1 }}
+          animate={{ opacity: 0.4, scale: 1 }}
           transition={{ duration: 1.2 }}
-          viewport={{ once: true }}
           className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-emerald-200 to-blue-200 rounded-full blur-3xl"
         />
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.3, scale: 1 }}
+          initial={{ opacity: 0.3, scale: 1 }}
+          animate={{ opacity: 0.3, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.2 }}
-          viewport={{ once: true }}
           className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-blue-200 to-emerald-200 rounded-full blur-3xl"
         />
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.2, scale: 1 }}
+          initial={{ opacity: 0.2, scale: 1 }}
+          animate={{ opacity: 0.2, scale: 1 }}
           transition={{ duration: 1.2, delay: 0.4 }}
-          viewport={{ once: true }}
           className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full blur-2xl"
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-16"
         >
           <motion.div
-            initial={{ scale: 0, rotate: -10 }}
-            whileInView={{ scale: 1, rotate: 0 }}
+            initial={{ scale: 1, rotate: 0 }}
+            animate={{ scale: 1, rotate: 0 }}
             transition={{
               duration: 0.6,
               delay: 0.2,
@@ -201,26 +197,23 @@ const PatientTestimonials = ({ limit = 6 }) => {
               stiffness: 200,
               damping: 15,
             }}
-            viewport={{ once: true }}
             className="inline-flex items-center justify-center mb-6"
           >
             <div className="relative">
               <FaQuoteLeft className="text-6xl text-emerald-600 drop-shadow-lg" />
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={{ scale: 1 }}
+                animate={{ scale: 1 }}
                 transition={{ delay: 0.5, duration: 0.4 }}
-                viewport={{ once: true }}
                 className="absolute -inset-2 bg-emerald-100 rounded-full opacity-20 animate-pulse"
               />
             </div>
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            viewport={{ once: true }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-gray-800 bg-clip-text text-transparent mb-6"
           >
             What Patients Say About Us
@@ -228,17 +221,15 @@ const PatientTestimonials = ({ limit = 6 }) => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.5 }}
-          viewport={{ once: true }}
           className="relative"
         >
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            viewport={{ once: true }}
             className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-30 hidden md:block"
           >
             <motion.button
@@ -253,10 +244,9 @@ const PatientTestimonials = ({ limit = 6 }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.5, delay: 0.6 }}
-            viewport={{ once: true }}
             className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-30 hidden md:block"
           >
             <motion.button
@@ -272,10 +262,9 @@ const PatientTestimonials = ({ limit = 6 }) => {
 
           <motion.div
             ref={listRef}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
-            viewport={{ once: true }}
             onScroll={handleScroll}
             onTouchStart={() => {
               if (autoplayRef.current) clearInterval(autoplayRef.current);
@@ -294,8 +283,8 @@ const PatientTestimonials = ({ limit = 6 }) => {
                 <motion.button
                   key={keyId}
                   type="button"
-                  initial={{ opacity: 0, y: 30, scale: 0.9 }}
-                  whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                  initial={{ opacity: 1, y: 0, scale: 1 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
                   transition={{
                     duration: 0.6,
                     delay: 0.8 + idx * 0.1,
@@ -307,7 +296,6 @@ const PatientTestimonials = ({ limit = 6 }) => {
                     transition: { duration: 0.2 },
                   }}
                   whileTap={{ scale: 0.98 }}
-                  viewport={{ once: true }}
                   onClick={() => setActive(d)}
                   aria-haspopup="dialog"
                   aria-expanded={active === d}
@@ -322,10 +310,9 @@ const PatientTestimonials = ({ limit = 6 }) => {
                   <div className="flex flex-col gap-4">
                     <div className="flex-1 pb-2">
                       <motion.div
-                        initial={{ opacity: 0, x: -10 }}
-                        whileInView={{ opacity: 1, x: 0 }}
+                        initial={{ opacity: 1, x: 0 }}
+                        animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: 0.9 + idx * 0.05 }}
-                        viewport={{ once: true }}
                         className="mt-2 flex items-center space-x-4"
                       >
                         <div className="w-14 h-14 rounded-full overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shadow-inner border border-emerald-300/30">
@@ -345,24 +332,22 @@ const PatientTestimonials = ({ limit = 6 }) => {
                       </motion.div>
 
                       <motion.div
-                        initial={{ opacity: 0 }}
-                        whileInView={{ opacity: 1 }}
+                        initial={{ opacity: 1 }}
+                        animate={{ opacity: 1 }}
                         transition={{ delay: 1 + idx * 0.05 }}
-                        viewport={{ once: true }}
                         className="mt-3 flex items-center space-x-1"
                       >
                         {Array.from({ length: 5 }).map((_, i) => (
                           <motion.div
                             key={`${d.name}-star-${i}`}
-                            initial={{ scale: 0, rotate: -180 }}
-                            whileInView={{ scale: 1, rotate: 0 }}
+                            initial={{ scale: 1, rotate: 0 }}
+                            animate={{ scale: 1, rotate: 0 }}
                             transition={{
                               delay: 1.15 + idx * 0.05 + i * 0.04,
                               type: "spring",
                               stiffness: 500,
                               damping: 15,
                             }}
-                            viewport={{ once: true }}
                           >
                             <FaStar
                               className={`text-lg ${
@@ -380,10 +365,9 @@ const PatientTestimonials = ({ limit = 6 }) => {
                       </p>
 
                       <motion.div
-                        initial={{ opacity: 0, scale: 0.95 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
+                        initial={{ opacity: 1, scale: 1 }}
+                        animate={{ opacity: 1, scale: 1 }}
                         transition={{ delay: 1.6 + idx * 0.1 }}
-                        viewport={{ once: true }}
                         className="mt-6 sm:mt-8"
                       >
                         <span className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white text-sm font-medium rounded-full shadow-lg border border-emerald-400/30">
@@ -403,10 +387,9 @@ const PatientTestimonials = ({ limit = 6 }) => {
 
           {/* Enhanced Pagination indicators */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.4, delay: 0.6 }}
-            viewport={{ once: true }}
             className="mt-12 flex justify-center items-center space-x-3"
           >
             {items.map((item, i) => {
@@ -417,8 +400,8 @@ const PatientTestimonials = ({ limit = 6 }) => {
                 <motion.button
                   key={pagKey}
                   type="button"
-                  initial={{ scale: 0 }}
-                  whileInView={{ scale: 1 }}
+                  initial={{ scale: 1 }}
+                  animate={{ scale: 1 }}
                   transition={{
                     delay: 0.8 + i * 0.05,
                     type: "spring",
@@ -427,7 +410,6 @@ const PatientTestimonials = ({ limit = 6 }) => {
                   }}
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
-                  viewport={{ once: true }}
                   aria-label={`Go to testimonial ${i + 1}`}
                   onClick={() => {
                     const el = listRef.current;
@@ -506,7 +488,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                       {/* removed modal quote icon per request to fit content */}
                       <div className="pr-16 sm:pr-20 flex-1">
                         <motion.div
-                          initial={{ opacity: 0, x: -10 }}
+                          initial={{ opacity: 1, x: 0 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ delay: 0.5 }}
                           className="mt-2 flex items-center space-x-4"
@@ -528,7 +510,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                         </motion.div>
 
                         <motion.div
-                          initial={{ opacity: 0 }}
+                          initial={{ opacity: 1 }}
                           animate={{ opacity: 1 }}
                           transition={{ delay: 0.6 }}
                           className="mt-4 flex items-center space-x-1"
@@ -538,7 +520,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                               key={`${(active.name || "")
                                 .toLowerCase()
                                 .replace(/[^a-z0-9]+/g, "-")}-modal-star-${i}`}
-                              initial={{ scale: 0, rotate: -180 }}
+                              initial={{ scale: 1, rotate: 0 }}
                               animate={{ scale: 1, rotate: 0 }}
                               transition={{
                                 delay: 0.65 + i * 0.05,
@@ -559,7 +541,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                         </motion.div>
 
                         <motion.div
-                          initial={{ opacity: 0, y: 10 }}
+                          initial={{ opacity: 1, y: 0 }}
                           animate={{ opacity: 1, y: 0 }}
                           transition={{ delay: 0.75 }}
                           className="mt-6 text-gray-700 text-lg sm:text-xl leading-relaxed whitespace-pre-line font-medium"

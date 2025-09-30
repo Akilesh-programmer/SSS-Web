@@ -136,7 +136,7 @@ const AboutUs = () => {
       >
         <UniversalOptimizedImage
           mode="background"
-          imageId="bg-2"
+          src={getHeroBgImage()}
           className="absolute inset-0"
           backgroundSize="cover"
           backgroundPosition="center"
@@ -274,20 +274,18 @@ const AboutUs = () => {
       <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, amount: 0.2 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
             className="mb-12 lg:mb-16"
           >
             <div className="relative max-w-7xl mx-auto px-4">
               <div className="grid grid-cols-1 md:grid-cols-2 gap-10 md:gap-12 lg:gap-16 items-stretch">
                 <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.6 }}
-                  viewport={{ once: true, amount: 0.2 }}
                   className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
                 >
                   <div className="flex-1">
@@ -314,11 +312,10 @@ const AboutUs = () => {
                 </motion.div>
 
                 <motion.div
-                  initial={{ opacity: 0, y: 12 }}
-                  whileInView={{ opacity: 1, y: 0 }}
+                  initial={{ opacity: 1, y: 0 }}
+                  animate={{ opacity: 1, y: 0 }}
                   whileHover={{ y: -6 }}
                   transition={{ duration: 0.6, delay: 0.06 }}
-                  viewport={{ once: true, amount: 0.2 }}
                   className="flex flex-col h-full bg-gradient-to-br from-white to-emerald-50 rounded-2xl p-6 lg:p-8 shadow-md border border-emerald-100/60 hover:shadow-lg transform-gpu transition-shadow"
                 >
                   <div className="flex-1">
@@ -358,8 +355,8 @@ const AboutUs = () => {
       <section className="py-12 lg:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={fadeInUp}
             className="text-center mb-12"
           >
@@ -382,8 +379,8 @@ const AboutUs = () => {
 
           {/* Render remaining leadership (e.g., CEO) below messages */}
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={staggerContainer}
             className="space-y-8"
           >
@@ -402,14 +399,14 @@ const AboutUs = () => {
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={fadeInUp}
             className="text-center mb-16"
           >
             <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
+              initial={{ scale: 1 }}
+              animate={{ scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-block bg-white/60 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-slate-200/30"
             >
@@ -428,8 +425,8 @@ const AboutUs = () => {
           </motion.div>
 
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={staggerContainer}
             className="grid grid-cols-2 lg:grid-cols-4 gap-6 lg:gap-8 mb-12"
           >
@@ -464,14 +461,14 @@ const AboutUs = () => {
       <section className="py-12 lg:py-16 bg-gradient-to-br from-gray-50 to-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={fadeInUp}
             className="text-center mb-12"
           >
             <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
+              initial={{ scale: 1 }}
+              animate={{ scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
               className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-6 py-2 mb-6"
             >
@@ -490,8 +487,8 @@ const AboutUs = () => {
           </motion.div>
 
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={staggerContainer}
             className="grid lg:grid-cols-2 gap-8 lg:gap-12"
           >
@@ -573,8 +570,8 @@ const AboutUs = () => {
       <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={fadeInUp}
             className="text-center mb-12"
           >
@@ -588,8 +585,8 @@ const AboutUs = () => {
           </motion.div>
 
           <motion.div
-            initial="hidden"
-            whileInView="visible"
+            initial="visible"
+            animate="visible"
             variants={staggerContainer}
             className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
           >

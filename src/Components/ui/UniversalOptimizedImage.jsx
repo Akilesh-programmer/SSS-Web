@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import OptimizedImage from "./OptimizedImage";
 import { imageManager } from "../../data/modernImageData";
 
@@ -32,8 +32,33 @@ const UniversalOptimizedImage = ({
   // All other OptimizedImage props
   ...imageProps
 }) => {
-  // Get image data from manager if imageId is provided
-  const imageData = imageId ? imageManager.getImage(imageId) : null;
+  const [imageData, setImageData] = useState(null);
+  const [loading, setLoading] = useState(!!imageId);
+
+  // Load image data asynchronously if imageId is provided
+  useEffect(() => {
+    if (imageId) {
+      setLoading(true);
+      imageManager
+        .getImage(imageId)
+        .then((data) => {
+          setImageData(data);
+          setLoading(false);
+        })
+        .catch(() => {
+          setImageData(null);
+          setLoading(false);
+        });
+    }
+  }, [imageId]);
+
+  // Don't render anything while loading image data
+  if (loading) {
+    return (
+      <div className={`bg-gray-100 animate-pulse ${className}`} style={style} />
+    );
+  }
+
   const finalSrc = imageData?.url || src;
   const finalAlt = alt || imageData?.alt || "";
   const finalSizes = imageData?.sizes || imageProps.sizes;
@@ -43,22 +68,16 @@ const UniversalOptimizedImage = ({
   if (mode === "background") {
     return (
       <div
-        className={`relative overflow-hidden ${className}`}
+        className={`absolute inset-0 ${className}`}
         style={{
           ...style,
-          aspectRatio: finalAspectRatio,
+          backgroundImage: `url(${finalSrc})`,
+          backgroundSize: backgroundSize,
+          backgroundPosition: backgroundPosition,
+          backgroundRepeat: backgroundRepeat,
         }}
       >
-        <OptimizedImage
-          src={finalSrc}
-          alt={finalAlt}
-          sizes={finalSizes}
-          priority={finalPriority}
-          className="absolute inset-0 w-full h-full"
-          objectFit={backgroundSize}
-          {...imageProps}
-        />
-        {children && <div className="relative z-10 h-full">{children}</div>}
+        {children}
       </div>
     );
   }

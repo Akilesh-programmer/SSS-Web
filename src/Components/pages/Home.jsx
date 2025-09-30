@@ -96,7 +96,7 @@ export default function Home() {
         const imageData = await imageManager.getImage("hospital-main");
         setHospitalImage(imageData);
       } catch (error) {
-        console.warn("Failed to load hospital image:", error);
+        // Failed to load hospital image
         // Fallback to direct import if needed
         setHospitalImage({
           url: "/src/assets/sss-hospital.avif",

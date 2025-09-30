@@ -98,7 +98,7 @@ const Contact = () => {
       else if (typeof info.action === "string") window.open(info.action);
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.warn("Contact action failed", e);
+      // Contact action failed
     }
   };
 
@@ -112,7 +112,7 @@ const Contact = () => {
       else if (typeof action.action === "string") window.open(action.action);
     } catch (e) {
       // eslint-disable-next-line no-console
-      console.warn("Quick action failed", e);
+      // Quick action failed
     }
   };
 

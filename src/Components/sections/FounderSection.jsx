@@ -7,10 +7,9 @@ const FounderSection = () => {
     <div className="bg-gradient-to-br from-emerald-50 via-white to-blue-50 py-16">
       <div className="max-w-7xl mx-auto px-4">
         <motion.div
-          initial={{ opacity: 0, y: 50 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          viewport={{ once: false, amount: 0.3 }}
           className="bg-white rounded-2xl shadow-xl overflow-hidden"
         >
           <div className="flex flex-col lg:flex-row">
@@ -33,10 +32,9 @@ const FounderSection = () => {
             {/* Founder Info */}
             <div className="lg:w-2/3 p-8">
               <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                whileInView={{ opacity: 1, x: 0 }}
+                initial={{ opacity: 1, x: 0 }}
+                animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                viewport={{ once: false }}
               >
                 <div className="flex items-center gap-3 mb-4">
                   <FaUserMd className="text-emerald-600 text-2xl" />

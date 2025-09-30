@@ -1,5 +1,4 @@
 import React, { useState, useRef, useEffect } from "react";
-import { useInView } from "react-intersection-observer";
 import { motion } from "framer-motion";
 
 /**
@@ -30,30 +29,19 @@ const OptimizedImage = ({
   const [retryCount, setRetryCount] = useState(0);
   const imgRef = useRef(null);
 
-  // Lazy loading with intersection observer
-  const { ref: inViewRef, inView } = useInView({
-    threshold: 0.1,
-    triggerOnce: true,
-    skip: priority, // Skip lazy loading for priority images
-  });
-
-  // Combined ref for both intersection observer and image element
+  // Remove lazy loading intersection observer for better performance
+  // All images now load immediately
   const setRefs = (element) => {
     imgRef.current = element;
-    inViewRef(element);
   };
 
   // Generate responsive image URLs with modern formats
   const generateImageSources = (baseSrc) => {
     if (!baseSrc) return {};
 
-    const pathParts = baseSrc.split(".");
-    const extension = pathParts.pop();
-    const basePath = pathParts.join(".");
-
+    // Only use the provided source - don't generate format variations
+    // that might not exist
     return {
-      avif: `${basePath}.avif`,
-      webp: `${basePath}.webp`,
       fallback: baseSrc,
     };
   };
@@ -90,7 +78,7 @@ const OptimizedImage = ({
     }
   }, [priority, src]);
 
-  const shouldLoad = priority || inView;
+  const shouldLoad = true; // Load all images immediately for better performance
 
   // Placeholder blur effect
   const blurDataURL =
@@ -122,7 +110,6 @@ const OptimizedImage = ({
 
   return (
     <div
-      ref={setRefs}
       className={`relative overflow-hidden ${className}`}
       style={{ aspectRatio }}
     >
@@ -143,38 +130,30 @@ const OptimizedImage = ({
         <div className="absolute inset-0 bg-gradient-to-r from-gray-200 via-gray-100 to-gray-200 animate-pulse" />
       )}
 
-      {/* Main image with modern format support */}
+      {/* Main image */}
       {shouldLoad && (
-        <motion.picture
-          initial={{ opacity: 0 }}
-          animate={{ opacity: isLoaded ? 1 : 0 }}
-          transition={{ duration: 0.15, ease: "easeOut" }}
-          className="block w-full h-full"
-        >
-          {/* Modern formats with fallback */}
-          <source srcSet={imageSources.avif} type="image/avif" />
-          <source srcSet={imageSources.webp} type="image/webp" />
-          <img
-            ref={imgRef}
-            src={imageSources.fallback}
-            alt={alt}
-            loading={priority ? "eager" : "lazy"}
-            decoding="async"
-            onLoad={handleLoad}
-            onError={handleError}
-            className={`w-full h-full transition-opacity duration-300 ${
-              objectFit === "cover"
-                ? "object-cover"
-                : objectFit === "contain"
-                ? "object-contain"
-                : objectFit === "fill"
-                ? "object-fill"
-                : "object-center"
-            }`}
-            sizes={sizes}
-            {...props}
-          />
-        </motion.picture>
+        <img
+          ref={setRefs}
+          src={imageSources.fallback}
+          alt={alt}
+          loading="eager"
+          decoding="async"
+          onLoad={handleLoad}
+          onError={handleError}
+          className={`w-full h-full transition-opacity duration-300 ${
+            isLoaded ? "opacity-100" : "opacity-0"
+          } ${
+            objectFit === "cover"
+              ? "object-cover"
+              : objectFit === "contain"
+              ? "object-contain"
+              : objectFit === "fill"
+              ? "object-fill"
+              : "object-center"
+          }`}
+          sizes={sizes}
+          {...props}
+        />
       )}
 
       {/* Loading indicator for slow connections */}

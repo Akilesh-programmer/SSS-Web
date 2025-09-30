@@ -70,7 +70,7 @@ export const loadImage = async (relativePath, options = {}) => {
         const mod = await import(/* @vite-ignore */ avifModule);
         return mod.default;
       } catch (e) {
-        console.warn(`[loadImage] AVIF loading failed for ${avifPath}:`, e);
+        // AVIF format not available, try WebP
       }
     }
   }
@@ -83,7 +83,7 @@ export const loadImage = async (relativePath, options = {}) => {
         const mod = await import(/* @vite-ignore */ webpModule);
         return mod.default;
       } catch (e) {
-        console.warn(`[loadImage] WebP loading failed for ${webpPath}:`, e);
+        // WebP format not available, fallback to original
       }
     }
   }
@@ -95,10 +95,7 @@ export const loadImage = async (relativePath, options = {}) => {
       const mod = await import(/* @vite-ignore */ originalModule);
       return mod.default;
     } catch (e) {
-      console.warn(
-        `[loadImage] Original format loading failed for ${relativePath}:`,
-        e
-      );
+      // Original format loading failed
     }
   }
 
@@ -113,15 +110,12 @@ export const loadImage = async (relativePath, options = {}) => {
         const mod = await import(/* @vite-ignore */ ciMatch[1]);
         return mod.default;
       } catch (e) {
-        console.warn(
-          `[loadImage] Case-insensitive fallback failed for ${relativePath}:`,
-          e
-        );
+        // Case-insensitive fallback failed
       }
     }
   }
 
-  console.warn("[loadImage] Asset not found:", relativePath);
+  // Asset not found
   return "";
 };
 
@@ -137,9 +131,7 @@ export const raw = (relativePath) => {
   if (criticalAsset) return criticalAsset;
 
   // For non-critical assets, return a placeholder and load async
-  console.warn(
-    `[raw] Using synchronous loading for ${relativePath}. Consider using loadImage() for better performance.`
-  );
+  // Using synchronous loading
 
   const direct = assetMap[relativePath];
   if (direct) {
@@ -154,7 +146,7 @@ export const raw = (relativePath) => {
   );
   if (ciMatch) return ciMatch[1];
 
-  console.warn("[raw] asset not found:", relativePath);
+  // Asset not found
   return "";
 };
 
@@ -173,7 +165,7 @@ export const preloadCriticalImages = async (imagePaths = []) => {
         document.head.appendChild(link);
       }
     } catch (e) {
-      console.warn(`[preloadCriticalImages] Failed to preload ${path}:`, e);
+      // Failed to preload image
     }
   });
 
@@ -240,10 +232,4 @@ export const IMAGE_CATEGORIES = {
 export const __ASSET_MAP__ = assetMap;
 export const __CRITICAL_ASSETS__ = criticalAssetMap;
 
-// Performance monitoring
-if (typeof window !== "undefined" && process.env.NODE_ENV === "development") {
-  console.log(`[ImageManager] Loaded ${Object.keys(assetMap).length} assets`);
-  console.log(
-    `[ImageManager] Critical assets: ${Object.keys(criticalAssetMap).length}`
-  );
-}
+// Performance monitoring removed for cleaner console

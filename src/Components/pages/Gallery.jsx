@@ -109,11 +109,11 @@ const Gallery = () => {
 
   const gridItemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: (i) => ({
+    visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.55, delay: 0.02 * i, ease: "easeOut" },
-    }),
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
   };
 
   return (
@@ -127,7 +127,7 @@ const Gallery = () => {
       >
         <UniversalOptimizedImage
           mode="background"
-          imageId="bg-4"
+          src={BG4}
           className="absolute inset-0"
           backgroundSize="cover"
           backgroundPosition="center"
@@ -216,7 +216,6 @@ const Gallery = () => {
           {images.map((img, idx) => (
             <motion.button
               key={img.id}
-              custom={idx}
               variants={gridItemVariants}
               initial="hidden"
               animate="visible"

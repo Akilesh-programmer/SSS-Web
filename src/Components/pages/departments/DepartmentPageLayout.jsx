@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaUserMd, FaImages, FaExpand, FaGraduationCap } from "react-icons/fa";
+import UniversalOptimizedImage from "../../ui/UniversalOptimizedImage";
 import Navigation from "../../ui/Navigation";
 import Footer from "../../ui/Footer";
 import PageWrapper from "../../ui/PageWrapper";
@@ -103,12 +104,12 @@ const findDepartmentIdBySlug = (slug) => {
 // Card animation variant (same as DoctorsPage)
 const cardVariant = {
   hidden: { opacity: 0, y: 18, scale: 0.995 },
-  visible: (i = 0) => ({
+  visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1], delay: i * 0.15 },
-  }),
+    transition: { duration: 0.4, ease: [0.2, 0.8, 0.2, 1] },
+  },
 };
 
 // Infrastructure Gallery Component
@@ -173,7 +174,7 @@ const InfrastructureGallery = () => {
             key={startIndex + index}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.3 }}
             className="group cursor-pointer"
             onClick={() => openModal(photo)}
           >
@@ -375,7 +376,7 @@ const DepartmentPageLayout = () => {
       >
         <UniversalOptimizedImage
           mode="background"
-          imageId="bg-1"
+          src={BG1}
           className="absolute inset-0"
           backgroundSize="cover"
           backgroundPosition="center"
@@ -523,8 +524,7 @@ const DepartmentPageLayout = () => {
                         initial={{ opacity: 0, y: 30, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{
-                          duration: 0.7,
-                          delay: 1.0 + index * 0.15,
+                          duration: 0.3,
                           ease: "easeOut",
                         }}
                         whileHover={{
@@ -652,17 +652,13 @@ const DepartmentPageLayout = () => {
               animate="visible"
             >
               {doctors.map((doctor, index) => {
-                const cols = 4;
-                const staggerIndex = index % cols;
-
                 return (
                   <motion.div
                     key={doctor.id}
                     initial={{ opacity: 0, y: 40, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 0.1 * staggerIndex,
+                      duration: 0.4,
                       type: "spring",
                       bounce: 0.1,
                     }}

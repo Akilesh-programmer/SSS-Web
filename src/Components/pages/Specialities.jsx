@@ -1,6 +1,7 @@
 import { departments } from "../../data/DoctorDepartmentData";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 
 import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
 import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
@@ -117,7 +118,7 @@ const Specialities = () => {
       >
         <UniversalOptimizedImage
           mode="background"
-          imageId="bg-1"
+          src={getHeroBgImage()}
           className="absolute inset-0"
           backgroundSize="cover"
           backgroundPosition="center"

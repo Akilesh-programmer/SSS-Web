@@ -273,16 +273,13 @@ const DoctorsPage = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <motion.div
+        <UniversalOptimizedImage
           mode="background"
-          imageId="bg-3"
+          src={BG3}
           className="absolute inset-0"
           backgroundSize="cover"
           backgroundPosition="center"
           priority={true}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
         />
         <div className="absolute inset-0 bg-black/50" />
 
@@ -568,7 +565,7 @@ const DoctorsPage = () => {
                     <motion.div
                       key={doctor.id}
                       variants={cardVariant}
-                      initial="hidden"
+                      initial="visible"
                       animate="visible"
                       custom={staggerIndex}
                       whileHover={{ scale: 1.02, y: -5 }}

@@ -19,8 +19,8 @@ const ChairmanCard = () => {
 
   return (
     <motion.div
-      initial="hidden"
-      whileInView="visible"
+      initial="visible"
+      animate="visible"
       variants={{
         hidden: {},
         visible: { transition: { staggerChildren: 0.15 } },
