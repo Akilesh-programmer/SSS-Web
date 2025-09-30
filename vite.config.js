@@ -78,7 +78,7 @@ export default defineConfig({
         entryFileNames: "assets/[name]-[hash].js",
         chunkFileNames: "assets/[name]-[hash].js",
         assetFileNames: (assetInfo) => {
-          const fileName = assetInfo.names?.[0] || assetInfo.name || '';
+          const fileName = assetInfo.names?.[0] || assetInfo.name || "";
           const info = fileName.split(".");
           const ext = info[info.length - 1];
 
