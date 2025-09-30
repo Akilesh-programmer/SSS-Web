@@ -1,5 +1,6 @@
 import { useState, useEffect, useMemo, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaUserMd,
   FaSearch,
@@ -272,14 +273,13 @@ const DoctorsPage = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+        <UniversalOptimizedImage
+          mode="background"
+          src={BG3}
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-black/50" />
 
@@ -565,7 +565,7 @@ const DoctorsPage = () => {
                     <motion.div
                       key={doctor.id}
                       variants={cardVariant}
-                      initial="hidden"
+                      initial="visible"
                       animate="visible"
                       custom={staggerIndex}
                       whileHover={{ scale: 1.02, y: -5 }}
@@ -576,10 +576,12 @@ const DoctorsPage = () => {
                       <div className="relative text-center mb-4">
                         {doctor.image ? (
                           <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto">
-                            <img
+                            <UniversalOptimizedImage
                               src={doctor.image}
                               alt={doctor.name}
                               className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors"
+                              aspectRatio={1}
+                              sizes="(max-width: 640px) 96px, (max-width: 1024px) 112px, 128px"
                             />
                           </div>
                         ) : (
@@ -695,10 +697,12 @@ const DoctorsPage = () => {
                 <div className="flex flex-col sm:flex-row items-center gap-6">
                   {selectedDoctor.image ? (
                     <div className="w-24 h-24 sm:w-32 sm:h-32">
-                      <img
+                      <UniversalOptimizedImage
                         src={selectedDoctor.image}
                         alt={selectedDoctor.name}
                         className="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-lg"
+                        aspectRatio={1}
+                        sizes="(max-width: 640px) 96px, 128px"
                       />
                     </div>
                   ) : (

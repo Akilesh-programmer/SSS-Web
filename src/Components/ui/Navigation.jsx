@@ -2,8 +2,8 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
-import sssLogoLocal from "../../assets/sss-logo.jpeg";
-const sssLogo = sssLogoLocal;
+import UniversalOptimizedImage from "./UniversalOptimizedImage";
+import sssLogoLocal from "../../assets/SSS-full-logo.png";
 import { FaBars, FaTimes, FaAmbulance } from "react-icons/fa";
 
 const Navigation = () => {
@@ -170,10 +170,12 @@ const Navigation = () => {
               <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 opacity-0 group-hover:opacity-100 transition-all duration-300 -m-2 p-2"></div>
 
               <div className="relative">
-                <img
-                  src={sssLogo}
+                <UniversalOptimizedImage
+                  imageId="logo-simple"
                   alt="SSS Super Speciality Hospital Logo"
                   className="h-10 w-10 lg:h-12 lg:w-12 rounded-lg object-contain bg-white p-1 shadow-lg ring-1 ring-emerald-200"
+                  priority={true}
+                  aspectRatio={1}
                 />
                 {/* Professional overlay */}
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-emerald-100/30 to-transparent pointer-events-none"></div>

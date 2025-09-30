@@ -11,13 +11,12 @@ import {
 } from "react-icons/fa";
 import { doctors } from "../../../data/DoctorDepartmentData";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
+import UniversalOptimizedImage from "../../ui/UniversalOptimizedImage";
 
 const DoctorsSection = ({ limit }) => {
   const listRef = useRef(null);
   const sectionRef = useRef(null);
   const navigate = useNavigate();
-  // modal state removed — clicking a card no longer opens a popup
-  const [isInView, setIsInView] = useState(false);
   const autoplayRef = useRef(null);
 
   // Layout constants
@@ -38,30 +37,10 @@ const DoctorsSection = ({ limit }) => {
     typeof limit === "number" ? items.slice(0, limit) : items;
   const [currentIndex, setCurrentIndex] = useState(0);
 
-  // Intersection Observer to detect when section comes into view
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => {
-        setIsInView(entry.isIntersecting);
-      },
-      { threshold: 0.3 }
-    );
-
-    if (sectionRef.current) {
-      observer.observe(sectionRef.current);
-    }
-
-    return () => {
-      if (sectionRef.current) {
-        observer.unobserve(sectionRef.current);
-      }
-    };
-  }, []);
-
-  // Auto-scroll carousel when in view, pause on interaction
+  // Auto-scroll carousel, pause on interaction
   useEffect(() => {
     const el = listRef.current;
-    if (!el || !isInView) return;
+    if (!el) return;
 
     const start = () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
@@ -86,9 +65,9 @@ const DoctorsSection = ({ limit }) => {
     const isOverflowing = () => el.scrollWidth > el.clientWidth + 8;
 
     const updateAutoplay = () => {
-      // only autoplay when there's overflow, more than one item, and section is in view
+      // only autoplay when there's overflow and more than one item
       const willAutoplay =
-        isOverflowing() && (displayedItems || []).length > 1 && isInView;
+        isOverflowing() && (displayedItems || []).length > 1;
       if (willAutoplay) start();
       else stop();
     };
@@ -104,7 +83,7 @@ const DoctorsSection = ({ limit }) => {
 
     // restart autoplay on leaving the carousel only if still overflowing
     const maybeRestart = () => {
-      if (isOverflowing() && isInView) start();
+      if (isOverflowing()) start();
     };
     el.addEventListener("mouseleave", maybeRestart);
 
@@ -130,11 +109,7 @@ const DoctorsSection = ({ limit }) => {
         ro = null;
       }
     };
-  }, [isInView, displayedItems]);
-
-  // description removed from cards
-
-  // modal removed - no focus handling required
+  }, [displayedItems]);
 
   const scroll = (dir = "right") => {
     const el = listRef.current;
@@ -223,39 +198,35 @@ const DoctorsSection = ({ limit }) => {
       {/* Background decorative elements */}
       <div className="absolute inset-0 pointer-events-none">
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.4, scale: 1 }}
+          initial={{ opacity: 0.4, scale: 1 }}
+          animate={{ opacity: 0.4, scale: 1 }}
           transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
           className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-200 to-emerald-200 rounded-full blur-3xl"
         />
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.3, scale: 1 }}
+          initial={{ opacity: 0.3, scale: 1 }}
+          animate={{ opacity: 0.3, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
           className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-emerald-200 to-blue-200 rounded-full blur-3xl"
         />
         <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.2, scale: 1 }}
+          initial={{ opacity: 0.2, scale: 1 }}
+          animate={{ opacity: 0.2, scale: 1 }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
           className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-blue-300 to-teal-300 rounded-full blur-2xl"
         />
       </div>
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.4, ease: "easeOut" }}
-          viewport={{ once: true, amount: 0.3 }}
           className="text-center mb-16"
         >
           <motion.div
-            initial={{ scale: 0, rotate: -10 }}
-            whileInView={{ scale: 1, rotate: 0 }}
+            initial={{ scale: 1, rotate: 0 }}
+            animate={{ scale: 1, rotate: 0 }}
             transition={{
               duration: 0.3,
               delay: 0.1,
@@ -263,36 +234,32 @@ const DoctorsSection = ({ limit }) => {
               stiffness: 200,
               damping: 15,
             }}
-            viewport={{ once: true }}
             className="inline-flex items-center justify-center mb-6"
           >
             <div className="relative">
               <FaUserMd className="text-6xl text-blue-600 drop-shadow-lg" />
               <motion.div
-                initial={{ scale: 0 }}
-                whileInView={{ scale: 1 }}
+                initial={{ scale: 1 }}
+                animate={{ scale: 1 }}
                 transition={{ delay: 0.2, duration: 0.2 }}
-                viewport={{ once: true }}
                 className="absolute -inset-2 bg-blue-100 rounded-full opacity-20 animate-pulse"
               />
             </div>
           </motion.div>
 
           <motion.h2
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
-            viewport={{ once: true }}
             className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 bg-clip-text text-transparent mb-6"
           >
             Meet Our Expert Doctors
           </motion.h2>
 
           <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.2 }}
-            viewport={{ once: true }}
             className="text-lg text-gray-600 max-w-2xl mx-auto"
           >
             Our dedicated team of medical professionals brings years of
@@ -302,17 +269,15 @@ const DoctorsSection = ({ limit }) => {
         </motion.div>
 
         <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.3, delay: 0.25 }}
-          viewport={{ once: true }}
           className="relative"
         >
           <motion.div
-            initial={{ opacity: 0, x: -30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.25, delay: 0.3 }}
-            viewport={{ once: true }}
             className="absolute -left-6 top-1/2 transform -translate-y-1/2 z-30 hidden md:block"
           >
             <motion.button
@@ -327,10 +292,9 @@ const DoctorsSection = ({ limit }) => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 30 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.25, delay: 0.3 }}
-            viewport={{ once: true }}
             className="absolute -right-6 top-1/2 transform -translate-y-1/2 z-30 hidden md:block"
           >
             <motion.button
@@ -346,10 +310,9 @@ const DoctorsSection = ({ limit }) => {
 
           <motion.div
             ref={listRef}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.4, delay: 0.35 }}
-            viewport={{ once: true }}
             onScroll={handleScroll}
             onTouchStart={() => {
               if (autoplayRef.current) clearInterval(autoplayRef.current);
@@ -382,10 +345,13 @@ const DoctorsSection = ({ limit }) => {
                         className="relative w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 mx-auto"
                       >
                         {doctor.image ? (
-                          <img
+                          <UniversalOptimizedImage
                             src={doctor.image}
                             alt={doctor.name}
                             className="w-full h-full rounded-full object-cover border-4 border-blue-100 transition-colors duration-300"
+                            aspectRatio={1}
+                            priority={idx < 4}
+                            sizes="(max-width: 640px) 128px, (max-width: 1024px) 144px, 160px"
                           />
                         ) : (
                           <DefaultDoctorAvatar
@@ -393,7 +359,6 @@ const DoctorsSection = ({ limit }) => {
                             className="w-full h-full border-4 border-blue-100"
                           />
                         )}
-                        {/* removed overlay icon to give image more space */}
                       </motion.div>
                     </div>
 
@@ -413,8 +378,6 @@ const DoctorsSection = ({ limit }) => {
                       <p className="text-blue-600 font-semibold mb-3">
                         {doctor.specialty}
                       </p>
-
-                      {/* only study (qualification) and specialty shown on cards */}
                     </div>
 
                     {/* Hover overlay */}
@@ -431,10 +394,9 @@ const DoctorsSection = ({ limit }) => {
 
           {/* Dynamic Pagination Dots */}
           <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.25, delay: 0.4 }}
-            viewport={{ once: true }}
             className={`flex justify-center mt-8 ${paginationConfig.spacing}`}
           >
             {displayedItems.map((item, idx) => {
@@ -483,8 +445,6 @@ const DoctorsSection = ({ limit }) => {
           </div>
         </motion.div>
       </div>
-
-      {/* Doctor detail popup removed - clicking cards no longer opens a modal */}
     </section>
   );
 };

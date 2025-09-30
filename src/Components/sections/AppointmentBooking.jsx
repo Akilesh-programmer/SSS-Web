@@ -18,10 +18,9 @@ const StatItem = ({ number, label, icon: Icon, suffix = "" }) => {
   return (
     <motion.div
       ref={ref}
-      initial={{ opacity: 0, y: 8 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.45 }}
-      viewport={{ once: true, amount: 0.3 }}
       className="group text-center rounded-2xl p-2 sm:p-3 hover:scale-[1.01] transition-transform duration-200 h-full flex w-full"
     >
       <div className="bg-gradient-to-br from-emerald-50 to-white/60 rounded-xl p-4 sm:p-5 shadow-md border border-emerald-100/40 hover:shadow-lg transition-shadow duration-200 h-full flex flex-col items-center justify-center w-full">
@@ -73,17 +72,15 @@ const AppointmentBooking = () => {
 
         <div className="max-w-7xl mx-auto px-4 relative">
           <motion.div
-            initial={{ opacity: 0.3, y: 15 }} // Start with some opacity to show content
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6 }}
-            viewport={{ once: true, amount: 0.2 }}
             className="text-center mb-16"
           >
             <motion.div
-              initial={{ scale: 0 }}
-              whileInView={{ scale: 1 }}
+              initial={{ scale: 1 }}
+              animate={{ scale: 1 }}
               transition={{ delay: 0.2, type: "spring", stiffness: 200 }}
-              viewport={{ once: true, amount: 0.3 }}
               className="inline-flex items-center justify-center mb-6"
             >
               <div className="relative">
@@ -104,10 +101,9 @@ const AppointmentBooking = () => {
 
           {/* Main CTA Section */}
           <motion.div
-            initial={{ opacity: 0.3, y: 15 }} // Start with some opacity to show content
-            whileInView={{ opacity: 1, y: 0 }}
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
-            viewport={{ once: true, amount: 0.2 }}
             className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-16 relative"
           >
             {/* Professional gradient header */}

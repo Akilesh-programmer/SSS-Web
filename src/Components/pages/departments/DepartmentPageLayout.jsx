@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import { FaUserMd, FaImages, FaExpand, FaGraduationCap } from "react-icons/fa";
+import UniversalOptimizedImage from "../../ui/UniversalOptimizedImage";
 import Navigation from "../../ui/Navigation";
 import Footer from "../../ui/Footer";
 import PageWrapper from "../../ui/PageWrapper";
@@ -103,12 +104,12 @@ const findDepartmentIdBySlug = (slug) => {
 // Card animation variant (same as DoctorsPage)
 const cardVariant = {
   hidden: { opacity: 0, y: 18, scale: 0.995 },
-  visible: (i = 0) => ({
+  visible: {
     opacity: 1,
     y: 0,
     scale: 1,
-    transition: { duration: 0.8, ease: [0.2, 0.8, 0.2, 1], delay: i * 0.15 },
-  }),
+    transition: { duration: 0.4, ease: [0.2, 0.8, 0.2, 1] },
+  },
 };
 
 // Infrastructure Gallery Component
@@ -173,15 +174,17 @@ const InfrastructureGallery = () => {
             key={startIndex + index}
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: index * 0.1 }}
+            transition={{ duration: 0.3 }}
             className="group cursor-pointer"
             onClick={() => openModal(photo)}
           >
             <div className="relative overflow-hidden rounded-xl shadow-lg bg-white">
-              <img
+              <UniversalOptimizedImage
                 src={photo.src}
                 alt={photo.alt}
                 className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                aspectRatio={4 / 3}
+                sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -231,10 +234,12 @@ const InfrastructureGallery = () => {
             className="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center"
             onClick={(e) => e.stopPropagation()}
           >
-            <img
+            <UniversalOptimizedImage
               src={selectedImage.src}
               alt={selectedImage.alt}
               className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              aspectRatio={4 / 3}
+              sizes="80vw"
             />
             {/* Fixed top-right close button (below navbar) */}
             <button
@@ -369,11 +374,16 @@ const DepartmentPageLayout = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
+        <UniversalOptimizedImage
+          mode="background"
+          src={BG1}
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
+        />
         <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage(departmentId)})`,
-          }}
+          className="absolute inset-0"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
@@ -514,8 +524,7 @@ const DepartmentPageLayout = () => {
                         initial={{ opacity: 0, y: 30, scale: 0.95 }}
                         animate={{ opacity: 1, y: 0, scale: 1 }}
                         transition={{
-                          duration: 0.7,
-                          delay: 1.0 + index * 0.15,
+                          duration: 0.3,
                           ease: "easeOut",
                         }}
                         whileHover={{
@@ -561,10 +570,12 @@ const DepartmentPageLayout = () => {
                         }}
                       >
                         <div className="relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                          <img
+                          <UniversalOptimizedImage
                             src={photo.src}
                             alt=""
                             className="w-full h-48 object-cover"
+                            aspectRatio={4 / 3}
+                            sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                           />
                           <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
@@ -641,17 +652,13 @@ const DepartmentPageLayout = () => {
               animate="visible"
             >
               {doctors.map((doctor, index) => {
-                const cols = 4;
-                const staggerIndex = index % cols;
-
                 return (
                   <motion.div
                     key={doctor.id}
                     initial={{ opacity: 0, y: 40, scale: 0.9 }}
                     animate={{ opacity: 1, y: 0, scale: 1 }}
                     transition={{
-                      duration: 0.8,
-                      delay: 0.1 * staggerIndex,
+                      duration: 0.4,
                       type: "spring",
                       bounce: 0.1,
                     }}
@@ -662,10 +669,12 @@ const DepartmentPageLayout = () => {
                     <div className="relative text-center mb-4">
                       {doctor.image ? (
                         <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto">
-                          <img
+                          <UniversalOptimizedImage
                             src={doctor.image}
                             alt={doctor.name}
                             className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors"
+                            aspectRatio={1}
+                            sizes="(max-width: 640px) 96px, (max-width: 1024px) 112px, 128px"
                           />
                         </div>
                       ) : (

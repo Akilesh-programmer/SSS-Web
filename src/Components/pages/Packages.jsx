@@ -1,5 +1,6 @@
 import React from "react";
 import { motion } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaStethoscope,
   FaCheck,
@@ -223,14 +224,13 @@ const Packages = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+        <UniversalOptimizedImage
+          mode="background"
+          src={BG4}
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-black/50" />
 
@@ -285,7 +285,7 @@ const Packages = () => {
 
           {/* Packages Grid */}
           <motion.div
-            initial="hidden"
+            initial="visible"
             animate="visible"
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"

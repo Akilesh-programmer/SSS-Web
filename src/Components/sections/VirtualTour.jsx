@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaPlay,
   FaTimes,
@@ -25,8 +26,8 @@ const TourStat = ({ value, suffix = "", label, icon, delay = 0 }) => {
       ref={ref}
       className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
       whileHover={{ y: -5 }}
-      initial={{ opacity: 0, y: 20 }}
-      whileInView={{ opacity: 1, y: 0 }}
+      initial={{ opacity: 1, y: 0 }}
+      animate={{ opacity: 1, y: 0 }}
       transition={{ delay, duration: 0.6 }}
     >
       <div className="text-2xl sm:text-3xl mb-2">{icon}</div>
@@ -143,14 +144,14 @@ const VirtualTour = () => {
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           className="text-center mb-12 lg:mb-16"
         >
           <motion.div
-            initial={{ opacity: 0, scale: 0.8 }}
-            whileInView={{ opacity: 1, scale: 1 }}
+            initial={{ opacity: 1, scale: 1 }}
+            animate={{ opacity: 1, scale: 1 }}
             transition={{ delay: 0.2, duration: 0.6 }}
             className="inline-block bg-gradient-to-r from-emerald-100 to-teal-100 rounded-full px-4 sm:px-6 py-2 mb-4 sm:mb-6"
           >
@@ -171,8 +172,8 @@ const VirtualTour = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="relative px-4 sm:px-0"
           >
@@ -187,10 +188,12 @@ const VirtualTour = () => {
               <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden bg-white p-1 sm:p-2">
                 <div className="relative rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-50 p-1">
                   <div className="relative rounded-md sm:rounded-lg lg:rounded-xl overflow-hidden">
-                    <img
-                      src={hospitalImg}
+                    <UniversalOptimizedImage
+                      imageId="hospital-main"
                       alt="SSS Hospital Virtual Tour"
                       className="w-full h-48 sm:h-64 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                      aspectRatio={16 / 9}
+                      priority={false}
                     />
 
                     {/* Enhanced gradient overlay */}
@@ -247,8 +250,8 @@ const VirtualTour = () => {
             {/* Hospital Stats (compact) */}
             <motion.div
               className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mt-6 sm:mt-8"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial={{ opacity: 1, y: 0 }}
+              animate={{ opacity: 1, y: 0 }}
               transition={{ delay: 0.6, duration: 0.8 }}
             >
               {[
@@ -279,23 +282,23 @@ const VirtualTour = () => {
           </motion.div>
 
           <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            whileInView={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 1, x: 0 }}
+            animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
             className="space-y-6 sm:space-y-8 px-4 sm:px-0"
           >
             <div className="relative">
               <motion.div
-                initial={{ opacity: 0, scale: 0.8 }}
-                whileInView={{ opacity: 1, scale: 1 }}
+                initial={{ opacity: 1, scale: 1 }}
+                animate={{ opacity: 1, scale: 1 }}
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="absolute -top-2 sm:-top-4 -left-2 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full opacity-20 animate-pulse"
               />
               <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative">
                 Modern Healthcare Infrastructure
                 <motion.div
-                  initial={{ scaleX: 0 }}
-                  whileInView={{ scaleX: 1 }}
+                  initial={{ scaleX: 1 }}
+                  animate={{ scaleX: 1 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
                   className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 origin-left"
                 />
@@ -335,8 +338,8 @@ const VirtualTour = () => {
                 return (
                   <motion.div
                     key={key}
-                    initial={{ opacity: 0, x: 30 }}
-                    whileInView={{ opacity: 1, x: 0 }}
+                    initial={{ opacity: 1, x: 0 }}
+                    animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 + index * 0.2, duration: 0.6 }}
                     whileHover={{ x: 10 }}
                     className="flex items-start gap-3 sm:gap-4 lg:gap-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"

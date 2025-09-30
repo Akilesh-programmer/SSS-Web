@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import UniversalOptimizedImage from "./UniversalOptimizedImage";
 import {
   FaTimes,
   FaUserMd,
@@ -106,10 +107,13 @@ const DoctorPopup = ({ isOpen, onClose, doctor }) => {
               <div className="relative flex items-center gap-6">
                 <div className="w-24 h-24 rounded-full bg-white/20 backdrop-blur-sm flex items-center justify-center border-3 border-white/30">
                   {doctor.image ? (
-                    <img
+                    <UniversalOptimizedImage
                       src={doctor.image}
                       alt={doctor.name}
                       className="w-20 h-20 rounded-full object-cover"
+                      aspectRatio={1}
+                      priority={false}
+                      sizes="80px"
                     />
                   ) : (
                     <DefaultDoctorAvatar size="medium" className="w-20 h-20" />

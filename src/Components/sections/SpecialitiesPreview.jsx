@@ -44,7 +44,6 @@ const SpecialitiesPreview = ({ count = 4 }) => {
   const listRef = useRef(null);
   const sectionRef = useRef(null);
   const autoplayRef = useRef(null);
-  const [isInView, setIsInView] = useState(false);
   const [currentIndex, setCurrentIndex] = useState(0);
   const [paginationConfig, setPaginationConfig] = useState(() => ({
     size: "w-2 h-2",
@@ -65,22 +64,10 @@ const SpecialitiesPreview = ({ count = 4 }) => {
     return cardWidth + GAP;
   };
 
-  // observe section visibility for autoplay
-  useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsInView(entry.isIntersecting),
-      { threshold: 0.3 }
-    );
-    if (sectionRef.current) observer.observe(sectionRef.current);
-    return () => {
-      if (sectionRef.current) observer.unobserve(sectionRef.current);
-    };
-  }, []);
-
   // autoplay like DoctorsSection
   useEffect(() => {
     const el = listRef.current;
-    if (!el || !isInView) return;
+    if (!el) return;
 
     const start = () => {
       if (autoplayRef.current) clearInterval(autoplayRef.current);
@@ -104,8 +91,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
     const isOverflowing = () => el.scrollWidth > el.clientWidth + 8;
 
     const updateAutoplay = () => {
-      const willAutoplay =
-        isOverflowing() && displayedItems.length > 1 && isInView;
+      const willAutoplay = isOverflowing() && displayedItems.length > 1;
       if (willAutoplay) start();
       else stop();
     };
@@ -118,7 +104,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
     el.addEventListener("mouseenter", stopOnInteraction);
 
     const maybeRestart = () => {
-      if (isOverflowing() && isInView) start();
+      if (isOverflowing()) start();
     };
     el.addEventListener("mouseleave", maybeRestart);
 
@@ -140,7 +126,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
       window.removeEventListener("resize", onResize);
       if (ro && typeof ro.disconnect === "function") ro.disconnect();
     };
-  }, [isInView, displayedItems]);
+  }, [displayedItems]);
 
   const updateCurrentIndex = () => {
     const el = listRef.current;
@@ -312,8 +298,8 @@ const SpecialitiesPreview = ({ count = 4 }) => {
       </div>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
@@ -328,9 +314,8 @@ const SpecialitiesPreview = ({ count = 4 }) => {
 
         <motion.div
           className="relative"
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, amount: 0.15 }}
+          initial="visible"
+          animate="visible"
           tabIndex={0}
           onKeyDown={handleKeyDown}
         >
@@ -367,10 +352,9 @@ const SpecialitiesPreview = ({ count = 4 }) => {
             onTouchEnd={() => {
               window.dispatchEvent(new Event("resize"));
             }}
-            initial={{ opacity: 0 }}
-            whileInView={{ opacity: 1 }}
+            initial={{ opacity: 1 }}
+            animate={{ opacity: 1 }}
             transition={{ duration: 0.4 }}
-            viewport={{ once: true }}
             className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory py-6 px-1 scrollbar-hide"
           >
             {displayedItems.map((dept, idx) => (
@@ -393,11 +377,10 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                   {/* decorative accent */}
                   <motion.div
                     aria-hidden
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 0.06 }}
+                    initial={{ scale: 1, opacity: 0.06 }}
+                    animate={{ scale: 1, opacity: 0.06 }}
                     transition={{
-                      duration: 0.9,
-                      delay: idx * 0.04,
+                      duration: 0.5,
                       ease: "easeInOut",
                       repeat: 0,
                     }}
@@ -420,7 +403,6 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                         repeat: Infinity,
                         repeatType: "mirror",
                         ease: "easeInOut",
-                        delay: idx * 0.05,
                       }}
                       whileHover={{ scale: 1.16, rotate: 8 }}
                     >

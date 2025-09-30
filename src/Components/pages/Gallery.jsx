@@ -1,5 +1,6 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
 import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
 import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
@@ -108,11 +109,11 @@ const Gallery = () => {
 
   const gridItemVariants = {
     hidden: { opacity: 0, scale: 0.9 },
-    visible: (i) => ({
+    visible: {
       opacity: 1,
       scale: 1,
-      transition: { duration: 0.55, delay: 0.02 * i, ease: "easeOut" },
-    }),
+      transition: { duration: 0.3, ease: "easeOut" },
+    },
   };
 
   return (
@@ -124,12 +125,13 @@ const Gallery = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${getHeroBgImage()})` }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+        <UniversalOptimizedImage
+          mode="background"
+          src={BG4}
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-black/50" />
 
@@ -214,7 +216,6 @@ const Gallery = () => {
           {images.map((img, idx) => (
             <motion.button
               key={img.id}
-              custom={idx}
               variants={gridItemVariants}
               initial="hidden"
               animate="visible"
@@ -226,11 +227,12 @@ const Gallery = () => {
             >
               {/* Image */}
               <div className="aspect-[4/3] w-full overflow-hidden relative">
-                <img
+                <UniversalOptimizedImage
                   src={img.src}
                   alt={img.alt}
-                  loading="lazy"
                   className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus:scale-105"
+                  aspectRatio={4 / 3}
+                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 {/* Overlay gradient */}
                 <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/0 to-black/40 opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
@@ -290,10 +292,12 @@ const Gallery = () => {
             aria-label="Open hospital tour video"
           >
             <div className="aspect-video relative">
-              <img
+              <UniversalOptimizedImage
                 src={hospitalImg}
                 alt="Hospital preview for virtual tour"
                 className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                aspectRatio={16 / 9}
+                sizes="(max-width: 768px) 90vw, (max-width: 1200px) 70vw, 60vw"
                 loading="lazy"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 group-hover:from-black/60 transition-colors" />
@@ -354,10 +358,12 @@ const Gallery = () => {
               </button>
               <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50">
                 {activeMedia.type === "image" && (
-                  <img
+                  <UniversalOptimizedImage
                     src={activeMedia.src}
                     alt={activeMedia.alt || "Gallery Image"}
                     className="w-full h-full object-contain max-h-[78vh] mx-auto"
+                    aspectRatio={4 / 3}
+                    sizes="80vw"
                   />
                 )}
                 {activeMedia.type === "video" && (

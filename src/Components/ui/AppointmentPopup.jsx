@@ -129,7 +129,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
 
       // EmailJS service - you'll need to replace these with actual EmailJS credentials
       // For now, this will log the appointment data
-      console.log("Appointment Request:", templateParams);
+      // Appointment request processed
 
       // Uncomment and configure when EmailJS is set up:
       /*
@@ -146,7 +146,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
 
       setIsSubmitted(true);
     } catch (error) {
-      console.error("Email sending failed:", error);
+      // Email sending failed
       alert(
         "Failed to send appointment request. Please try again or call us directly at +91 6379276131."
       );

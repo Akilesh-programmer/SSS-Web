@@ -1,6 +1,7 @@
 import { departments } from "../../data/DoctorDepartmentData";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 
 import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
 import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
@@ -115,14 +116,13 @@ const Specialities = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+        <UniversalOptimizedImage
+          mode="background"
+          src={getHeroBgImage()}
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-black/50" />
 
