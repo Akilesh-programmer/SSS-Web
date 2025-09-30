@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { doctors } from "../../../data/DoctorDepartmentData";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
+import UniversalOptimizedImage from "../../ui/UniversalOptimizedImage";
 
 const DoctorsSection = ({ limit }) => {
   const listRef = useRef(null);
@@ -382,10 +383,13 @@ const DoctorsSection = ({ limit }) => {
                         className="relative w-32 h-32 sm:w-36 sm:h-36 lg:w-40 lg:h-40 mx-auto"
                       >
                         {doctor.image ? (
-                          <img
+                          <UniversalOptimizedImage
                             src={doctor.image}
                             alt={doctor.name}
                             className="w-full h-full rounded-full object-cover border-4 border-blue-100 transition-colors duration-300"
+                            aspectRatio={1}
+                            priority={idx < 4}
+                            sizes="(max-width: 640px) 128px, (max-width: 1024px) 144px, 160px"
                           />
                         ) : (
                           <DefaultDoctorAvatar

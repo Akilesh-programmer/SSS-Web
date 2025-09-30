@@ -1,6 +1,5 @@
 import { useRef, useEffect, useState } from "react";
-import logoFullLocal from "../../assets/SSS-full-logo.png";
-const logoFull = logoFullLocal;
+import UniversalOptimizedImage from "./UniversalOptimizedImage";
 import PropTypes from "prop-types";
 import {
   FaInstagram,
@@ -88,10 +87,11 @@ export default function Footer() {
           <div className="lg:col-span-4">
             <div className="flex items-center gap-3 mb-4">
               <div className="w-30 h-18 rounded-md bg-white p-1 flex items-center justify-center shadow-lg flex-shrink-0">
-                <img
-                  src={logoFull}
+                <UniversalOptimizedImage
+                  imageId="logo-full"
                   alt="SSS Hospital Logo"
                   className="max-w-full max-h-full object-contain rounded-sm"
+                  priority={false}
                 />
               </div>
               <div className="flex-1">

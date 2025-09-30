@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 
 import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
 import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
@@ -189,11 +190,16 @@ const Contact = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
+        <UniversalOptimizedImage
+          mode="background"
+          imageId="bg-1"
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
+        />
         <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-          }}
+          className="absolute inset-0"
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}

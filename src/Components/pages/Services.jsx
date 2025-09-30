@@ -1,5 +1,6 @@
 import React, { useState, useRef } from "react";
 import { motion, useInView } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -359,12 +360,13 @@ const Services = () => {
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
         {/* Background Image with Overlay */}
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${getHeroBgImage()})` }}
-          initial={{ scale: 1.08 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+        <UniversalOptimizedImage
+          mode="background"
+          imageId="bg-3"
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-black/50" />
 
@@ -410,15 +412,12 @@ const Services = () => {
                     className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
                     onClick={() => openModal(image)}
                   >
-                    <motion.img
+                    <UniversalOptimizedImage
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-48 object-cover"
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      aspectRatio={4 / 3}
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                     />
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
@@ -570,15 +569,12 @@ const Services = () => {
                     className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
                     onClick={() => openModal(image)}
                   >
-                    <motion.img
+                    <UniversalOptimizedImage
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-48 object-cover"
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      aspectRatio={4 / 3}
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                     />
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
@@ -749,15 +745,12 @@ const Services = () => {
                     className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
                     onClick={() => openModal(image)}
                   >
-                    <motion.img
+                    <UniversalOptimizedImage
                       src={image.src}
                       alt={image.alt}
                       className="w-full h-48 object-cover"
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.05 },
-                      }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
+                      aspectRatio={4 / 3}
+                      sizes="(max-width: 640px) 90vw, (max-width: 1024px) 45vw, 30vw"
                     />
                     <motion.div
                       className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
@@ -835,10 +828,12 @@ const Services = () => {
                 />
               </svg>
             </button>
-            <img
+            <UniversalOptimizedImage
               src={selectedImage.src}
               alt={selectedImage.alt}
               className="w-full h-full object-contain rounded-2xl shadow-2xl"
+              aspectRatio={16 / 9}
+              sizes="80vw"
             />
           </motion.div>
         </motion.div>

@@ -11,7 +11,8 @@ import {
   FaCalendarAlt,
   FaShieldAlt,
 } from "react-icons/fa";
-import hospitalImg from "../../assets/sss-hospital.avif";
+import OptimizedImage from "../ui/OptimizedImage";
+import { imageManager } from "../../data/modernImageData";
 import PropTypes from "prop-types";
 
 // Small counter component that animates from 0 -> end when `start` becomes true
@@ -86,6 +87,26 @@ Counter.propTypes = {
 export default function Home() {
   const indicatorsRef = useRef(null);
   const [countersStarted, setCountersStarted] = useState(false);
+  const [hospitalImage, setHospitalImage] = useState(null);
+
+  // Load optimized hospital image
+  useEffect(() => {
+    const loadHospitalImage = async () => {
+      try {
+        const imageData = await imageManager.getImage("hospital-main");
+        setHospitalImage(imageData);
+      } catch (error) {
+        console.warn("Failed to load hospital image:", error);
+        // Fallback to direct import if needed
+        setHospitalImage({
+          url: "/src/assets/sss-hospital.avif",
+          alt: "SSS Hospital",
+        });
+      }
+    };
+
+    loadHospitalImage();
+  }, []);
 
   useEffect(() => {
     const el = indicatorsRef.current;
@@ -217,13 +238,22 @@ export default function Home() {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="relative order-1 lg:order-2"
             >
-              {/* Main hospital image */}
+              {/* Main hospital image with optimization */}
               <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500 mx-0 sm:mx-2 lg:mx-0">
-                <img
-                  src={hospitalImg}
-                  alt="SSS Hospital"
-                  className="w-full h-96 sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover transition-transform duration-700 hover:scale-105"
-                />
+                {hospitalImage ? (
+                  <OptimizedImage
+                    src={hospitalImage.url}
+                    alt={hospitalImage.alt || "SSS Hospital - Main Building"}
+                    className="w-full h-96 sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] transition-transform duration-700 hover:scale-105"
+                    objectFit="cover"
+                    priority={true}
+                    quality={90}
+                    sizes="(max-width: 640px) 100vw, 50vw"
+                    aspectRatio="16/9"
+                  />
+                ) : (
+                  <div className="w-full h-96 sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] bg-gray-200 animate-pulse" />
+                )}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent"></div>
 
                 {/* Floating stats card (moved slightly more left & down) */}

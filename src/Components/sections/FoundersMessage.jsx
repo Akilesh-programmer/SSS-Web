@@ -1,4 +1,5 @@
 import { motion } from "framer-motion";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaQuoteLeft,
   FaEnvelope,
@@ -49,11 +50,12 @@ export default function FoundersMessage() {
   return (
     <div className="w-full bg-white py-12 px-2 md:px-8 flex flex-col items-center min-h-[700px]">
       {/* Hospital Logo */}
-      <img
-        src={sssLogo}
+      <UniversalOptimizedImage
+        imageId="logo-simple"
         alt="SSS Hospital Logo"
         className="w-16 h-16 rounded-full mb-6 shadow object-cover border-2 border-emerald-500"
-        loading="lazy"
+        aspectRatio={1}
+        priority={false}
       />
       {/* Professional 2-column grid */}
       <motion.div
@@ -66,11 +68,12 @@ export default function FoundersMessage() {
         <div className="flex flex-col gap-7 items-start">
           {/* Founder’s Portrait */}
           <div className="w-32 h-32 rounded-full overflow-hidden border-4 border-emerald-200 shadow-lg mb-2">
-            <img
-              src={founderImg}
+            <UniversalOptimizedImage
+              imageId="doctor-2"
               alt="Dr. S. Sanjith"
               className="w-full h-full object-cover"
-              loading="lazy"
+              aspectRatio={1}
+              priority={false}
             />
           </div>
           {/* Name & Title */}

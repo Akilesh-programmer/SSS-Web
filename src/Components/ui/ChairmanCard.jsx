@@ -1,10 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
-import chairmanImg from "../../assets/doctor_photos/1.png";
+import UniversalOptimizedImage from "./UniversalOptimizedImage";
 
 const ChairmanCard = () => {
-  const imageSrc = chairmanImg;
   const name = "S.SARAVANA BHAVAN";
   const title = "CHAIRMAN";
   const quote = `At SSS Super Speciality Hospital, We believe in combining medical excellence with a personal touch in providing hope, care and cure. We offer medical treatment with a motherly touch - because healing begins with bonding. It is our commitment to bring the best of technology under one roof for the people of Erode and beyond.`;
@@ -59,10 +58,12 @@ const ChairmanCard = () => {
           <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto">
             <div className="absolute inset-0 bg-gradient-to-tl from-emerald-300 to-teal-100 rounded-2xl transform rotate-3" />
             <div className="absolute inset-0 bg-gradient-to-tl from-white to-emerald-50 rounded-2xl border-2 border-white shadow-md overflow-hidden">
-              <img
-                src={imageSrc}
+              <UniversalOptimizedImage
+                imageId="doctor-1"
                 alt={name}
                 className="w-full h-full object-cover rounded-xl"
+                aspectRatio={1}
+                priority={false}
               />
             </div>
           </div>

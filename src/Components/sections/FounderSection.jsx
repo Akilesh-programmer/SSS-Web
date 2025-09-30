@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaUserMd, FaAward, FaHeart, FaUsers } from "react-icons/fa";
-import founderPortrait from "../../assets/Sanjith-SSS-Hospitals.png";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 
 const FounderSection = () => {
   return (
@@ -16,10 +16,12 @@ const FounderSection = () => {
           <div className="flex flex-col lg:flex-row">
             {/* Founder Image */}
             <div className="lg:w-1/3 relative">
-              <img
-                src={founderPortrait}
+              <UniversalOptimizedImage
+                imageId="founder-portrait"
                 alt="Dr. S. Sanjith - Founder"
                 className="w-full h-64 lg:h-full object-cover"
+                aspectRatio={3 / 4}
+                priority={false}
               />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent"></div>
               <div className="absolute bottom-4 left-4 text-white">

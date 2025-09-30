@@ -223,14 +223,13 @@ const Packages = () => {
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 1.2, ease: "easeOut" }}
       >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+        <UniversalOptimizedImage
+          mode="background"
+          imageId="bg-4"
+          className="absolute inset-0"
+          backgroundSize="cover"
+          backgroundPosition="center"
+          priority={true}
         />
         <div className="absolute inset-0 bg-black/50" />
 

@@ -1,4 +1,5 @@
 import { useState } from "react";
+import UniversalOptimizedImage from "../ui/UniversalOptimizedImage";
 import {
   FaPlay,
   FaTimes,
@@ -187,10 +188,12 @@ const VirtualTour = () => {
               <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden bg-white p-1 sm:p-2">
                 <div className="relative rounded-lg sm:rounded-xl lg:rounded-2xl overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-50 p-1">
                   <div className="relative rounded-md sm:rounded-lg lg:rounded-xl overflow-hidden">
-                    <img
-                      src={hospitalImg}
+                    <UniversalOptimizedImage
+                      imageId="hospital-main"
                       alt="SSS Hospital Virtual Tour"
                       className="w-full h-48 sm:h-64 lg:h-80 object-cover transition-transform duration-700 group-hover:scale-110"
+                      aspectRatio={16 / 9}
+                      priority={false}
                     />
 
                     {/* Enhanced gradient overlay */}

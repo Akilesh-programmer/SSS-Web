@@ -1,10 +1,9 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
-import ceoImg from "../../assets/doctor_photos/3.jpeg";
+import UniversalOptimizedImage from "./UniversalOptimizedImage";
 
 const CeoCard = () => {
-  const imageSrc = ceoImg;
   const name = "DR P.SELVAKUMAR, MD., PDCC";
   const position = "CEO & MEDICAL DIRECTOR";
   const description = `An experienced Anaesthesiologist and ICU leader with a track record of operational excellence across leading tertiary hospitals. Dr. Selvakumar brings strong clinical governance, critical care expertise, and process-driven leadership to SSS Super Speciality Hospital. He trained and led critical care teams at Apollo (Greams Road and Madurai), Velammal Super Speciality, and KMCH before joining SSS in 2024. Dr. Selvakumar brings two decades of anaesthesia and ICU leadership focused on safety, efficiency, and compassionate patient care.`;
@@ -36,10 +35,12 @@ const CeoCard = () => {
           <div className="relative w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80 lg:w-96 lg:h-96 mx-auto">
             <div className="absolute inset-0 bg-gradient-to-bl from-emerald-300 to-teal-100 rounded-2xl transform -rotate-3" />
             <div className="absolute inset-0 bg-gradient-to-bl from-white to-emerald-50 rounded-2xl border-2 border-white shadow-md overflow-hidden">
-              <img
-                src={imageSrc}
+              <UniversalOptimizedImage
+                imageId="doctor-3"
                 alt={name}
                 className="w-full h-full object-cover rounded-xl"
+                aspectRatio={1}
+                priority={false}
               />
             </div>
           </div>
