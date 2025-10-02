@@ -15,10 +15,10 @@ import {
 import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
 
-const BG1 = "/assets/BG_Photos/DSC03391.JPG";
-const BG2 = "/assets/BG_Photos/DSC03392.JPG";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
+const BG1 = "/assets/BG_Photos/DSC03391.webp";
+const BG2 = "/assets/BG_Photos/DSC03392.webp";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
 
 // Helper animation presets to avoid repeating identical motion props
 const riseIn = (delay = 0, duration = 0.8) => ({

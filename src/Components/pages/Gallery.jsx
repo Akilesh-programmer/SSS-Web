@@ -3,58 +3,58 @@ import { motion, AnimatePresence } from "framer-motion";
 import OptimizedImageGrid from "../ui/OptimizedImageGrid";
 
 // Using public assets for better performance during deployment
-const BG1 = "/assets/BG_Photos/DSC03391.JPG";
-const BG2 = "/assets/BG_Photos/DSC03392.JPG";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
-const INF1 = "/assets/Infrastructure_Photos/DSC03356.JPG";
-const INF2 = "/assets/Infrastructure_Photos/DSC03360.JPG";
-const INF3 = "/assets/Infrastructure_Photos/DSC03365.JPG";
-const INF4 = "/assets/Infrastructure_Photos/DSC03386.JPG";
-const INF5 = "/assets/Infrastructure_Photos/DSC03388.JPG";
-const INF6 = "/assets/Infrastructure_Photos/DSC03412.JPG";
-const INF7 = "/assets/Infrastructure_Photos/DSC03426.JPG";
-const INF8 = "/assets/Infrastructure_Photos/DSC03427.JPG";
-const INF9 = "/assets/Infrastructure_Photos/DSC03428.JPG";
-const INF10 = "/assets/Infrastructure_Photos/DSC03434.JPG";
-const INF11 = "/assets/Infrastructure_Photos/DSC03435.JPG";
-const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
-const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
-const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
-const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
-const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
-const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
-const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
-const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
-const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
-const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
+const BG1 = "/assets/BG_Photos/DSC03391.webp";
+const BG2 = "/assets/BG_Photos/DSC03392.webp";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
+const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
+const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
+const INF4 = "/assets/Infrastructure_Photos/DSC03386.webp";
+const INF5 = "/assets/Infrastructure_Photos/DSC03388.webp";
+const INF6 = "/assets/Infrastructure_Photos/DSC03412.webp";
+const INF7 = "/assets/Infrastructure_Photos/DSC03426.webp";
+const INF8 = "/assets/Infrastructure_Photos/DSC03427.webp";
+const INF9 = "/assets/Infrastructure_Photos/DSC03428.webp";
+const INF10 = "/assets/Infrastructure_Photos/DSC03434.webp";
+const INF11 = "/assets/Infrastructure_Photos/DSC03435.webp";
+const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.webp";
+const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.webp";
+const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.webp";
+const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.webp";
+const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.webp";
+const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.webp";
+const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.webp";
+const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.webp";
+const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.webp";
+const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.webp";
 const hospitalVideo = "/assets/Hospital Full Tour Video.mp4";
 const hospitalImg = "/assets/sss-hospital.avif";
 import { FaHospital, FaPlayCircle, FaTimes } from "react-icons/fa";
 
 // Central list of infrastructure images
 const infrastructureImageList = [
-  "Infrastructure_Photos/DSC03356.JPG",
-  "Infrastructure_Photos/DSC03360.JPG",
-  "Infrastructure_Photos/DSC03365.JPG",
-  "Infrastructure_Photos/DSC03386.JPG",
-  "Infrastructure_Photos/DSC03388.JPG",
-  "Infrastructure_Photos/DSC03412.JPG",
-  "Infrastructure_Photos/DSC03426.JPG",
-  "Infrastructure_Photos/DSC03427.JPG",
-  "Infrastructure_Photos/DSC03428.JPG",
-  "Infrastructure_Photos/DSC03434.JPG",
-  "Infrastructure_Photos/DSC03435.JPG",
-  "Infrastructure_Photos/IMG-20250923-WA0016.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0018.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0019.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0020.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0023.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0026.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0027.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0028.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0030.jpg",
-  "Infrastructure_Photos/IMG-20250923-WA0032.jpg",
+  "Infrastructure_Photos/DSC03356.webp",
+  "Infrastructure_Photos/DSC03360.webp",
+  "Infrastructure_Photos/DSC03365.webp",
+  "Infrastructure_Photos/DSC03386.webp",
+  "Infrastructure_Photos/DSC03388.webp",
+  "Infrastructure_Photos/DSC03412.webp",
+  "Infrastructure_Photos/DSC03426.webp",
+  "Infrastructure_Photos/DSC03427.webp",
+  "Infrastructure_Photos/DSC03428.webp",
+  "Infrastructure_Photos/DSC03434.webp",
+  "Infrastructure_Photos/DSC03435.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0016.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0018.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0019.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0020.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0023.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0026.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0027.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0028.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0030.webp",
+  "Infrastructure_Photos/IMG-20250923-WA0032.webp",
 ];
 
 const videoUrl = hospitalVideo;
@@ -206,6 +206,7 @@ const Gallery = () => {
           onItemClick={(img) => openImage(img)}
           aspectRatio="4/3"
           columnsMinWidth={240}
+          enableAnimation={false}
           className="mt-2"
         />
 
