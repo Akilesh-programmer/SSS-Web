@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
-import founderImgLocal from "../../assets/doctor_photos/2.png";
+const founderImgLocal = "/assets/doctor_photos/2.png";
 
 const FounderCard = () => {
   const imageSrc = founderImgLocal;

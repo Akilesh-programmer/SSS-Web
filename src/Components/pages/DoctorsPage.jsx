@@ -12,10 +12,10 @@ import { FaSort, FaFilterCircleXmark } from "react-icons/fa6";
 import { departments, doctors } from "../../data/DoctorDepartmentData";
 
 // Local background images
-import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
-import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
-import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+const BG1 = "/assets/BG_Photos/DSC03391.JPG";
+const BG2 = "/assets/BG_Photos/DSC03392.JPG";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];

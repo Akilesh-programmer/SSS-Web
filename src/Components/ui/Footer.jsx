@@ -1,5 +1,6 @@
 import { useRef, useEffect, useState } from "react";
-import logoFullLocal from "../../assets/SSS-full-logo.png";
+import React from "react";
+const logoFullLocal = "/assets/SSS-full-logo.png";
 const logoFull = logoFullLocal;
 import PropTypes from "prop-types";
 import {

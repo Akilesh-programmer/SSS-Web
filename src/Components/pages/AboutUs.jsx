@@ -19,15 +19,14 @@ import ChairmanCard from "../ui/ChairmanCard";
 import FounderCard from "../ui/FounderCard";
 import CeoCard from "../ui/CeoCard";
 
-// BG Photos for hero background
-// Explicitly import background images (Option A) instead of using raw() helper
-import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
-import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
-import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
-// Import doctor images used in leadership array (remove remote URLs)
-import doc2 from "../../assets/doctor_photos/2.png";
-import doc3 from "../../assets/doctor_photos/3.jpeg";
+// BG Photos for hero background - using public assets for better performance
+const BG1 = "/assets/BG_Photos/DSC03391.JPG";
+const BG2 = "/assets/BG_Photos/DSC03392.JPG";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
+// Doctor images used in leadership array
+const doc2 = "/assets/doctor_photos/2.png";
+const doc3 = "/assets/doctor_photos/3.jpeg";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];

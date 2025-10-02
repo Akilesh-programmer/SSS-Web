@@ -1,32 +1,35 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
-import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
-import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
-import INF1 from "../../assets/Infrastructure_Photos/DSC03356.JPG";
-import INF2 from "../../assets/Infrastructure_Photos/DSC03360.JPG";
-import INF3 from "../../assets/Infrastructure_Photos/DSC03365.JPG";
-import INF4 from "../../assets/Infrastructure_Photos/DSC03386.JPG";
-import INF5 from "../../assets/Infrastructure_Photos/DSC03388.JPG";
-import INF6 from "../../assets/Infrastructure_Photos/DSC03412.JPG";
-import INF7 from "../../assets/Infrastructure_Photos/DSC03426.JPG";
-import INF8 from "../../assets/Infrastructure_Photos/DSC03427.JPG";
-import INF9 from "../../assets/Infrastructure_Photos/DSC03428.JPG";
-import INF10 from "../../assets/Infrastructure_Photos/DSC03434.JPG";
-import INF11 from "../../assets/Infrastructure_Photos/DSC03435.JPG";
-import INF12 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
-import INF13 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
-import INF14 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
-import INF15 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
-import INF16 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
-import INF17 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
-import INF18 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
-import INF19 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
-import INF20 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
-import INF21 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
-import hospitalVideo from "../../assets/Hospital Full Tour Video.mp4";
-import hospitalImg from "../../assets/sss-hospital.avif";
+import OptimizedImageGrid from "../ui/OptimizedImageGrid";
+
+// Using public assets for better performance during deployment
+const BG1 = "/assets/BG_Photos/DSC03391.JPG";
+const BG2 = "/assets/BG_Photos/DSC03392.JPG";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
+const INF1 = "/assets/Infrastructure_Photos/DSC03356.JPG";
+const INF2 = "/assets/Infrastructure_Photos/DSC03360.JPG";
+const INF3 = "/assets/Infrastructure_Photos/DSC03365.JPG";
+const INF4 = "/assets/Infrastructure_Photos/DSC03386.JPG";
+const INF5 = "/assets/Infrastructure_Photos/DSC03388.JPG";
+const INF6 = "/assets/Infrastructure_Photos/DSC03412.JPG";
+const INF7 = "/assets/Infrastructure_Photos/DSC03426.JPG";
+const INF8 = "/assets/Infrastructure_Photos/DSC03427.JPG";
+const INF9 = "/assets/Infrastructure_Photos/DSC03428.JPG";
+const INF10 = "/assets/Infrastructure_Photos/DSC03434.JPG";
+const INF11 = "/assets/Infrastructure_Photos/DSC03435.JPG";
+const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
+const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
+const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
+const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
+const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
+const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
+const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
+const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
+const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
+const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
+const hospitalVideo = "/assets/Hospital Full Tour Video.mp4";
+const hospitalImg = "/assets/sss-hospital.avif";
 import { FaHospital, FaPlayCircle, FaTimes } from "react-icons/fa";
 
 // Central list of infrastructure images
@@ -106,14 +109,7 @@ const Gallery = () => {
 
   // Removed old heroVariants (hero redesigned to match site-wide pattern)
 
-  const gridItemVariants = {
-    hidden: { opacity: 0, scale: 0.9 },
-    visible: (i) => ({
-      opacity: 1,
-      scale: 1,
-      transition: { duration: 0.55, delay: 0.02 * i, ease: "easeOut" },
-    }),
-  };
+  // Removed old per-item animation variants; handled by OptimizedImageGrid
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50 pt-0">
@@ -204,60 +200,14 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Responsive Masonry-like Grid */}
-        <div
-          className="grid gap-5 sm:gap-6 md:gap-7"
-          style={{
-            gridTemplateColumns: "repeat(auto-fill, minmax(240px, 1fr))",
-          }}
-        >
-          {images.map((img, idx) => (
-            <motion.button
-              key={img.id}
-              custom={idx}
-              variants={gridItemVariants}
-              initial="hidden"
-              animate="visible"
-              whileHover={{ y: -6 }}
-              whileTap={{ scale: 0.97 }}
-              onClick={() => openImage(img)}
-              className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500"
-              style={{ background: "linear-gradient(135deg,#f0fdfa,#ecfdf5)" }}
-            >
-              {/* Image */}
-              <div className="aspect-[4/3] w-full overflow-hidden relative">
-                <img
-                  src={img.src}
-                  alt={img.alt}
-                  loading="lazy"
-                  className="h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-110 group-focus:scale-105"
-                />
-                {/* Overlay gradient */}
-                <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/0 to-black/40 opacity-0 group-hover:opacity-80 transition-opacity duration-500" />
-                {/* Magnify Icon */}
-                <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500">
-                  <div className="bg-white/90 text-gray-800 rounded-full p-3 shadow-lg backdrop-blur-md ring-1 ring-emerald-200/60 scale-75 group-hover:scale-100 transition-transform">
-                    <svg
-                      className="w-5 h-5"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      viewBox="0 0 24 24"
-                    >
-                      <circle cx="11" cy="11" r="8" />
-                      <path d="m21 21-4.35-4.35" />
-                    </svg>
-                  </div>
-                </div>
-              </div>
-              {/* removed facility text and bottom info bar for a cleaner look */}
-              {/* Ring hover accent */}
-              <div className="absolute inset-0 rounded-2xl ring-0 ring-emerald-500/0 group-hover:ring-4 group-hover:ring-emerald-400/30 transition-all duration-500 pointer-events-none" />
-            </motion.button>
-          ))}
-        </div>
+        {/* Optimized Image Grid */}
+        <OptimizedImageGrid
+          items={images}
+          onItemClick={(img) => openImage(img)}
+          aspectRatio="4/3"
+          columnsMinWidth={240}
+          className="mt-2"
+        />
 
         {/* Video Section */}
         <div className="mt-24">

@@ -1,5 +1,6 @@
-import React, { useState, useRef } from "react";
+import React, { useState, useRef, useMemo } from "react";
 import { motion, useInView } from "framer-motion";
+import OptimizedImageGrid from "../ui/OptimizedImageGrid";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -27,34 +28,34 @@ import {
   FaRadiation,
 } from "react-icons/fa";
 
-// Explicit local imports for background photos (Option A)
-import BG1 from "../../assets/BG_Photos/DSC03391.JPG";
-import BG2 from "../../assets/BG_Photos/DSC03392.JPG";
-import BG3 from "../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG4 from "../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
+// Using public assets for better performance during deployment
+const BG1 = "/assets/BG_Photos/DSC03391.JPG";
+const BG2 = "/assets/BG_Photos/DSC03392.JPG";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
 
-// Explicit local imports for infrastructure photos
-import INF1 from "../../assets/Infrastructure_Photos/DSC03356.JPG";
-import INF2 from "../../assets/Infrastructure_Photos/DSC03360.JPG";
-import INF3 from "../../assets/Infrastructure_Photos/DSC03365.JPG";
-import INF4 from "../../assets/Infrastructure_Photos/DSC03386.JPG";
-import INF5 from "../../assets/Infrastructure_Photos/DSC03388.JPG";
-import INF6 from "../../assets/Infrastructure_Photos/DSC03412.JPG";
-import INF7 from "../../assets/Infrastructure_Photos/DSC03426.JPG";
-import INF8 from "../../assets/Infrastructure_Photos/DSC03427.JPG";
-import INF9 from "../../assets/Infrastructure_Photos/DSC03428.JPG";
-import INF10 from "../../assets/Infrastructure_Photos/DSC03434.JPG";
-import INF11 from "../../assets/Infrastructure_Photos/DSC03435.JPG";
-import INF12 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
-import INF13 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
-import INF14 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
-import INF15 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
-import INF16 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
-import INF17 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
-import INF18 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
-import INF19 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
-import INF20 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
-import INF21 from "../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
+// Infrastructure photos from public assets
+const INF1 = "/assets/Infrastructure_Photos/DSC03356.JPG";
+const INF2 = "/assets/Infrastructure_Photos/DSC03360.JPG";
+const INF3 = "/assets/Infrastructure_Photos/DSC03365.JPG";
+const INF4 = "/assets/Infrastructure_Photos/DSC03386.JPG";
+const INF5 = "/assets/Infrastructure_Photos/DSC03388.JPG";
+const INF6 = "/assets/Infrastructure_Photos/DSC03412.JPG";
+const INF7 = "/assets/Infrastructure_Photos/DSC03426.JPG";
+const INF8 = "/assets/Infrastructure_Photos/DSC03427.JPG";
+const INF9 = "/assets/Infrastructure_Photos/DSC03428.JPG";
+const INF10 = "/assets/Infrastructure_Photos/DSC03434.JPG";
+const INF11 = "/assets/Infrastructure_Photos/DSC03435.JPG";
+const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
+const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
+const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
+const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
+const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
+const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
+const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
+const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
+const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
+const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
 
 // Infrastructure Photos imports (all 21 images)
 
@@ -82,30 +83,33 @@ const Services = () => {
     setSelectedImage(null);
   };
 
-  // Infrastructure photos array
-  const infrastructureImages = [
-    { src: INF1, alt: "Hospital Infrastructure" },
-    { src: INF2, alt: "Medical Facility" },
-    { src: INF3, alt: "Hospital Equipment" },
-    { src: INF4, alt: "Healthcare Infrastructure" },
-    { src: INF5, alt: "Medical Technology" },
-    { src: INF6, alt: "Hospital Interior" },
-    { src: INF7, alt: "Medical Facility" },
-    { src: INF8, alt: "Healthcare Equipment" },
-    { src: INF9, alt: "Hospital Infrastructure" },
-    { src: INF10, alt: "Medical Center" },
-    { src: INF11, alt: "Healthcare Facility" },
-    { src: INF12, alt: "Hospital Interior" },
-    { src: INF13, alt: "Medical Infrastructure" },
-    { src: INF14, alt: "Healthcare Technology" },
-    { src: INF15, alt: "Hospital Equipment" },
-    { src: INF16, alt: "Medical Facility" },
-    { src: INF17, alt: "Healthcare Infrastructure" },
-    { src: INF18, alt: "Hospital Interior" },
-    { src: INF19, alt: "Medical Technology" },
-    { src: INF20, alt: "Healthcare Facility" },
-    { src: INF21, alt: "Hospital Infrastructure" },
-  ];
+  // Infrastructure photos array (memoized to avoid re-renders)
+  const infrastructureImages = useMemo(
+    () => [
+      { id: 1, src: INF1, alt: "Hospital Infrastructure" },
+      { id: 2, src: INF2, alt: "Medical Facility" },
+      { id: 3, src: INF3, alt: "Hospital Equipment" },
+      { id: 4, src: INF4, alt: "Healthcare Infrastructure" },
+      { id: 5, src: INF5, alt: "Medical Technology" },
+      { id: 6, src: INF6, alt: "Hospital Interior" },
+      { id: 7, src: INF7, alt: "Medical Facility" },
+      { id: 8, src: INF8, alt: "Healthcare Equipment" },
+      { id: 9, src: INF9, alt: "Hospital Infrastructure" },
+      { id: 10, src: INF10, alt: "Medical Center" },
+      { id: 11, src: INF11, alt: "Healthcare Facility" },
+      { id: 12, src: INF12, alt: "Hospital Interior" },
+      { id: 13, src: INF13, alt: "Medical Infrastructure" },
+      { id: 14, src: INF14, alt: "Healthcare Technology" },
+      { id: 15, src: INF15, alt: "Hospital Equipment" },
+      { id: 16, src: INF16, alt: "Medical Facility" },
+      { id: 17, src: INF17, alt: "Healthcare Infrastructure" },
+      { id: 18, src: INF18, alt: "Hospital Interior" },
+      { id: 19, src: INF19, alt: "Medical Technology" },
+      { id: 20, src: INF20, alt: "Healthcare Facility" },
+      { id: 21, src: INF21, alt: "Hospital Infrastructure" },
+    ],
+    []
+  );
 
   // Updated medical services with more appropriate icons
   const medicalServices = [
@@ -398,63 +402,15 @@ const Services = () => {
           {/* Desktop Layout: Continuous Images on sides, Combined Content in center */}
           <div className="hidden lg:block">
             <div className="grid grid-cols-12 gap-8">
-              {/* Left Images Column - Continuous for both sections */}
-              <div className="col-span-3 space-y-12">
-                {infrastructureImages.slice(0, 10).map((image, index) => (
-                  <motion.div
-                    key={`left-${index}`}
-                    variants={imageVariants}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                    className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
-                    onClick={() => openModal(image)}
-                  >
-                    <motion.img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-48 object-cover"
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
-                      variants={{
-                        rest: { opacity: 0 },
-                        hover: { opacity: 1 },
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    {/* Enhanced zoom indicator */}
-                    <motion.div
-                      className="absolute inset-0 flex items-center justify-center"
-                      variants={{
-                        rest: { opacity: 0, scale: 0.7 },
-                        hover: { opacity: 1, scale: 1 },
-                      }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                    >
-                      <div className="bg-white/95 backdrop-blur-sm rounded-full p-2.5 shadow-lg ring-1 ring-black/10">
-                        <svg
-                          className="w-4 h-4 text-gray-700"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
-                        </svg>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                ))}
+              {/* Left Images Column replaced with optimized grid (subset) */}
+              <div className="col-span-3">
+                <OptimizedImageGrid
+                  items={infrastructureImages.slice(0, 10)}
+                  onItemClick={(img) => openModal(img)}
+                  aspectRatio="4/3"
+                  columnsMinWidth={180}
+                  className="!gap-8"
+                />
               </div>
 
               {/* Center Content Column - Both Services and Rooms */}
@@ -558,63 +514,15 @@ const Services = () => {
                 </motion.div>
               </div>
 
-              {/* Right Images Column - Continuous for both sections */}
-              <div className="col-span-3 space-y-12">
-                {infrastructureImages.slice(11, 21).map((image, index) => (
-                  <motion.div
-                    key={`right-${index}`}
-                    variants={imageVariants}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                    className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
-                    onClick={() => openModal(image)}
-                  >
-                    <motion.img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-48 object-cover"
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.1 },
-                      }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
-                      variants={{
-                        rest: { opacity: 0 },
-                        hover: { opacity: 1 },
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    {/* Enhanced zoom indicator */}
-                    <motion.div
-                      className="absolute inset-0 flex items-center justify-center"
-                      variants={{
-                        rest: { opacity: 0, scale: 0.7 },
-                        hover: { opacity: 1, scale: 1 },
-                      }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                    >
-                      <div className="bg-white/95 backdrop-blur-sm rounded-full p-2.5 shadow-lg ring-1 ring-black/10">
-                        <svg
-                          className="w-4 h-4 text-gray-700"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
-                        </svg>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                ))}
+              {/* Right Images Column replaced with optimized grid (subset) */}
+              <div className="col-span-3">
+                <OptimizedImageGrid
+                  items={infrastructureImages.slice(11, 21)}
+                  onItemClick={(img) => openModal(img)}
+                  aspectRatio="4/3"
+                  columnsMinWidth={180}
+                  className="!gap-8"
+                />
               </div>
             </div>
           </div>
@@ -717,7 +625,7 @@ const Services = () => {
               </div>
             </div>
 
-            {/* Infrastructure Images Gallery for Mobile */}
+            {/* Infrastructure Images Gallery for Mobile (optimized grid) */}
             <div>
               <div className="text-center mb-8">
                 <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-100 to-slate-100 rounded-full px-4 py-2 mb-4 border border-gray-200">
@@ -726,75 +634,21 @@ const Services = () => {
                     INFRASTRUCTURE
                   </span>
                 </div>
-
                 <h2 className="text-3xl font-bold mb-4">
                   <span className="bg-gradient-to-r from-gray-700 to-gray-800 bg-clip-text text-transparent">
                     Hospital Infrastructure
                   </span>
                 </h2>
-
                 <p className="text-gray-600 leading-relaxed">
                   State-of-the-art medical facilities and equipment.
                 </p>
               </div>
-
-              <div className="space-y-4">
-                {infrastructureImages.map((image, index) => (
-                  <motion.div
-                    key={`mobile-${index}`}
-                    variants={imageVariants}
-                    initial="rest"
-                    whileHover="hover"
-                    animate="rest"
-                    className="relative overflow-hidden rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 group cursor-pointer"
-                    onClick={() => openModal(image)}
-                  >
-                    <motion.img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-48 object-cover"
-                      variants={{
-                        rest: { scale: 1 },
-                        hover: { scale: 1.05 },
-                      }}
-                      transition={{ duration: 0.6, ease: "easeOut" }}
-                    />
-                    <motion.div
-                      className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent"
-                      variants={{
-                        rest: { opacity: 0 },
-                        hover: { opacity: 1 },
-                      }}
-                      transition={{ duration: 0.3 }}
-                    />
-                    {/* Enhanced zoom indicator */}
-                    <motion.div
-                      className="absolute inset-0 flex items-center justify-center"
-                      variants={{
-                        rest: { opacity: 0, scale: 0.7 },
-                        hover: { opacity: 1, scale: 1 },
-                      }}
-                      transition={{ duration: 0.3, delay: 0.1 }}
-                    >
-                      <div className="bg-white/95 backdrop-blur-sm rounded-full p-3 shadow-lg ring-1 ring-black/10">
-                        <svg
-                          className="w-5 h-5 text-gray-700"
-                          fill="none"
-                          viewBox="0 0 24 24"
-                          stroke="currentColor"
-                        >
-                          <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={2}
-                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                          />
-                        </svg>
-                      </div>
-                    </motion.div>
-                  </motion.div>
-                ))}
-              </div>
+              <OptimizedImageGrid
+                items={infrastructureImages}
+                onItemClick={(img) => openModal(img)}
+                aspectRatio="4/3"
+                columnsMinWidth={260}
+              />
             </div>
           </div>
         </div>
