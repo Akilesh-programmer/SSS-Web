@@ -1,7 +1,7 @@
 import React from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
-import ceoImg from "../../assets/doctor_photos/3.jpeg";
+const ceoImg = "/assets/doctor_photos/3.jpeg";
 
 const CeoCard = () => {
   const imageSrc = ceoImg;
