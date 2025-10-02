@@ -1,5 +1,5 @@
 // Local asset resolver for public assets folder.
-// Usage remains: raw("BG_Photos/DSC03391.JPG") -> /assets/BG_Photos/DSC03391.JPG
+// Usage remains: raw("BG_Photos/DSC03391.webp") -> /assets/BG_Photos/DSC03391.webp
 
 // Helper: returns public URL for given relative path inside public/assets
 export const raw = (relativePath) => {
