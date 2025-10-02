@@ -212,6 +212,21 @@ img {
   content-visibility: auto;
 }
 
+/* Optimized image grid items */
+.grid-optimized button, .grid-optimized .grid-item-optimized {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+}
+
+/* Reduce shadow cost on scroll-heavy grids */
+.shadow-md, .shadow-lg, .shadow-xl {
+  transform: translateZ(0);
+}
+
+/* Progressive image fade-in (fallback if animation not provided) */
+.img-fade-in { opacity: 0; animation: imgFadeIn .8s ease forwards; }
+@keyframes imgFadeIn { to { opacity: 1; } }
+
 /* Modal and popup optimizations */
 .modal-backdrop {
   backdrop-filter: blur(8px);

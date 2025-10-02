@@ -14,32 +14,32 @@ import {
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
-// Local background and infrastructure images
-import BG1 from "../../../assets/BG_Photos/DSC03391.JPG";
-import BG2 from "../../../assets/BG_Photos/DSC03392.JPG";
-import BG3 from "../../../assets/BG_Photos/IMG-20250923-WA0015.jpg";
-import BG4 from "../../../assets/BG_Photos/IMG-20250923-WA0029.jpg";
-import INF1 from "../../../assets/Infrastructure_Photos/DSC03356.JPG";
-import INF2 from "../../../assets/Infrastructure_Photos/DSC03360.JPG";
-import INF3 from "../../../assets/Infrastructure_Photos/DSC03365.JPG";
-import INF4 from "../../../assets/Infrastructure_Photos/DSC03386.JPG";
-import INF5 from "../../../assets/Infrastructure_Photos/DSC03388.JPG";
-import INF6 from "../../../assets/Infrastructure_Photos/DSC03412.JPG";
-import INF7 from "../../../assets/Infrastructure_Photos/DSC03426.JPG";
-import INF8 from "../../../assets/Infrastructure_Photos/DSC03427.JPG";
-import INF9 from "../../../assets/Infrastructure_Photos/DSC03428.JPG";
-import INF10 from "../../../assets/Infrastructure_Photos/DSC03434.JPG";
-import INF11 from "../../../assets/Infrastructure_Photos/DSC03435.JPG";
-import INF12 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
-import INF13 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
-import INF14 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
-import INF15 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
-import INF16 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
-import INF17 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
-import INF18 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
-import INF19 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
-import INF20 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
-import INF21 from "../../../assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
+// Using public assets for better performance during deployment
+const BG1 = "/assets/BG_Photos/DSC03391.JPG";
+const BG2 = "/assets/BG_Photos/DSC03392.JPG";
+const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.jpg";
+const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.jpg";
+const INF1 = "/assets/Infrastructure_Photos/DSC03356.JPG";
+const INF2 = "/assets/Infrastructure_Photos/DSC03360.JPG";
+const INF3 = "/assets/Infrastructure_Photos/DSC03365.JPG";
+const INF4 = "/assets/Infrastructure_Photos/DSC03386.JPG";
+const INF5 = "/assets/Infrastructure_Photos/DSC03388.JPG";
+const INF6 = "/assets/Infrastructure_Photos/DSC03412.JPG";
+const INF7 = "/assets/Infrastructure_Photos/DSC03426.JPG";
+const INF8 = "/assets/Infrastructure_Photos/DSC03427.JPG";
+const INF9 = "/assets/Infrastructure_Photos/DSC03428.JPG";
+const INF10 = "/assets/Infrastructure_Photos/DSC03434.JPG";
+const INF11 = "/assets/Infrastructure_Photos/DSC03435.JPG";
+const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.jpg";
+const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.jpg";
+const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.jpg";
+const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.jpg";
+const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.jpg";
+const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.jpg";
+const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.jpg";
+const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.jpg";
+const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.jpg";
+const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.jpg";
 
 // BG Photos array for hero backgrounds (alternating)
 const bgPhotos = [BG1, BG2, BG3, BG4];

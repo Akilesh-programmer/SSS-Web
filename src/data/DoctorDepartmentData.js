@@ -101,36 +101,36 @@ export const departments = [
   },
 ];
 
-// Local image imports replacing previous hardcoded GitHub raw URLs
-import doc1 from "../assets/doctor_photos/2.png"; // Founder (id 1)
-import doc2 from "../assets/doctor_photos/3.jpeg"; // CEO (id 2)
-import doc3 from "../assets/doctor_photos/7.png";
-import doc4 from "../assets/doctor_photos/12.png";
-import doc5 from "../assets/doctor_photos/10.png";
-import doc6 from "../assets/doctor_photos/33.png";
-import doc7 from "../assets/doctor_photos/11.png";
-import doc8 from "../assets/doctor_photos/13.png";
-import doc9 from "../assets/doctor_photos/14.png";
-import doc10 from "../assets/doctor_photos/15.png";
-import doc11 from "../assets/doctor_photos/16.png";
-import doc12 from "../assets/doctor_photos/17.png";
-import doc13 from "../assets/doctor_photos/8.png";
-import doc14 from "../assets/doctor_photos/9.png";
-import doc15 from "../assets/doctor_photos/4.png";
-import doc16 from "../assets/doctor_photos/5.png";
-import doc17 from "../assets/doctor_photos/6.png";
-import doc18 from "../assets/doctor_photos/18.png";
-import doc19 from "../assets/doctor_photos/19.png";
-import doc20 from "../assets/doctor_photos/20.png";
-import doc21 from "../assets/doctor_photos/21.png";
-import doc22 from "../assets/doctor_photos/22.png";
-import doc23 from "../assets/doctor_photos/23.png";
-import doc24 from "../assets/doctor_photos/24.png";
-import doc25 from "../assets/doctor_photos/25.png";
-import doc26 from "../assets/doctor_photos/26.png";
-import doc27 from "../assets/doctor_photos/29.png";
-import doc28 from "../assets/doctor_photos/27.png";
-import doc29 from "../assets/doctor_photos/28.png";
+// Using public assets for better performance during deployment
+const doc1 = "/assets/doctor_photos/2.png"; // Founder (id 1)
+const doc2 = "/assets/doctor_photos/3.jpeg"; // CEO (id 2)
+const doc3 = "/assets/doctor_photos/7.png";
+const doc4 = "/assets/doctor_photos/12.png";
+const doc5 = "/assets/doctor_photos/10.png";
+const doc6 = "/assets/doctor_photos/33.png";
+const doc7 = "/assets/doctor_photos/11.png";
+const doc8 = "/assets/doctor_photos/13.png";
+const doc9 = "/assets/doctor_photos/14.png";
+const doc10 = "/assets/doctor_photos/15.png";
+const doc11 = "/assets/doctor_photos/16.png";
+const doc12 = "/assets/doctor_photos/17.png";
+const doc13 = "/assets/doctor_photos/8.png";
+const doc14 = "/assets/doctor_photos/9.png";
+const doc15 = "/assets/doctor_photos/4.png";
+const doc16 = "/assets/doctor_photos/5.png";
+const doc17 = "/assets/doctor_photos/6.png";
+const doc18 = "/assets/doctor_photos/18.png";
+const doc19 = "/assets/doctor_photos/19.png";
+const doc20 = "/assets/doctor_photos/20.png";
+const doc21 = "/assets/doctor_photos/21.png";
+const doc22 = "/assets/doctor_photos/22.png";
+const doc23 = "/assets/doctor_photos/23.png";
+const doc24 = "/assets/doctor_photos/24.png";
+const doc25 = "/assets/doctor_photos/25.png";
+const doc26 = "/assets/doctor_photos/26.png";
+const doc27 = "/assets/doctor_photos/29.png";
+const doc28 = "/assets/doctor_photos/27.png";
+const doc29 = "/assets/doctor_photos/28.png";
 
 export const doctors = [
   {

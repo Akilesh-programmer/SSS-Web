@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
-import sssLogoLocal from "../../assets/sss-logo.jpeg";
+const sssLogoLocal = "/assets/sss-logo.jpeg";
 const sssLogo = sssLogoLocal;
 import { FaBars, FaTimes, FaAmbulance } from "react-icons/fa";
 
