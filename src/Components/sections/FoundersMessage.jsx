@@ -13,8 +13,8 @@ import {
 } from "react-icons/fa";
 import { Typewriter } from "react-simple-typewriter";
 import { useState } from "react";
-const founderImg = "/assets/Sanjith-SSS-Hospitals.png";
-const sssLogo = "/assets/sss-logo.jpeg";
+const founderImg = "/assets/Sanjith-SSS-Hospitals.webp";
+const sssLogo = "/assets/sss-logo.webp";
 
 const milestones = [
   { year: "1998", label: "Hospital Founded" },

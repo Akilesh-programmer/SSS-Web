@@ -81,6 +81,35 @@ const OptimizedImageGrid = ({
         const hasLoadedBefore = loadedSrcSet.has(item.src);
         const showMotion = enableAnimation && (isVisible || hasLoadedBefore);
 
+        // If animations are disabled, render a plain non-animated button/image
+        if (!enableAnimation) {
+          return (
+            <button
+              data-observe="true"
+              data-index={index}
+              key={key}
+              onClick={() => onItemClick && onItemClick(item, index)}
+              className="relative rounded-2xl overflow-hidden bg-white"
+              style={{ aspectRatio }}
+            >
+              <div className="w-full h-full overflow-hidden relative">
+                {isVisible && (
+                  <img
+                    src={item.src}
+                    alt={item.alt || ""}
+                    loading="lazy"
+                    decoding="async"
+                    onLoad={() => loadedSrcSet.add(item.src)}
+                    className="h-full w-full object-cover select-none"
+                    draggable={false}
+                  />
+                )}
+              </div>
+            </button>
+          );
+        }
+
+        // Animated path (existing behavior)
         return (
           <motion.button
             data-observe="true"
