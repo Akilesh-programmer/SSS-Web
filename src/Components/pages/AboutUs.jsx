@@ -9,9 +9,7 @@ import {
   FaMicroscope,
   FaHeartbeat,
   FaStethoscope,
-  FaHandHoldingMedical,
   FaBed,
-  FaQuoteLeft,
   FaAmbulance,
   FaUsers,
 } from "react-icons/fa";
@@ -22,7 +20,7 @@ import CeoCard from "../ui/CeoCard";
 // BG Photos for hero background - using public assets for better performance
 const BG1 = "/assets/BG_Photos/DSC03391.webp";
 const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
+const BG3 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.webp";
 const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
 // Doctor images used in leadership array
 const doc2 = "/assets/doctor_photos/2.webp";
@@ -56,6 +54,22 @@ AnimatedCounter.propTypes = {
   className: PropTypes.string,
 };
 
+// Tiny inline counter used inside small chips (e.g., numbered badges)
+const InlineCounter = ({ end, duration = 900, className = "" }) => {
+  const { count, ref } = useCountAnimation(end, duration);
+  return (
+    <span ref={ref} className={`inline-block tabular-nums ${className}`}>
+      {count}
+    </span>
+  );
+};
+
+InlineCounter.propTypes = {
+  end: PropTypes.number.isRequired,
+  duration: PropTypes.number,
+  className: PropTypes.string,
+};
+
 const AboutUs = () => {
   // Animation variants
   const fadeInUp = {
@@ -73,15 +87,7 @@ const AboutUs = () => {
     },
   };
 
-  const slideInFromLeft = {
-    hidden: { opacity: 0, x: -50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
-  };
-
-  const slideInFromRight = {
-    hidden: { opacity: 0, x: 50 },
-    visible: { opacity: 1, x: 0, transition: { duration: 0.8 } },
-  };
+  // Note: slide-in variants removed as they are not used in this page
 
   const stats = [
     { number: 150, label: "Hospital Beds", icon: FaBed, suffix: "+" },
@@ -90,38 +96,7 @@ const AboutUs = () => {
     { number: 30, label: "ICU Beds", icon: FaHeartbeat, suffix: "+" },
   ];
 
-  const visionPoints = [
-    "Trusted treatment at an affordable cost",
-    "Compassionate care",
-    "Quality health Care",
-    "All Specialities under one roof",
-    "Multi-specialty hospital with high-tech facility near your door step",
-  ];
-
-  // Local leadership data retained (currently unused in render) with local image imports
-  const leadership = [
-    {
-      name: "DR S.SANJITH, MD (DERM)",
-      position: "MANAGING DIRECTOR",
-      image: doc2,
-      description:
-        "Leading with expertise in dermatology and comprehensive healthcare management.",
-    },
-    {
-      name: "DR P.SELVAKUMAR, MD., PDCC",
-      position: "CEO & MEDICAL DIRECTOR",
-      image: doc3,
-      description:
-        "An experienced Anaesthesiologist and ICU leader with a track record of operational excellence across leading tertiary hospitals. Dr. Selvakumar brings strong clinical governance, critical care expertise, and process-driven leadership to SSS Super Speciality Hospital.",
-      timeline: [
-        "1997 – 2000: Apollo Hospital, Greams Road, Chennai",
-        "2000 – 2015: Apollo Hospital, Madurai",
-        "2015 – 2022: Velammal Super Speciality Hospital, Madurai",
-        "2022 – 2024: KMCH Super Speciality Hospital, Erode",
-        "2024 onwards: SSS Super Speciality Hospital, Erode",
-      ],
-    },
-  ];
+  // Removed unused local arrays to keep file lean
 
   return (
     <div className="bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden">
@@ -548,7 +523,7 @@ const AboutUs = () => {
                         </h3>
                         <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
                           <span className="text-emerald-700 font-bold text-sm">
-                            {index + 1}
+                            <InlineCounter end={index + 1} />
                           </span>
                         </div>
                       </div>
@@ -568,82 +543,196 @@ const AboutUs = () => {
         </div>
       </section>
 
-      {/* Why Choose Us */}
-      <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      {/* Why Choose Us - Modern Medical Excellence */}
+      <section className="relative py-16 lg:py-24 overflow-hidden">
+        {/* Professional Medical Background (local, clearly visible) */}
+        <motion.div
+          className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
+          initial={{ scale: 1.06, y: -10, opacity: 0.9 }}
+          whileInView={{ scale: 1, y: 0, opacity: 1 }}
+          viewport={{ once: true, amount: 0.2 }}
+          transition={{ duration: 1.2, ease: "easeOut" }}
+          style={{
+            backgroundImage: `linear-gradient(135deg, rgba(6, 78, 59, 0.55) 0%, rgba(5, 150, 105, 0.45) 45%, rgba(16, 185, 129, 0.40) 100%), url(${BG3})`,
+          }}
+        />
+
+        {/* Subtle Pattern Overlay */}
+        <div className="absolute inset-0 opacity-10">
+          <div
+            className="absolute inset-0"
+            style={{
+              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
+              backgroundSize: "24px 24px",
+            }}
+          />
+        </div>
+
+        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInUp}
-            className="text-center mb-12"
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-12 lg:mb-16"
           >
-            <h2 className="text-3xl lg:text-4xl font-bold text-gray-900 mb-6">
-              Why Choose SSS Hospital?
+            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-white/20">
+              <FaHeartbeat className="text-white text-xl" />
+              <span className="text-white font-semibold text-sm tracking-wide">
+                EXCELLENCE IN HEALTHCARE
+              </span>
+            </div>
+
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+              Why Choose
+              <span className="block text-emerald-200">
+                SSS Super Speciality Hospital?
+              </span>
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Our commitment to excellence makes us the preferred healthcare
-              destination
-            </p>
+
+            <div className="w-24 h-1 bg-emerald-300 mx-auto rounded-full mb-8" />
           </motion.div>
 
           <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={staggerContainer}
-            className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-100px" }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
           >
-            {[
-              {
-                icon: FaUserMd,
-                title: "Expert Doctors",
-                description:
-                  "Highly qualified and experienced medical professionals dedicated to your health",
-              },
-              {
-                icon: FaMicroscope,
-                title: "Advanced Technology",
-                description:
-                  "State-of-the-art medical equipment and cutting-edge diagnostic facilities",
-              },
-              {
-                icon: FaHospital,
-                title: "Modern Infrastructure",
-                description:
-                  "Contemporary hospital infrastructure designed for patient comfort and care",
-              },
-              {
-                icon: FaStethoscope,
-                title: "Quality Care",
-                description:
-                  "Personalized healthcare services delivered with empathy and understanding",
-              },
-              {
-                icon: FaClock,
-                title: "24/7 Emergency",
-                description:
-                  "Round-the-clock emergency care with quick response times and trained staff",
-              },
-              {
-                icon: FaHandHoldingMedical,
-                title: "Affordable Care",
-                description:
-                  "High-quality medical care with transparent, competitive pricing for everyone",
-              },
-            ].map((feature, index) => (
-              <motion.div
-                key={feature.title}
-                variants={fadeInUp}
-                className="bg-white rounded-xl p-6 shadow-lg hover:shadow-xl transition-all duration-300 hover:-translate-y-2 border border-emerald-100"
-              >
-                <feature.icon className="text-3xl text-teal-600 mb-4" />
-                <h3 className="text-xl font-bold text-gray-900 mb-3">
-                  {feature.title}
-                </h3>
-                <p className="text-gray-600 leading-relaxed">
-                  {feature.description}
+            {/* Left Content */}
+            <div className="space-y-6">
+              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/30">
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                  At SSS Super Speciality Hospital, we stand as a beacon of
+                  medical excellence, combining{" "}
+                  <strong className="text-emerald-700">
+                    expert healthcare professionals
+                  </strong>{" "}
+                  with state-of-the-art technology to deliver unparalleled
+                  patient care. Our commitment extends beyond treatment to
+                  encompass compassionate service, ensuring every patient
+                  receives personalized attention in our modern, comfortable
+                  environment.
                 </p>
-              </motion.div>
-            ))}
+
+                <p className="text-gray-700 text-lg leading-relaxed mb-6">
+                  With{" "}
+                  <strong className="text-emerald-700">
+                    round-the-clock emergency services
+                  </strong>{" "}
+                  and cutting-edge diagnostic facilities, we provide
+                  comprehensive healthcare solutions under one roof. Our
+                  transparent, affordable pricing model ensures that quality
+                  medical care remains accessible to all, while our experienced
+                  medical team delivers treatments with empathy and
+                  understanding.
+                </p>
+
+                <motion.div
+                  initial="hidden"
+                  whileInView="visible"
+                  viewport={{ once: true }}
+                  variants={staggerContainer}
+                  className="flex flex-wrap gap-3 mt-6"
+                >
+                  {[
+                    "Expert Medical Team",
+                    "Advanced Technology",
+                    "24/7 Emergency Care",
+                    "Affordable Pricing",
+                    "Modern Infrastructure",
+                    "Quality Assurance",
+                  ].map((tag, index) => (
+                    <motion.span
+                      key={tag}
+                      variants={fadeInUp}
+                      className="inline-flex items-center px-3 py-1.5 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full border border-emerald-200"
+                    >
+                      {tag}
+                    </motion.span>
+                  ))}
+                </motion.div>
+              </div>
+            </div>
+
+            {/* Right Stats/Highlights */}
+            <div className="space-y-6">
+              <div className="grid grid-cols-2 gap-4">
+                {[
+                  {
+                    icon: FaUserMd,
+                    number: 50,
+                    suffix: "+",
+                    label: "Expert Doctors",
+                  },
+                  {
+                    icon: FaBed,
+                    number: 150,
+                    suffix: "+",
+                    label: "Hospital Beds",
+                  },
+                  {
+                    icon: FaMicroscope,
+                    number: 25,
+                    suffix: "+",
+                    label: "Specialties",
+                  },
+                  {
+                    icon: FaClock,
+                    number: 24,
+                    label: "Emergency Care",
+                    isDayHour: true,
+                  },
+                ].map((stat, index) => (
+                  <motion.div
+                    key={stat.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    whileInView={{ opacity: 1, scale: 1 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
+                    className="bg-white/90 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/40 hover:bg-white/95 transition-all duration-300"
+                  >
+                    <stat.icon className="text-3xl text-emerald-600 mx-auto mb-3" />
+                    <div className="text-2xl font-bold text-gray-900 mb-1 tabular-nums">
+                      {stat.isDayHour ? (
+                        <span className="whitespace-nowrap">
+                          <AnimatedCounter
+                            end={stat.number}
+                            className="m-0 inline-block text-2xl"
+                          />
+                          <span className="ml-0.5 align-baseline">/7</span>
+                        </span>
+                      ) : (
+                        <AnimatedCounter
+                          end={stat.number}
+                          suffix={stat.suffix || ""}
+                          className="m-0 inline-block text-2xl"
+                        />
+                      )}
+                    </div>
+                    <div className="text-sm text-gray-600 font-medium">
+                      {stat.label}
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/40">
+                <div className="flex items-center gap-3 mb-4">
+                  <FaHeartbeat className="text-2xl text-emerald-600" />
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Patient-Centered Care
+                  </h3>
+                </div>
+                <p className="text-gray-700 leading-relaxed">
+                  Every aspect of our hospital is designed with patients in mind
+                  - from our comfortable facilities to our compassionate staff
+                  who ensure you receive the highest standard of medical care in
+                  a supportive environment.
+                </p>
+              </div>
+            </div>
           </motion.div>
         </div>
       </section>
