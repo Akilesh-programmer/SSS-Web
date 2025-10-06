@@ -269,6 +269,44 @@ const AboutUs = () => {
         </div>
       </section>
 
+      {/* Leadership Messages (Chairman + Founder) */}
+      <section className="py-12 lg:py-16">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={fadeInUp}
+            className="text-center mb-6"
+          >
+            <div className="flex items-center justify-center gap-3 mb-3">
+              <FaUsers className="text-3xl text-teal-600" />
+              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
+                Our Leaders
+              </h2>
+            </div>
+            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+              Discover the vision and commitment that drive SSS Super Speciality
+              Hospital through the words of our Chairman and Founder.
+            </p>
+          </motion.div>
+
+          {/* Chairman and Founder cards (extracted components) */}
+          <ChairmanCard />
+
+          <FounderCard />
+
+          {/* Render remaining leadership (e.g., CEO) below messages */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            variants={staggerContainer}
+            className="space-y-8"
+          >
+            <CeoCard />
+          </motion.div>
+        </div>
+      </section>
+
       {/* Mission & Vision */}
       <section className="py-12 lg:py-16 bg-gradient-to-br from-white to-emerald-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -349,44 +387,6 @@ const AboutUs = () => {
                 <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white/95 border-2 border-emerald-300" />
               </div>
             </div>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Leadership Messages (Chairman + Founder) */}
-      <section className="py-12 lg:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={fadeInUp}
-            className="text-center mb-12"
-          >
-            <div className="flex items-center justify-center gap-3 mb-6">
-              <FaUsers className="text-3xl text-teal-600" />
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                Leadership Messages
-              </h2>
-            </div>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Discover the vision and commitment that drive SSS Super Speciality
-              Hospital through the words of our Chairman and Founder.
-            </p>
-          </motion.div>
-
-          {/* Chairman and Founder cards (extracted components) */}
-          <ChairmanCard />
-
-          <FounderCard />
-
-          {/* Render remaining leadership (e.g., CEO) below messages */}
-          <motion.div
-            initial="hidden"
-            whileInView="visible"
-            variants={staggerContainer}
-            className="space-y-8"
-          >
-            <CeoCard />
           </motion.div>
         </div>
       </section>
