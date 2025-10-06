@@ -17,7 +17,7 @@ import Footer from "./Components/ui/Footer";
 import DoctorsPage from "./Components/pages/DoctorsPage";
 import DepartmentPageLayout from "./Components/pages/departments/DepartmentPageLayout";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
-import FloatingChatbot from "./Components/ui/FloatingChatbot";
+// FloatingChatbot removed per UX update: appointment button moved to bottom-left
 import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
@@ -152,7 +152,6 @@ function App() {
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <FloatingAppointmentButton />
-        <FloatingChatbot />
         <ScrollToTopButton />
 
         {/* Global Appointment Popup */}
