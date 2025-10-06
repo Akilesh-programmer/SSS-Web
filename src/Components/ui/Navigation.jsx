@@ -125,8 +125,8 @@ const Navigation = () => {
     { name: "Home", path: "/" },
     { name: "About Us", path: "/about" },
     { name: "Specialities", path: "/specialities" },
+    { name: "Services", path: "/services" },
     { name: "Infrastructure", path: "/infrastructure" },
-    { name: "Gallery", path: "/gallery" },
     { name: "Doctors", path: "/doctors" },
     { name: "Packages", path: "/packages" },
     { name: "Contact", path: "/contact" },
@@ -179,20 +179,33 @@ const Navigation = () => {
                 <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-emerald-100/30 to-transparent pointer-events-none"></div>
               </div>
 
-              <div className="relative z-10 text-center max-w-xs sm:max-w-none">
-                <h1 className="font-bold text-gray-800 tracking-tight leading-none">
-                  {/* Mobile single-line */}
-                  <span className="sm:hidden text-base md:text-lg text-emerald-600 block text-center whitespace-nowrap font-bold">
-                    SSS Super Speciality Hospital
+              <div className="relative z-10 text-center flex items-center">
+                <h1 className="font-bold tracking-tight leading-none text-gray-900">
+                  {/* Mobile/Small screens - compact to fit navbar */}
+                  <span className="inline-block w-20 sm:hidden">
+                    <span className="block text-sm font-black leading-none mb-0.5">
+                      SSS
+                    </span>
+                    <span className="block h-0.5 w-16 bg-amber-500 mb-0.5 mx-auto"></span>
+                    <span className="block text-[6px] font-bold tracking-[0.15em] uppercase leading-none mb-0.5">
+                      SUPER SPECIALITY
+                    </span>
+                    <span className="block text-[10px] font-black leading-none">
+                      HOSPITAL
+                    </span>
                   </span>
 
-                  {/* Two-line for sm+ - first line larger, second line slightly smaller to balance length */}
-                  <span className="hidden sm:block">
-                    <span className="text-base sm:text-lg md:text-xl lg:text-2xl text-emerald-600 block text-center leading-none font-bold">
-                      SSS Super
+                  {/* Medium screens and up - better proportions */}
+                  <span className="hidden sm:inline-block w-28 md:w-30 lg:w-32">
+                    <span className="block text-base md:text-lg lg:text-xl font-black leading-none mb-0.5">
+                      SSS
                     </span>
-                    <span className="text-xs sm:text-sm md:text-base lg:text-lg text-emerald-600 block text-center font-bold -mt-0.5">
-                      Speciality Hospital
+                    <span className="block h-0.5 w-20 md:w-24 lg:w-28 bg-amber-500 mb-0.5 mx-auto"></span>
+                    <span className="block text-[7px] md:text-[8px] lg:text-[9px] font-bold tracking-[0.15em] uppercase leading-none mb-0.5">
+                      SUPER SPECIALITY
+                    </span>
+                    <span className="block text-xs md:text-sm lg:text-base font-black leading-none">
+                      HOSPITAL
                     </span>
                   </span>
 

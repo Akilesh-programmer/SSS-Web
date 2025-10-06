@@ -134,9 +134,9 @@ function App() {
             path="/department/:departmentSlug"
             element={<DepartmentPageLayout />}
           />
-          <Route path="/infrastructure" element={<ServicesPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route
-            path="/gallery"
+            path="/infrastructure"
             element={
               <PageWrapper pageKey="gallery-page">
                 <Navigation />
