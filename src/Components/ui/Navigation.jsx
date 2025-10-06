@@ -2,15 +2,15 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
+import CallModal from "./CallModal";
 const sssLogoLocal = "/assets/sss-logo.webp";
 const sssLogo = sssLogoLocal;
-import { FaBars, FaTimes, FaAmbulance } from "react-icons/fa";
+import { FaBars, FaTimes, FaAmbulance, FaCalendarPlus } from "react-icons/fa";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  // Appointment context retained for potential future use (no direct call right now)
-  useAppointment();
+  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   // --- Style helpers to avoid repeating large inline objects ---
@@ -158,8 +158,8 @@ const Navigation = () => {
         style={navStyle(isScrolled)}
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-14 lg:h-16">
-            {/* Professional Logo Section */}
+          <div className="flex justify-between items-center h-16 lg:h-18">
+            {/* Professional Logo Section - Full Display */}
             <motion.div
               className="flex items-center space-x-3 cursor-pointer relative group"
               onClick={() => handleNavigation("/")}
@@ -214,7 +214,7 @@ const Navigation = () => {
               </div>
             </motion.div>
 
-            {/* Professional Navigation Links with Glassmorphism */}
+            {/* Professional Navigation Links */}
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => {
                 const isActive = location.pathname === item.path;
@@ -222,159 +222,155 @@ const Navigation = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`relative group px-6 py-3 rounded-lg transition-all duration-300 font-semibold text-base overflow-hidden ${
+                    className={`relative group px-4 py-2 rounded-lg transition-all duration-300 font-bold text-sm overflow-hidden ${
                       isActive
-                        ? "text-blue-600"
-                        : "text-gray-700 hover:text-blue-600"
+                        ? "text-blue-600 bg-blue-50/70"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50/50"
                     }`}
-                    style={navLinkStyle(isActive)}
                   >
-                    {/* Glass overlay effect */}
-                    <div
-                      className="absolute inset-0 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                      style={{ background: overlayBg }}
-                    ></div>
-
                     <span className="relative z-10">{item.name}</span>
-
-                    {/* Active indicator with glass effect */}
                     {isActive && (
-                      <div
-                        className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-1 rounded-full"
-                        style={{
-                          background:
-                            "linear-gradient(90deg, rgba(59,130,246,0.8) 0%, rgba(59,130,246,1) 50%, rgba(59,130,246,0.8) 100%)",
-                          boxShadow: "0 2px 8px rgba(59,130,246,0.4)",
-                        }}
-                      ></div>
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"></div>
                     )}
-
-                    {/* Hover indicator with glass effect */}
-                    <div
-                      className={`absolute bottom-0 left-1/2 transform -translate-x-1/2 h-1 rounded-full transition-all duration-300 ${
-                        isActive ? "w-0" : "w-0 group-hover:w-6"
-                      }`}
-                      style={{
-                        background:
-                          "linear-gradient(90deg, rgba(59,130,246,0.6) 0%, rgba(59,130,246,0.8) 50%, rgba(59,130,246,0.6) 100%)",
-                        boxShadow: "0 1px 6px rgba(59,130,246,0.3)",
-                      }}
-                    ></div>
                   </Link>
                 );
               })}
             </div>
 
-            {/* Enhanced Action Buttons with Glassmorphism Effects */}
+            {/* Professional Action Buttons */}
             <div className="flex items-center space-x-3">
-              {/* Emergency Button with Glassmorphism */}
-              <motion.button
-                onClick={handleEmergencyClick}
-                whileHover={{ scale: 1.02, y: -1 }}
-                whileTap={{ scale: 0.98 }}
-                className="hidden sm:flex items-center space-x-2 px-4 lg:px-6 py-2.5 lg:py-3 rounded-lg font-semibold text-sm lg:text-base transition-all duration-300 text-white relative overflow-hidden"
-                style={emergencyStyle}
-              >
-                {/* Glass overlay */}
-                <div
-                  className="absolute inset-0 rounded-lg"
-                  style={{ background: overlayBgSoft }}
-                ></div>
-                <div className="relative z-10 flex items-center space-x-2">
-                  <FaAmbulance className="text-sm animate-pulse drop-shadow-sm" />
-                  <span className="drop-shadow-sm">Emergency</span>
-                </div>
-              </motion.button>
+              {/* Desktop Action Buttons - Matched Heights */}
+              <div className="hidden lg:flex items-center space-x-3">
+                {/* Book Appointment Button */}
+                <motion.button
+                  onClick={() => setIsCallModalOpen(true)}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center space-x-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl h-12"
+                >
+                  <FaCalendarPlus className="text-sm" />
+                  <span>Book Appointment</span>
+                </motion.button>
 
-              {/* Appointment button removed as requested */}
+                {/* Emergency Button */}
+                <motion.button
+                  onClick={handleEmergencyClick}
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="flex items-center space-x-2 px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl h-12"
+                >
+                  <FaAmbulance className="text-sm animate-pulse" />
+                  <div className="flex flex-col text-left">
+                    <span className="text-sm leading-tight">Emergency</span>
+                    <span className="text-xs opacity-90 leading-tight">
+                      +91 8925931193
+                    </span>
+                  </div>
+                </motion.button>
+              </div>
 
-              {/* Mobile Menu Toggle with Glassmorphism */}
+              {/* Mobile Menu Toggle Only */}
               <motion.button
                 onClick={() => setIsMenuOpen(!isMenuOpen)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className="lg:hidden p-3 rounded-lg transition-all duration-300 relative overflow-hidden"
-                // ensure the toggle (and close icon) sits above the mobile overlay
-                style={{ ...toggleStyle, zIndex: 9999 }}
+                className="lg:hidden p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all duration-300"
               >
-                {/* Glass overlay */}
-                <div
-                  className="absolute inset-0 rounded-lg"
-                  style={{ background: overlayBgSoft }}
-                ></div>
-                <div className="relative z-10 text-gray-700">
-                  {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
-                </div>
+                {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
               </motion.button>
             </div>
           </div>
         </div>
 
-        {/* Enhanced Mobile Menu with Glassmorphism */}
+        {/* Professional Mobile Menu with Proper Scrolling */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden relative z-50 shadow-2xl overflow-hidden"
-              style={mobileMenuStyle}
+              className="lg:hidden fixed left-0 right-0 z-50 bg-white/95 backdrop-blur-lg border-t border-gray-200 shadow-2xl max-h-[calc(100vh-4rem)] overflow-y-auto"
             >
-              <div className="container mx-auto px-4 py-6 space-y-3">
-                {navItems.map((item, index) => {
-                  const isActive = location.pathname === item.path;
-                  return (
-                    <motion.div
-                      key={item.name}
-                      initial={{ opacity: 0, x: -20 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: index * 0.1 }}
-                    >
-                      <Link
-                        to={item.path}
-                        onClick={() => setIsMenuOpen(false)}
-                        className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 relative overflow-hidden group ${
-                          isActive
-                            ? "text-blue-600"
-                            : "text-gray-700 hover:text-blue-600"
-                        }`}
-                        style={mobileNavLinkStyle(isActive)}
+              <div className="container mx-auto px-4 py-6">
+                {/* Action Buttons First */}
+                <div className="grid grid-cols-2 gap-3 mb-6">
+                  {/* Mobile Book Appointment */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      setIsCallModalOpen(true);
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg"
+                  >
+                    <FaCalendarPlus className="text-sm" />
+                    <span>Book Appointment</span>
+                  </motion.button>
+
+                  {/* Mobile Emergency Button */}
+                  <motion.button
+                    onClick={() => {
+                      setIsMenuOpen(false);
+                      handleEmergencyClick();
+                    }}
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg"
+                  >
+                    <FaAmbulance className="text-sm animate-pulse" />
+                    <span>Emergency</span>
+                  </motion.button>
+                </div>
+
+                {/* Navigation Links */}
+                <div className="space-y-2">
+                  {navItems.map((item, index) => {
+                    const isActive = location.pathname === item.path;
+                    return (
+                      <motion.div
+                        key={item.name}
+                        initial={{ opacity: 0, x: -20 }}
+                        animate={{ opacity: 1, x: 0 }}
+                        transition={{ delay: index * 0.05 }}
                       >
-                        {/* Glass overlay effect */}
-                        <div
-                          className="absolute inset-0 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
-                          style={{ background: overlayBgStronger }}
-                        ></div>
-
-                        <div
-                          className={`relative z-10 w-3 h-3 rounded-full transition-all duration-300 ${
+                        <Link
+                          to={item.path}
+                          onClick={() => setIsMenuOpen(false)}
+                          className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 group ${
                             isActive
-                              ? "scale-125 shadow-md"
-                              : "group-hover:scale-125"
+                              ? "text-blue-600 bg-blue-50"
+                              : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                           }`}
-                          style={{
-                            background: isActive
-                              ? "linear-gradient(135deg, rgba(59,130,246,0.9) 0%, rgba(37,99,235,1) 50%, rgba(59,130,246,0.9) 100%)"
-                              : "linear-gradient(135deg, rgba(107,114,128,0.6) 0%, rgba(156,163,175,0.8) 50%, rgba(107,114,128,0.6) 100%)",
-                            boxShadow: isActive
-                              ? "0 2px 8px rgba(59,130,246,0.4)"
-                              : "0 1px 4px rgba(107,114,128,0.2)",
-                          }}
-                        ></div>
-                        <span className="relative z-10 font-semibold">
-                          {item.name}
-                        </span>
-                      </Link>
-                    </motion.div>
-                  );
-                })}
-
-                {/* Mobile contact info removed per mobile UX requirements (phone/email/Book Appointment) */}
+                        >
+                          <div
+                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                              isActive
+                                ? "bg-blue-600"
+                                : "bg-gray-400 group-hover:bg-blue-600"
+                            }`}
+                          ></div>
+                          <span className="font-bold">{item.name}</span>
+                        </Link>
+                      </motion.div>
+                    );
+                  })}
+                </div>
               </div>
             </motion.div>
           )}
         </AnimatePresence>
       </motion.nav>
+
+      {/* Call Modal for Book Appointment */}
+      <CallModal
+        isOpen={isCallModalOpen}
+        onClose={() => setIsCallModalOpen(false)}
+        title="Book Appointment"
+        primaryNumber="0424 - 2888777"
+        secondaryNumber="+91 7729 888777"
+        whatsappNumber="+91 7729 888777"
+      />
     </>
   );
 };
