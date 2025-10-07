@@ -2,17 +2,17 @@ import { departments } from "../../data/DoctorDepartmentData";
 import { useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/Final_Photos/DSC03391.webp";
+const BG2 = "/assets/Final_Photos/DSC03392.webp";
+const BG3 = "/assets/Final_Photos/IMG-20250923-WA0015.webp";
+const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];
 
-// Function to get hero background image (using fourth image for Specialities)
+// Function to get hero background image (using specified DSC03391 for Specialities)
 const getHeroBgImage = () => {
-  return bgPhotos[3]; // Use fourth image for Specialities
+  return bgPhotos[0];
 };
 
 // Utility function to create URL slug from department name
@@ -43,16 +43,8 @@ import {
   FaFileMedical,
   FaHandHoldingMedical,
   FaClinicMedical,
-  FaBookMedical,
-  FaNotesMedical,
-  FaProcedures,
-  FaUserNurse,
-  FaMedkit,
   FaTint,
-  FaRadiation,
   FaBaby,
-  FaWheelchair,
-  FaBandAid,
   FaCut,
 } from "react-icons/fa";
 import { useState } from "react";

@@ -380,7 +380,6 @@ const Services = () => {
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
           >
-            <span className="block">Infrastructure &</span>
             <span className="bg-gradient-to-r from-emerald-200 to-emerald-400 bg-clip-text text-transparent">
               Medical Services
             </span>
