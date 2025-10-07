@@ -15,10 +15,10 @@ import {
 import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
 
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/Final_Photos/DSC03391.webp";
+const BG2 = "/assets/Final_Photos/DSC03392.webp";
+const BG3 = "/assets/Final_Photos/DSC03434.webp";
+const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
 
 // Helper animation presets to avoid repeating identical motion props
 const riseIn = (delay = 0, duration = 0.8) => ({
@@ -39,8 +39,8 @@ const Contact = () => {
 
   // Function to get hero background image
   const getHeroBgImage = () => {
-    // Using index 3 (BG_IMG20250923WA0029) for Contact page
-    return bgPhotos[3];
+    // Use the provided WhatsApp image for Contact page hero
+    return bgPhotos[2];
   };
   // Contact information copied from Footer (keep in sync with Footer.jsx)
   const contactInfo = [
@@ -192,13 +192,13 @@ const Contact = () => {
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
           style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
+            backgroundImage: `url("${getHeroBgImage()}")`,
           }}
           initial={{ scale: 1.1 }}
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/30" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           {/* Contact Badge */}

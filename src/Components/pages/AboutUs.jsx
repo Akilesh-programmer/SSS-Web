@@ -139,7 +139,7 @@ const AboutUs = () => {
             transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
           >
             <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              About SSS Hospital
+              About SSS Super Speciality Hospital
             </span>
           </motion.h1>
 
@@ -545,7 +545,7 @@ const AboutUs = () => {
 
       {/* Why Choose Us - Modern Medical Excellence */}
       <section className="relative py-16 lg:py-24 overflow-hidden">
-        {/* Professional Medical Background (local, clearly visible) */}
+        {/* Background image (kept the same), with hero-like black overlay instead of green shade */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
           initial={{ scale: 1.06, y: -10, opacity: 0.9 }}
@@ -553,9 +553,11 @@ const AboutUs = () => {
           viewport={{ once: true, amount: 0.2 }}
           transition={{ duration: 1.2, ease: "easeOut" }}
           style={{
-            backgroundImage: `linear-gradient(135deg, rgba(6, 78, 59, 0.55) 0%, rgba(5, 150, 105, 0.45) 45%, rgba(16, 185, 129, 0.40) 100%), url(${BG3})`,
+            backgroundImage: `url(${BG3})`,
           }}
         />
+        {/* Match hero overlay shade */}
+        <div className="absolute inset-0 bg-black/50" />
 
         {/* Subtle Pattern Overlay */}
         <div className="absolute inset-0 opacity-10">
@@ -584,7 +586,7 @@ const AboutUs = () => {
             </div>
 
             <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
-              Why Choose
+              Why Choose{" "}
               <span className="block text-emerald-200">
                 SSS Super Speciality Hospital?
               </span>

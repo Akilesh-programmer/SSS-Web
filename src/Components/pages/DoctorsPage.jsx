@@ -12,17 +12,17 @@ import { FaSort, FaFilterCircleXmark } from "react-icons/fa6";
 import { departments, doctors } from "../../data/DoctorDepartmentData";
 
 // Local background images
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/Final_Photos/DSC03391.webp";
+const BG2 = "/assets/Final_Photos/DSC03392.webp";
+const BG3 = "/assets/Final_Photos/IMG-20250923-WA0018.webp";
+const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];
 
-// Function to get hero background image (using third image for DoctorsPage)
+// Function to get hero background image (now using specified Doctors hero image)
 const getHeroBgImage = () => {
-  return bgPhotos[2]; // Use third image for DoctorsPage
+  return bgPhotos[2];
 };
 
 const DoctorsPage = () => {
@@ -281,7 +281,7 @@ const DoctorsPage = () => {
           animate={{ scale: 1 }}
           transition={{ duration: 1.5, ease: "easeOut" }}
         />
-        <div className="absolute inset-0 bg-black/50" />
+        <div className="absolute inset-0 bg-black/30" />
 
         <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
           {/* Medical Specialists Badge */}
@@ -377,9 +377,9 @@ const DoctorsPage = () => {
                     exit={{ opacity: 0, y: -10 }}
                     className="absolute top-full left-0 right-0 mt-2 bg-white border border-emerald-200 rounded-xl shadow-xl z-50 max-h-60 overflow-y-auto"
                   >
-                    {searchSuggestions.map((suggestion, index) => (
+                    {searchSuggestions.map((suggestion) => (
                       <button
-                        key={index}
+                        key={"suggestion-" + suggestion}
                         onClick={() => {
                           setSearchTerm(suggestion);
                           setShowSuggestions(false);
