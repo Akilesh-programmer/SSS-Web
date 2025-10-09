@@ -149,7 +149,7 @@ const Gallery = () => {
             transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
           >
             <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              World-Class Infrastructure
+              Infrastructure Gallery
             </span>
           </motion.h1>
 

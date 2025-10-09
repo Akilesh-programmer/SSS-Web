@@ -1,5 +1,5 @@
 import React, { useState, useRef, useMemo } from "react";
-import { motion, useInView } from "framer-motion";
+import { motion } from "framer-motion";
 import OptimizedImageGrid from "../ui/OptimizedImageGrid";
 import {
   FaAmbulance,
@@ -12,18 +12,11 @@ import {
   FaLungs,
   FaHospital,
   FaMicroscope,
-  FaBed,
-  FaEye,
-  FaClock,
   FaFlask,
-  FaFileMedical,
   FaTint,
   FaCreditCard,
   FaWaveSquare,
-  FaCrown,
-  FaHome,
   FaProcedures,
-  FaClinicMedical,
   FaHandHoldingMedical,
   FaRadiation,
 } from "react-icons/fa";
@@ -69,7 +62,6 @@ const getHeroBgImage = () => {
 
 const Services = () => {
   const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, margin: "-100px" });
 
   // Image modal state
   const [selectedImage, setSelectedImage] = useState(null);
@@ -154,11 +146,6 @@ const Services = () => {
       color: "from-blue-500 to-blue-600",
     },
     {
-      name: "Rooms in all Categories Including Suite Rooms",
-      icon: FaBed,
-      color: "from-amber-500 to-amber-600",
-    },
-    {
       name: "Preventive Health Checkup",
       icon: FaShieldAlt,
       color: "from-emerald-500 to-emerald-600",
@@ -206,94 +193,7 @@ const Services = () => {
     },
   ];
 
-  // Updated room categories with more appropriate icons
-  const roomCategories = [
-    {
-      id: 1,
-      name: "GENERAL WARD",
-      icon: FaBed,
-      color: "from-blue-500 to-blue-600",
-    },
-    {
-      id: 2,
-      name: "SEMI PRIVATE ROOM",
-      icon: FaHome,
-      color: "from-green-500 to-green-600",
-    },
-    {
-      id: 3,
-      name: "SEMI PRIVATE ROOM (A/C)",
-      icon: FaHome,
-      color: "from-teal-500 to-teal-600",
-    },
-    {
-      id: 4,
-      name: "PRIVATE ROOM",
-      icon: FaBed,
-      color: "from-indigo-500 to-indigo-600",
-    },
-    {
-      id: 5,
-      name: "PRIVATE ROOM (A/C)",
-      icon: FaBed,
-      color: "from-purple-500 to-purple-600",
-    },
-    {
-      id: 6,
-      name: "DELUXE ROOM",
-      icon: FaCrown,
-      color: "from-pink-500 to-rose-600",
-    },
-    {
-      id: 7,
-      name: "SUITE ROOM (SMALL)",
-      icon: FaCrown,
-      color: "from-amber-500 to-amber-600",
-    },
-    {
-      id: 8,
-      name: "SUITE ROOM (BIG)",
-      icon: FaCrown,
-      color: "from-orange-500 to-orange-600",
-    },
-    {
-      id: 9,
-      name: "EMR OBSERVATION",
-      icon: FaFileMedical,
-      color: "from-red-500 to-red-600",
-    },
-    {
-      id: 10,
-      name: "DAYCARE OBSERVATION",
-      icon: FaClock,
-      color: "from-yellow-500 to-yellow-600",
-    },
-    {
-      id: 11,
-      name: "OPHTHAL DAYCARE",
-      icon: FaEye,
-      color: "from-cyan-500 to-cyan-600",
-    },
-    {
-      id: 12,
-      name: "POST OP RECOVERY",
-      icon: FaClinicMedical,
-      color: "from-emerald-500 to-emerald-600",
-    },
-  ];
-
   // Enhanced animation variants
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        duration: 0.8,
-        staggerChildren: 0.1,
-      },
-    },
-  };
-
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
@@ -332,22 +232,6 @@ const Services = () => {
       rotate: 5,
       transition: {
         duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  // Image animation variants
-  const imageVariants = {
-    rest: {
-      scale: 1,
-      filter: "brightness(1)",
-    },
-    hover: {
-      scale: 1.02,
-      filter: "brightness(1.1)",
-      transition: {
-        duration: 0.4,
         ease: "easeOut",
       },
     },
@@ -438,11 +322,11 @@ const Services = () => {
                   </div>
 
                   <div className="grid grid-cols-2 gap-4">
-                    {medicalServices.map((service, index) => {
+                    {medicalServices.map((service) => {
                       const IconComponent = service.icon;
                       return (
                         <motion.div
-                          key={index}
+                          key={service.name}
                           variants={cardHoverVariants}
                           initial="rest"
                           whileHover="hover"
@@ -457,55 +341,6 @@ const Services = () => {
                           </motion.div>
                           <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight">
                             {service.name}
-                          </h3>
-                        </motion.div>
-                      );
-                    })}
-                  </div>
-                </motion.div>
-
-                {/* Room Categories Section */}
-                <motion.div variants={itemVariants}>
-                  <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-6 py-3 mb-6 border border-emerald-200">
-                      <FaBed className="text-emerald-600 text-lg" />
-                      <span className="text-emerald-700 font-bold text-sm tracking-wide">
-                        ACCOMMODATION
-                      </span>
-                    </div>
-
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                      <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                        Room Categories
-                      </span>
-                    </h2>
-
-                    <p className="text-lg text-gray-600 leading-relaxed">
-                      Comfortable accommodation facilities for optimal patient
-                      care and recovery.
-                    </p>
-                  </div>
-
-                  <div className="grid grid-cols-2 gap-3">
-                    {roomCategories.map((room, index) => {
-                      const IconComponent = room.icon;
-                      return (
-                        <motion.div
-                          key={room.id}
-                          variants={cardHoverVariants}
-                          initial="rest"
-                          whileHover="hover"
-                          animate="rest"
-                          className="bg-white rounded-xl shadow-md border border-gray-100 group cursor-pointer p-4 flex flex-col items-center justify-center text-center min-h-[100px] hover:shadow-lg transition-all duration-300"
-                        >
-                          <motion.div
-                            className={`w-10 h-10 bg-gradient-to-br ${room.color} rounded-lg flex items-center justify-center text-white shadow-sm mb-2`}
-                            variants={iconHoverVariants}
-                          >
-                            <IconComponent className="text-sm" />
-                          </motion.div>
-                          <h3 className="text-xs font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight">
-                            {room.name}
                           </h3>
                         </motion.div>
                       );
@@ -552,11 +387,11 @@ const Services = () => {
               </div>
 
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {medicalServices.map((service, index) => {
+                {medicalServices.map((service) => {
                   const IconComponent = service.icon;
                   return (
                     <motion.div
-                      key={index}
+                      key={service.name}
                       variants={cardHoverVariants}
                       initial="rest"
                       whileHover="hover"
@@ -571,54 +406,6 @@ const Services = () => {
                       </motion.div>
                       <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors">
                         {service.name}
-                      </h3>
-                    </motion.div>
-                  );
-                })}
-              </div>
-            </div>
-
-            {/* Room Categories Section */}
-            <div>
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-4 py-2 mb-4 border border-emerald-200">
-                  <FaBed className="text-emerald-600" />
-                  <span className="text-emerald-700 font-bold text-sm">
-                    ACCOMMODATION
-                  </span>
-                </div>
-
-                <h2 className="text-3xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                    Room Categories
-                  </span>
-                </h2>
-
-                <p className="text-gray-600 leading-relaxed">
-                  Comfortable accommodation for optimal patient care.
-                </p>
-              </div>
-
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                {roomCategories.map((room, index) => {
-                  const IconComponent = room.icon;
-                  return (
-                    <motion.div
-                      key={room.id}
-                      variants={cardHoverVariants}
-                      initial="rest"
-                      whileHover="hover"
-                      animate="rest"
-                      className="bg-white rounded-xl shadow-md border border-gray-100 group cursor-pointer p-4 flex flex-col items-center justify-center text-center min-h-[120px]"
-                    >
-                      <motion.div
-                        className={`w-10 h-10 bg-gradient-to-br ${room.color} rounded-xl flex items-center justify-center text-white shadow-sm mb-2`}
-                        variants={iconHoverVariants}
-                      >
-                        <IconComponent className="text-sm" />
-                      </motion.div>
-                      <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors">
-                        {room.name}
                       </h3>
                     </motion.div>
                   );

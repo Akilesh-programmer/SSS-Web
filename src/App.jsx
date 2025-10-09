@@ -10,6 +10,7 @@ import Specialities from "./Components/pages/Specialities";
 import Services from "./Components/pages/Services";
 import Packages from "./Components/pages/Packages";
 import Gallery from "./Components/pages/Gallery";
+import Rooms from "./Components/pages/Rooms";
 import FounderSection from "./Components/sections/FounderSection";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
@@ -142,6 +143,18 @@ function App() {
                 <Navigation />
                 <div className="pt-20">
                   <Gallery />
+                </div>
+                <Footer />
+              </PageWrapper>
+            }
+          />
+          <Route
+            path="/rooms"
+            element={
+              <PageWrapper pageKey="rooms-page">
+                <Navigation />
+                <div className="pt-20">
+                  <Rooms />
                 </div>
                 <Footer />
               </PageWrapper>
