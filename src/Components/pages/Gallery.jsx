@@ -3,10 +3,10 @@ import { motion, AnimatePresence } from "framer-motion";
 import OptimizedImageGrid from "../ui/OptimizedImageGrid";
 
 // Using public assets for better performance during deployment
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/Final_Photos/DSC03391.webp";
+const BG2 = "/assets/Final_Photos/DSC03392.webp";
+const BG3 = "/assets/Final_Photos/DSC03326.webp";
+const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
 const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
 const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
 const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
@@ -62,7 +62,7 @@ const videoUrl = hospitalVideo;
 // BG Photos array for hero backgrounds (reuse style consistency with other pages)
 const bgPhotos = [BG1, BG2, BG3, BG4];
 
-const getHeroBgImage = () => bgPhotos[3]; // choose 4th image similar to Specialities
+const getHeroBgImage = () => bgPhotos[2]; // use specified DSC03326.webp for hero
 
 const Gallery = () => {
   const [activeMedia, setActiveMedia] = useState(null);
@@ -149,7 +149,7 @@ const Gallery = () => {
             transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
           >
             <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              World-Class Infrastructure
+              Infrastructure Gallery
             </span>
           </motion.h1>
 

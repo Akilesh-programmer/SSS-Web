@@ -4,28 +4,16 @@ import {
   FaStethoscope,
   FaCheck,
   FaHeartbeat,
-  FaUserMd,
   FaShieldAlt,
-  FaBaby,
-  FaStar,
   FaTint,
-  FaMicroscope,
-  FaFlask,
-  FaXRay,
-  FaEye,
-  FaBrain,
-  FaLungs,
   FaFileMedical,
-  FaVials,
-  FaClinicMedical,
   FaBookMedical,
-  FaCapsules,
 } from "react-icons/fa";
 
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/Final_Photos/DSC03391.webp";
+const BG2 = "/assets/Final_Photos/DSC03392.webp";
+const BG3 = "/assets/Final_Photos/IMG-20250923-WA0027.webp";
+const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
 
 const Packages = () => {
   // Background images array for hero section
@@ -33,14 +21,9 @@ const Packages = () => {
 
   // Function to get hero background image
   const getHeroBgImage = () => {
-    // Using index 1 (BG_DSC03392) for Packages page
-    return bgPhotos[1];
+    // Use the specified IMG-20250923-WA0015.webp for Packages page hero
+    return bgPhotos[2];
   };
-  const fadeInUp = {
-    hidden: { opacity: 0, y: 30 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
-
   const staggerContainer = {
     hidden: { opacity: 0 },
     visible: {
@@ -198,23 +181,7 @@ const Packages = () => {
 
   return (
     <div className="bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden min-h-screen">
-      {/* Custom scrollbar styles */}
-      <style jsx>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 4px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: #f1f1f1;
-          border-radius: 2px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background: linear-gradient(to bottom, #10b981, #0d9488);
-          border-radius: 2px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(to bottom, #059669, #0f766e);
-        }
-      `}</style>
+      {/* Custom scrollbar styles moved to global css if needed */}
 
       {/* Hero Section with BG_Photos Background */}
       <motion.section
@@ -332,9 +299,9 @@ const Packages = () => {
                         Tests Included:
                       </h4>
                       <div className="max-h-64 overflow-y-auto custom-scrollbar">
-                        {pkg.tests.map((test, testIndex) => (
+                        {pkg.tests.map((test) => (
                           <div
-                            key={testIndex}
+                            key={pkg.name + "-" + test}
                             className="flex items-start text-gray-600 py-1"
                           >
                             <FaCheck className="text-emerald-500 mr-3 text-xs flex-shrink-0 mt-1" />
