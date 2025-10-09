@@ -11,6 +11,7 @@ const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+  const [infraDropdownOpen, setInfraDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
   // --- Style helpers to avoid repeating large inline objects ---
@@ -126,7 +127,14 @@ const Navigation = () => {
     { name: "About Us", path: "/about" },
     { name: "Specialities", path: "/specialities" },
     { name: "Services", path: "/services" },
-    { name: "Infrastructure", path: "/infrastructure" },
+    { 
+      name: "Infrastructure", 
+      path: "/infrastructure",
+      dropdown: [
+        { name: "Infrastructure Gallery", path: "/infrastructure" },
+        { name: "Rooms & Facilities", path: "/rooms" }
+      ]
+    },
     { name: "Doctors", path: "/doctors" },
     { name: "Packages", path: "/packages" },
     { name: "Contact", path: "/contact" },
@@ -217,7 +225,66 @@ const Navigation = () => {
             {/* Professional Navigation Links */}
             <div className="hidden lg:flex items-center space-x-1">
               {navItems.map((item) => {
-                const isActive = location.pathname === item.path;
+                const isActive = location.pathname === item.path || 
+                  (item.dropdown && item.dropdown.some(sub => sub.path === location.pathname));
+                
+                // If item has dropdown
+                if (item.dropdown) {
+                  return (
+                    <div
+                      key={item.name}
+                      className="relative"
+                      onMouseEnter={() => setInfraDropdownOpen(true)}
+                      onMouseLeave={() => setInfraDropdownOpen(false)}
+                    >
+                      <Link
+                        to={item.path}
+                        className={`relative group px-4 py-2 rounded-lg transition-all duration-300 font-bold text-sm overflow-hidden ${
+                          isActive
+                            ? "text-blue-600 bg-blue-50/70"
+                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-50/50"
+                        }`}
+                      >
+                        <span className="relative z-10">{item.name}</span>
+                        {isActive && (
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"></div>
+                        )}
+                      </Link>
+                      
+                      {/* Dropdown Menu */}
+                      <AnimatePresence>
+                        {infraDropdownOpen && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -10 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -10 }}
+                            transition={{ duration: 0.2 }}
+                            className="absolute top-full left-0 mt-2 w-56 bg-white rounded-xl shadow-2xl border border-gray-100 overflow-hidden z-50"
+                          >
+                            {item.dropdown.map((subItem) => {
+                              const isSubActive = location.pathname === subItem.path;
+                              return (
+                                <Link
+                                  key={subItem.name}
+                                  to={subItem.path}
+                                  className={`block px-4 py-3 transition-all duration-200 font-medium text-sm ${
+                                    isSubActive
+                                      ? "text-blue-600 bg-blue-50"
+                                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                                  }`}
+                                >
+                                  {subItem.name}
+                                </Link>
+                              );
+                            })}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  );
+                }
+                
+                // Regular nav item without dropdown
                 return (
                   <Link
                     key={item.name}
@@ -326,7 +393,9 @@ const Navigation = () => {
                 {/* Navigation Links */}
                 <div className="space-y-2">
                   {navItems.map((item, index) => {
-                    const isActive = location.pathname === item.path;
+                    const isActive = location.pathname === item.path || 
+                      (item.dropdown && item.dropdown.some(sub => sub.path === location.pathname));
+                    
                     return (
                       <motion.div
                         key={item.name}
@@ -334,24 +403,60 @@ const Navigation = () => {
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: index * 0.05 }}
                       >
-                        <Link
-                          to={item.path}
-                          onClick={() => setIsMenuOpen(false)}
-                          className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 group ${
-                            isActive
-                              ? "text-blue-600 bg-blue-50"
-                              : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
-                          }`}
-                        >
-                          <div
-                            className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                        {/* Parent item */}
+                        {!item.dropdown ? (
+                          <Link
+                            to={item.path}
+                            onClick={() => setIsMenuOpen(false)}
+                            className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 group ${
                               isActive
-                                ? "bg-blue-600"
-                                : "bg-gray-400 group-hover:bg-blue-600"
+                                ? "text-blue-600 bg-blue-50"
+                                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                             }`}
-                          ></div>
-                          <span className="font-bold">{item.name}</span>
-                        </Link>
+                          >
+                            <div
+                              className={`w-2 h-2 rounded-full transition-all duration-300 ${
+                                isActive
+                                  ? "bg-blue-600"
+                                  : "bg-gray-400 group-hover:bg-blue-600"
+                              }`}
+                            ></div>
+                            <span className="font-bold">{item.name}</span>
+                          </Link>
+                        ) : (
+                          <div className="space-y-1">
+                            {/* Infrastructure Parent Label */}
+                            <div className="flex items-center space-x-3 p-4 text-gray-900 font-bold">
+                              <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                              <span>{item.name}</span>
+                            </div>
+                            {/* Dropdown items */}
+                            {item.dropdown.map((subItem) => {
+                              const isSubActive = location.pathname === subItem.path;
+                              return (
+                                <Link
+                                  key={subItem.name}
+                                  to={subItem.path}
+                                  onClick={() => setIsMenuOpen(false)}
+                                  className={`flex items-center space-x-3 p-3 pl-10 rounded-xl transition-all duration-300 group ${
+                                    isSubActive
+                                      ? "text-blue-600 bg-blue-50"
+                                      : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
+                                  }`}
+                                >
+                                  <div
+                                    className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
+                                      isSubActive
+                                        ? "bg-blue-600"
+                                        : "bg-gray-300 group-hover:bg-blue-600"
+                                    }`}
+                                  ></div>
+                                  <span className="font-medium text-sm">{subItem.name}</span>
+                                </Link>
+                              );
+                            })}
+                          </div>
+                        )}
                       </motion.div>
                     );
                   })}
