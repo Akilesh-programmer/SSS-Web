@@ -10,6 +10,7 @@ import Specialities from "./Components/pages/Specialities";
 import Services from "./Components/pages/Services";
 import Packages from "./Components/pages/Packages";
 import Gallery from "./Components/pages/Gallery";
+import Rooms from "./Components/pages/Rooms";
 import FounderSection from "./Components/sections/FounderSection";
 import AppointmentBooking from "./Components/sections/AppointmentBooking";
 import Contact from "./Components/sections/Contact";
@@ -17,7 +18,7 @@ import Footer from "./Components/ui/Footer";
 import DoctorsPage from "./Components/pages/DoctorsPage";
 import DepartmentPageLayout from "./Components/pages/departments/DepartmentPageLayout";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
-import FloatingChatbot from "./Components/ui/FloatingChatbot";
+// FloatingChatbot removed per UX update: appointment button moved to bottom-left
 import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
@@ -134,9 +135,9 @@ function App() {
             path="/department/:departmentSlug"
             element={<DepartmentPageLayout />}
           />
-          <Route path="/infrastructure" element={<ServicesPage />} />
+          <Route path="/services" element={<ServicesPage />} />
           <Route
-            path="/gallery"
+            path="/infrastructure"
             element={
               <PageWrapper pageKey="gallery-page">
                 <Navigation />
@@ -147,12 +148,23 @@ function App() {
               </PageWrapper>
             }
           />
+          <Route
+            path="/rooms"
+            element={
+              <PageWrapper pageKey="rooms-page">
+                <Navigation />
+                <div className="pt-20">
+                  <Rooms />
+                </div>
+                <Footer />
+              </PageWrapper>
+            }
+          />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/contact" element={<ContactPage />} />
         </Routes>
         <FloatingAppointmentButton />
-        <FloatingChatbot />
         <ScrollToTopButton />
 
         {/* Global Appointment Popup */}

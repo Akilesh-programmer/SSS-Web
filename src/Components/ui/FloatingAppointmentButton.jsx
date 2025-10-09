@@ -24,7 +24,7 @@ const FloatingAppointmentButton = () => {
             initial={{ opacity: 0, scale: 0, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0, y: 100 }}
-            className="fixed bottom-4 sm:bottom-6 right-4 sm:right-6 z-40"
+            className="fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-40"
           >
             {/* Main appointment button - simplified, no hover expansion */}
             <motion.button
@@ -53,10 +53,10 @@ const FloatingAppointmentButton = () => {
                 }}
               />
 
-              {/* Tooltip - hidden on mobile */}
-              <span className="hidden sm:block absolute right-20 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+              {/* Tooltip - hidden on mobile (appears to the right when button is on left) */}
+              <span className="hidden sm:block absolute left-20 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
                 Book Appointment
-                <span className="absolute left-full top-1/2 -translate-y-1/2 border-4 border-transparent border-l-gray-900" />
+                <span className="absolute -left-3 top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
               </span>
             </motion.button>
           </motion.div>
