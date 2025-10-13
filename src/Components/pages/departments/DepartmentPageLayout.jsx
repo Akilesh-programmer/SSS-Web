@@ -19,6 +19,56 @@ const BG1 = "/assets/BG_Photos/DSC03391.webp";
 const BG2 = "/assets/BG_Photos/DSC03392.webp";
 const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
 const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+
+// Department-specific images
+// Accident & Emergency Care (Department ID: 2)
+const EMERGENCY_HERO =
+  "/assets/Final_Photos/WhatsApp%20Image%202025-09-09%20at%2023.15.38_a6224a71.webp";
+const EMERGENCY_INFRA =
+  "/assets/Final_Photos/WhatsApp%20Image%202025-09-09%20at%2023.15.40_dac5ba67.webp";
+
+// Anaesthesiology (Department ID: 3)
+const ANAESTHESIOLOGY_HERO = "/assets/Final_Photos/DSC03428.webp";
+const ANAESTHESIOLOGY_INFRA = "/assets/Final_Photos/Anaesthesiology_Cover.avif";
+// Cardiology (Department ID: 4)
+const CARDIOLOGY_HERO = "/assets/Final_Photos/DSC03412.webp";
+const CARDIOLOGY_INFRA = "/assets/Final_Photos/DSC03377.webp";
+// Dermatology & Cosmetology (Department ID: 5)
+const DERMATOLOGY_HERO = "/assets/Final_Photos/Dermatology_Cover.avif";
+const DERMATOLOGY_INFRA = "/assets/Final_Photos/Dermatology.avif";
+// Dental & Oral and Maxillofacial Surgery (Department ID: 6)
+const DENTAL_HERO = "/assets/Final_Photos/8.webp";
+const DENTAL_INFRA = "/assets/Final_Photos/Dental.avif";
+// ENT & Head & Neck (Department ID: 7)
+const ENT_HERO = "/assets/Final_Photos/ENT_Hero.avif";
+const ENT_INFRA = "/assets/Final_Photos/ENT.avif";
+// General Surgery (Department ID: 8)
+const GS_HERO = "/assets/Final_Photos/IMG-20250923-WA0018.webp"; // hero background
+const GS_INFRA = "/assets/Final_Photos/9.webp"; // in-page image
+// Gastroenterology (Department ID: 9)
+const GASTRO_HERO = "/assets/Final_Photos/IMG-20250923-WA0028.webp"; // cover photo
+const GASTRO_INFRA = "/assets/Final_Photos/Gastro.avif"; // inside page picture
+// Internal Medicine (Department ID: 10)
+const IM_HERO = "/assets/Final_Photos/IMG-20250923-WA0027.webp"; // hero image
+const IM_INFRA = "/assets/Final_Photos/Internal_Side.avif"; // inside image
+// Master Health Check up (Department ID: 11)
+const MHC_HERO = "/assets/Final_Photos/Master_Health_Cover.webp"; // cover image
+const MHC_INFRA = "/assets/Final_Photos/DSC03377.webp"; // side image
+// Nephrology (Department ID: 12)
+const NEPHRO_HERO = "/assets/Final_Photos/Nephrology_Sidew.avif"; // cover background image
+const NEPHRO_INFRA = "/assets/Final_Photos/Nephrology_Background.avif"; // side photo
+// Neurology (Department ID: 13)
+const NEURO_HERO = "/assets/Final_Photos/Neurology_Back.avif"; // background
+const NEURO_INFRA = "/assets/Final_Photos/Neurology_Side.avif"; // side image
+// Neuro Surgery (Department ID: 14)
+const NS_HERO = "/assets/Final_Photos/Neuro_Surgery.avif"; // back
+const NS_INFRA = "/assets/Final_Photos/Neuro_Surgery_Side.avif"; // side image
+// Obstetrics & Gynaecology (Department ID: 15)
+const OBST_HERO = "/assets/Final_Photos/obst_Back.avif"; // background
+const OBST_INFRA = "/assets/Final_Photos/obst_side.avif"; // side image
+// Orthopaedics (Department ID: 16)
+const ORTHO_HERO = "/assets/Final_Photos/ortho_back.avif"; // back
+const ORTHO_INFRA = "/assets/Final_Photos/ortho_side.avif"; // side image
 const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
 const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
 const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
@@ -47,6 +97,24 @@ const bgPhotos = [BG1, BG2, BG3, BG4];
 // Function to get hero background image for department
 const getHeroBgImage = (departmentId) => {
   if (!departmentId) return bgPhotos[0];
+
+  // Department-specific hero images
+  if (departmentId === 2) return EMERGENCY_HERO; // Accident & Emergency Care
+  if (departmentId === 3) return ANAESTHESIOLOGY_HERO; // Anaesthesiology
+  if (departmentId === 4) return CARDIOLOGY_HERO; // Cardiology
+  if (departmentId === 5) return DERMATOLOGY_HERO; // Dermatology & Cosmetology
+  if (departmentId === 6) return DENTAL_HERO; // Dental & Oral and Maxillofacial Surgery
+  if (departmentId === 7) return ENT_HERO; // ENT & Head & Neck
+  if (departmentId === 8) return GS_HERO; // General Surgery
+  if (departmentId === 9) return GASTRO_HERO; // Gastroenterology
+  if (departmentId === 10) return IM_HERO; // Internal Medicine
+  if (departmentId === 11) return MHC_HERO; // Master Health Check up
+  if (departmentId === 12) return NEPHRO_HERO; // Nephrology
+  if (departmentId === 13) return NEURO_HERO; // Neurology
+  if (departmentId === 14) return NS_HERO; // Neuro Surgery
+  if (departmentId === 15) return OBST_HERO; // Obstetrics & Gynaecology
+  if (departmentId === 16) return ORTHO_HERO; // Orthopaedics
+
   return bgPhotos[(departmentId - 1) % bgPhotos.length];
 };
 
@@ -78,6 +146,57 @@ const infrastructurePhotos = [
 // Function to get infrastructure photos for each department (different sets)
 const getDepartmentInfraPhotos = (departmentId) => {
   if (!departmentId) return [];
+
+  // Department-specific infrastructure photos
+  if (departmentId === 2) {
+    // Accident & Emergency Care - single image
+    return [{ src: EMERGENCY_INFRA, alt: "Emergency Care Facility" }];
+  }
+  if (departmentId === 3) {
+    // Anaesthesiology - single image
+    return [{ src: ANAESTHESIOLOGY_INFRA, alt: "Anaesthesiology Department" }];
+  }
+  if (departmentId === 4) {
+    // Cardiology - single image
+    return [{ src: CARDIOLOGY_INFRA, alt: "Cardiology Department" }];
+  }
+  if (departmentId === 5) {
+    return [{ src: DERMATOLOGY_INFRA, alt: "Dermatology Department" }];
+  }
+  if (departmentId === 6) {
+    return [{ src: DENTAL_INFRA, alt: "Dental Department" }];
+  }
+  if (departmentId === 7) {
+    return [{ src: ENT_INFRA, alt: "ENT Department" }];
+  }
+  if (departmentId === 8) {
+    return [{ src: GS_INFRA, alt: "General Surgery" }];
+  }
+  if (departmentId === 9) {
+    return [{ src: GASTRO_INFRA, alt: "Gastroenterology Department" }];
+  }
+  if (departmentId === 10) {
+    return [{ src: IM_INFRA, alt: "Internal Medicine Department" }];
+  }
+  if (departmentId === 11) {
+    return [{ src: MHC_INFRA, alt: "Master Health Check up" }];
+  }
+  if (departmentId === 12) {
+    return [{ src: NEPHRO_INFRA, alt: "Nephrology Department" }];
+  }
+  if (departmentId === 13) {
+    return [{ src: NEURO_INFRA, alt: "Neurology Department" }];
+  }
+  if (departmentId === 14) {
+    return [{ src: NS_INFRA, alt: "Neuro Surgery Department" }];
+  }
+  if (departmentId === 15) {
+    return [{ src: OBST_INFRA, alt: "Obstetrics & Gynaecology Department" }];
+  }
+  if (departmentId === 16) {
+    return [{ src: ORTHO_INFRA, alt: "Orthopaedics Department" }];
+  }
+
   const startIndex = ((departmentId - 1) * 3) % infrastructurePhotos.length;
   return [
     infrastructurePhotos[startIndex],
@@ -498,11 +617,11 @@ const DepartmentPageLayout = () => {
                 initial={{ opacity: 0, x: 50 }}
                 animate={{ opacity: 1, x: 0 }}
                 transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-                className="sticky top-24"
+                className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center"
               >
                 {/* Department Infrastructure heading removed per request */}
                 <motion.div
-                  className="grid grid-cols-1 gap-4"
+                  className="flex flex-col gap-4 items-center justify-center"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
                   transition={{ duration: 0.8, delay: 0.8 }}
@@ -523,7 +642,7 @@ const DepartmentPageLayout = () => {
                           y: -2,
                           transition: { duration: 0.2 },
                         }}
-                        className="group cursor-pointer"
+                        className="group cursor-pointer mx-auto w-full"
                         onClick={() => {
                           // Create a blurred backdrop modal (no heavy black shade)
                           const modal = document.createElement("div");
@@ -560,15 +679,17 @@ const DepartmentPageLayout = () => {
                           });
                         }}
                       >
-                        <div className="relative overflow-hidden rounded-xl bg-white shadow-lg hover:shadow-xl transition-all duration-300 group-hover:scale-105">
-                          <img
-                            src={photo.src}
-                            alt=""
-                            className="w-full h-48 object-cover"
-                          />
-                          <div className="absolute inset-0 bg-black/0 group-hover:bg-black/20 transition-all duration-300 flex items-center justify-center">
+                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-xl hover:shadow-2xl transition-all duration-300 w-full">
+                          <div className="aspect-[4/3] w-full">
+                            <img
+                              src={photo.src}
+                              alt=""
+                              className="w-full h-full object-cover"
+                            />
+                          </div>
+                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
                             <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <div className="bg-white/90 rounded-full p-3">
+                              <div className="bg-white/95 rounded-full p-4 shadow-lg backdrop-blur-sm">
                                 <svg
                                   className="w-6 h-6 text-gray-800"
                                   fill="none"
