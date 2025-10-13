@@ -1,6 +1,10 @@
-import React, { useState, useRef, useMemo } from "react";
-import { motion } from "framer-motion";
-import OptimizedImageGrid from "../ui/OptimizedImageGrid";
+import React, { useState, useRef, useMemo, useEffect } from "react";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  AnimatePresence,
+} from "framer-motion";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -10,7 +14,6 @@ import {
   FaShieldAlt,
   FaCapsules,
   FaLungs,
-  FaHospital,
   FaMicroscope,
   FaFlask,
   FaTint,
@@ -19,6 +22,11 @@ import {
   FaProcedures,
   FaHandHoldingMedical,
   FaRadiation,
+  FaChevronDown,
+  FaChevronLeft,
+  FaChevronRight,
+  FaHome,
+  FaImages,
 } from "react-icons/fa";
 
 // Using public assets for better performance during deployment
@@ -27,30 +35,20 @@ const BG2 = "/assets/BG_Photos/DSC03392.webp";
 const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
 const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
 
-// Infrastructure photos from public assets
-const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
-const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
-const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
-const INF4 = "/assets/Infrastructure_Photos/DSC03386.webp";
-const INF5 = "/assets/Infrastructure_Photos/DSC03388.webp";
-const INF6 = "/assets/Infrastructure_Photos/DSC03412.webp";
-const INF7 = "/assets/Infrastructure_Photos/DSC03426.webp";
-const INF8 = "/assets/Infrastructure_Photos/DSC03427.webp";
-const INF9 = "/assets/Infrastructure_Photos/DSC03428.webp";
-const INF10 = "/assets/Infrastructure_Photos/DSC03434.webp";
-const INF11 = "/assets/Infrastructure_Photos/DSC03435.webp";
-const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.webp";
-const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.webp";
-const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.webp";
-const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.webp";
-const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.webp";
-const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.webp";
-const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.webp";
-const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.webp";
-const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.webp";
-const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.webp";
-
-// Infrastructure Photos imports (all 21 images)
+// Service images - left and right side
+const SERVICE_LEFT_1 =
+  "/assets/Final_Photos/WhatsApp Image 2025-09-09 at 23.15.40_dac5ba67.webp";
+const SERVICE_LEFT_2 =
+  "/assets/Final_Photos/WhatsApp Image 2025-09-09 at 23.15.38_a6224a71.webp";
+const SERVICE_LEFT_3 = "/assets/Final_Photos/IMG-20250923-WA0027.webp";
+const SERVICE_LEFT_4 = "/assets/Final_Photos/DSC03324.webp";
+// previous left-5 will be moved to right side as next right image
+const SERVICE_LEFT_5 = "/assets/Final_Photos/IMG-20250923-WA0026.webp";
+const SERVICE_RIGHT_5 = "/assets/Final_Photos/9.webp";
+const SERVICE_RIGHT_1 = "/assets/Final_Photos/DSC03434.webp";
+const SERVICE_RIGHT_2 = "/assets/Final_Photos/DSC0336899.webp";
+const SERVICE_RIGHT_3 = "/assets/Final_Photos/DSC03412.webp";
+const SERVICE_RIGHT_4 = "/assets/Final_Photos/DSC03377.webp";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];
@@ -62,46 +60,112 @@ const getHeroBgImage = () => {
 
 const Services = () => {
   const ref = useRef(null);
+  const heroRef = useRef(null);
 
-  // Image modal state
+  // Scroll-based animations
+  const { scrollYProgress } = useScroll({
+    target: heroRef,
+    offset: ["start start", "end start"],
+  });
+
+  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
+  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
+
+  // Image modal state with navigation
   const [selectedImage, setSelectedImage] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [imageCategory, setImageCategory] = useState(""); // 'left' or 'right'
 
-  // Modal functions
-  const openModal = (image) => {
+  // Left side images array
+  const leftImages = useMemo(
+    () => [
+      { id: 1, src: SERVICE_LEFT_1, alt: "Hospital Service" },
+      { id: 2, src: SERVICE_LEFT_2, alt: "Medical Facility" },
+      { id: 3, src: SERVICE_LEFT_3, alt: "Medical Facility 2" },
+      { id: 4, src: SERVICE_LEFT_4, alt: "Medical Facility 3" },
+      { id: 5, src: SERVICE_LEFT_5, alt: "Medical Facility 4" },
+    ],
+    []
+  );
+
+  // Right side images array
+  const rightImages = useMemo(
+    () => [
+      { id: 1, src: SERVICE_RIGHT_1, alt: "Hospital Infrastructure" },
+      { id: 2, src: SERVICE_RIGHT_2, alt: "Hospital Infrastructure 2" },
+      { id: 3, src: SERVICE_RIGHT_3, alt: "Hospital Infrastructure 3" },
+      { id: 4, src: SERVICE_RIGHT_4, alt: "Hospital Infrastructure 4" },
+      { id: 5, src: SERVICE_RIGHT_5, alt: "Hospital Infrastructure 5" },
+    ],
+    []
+  );
+
+  // Combine all images for modal navigation
+  const allImages = useMemo(
+    () => [...leftImages, ...rightImages],
+    [leftImages, rightImages]
+  );
+
+  // Keyboard navigation for modal
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (!selectedImage) return;
+
+      if (e.key === "Escape") {
+        closeModal();
+      } else if (e.key === "ArrowLeft") {
+        navigateImage("prev");
+      } else if (e.key === "ArrowRight") {
+        navigateImage("next");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [selectedImage, currentImageIndex]);
+
+  // Modal functions with navigation
+  const openModal = (image, category = "") => {
+    const imageArray =
+      category === "left"
+        ? leftImages
+        : category === "right"
+        ? rightImages
+        : allImages;
+    const index = imageArray.findIndex((img) => img.id === image.id);
     setSelectedImage(image);
+    setCurrentImageIndex(index);
+    setImageCategory(category);
   };
 
   const closeModal = () => {
     setSelectedImage(null);
+    setImageCategory("");
   };
 
-  // Infrastructure photos array (memoized to avoid re-renders)
-  const infrastructureImages = useMemo(
-    () => [
-      { id: 1, src: INF1, alt: "Hospital Infrastructure" },
-      { id: 2, src: INF2, alt: "Medical Facility" },
-      { id: 3, src: INF3, alt: "Hospital Equipment" },
-      { id: 4, src: INF4, alt: "Healthcare Infrastructure" },
-      { id: 5, src: INF5, alt: "Medical Technology" },
-      { id: 6, src: INF6, alt: "Hospital Interior" },
-      { id: 7, src: INF7, alt: "Medical Facility" },
-      { id: 8, src: INF8, alt: "Healthcare Equipment" },
-      { id: 9, src: INF9, alt: "Hospital Infrastructure" },
-      { id: 10, src: INF10, alt: "Medical Center" },
-      { id: 11, src: INF11, alt: "Healthcare Facility" },
-      { id: 12, src: INF12, alt: "Hospital Interior" },
-      { id: 13, src: INF13, alt: "Medical Infrastructure" },
-      { id: 14, src: INF14, alt: "Healthcare Technology" },
-      { id: 15, src: INF15, alt: "Hospital Equipment" },
-      { id: 16, src: INF16, alt: "Medical Facility" },
-      { id: 17, src: INF17, alt: "Healthcare Infrastructure" },
-      { id: 18, src: INF18, alt: "Hospital Interior" },
-      { id: 19, src: INF19, alt: "Medical Technology" },
-      { id: 20, src: INF20, alt: "Healthcare Facility" },
-      { id: 21, src: INF21, alt: "Hospital Infrastructure" },
-    ],
-    []
-  );
+  const navigateImage = (direction) => {
+    let imageArray;
+    if (imageCategory === "left") {
+      imageArray = leftImages;
+    } else if (imageCategory === "right") {
+      imageArray = rightImages;
+    } else {
+      imageArray = allImages;
+    }
+
+    let newIndex;
+
+    if (direction === "prev") {
+      newIndex =
+        currentImageIndex > 0 ? currentImageIndex - 1 : imageArray.length - 1;
+    } else {
+      newIndex =
+        currentImageIndex < imageArray.length - 1 ? currentImageIndex + 1 : 0;
+    }
+
+    setCurrentImageIndex(newIndex);
+    setSelectedImage(imageArray[newIndex]);
+  };
 
   // Updated medical services with more appropriate icons
   const medicalServices = [
@@ -193,299 +257,639 @@ const Services = () => {
     },
   ];
 
-  // Enhanced animation variants
+  // Enhanced animation variants with stagger
+  const containerVariants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.08,
+        delayChildren: 0.2,
+      },
+    },
+  };
+
   const itemVariants = {
     hidden: { y: 30, opacity: 0 },
     visible: {
       y: 0,
       opacity: 1,
-      transition: { duration: 0.8, ease: "easeOut" },
-    },
-  };
-
-  // Enhanced hover variants for cards
-  const cardHoverVariants = {
-    rest: {
-      scale: 1,
-      y: 0,
-      boxShadow: "0 4px 6px -1px rgba(0, 0, 0, 0.1)",
-    },
-    hover: {
-      scale: 1.05,
-      y: -5,
-      boxShadow: "0 20px 25px -5px rgba(0, 0, 0, 0.1)",
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
-    },
-  };
-
-  // Enhanced icon animation variants
-  const iconHoverVariants = {
-    rest: {
-      scale: 1,
-      rotate: 0,
-    },
-    hover: {
-      scale: 1.1,
-      rotate: 5,
-      transition: {
-        duration: 0.3,
-        ease: "easeOut",
-      },
+      transition: { duration: 0.6, ease: "easeOut" },
     },
   };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50">
-      {/* Hero Section */}
+      {/* Hero Section with Enhanced Design */}
       <motion.section
-        className="relative h-[60vh] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
+        ref={heroRef}
+        className="relative h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden"
+        initial={{ opacity: 0 }}
+        animate={{ opacity: 1 }}
+        transition={{ duration: 1 }}
       >
-        {/* Background Image with Overlay */}
+        {/* Animated Background with Parallax */}
         <motion.div
           className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${getHeroBgImage()})` }}
-          initial={{ scale: 1.08 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+          style={{
+            backgroundImage: `url(${getHeroBgImage()})`,
+            scale: heroScale,
+          }}
         />
-        <div className="absolute inset-0 bg-black/50" />
 
-        {/* Hero Content */}
-        <div className="relative z-10 text-center px-4 max-w-4xl mx-auto">
-          <motion.h1
-            className="text-4xl md:text-6xl font-bold text-white mb-6"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-          >
-            <span className="bg-gradient-to-r from-emerald-200 to-emerald-400 bg-clip-text text-transparent">
-              Medical Services
-            </span>
-          </motion.h1>
-          <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            State-of-the-art Medical Facilities & Healthcare Services
-          </motion.p>
+        {/* Multi-layer Gradient Overlay */}
+        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-emerald-900/40" />
+        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
+
+        {/* Animated Decorative Elements */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+          <motion.div
+            className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"
+            animate={{
+              scale: [1, 1.2, 1],
+              opacity: [0.3, 0.5, 0.3],
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
+          <motion.div
+            className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
+            animate={{
+              scale: [1.2, 1, 1.2],
+              opacity: [0.2, 0.4, 0.2],
+            }}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+          />
         </div>
+
+        {/* Breadcrumb Navigation */}
+        <motion.div
+          className="absolute top-6 left-6 z-20"
+          initial={{ opacity: 0, x: -20 }}
+          animate={{ opacity: 1, x: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+        >
+          <div className="flex items-center gap-2 text-white/90 text-sm backdrop-blur-md bg-white/10 px-4 py-2 rounded-full border border-white/20">
+            <FaHome className="text-emerald-300" />
+            <span className="text-white/70">/</span>
+            <span className="text-emerald-300 font-semibold">Services</span>
+          </div>
+        </motion.div>
+
+        {/* Hero Content with Enhanced Typography */}
+        <motion.div
+          className="relative z-10 text-center px-4 max-w-5xl mx-auto"
+          style={{ opacity: heroOpacity }}
+        >
+          {/* Main Heading with Decorative Line */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            className="mb-6"
+          >
+            <div className="flex items-center justify-center gap-4 mb-6">
+              <motion.div
+                className="h-[2px] w-12 md:w-20 bg-gradient-to-r from-transparent to-emerald-400"
+                initial={{ width: 0 }}
+                animate={{ width: "3rem" }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              />
+              <motion.div
+                className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full px-5 py-2"
+                whileHover={{ scale: 1.05 }}
+              >
+                <FaStethoscope className="text-emerald-300 text-sm" />
+                <span className="text-emerald-100 font-bold text-xs md:text-sm tracking-widest uppercase">
+                  Healthcare Excellence
+                </span>
+              </motion.div>
+              <motion.div
+                className="h-[2px] w-12 md:w-20 bg-gradient-to-l from-transparent to-emerald-400"
+                initial={{ width: 0 }}
+                animate={{ width: "3rem" }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              />
+            </div>
+
+            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
+              <span className="inline-block bg-gradient-to-r from-emerald-200 via-emerald-300 to-green-300 bg-clip-text text-transparent drop-shadow-2xl">
+                Medical Services
+              </span>
+            </h1>
+          </motion.div>
+
+          <motion.p
+            className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+          >
+            State-of-the-art Medical Facilities & Comprehensive Healthcare
+            Services
+          </motion.p>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
+          initial={{ opacity: 0, y: -10 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.8,
+            delay: 1,
+          }}
+        >
+          <motion.div
+            className="flex flex-col items-center gap-2 cursor-pointer"
+            animate={{ y: [0, 8, 0] }}
+            transition={{
+              duration: 2,
+              repeat: Infinity,
+              ease: "easeInOut",
+            }}
+            onClick={() => ref.current?.scrollIntoView({ behavior: "smooth" })}
+          >
+            <span className="text-white/70 text-xs font-medium tracking-wider uppercase">
+              Scroll
+            </span>
+            <FaChevronDown className="text-emerald-300 text-xl" />
+          </motion.div>
+        </motion.div>
       </motion.section>
 
       {/* Main Content */}
-      <section className="py-20" ref={ref}>
+      <section className="py-24 md:py-32" ref={ref}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          {/* Desktop Layout: Continuous Images on sides, Combined Content in center */}
+          {/* Desktop Layout: Images on both sides, cards in middle */}
           <div className="hidden lg:block">
             <div className="grid grid-cols-12 gap-8">
-              {/* Left Images Column replaced with optimized grid (subset) */}
-              <div className="col-span-3">
-                <OptimizedImageGrid
-                  items={infrastructureImages.slice(0, 10)}
-                  onItemClick={(img) => openModal(img)}
-                  aspectRatio="4/3"
-                  columnsMinWidth={180}
-                  enableAnimation={false}
-                  className="!gap-8"
-                />
-              </div>
+              {/* Left Images Column */}
+              <motion.div
+                className="col-span-3"
+                initial={{ opacity: 0, x: -50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+              >
+                {/* Spacer to align images lower to match card section height */}
+                <div className="h-64"></div>
 
-              {/* Center Content Column - Both Services and Rooms */}
-              <div className="col-span-6 space-y-16">
+                <div className="space-y-10">
+                  {leftImages.map((image, index) => (
+                    <motion.div
+                      key={image.id}
+                      className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer group"
+                      onClick={() => openModal(image, "left")}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.03 }}
+                    >
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          loading="lazy"
+                        />
+                      </div>
+                      {/* View Indicator */}
+                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                        <FaImages className="text-emerald-600 text-sm" />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+
+              {/* Center Content Column - Services Cards */}
+              <motion.div
+                className="col-span-6 space-y-20"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+              >
                 {/* Medical Services Section */}
-                <motion.div variants={itemVariants}>
-                  <div className="text-center mb-8">
-                    <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-6 py-3 mb-6 border border-emerald-200">
+                <div>
+                  <div className="text-center mb-12">
+                    {/* Animated Badge */}
+                    <motion.div
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 via-green-100 to-emerald-100 rounded-full px-6 py-3 mb-6 border border-emerald-200 shadow-lg"
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5 }}
+                      whileHover={{ scale: 1.05 }}
+                    >
                       <FaStethoscope className="text-emerald-600 text-lg" />
-                      <span className="text-emerald-700 font-bold text-sm tracking-wide">
-                        MEDICAL SERVICES
+                      <span className="text-emerald-700 font-bold text-sm tracking-wide uppercase">
+                        Medical Services
                       </span>
-                    </div>
+                    </motion.div>
 
-                    <h2 className="text-3xl sm:text-4xl font-bold mb-4">
-                      <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                        Comprehensive Healthcare Services
+                    {/* Enhanced Heading */}
+                    <motion.h2
+                      className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.1 }}
+                    >
+                      <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
+                        Comprehensive Healthcare
                       </span>
-                    </h2>
+                    </motion.h2>
 
-                    <p className="text-lg text-gray-600 leading-relaxed">
-                      Advanced medical facilities and expert care for your
-                      health needs.
-                    </p>
+                    <motion.p
+                      className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto"
+                      initial={{ opacity: 0 }}
+                      whileInView={{ opacity: 1 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.6, delay: 0.2 }}
+                    >
+                      Advanced medical facilities and expert care for all your
+                      health needs
+                    </motion.p>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-4">
-                    {medicalServices.map((service) => {
+                  {/* Enhanced Service Cards Grid with Stagger Animation */}
+                  <motion.div
+                    className="grid grid-cols-2 gap-4"
+                    variants={containerVariants}
+                    initial="hidden"
+                    whileInView="visible"
+                    viewport={{ once: true, margin: "-50px" }}
+                  >
+                    {medicalServices.map((service, index) => {
                       const IconComponent = service.icon;
                       return (
                         <motion.div
                           key={service.name}
-                          variants={cardHoverVariants}
-                          initial="rest"
-                          whileHover="hover"
-                          animate="rest"
-                          className="bg-white rounded-xl shadow-md border border-gray-100 group cursor-pointer p-4 flex flex-col items-center justify-center text-center min-h-[120px] hover:shadow-lg transition-all duration-300"
+                          variants={itemVariants}
+                          whileHover={{
+                            scale: 1.06,
+                            y: -8,
+                            boxShadow:
+                              "0 20px 25px -5px rgba(16, 185, 129, 0.15), 0 10px 10px -5px rgba(16, 185, 129, 0.1)",
+                          }}
+                          className="bg-white rounded-2xl shadow-md border border-gray-100 group cursor-pointer p-4 flex flex-col items-center justify-center text-center min-h-[120px] transition-all duration-300 hover:border-emerald-200 relative overflow-hidden"
                         >
+                          {/* Background Glow Effect */}
+                          <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+
+                          {/* Content */}
                           <motion.div
-                            className={`w-12 h-12 bg-gradient-to-r ${service.color} rounded-xl flex items-center justify-center mb-3 shadow-sm`}
-                            variants={iconHoverVariants}
+                            className={`relative w-12 h-12 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mb-3 shadow-md`}
+                            whileHover={{
+                              scale: 1.15,
+                              rotate: 8,
+                            }}
+                            transition={{ duration: 0.3 }}
                           >
-                            <IconComponent className="text-white text-lg" />
+                            <IconComponent className="text-white text-base relative z-10" />
+                            {/* Icon Glow */}
+                            <div className="absolute inset-0 bg-white/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </motion.div>
-                          <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight">
+
+                          <h3 className="text-xs font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight px-2 relative z-10">
                             {service.name}
                           </h3>
+
+                          {/* Corner Accent */}
+                          <div className="absolute top-0 right-0 w-12 h-12 bg-gradient-to-bl from-emerald-100/50 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                         </motion.div>
                       );
                     })}
-                  </div>
-                </motion.div>
-              </div>
+                  </motion.div>
+                </div>
+              </motion.div>
 
-              {/* Right Images Column replaced with optimized grid (subset) */}
-              <div className="col-span-3">
-                <OptimizedImageGrid
-                  items={infrastructureImages.slice(11, 21)}
-                  onItemClick={(img) => openModal(img)}
-                  aspectRatio="4/3"
-                  columnsMinWidth={180}
-                  enableAnimation={false}
-                  className="!gap-8"
-                />
-              </div>
+              {/* Right Images Column */}
+              <motion.div
+                className="col-span-3"
+                initial={{ opacity: 0, x: 50 }}
+                whileInView={{ opacity: 1, x: 0 }}
+                viewport={{ once: true, margin: "-100px" }}
+                transition={{ duration: 0.8 }}
+              >
+                {/* Spacer to align images lower to match card section height */}
+                <div className="h-64"></div>
+
+                <div className="space-y-10">
+                  {rightImages.map((image, index) => (
+                    <motion.div
+                      key={image.id}
+                      className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer group"
+                      onClick={() => openModal(image, "right")}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ duration: 0.5, delay: index * 0.1 }}
+                      whileHover={{ scale: 1.03 }}
+                    >
+                      <div className="aspect-[4/3] overflow-hidden">
+                        <img
+                          src={image.src}
+                          alt={image.alt}
+                          className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                          loading="lazy"
+                        />
+                      </div>
+                      {/* View Indicator */}
+                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                        <FaImages className="text-emerald-600 text-sm" />
+                      </div>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
             </div>
           </div>
 
-          {/* Mobile Layout */}
-          <div className="block lg:hidden space-y-12">
+          {/* Mobile Layout - Enhanced */}
+          <div className="block lg:hidden space-y-16">
             {/* Medical Services Section */}
-            <div>
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 to-green-100 rounded-full px-4 py-2 mb-4 border border-emerald-200">
-                  <FaStethoscope className="text-emerald-600" />
-                  <span className="text-emerald-700 font-bold text-sm">
-                    MEDICAL SERVICES
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="text-center mb-10">
+                <motion.div
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 via-green-100 to-emerald-100 rounded-full px-5 py-2.5 mb-5 border border-emerald-200 shadow-md"
+                  initial={{ scale: 0.9 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  <FaStethoscope className="text-emerald-600 text-base" />
+                  <span className="text-emerald-700 font-bold text-sm uppercase tracking-wide">
+                    Medical Services
                   </span>
-                </div>
+                </motion.div>
 
-                <h2 className="text-3xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 leading-tight px-4">
+                  <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
                     Healthcare Services
                   </span>
                 </h2>
 
-                <p className="text-gray-600 leading-relaxed">
-                  Advanced medical facilities and expert care.
+                <p className="text-gray-600 leading-relaxed px-4 text-base">
+                  Advanced medical facilities and expert care
                 </p>
               </div>
 
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              {/* Enhanced Mobile Cards Grid */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 gap-5"
+                variants={containerVariants}
+                initial="hidden"
+                whileInView="visible"
+                viewport={{ once: true, margin: "-50px" }}
+              >
                 {medicalServices.map((service) => {
                   const IconComponent = service.icon;
                   return (
                     <motion.div
                       key={service.name}
-                      variants={cardHoverVariants}
-                      initial="rest"
-                      whileHover="hover"
-                      animate="rest"
-                      className="bg-white rounded-xl shadow-md border border-gray-100 group cursor-pointer p-4 flex flex-col items-center justify-center text-center min-h-[120px]"
+                      variants={itemVariants}
+                      whileTap={{ scale: 0.97 }}
+                      className="bg-white rounded-2xl shadow-lg border border-gray-100 group active:shadow-xl p-5 flex flex-col items-center justify-center text-center min-h-[130px] transition-all duration-300 hover:border-emerald-200 relative overflow-hidden touch-manipulation"
                     >
+                      {/* Background Gradient on Touch/Hover */}
+                      <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
+
+                      {/* Icon */}
                       <motion.div
-                        className={`w-10 h-10 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center text-white shadow-sm mb-2`}
-                        variants={iconHoverVariants}
+                        className={`relative w-14 h-14 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center text-white shadow-md mb-3`}
+                        whileTap={{ scale: 1.1, rotate: 5 }}
                       >
-                        <IconComponent className="text-sm" />
+                        <IconComponent className="text-lg relative z-10" />
+                        <div className="absolute inset-0 bg-white/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.div>
-                      <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 transition-colors">
+
+                      <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 group-active:text-emerald-600 transition-colors leading-snug relative z-10">
                         {service.name}
                       </h3>
+
+                      {/* Corner Accent */}
+                      <div className="absolute top-0 right-0 w-16 h-16 bg-gradient-to-bl from-emerald-100/50 to-transparent rounded-bl-3xl opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
                     </motion.div>
                   );
                 })}
-              </div>
-            </div>
+              </motion.div>
+            </motion.div>
 
-            {/* Infrastructure Images Gallery for Mobile (optimized grid) */}
-            <div>
-              <div className="text-center mb-8">
-                <div className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-100 to-slate-100 rounded-full px-4 py-2 mb-4 border border-gray-200">
-                  <FaHospital className="text-gray-600" />
-                  <span className="text-gray-700 font-bold text-sm">
-                    INFRASTRUCTURE
+            {/* Service Images Gallery for Mobile - Enhanced */}
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6 }}
+            >
+              <div className="text-center mb-10">
+                <motion.div
+                  className="inline-flex items-center gap-2 bg-gradient-to-r from-gray-100 to-slate-100 rounded-full px-5 py-2.5 mb-5 border border-gray-200 shadow-md"
+                  initial={{ scale: 0.9 }}
+                  whileInView={{ scale: 1 }}
+                  viewport={{ once: true }}
+                >
+                  <FaImages className="text-gray-600 text-base" />
+                  <span className="text-gray-700 font-bold text-sm uppercase tracking-wide">
+                    Gallery ({allImages.length})
                   </span>
-                </div>
-                <h2 className="text-3xl font-bold mb-4">
-                  <span className="bg-gradient-to-r from-gray-700 to-gray-800 bg-clip-text text-transparent">
-                    Hospital Infrastructure
+                </motion.div>
+                <h2 className="text-3xl sm:text-4xl font-bold mb-4 px-4 leading-tight">
+                  <span className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 bg-clip-text text-transparent">
+                    Our Facilities
                   </span>
                 </h2>
-                <p className="text-gray-600 leading-relaxed">
-                  State-of-the-art medical facilities and equipment.
+                <p className="text-gray-600 leading-relaxed px-4">
+                  State-of-the-art medical facilities and equipment
                 </p>
               </div>
-              <OptimizedImageGrid
-                items={infrastructureImages}
-                onItemClick={(img) => openModal(img)}
-                aspectRatio="4/3"
-                columnsMinWidth={260}
-                enableAnimation={false}
-              />
-            </div>
+
+              {/* Enhanced Mobile Image Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-5">
+                {allImages.map((image, index) => (
+                  <motion.div
+                    key={image.id}
+                    className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer group touch-manipulation"
+                    onClick={() => openModal(image)}
+                    initial={{ opacity: 0, y: 20 }}
+                    whileInView={{ opacity: 1, y: 0 }}
+                    viewport={{ once: true }}
+                    transition={{ duration: 0.5, delay: (index % 4) * 0.1 }}
+                    whileTap={{ scale: 0.98 }}
+                  >
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={image.src}
+                        alt={image.alt}
+                        className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110 group-active:scale-105"
+                        loading="lazy"
+                      />
+                    </div>
+                    {/* View Icon */}
+                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2.5 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 shadow-lg">
+                      <FaImages className="text-emerald-600 text-sm" />
+                    </div>
+                  </motion.div>
+                ))}
+              </div>
+            </motion.div>
           </div>
         </div>
       </section>
 
-      {/* Image Modal */}
-      {selectedImage && (
-        <motion.div
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          onClick={closeModal}
-        >
+      {/* Enhanced Image Modal with Navigation */}
+      <AnimatePresence>
+        {selectedImage && (
           <motion.div
-            className="relative max-w-4xl max-h-[80vh] w-full"
-            initial={{ scale: 0.8, opacity: 0 }}
-            animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.8, opacity: 0 }}
-            transition={{ duration: 0.3, ease: "easeOut" }}
-            onClick={(e) => e.stopPropagation()}
+            className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4 md:p-8"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            onClick={closeModal}
           >
-            <button
-              onClick={closeModal}
-              className="absolute -top-12 right-0 text-white hover:text-gray-300 transition-colors z-10"
+            {/* Modal Container */}
+            <motion.div
+              className="relative max-w-6xl max-h-[85vh] w-full flex flex-col"
+              initial={{ scale: 0.9, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.9, opacity: 0, y: 20 }}
+              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+              onClick={(e) => e.stopPropagation()}
             >
-              <svg
-                className="w-8 h-8"
-                fill="none"
-                viewBox="0 0 24 24"
-                stroke="currentColor"
+              {/* Header Bar */}
+              <div className="flex items-center justify-between mb-4 px-2">
+                <motion.div
+                  className="flex items-center gap-3 text-white"
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
+                    <span className="text-sm font-medium">
+                      {currentImageIndex + 1} /{" "}
+                      {(() => {
+                        if (imageCategory === "left") return leftImages.length;
+                        if (imageCategory === "right")
+                          return rightImages.length;
+                        return allImages.length;
+                      })()}
+                    </span>
+                  </div>
+                </motion.div>
+
+                {/* Close Button */}
+                <motion.button
+                  onClick={closeModal}
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white transition-all duration-300 group"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </motion.button>
+              </div>
+
+              {/* Image Container with Navigation */}
+              <div className="relative flex-1 flex items-center justify-center">
+                {/* Previous Button */}
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigateImage("prev");
+                  }}
+                  className="absolute left-2 md:left-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                  whileHover={{ scale: 1.1, x: -5 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, x: -20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                </motion.button>
+
+                {/* Image */}
+                <AnimatePresence mode="wait">
+                  <motion.div
+                    key={selectedImage.id}
+                    className="relative max-w-full max-h-full"
+                    initial={{ opacity: 0, scale: 0.95 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <img
+                      src={selectedImage.src}
+                      alt={selectedImage.alt}
+                      className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                    />
+                  </motion.div>
+                </AnimatePresence>
+
+                {/* Next Button */}
+                <motion.button
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    navigateImage("next");
+                  }}
+                  className="absolute right-2 md:right-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                  whileHover={{ scale: 1.1, x: 5 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, x: 20 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ delay: 0.3 }}
+                >
+                  <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                </motion.button>
+              </div>
+
+              {/* Keyboard Hint */}
+              <motion.div
+                className="mt-4 flex items-center justify-center gap-4 text-white/60 text-sm"
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.5 }}
               >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M6 18L18 6M6 6l12 12"
-                />
-              </svg>
-            </button>
-            <img
-              src={selectedImage.src}
-              alt={selectedImage.alt}
-              className="w-full h-full object-contain rounded-2xl shadow-2xl"
-            />
+                <span className="hidden md:inline">
+                  Use arrow keys or click buttons to navigate
+                </span>
+                <span className="md:hidden">
+                  Swipe or tap buttons to navigate
+                </span>
+              </motion.div>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      )}
+        )}
+      </AnimatePresence>
     </div>
   );
 };
