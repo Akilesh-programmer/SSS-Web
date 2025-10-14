@@ -569,318 +569,325 @@ const DepartmentPageLayout = () => {
           </div>
 
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
-            {/* Content Column */}
-            <div className="lg:col-span-2">
-              <motion.div
-                initial={{ opacity: 0, y: 50 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
-                className="markdown-content prose prose-xl max-w-none"
-              >
-                <ReactMarkdown
-                  remarkPlugins={[remarkGfm]}
-                  components={{
-                    h2: ({ children }) => (
-                      <motion.h2
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 mt-16 first:mt-0 border-l-4 border-blue-600 pl-6 bg-gradient-to-r from-blue-50 to-transparent py-4 -ml-6"
-                      >
-                        {children}
-                      </motion.h2>
-                    ),
-                    h3: ({ children }) => (
-                      <motion.h3
-                        initial={{ opacity: 0, x: -20 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.6 }}
-                        className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6 mt-12 border-l-2 border-teal-500 pl-4"
-                      >
-                        {children}
-                      </motion.h3>
-                    ),
-                    p: ({ children }) => (
-                      <p className="text-gray-600 text-lg leading-relaxed mb-8 font-light tracking-wide">
-                        {children}
-                      </p>
-                    ),
-                    ul: ({ children }) => (
-                      <ul className="space-y-4 mb-8 pl-0">{children}</ul>
-                    ),
-                    li: ({ children }) => (
-                      <li className="text-gray-600 text-lg leading-relaxed flex items-start bg-white rounded-lg p-4 shadow-sm border-l-3 border-blue-400 hover:shadow-md transition-shadow duration-200">
-                        <span className="bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">
-                          ✓
-                        </span>
-                        <span className="font-medium">{children}</span>
-                      </li>
-                    ),
-                    strong: ({ children }) => (
-                      <strong className="font-semibold text-blue-700 bg-blue-50 px-1 py-0.5 rounded">
-                        {children}
-                      </strong>
-                    ),
-                    blockquote: ({ children }) => (
-                      <blockquote className="border-l-4 border-blue-500 bg-blue-50 p-6 my-8 rounded-r-lg italic">
-                        <div className="text-blue-800 font-medium">
-                          {children}
-                        </div>
-                      </blockquote>
-                    ),
-                  }}
-                >
-                  {department.content}
-                </ReactMarkdown>
-              </motion.div>
-            </div>
-
-            {/* Infrastructure Photos Column */}
-            <div className="lg:col-span-1">
-              <motion.div
-                initial={{ opacity: 0, x: 50 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-                className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center"
-              >
-                {/* Department Infrastructure heading removed per request */}
+            <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
+              {/* Content Column */}
+              <div className="lg:col-span-2">
                 <motion.div
-                  className="flex flex-col gap-4 items-center justify-center"
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  transition={{ duration: 0.8, delay: 0.8 }}
+                  initial={{ opacity: 0, y: 50 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
+                  className="markdown-content prose prose-xl max-w-none"
                 >
-                  {getDepartmentInfraPhotos(departmentId).map(
-                    (photo, index) => (
-                      <motion.div
-                        key={index}
-                        initial={{ opacity: 0, y: 30, scale: 0.95 }}
-                        animate={{ opacity: 1, y: 0, scale: 1 }}
-                        transition={{
-                          duration: 0.7,
-                          delay: 1.0 + index * 0.15,
-                          ease: "easeOut",
-                        }}
-                        whileHover={{
-                          scale: 1.02,
-                          y: -2,
-                          transition: { duration: 0.2 },
-                        }}
-                        className="group cursor-pointer mx-auto w-full"
-                        onClick={() => {
-                          // Create a blurred backdrop modal (no heavy black shade)
-                          const modal = document.createElement("div");
-                          modal.className =
-                            "fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent";
-                          // Apply backdrop blur inline for broader compatibility
-                          modal.style.backdropFilter = "blur(8px)";
-                          modal.innerHTML = `
+                  <ReactMarkdown
+                    remarkPlugins={[remarkGfm]}
+                    components={{
+                      h2: ({ children }) => (
+                        <motion.h2
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.6 }}
+                          className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 mt-16 first:mt-0 border-l-4 border-blue-600 pl-6 bg-gradient-to-r from-blue-50 to-transparent py-4 -ml-6"
+                        >
+                          {children}
+                        </motion.h2>
+                      ),
+                      h3: ({ children }) => (
+                        <motion.h3
+                          initial={{ opacity: 0, x: -20 }}
+                          animate={{ opacity: 1, x: 0 }}
+                          transition={{ duration: 0.6 }}
+                          className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6 mt-12 border-l-2 border-teal-500 pl-4"
+                        >
+                          {children}
+                        </motion.h3>
+                      ),
+                      p: ({ children }) => (
+                        <p className="text-gray-600 text-lg leading-relaxed mb-8 font-light tracking-wide">
+                          {children}
+                        </p>
+                      ),
+                      ul: ({ children }) => (
+                        <ul className="space-y-4 mb-8 pl-0">{children}</ul>
+                      ),
+                      li: ({ children }) => (
+                        <li className="text-gray-600 text-lg leading-relaxed flex items-start bg-white rounded-lg p-4 shadow-sm border-l-3 border-blue-400 hover:shadow-md transition-shadow duration-200">
+                          <span className="bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">
+                            ✓
+                          </span>
+                          <span className="font-medium">{children}</span>
+                        </li>
+                      ),
+                      strong: ({ children }) => (
+                        <strong className="font-semibold text-blue-700 bg-blue-50 px-1 py-0.5 rounded">
+                          {children}
+                        </strong>
+                      ),
+                      blockquote: ({ children }) => (
+                        <blockquote className="border-l-4 border-blue-500 bg-blue-50 p-6 my-8 rounded-r-lg italic">
+                          <div className="text-blue-800 font-medium">
+                            {children}
+                          </div>
+                        </blockquote>
+                      ),
+                    }}
+                  >
+                    {department.content}
+                  </ReactMarkdown>
+                </motion.div>
+              </div>
+
+              {/* Infrastructure Photos Column */}
+              <div className="lg:col-span-1">
+                <motion.div
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true, amount: 0.3 }}
+                  transition={{ duration: 1.0, delay: 0.2, ease: "easeOut" }}
+                  className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center"
+                >
+                  {/* Department Infrastructure heading removed per request */}
+                  <motion.div
+                    className="flex flex-col gap-4 items-center justify-center"
+                    initial={{ opacity: 0 }}
+                    whileInView={{ opacity: 1 }}
+                    viewport={{ once: true, amount: 0.3 }}
+                    transition={{ duration: 0.8, delay: 0.4 }}
+                  >
+                    {getDepartmentInfraPhotos(departmentId).map(
+                      (photo, index) => (
+                        <motion.div
+                          key={index}
+                          initial={{ opacity: 0, y: 30, scale: 0.95 }}
+                          whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                          viewport={{ once: true, amount: 0.3 }}
+                          transition={{
+                            duration: 0.7,
+                            delay: 0.1 + index * 0.15,
+                            ease: "easeOut",
+                          }}
+                          whileHover={{
+                            scale: 1.02,
+                            y: -2,
+                            transition: { duration: 0.2 },
+                          }}
+                          className="group cursor-pointer mx-auto w-full"
+                          onClick={() => {
+                            // Create a blurred backdrop modal (no heavy black shade)
+                            const modal = document.createElement("div");
+                            modal.className =
+                              "fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent";
+                            // Apply backdrop blur inline for broader compatibility
+                            modal.style.backdropFilter = "blur(8px)";
+                            modal.innerHTML = `
                           <div class="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center">
                             <img src="${photo.src}" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
                           </div>
                         `;
-                          // Create a fixed close button positioned under the navbar so it's outside the image
-                          const closeBtn = document.createElement("button");
-                          closeBtn.setAttribute("aria-label", "Close image");
-                          closeBtn.className =
-                            "fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70";
-                          closeBtn.innerHTML = `
+                            // Create a fixed close button positioned under the navbar so it's outside the image
+                            const closeBtn = document.createElement("button");
+                            closeBtn.setAttribute("aria-label", "Close image");
+                            closeBtn.className =
+                              "fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70";
+                            closeBtn.innerHTML = `
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5' aria-hidden='true'>
                               <line x1='18' y1='6' x2='6' y2='18' />
                               <line x1='6' y1='6' x2='18' y2='18' />
                             </svg>
                           `;
-                          closeBtn.onclick = () => {
-                            // remove modal and button
-                            modal.remove();
-                            closeBtn.remove();
-                          };
-                          document.body.appendChild(closeBtn);
-                          document.body.appendChild(modal);
-                          // Close when clicking on backdrop
-                          modal.addEventListener("click", (e) => {
-                            if (e.target === modal) modal.remove();
-                          });
-                        }}
-                      >
-                        <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-xl hover:shadow-2xl transition-all duration-300 w-full">
-                          <div className="aspect-[4/3] w-full">
-                            <img
-                              src={photo.src}
-                              alt=""
-                              className="w-full h-full object-cover"
-                            />
-                          </div>
-                          <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
-                            <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                              <div className="bg-white/95 rounded-full p-4 shadow-lg backdrop-blur-sm">
-                                <svg
-                                  className="w-6 h-6 text-gray-800"
-                                  fill="none"
-                                  stroke="currentColor"
-                                  viewBox="0 0 24 24"
-                                >
-                                  <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth={2}
-                                    d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
-                                  />
-                                </svg>
+                            closeBtn.onclick = () => {
+                              // remove modal and button
+                              modal.remove();
+                              closeBtn.remove();
+                            };
+                            document.body.appendChild(closeBtn);
+                            document.body.appendChild(modal);
+                            // Close when clicking on backdrop
+                            modal.addEventListener("click", (e) => {
+                              if (e.target === modal) modal.remove();
+                            });
+                          }}
+                        >
+                          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-xl hover:shadow-2xl transition-all duration-300 w-full">
+                            <div className="aspect-[4/3] w-full">
+                              <img
+                                src={photo.src}
+                                alt=""
+                                className="w-full h-full object-cover"
+                              />
+                            </div>
+                            <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
+                              <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div className="bg-white/95 rounded-full p-4 shadow-lg backdrop-blur-sm">
+                                  <svg
+                                    className="w-6 h-6 text-gray-800"
+                                    fill="none"
+                                    stroke="currentColor"
+                                    viewBox="0 0 24 24"
+                                  >
+                                    <path
+                                      strokeLinecap="round"
+                                      strokeLinejoin="round"
+                                      strokeWidth={2}
+                                      d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0zM10 7v3m0 0v3m0-3h3m-3 0H7"
+                                    />
+                                  </svg>
+                                </div>
                               </div>
                             </div>
                           </div>
-                        </div>
-                      </motion.div>
-                    )
-                  )}
+                        </motion.div>
+                      )
+                    )}
+                  </motion.div>
                 </motion.div>
-              </motion.div>
+              </div>
             </div>
           </div>
-        </div>
-      </section>
+        </section>
 
-      {/* Doctors Section - Enhanced Professional Design */}
-      {doctors.length > 0 && (
-        <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 relative overflow-hidden">
-          {/* Background Elements */}
-          <div className="absolute inset-0 opacity-10">
-            <div className="absolute top-20 right-20 w-40 h-40 border border-blue-300 rounded-full"></div>
-            <div className="absolute bottom-20 left-20 w-32 h-32 border border-teal-300 rounded-full"></div>
-          </div>
+        {/* Doctors Section - Enhanced Professional Design */}
+        {doctors.length > 0 && (
+          <section className="py-20 bg-gradient-to-br from-slate-50 via-blue-50 to-teal-50 relative overflow-hidden">
+            {/* Background Elements */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute top-20 right-20 w-40 h-40 border border-blue-300 rounded-full"></div>
+              <div className="absolute bottom-20 left-20 w-32 h-32 border border-teal-300 rounded-full"></div>
+            </div>
 
-          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.6, delay: 0.4 }}
-              className="text-center mb-16"
-            >
-              {/* Department Specialists Badge */}
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
               <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.6, delay: 0.2 }}
-                className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full mb-6 shadow-lg"
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6, delay: 0.4 }}
+                className="text-center mb-16"
               >
-                <FaUserMd className="text-lg mr-3" />
-                <span className="font-semibold tracking-wide">
-                  Department Specialists
-                </span>
+                {/* Department Specialists Badge */}
+                <motion.div
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.6, delay: 0.2 }}
+                  className="inline-flex items-center px-6 py-3 bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full mb-6 shadow-lg"
+                >
+                  <FaUserMd className="text-lg mr-3" />
+                  <span className="font-semibold tracking-wide">
+                    Department Specialists
+                  </span>
+                </motion.div>
+
+                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-6">
+                  Our Medical Experts
+                </h2>
+                <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+                  Meet our highly qualified healthcare professionals dedicated
+                  to providing exceptional medical care with expertise and
+                  compassion
+                </p>
               </motion.div>
 
-              <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-6">
-                Our Medical Experts
-              </h2>
-              <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
-                Meet our highly qualified healthcare professionals dedicated to
-                providing exceptional medical care with expertise and compassion
-              </p>
-            </motion.div>
+              {/* Doctors Grid - Using Exact DoctorsPage Design */}
+              <motion.div
+                className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6"
+                initial="hidden"
+                animate="visible"
+              >
+                {doctors.map((doctor, index) => {
+                  const cols = 4;
+                  const staggerIndex = index % cols;
 
-            {/* Doctors Grid - Using Exact DoctorsPage Design */}
-            <motion.div
-              className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 lg:gap-6"
-              initial="hidden"
-              animate="visible"
-            >
-              {doctors.map((doctor, index) => {
-                const cols = 4;
-                const staggerIndex = index % cols;
-
-                return (
-                  <motion.div
-                    key={doctor.id}
-                    initial={{ opacity: 0, y: 40, scale: 0.9 }}
-                    animate={{ opacity: 1, y: 0, scale: 1 }}
-                    transition={{
-                      duration: 0.8,
-                      delay: 0.1 * staggerIndex,
-                      type: "spring",
-                      bounce: 0.1,
-                    }}
-                    whileHover={{ scale: 1.02, y: -5 }}
-                    className="bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer p-4 sm:p-6"
-                  >
-                    {/* Grid View - Exact DoctorsPage Design */}
-                    <div className="relative text-center mb-4">
-                      {doctor.image ? (
-                        <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto">
-                          <img
-                            src={doctor.image}
-                            alt={doctor.name}
-                            className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors"
+                  return (
+                    <motion.div
+                      key={doctor.id}
+                      initial={{ opacity: 0, y: 40, scale: 0.9 }}
+                      animate={{ opacity: 1, y: 0, scale: 1 }}
+                      transition={{
+                        duration: 0.8,
+                        delay: 0.1 * staggerIndex,
+                        type: "spring",
+                        bounce: 0.1,
+                      }}
+                      whileHover={{ scale: 1.02, y: -5 }}
+                      className="bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer p-4 sm:p-6"
+                    >
+                      {/* Grid View - Exact DoctorsPage Design */}
+                      <div className="relative text-center mb-4">
+                        {doctor.image ? (
+                          <div className="w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 mx-auto">
+                            <img
+                              src={doctor.image}
+                              alt={doctor.name}
+                              className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors"
+                            />
+                          </div>
+                        ) : (
+                          <DefaultDoctorAvatar
+                            name={doctor.name}
+                            size="large"
                           />
-                        </div>
-                      ) : (
-                        <DefaultDoctorAvatar name={doctor.name} size="large" />
-                      )}
+                        )}
 
-                      {/* Special Badges */}
-                      {doctor.isFounder && (
-                        <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-bold shadow-md ring-1 ring-amber-200">
-                          Founder
-                        </div>
-                      )}
-
-                      {doctor.designation &&
-                        /ceo/i.test(doctor.designation) && (
-                          <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg">
-                            CEO
+                        {/* Special Badges */}
+                        {doctor.isFounder && (
+                          <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-amber-100 text-amber-800 text-xs px-2 py-1 rounded-full font-bold shadow-md ring-1 ring-amber-200">
+                            Founder
                           </div>
                         )}
-                    </div>
 
-                    <div className="text-center">
-                      <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-emerald-600 transition-colors">
-                        {doctor.name}
-                      </h3>
-                      <p className="text-emerald-600 font-semibold mb-1 text-sm">
-                        {doctor.specialty}
-                      </p>
-                      <p className="text-gray-600 text-xs mb-3">
-                        {doctor.designation}
-                      </p>
-                      {doctor.qualification && (
-                        <div className="bg-gray-50 rounded-lg p-2 mb-3">
-                          <p className="text-gray-700 text-xs font-medium">
-                            {doctor.qualification}
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </motion.div>
-                );
-              })}
-            </motion.div>
+                        {doctor.designation &&
+                          /ceo/i.test(doctor.designation) && (
+                            <div className="absolute -top-1 -right-1 sm:-top-2 sm:-right-2 bg-gradient-to-r from-purple-500 to-indigo-600 text-white text-xs px-2 py-1 rounded-full font-bold shadow-lg">
+                              CEO
+                            </div>
+                          )}
+                      </div>
 
-            {/* No Doctors Found State */}
-            {doctors.length === 0 && (
-              <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                className="text-center py-16"
-              >
-                <div className="bg-white rounded-2xl p-12 shadow-lg border border-gray-100">
-                  <FaUserMd className="text-6xl text-gray-300 mx-auto mb-6" />
-                  <h3 className="text-2xl font-semibold text-gray-600 mb-4">
-                    No Specialists Available
-                  </h3>
-                  <p className="text-gray-500">
-                    Currently, there are no specialists assigned to this
-                    department. Please check back later or contact us for more
-                    information.
-                  </p>
-                </div>
+                      <div className="text-center">
+                        <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-emerald-600 transition-colors">
+                          {doctor.name}
+                        </h3>
+                        <p className="text-emerald-600 font-semibold mb-1 text-sm">
+                          {doctor.specialty}
+                        </p>
+                        <p className="text-gray-600 text-xs mb-3">
+                          {doctor.designation}
+                        </p>
+                        {doctor.qualification && (
+                          <div className="bg-gray-50 rounded-lg p-2 mb-3">
+                            <p className="text-gray-700 text-xs font-medium">
+                              {doctor.qualification}
+                            </p>
+                          </div>
+                        )}
+                      </div>
+                    </motion.div>
+                  );
+                })}
               </motion.div>
-            )}
-          </div>
-        </section>
-      )}
 
-      {/* Contact CTA Section intentionally removed per request */}
+              {/* No Doctors Found State */}
+              {doctors.length === 0 && (
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  className="text-center py-16"
+                >
+                  <div className="bg-white rounded-2xl p-12 shadow-lg border border-gray-100">
+                    <FaUserMd className="text-6xl text-gray-300 mx-auto mb-6" />
+                    <h3 className="text-2xl font-semibold text-gray-600 mb-4">
+                      No Specialists Available
+                    </h3>
+                    <p className="text-gray-500">
+                      Currently, there are no specialists assigned to this
+                      department. Please check back later or contact us for more
+                      information.
+                    </p>
+                  </div>
+                </motion.div>
+              )}
+            </div>
+          </section>
+        )}
+
+        {/* Contact CTA Section intentionally removed per request */}
       </div>
 
       <Footer />

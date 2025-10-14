@@ -285,7 +285,7 @@ const Rooms = () => {
               <h3 className="text-2xl font-bold text-gray-800 mb-6">
                 Room Gallery
               </h3>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-8">
+              <div className="grid grid-cols-1 gap-6">
                 {roomImages.map((image) => (
                   <motion.div
                     key={image.id}
