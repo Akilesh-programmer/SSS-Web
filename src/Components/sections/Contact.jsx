@@ -14,6 +14,7 @@ import {
 } from "react-icons/fa";
 import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
+import HeroSection from "../ui/HeroSection";
 
 const BG1 = "/assets/Final_Photos/DSC03391.webp";
 const BG2 = "/assets/Final_Photos/DSC03392.webp";
@@ -182,59 +183,13 @@ const Contact = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
-      {/* Hero Section with BG_Photos Background */}
-      <motion.section
-        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url("${getHeroBgImage()}")`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
-        <div className="absolute inset-0 bg-black/30" />
-
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          {/* Contact Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
-          >
-            <FaPhone className="text-base md:text-xl mr-2 md:mr-3" />
-            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
-              Contact Us
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-          >
-            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              Get in Touch
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            We're here to provide exceptional healthcare services 24/7
-          </motion.p>
-        </div>
-      </motion.section>
+      {/* Hero Section */}
+      <HeroSection
+        backgroundImage={getHeroBgImage()}
+        badge={{ icon: FaPhone, text: "Contact Us" }}
+        title="Get in Touch"
+        subtitle="We're here to provide exceptional healthcare services 24/7"
+      />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         {/* Quick Actions */}
