@@ -608,11 +608,16 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Enhanced Image Modal with Navigation */}
+      {/* Enhanced Image Modal with Navigation - Glossy Transparent Background */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4 md:p-8"
+            className="fixed inset-0 flex items-center justify-center z-50 p-4 md:p-8"
+            style={{
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -630,13 +635,13 @@ const Services = () => {
               {/* Header Bar */}
               <div className="flex items-center justify-between mb-4 px-2">
                 <motion.div
-                  className="flex items-center gap-3 text-white"
+                  className="flex items-center gap-3 text-gray-900"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
-                    <span className="text-sm font-medium">
+                  <div className="bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
+                    <span className="text-sm font-semibold">
                       {currentImageIndex + 1} /{" "}
                       {(() => {
                         if (imageCategory === "left") return leftImages.length;
@@ -651,7 +656,7 @@ const Services = () => {
                 {/* Close Button */}
                 <motion.button
                   onClick={closeModal}
-                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white transition-all duration-300 group"
+                  className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, rotate: -90 }}
@@ -682,7 +687,7 @@ const Services = () => {
                     e.stopPropagation();
                     navigateImage("prev");
                   }}
-                  className="absolute left-2 md:left-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                  className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, x: -5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, x: -20 }}
@@ -716,7 +721,7 @@ const Services = () => {
                     e.stopPropagation();
                     navigateImage("next");
                   }}
-                  className="absolute right-2 md:right-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                  className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, x: 5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, x: 20 }}
@@ -729,7 +734,7 @@ const Services = () => {
 
               {/* Keyboard Hint */}
               <motion.div
-                className="mt-4 flex items-center justify-center gap-4 text-white/60 text-sm"
+                className="mt-4 flex items-center justify-center gap-4 text-gray-700 text-sm bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg font-medium"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
