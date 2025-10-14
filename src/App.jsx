@@ -103,7 +103,9 @@ const DoctorsPageWrapper = () => {
   return (
     <PageWrapper pageKey="doctors-page">
       <Navigation />
-      <DoctorsPage key="doctors-page-content" />
+      <div className="pt-20">
+        <DoctorsPage key="doctors-page-content" />
+      </div>
       <Footer />
     </PageWrapper>
   );
@@ -114,7 +116,9 @@ const ContactPage = () => {
   return (
     <PageWrapper pageKey="contact-page">
       <Navigation />
-      <Contact key="contact-content" />
+      <div className="pt-20">
+        <Contact key="contact-content" />
+      </div>
       <Footer />
     </PageWrapper>
   );

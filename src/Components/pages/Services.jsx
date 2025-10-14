@@ -1,10 +1,5 @@
 import React, { useState, useRef, useMemo, useEffect } from "react";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  AnimatePresence,
-} from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -22,12 +17,12 @@ import {
   FaProcedures,
   FaHandHoldingMedical,
   FaRadiation,
-  FaChevronDown,
   FaChevronLeft,
   FaChevronRight,
   FaHome,
   FaImages,
 } from "react-icons/fa";
+import HeroSection from "../ui/HeroSection";
 
 // Using public assets for better performance during deployment
 const BG1 = "/assets/BG_Photos/DSC03391.webp";
@@ -60,16 +55,6 @@ const getHeroBgImage = () => {
 
 const Services = () => {
   const ref = useRef(null);
-  const heroRef = useRef(null);
-
-  // Scroll-based animations
-  const { scrollYProgress } = useScroll({
-    target: heroRef,
-    offset: ["start start", "end start"],
-  });
-
-  const heroOpacity = useTransform(scrollYProgress, [0, 1], [1, 0]);
-  const heroScale = useTransform(scrollYProgress, [0, 1], [1, 1.1]);
 
   // Image modal state with navigation
   const [selectedImage, setSelectedImage] = useState(null);
@@ -280,150 +265,20 @@ const Services = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50">
-      {/* Hero Section with Enhanced Design */}
-      <motion.section
-        ref={heroRef}
-        className="relative h-[70vh] md:h-[75vh] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 1 }}
-      >
-        {/* Animated Background with Parallax */}
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-            scale: heroScale,
-          }}
-        />
-
-        {/* Multi-layer Gradient Overlay */}
-        <div className="absolute inset-0 bg-gradient-to-br from-black/60 via-black/50 to-emerald-900/40" />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent" />
-
-        {/* Animated Decorative Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-          <motion.div
-            className="absolute top-20 left-10 w-72 h-72 bg-emerald-500/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1, 1.2, 1],
-              opacity: [0.3, 0.5, 0.3],
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-          <motion.div
-            className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl"
-            animate={{
-              scale: [1.2, 1, 1.2],
-              opacity: [0.2, 0.4, 0.2],
-            }}
-            transition={{
-              duration: 10,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-          />
-        </div>
-
-        {/* Breadcrumb Navigation */}
-        <motion.div
-          className="absolute top-6 left-6 z-20"
-          initial={{ opacity: 0, x: -20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-        >
-          <div className="flex items-center gap-2 text-white/90 text-sm backdrop-blur-md bg-white/10 px-4 py-2 rounded-full border border-white/20">
-            <FaHome className="text-emerald-300" />
-            <span className="text-white/70">/</span>
-            <span className="text-emerald-300 font-semibold">Services</span>
-          </div>
-        </motion.div>
-
-        {/* Hero Content with Enhanced Typography */}
-        <motion.div
-          className="relative z-10 text-center px-4 max-w-5xl mx-auto"
-          style={{ opacity: heroOpacity }}
-        >
-          {/* Main Heading with Decorative Line */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mb-6"
-          >
-            <div className="flex items-center justify-center gap-4 mb-6">
-              <motion.div
-                className="h-[2px] w-12 md:w-20 bg-gradient-to-r from-transparent to-emerald-400"
-                initial={{ width: 0 }}
-                animate={{ width: "3rem" }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              />
-              <motion.div
-                className="inline-flex items-center gap-2 bg-emerald-500/20 backdrop-blur-sm border border-emerald-400/30 rounded-full px-5 py-2"
-                whileHover={{ scale: 1.05 }}
-              >
-                <FaStethoscope className="text-emerald-300 text-sm" />
-                <span className="text-emerald-100 font-bold text-xs md:text-sm tracking-widest uppercase">
-                  Healthcare Excellence
-                </span>
-              </motion.div>
-              <motion.div
-                className="h-[2px] w-12 md:w-20 bg-gradient-to-l from-transparent to-emerald-400"
-                initial={{ width: 0 }}
-                animate={{ width: "3rem" }}
-                transition={{ duration: 0.8, delay: 0.6 }}
-              />
-            </div>
-
-            <h1 className="text-4xl md:text-6xl lg:text-7xl font-bold text-white mb-6 leading-tight">
-              <span className="inline-block bg-gradient-to-r from-emerald-200 via-emerald-300 to-green-300 bg-clip-text text-transparent drop-shadow-2xl">
-                Medical Services
-              </span>
-            </h1>
-          </motion.div>
-
-          <motion.p
-            className="text-lg md:text-xl lg:text-2xl text-white/90 max-w-3xl mx-auto leading-relaxed font-light"
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5 }}
-          >
-            State-of-the-art Medical Facilities & Comprehensive Healthcare
-            Services
-          </motion.p>
-        </motion.div>
-
-        {/* Scroll Indicator */}
-        <motion.div
-          className="absolute bottom-8 left-1/2 -translate-x-1/2 z-20"
-          initial={{ opacity: 0, y: -10 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{
-            duration: 0.8,
-            delay: 1,
-          }}
-        >
-          <motion.div
-            className="flex flex-col items-center gap-2 cursor-pointer"
-            animate={{ y: [0, 8, 0] }}
-            transition={{
-              duration: 2,
-              repeat: Infinity,
-              ease: "easeInOut",
-            }}
-            onClick={() => ref.current?.scrollIntoView({ behavior: "smooth" })}
-          >
-            <span className="text-white/70 text-xs font-medium tracking-wider uppercase">
-              Scroll
+      {/* Hero Section */}
+      <HeroSection
+        backgroundImage={getHeroBgImage()}
+        badge={
+          <>
+            <FaStethoscope className="text-lg md:text-xl mr-2 md:mr-3 text-emerald-300" />
+            <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-white">
+              Healthcare Excellence
             </span>
-            <FaChevronDown className="text-emerald-300 text-xl" />
-          </motion.div>
-        </motion.div>
-      </motion.section>
+          </>
+        }
+        title="Medical Services"
+        subtitle="State-of-the-art Medical Facilities & Comprehensive Healthcare Services"
+      />
 
       {/* Main Content */}
       <section className="py-24 md:py-32" ref={ref}>
