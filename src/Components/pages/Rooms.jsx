@@ -13,18 +13,18 @@ import {
 import HeroSection from "../ui/HeroSection";
 
 // Hero background - using room photo as requested
-const BG_HERO = "/assets/Room_Photos/DSC03401.webp";
+const BG_HERO = "/assets/rooms/rooms-03401.avif";
 
 // Room photos
 const ROOM_PHOTOS = [
-  "/assets/Room_Photos/7.webp",
-  "/assets/Room_Photos/DSC03401.webp",
-  "/assets/Room_Photos/DSC03403.webp",
-  "/assets/Room_Photos/DSC03404.webp",
-  "/assets/Room_Photos/DSC03406.webp",
-  "/assets/Room_Photos/DSC03407.webp",
-  "/assets/Room_Photos/DSC03408.webp",
-  "/assets/Room_Photos/DSC03409.webp",
+  "/assets/rooms/rooms-7.avif",
+  "/assets/rooms/rooms-03401.avif",
+  "/assets/rooms/rooms-03403.avif",
+  "/assets/rooms/rooms-03404.avif",
+  "/assets/rooms/rooms-03406.avif",
+  "/assets/rooms/rooms-03407.avif",
+  "/assets/rooms/rooms-03408.avif",
+  "/assets/rooms/rooms-03409.avif",
 ];
 
 const Rooms = () => {
