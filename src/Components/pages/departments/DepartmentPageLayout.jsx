@@ -69,6 +69,33 @@ const OBST_INFRA = "/assets/Final_Photos/obst_side.avif"; // side image
 // Orthopaedics (Department ID: 16)
 const ORTHO_HERO = "/assets/Final_Photos/ortho_back.avif"; // back
 const ORTHO_INFRA = "/assets/Final_Photos/ortho_side.avif"; // side image
+// Ophthalmology (Department ID: 17)
+const OPHTHALM_HERO = "/assets/Final_Photos/opthalm_back.avif"; // back
+const OPHTHALM_INFRA = "/assets/Final_Photos/opthalm_side.avif"; // side
+// Paediatrics (Department ID: 18)
+const PAED_HERO = "/assets/Final_Photos/Paediatrics_Back.avif"; // back
+const PAED_INFRA = "/assets/Final_Photos/Paediatrics_Side.avif"; // side
+// Physiotherapy (Department ID: 20)
+const PHYSIO_HERO = "/assets/Final_Photos/physio_back.avif"; // back
+const PHYSIO_INFRA = "/assets/Final_Photos/physio_side.avif"; // side
+// Plastic Surgery (Department ID: 21)
+const PLASTIC_HERO = "/assets/Final_Photos/plastic_back.avif"; // back
+const PLASTIC_INFRA = "/assets/Final_Photos/Plastic_Side.avif"; // side
+// Pulmonology (Department ID: 22)
+const PULM_HERO = "/assets/Final_Photos/pulmonology_back.avif"; // back
+const PULM_INFRA = "/assets/Final_Photos/pulmonology_side.avif"; // side
+// Psychiatry (Department ID: 23)
+const PSYCH_HERO = "/assets/Final_Photos/Psychiatry_Back.avif"; // back
+const PSYCH_INFRA = "/assets/Final_Photos/Psychiatry_side.avif"; // side
+// Radiology (Department ID: 24)
+const RADIO_HERO = "/assets/Final_Photos/Radiology_Back.webp"; // back
+const RADIO_INFRA = "/assets/Final_Photos/Radiologhy_Side.avif"; // side
+// Urology (Department ID: 25)
+const URO_HERO = "/assets/Final_Photos/Urology_Back.avif"; // back
+const URO_INFRA = "/assets/Final_Photos/Urology_Side.avif"; // side
+// Vascular Surgery (Department ID: 26)
+const VASC_HERO = "/assets/Final_Photos/Vascular_back.avif"; // back
+const VASC_INFRA = "/assets/Final_Photos/Vascular_Side.avif"; // side
 const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
 const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
 const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
@@ -114,6 +141,15 @@ const getHeroBgImage = (departmentId) => {
   if (departmentId === 14) return NS_HERO; // Neuro Surgery
   if (departmentId === 15) return OBST_HERO; // Obstetrics & Gynaecology
   if (departmentId === 16) return ORTHO_HERO; // Orthopaedics
+  if (departmentId === 17) return OPHTHALM_HERO; // Ophthalmology
+  if (departmentId === 18) return PAED_HERO; // Paediatrics
+  if (departmentId === 20) return PHYSIO_HERO; // Physiotherapy
+  if (departmentId === 21) return PLASTIC_HERO; // Plastic Surgery
+  if (departmentId === 22) return PULM_HERO; // Pulmonology
+  if (departmentId === 23) return PSYCH_HERO; // Psychiatry
+  if (departmentId === 24) return RADIO_HERO; // Radiology
+  if (departmentId === 25) return URO_HERO; // Urology
+  if (departmentId === 26) return VASC_HERO; // Vascular Surgery
 
   return bgPhotos[(departmentId - 1) % bgPhotos.length];
 };
@@ -195,6 +231,33 @@ const getDepartmentInfraPhotos = (departmentId) => {
   }
   if (departmentId === 16) {
     return [{ src: ORTHO_INFRA, alt: "Orthopaedics Department" }];
+  }
+  if (departmentId === 17) {
+    return [{ src: OPHTHALM_INFRA, alt: "Ophthalmology Department" }];
+  }
+  if (departmentId === 18) {
+    return [{ src: PAED_INFRA, alt: "Paediatrics Department" }];
+  }
+  if (departmentId === 20) {
+    return [{ src: PHYSIO_INFRA, alt: "Physiotherapy Department" }];
+  }
+  if (departmentId === 21) {
+    return [{ src: PLASTIC_INFRA, alt: "Plastic Surgery Department" }];
+  }
+  if (departmentId === 22) {
+    return [{ src: PULM_INFRA, alt: "Pulmonology Department" }];
+  }
+  if (departmentId === 23) {
+    return [{ src: PSYCH_INFRA, alt: "Psychiatry Department" }];
+  }
+  if (departmentId === 24) {
+    return [{ src: RADIO_INFRA, alt: "Radiology Department" }];
+  }
+  if (departmentId === 25) {
+    return [{ src: URO_INFRA, alt: "Urology Department" }];
+  }
+  if (departmentId === 26) {
+    return [{ src: VASC_INFRA, alt: "Vascular Surgery Department" }];
   }
 
   const startIndex = ((departmentId - 1) * 3) % infrastructurePhotos.length;
