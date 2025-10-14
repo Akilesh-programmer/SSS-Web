@@ -16,10 +16,10 @@ import { SiX } from "react-icons/si";
 import CallModal from "../ui/CallModal";
 import HeroSection from "../ui/HeroSection";
 
-const BG1 = "/assets/Final_Photos/DSC03391.webp";
-const BG2 = "/assets/Final_Photos/DSC03392.webp";
-const BG3 = "/assets/Final_Photos/DSC03434.webp";
-const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/heroes/main-3.avif";
+const BG4 = "/assets/heroes/heroes-20250923.avif";
 
 // Helper animation presets to avoid repeating identical motion props
 const riseIn = (delay = 0, duration = 0.8) => ({

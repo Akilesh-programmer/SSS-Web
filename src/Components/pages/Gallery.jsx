@@ -1,37 +1,44 @@
-import React, { useState, useMemo } from "react";
+import React, { useState, useMemo, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import OptimizedImageGrid from "../ui/OptimizedImageGrid";
 import HeroSection from "../ui/HeroSection";
-import { FaHospital, FaPlayCircle, FaTimes, FaImages } from "react-icons/fa";
+import {
+  FaHospital,
+  FaPlayCircle,
+  FaTimes,
+  FaImages,
+  FaExpand,
+  FaChevronLeft,
+  FaChevronRight,
+} from "react-icons/fa";
 
 // Using public assets for better performance during deployment
-const BG1 = "/assets/Final_Photos/DSC03391.webp";
-const BG2 = "/assets/Final_Photos/DSC03392.webp";
-const BG3 = "/assets/Final_Photos/DSC03326.webp";
-const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
-const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
-const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
-const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
-const INF4 = "/assets/Infrastructure_Photos/DSC03386.webp";
-const INF5 = "/assets/Infrastructure_Photos/DSC03388.webp";
-const INF6 = "/assets/Infrastructure_Photos/DSC03412.webp";
-const INF7 = "/assets/Infrastructure_Photos/DSC03426.webp";
-const INF8 = "/assets/Infrastructure_Photos/DSC03427.webp";
-const INF9 = "/assets/Infrastructure_Photos/DSC03428.webp";
-const INF10 = "/assets/Infrastructure_Photos/DSC03434.webp";
-const INF11 = "/assets/Infrastructure_Photos/DSC03435.webp";
-const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.webp";
-const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.webp";
-const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.webp";
-const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.webp";
-const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.webp";
-const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.webp";
-const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.webp";
-const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.webp";
-const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.webp";
-const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.webp";
-const hospitalVideo = "/assets/Hospital Full Tour Video.mp4";
-const hospitalImg = "/assets/sss-hospital.avif";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/infrastructure/infrastructure-03326.avif";
+const BG4 = "/assets/heroes/heroes-20250923.avif";
+const INF1 = "/assets/infrastructure/infrastructure-03356.avif";
+const INF2 = "/assets/infrastructure/infrastructure-03360.avif";
+const INF3 = "/assets/infrastructure/infrastructure-03365.avif";
+const INF4 = "/assets/infrastructure/infrastructure-03386.avif";
+const INF5 = "/assets/infrastructure/infrastructure-03388.avif";
+const INF6 = "/assets/infrastructure/infrastructure-03412.avif";
+const INF7 = "/assets/infrastructure/infrastructure-03426.avif";
+const INF8 = "/assets/infrastructure/infrastructure-03427.avif";
+const INF9 = "/assets/infrastructure/infrastructure-03428.avif";
+const INF10 = "/assets/heroes/main-3.avif";
+const INF11 = "/assets/infrastructure/infrastructure-03435.avif";
+const INF12 = "/assets/infrastructure/infrastructure-wa0016.avif";
+const INF13 = "/assets/infrastructure/infrastructure-wa0018.avif";
+const INF14 = "/assets/infrastructure/infrastructure-wa0019.avif";
+const INF15 = "/assets/infrastructure/infrastructure-wa0020.avif";
+const INF16 = "/assets/infrastructure/infrastructure-wa0023.avif";
+const INF17 = "/assets/infrastructure/infrastructure-wa0026.avif";
+const INF18 = "/assets/infrastructure/infrastructure-wa0027.avif";
+const INF19 = "/assets/infrastructure/infrastructure-wa0028.avif";
+const INF20 = "/assets/infrastructure/infrastructure-wa0030.avif";
+const INF21 = "/assets/infrastructure/infrastructure-wa0032.avif";
+const hospitalVideo = "/assets/hospital-tour-video.mp4";
+const hospitalImg = "/assets/other/other-sss-hospital.avif";
 
 // Central list of infrastructure images
 const infrastructureImageList = [
@@ -67,6 +74,7 @@ const getHeroBgImage = () => bgPhotos[2]; // use specified DSC03326.webp for her
 
 const Gallery = () => {
   const [activeMedia, setActiveMedia] = useState(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   const images = useMemo(
     () =>
@@ -103,10 +111,49 @@ const Gallery = () => {
     []
   );
 
-  const openImage = (img) =>
+  // Keyboard navigation for modal
+  useEffect(() => {
+    if (!activeMedia || activeMedia.type !== "image") return;
+
+    const handleKeyDown = (e) => {
+      if (e.key === "Escape") {
+        closeMedia();
+      } else if (e.key === "ArrowLeft") {
+        navigateImage("prev");
+      } else if (e.key === "ArrowRight") {
+        navigateImage("next");
+      }
+    };
+
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [activeMedia, currentImageIndex]);
+
+  const openImage = (img) => {
+    const index = images.findIndex((image) => image.id === img.id);
+    setCurrentImageIndex(index);
     setActiveMedia({ type: "image", src: img.src, alt: img.alt });
+  };
+
   const openVideo = () => setActiveMedia({ type: "video", src: videoUrl });
   const closeMedia = () => setActiveMedia(null);
+
+  const navigateImage = (direction) => {
+    let newIndex;
+    if (direction === "prev") {
+      newIndex =
+        currentImageIndex > 0 ? currentImageIndex - 1 : images.length - 1;
+    } else {
+      newIndex =
+        currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0;
+    }
+    setCurrentImageIndex(newIndex);
+    setActiveMedia({
+      type: "image",
+      src: images[newIndex].src,
+      alt: images[newIndex].alt,
+    });
+  };
 
   // Removed old heroVariants (hero redesigned to match site-wide pattern)
 
@@ -158,15 +205,36 @@ const Gallery = () => {
           </div>
         </div>
 
-        {/* Optimized Image Grid */}
-        <OptimizedImageGrid
-          items={images}
-          onItemClick={(img) => openImage(img)}
-          aspectRatio="4/3"
-          columnsMinWidth={240}
-          enableAnimation={false}
-          className="mt-2"
-        />
+        {/* Optimized Image Grid with Hover Animations */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 md:gap-6 mt-2">
+          {images.map((image, index) => (
+            <motion.div
+              key={image.id}
+              className="relative overflow-hidden rounded-xl shadow-lg cursor-pointer group"
+              onClick={() => openImage(image)}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.5, delay: index * 0.05 }}
+              whileHover={{ scale: 1.03, y: -5 }}
+            >
+              <div className="aspect-[4/3] overflow-hidden">
+                <img
+                  src={image.src}
+                  alt={image.alt}
+                  className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                  loading="lazy"
+                />
+              </div>
+              {/* Expand Icon Indicator */}
+              <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                <FaExpand className="text-emerald-600 text-sm" />
+              </div>
+              {/* Bottom Gradient Overlay */}
+              <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
+          ))}
+        </div>
 
         {/* Video Section */}
         <div className="mt-24">
@@ -236,40 +304,120 @@ const Gallery = () => {
         </div>
       </div>
 
-      {/* Modal */}
+      {/* Enhanced Modal with Navigation */}
       <AnimatePresence>
         {activeMedia && (
           <motion.div
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeMedia}
           >
             <motion.div
-              layout
-              className="relative w-full max-w-6xl mx-auto"
+              className="relative w-full h-full max-w-7xl mx-auto flex flex-col"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
               transition={{ type: "spring", stiffness: 160, damping: 18 }}
               onClick={(e) => e.stopPropagation()}
             >
-              <button
-                onClick={closeMedia}
-                className="absolute -top-14 right-0 text-white/80 hover:text-white transition-colors"
-              >
-                <FaTimes className="w-8 h-8" />
-              </button>
-              <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50">
+              {/* Header with Counter and Close Button */}
+              <div className="flex items-center justify-between mb-4">
                 {activeMedia.type === "image" && (
-                  <img
-                    src={activeMedia.src}
-                    alt={activeMedia.alt || "Gallery Image"}
-                    className="w-full h-full object-contain max-h-[78vh] mx-auto"
-                  />
+                  <motion.div
+                    className="text-white/80 text-sm font-medium bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2"
+                    initial={{ opacity: 0, y: -10 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ delay: 0.1 }}
+                  >
+                    {currentImageIndex + 1} / {images.length}
+                  </motion.div>
                 )}
-                {activeMedia.type === "video" && (
+                {activeMedia.type === "video" && <div />}
+
+                {/* Close Button */}
+                <motion.button
+                  onClick={closeMedia}
+                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white transition-all duration-300 group"
+                  whileHover={{ scale: 1.1, rotate: 90 }}
+                  whileTap={{ scale: 0.9 }}
+                  initial={{ opacity: 0, rotate: -90 }}
+                  animate={{ opacity: 1, rotate: 0 }}
+                  transition={{ delay: 0.2 }}
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </motion.button>
+              </div>
+
+              {/* Content with Navigation for Images */}
+              {activeMedia.type === "image" ? (
+                <div className="relative flex-1 flex items-center justify-center">
+                  {/* Previous Button */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage("prev");
+                    }}
+                    className="absolute left-2 md:left-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                    whileHover={{ scale: 1.1, x: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                  </motion.button>
+
+                  {/* Image with Animation */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={currentImageIndex}
+                      className="relative max-w-full max-h-full"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <img
+                        src={activeMedia.src}
+                        alt={activeMedia.alt || "Infrastructure Photo"}
+                        className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Next Button */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage("next");
+                    }}
+                    className="absolute right-2 md:right-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                    whileHover={{ scale: 1.1, x: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                  </motion.button>
+                </div>
+              ) : (
+                /* Video Content */
+                <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50">
                   <video
                     src={activeMedia.src}
                     className="w-full h-full max-h-[78vh] object-contain"
@@ -278,8 +426,25 @@ const Gallery = () => {
                   >
                     <track kind="captions" label="English captions" />
                   </video>
-                )}
-              </div>
+                </div>
+              )}
+
+              {/* Keyboard Hint for Images */}
+              {activeMedia.type === "image" && (
+                <motion.div
+                  className="mt-4 flex items-center justify-center gap-4 text-white/60 text-sm"
+                  initial={{ opacity: 0, y: 10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                >
+                  <span className="hidden md:inline">
+                    Use arrow keys or click buttons to navigate
+                  </span>
+                  <span className="md:hidden">
+                    Tap buttons to navigate images
+                  </span>
+                </motion.div>
+              )}
             </motion.div>
           </motion.div>
         )}
