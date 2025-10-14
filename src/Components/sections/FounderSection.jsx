@@ -1,6 +1,6 @@
 import { motion } from "framer-motion";
 import { FaUserMd, FaAward, FaHeart, FaUsers } from "react-icons/fa";
-const founderPortrait = "/assets/Sanjith-SSS-Hospitals.webp";
+const founderPortrait = "/assets/logos/founder-portrait.avif";
 
 const FounderSection = () => {
   return (

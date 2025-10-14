@@ -17,7 +17,7 @@
       ]
     },
     {
-      "source": "/assets/(.*)\\.(jpg|jpeg|png|gif|webp|avif|svg)",
+      "source": "/assets/(.*)\\.(avif|webp|jpg|jpeg|png|gif|svg)",
       "headers": [
         {
           "key": "Cache-Control",
@@ -26,6 +26,10 @@
         {
           "key": "Content-Disposition",
           "value": "inline"
+        },
+        {
+          "key": "Vary",
+          "value": "Accept"
         }
       ]
     },
@@ -39,6 +43,10 @@
         {
           "key": "Accept-Ranges",
           "value": "bytes"
+        },
+        {
+          "key": "Content-Type",
+          "value": "video/mp4"
         }
       ]
     },
