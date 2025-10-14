@@ -25,25 +25,25 @@ import {
 import HeroSection from "../ui/HeroSection";
 
 // Using public assets for better performance during deployment
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/heroes/heroes-20250923.avif";
+const BG4 = "/assets/heroes/heroes-20250923.avif";
 
 // Service images - left and right side
 const SERVICE_LEFT_1 =
-  "/assets/Final_Photos/WhatsApp Image 2025-09-09 at 23.15.40_dac5ba67.webp";
+  "/assets/departments/whatsapp-image-2025-09-09-at-23-15-40_dac5ba67.avif";
 const SERVICE_LEFT_2 =
-  "/assets/Final_Photos/WhatsApp Image 2025-09-09 at 23.15.38_a6224a71.webp";
-const SERVICE_LEFT_3 = "/assets/Final_Photos/IMG-20250923-WA0027.webp";
-const SERVICE_LEFT_4 = "/assets/Final_Photos/DSC03324.webp";
+  "/assets/departments/whatsapp-image-2025-09-09-at-23-15-38_a6224a71.avif";
+const SERVICE_LEFT_3 = "/assets/infrastructure/infrastructure-wa0027.avif";
+const SERVICE_LEFT_4 = "/assets/infrastructure/infrastructure-03324.avif";
 // previous left-5 will be moved to right side as next right image
-const SERVICE_LEFT_5 = "/assets/Final_Photos/IMG-20250923-WA0026.webp";
-const SERVICE_RIGHT_5 = "/assets/Final_Photos/9.webp";
-const SERVICE_RIGHT_1 = "/assets/Final_Photos/DSC03434.webp";
-const SERVICE_RIGHT_2 = "/assets/Final_Photos/DSC0336899.webp";
-const SERVICE_RIGHT_3 = "/assets/Final_Photos/DSC03412.webp";
-const SERVICE_RIGHT_4 = "/assets/Final_Photos/DSC03377.webp";
+const SERVICE_LEFT_5 = "/assets/infrastructure/infrastructure-wa0026.avif";
+const SERVICE_RIGHT_5 = "/assets/infrastructure/infrastructure-9.avif";
+const SERVICE_RIGHT_1 = "/assets/heroes/main-3.avif";
+const SERVICE_RIGHT_2 = "/assets/infrastructure/infrastructure-0336899.avif";
+const SERVICE_RIGHT_3 = "/assets/infrastructure/infrastructure-03412.avif";
+const SERVICE_RIGHT_4 = "/assets/infrastructure/infrastructure-03377.avif";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];

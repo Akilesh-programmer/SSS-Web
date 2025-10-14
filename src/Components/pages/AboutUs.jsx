@@ -19,13 +19,13 @@ import CeoCard from "../ui/CeoCard";
 import HeroSection from "../ui/HeroSection";
 
 // BG Photos for hero background - using public assets for better performance
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/infrastructure/infrastructure-wa0016.avif";
+const BG4 = "/assets/heroes/main-3.avif";
 // Doctor images used in leadership array
-const doc2 = "/assets/doctor_photos/2.webp";
-const doc3 = "/assets/doctor_photos/3.webp";
+const doc2 = "/assets/doctors/doctor-2.avif";
+const doc3 = "/assets/doctors/doctor-3.avif";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];

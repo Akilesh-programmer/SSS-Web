@@ -3,7 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
 import CallModal from "./CallModal";
-const sssLogoLocal = "/assets/sss-logo.webp";
+const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
 import { FaBars, FaTimes, FaAmbulance, FaCalendarPlus } from "react-icons/fa";
 

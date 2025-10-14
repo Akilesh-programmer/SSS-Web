@@ -22,108 +22,108 @@ import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
 // Using public assets for better performance during deployment
-const BG1 = "/assets/BG_Photos/DSC03391.webp";
-const BG2 = "/assets/BG_Photos/DSC03392.webp";
-const BG3 = "/assets/BG_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/BG_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/heroes/heroes-20250923.avif";
+const BG4 = "/assets/heroes/heroes-20250923.avif";
 
 // Department-specific images
 // Accident & Emergency Care (Department ID: 2)
 const EMERGENCY_HERO =
-  "/assets/Final_Photos/WhatsApp%20Image%202025-09-09%20at%2023.15.38_a6224a71.webp";
+  "/assets/departments/whatsapp-image-2025-09-09-at-23-15-38_a6224a71.avif";
 const EMERGENCY_INFRA =
-  "/assets/Final_Photos/WhatsApp%20Image%202025-09-09%20at%2023.15.40_dac5ba67.webp";
+  "/assets/departments/whatsapp-image-2025-09-09-at-23-15-40_dac5ba67.avif";
 
 // Anaesthesiology (Department ID: 3)
-const ANAESTHESIOLOGY_HERO = "/assets/Final_Photos/DSC03428.webp";
-const ANAESTHESIOLOGY_INFRA = "/assets/Final_Photos/Anaesthesiology_Cover.avif";
+const ANAESTHESIOLOGY_HERO = "/assets/infrastructure/infrastructure-03428.avif";
+const ANAESTHESIOLOGY_INFRA = "/assets/departments/anaesthesiology_cover.avif";
 // Cardiology (Department ID: 4)
-const CARDIOLOGY_HERO = "/assets/Final_Photos/DSC03412.webp";
-const CARDIOLOGY_INFRA = "/assets/Final_Photos/DSC03377.webp";
+const CARDIOLOGY_HERO = "/assets/infrastructure/infrastructure-03412.avif";
+const CARDIOLOGY_INFRA = "/assets/infrastructure/infrastructure-03377.avif";
 // Dermatology & Cosmetology (Department ID: 5)
-const DERMATOLOGY_HERO = "/assets/Final_Photos/Dermatology_Cover.avif";
-const DERMATOLOGY_INFRA = "/assets/Final_Photos/Dermatology.avif";
+const DERMATOLOGY_HERO = "/assets/departments/dermatology_cover.avif";
+const DERMATOLOGY_INFRA = "/assets/departments/dermatology.avif";
 // Dental & Oral and Maxillofacial Surgery (Department ID: 6)
-const DENTAL_HERO = "/assets/Final_Photos/8.webp";
-const DENTAL_INFRA = "/assets/Final_Photos/Dental.avif";
+const DENTAL_HERO = "/assets/infrastructure/infrastructure-03386.avif"; // (was duplicate of infrastructure-8)
+const DENTAL_INFRA = "/assets/departments/dental.avif";
 // ENT & Head & Neck (Department ID: 7)
-const ENT_HERO = "/assets/Final_Photos/ENT_Hero.avif";
-const ENT_INFRA = "/assets/Final_Photos/ENT.avif";
+const ENT_HERO = "/assets/departments/ent_hero.avif";
+const ENT_INFRA = "/assets/departments/ent.avif";
 // General Surgery (Department ID: 8)
-const GS_HERO = "/assets/Final_Photos/IMG-20250923-WA0018.webp"; // hero background
-const GS_INFRA = "/assets/Final_Photos/9.webp"; // in-page image
+const GS_HERO = "/assets/infrastructure/infrastructure-wa0018.avif"; // hero background
+const GS_INFRA = "/assets/infrastructure/infrastructure-9.avif"; // in-page image
 // Gastroenterology (Department ID: 9)
-const GASTRO_HERO = "/assets/Final_Photos/IMG-20250923-WA0028.webp"; // cover photo
-const GASTRO_INFRA = "/assets/Final_Photos/Gastro.avif"; // inside page picture
+const GASTRO_HERO = "/assets/infrastructure/infrastructure-wa0028.avif"; // cover photo
+const GASTRO_INFRA = "/assets/departments/gastro.avif"; // inside page picture
 // Internal Medicine (Department ID: 10)
-const IM_HERO = "/assets/Final_Photos/IMG-20250923-WA0027.webp"; // hero image
-const IM_INFRA = "/assets/Final_Photos/Internal_Side.avif"; // inside image
+const IM_HERO = "/assets/infrastructure/infrastructure-wa0027.avif"; // hero image
+const IM_INFRA = "/assets/departments/internal_side.avif"; // inside image
 // Master Health Check up (Department ID: 11)
-const MHC_HERO = "/assets/Final_Photos/Master_Health_Cover.webp"; // cover image
-const MHC_INFRA = "/assets/Final_Photos/DSC03377.webp"; // side image
+const MHC_HERO = "/assets/departments/master_health_cover.avif"; // cover image
+const MHC_INFRA = "/assets/infrastructure/infrastructure-03377.avif"; // side image
 // Nephrology (Department ID: 12)
-const NEPHRO_HERO = "/assets/Final_Photos/Nephrology_Sidew.avif"; // cover background image
-const NEPHRO_INFRA = "/assets/Final_Photos/Nephrology_Background.avif"; // side photo
+const NEPHRO_HERO = "/assets/departments/nephrology_sidew.avif"; // cover background image
+const NEPHRO_INFRA = "/assets/departments/nephrology_background.avif"; // side photo
 // Neurology (Department ID: 13)
-const NEURO_HERO = "/assets/Final_Photos/Neurology_Back.avif"; // background
-const NEURO_INFRA = "/assets/Final_Photos/Neurology_Side.avif"; // side image
+const NEURO_HERO = "/assets/departments/neurology_back.avif"; // background
+const NEURO_INFRA = "/assets/departments/neurology_side.avif"; // side image
 // Neuro Surgery (Department ID: 14)
-const NS_HERO = "/assets/Final_Photos/Neuro_Surgery.avif"; // back
-const NS_INFRA = "/assets/Final_Photos/Neuro_Surgery_Side.avif"; // side image
+const NS_HERO = "/assets/departments/neuro_surgery.avif"; // back
+const NS_INFRA = "/assets/departments/neuro_surgery_side.avif"; // side image
 // Obstetrics & Gynaecology (Department ID: 15)
-const OBST_HERO = "/assets/Final_Photos/obst_Back.avif"; // background
-const OBST_INFRA = "/assets/Final_Photos/obst_side.avif"; // side image
+const OBST_HERO = "/assets/departments/obst_back.avif"; // background
+const OBST_INFRA = "/assets/departments/obst_side.avif"; // side image
 // Orthopaedics (Department ID: 16)
-const ORTHO_HERO = "/assets/Final_Photos/ortho_back.avif"; // back
-const ORTHO_INFRA = "/assets/Final_Photos/ortho_side.avif"; // side image
+const ORTHO_HERO = "/assets/departments/ortho_back.avif"; // back
+const ORTHO_INFRA = "/assets/departments/ortho_side.avif"; // side image
 // Ophthalmology (Department ID: 17)
-const OPHTHALM_HERO = "/assets/Final_Photos/opthalm_back.avif"; // back
-const OPHTHALM_INFRA = "/assets/Final_Photos/opthalm_side.avif"; // side
+const OPHTHALM_HERO = "/assets/departments/opthalm_back.avif"; // back
+const OPHTHALM_INFRA = "/assets/departments/opthalm_side.avif"; // side
 // Paediatrics (Department ID: 18)
-const PAED_HERO = "/assets/Final_Photos/Paediatrics_Back.avif"; // back
-const PAED_INFRA = "/assets/Final_Photos/Paediatrics_Side.avif"; // side
+const PAED_HERO = "/assets/departments/paediatrics_back.avif"; // back
+const PAED_INFRA = "/assets/departments/paediatrics_side.avif"; // side
 // Physiotherapy (Department ID: 20)
-const PHYSIO_HERO = "/assets/Final_Photos/physio_back.avif"; // back
-const PHYSIO_INFRA = "/assets/Final_Photos/physio_side.avif"; // side
+const PHYSIO_HERO = "/assets/departments/physio_back.avif"; // back
+const PHYSIO_INFRA = "/assets/departments/physio_side.avif"; // side
 // Plastic Surgery (Department ID: 21)
-const PLASTIC_HERO = "/assets/Final_Photos/plastic_back.avif"; // back
-const PLASTIC_INFRA = "/assets/Final_Photos/Plastic_Side.avif"; // side
+const PLASTIC_HERO = "/assets/departments/plastic_back.avif"; // back
+const PLASTIC_INFRA = "/assets/departments/plastic_side.avif"; // side
 // Pulmonology (Department ID: 22)
-const PULM_HERO = "/assets/Final_Photos/pulmonology_back.avif"; // back
-const PULM_INFRA = "/assets/Final_Photos/pulmonology_side.avif"; // side
+const PULM_HERO = "/assets/departments/pulmonology_back.avif"; // back
+const PULM_INFRA = "/assets/departments/pulmonology_side.avif"; // side
 // Psychiatry (Department ID: 23)
-const PSYCH_HERO = "/assets/Final_Photos/Psychiatry_Back.avif"; // back
-const PSYCH_INFRA = "/assets/Final_Photos/Psychiatry_side.avif"; // side
+const PSYCH_HERO = "/assets/departments/psychiatry_back.avif"; // back
+const PSYCH_INFRA = "/assets/departments/psychiatry_side.avif"; // side
 // Radiology (Department ID: 24)
-const RADIO_HERO = "/assets/Final_Photos/Radiology_Back.webp"; // back
-const RADIO_INFRA = "/assets/Final_Photos/Radiologhy_Side.avif"; // side
+const RADIO_HERO = "/assets/departments/master_health_cover.avif"; // back (was duplicate of master_health_cover)
+const RADIO_INFRA = "/assets/departments/radiologhy_side.avif"; // side
 // Urology (Department ID: 25)
-const URO_HERO = "/assets/Final_Photos/Urology_Back.avif"; // back
-const URO_INFRA = "/assets/Final_Photos/Urology_Side.avif"; // side
+const URO_HERO = "/assets/departments/urology_back.avif"; // back
+const URO_INFRA = "/assets/departments/nephrology_sidew.avif"; // side (was duplicate of nephrology_sidew)
 // Vascular Surgery (Department ID: 26)
-const VASC_HERO = "/assets/Final_Photos/Vascular_back.avif"; // back
-const VASC_INFRA = "/assets/Final_Photos/Vascular_Side.avif"; // side
-const INF1 = "/assets/Infrastructure_Photos/DSC03356.webp";
-const INF2 = "/assets/Infrastructure_Photos/DSC03360.webp";
-const INF3 = "/assets/Infrastructure_Photos/DSC03365.webp";
-const INF4 = "/assets/Infrastructure_Photos/DSC03386.webp";
-const INF5 = "/assets/Infrastructure_Photos/DSC03388.webp";
-const INF6 = "/assets/Infrastructure_Photos/DSC03412.webp";
-const INF7 = "/assets/Infrastructure_Photos/DSC03426.webp";
-const INF8 = "/assets/Infrastructure_Photos/DSC03427.webp";
-const INF9 = "/assets/Infrastructure_Photos/DSC03428.webp";
-const INF10 = "/assets/Infrastructure_Photos/DSC03434.webp";
-const INF11 = "/assets/Infrastructure_Photos/DSC03435.webp";
-const INF12 = "/assets/Infrastructure_Photos/IMG-20250923-WA0016.webp";
-const INF13 = "/assets/Infrastructure_Photos/IMG-20250923-WA0018.webp";
-const INF14 = "/assets/Infrastructure_Photos/IMG-20250923-WA0019.webp";
-const INF15 = "/assets/Infrastructure_Photos/IMG-20250923-WA0020.webp";
-const INF16 = "/assets/Infrastructure_Photos/IMG-20250923-WA0023.webp";
-const INF17 = "/assets/Infrastructure_Photos/IMG-20250923-WA0026.webp";
-const INF18 = "/assets/Infrastructure_Photos/IMG-20250923-WA0027.webp";
-const INF19 = "/assets/Infrastructure_Photos/IMG-20250923-WA0028.webp";
-const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.webp";
-const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.webp";
+const VASC_HERO = "/assets/departments/vascular_back.avif"; // back
+const VASC_INFRA = "/assets/departments/vascular_side.avif"; // side
+const INF1 = "/assets/infrastructure/infrastructure-03356.avif";
+const INF2 = "/assets/infrastructure/infrastructure-03360.avif";
+const INF3 = "/assets/infrastructure/infrastructure-03365.avif";
+const INF4 = "/assets/infrastructure/infrastructure-03386.avif";
+const INF5 = "/assets/infrastructure/infrastructure-03388.avif";
+const INF6 = "/assets/infrastructure/infrastructure-03412.avif";
+const INF7 = "/assets/infrastructure/infrastructure-03426.avif";
+const INF8 = "/assets/infrastructure/infrastructure-03427.avif";
+const INF9 = "/assets/infrastructure/infrastructure-03428.avif";
+const INF10 = "/assets/heroes/main-3.avif";
+const INF11 = "/assets/infrastructure/infrastructure-03435.avif";
+const INF12 = "/assets/infrastructure/infrastructure-wa0016.avif";
+const INF13 = "/assets/infrastructure/infrastructure-wa0018.avif";
+const INF14 = "/assets/infrastructure/infrastructure-wa0019.avif";
+const INF15 = "/assets/infrastructure/infrastructure-wa0020.avif";
+const INF16 = "/assets/infrastructure/infrastructure-wa0023.avif";
+const INF17 = "/assets/infrastructure/infrastructure-wa0026.avif";
+const INF18 = "/assets/infrastructure/infrastructure-wa0027.avif";
+const INF19 = "/assets/infrastructure/infrastructure-wa0028.avif";
+const INF20 = "/assets/infrastructure/infrastructure-wa0030.avif";
+const INF21 = "/assets/infrastructure/infrastructure-wa0032.avif";
 
 // BG Photos array for hero backgrounds (alternating)
 const bgPhotos = [BG1, BG2, BG3, BG4];

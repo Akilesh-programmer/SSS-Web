@@ -2,10 +2,10 @@ import { departments } from "../../data/DoctorDepartmentData";
 import { useNavigate } from "react-router-dom";
 import HeroSection from "../ui/HeroSection";
 
-const BG1 = "/assets/Final_Photos/DSC03391.webp";
-const BG2 = "/assets/Final_Photos/DSC03392.webp";
-const BG3 = "/assets/Final_Photos/IMG-20250923-WA0015.webp";
-const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/heroes/heroes-20250923.avif";
+const BG4 = "/assets/heroes/heroes-20250923.avif";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];

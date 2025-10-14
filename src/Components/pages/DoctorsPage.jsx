@@ -14,10 +14,10 @@ import { departments, doctors } from "../../data/DoctorDepartmentData";
 import HeroSection from "../ui/HeroSection";
 
 // Local background images
-const BG1 = "/assets/Final_Photos/DSC03391.webp";
-const BG2 = "/assets/Final_Photos/DSC03392.webp";
-const BG3 = "/assets/Final_Photos/IMG-20250923-WA0018.webp";
-const BG4 = "/assets/Final_Photos/IMG-20250923-WA0029.webp";
+const BG1 = "/assets/heroes/main-1.avif";
+const BG2 = "/assets/heroes/main-2.avif";
+const BG3 = "/assets/infrastructure/infrastructure-wa0018.avif";
+const BG4 = "/assets/heroes/main-3.avif";
 
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];
