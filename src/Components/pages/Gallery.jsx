@@ -260,62 +260,69 @@ const Gallery = () => {
             </div>
           </div>
 
-          <button
-            type="button"
-            className="relative w-full text-left rounded-3xl overflow-hidden shadow-2xl group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60"
-            onClick={openVideo}
-            aria-label="Open hospital tour video"
-          >
-            <div className="aspect-video relative">
-              <img
-                src={hospitalImg}
-                alt="Hospital preview for virtual tour"
-                className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                loading="lazy"
-              />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 group-hover:from-black/60 transition-colors" />
+          <div className="max-w-4xl mx-auto">
+            <button
+              type="button"
+              className="relative w-full text-left rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60 transition-all duration-300"
+              onClick={openVideo}
+              aria-label="Open hospital tour video"
+            >
+              <div className="aspect-video relative">
+                <img
+                  src={hospitalImg}
+                  alt="Hospital preview for virtual tour"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
+                  loading="lazy"
+                />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/40 to-black/30 group-hover:from-black/60 transition-colors" />
 
-              {/* Play Button with subtle ripple */}
-              <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-                <div className="relative">
-                  <motion.div
-                    className="absolute inset-0 w-24 h-24 bg-white/20 rounded-full"
-                    animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
-                    transition={{ duration: 3, repeat: Infinity }}
-                  />
-                  <motion.div
-                    className="relative w-24 h-24 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl border-4 border-white/60"
-                    whileHover={{ scale: 1.08 }}
-                  >
-                    <FaPlayCircle className="text-emerald-600 text-4xl" />
-                  </motion.div>
+                {/* Play Button with subtle ripple */}
+                <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div className="relative">
+                    <motion.div
+                      className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 rounded-full"
+                      animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
+                      transition={{ duration: 3, repeat: Infinity }}
+                    />
+                    <motion.div
+                      className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl border-2 sm:border-3 md:border-4 border-white/60"
+                      whileHover={{ scale: 1.08 }}
+                    >
+                      <FaPlayCircle className="text-emerald-600 text-2xl sm:text-3xl md:text-4xl" />
+                    </motion.div>
+                  </div>
                 </div>
               </div>
-            </div>
-            <div className="absolute inset-0 flex flex-col items-center justify-end text-center p-6">
-              <h4 className="text-white font-bold text-2xl sm:text-3xl mb-2 tracking-tight drop-shadow-lg">
-                Hospital Virtual Tour
-              </h4>
-              <p className="text-white/80 max-w-xl mx-auto text-sm sm:text-base leading-relaxed">
-                Click to view the full immersive walkthrough.
-              </p>
-            </div>
-          </button>
+              <div className="absolute inset-0 flex flex-col items-center justify-end text-center p-4 sm:p-6">
+                <h4 className="text-white font-bold text-lg sm:text-xl md:text-2xl lg:text-3xl mb-1 sm:mb-2 tracking-tight drop-shadow-lg">
+                  Hospital Virtual Tour
+                </h4>
+                <p className="text-white/80 max-w-xl mx-auto text-xs sm:text-sm md:text-base leading-relaxed">
+                  Click to view the full immersive walkthrough.
+                </p>
+              </div>
+            </button>
+          </div>
         </div>
       </div>
 
-      {/* Enhanced Modal with Navigation */}
+      {/* Enhanced Modal with Navigation - Glossy Transparent Background */}
       <AnimatePresence>
         {activeMedia && (
           <motion.div
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 backdrop-blur-2xl"
+            style={{
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={closeMedia}
           >
             <motion.div
-              className="relative w-full h-full max-w-7xl mx-auto flex flex-col"
+              className="relative w-full max-w-5xl mx-auto flex flex-col px-2 sm:px-4 md:px-6"
               initial={{ scale: 0.9, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
               exit={{ scale: 0.9, opacity: 0 }}
@@ -326,7 +333,7 @@ const Gallery = () => {
               <div className="flex items-center justify-between mb-4">
                 {activeMedia.type === "image" && (
                   <motion.div
-                    className="text-white/80 text-sm font-medium bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2"
+                    className="text-gray-900 text-sm font-semibold bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
@@ -339,7 +346,7 @@ const Gallery = () => {
                 {/* Close Button */}
                 <motion.button
                   onClick={closeMedia}
-                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white transition-all duration-300 group"
+                  className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, rotate: -90 }}
@@ -371,7 +378,7 @@ const Gallery = () => {
                       e.stopPropagation();
                       navigateImage("prev");
                     }}
-                    className="absolute left-2 md:left-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                    className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
                     whileHover={{ scale: 1.1, x: -5 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, x: -20 }}
@@ -405,7 +412,7 @@ const Gallery = () => {
                       e.stopPropagation();
                       navigateImage("next");
                     }}
-                    className="absolute right-2 md:right-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                    className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
                     whileHover={{ scale: 1.1, x: 5 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, x: 20 }}
@@ -417,22 +424,24 @@ const Gallery = () => {
                 </div>
               ) : (
                 /* Video Content */
-                <div className="relative rounded-3xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50">
-                  <video
-                    src={activeMedia.src}
-                    className="w-full h-full max-h-[78vh] object-contain"
-                    controls
-                    autoPlay
-                  >
-                    <track kind="captions" label="English captions" />
-                  </video>
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50 w-full">
+                  <div className="aspect-video">
+                    <video
+                      src={activeMedia.src}
+                      className="w-full h-full object-contain"
+                      controls
+                      autoPlay
+                    >
+                      <track kind="captions" label="English captions" />
+                    </video>
+                  </div>
                 </div>
               )}
 
               {/* Keyboard Hint for Images */}
               {activeMedia.type === "image" && (
                 <motion.div
-                  className="mt-4 flex items-center justify-center gap-4 text-white/60 text-sm"
+                  className="mt-4 flex items-center justify-center gap-4 text-gray-700 text-sm font-medium bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg"
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.5 }}
