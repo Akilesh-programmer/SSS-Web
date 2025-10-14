@@ -10,6 +10,7 @@ import {
   FaClinicMedical,
   FaTimes,
 } from "react-icons/fa";
+import HeroSection from "../ui/HeroSection";
 
 // Hero background - using room photo as requested
 const BG_HERO = "/assets/Room_Photos/DSC03401.webp";
@@ -129,55 +130,12 @@ const Rooms = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 via-white to-emerald-50">
       {/* Hero Section */}
-      <motion.section
-        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${BG_HERO})` }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
-        <div className="absolute inset-0 bg-black/40" />
-
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
-          >
-            <FaBed className="text-base md:text-xl mr-2 md:mr-3" />
-            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
-              Accommodation
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-          >
-            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              Rooms & Facilities
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            Comfortable & Modern Patient Accommodation
-          </motion.p>
-        </div>
-      </motion.section>
+      <HeroSection
+        backgroundImage={BG_HERO}
+        badge={{ icon: FaBed, text: "Accommodation" }}
+        title="Rooms & Facilities"
+        subtitle="Comfortable & Modern Patient Accommodation"
+      />
 
       {/* Main Content - Side by Side Layout */}
       <section className="py-16 lg:py-20 bg-white">
@@ -201,7 +159,8 @@ const Rooms = () => {
               Patient Rooms & Facilities
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
-              Modern, comfortable accommodation designed for optimal patient care and recovery
+              Modern, comfortable accommodation designed for optimal patient
+              care and recovery
             </p>
           </motion.div>
 
@@ -215,7 +174,9 @@ const Rooms = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Room Gallery</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                Room Gallery
+              </h3>
               <div className="grid grid-cols-2 gap-x-4 gap-y-20">
                 {roomImages.map((image) => (
                   <motion.div
@@ -247,7 +208,9 @@ const Rooms = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Room Categories</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                Room Categories
+              </h3>
               <div className="grid grid-cols-1 gap-4">
                 {roomCategories.map((room) => {
                   const IconComponent = room.icon;
@@ -258,11 +221,15 @@ const Rooms = () => {
                       whileHover={{ x: 4, scale: 1.01 }}
                       className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
                     >
-                      <div className={`flex items-center gap-4 p-5 bg-gradient-to-r ${room.color}`}>
+                      <div
+                        className={`flex items-center gap-4 p-5 bg-gradient-to-r ${room.color}`}
+                      >
                         <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0">
                           <IconComponent className="text-2xl text-white" />
                         </div>
-                        <h3 className="text-lg font-bold text-white">{room.name}</h3>
+                        <h3 className="text-lg font-bold text-white">
+                          {room.name}
+                        </h3>
                       </div>
                     </motion.div>
                   );
@@ -280,7 +247,9 @@ const Rooms = () => {
               variants={staggerContainer}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Room Categories</h3>
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                Room Categories
+              </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
                 {roomCategories.map((room) => {
                   const IconComponent = room.icon;
@@ -290,11 +259,15 @@ const Rooms = () => {
                       variants={fadeInUp}
                       className="bg-white rounded-xl shadow-md hover:shadow-lg transition-all duration-300 overflow-hidden border border-gray-100"
                     >
-                      <div className={`flex items-center gap-3 p-4 bg-gradient-to-r ${room.color}`}>
+                      <div
+                        className={`flex items-center gap-3 p-4 bg-gradient-to-r ${room.color}`}
+                      >
                         <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0">
                           <IconComponent className="text-xl text-white" />
                         </div>
-                        <h3 className="text-sm font-bold text-white">{room.name}</h3>
+                        <h3 className="text-sm font-bold text-white">
+                          {room.name}
+                        </h3>
                       </div>
                     </motion.div>
                   );
@@ -309,8 +282,10 @@ const Rooms = () => {
               variants={staggerContainer}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">Room Gallery</h3>
-              <div className="grid grid-cols-2 gap-x-4 gap-y-8">
+              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+                Room Gallery
+              </h3>
+              <div className="grid grid-cols-1 gap-6">
                 {roomImages.map((image) => (
                   <motion.div
                     key={image.id}

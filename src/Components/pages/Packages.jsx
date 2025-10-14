@@ -9,6 +9,7 @@ import {
   FaFileMedical,
   FaBookMedical,
 } from "react-icons/fa";
+import HeroSection from "../ui/HeroSection";
 
 const BG1 = "/assets/Final_Photos/DSC03391.webp";
 const BG2 = "/assets/Final_Photos/DSC03392.webp";
@@ -181,69 +182,13 @@ const Packages = () => {
 
   return (
     <div className="bg-gradient-to-br from-gray-50 via-white to-emerald-50 relative overflow-hidden min-h-screen">
-      {/* Custom scrollbar styles moved to global css if needed */}
-
-      {/* Hero Section with BG_Photos Background */}
-      <motion.section
-        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage()})`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
-        <div className="absolute inset-0 bg-black/50" />
-
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          {/* Packages Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
-          >
-            <FaShieldAlt className="text-base md:text-xl mr-2 md:mr-3" />
-            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
-              Health Packages
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-          >
-            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              Comprehensive Health Packages
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            Preventive Healthcare Plans Tailored for Your Well-being
-          </motion.p>
-        </div>
-      </motion.section>
-
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse" />
-        <div className="absolute bottom-20 right-10 w-24 h-24 bg-teal-100 rounded-full opacity-30 animate-bounce" />
-        <div className="absolute top-1/2 left-1/4 w-16 h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse" />
-        <div className="absolute top-1/3 right-1/4 w-20 h-20 bg-emerald-50 rounded-full opacity-20" />
-      </div>
+      {/* Hero Section */}
+      <HeroSection
+        backgroundImage={getHeroBgImage()}
+        badge={{ icon: FaBookMedical, text: "Health Packages" }}
+        title="Health Check Packages"
+        subtitle="Comprehensive Health Screenings for Your Well-being"
+      />
 
       {/* Packages Content Section */}
       <section className="py-20 bg-gradient-to-br from-white to-emerald-50/30 relative">
