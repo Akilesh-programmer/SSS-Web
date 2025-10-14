@@ -33,8 +33,20 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
         transition={{ duration: 1.5, ease: "easeOut" }}
       />
 
-      {/* Subtle Black Overlay - Keep Image Visible */}
-      <div className="absolute inset-0 bg-black/30" />
+      {/* Optimized Overlay - Balanced for text readability */}
+      {/* Base subtle darkening */}
+      <div className="absolute inset-0 bg-black/25" />
+
+      {/* Gradient from bottom for text area */}
+      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+
+      {/* Subtle vignette for depth */}
+      <div
+        className="absolute inset-0"
+        style={{
+          boxShadow: "inset 0 0 150px rgba(0,0,0,0.2)",
+        }}
+      />
 
       {/* Hero Content */}
       <div className="relative z-10 text-center text-white px-4 md:px-6 max-w-5xl mx-auto">
@@ -44,12 +56,16 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-white/15 backdrop-blur-md rounded-full border border-white/30 mb-6 md:mb-8 shadow-xl"
+            className="inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/40 mb-6 md:mb-8 shadow-xl"
+            style={{
+              boxShadow:
+                "0 8px 32px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2)",
+            }}
           >
             {typeof badge === "object" && badge.icon && badge.text ? (
               <>
-                <badge.icon className="text-base md:text-xl mr-2 md:mr-3" />
-                <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
+                <badge.icon className="text-base md:text-xl mr-2 md:mr-3 drop-shadow-lg" />
+                <span className="text-xs md:text-sm font-medium tracking-wide uppercase drop-shadow-lg">
                   {badge.text}
                 </span>
               </>
@@ -62,6 +78,10 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
         {/* Title */}
         <motion.h1
           className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight tracking-tight"
+          style={{
+            textShadow:
+              "0 2px 20px rgba(0,0,0,0.5), 0 4px 40px rgba(0,0,0,0.3)",
+          }}
           initial={{ y: 30, opacity: 0 }}
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
@@ -75,6 +95,10 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
         {subtitle && (
           <motion.p
             className="text-base md:text-xl lg:text-2xl text-white/95 font-light max-w-3xl mx-auto leading-relaxed"
+            style={{
+              textShadow:
+                "0 2px 15px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.8)",
+            }}
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.7 }}
