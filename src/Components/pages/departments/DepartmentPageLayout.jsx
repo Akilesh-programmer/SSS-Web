@@ -1,11 +1,18 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { FaUserMd, FaImages, FaExpand, FaGraduationCap } from "react-icons/fa";
+import {
+  FaUserMd,
+  FaImages,
+  FaExpand,
+  FaGraduationCap,
+  FaHospital,
+} from "react-icons/fa";
 import Navigation from "../../ui/Navigation";
 import Footer from "../../ui/Footer";
 import PageWrapper from "../../ui/PageWrapper";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
+import HeroSection from "../../ui/HeroSection";
 import departmentPageData from "../../../data/departmentPageData";
 import {
   departments,
@@ -544,69 +551,24 @@ const DepartmentPageLayout = () => {
     <PageWrapper pageKey={`department-${departmentId}`}>
       <Navigation />
 
-      {/* Hero Section with BG_Photos Background */}
-      <motion.section
-        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{
-            backgroundImage: `url(${getHeroBgImage(departmentId)})`,
-          }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
+      <div className="pt-20">
+        {/* Hero Section */}
+        <HeroSection
+          backgroundImage={getHeroBgImage(departmentId)}
+          badge={{ icon: FaUserMd, text: "Medical Department" }}
+          title={department.name}
+          subtitle="Expert Care, Advanced Technology, Compassionate Service"
         />
-        <div className="absolute inset-0 bg-black/50" />
 
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          {/* Department Badge */}
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
-          >
-            <FaUserMd className="text-base md:text-xl mr-2 md:mr-3" />
-            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
-              Medical Department
-            </span>
-          </motion.div>
+        {/* Department Content - Enhanced Medical Professional Design with Infrastructure Photos */}
+        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative">
+          {/* Subtle background pattern */}
+          <div className="absolute inset-0 opacity-5">
+            <div className="absolute top-10 left-10 w-32 h-32 border border-blue-300 rounded-full"></div>
+            <div className="absolute bottom-10 right-10 w-24 h-24 border border-teal-300 rounded-full"></div>
+          </div>
 
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-          >
-            <span className="bg-gradient-to-r from-white to-blue-100 bg-clip-text text-transparent">
-              {department.name}
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-xl text-white/90 mb-8"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            Expert Care, Advanced Technology, Compassionate Service
-          </motion.p>
-        </div>
-      </motion.section>
-
-      {/* Department Content - Enhanced Medical Professional Design with Infrastructure Photos */}
-      <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative">
-        {/* Subtle background pattern */}
-        <div className="absolute inset-0 opacity-5">
-          <div className="absolute top-10 left-10 w-32 h-32 border border-blue-300 rounded-full"></div>
-          <div className="absolute bottom-10 right-10 w-24 h-24 border border-teal-300 rounded-full"></div>
-        </div>
-
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
             {/* Content Column */}
             <div className="lg:col-span-2">
@@ -919,6 +881,7 @@ const DepartmentPageLayout = () => {
       )}
 
       {/* Contact CTA Section intentionally removed per request */}
+      </div>
 
       <Footer />
     </PageWrapper>

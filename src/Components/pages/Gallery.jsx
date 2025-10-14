@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import OptimizedImageGrid from "../ui/OptimizedImageGrid";
+import HeroSection from "../ui/HeroSection";
+import { FaHospital, FaPlayCircle, FaTimes, FaImages } from "react-icons/fa";
 
 // Using public assets for better performance during deployment
 const BG1 = "/assets/Final_Photos/DSC03391.webp";
@@ -30,7 +32,6 @@ const INF20 = "/assets/Infrastructure_Photos/IMG-20250923-WA0030.webp";
 const INF21 = "/assets/Infrastructure_Photos/IMG-20250923-WA0032.webp";
 const hospitalVideo = "/assets/Hospital Full Tour Video.mp4";
 const hospitalImg = "/assets/sss-hospital.avif";
-import { FaHospital, FaPlayCircle, FaTimes } from "react-icons/fa";
 
 // Central list of infrastructure images
 const infrastructureImageList = [
@@ -113,58 +114,15 @@ const Gallery = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-50 via-white to-emerald-50 pt-0">
-      {/* Hero Section (consistent style) */}
-      <motion.section
-        className="relative h-[60vh] min-h-[500px] flex items-center justify-center overflow-hidden"
-        initial={{ opacity: 0, scale: 1.05 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2, ease: "easeOut" }}
-      >
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat"
-          style={{ backgroundImage: `url(${getHeroBgImage()})` }}
-          initial={{ scale: 1.1 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        />
-        <div className="absolute inset-0 bg-black/50" />
+      {/* Hero Section */}
+      <HeroSection
+        backgroundImage={getHeroBgImage()}
+        badge={{ icon: FaImages, text: "Infrastructure Gallery" }}
+        title="Our Facilities"
+        subtitle="Explore Our State-of-the-Art Healthcare Infrastructure"
+      />
 
-        <div className="relative z-10 text-center text-white px-4 max-w-4xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: -20, scale: 0.9 }}
-            animate={{ opacity: 1, y: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3, ease: "easeOut" }}
-            className="inline-flex items-center px-4 md:px-6 py-2 md:py-3 bg-white/10 backdrop-blur-sm rounded-full border border-white/20 mb-6 md:mb-8"
-          >
-            <FaHospital className="text-base md:text-xl mr-2 md:mr-3" />
-            <span className="text-xs md:text-sm font-medium tracking-wide uppercase">
-              Hospital Gallery
-            </span>
-          </motion.div>
-
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6 leading-tight tracking-tight text-white"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 1.0, delay: 0.6, ease: "easeOut" }}
-          >
-            <span className="bg-gradient-to-r from-white to-emerald-100 bg-clip-text text-transparent">
-              Infrastructure Gallery
-            </span>
-          </motion.h1>
-
-          <motion.p
-            className="text-lg md:text-xl text-white/90"
-            initial={{ y: 30, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.9, ease: "easeOut" }}
-          >
-            Explore our advanced facilities & patient-centric spaces through a
-            curated visual experience.
-          </motion.p>
-        </div>
-      </motion.section>
-
+      {/* Main Content */}
       {/* Content */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
         {/* Section Header */}
