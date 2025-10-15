@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+  
+  <!-- Homepage -->
+  <url>
+    <loc>https://ssshospitals.in/</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+    <image:image>
+      <image:loc>https://ssshospitals.in/assets/heroes/main-1.avif</image:loc>
+      <image:title>SSS Super Speciality Hospital - Main Building</image:title>
+      <image:caption>Leading multi-speciality hospital in Erode, Tamil Nadu</image:caption>
+    </image:image>
+  </url>
+  
+  <!-- About Us -->
+  <url>
+    <loc>https://ssshospitals.in/about</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Specialities -->
+  <url>
+    <loc>https://ssshospitals.in/specialities</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Services -->
+  <url>
+    <loc>https://ssshospitals.in/services</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+  </url>
+  
+  <!-- Doctors -->
+  <url>
+    <loc>https://ssshospitals.in/doctors</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Packages -->
+  <url>
+    <loc>https://ssshospitals.in/packages</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Infrastructure Gallery -->
+  <url>
+    <loc>https://ssshospitals.in/infrastructure</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Rooms & Facilities -->
+  <url>
+    <loc>https://ssshospitals.in/rooms</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Contact -->
+  <url>
+    <loc>https://ssshospitals.in/contact</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Department Pages - High Priority Medical Specialities -->
+  
+  <!-- Cardiology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/cardiology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Neurology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/neurology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Orthopedics -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/orthopaedics</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Gastroenterology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/gastroenterology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Nephrology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/nephrology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Urology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/urology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Dermatology & Cosmetology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/dermatology-cosmetology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- ENT -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/ent-head-neck</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Ophthalmology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/ophthalmology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Obstetrics & Gynaecology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/obstetrics-gynaecology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Paediatrics -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/paediatrics</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- General Surgery -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/general-surgery</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Neuro Surgery -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/neuro-surgery</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Plastic Surgery -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/plastic-surgery</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Vascular Surgery -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/vascular-surgery</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Pulmonology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/pulmonology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Internal Medicine -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/internal-medicine</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Psychiatry -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/psychiatry</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Physiotherapy -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/physiotherapy-rehabilitation</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Radiology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/radiology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Anaesthesiology -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/anaesthesiology</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Dental & Oral Surgery -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/dental-oral-and-maxillofacial-surgery</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  
+  <!-- Accident & Emergency Care -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/accident-emergency-care</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+  <!-- Master Health Check up -->
+  <url>
+    <loc>https://ssshospitals.in/specialities/master-health-check-up</loc>
+    <lastmod>2025-10-15</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  
+</urlset>
