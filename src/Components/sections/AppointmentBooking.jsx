@@ -27,14 +27,12 @@ const StatItem = ({ number, label, icon: Icon, suffix = "" }) => {
       <div className="bg-gradient-to-br from-emerald-50 to-white/60 rounded-xl p-4 sm:p-5 shadow-md border border-emerald-100/40 hover:shadow-lg transition-shadow duration-200 h-full flex flex-col items-center justify-center w-full">
         <Icon className="text-3xl sm:text-4xl md:text-5xl text-emerald-600 mb-3 mx-auto" />
 
-        <div className="text-2xl sm:text-3xl md:text-3xl font-extrabold text-gray-800 mb-1 sm:mb-2">
+        <div className="text-display-md text-numeric text-gray-800 mb-1 sm:mb-2">
           {count}
           {suffix}
         </div>
 
-        <div className="text-gray-600 text-sm sm:text-sm md:text-base font-medium">
-          {label}
-        </div>
+        <div className="text-body-sm text-gray-600 font-medium">{label}</div>
       </div>
     </motion.div>
   );
@@ -92,10 +90,10 @@ const AppointmentBooking = () => {
               </div>
             </motion.div>
 
-            <h2 className="text-5xl font-bold text-emerald-900 mb-6">
+            <h2 className="text-display-lg text-emerald-900 mb-6">
               Your Health, Our Priority
             </h2>
-            <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed">
+            <p className="text-body-xl text-gray-600 max-w-3xl mx-auto">
               Book your appointment with our world-class medical experts.
               Experience healthcare excellence with state-of-the-art facilities
               and compassionate care.
@@ -140,10 +138,10 @@ const AppointmentBooking = () => {
               </div>
 
               <div className="relative text-center">
-                <h3 className="text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
+                <h3 className="text-heading-xl mb-4 bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
                   Ready to Book Your Appointment?
                 </h3>
-                <p className="text-gray-600 text-lg mb-8 max-w-2xl mx-auto">
+                <p className="text-body-lg text-gray-600 mb-8 max-w-2xl mx-auto">
                   Get immediate access to our comprehensive appointment booking
                   system. Choose your preferred doctor, time, and department
                   with just a few clicks.
@@ -153,12 +151,10 @@ const AppointmentBooking = () => {
                   onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl font-bold text-base sm:text-lg lg:text-xl shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-cta shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
                 >
                   <FaCalendarAlt className="text-sm sm:text-base" />
-                  <span className="text-sm sm:text-base lg:text-xl">
-                    Book Appointment Now
-                  </span>
+                  <span>Book Appointment Now</span>
                 </motion.button>
 
                 {/* Hospital Stats (compact on small screens) */}

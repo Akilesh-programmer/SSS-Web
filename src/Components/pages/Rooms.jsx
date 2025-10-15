@@ -155,7 +155,7 @@ const Rooms = () => {
               </span>
             </div>
 
-            <h2 className="text-3xl lg:text-4xl font-bold mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <h2 className="text-heading-xl mb-4 bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
               Patient Rooms & Facilities
             </h2>
             <p className="text-lg text-gray-600 max-w-3xl mx-auto">
@@ -174,7 +174,7 @@ const Rooms = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              <h3 className="text-heading-lg text-gray-800 mb-6">
                 Room Gallery
               </h3>
               <div className="grid grid-cols-2 gap-x-4 gap-y-20">
@@ -208,7 +208,7 @@ const Rooms = () => {
               viewport={{ once: true }}
               className="space-y-6"
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              <h3 className="text-heading-lg text-gray-800 mb-6">
                 Room Categories
               </h3>
               <div className="grid grid-cols-1 gap-4">
@@ -247,7 +247,7 @@ const Rooms = () => {
               variants={staggerContainer}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              <h3 className="text-heading-lg text-gray-800 mb-6">
                 Room Categories
               </h3>
               <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -282,7 +282,7 @@ const Rooms = () => {
               variants={staggerContainer}
               viewport={{ once: true }}
             >
-              <h3 className="text-2xl font-bold text-gray-800 mb-6">
+              <h3 className="text-heading-lg text-gray-800 mb-6">
                 Room Gallery
               </h3>
               <div className="grid grid-cols-1 gap-6">

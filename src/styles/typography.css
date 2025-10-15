@@ -1,0 +1,218 @@
+/**
+ * Professional Typography System
+ * Industry-grade font utilities for medical/healthcare websites
+ * Based on: Mayo Clinic, Cleveland Clinic, Johns Hopkins, Stripe, Linear
+ */
+
+/* ============================================
+   DISPLAY TYPOGRAPHY (Hero Sections, Major Headlines)
+   ============================================ */
+
+.text-display-xl {
+  font-family: var(--font-display);
+  font-size: clamp(3rem, 5vw, 4.5rem);
+  font-weight: var(--font-extrabold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-display-lg {
+  font-family: var(--font-display);
+  font-size: clamp(2.5rem, 4vw, 3.5rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-tight);
+  letter-spacing: var(--tracking-tight);
+}
+
+.text-display-md {
+  font-family: var(--font-display);
+  font-size: clamp(2rem, 3.5vw, 3rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+}
+
+/* ============================================
+   HEADING TYPOGRAPHY (Section Titles, Cards)
+   ============================================ */
+
+.text-heading-xl {
+  font-family: var(--font-display);
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: var(--font-bold);
+  line-height: var(--leading-snug);
+}
+
+.text-heading-lg {
+  font-family: var(--font-display);
+  font-size: clamp(1.5rem, 2.5vw, 1.875rem);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+}
+
+.text-heading-md {
+  font-family: var(--font-display);
+  font-size: clamp(1.25rem, 2vw, 1.5rem);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-snug);
+}
+
+.text-heading-sm {
+  font-family: var(--font-display);
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  font-weight: var(--font-semibold);
+  line-height: var(--leading-normal);
+}
+
+/* ============================================
+   BODY TYPOGRAPHY (Paragraphs, General Content)
+   ============================================ */
+
+.text-body-xl {
+  font-family: var(--font-sans);
+  font-size: clamp(1.125rem, 1.5vw, 1.25rem);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body-lg {
+  font-family: var(--font-sans);
+  font-size: clamp(1rem, 1.25vw, 1.125rem);
+  font-weight: var(--font-normal);
+  line-height: var(--leading-relaxed);
+}
+
+.text-body-md {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+}
+
+.text-body-sm {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: var(--font-normal);
+  line-height: var(--leading-normal);
+}
+
+.text-body-xs {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: var(--font-medium);
+  line-height: var(--leading-normal);
+  letter-spacing: var(--tracking-wide);
+}
+
+/* ============================================
+   LABEL & UI TYPOGRAPHY (Buttons, Forms, Navigation)
+   ============================================ */
+
+.text-label-lg {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+.text-label-md {
+  font-family: var(--font-sans);
+  font-size: 0.875rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wide);
+}
+
+.text-label-sm {
+  font-family: var(--font-sans);
+  font-size: 0.75rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: var(--tracking-wide);
+  text-transform: uppercase;
+}
+
+/* ============================================
+   FONT WEIGHT UTILITIES
+   ============================================ */
+
+.font-light { font-weight: var(--font-light); }
+.font-normal { font-weight: var(--font-normal); }
+.font-medium { font-weight: var(--font-medium); }
+.font-semibold { font-weight: var(--font-semibold); }
+.font-bold { font-weight: var(--font-bold); }
+.font-extrabold { font-weight: var(--font-extrabold); }
+.font-black { font-weight: var(--font-black); }
+
+/* ============================================
+   PROFESSIONAL EMPHASIS (Trust, Authority)
+   ============================================ */
+
+.text-emphasis-high {
+  font-weight: var(--font-bold);
+  color: #065f46; /* emerald-800 - Medical authority */
+}
+
+.text-emphasis-medium {
+  font-weight: var(--font-semibold);
+  color: #047857; /* emerald-700 */
+}
+
+.text-emphasis-subtle {
+  font-weight: var(--font-medium);
+  color: #059669; /* emerald-600 */
+}
+
+/* ============================================
+   ACCESSIBILITY & READABILITY
+   ============================================ */
+
+.text-readable {
+  max-width: 65ch; /* Optimal line length */
+  line-height: var(--leading-relaxed);
+}
+
+.text-balanced {
+  text-wrap: balance; /* Modern browsers only */
+}
+
+/* ============================================
+   SPECIAL USE CASES
+   ============================================ */
+
+/* Numbers & Stats (Dashboards, Metrics) */
+.text-numeric {
+  font-family: var(--font-sans);
+  font-variant-numeric: tabular-nums;
+  font-feature-settings: 'tnum' on, 'lnum' on;
+}
+
+/* Medical Terminology (Professional precision) */
+.text-medical {
+  font-family: var(--font-sans);
+  font-weight: var(--font-medium);
+  letter-spacing: 0.01em;
+}
+
+/* Call-to-Action Buttons */
+.text-cta {
+  font-family: var(--font-sans);
+  font-size: 1rem;
+  font-weight: var(--font-semibold);
+  letter-spacing: 0.01em;
+}
+
+/* ============================================
+   RESPONSIVE TYPOGRAPHY HELPERS
+   ============================================ */
+
+@media (max-width: 640px) {
+  .text-responsive-sm {
+    font-size: 0.875rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .text-responsive-lg {
+    font-size: 1.125rem;
+  }
+}

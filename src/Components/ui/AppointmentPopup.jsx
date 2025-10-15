@@ -213,7 +213,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.3 }}
-        className="text-3xl font-bold text-gray-900 mb-4"
+        className="text-heading-xl text-gray-900 mb-4"
       >
         Appointment Request Sent!
       </motion.h3>
@@ -222,7 +222,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.4 }}
-        className="text-lg text-gray-600 mb-6 max-w-md mx-auto"
+        className="text-body-lg text-gray-600 mb-6 max-w-md mx-auto"
       >
         Thank you for choosing SSS Super Speciality Hospital. We have received
         your appointment request and will contact you shortly.
@@ -236,10 +236,12 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
       >
         <div className="flex items-center justify-center mb-3">
           <FaPhone className="text-emerald-600 mr-2" />
-          <p className="text-emerald-800 font-semibold">Emergency Contact</p>
+          <p className="text-body-md text-emerald-800 font-semibold">
+            Emergency Contact
+          </p>
         </div>
-        <p className="text-emerald-900 text-xl font-bold">+91 9876543210</p>
-        <p className="text-emerald-700 text-sm">Available 24/7</p>
+        <p className="text-heading-md text-emerald-900">+91 9876543210</p>
+        <p className="text-body-sm text-emerald-700">Available 24/7</p>
       </motion.div>
 
       <motion.button
@@ -347,7 +349,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                 <motion.h2
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
-                  className="text-3xl font-bold flex items-center gap-3 mb-2"
+                  className="text-heading-xl flex items-center gap-3 mb-2"
                 >
                   <motion.div
                     animate={{ rotate: [0, -10, 10, 0] }}
@@ -386,13 +388,13 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                       transition={{ delay: 0.2 }}
                       className="space-y-6"
                     >
-                      <h4 className="text-xl font-semibold text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
+                      <h4 className="text-heading-md text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
                         <FaUser className="text-emerald-600" />
                         Personal Information
                       </h4>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="text-label-md block font-medium text-gray-700 mb-2">
                           Full Name *
                         </label>
                         <input
@@ -407,7 +409,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="text-label-md block font-medium text-gray-700 mb-2">
                           Email Address *
                         </label>
                         <input
@@ -422,7 +424,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="text-label-md block font-medium text-gray-700 mb-2">
                           Phone Number *
                         </label>
                         <input
@@ -444,13 +446,13 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                       transition={{ delay: 0.3 }}
                       className="space-y-6"
                     >
-                      <h4 className="text-xl font-semibold text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
+                      <h4 className="text-heading-md text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
                         <FaUserMd className="text-emerald-600" />
                         Appointment Details
                       </h4>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="text-label-md block font-medium text-gray-700 mb-2">
                           Department *
                         </label>
                         <select
@@ -470,7 +472,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                       </div>
 
                       <div>
-                        <label className="block text-sm font-medium text-gray-700 mb-2">
+                        <label className="text-label-md block font-medium text-gray-700 mb-2">
                           Preferred Doctor (Optional)
                         </label>
                         <input
@@ -485,7 +487,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
 
                       <div className="grid grid-cols-2 gap-4">
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="text-label-md block font-medium text-gray-700 mb-2">
                             Preferred Date *
                           </label>
                           <input
@@ -500,7 +502,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                         </div>
 
                         <div>
-                          <label className="block text-sm font-medium text-gray-700 mb-2">
+                          <label className="text-label-md block font-medium text-gray-700 mb-2">
                             Preferred Time *
                           </label>
                           <select
@@ -529,7 +531,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
                     transition={{ delay: 0.4 }}
                     className="mt-8"
                   >
-                    <label className="block text-sm font-medium text-gray-700 mb-2">
+                    <label className="text-label-md block font-medium text-gray-700 mb-2">
                       Additional Message (Optional)
                     </label>
                     <textarea

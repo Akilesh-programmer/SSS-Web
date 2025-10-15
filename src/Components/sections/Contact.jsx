@@ -196,7 +196,7 @@ const Contact = () => {
         <motion.section {...riseIn(0.2, 0.8)} className="mb-12 lg:mb-16">
           <motion.h2
             {...fadeIn(0.3, 0.6)}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-10 lg:mb-12 text-gray-800 px-4"
+            className="text-heading-xl text-center mb-8 sm:mb-10 lg:mb-12 text-gray-800 px-4"
           >
             Quick Actions
           </motion.h2>
@@ -238,10 +238,10 @@ const Contact = () => {
                 >
                   <action.icon className="text-3xl sm:text-3xl lg:text-4xl mb-2 sm:mb-3 lg:mb-4 mx-auto" />
                 </motion.div>
-                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-center mb-1 sm:mb-2">
+                <h3 className="text-heading-md text-center mb-1 sm:mb-2">
                   {action.title}
                 </h3>
-                <p className="text-center opacity-90 text-sm sm:text-sm lg:text-base">
+                <p className="text-body-sm text-center opacity-90">
                   {action.subtitle}
                 </p>
               </motion.div>
@@ -256,7 +256,7 @@ const Contact = () => {
         >
           <motion.h2
             {...fadeIn(0.5, 0.6)}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
+            className="text-heading-xl text-center mb-8 sm:mb-12 text-gray-800"
           >
             Contact Information
           </motion.h2>
@@ -312,13 +312,13 @@ const Contact = () => {
                     }`}
                   />
                 </motion.div>
-                <h3 className="text-base sm:text-lg lg:text-xl font-bold text-center mb-2 sm:mb-3 text-gray-800">
+                <h3 className="text-heading-md text-center mb-2 sm:mb-3 text-gray-800">
                   {info.title}
                 </h3>
-                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-sm sm:text-sm lg:text-base">
+                <p className="text-body-sm text-center font-semibold text-gray-700 mb-1 sm:mb-2">
                   {info.primary}
                 </p>
-                <p className="text-center font-semibold text-gray-700 mb-1 sm:mb-2 text-sm sm:text-sm lg:text-base">
+                <p className="text-body-sm text-center font-semibold text-gray-700 mb-1 sm:mb-2">
                   {info.secondary}
                 </p>
               </motion.div>
@@ -335,7 +335,7 @@ const Contact = () => {
         >
           <motion.h2
             {...fadeIn(0.9, 0.6)}
-            className="text-2xl sm:text-3xl lg:text-4xl font-bold text-center mb-8 sm:mb-12 text-gray-800"
+            className="text-heading-xl text-center mb-8 sm:mb-12 text-gray-800"
           >
             Follow Us
           </motion.h2>

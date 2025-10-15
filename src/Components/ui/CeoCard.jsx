@@ -56,7 +56,7 @@ const CeoCard = () => {
             </span>
           </div>
 
-          <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-2 md:whitespace-nowrap text-center lg:text-left">
+          <h3 className="text-heading-xl text-gray-900 mb-2 md:whitespace-nowrap text-center lg:text-left">
             {name}
           </h3>
           <p className="text-emerald-600 font-semibold text-base sm:text-lg mb-4 text-center lg:text-left">

@@ -221,7 +221,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
             viewport={{ once: true }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-emerald-700 to-gray-800 bg-clip-text text-transparent mb-6"
+            className="text-display-xl bg-gradient-to-r from-gray-800 via-emerald-700 to-gray-800 bg-clip-text text-transparent mb-6"
           >
             What Patients Say About Us
           </motion.h2>
@@ -329,7 +329,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                         className="mt-2 flex items-center space-x-4"
                       >
                         <div className="w-14 h-14 rounded-full overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shadow-inner border border-emerald-300/30">
-                          <span className="text-lg font-bold text-emerald-700">
+                          <span className="text-heading-sm text-emerald-700">
                             {(d.name || "")
                               .split(" ")
                               .map((n) => n[0])
@@ -338,7 +338,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                           </span>
                         </div>
                         <div>
-                          <div className="text-lg font-bold text-gray-900">
+                          <div className="text-heading-sm text-gray-900">
                             {d.name || "Anonymous"}
                           </div>
                         </div>
@@ -375,7 +375,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                         ))}
                       </motion.div>
 
-                      <p className="text-gray-700 text-base sm:text-lg leading-relaxed font-medium mt-4">
+                      <p className="text-body-lg text-gray-700 font-medium mt-4">
                         {truncate(d.review)}
                       </p>
 
@@ -512,7 +512,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                           className="mt-2 flex items-center space-x-4"
                         >
                           <div className="w-16 h-16 rounded-full overflow-hidden bg-gradient-to-br from-emerald-100 to-emerald-200 flex items-center justify-center shadow-lg border border-emerald-300/30">
-                            <span className="text-xl font-bold text-emerald-700">
+                            <span className="text-heading-md text-emerald-700">
                               {(active.name || "")
                                 .split(" ")
                                 .map((n) => n[0])
@@ -521,7 +521,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                             </span>
                           </div>
                           <div>
-                            <div className="text-xl font-bold text-gray-900">
+                            <div className="text-heading-md text-gray-900">
                               {active.name}
                             </div>
                           </div>

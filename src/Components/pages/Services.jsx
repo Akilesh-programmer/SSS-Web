@@ -271,7 +271,7 @@ const Services = () => {
         badge={
           <>
             <FaStethoscope className="text-lg md:text-xl mr-2 md:mr-3 text-emerald-300" />
-            <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-white">
+            <span className="text-label-sm tracking-wider uppercase text-white">
               Healthcare Excellence
             </span>
           </>
@@ -347,14 +347,14 @@ const Services = () => {
                       whileHover={{ scale: 1.05 }}
                     >
                       <FaStethoscope className="text-emerald-600 text-lg" />
-                      <span className="text-emerald-700 font-bold text-sm tracking-wide uppercase">
+                      <span className="text-label-sm text-emerald-700 tracking-wide uppercase">
                         Medical Services
                       </span>
                     </motion.div>
 
                     {/* Enhanced Heading */}
                     <motion.h2
-                      className="text-3xl sm:text-4xl lg:text-5xl font-bold mb-6 leading-tight"
+                      className="text-display-lg mb-6"
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
@@ -366,7 +366,7 @@ const Services = () => {
                     </motion.h2>
 
                     <motion.p
-                      className="text-lg text-gray-600 leading-relaxed max-w-2xl mx-auto"
+                      className="text-body-lg text-gray-600 max-w-2xl mx-auto"
                       initial={{ opacity: 0 }}
                       whileInView={{ opacity: 1 }}
                       viewport={{ once: true }}
@@ -416,7 +416,7 @@ const Services = () => {
                             <div className="absolute inset-0 bg-white/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                           </motion.div>
 
-                          <h3 className="text-xs font-bold text-gray-800 group-hover:text-emerald-600 transition-colors leading-tight px-2 relative z-10">
+                          <h3 className="text-label-md text-gray-800 group-hover:text-emerald-600 transition-colors px-2 relative z-10">
                             {service.name}
                           </h3>
 
@@ -489,18 +489,18 @@ const Services = () => {
                   whileTap={{ scale: 0.95 }}
                 >
                   <FaStethoscope className="text-emerald-600 text-base" />
-                  <span className="text-emerald-700 font-bold text-sm uppercase tracking-wide">
+                  <span className="text-label-sm text-emerald-700 uppercase tracking-wide">
                     Medical Services
                   </span>
                 </motion.div>
 
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4 leading-tight px-4">
+                <h2 className="text-heading-xl mb-4 px-4">
                   <span className="bg-gradient-to-r from-emerald-600 via-green-600 to-emerald-600 bg-clip-text text-transparent">
                     Healthcare Services
                   </span>
                 </h2>
 
-                <p className="text-gray-600 leading-relaxed px-4 text-base">
+                <p className="text-body-md text-gray-600 px-4">
                   Advanced medical facilities and expert care
                 </p>
               </div>
@@ -534,7 +534,7 @@ const Services = () => {
                         <div className="absolute inset-0 bg-white/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                       </motion.div>
 
-                      <h3 className="text-sm font-bold text-gray-800 group-hover:text-emerald-600 group-active:text-emerald-600 transition-colors leading-snug relative z-10">
+                      <h3 className="text-body-md text-gray-800 group-hover:text-emerald-600 group-active:text-emerald-600 transition-colors relative z-10">
                         {service.name}
                       </h3>
 
@@ -561,16 +561,16 @@ const Services = () => {
                   viewport={{ once: true }}
                 >
                   <FaImages className="text-gray-600 text-base" />
-                  <span className="text-gray-700 font-bold text-sm uppercase tracking-wide">
+                  <span className="text-label-sm text-gray-700 uppercase tracking-wide">
                     Gallery ({allImages.length})
                   </span>
                 </motion.div>
-                <h2 className="text-3xl sm:text-4xl font-bold mb-4 px-4 leading-tight">
+                <h2 className="text-heading-xl mb-4 px-4">
                   <span className="bg-gradient-to-r from-gray-700 via-gray-800 to-gray-700 bg-clip-text text-transparent">
                     Our Facilities
                   </span>
                 </h2>
-                <p className="text-gray-600 leading-relaxed px-4">
+                <p className="text-body-md text-gray-600 px-4">
                   State-of-the-art medical facilities and equipment
                 </p>
               </div>
@@ -608,11 +608,16 @@ const Services = () => {
         </div>
       </section>
 
-      {/* Enhanced Image Modal with Navigation */}
+      {/* Enhanced Image Modal with Navigation - Glossy Transparent Background */}
       <AnimatePresence>
         {selectedImage && (
           <motion.div
-            className="fixed inset-0 bg-black/90 backdrop-blur-md flex items-center justify-center z-50 p-4 md:p-8"
+            className="fixed inset-0 flex items-center justify-center z-50 p-4 md:p-8"
+            style={{
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -630,13 +635,13 @@ const Services = () => {
               {/* Header Bar */}
               <div className="flex items-center justify-between mb-4 px-2">
                 <motion.div
-                  className="flex items-center gap-3 text-white"
+                  className="flex items-center gap-3 text-gray-900"
                   initial={{ opacity: 0, x: -20 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.2 }}
                 >
-                  <div className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-full px-4 py-2">
-                    <span className="text-sm font-medium">
+                  <div className="bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
+                    <span className="text-sm font-semibold">
                       {currentImageIndex + 1} /{" "}
                       {(() => {
                         if (imageCategory === "left") return leftImages.length;
@@ -651,7 +656,7 @@ const Services = () => {
                 {/* Close Button */}
                 <motion.button
                   onClick={closeModal}
-                  className="bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 text-white transition-all duration-300 group"
+                  className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, rotate: -90 }}
@@ -682,7 +687,7 @@ const Services = () => {
                     e.stopPropagation();
                     navigateImage("prev");
                   }}
-                  className="absolute left-2 md:left-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                  className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, x: -5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, x: -20 }}
@@ -716,7 +721,7 @@ const Services = () => {
                     e.stopPropagation();
                     navigateImage("next");
                   }}
-                  className="absolute right-2 md:right-4 z-20 bg-white/10 hover:bg-white/20 backdrop-blur-sm border border-white/20 rounded-full p-3 md:p-4 text-white transition-all duration-300 group"
+                  className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
                   whileHover={{ scale: 1.1, x: 5 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, x: 20 }}
@@ -729,7 +734,7 @@ const Services = () => {
 
               {/* Keyboard Hint */}
               <motion.div
-                className="mt-4 flex items-center justify-center gap-4 text-white/60 text-sm"
+                className="mt-4 flex items-center justify-center gap-4 text-gray-700 text-sm bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg font-medium"
                 initial={{ opacity: 0, y: 10 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.5 }}
