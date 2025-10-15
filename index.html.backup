@@ -1,7 +1,4 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<meta charset="UTF-8" />
     
     <!-- Favicon Setup - LARGE ICONS for Maximum Visibility -->
     <!-- Primary: 64x64 PNG for crisp, visible icons in browser tabs -->
@@ -19,11 +16,28 @@
     
     <!-- PWA Manifest (includes 192x192 and 512x512 icons) -->
     <link rel="manifest" href="/site.webmanifest" />
+  <head>
+    <meta charset="UTF-8" />
     
+    <!-- Modern Favicon Setup - Industry Standard -->
+    <!-- SVG favicon for modern browsers (scalable, smallest file) -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    
+    <!-- PNG fallback for browsers without SVG support -->
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    
+    <!-- Apple Touch Icon for iOS/macOS -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    
+    <!-- Legacy ICO for old browsers -->
+    <link rel="shortcut icon" href="/favicon.ico" />
+    
+    <!-- PWA Manifest (includes 192x192 and 512x512 icons) -->
+    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" content="#10b981" />
     <title>SSS Super Speciality Hospital - Best Healthcare in Erode</title>
-    <link
+     <link
       href="https://fonts.googleapis.com/css2?family=Comfortaa:wght@300..700&family=DM+Serif+Text:ital@0;1&family=Host+Grotesk:ital,wght@0,300..800;1,300..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Pacifico&family=Raleway:ital,wght@0,100..900;1,100..900&family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&family=Vibur&display=swap"
       rel="stylesheet"
     />
