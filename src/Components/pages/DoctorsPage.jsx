@@ -354,7 +354,7 @@ const DoctorsPage = () => {
             <div className="flex flex-col lg:flex-row items-start lg:items-center justify-between gap-4 lg:gap-6 mb-6">
               {/* Results Summary */}
               <div className="flex items-center gap-4">
-                <h3 className="text-lg lg:text-xl font-semibold text-gray-700">
+                <h3 className="text-heading-sm font-semibold text-gray-700">
                   Medical Specialists
                 </h3>
                 <div className="bg-emerald-100 text-emerald-700 px-3 py-1 rounded-full text-sm font-medium">
@@ -597,7 +597,7 @@ const DoctorsPage = () => {
                   className="col-span-full text-center py-16"
                 >
                   <div className="text-6xl text-emerald-300 mb-4">🔍</div>
-                  <h3 className="text-xl font-semibold text-gray-600 mb-2">
+                  <h3 className="text-heading-sm font-semibold text-gray-600 mb-2">
                     No doctors found
                   </h3>
                   <p className="text-gray-500 mb-6">
@@ -665,7 +665,7 @@ const DoctorsPage = () => {
 
                   <div className="text-center sm:text-left flex-1">
                     <div className="flex items-center gap-3 justify-center sm:justify-start mb-2">
-                      <h2 className="text-2xl sm:text-3xl font-bold">
+                      <h2 className="text-heading-lg">
                         {selectedDoctor.name}
                       </h2>
                       {selectedDoctor.isFounder && (
@@ -698,7 +698,7 @@ const DoctorsPage = () => {
                     <div className="w-10 h-10 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full flex items-center justify-center">
                       <FaGraduationCap className="text-white text-lg" />
                     </div>
-                    <h3 className="text-xl font-bold text-gray-800">
+                    <h3 className="text-heading-md text-gray-800">
                       Qualifications
                     </h3>
                   </div>

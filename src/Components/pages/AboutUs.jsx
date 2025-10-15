@@ -39,10 +39,7 @@ const getHeroBgImage = () => {
 const AnimatedCounter = ({ end, suffix = "", className = "" }) => {
   const { count, ref } = useCountAnimation(end, 2000);
   return (
-    <div
-      ref={ref}
-      className={`text-4xl lg:text-5xl font-bold mb-2 ${className}`}
-    >
+    <div ref={ref} className={`text-display-lg mb-2 ${className}`}>
       {count}
       {suffix}
     </div>
@@ -140,7 +137,7 @@ const AboutUs = () => {
               {/* Tag removed as requested */}
             </motion.div>
 
-            <h2 className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-8">
+            <h2 className="text-display-xl bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-8">
               Our Healthcare Excellence
             </h2>
 
@@ -169,11 +166,11 @@ const AboutUs = () => {
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
-                    <h3 className="text-xl font-bold text-gray-800">
+                    <h3 className="text-heading-md text-gray-800">
                       Our Journey
                     </h3>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-body-md text-gray-600">
                     Established in May 2025, we began as a multi-speciality
                     hospital with 25 broad and super-speciality consultants.
                     Today, we have evolved into a comprehensive 150-bedded
@@ -189,11 +186,11 @@ const AboutUs = () => {
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
-                    <h3 className="text-xl font-bold text-gray-800">
+                    <h3 className="text-heading-md text-gray-800">
                       Our Excellence
                     </h3>
                   </div>
-                  <p className="text-gray-600 leading-relaxed">
+                  <p className="text-body-md text-gray-600">
                     Equipped with state-of-the-art technology and supported by
                     highly experienced specialists and paramedical staff, we are
                     the preferred choice for comprehensive healthcare in the
@@ -217,11 +214,9 @@ const AboutUs = () => {
           >
             <div className="flex items-center justify-center gap-3 mb-3">
               <FaUsers className="text-3xl text-teal-600" />
-              <h2 className="text-3xl lg:text-4xl font-bold text-gray-900">
-                Our Leaders
-              </h2>
+              <h2 className="text-heading-xl text-gray-900">Our Leaders</h2>
             </div>
-            <p className="text-lg text-gray-600 max-w-3xl mx-auto">
+            <p className="text-body-lg text-gray-600 max-w-3xl mx-auto">
               Discover the vision and commitment that drive SSS Super Speciality
               Hospital through the words of our Chairman and Founder.
             </p>
@@ -267,15 +262,15 @@ const AboutUs = () => {
                   <div className="flex-1">
                     <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
                       <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
-                      <span className="text-xs font-semibold text-emerald-700 tracking-wide">
+                      <span className="text-label-sm text-emerald-700 tracking-wide">
                         MISSION
                       </span>
                     </div>
 
-                    <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
+                    <h4 className="text-heading-lg text-emerald-900 mb-4">
                       Our Mission
                     </h4>
-                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                    <p className="text-body-lg text-gray-700">
                       To provide comprehensive, compassionate, and accessible
                       healthcare services that meet the highest standards of
                       medical excellence, while fostering a healing environment
@@ -298,15 +293,15 @@ const AboutUs = () => {
                   <div className="flex-1">
                     <div className="inline-flex items-center px-3 py-1 rounded-full bg-emerald-100/50 shadow-sm mb-4">
                       <span className="w-2 h-2 bg-emerald-600 rounded-full mr-2" />
-                      <span className="text-xs font-semibold text-emerald-700 tracking-wide">
+                      <span className="text-label-sm text-emerald-700 tracking-wide">
                         VISION
                       </span>
                     </div>
 
-                    <h4 className="text-2xl lg:text-3xl font-bold text-emerald-900 mb-4">
+                    <h4 className="text-heading-lg text-emerald-900 mb-4">
                       Our Vision
                     </h4>
-                    <p className="text-gray-700 leading-relaxed text-base md:text-lg">
+                    <p className="text-body-lg text-gray-700">
                       To lead healthcare innovation, setting new standards for
                       excellence and patient satisfaction in our community and
                       beyond.
@@ -354,7 +349,7 @@ const AboutUs = () => {
               </span>
             </motion.div>
 
-            <h2 className="text-3xl lg:text-4xl font-bold text-slate-700 mb-6">
+            <h2 className="text-heading-xl text-slate-700 mb-6">
               Advanced Care Facilities
             </h2>
             <p className="text-xl text-slate-600 max-w-3xl mx-auto">
@@ -381,7 +376,7 @@ const AboutUs = () => {
                 className="text-center bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/40 hover:bg-white/80 hover:shadow-md transition-all duration-300"
               >
                 <unit.icon className="text-4xl lg:text-5xl text-slate-500 mb-4 mx-auto" />
-                <div className="text-3xl lg:text-4xl font-bold text-slate-700 mb-2">
+                <div className="text-heading-xl text-slate-700 mb-2">
                   <AnimatedCounter
                     end={unit.number}
                     className="text-slate-700"
@@ -416,7 +411,7 @@ const AboutUs = () => {
               </span>
             </motion.div>
 
-            <h2 className="text-3xl lg:text-4xl font-bold bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
+            <h2 className="text-heading-xl bg-gradient-to-r from-emerald-700 via-teal-600 to-emerald-700 bg-clip-text text-transparent mb-6">
               Excellence in Critical Care
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
@@ -480,7 +475,7 @@ const AboutUs = () => {
 
                     <div className="flex-1">
                       <div className="flex items-center gap-2 mb-3">
-                        <h3 className="text-xl font-bold text-gray-900 group-hover:text-emerald-900 transition-colors duration-300">
+                        <h3 className="text-heading-md text-gray-900 group-hover:text-emerald-900 transition-colors duration-300">
                           {care.title}
                         </h3>
                         <div className="w-6 h-6 bg-emerald-100 rounded-full flex items-center justify-center">
@@ -547,7 +542,7 @@ const AboutUs = () => {
               </span>
             </div>
 
-            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+            <h2 className="text-display-xl text-white mb-6 leading-tight">
               Why Choose{" "}
               <span className="block text-emerald-200">
                 SSS Super Speciality Hospital?
@@ -658,7 +653,7 @@ const AboutUs = () => {
                     className="bg-white/90 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/40 hover:bg-white/95 transition-all duration-300"
                   >
                     <stat.icon className="text-3xl text-emerald-600 mx-auto mb-3" />
-                    <div className="text-2xl font-bold text-gray-900 mb-1 tabular-nums">
+                    <div className="text-heading-lg text-gray-900 mb-1 tabular-nums">
                       {stat.isDayHour ? (
                         <span className="whitespace-nowrap">
                           <AnimatedCounter
@@ -685,7 +680,7 @@ const AboutUs = () => {
               <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/40">
                 <div className="flex items-center gap-3 mb-4">
                   <FaHeartbeat className="text-2xl text-emerald-600" />
-                  <h3 className="text-xl font-bold text-gray-900">
+                  <h3 className="text-heading-md text-gray-900">
                     Patient-Centered Care
                   </h3>
                 </div>
