@@ -338,7 +338,7 @@ const Navigation = () => {
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
                   }}
                 >
-                  <FaCalendarPlus className="text-sm" />
+                  <FaCalendarPlus className="text-lg" />
                   <span>Book Appointment</span>
                 </motion.button>
 
@@ -353,7 +353,7 @@ const Navigation = () => {
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
                   }}
                 >
-                  <FaAmbulance className="text-sm animate-pulse" />
+                  <FaAmbulance className="text-lg animate-pulse" />
                   <div className="flex flex-col text-left">
                     <span className="text-body-sm font-semibold leading-tight">
                       Emergency
@@ -389,8 +389,8 @@ const Navigation = () => {
               style={mobileMenuStyle}
             >
               <div className="container mx-auto px-4 py-6">
-                {/* Action Buttons First */}
-                <div className="grid grid-cols-2 gap-3 mb-6">
+                {/* Action Buttons First - Stacked Vertically for Better Mobile UI */}
+                <div className="flex flex-col gap-3 mb-6">
                   {/* Mobile Book Appointment */}
                   <motion.button
                     onClick={() => {
@@ -399,10 +399,12 @@ const Navigation = () => {
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg"
+                    className="flex items-center justify-center space-x-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg w-full"
                   >
-                    <FaCalendarPlus className="text-sm" />
-                    <span>Book Appointment</span>
+                    <FaCalendarPlus className="text-xl" />
+                    <span className="text-base font-semibold">
+                      Book Appointment
+                    </span>
                   </motion.button>
 
                   {/* Mobile Emergency Button */}
@@ -413,10 +415,17 @@ const Navigation = () => {
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg"
+                    className="flex items-center justify-center space-x-3 px-6 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg w-full"
                   >
-                    <FaAmbulance className="text-sm animate-pulse" />
-                    <span>Emergency</span>
+                    <FaAmbulance className="text-xl animate-pulse" />
+                    <div className="flex flex-col text-center">
+                      <span className="text-base font-semibold leading-tight">
+                        Emergency
+                      </span>
+                      <span className="text-sm opacity-90 leading-tight">
+                        +91 8925931193
+                      </span>
+                    </div>
                   </motion.button>
                 </div>
 
