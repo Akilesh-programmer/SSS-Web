@@ -23,7 +23,7 @@ const FounderSection = () => {
               />
               <div className="absolute inset-0 bg-gradient-to-t from-emerald-900/50 to-transparent"></div>
               <div className="absolute bottom-4 left-4 text-white">
-                <h3 className="text-xl font-bold">Dr. S. Sanjith</h3>
+                <h3 className="text-heading-md">Dr. S. Sanjith</h3>
                 <p className="text-emerald-200">MD (DERM)</p>
               </div>
             </div>
@@ -38,12 +38,12 @@ const FounderSection = () => {
               >
                 <div className="flex items-center gap-3 mb-4">
                   <FaUserMd className="text-emerald-600 text-2xl" />
-                  <h2 className="text-3xl font-bold text-gray-900">
+                  <h2 className="text-heading-xl text-gray-900">
                     Meet Our Founder
                   </h2>
                 </div>
 
-                <h3 className="text-xl font-semibold text-emerald-600 mb-2">
+                <h3 className="text-heading-sm font-semibold text-emerald-600 mb-2">
                   Dr. S. Sanjith, MD (DERM)
                 </h3>
                 <p className="text-gray-600 mb-4">

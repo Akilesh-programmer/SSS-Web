@@ -224,7 +224,7 @@ const Packages = () => {
                         <IconComponent className="w-8 h-8" />
                       </div>
                       <div className="text-right">
-                        <div className="text-3xl font-bold text-emerald-600">
+                        <div className="text-heading-xl text-emerald-600">
                           {pkg.price}
                         </div>
                         <div className="text-sm text-gray-500 font-medium">
@@ -234,7 +234,7 @@ const Packages = () => {
                     </div>
 
                     {/* Package Name */}
-                    <h3 className="text-xl lg:text-2xl font-bold text-gray-800 mb-6 group-hover:text-emerald-600 transition-colors leading-tight">
+                    <h3 className="text-heading-md text-gray-800 mb-6 group-hover:text-emerald-600 transition-colors leading-tight">
                       {pkg.name}
                     </h3>
 

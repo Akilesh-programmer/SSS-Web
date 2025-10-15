@@ -181,7 +181,7 @@ const Gallery = () => {
                 INFRASTRUCTURE
               </span>
             </div>
-            <h2 className="text-3xl sm:text-4xl font-bold mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+            <h2 className="text-heading-xl mb-4 bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
               World-Class Medical Facilities
             </h2>
             <p className="text-gray-600 max-w-xl leading-relaxed">
@@ -240,7 +240,7 @@ const Gallery = () => {
         <div className="mt-24">
           <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
             <div>
-              <h3 className="text-2xl sm:text-3xl font-bold mb-3 bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
+              <h3 className="text-heading-lg mb-3 bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
                 Full Hospital Tour
               </h3>
               <p className="text-gray-600 max-w-2xl leading-relaxed">

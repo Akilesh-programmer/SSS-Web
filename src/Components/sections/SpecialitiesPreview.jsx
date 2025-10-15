@@ -317,7 +317,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h3 className="text-3xl lg:text-4xl font-bold text-emerald-900">
+          <h3 className="text-heading-xl text-emerald-900">
             Our Key Specialities
           </h3>
           <p className="text-gray-600 max-w-2xl mx-auto mt-3">
