@@ -198,9 +198,7 @@ export default function Home() {
                   <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <FaStethoscope className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-heading-md text-gray-900">
-                    24/7
-                  </p>
+                  <p className="text-heading-md text-gray-900">24/7</p>
                   <p className="text-xs lg:text-sm text-gray-600">
                     Emergency Care
                   </p>

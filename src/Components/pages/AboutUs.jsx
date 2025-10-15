@@ -39,10 +39,7 @@ const getHeroBgImage = () => {
 const AnimatedCounter = ({ end, suffix = "", className = "" }) => {
   const { count, ref } = useCountAnimation(end, 2000);
   return (
-    <div
-      ref={ref}
-      className={`text-display-lg mb-2 ${className}`}
-    >
+    <div ref={ref} className={`text-display-lg mb-2 ${className}`}>
       {count}
       {suffix}
     </div>
@@ -217,9 +214,7 @@ const AboutUs = () => {
           >
             <div className="flex items-center justify-center gap-3 mb-3">
               <FaUsers className="text-3xl text-teal-600" />
-              <h2 className="text-heading-xl text-gray-900">
-                Our Leaders
-              </h2>
+              <h2 className="text-heading-xl text-gray-900">Our Leaders</h2>
             </div>
             <p className="text-body-lg text-gray-600 max-w-3xl mx-auto">
               Discover the vision and commitment that drive SSS Super Speciality
