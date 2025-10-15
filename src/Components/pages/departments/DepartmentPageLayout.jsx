@@ -551,7 +551,7 @@ const DepartmentPageLayout = () => {
     <PageWrapper pageKey={`department-${departmentId}`}>
       <Navigation />
 
-      <div className="pt-20">
+      <div className="pt-20 overflow-x-hidden">
         {/* Hero Section */}
         <HeroSection
           backgroundImage={getHeroBgImage(departmentId)}
@@ -561,7 +561,7 @@ const DepartmentPageLayout = () => {
         />
 
         {/* Department Content - Enhanced Medical Professional Design with Infrastructure Photos */}
-        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative">
+        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative overflow-x-hidden">
           {/* Subtle background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-10 left-10 w-32 h-32 border border-blue-300 rounded-full"></div>
@@ -571,12 +571,12 @@ const DepartmentPageLayout = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
               {/* Content Column */}
-              <div className="lg:col-span-2">
+              <div className="lg:col-span-2 overflow-x-hidden">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
-                  className="markdown-content prose prose-xl max-w-none"
+                  className="markdown-content prose prose-lg md:prose-xl max-w-none overflow-x-hidden break-words"
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
@@ -586,7 +586,7 @@ const DepartmentPageLayout = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6 }}
-                          className="text-3xl md:text-heading-xl text-gray-800 mb-8 mt-16 first:mt-0 border-l-4 border-blue-600 pl-6 bg-gradient-to-r from-blue-50 to-transparent py-4 -ml-6"
+                          className="text-2xl md:text-3xl lg:text-heading-xl text-gray-800 mb-8 mt-16 first:mt-0 border-l-4 border-blue-600 pl-4 md:pl-6 bg-gradient-to-r from-blue-50 to-transparent py-4 -ml-4 md:-ml-6 break-words"
                         >
                           {children}
                         </motion.h2>
@@ -596,13 +596,13 @@ const DepartmentPageLayout = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6 }}
-                          className="text-heading-lg font-semibold text-gray-700 mb-6 mt-12 border-l-2 border-teal-500 pl-4"
+                          className="text-xl md:text-heading-lg font-semibold text-gray-700 mb-6 mt-12 border-l-2 border-teal-500 pl-4 break-words"
                         >
                           {children}
                         </motion.h3>
                       ),
                       p: ({ children }) => (
-                        <p className="text-gray-600 text-lg leading-relaxed mb-8 font-light tracking-wide">
+                        <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 font-light tracking-wide break-words">
                           {children}
                         </p>
                       ),
@@ -610,21 +610,23 @@ const DepartmentPageLayout = () => {
                         <ul className="space-y-4 mb-8 pl-0">{children}</ul>
                       ),
                       li: ({ children }) => (
-                        <li className="text-gray-600 text-lg leading-relaxed flex items-start bg-white rounded-lg p-4 shadow-sm border-l-3 border-blue-400 hover:shadow-md transition-shadow duration-200">
-                          <span className="bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-4 mt-1 flex-shrink-0">
+                        <li className="text-gray-600 text-base md:text-lg leading-relaxed flex items-start bg-white rounded-lg p-3 md:p-4 shadow-sm border-l-3 border-blue-400 hover:shadow-md transition-shadow duration-200 break-words">
+                          <span className="bg-gradient-to-r from-blue-500 to-teal-500 text-white rounded-full w-6 h-6 flex items-center justify-center text-sm mr-3 md:mr-4 mt-1 flex-shrink-0">
                             ✓
                           </span>
-                          <span className="font-medium">{children}</span>
+                          <span className="font-medium break-words flex-1">
+                            {children}
+                          </span>
                         </li>
                       ),
                       strong: ({ children }) => (
-                        <strong className="font-semibold text-blue-700 bg-blue-50 px-1 py-0.5 rounded">
+                        <strong className="font-semibold text-blue-700 bg-blue-50 px-1 py-0.5 rounded break-words">
                           {children}
                         </strong>
                       ),
                       blockquote: ({ children }) => (
-                        <blockquote className="border-l-4 border-blue-500 bg-blue-50 p-6 my-8 rounded-r-lg italic">
-                          <div className="text-blue-800 font-medium">
+                        <blockquote className="border-l-4 border-blue-500 bg-blue-50 p-4 md:p-6 my-8 rounded-r-lg italic break-words">
+                          <div className="text-blue-800 font-medium break-words">
                             {children}
                           </div>
                         </blockquote>
