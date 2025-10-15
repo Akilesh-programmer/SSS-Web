@@ -355,7 +355,9 @@ const Navigation = () => {
                 >
                   <FaAmbulance className="text-sm animate-pulse" />
                   <div className="flex flex-col text-left">
-                    <span className="text-body-sm font-semibold leading-tight">Emergency</span>
+                    <span className="text-body-sm font-semibold leading-tight">
+                      Emergency
+                    </span>
                     <span className="text-body-xs opacity-90 leading-tight">
                       +91 8925931193
                     </span>
