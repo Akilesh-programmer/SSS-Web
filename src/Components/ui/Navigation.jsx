@@ -17,16 +17,16 @@ const Navigation = () => {
   // --- Style helpers to avoid repeating large inline objects ---
   const navStyle = (scrolled) => ({
     background: scrolled
-      ? "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(240,245,255,0.18) 20%, rgba(245,240,255,0.16) 40%, rgba(240,250,255,0.18) 60%, rgba(245,246,255,0.16) 80%, rgba(255,255,255,0.15) 100%)"
-      : "linear-gradient(135deg, rgba(255,255,255,0.08) 0%, rgba(240,245,255,0.12) 20%, rgba(245,240,255,0.1) 40%, rgba(240,250,255,0.12) 60%, rgba(245,246,255,0.1) 80%, rgba(255,255,255,0.08) 100%)",
-    backdropFilter: "blur(80px) saturate(250%) brightness(1.15) contrast(1.05)",
-    WebkitBackdropFilter:
-      "blur(80px) saturate(250%) brightness(1.15) contrast(1.05)",
-    borderBottom: "none",
-    borderTop: "none",
+      ? "rgba(255, 255, 255, 0.85)"
+      : "rgba(255, 255, 255, 0.75)",
+    backdropFilter: "blur(20px) saturate(180%)",
+    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+    borderBottom: scrolled
+      ? "1px solid rgba(226, 232, 240, 0.8)"
+      : "1px solid rgba(226, 232, 240, 0.5)",
     boxShadow: scrolled
-      ? "0 15px 60px rgba(59,130,246,0.18), 0 8px 30px rgba(139,92,246,0.12), 0 4px 15px rgba(16,185,129,0.1), 0 2px 6px rgba(236,72,153,0.06), 0 4px 0 rgba(255,255,255,0.4) inset, 0 -4px 0 rgba(59,130,246,0.12) inset, 0 0 120px rgba(255,255,255,0.08) inset"
-      : "0 10px 50px rgba(59,130,246,0.15), 0 5px 25px rgba(139,92,246,0.1), 0 3px 12px rgba(16,185,129,0.08), 0 1px 4px rgba(236,72,153,0.05), 0 3px 0 rgba(255,255,255,0.35) inset, 0 -3px 0 rgba(139,92,246,0.1) inset, 0 0 100px rgba(255,255,255,0.06) inset",
+      ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
+      : "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
   });
 
   const emergencyStyle = {
@@ -57,15 +57,12 @@ const Navigation = () => {
   };
 
   const mobileMenuStyle = {
-    background:
-      "linear-gradient(135deg, rgba(255,255,255,0.12) 0%, rgba(240,245,255,0.16) 25%, rgba(245,243,255,0.14) 50%, rgba(240,250,255,0.16) 75%, rgba(255,255,255,0.12) 100%)",
-    backdropFilter: "blur(70px) saturate(240%) brightness(1.15) contrast(1.05)",
-    WebkitBackdropFilter:
-      "blur(70px) saturate(240%) brightness(1.15) contrast(1.05)",
-    borderTop: "none",
-    borderBottom: "none",
+    background: "rgba(255, 255, 255, 0.95)",
+    backdropFilter: "blur(20px) saturate(180%)",
+    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+    borderTop: "1px solid rgba(226, 232, 240, 0.8)",
     boxShadow:
-      "0 12px 50px rgba(59,130,246,0.18), 0 6px 25px rgba(139,92,246,0.12), inset 0 3px 0 rgba(255,255,255,0.4), inset 0 -3px 0 rgba(59,130,246,0.1), inset 0 0 100px rgba(255,255,255,0.08)",
+      "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
   };
 
   const navLinkStyle = (isActive) => ({
@@ -205,14 +202,7 @@ const Navigation = () => {
               </div>
 
               <div className="relative z-10 text-center flex items-center">
-                <h1
-                  className="font-bold tracking-tight leading-none text-gray-900"
-                  style={{
-                    textShadow:
-                      "0 1px 4px rgba(255,255,255,1), 0 3px 10px rgba(255,255,255,0.9), 0 0 25px rgba(255,255,255,0.7)",
-                    filter: "drop-shadow(0 2px 4px rgba(255,255,255,0.8))",
-                  }}
-                >
+                <h1 className="font-bold tracking-tight leading-none text-gray-900">
                   {/* Mobile/Small screens - compact to fit navbar */}
                   <span className="inline-block w-20 sm:hidden">
                     <span className="block text-sm font-black leading-none mb-0.5">
@@ -267,23 +257,11 @@ const Navigation = () => {
                     >
                       <Link
                         to={item.path}
-                        className={`relative group px-4 py-2 rounded-lg transition-all duration-300 font-bold text-sm overflow-hidden ${
+                        className={`relative group px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm ${
                           isActive
-                            ? "text-blue-700"
-                            : "text-gray-800 hover:text-blue-600"
+                            ? "text-blue-600 bg-blue-50"
+                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                         }`}
-                        style={{
-                          background: isActive
-                            ? "linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(147,197,253,0.2) 50%, rgba(59,130,246,0.18) 100%)"
-                            : "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(248,250,252,0.55) 50%, rgba(255,255,255,0.5) 100%)",
-                          backdropFilter: "blur(25px) saturate(180%)",
-                          WebkitBackdropFilter: "blur(25px) saturate(180%)",
-                          boxShadow: isActive
-                            ? "0 4px 15px rgba(59,130,246,0.2), 0 2px 8px rgba(59,130,246,0.12), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(59,130,246,0.15)"
-                            : "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)",
-                          textShadow:
-                            "0 1px 3px rgba(255,255,255,1), 0 2px 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                        }}
                       >
                         <span className="relative z-10">{item.name}</span>
                         {isActive && (
@@ -299,18 +277,7 @@ const Navigation = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 w-56 rounded-xl shadow-2xl overflow-hidden z-50"
-                            style={{
-                              background:
-                                "linear-gradient(135deg, rgba(255,255,255,0.15) 0%, rgba(240,245,255,0.2) 50%, rgba(255,255,255,0.15) 100%)",
-                              backdropFilter:
-                                "blur(70px) saturate(240%) brightness(1.15) contrast(1.05)",
-                              WebkitBackdropFilter:
-                                "blur(70px) saturate(240%) brightness(1.15) contrast(1.05)",
-                              border: "1px solid rgba(255,255,255,0.3)",
-                              boxShadow:
-                                "0 20px 60px rgba(59,130,246,0.2), 0 10px 30px rgba(139,92,246,0.15), inset 0 3px 0 rgba(255,255,255,0.4), inset 0 -3px 0 rgba(59,130,246,0.12), inset 0 0 80px rgba(255,255,255,0.08)",
-                            }}
+                            className="absolute top-full left-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
                           >
                             {item.dropdown.map((subItem) => {
                               const isSubActive =
@@ -321,19 +288,9 @@ const Navigation = () => {
                                   to={subItem.path}
                                   className={`block px-4 py-3 transition-all duration-200 font-medium text-sm ${
                                     isSubActive
-                                      ? "text-blue-700"
-                                      : "text-gray-800 hover:text-blue-600"
+                                      ? "text-blue-600 bg-blue-50"
+                                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                                   }`}
-                                  style={{
-                                    background: isSubActive
-                                      ? "linear-gradient(135deg, rgba(59,130,246,0.22) 0%, rgba(147,197,253,0.18) 50%, rgba(59,130,246,0.16) 100%)"
-                                      : "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(248,250,252,0.45) 50%, rgba(255,255,255,0.4) 100%)",
-                                    backdropFilter: "blur(20px) saturate(160%)",
-                                    WebkitBackdropFilter:
-                                      "blur(20px) saturate(160%)",
-                                    textShadow:
-                                      "0 1px 3px rgba(255,255,255,1), 0 2px 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                                  }}
                                 >
                                   {subItem.name}
                                 </Link>
@@ -351,23 +308,11 @@ const Navigation = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`relative group px-4 py-2 rounded-lg transition-all duration-300 font-bold text-sm overflow-hidden ${
+                    className={`relative group px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm ${
                       isActive
-                        ? "text-blue-700"
-                        : "text-gray-800 hover:text-blue-600"
+                        ? "text-blue-600 bg-blue-50"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                     }`}
-                    style={{
-                      background: isActive
-                        ? "linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(147,197,253,0.2) 50%, rgba(59,130,246,0.18) 100%)"
-                        : "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(248,250,252,0.55) 50%, rgba(255,255,255,0.5) 100%)",
-                      backdropFilter: "blur(25px) saturate(180%)",
-                      WebkitBackdropFilter: "blur(25px) saturate(180%)",
-                      boxShadow: isActive
-                        ? "0 4px 15px rgba(59,130,246,0.2), 0 2px 8px rgba(59,130,246,0.12), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(59,130,246,0.15)"
-                        : "0 2px 8px rgba(0,0,0,0.06), inset 0 1px 0 rgba(255,255,255,0.8)",
-                      textShadow:
-                        "0 1px 3px rgba(255,255,255,1), 0 2px 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                    }}
                   >
                     <span className="relative z-10">{item.name}</span>
                     {isActive && (
@@ -495,20 +440,11 @@ const Navigation = () => {
                           <Link
                             to={item.path}
                             onClick={() => setIsMenuOpen(false)}
-                            className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-300 group ${
+                            className={`flex items-center space-x-3 p-4 rounded-xl transition-all duration-200 group ${
                               isActive
-                                ? "text-blue-700"
-                                : "text-gray-800 hover:text-blue-600"
+                                ? "text-blue-600 bg-blue-50"
+                                : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                             }`}
-                            style={{
-                              background: isActive
-                                ? "linear-gradient(135deg, rgba(59,130,246,0.28) 0%, rgba(147,197,253,0.22) 50%, rgba(59,130,246,0.2) 100%)"
-                                : "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(248,250,252,0.55) 50%, rgba(255,255,255,0.5) 100%)",
-                              backdropFilter: "blur(25px) saturate(180%)",
-                              WebkitBackdropFilter: "blur(25px) saturate(180%)",
-                              textShadow:
-                                "0 1px 3px rgba(255,255,255,1), 0 2px 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                            }}
                           >
                             <div
                               className={`w-2 h-2 rounded-full transition-all duration-300 ${
@@ -522,18 +458,7 @@ const Navigation = () => {
                         ) : (
                           <div className="space-y-1">
                             {/* Infrastructure Parent Label */}
-                            <div
-                              className="flex items-center space-x-3 p-4 text-gray-900 font-bold"
-                              style={{
-                                background:
-                                  "linear-gradient(135deg, rgba(255,255,255,0.5) 0%, rgba(248,250,252,0.55) 50%, rgba(255,255,255,0.5) 100%)",
-                                backdropFilter: "blur(25px) saturate(180%)",
-                                WebkitBackdropFilter:
-                                  "blur(25px) saturate(180%)",
-                                textShadow:
-                                  "0 1px 3px rgba(255,255,255,1), 0 2px 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                              }}
-                            >
+                            <div className="flex items-center space-x-3 p-4 text-gray-800 font-semibold rounded-xl bg-gray-50">
                               <div className="w-2 h-2 rounded-full bg-gray-400"></div>
                               <span>{item.name}</span>
                             </div>
@@ -546,21 +471,11 @@ const Navigation = () => {
                                   key={subItem.name}
                                   to={subItem.path}
                                   onClick={() => setIsMenuOpen(false)}
-                                  className={`flex items-center space-x-3 p-3 pl-10 rounded-xl transition-all duration-300 group ${
+                                  className={`flex items-center space-x-3 p-3 pl-10 rounded-xl transition-all duration-200 group ${
                                     isSubActive
-                                      ? "text-blue-700"
-                                      : "text-gray-700 hover:text-blue-600"
+                                      ? "text-blue-600 bg-blue-50"
+                                      : "text-gray-600 hover:text-blue-600 hover:bg-gray-50"
                                   }`}
-                                  style={{
-                                    background: isSubActive
-                                      ? "linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(147,197,253,0.2) 50%, rgba(59,130,246,0.18) 100%)"
-                                      : "linear-gradient(135deg, rgba(255,255,255,0.45) 0%, rgba(248,250,252,0.5) 50%, rgba(255,255,255,0.45) 100%)",
-                                    backdropFilter: "blur(20px) saturate(170%)",
-                                    WebkitBackdropFilter:
-                                      "blur(20px) saturate(170%)",
-                                    textShadow:
-                                      "0 1px 3px rgba(255,255,255,1), 0 2px 8px rgba(255,255,255,0.8), 0 0 20px rgba(255,255,255,0.6)",
-                                  }}
                                 >
                                   <div
                                     className={`w-1.5 h-1.5 rounded-full transition-all duration-300 ${
