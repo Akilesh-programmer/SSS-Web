@@ -283,7 +283,7 @@ const DoctorsSection = ({ limit }) => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.3, delay: 0.15 }}
             viewport={{ once: true }}
-            className="text-4xl sm:text-5xl lg:text-6xl font-bold bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 bg-clip-text text-transparent mb-6"
+            className="text-display-xl bg-gradient-to-r from-gray-800 via-blue-700 to-gray-800 bg-clip-text text-transparent mb-6"
           >
             Meet Our Expert Doctors
           </motion.h2>
@@ -399,7 +399,7 @@ const DoctorsSection = ({ limit }) => {
 
                     {/* Doctor Info */}
                     <div className="text-center">
-                      <h3 className="text-xl font-bold text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">
+                      <h3 className="text-heading-md text-gray-800 mb-2 group-hover:text-blue-700 transition-colors">
                         {doctor.name}
                       </h3>
 

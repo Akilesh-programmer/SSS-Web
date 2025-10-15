@@ -32,9 +32,7 @@ const CallModal = ({
         {/* Header */}
         <div className="flex items-center justify-between mb-4">
           <div>
-            <h3 className="text-heading-md text-slate-800">
-              {title}
-            </h3>
+            <h3 className="text-heading-md text-slate-800">{title}</h3>
             <p className="text-body-sm text-slate-500 mt-1">
               Choose your preferred contact method
             </p>
@@ -101,7 +99,9 @@ const CallModal = ({
               <div className="text-sm font-semibold text-slate-800 truncate">
                 WhatsApp Chat
               </div>
-              <div className="text-body-sm text-slate-500">Send us a message</div>
+              <div className="text-body-sm text-slate-500">
+                Send us a message
+              </div>
             </div>
           </a>
         </div>

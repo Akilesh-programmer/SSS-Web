@@ -30,7 +30,7 @@ const TourStat = ({ value, suffix = "", label, icon, delay = 0 }) => {
       transition={{ delay, duration: 0.6 }}
     >
       <div className="text-2xl sm:text-3xl mb-2">{icon}</div>
-      <h3 className="text-2xl sm:text-3xl font-bold">
+      <h3 className="text-heading-lg">
         {count}
         {suffix}
       </h3>
@@ -159,7 +159,7 @@ const VirtualTour = () => {
             </span>
           </motion.div>
 
-          <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 bg-clip-text text-transparent mb-4 sm:mb-6 px-4">
+          <h2 className="text-display-xl bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 bg-clip-text text-transparent mb-4 sm:mb-6 px-4">
             Take a Virtual Tour
           </h2>
           <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
@@ -291,7 +291,7 @@ const VirtualTour = () => {
                 transition={{ delay: 0.3, duration: 0.6 }}
                 className="absolute -top-2 sm:-top-4 -left-2 sm:-left-4 w-12 h-12 sm:w-16 sm:h-16 bg-gradient-to-br from-emerald-400 to-teal-500 rounded-full opacity-20 animate-pulse"
               />
-              <h3 className="text-2xl sm:text-3xl lg:text-4xl font-bold text-gray-900 mb-4 sm:mb-6 relative">
+              <h3 className="text-heading-xl text-gray-900 mb-4 sm:mb-6 relative">
                 Modern Healthcare Infrastructure
                 <motion.div
                   initial={{ scaleX: 0 }}

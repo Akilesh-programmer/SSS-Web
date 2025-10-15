@@ -96,7 +96,7 @@ export default function Footer() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl md:text-3xl font-bold text-teal-300 mb-1">
+                <h3 className="text-heading-lg text-teal-300 mb-1">
                   SSS Super
                 </h3>
                 <h4 className="text-base md:text-lg font-semibold text-teal-200 -mt-1">

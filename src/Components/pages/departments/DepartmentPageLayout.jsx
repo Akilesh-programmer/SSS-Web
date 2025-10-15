@@ -340,7 +340,7 @@ const InfrastructureGallery = () => {
       >
         <div className="flex items-center justify-center mb-4">
           <FaImages className="text-2xl md:text-3xl text-blue-600 mr-2 md:mr-3" />
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-gray-800">
+          <h2 className="text-display-lg text-gray-800">
             Hospital Infrastructure
           </h2>
         </div>
@@ -534,7 +534,7 @@ const DepartmentPageLayout = () => {
         <Navigation />
         <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
           <div className="text-center">
-            <h1 className="text-4xl font-bold text-gray-800 mb-4">
+            <h1 className="text-heading-xl text-gray-800 mb-4">
               Department Not Found
             </h1>
             <p className="text-gray-600 mb-8">
@@ -586,7 +586,7 @@ const DepartmentPageLayout = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6 }}
-                          className="text-3xl md:text-4xl font-bold text-gray-800 mb-8 mt-16 first:mt-0 border-l-4 border-blue-600 pl-6 bg-gradient-to-r from-blue-50 to-transparent py-4 -ml-6"
+                          className="text-3xl md:text-heading-xl text-gray-800 mb-8 mt-16 first:mt-0 border-l-4 border-blue-600 pl-6 bg-gradient-to-r from-blue-50 to-transparent py-4 -ml-6"
                         >
                           {children}
                         </motion.h2>
@@ -596,7 +596,7 @@ const DepartmentPageLayout = () => {
                           initial={{ opacity: 0, x: -20 }}
                           animate={{ opacity: 1, x: 0 }}
                           transition={{ duration: 0.6 }}
-                          className="text-2xl md:text-3xl font-semibold text-gray-700 mb-6 mt-12 border-l-2 border-teal-500 pl-4"
+                          className="text-heading-lg font-semibold text-gray-700 mb-6 mt-12 border-l-2 border-teal-500 pl-4"
                         >
                           {children}
                         </motion.h3>
@@ -774,7 +774,7 @@ const DepartmentPageLayout = () => {
                   </span>
                 </motion.div>
 
-                <h2 className="text-4xl md:text-5xl font-bold bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-6">
+                <h2 className="text-display-xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-6">
                   Our Medical Experts
                 </h2>
                 <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
@@ -872,7 +872,7 @@ const DepartmentPageLayout = () => {
                 >
                   <div className="bg-white rounded-2xl p-12 shadow-lg border border-gray-100">
                     <FaUserMd className="text-6xl text-gray-300 mx-auto mb-6" />
-                    <h3 className="text-2xl font-semibold text-gray-600 mb-4">
+                    <h3 className="text-heading-lg font-semibold text-gray-600 mb-4">
                       No Specialists Available
                     </h3>
                     <p className="text-gray-500">

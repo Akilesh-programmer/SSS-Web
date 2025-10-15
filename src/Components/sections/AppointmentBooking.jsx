@@ -32,9 +32,7 @@ const StatItem = ({ number, label, icon: Icon, suffix = "" }) => {
           {suffix}
         </div>
 
-        <div className="text-body-sm text-gray-600 font-medium">
-          {label}
-        </div>
+        <div className="text-body-sm text-gray-600 font-medium">{label}</div>
       </div>
     </motion.div>
   );
@@ -156,9 +154,7 @@ const AppointmentBooking = () => {
                   className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-cta shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
                 >
                   <FaCalendarAlt className="text-sm sm:text-base" />
-                  <span>
-                    Book Appointment Now
-                  </span>
+                  <span>Book Appointment Now</span>
                 </motion.button>
 
                 {/* Hospital Stats (compact on small screens) */}

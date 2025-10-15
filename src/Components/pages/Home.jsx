@@ -144,7 +144,7 @@ export default function Home() {
                 initial={{ opacity: 0, y: 30 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4, duration: 0.8 }}
-                className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-gray-900 leading-tight text-center lg:text-left"
+                className="text-display-xl text-gray-900 text-center lg:text-left"
               >
                 The Care You Deserve,{" "}
                 <span className="text-emerald-600 relative">
@@ -198,7 +198,7 @@ export default function Home() {
                   <div className="w-10 h-10 lg:w-12 lg:h-12 bg-emerald-100 rounded-full flex items-center justify-center mx-auto mb-2">
                     <FaStethoscope className="text-emerald-600 text-lg lg:text-xl" />
                   </div>
-                  <p className="text-xl lg:text-2xl font-bold text-gray-900">
+                  <p className="text-heading-md text-gray-900">
                     24/7
                   </p>
                   <p className="text-xs lg:text-sm text-gray-600">
@@ -243,7 +243,7 @@ export default function Home() {
                         end={150}
                         suffix="+"
                         duration={2000}
-                        className="text-lg lg:text-xl font-bold text-gray-900"
+                        className="text-heading-sm text-gray-900"
                       />
                     </div>
                     <div className="text-gray-900 font-semibold text-sm lg:text-sm">

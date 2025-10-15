@@ -236,7 +236,9 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
       >
         <div className="flex items-center justify-center mb-3">
           <FaPhone className="text-emerald-600 mr-2" />
-          <p className="text-body-md text-emerald-800 font-semibold">Emergency Contact</p>
+          <p className="text-body-md text-emerald-800 font-semibold">
+            Emergency Contact
+          </p>
         </div>
         <p className="text-heading-md text-emerald-900">+91 9876543210</p>
         <p className="text-body-sm text-emerald-700">Available 24/7</p>

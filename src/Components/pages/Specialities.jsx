@@ -193,7 +193,7 @@ const Specialities = () => {
                   {/* Department Name */}
                   <div className="relative text-center">
                     <h3
-                      className={`text-xl font-bold leading-tight mb-3 transition-colors duration-300 ${
+                      className={`text-heading-md leading-tight mb-3 transition-colors duration-300 ${
                         isHovered ? "text-emerald-600" : "text-gray-800"
                       }`}
                     >
