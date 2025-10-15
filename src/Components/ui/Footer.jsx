@@ -87,8 +87,8 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Hospital Info - Enhanced */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-3 mb-4">
-              <div className="w-30 h-18 rounded-md bg-white p-1 flex items-center justify-center shadow-lg flex-shrink-0">
+            <div className="flex items-center gap-0 mb-4">
+              <div className="w-36 h-20 md:w-40 md:h-24 rounded-lg bg-white p-1.5 flex items-center justify-center shadow-lg flex-shrink-0">
                 <img
                   src={logoFull}
                   alt="SSS Hospital Logo"
@@ -96,16 +96,22 @@ export default function Footer() {
                 />
               </div>
               <div className="flex-1">
-                <h3 className="text-heading-lg text-teal-300 mb-1">
-                  SSS Super
+                {/* SSS Super Speciality Hospital - Trademark Format */}
+                <h3 className="font-bold tracking-tight leading-none text-white text-center">
+                  <span className="block text-xl md:text-2xl font-black leading-none mb-0.5">
+                    SSS
+                  </span>
+                  <span className="block h-0.5 w-24 md:w-28 bg-amber-500 mb-0.5 mx-auto"></span>
+                  <span className="block text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase leading-none mb-0.5 text-teal-300">
+                    SUPER SPECIALITY
+                  </span>
+                  <span className="block text-sm md:text-base font-black leading-none text-teal-200">
+                    HOSPITAL
+                  </span>
                 </h3>
-                <h4 className="text-base md:text-lg font-semibold text-teal-200 -mt-1">
-                  Speciality Hospital
-                </h4>
-                <p className="text-gray-400 text-sm font-medium">
+                <p className="text-gray-400 text-xs font-medium mt-2 text-center">
                   Excellence in Healthcare
                 </p>
-                {/* EST. 2020 removed per request */}
               </div>
             </div>
 
