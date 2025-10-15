@@ -65,7 +65,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
             {typeof badge === "object" && badge.icon && badge.text ? (
               <>
                 <badge.icon className="text-base md:text-xl mr-2 md:mr-3 drop-shadow-lg" />
-                <span className="text-xs md:text-sm font-medium tracking-wide uppercase drop-shadow-lg">
+                <span className="text-label-sm drop-shadow-lg">
                   {badge.text}
                 </span>
               </>
@@ -77,7 +77,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
 
         {/* Title */}
         <motion.h1
-          className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 md:mb-6 leading-tight tracking-tight"
+          className="text-display-xl mb-4 md:mb-6"
           style={{
             textShadow:
               "0 2px 20px rgba(0,0,0,0.5), 0 4px 40px rgba(0,0,0,0.3)",
@@ -94,7 +94,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
         {/* Subtitle */}
         {subtitle && (
           <motion.p
-            className="text-base md:text-xl lg:text-2xl text-white/95 font-light max-w-3xl mx-auto leading-relaxed"
+            className="text-body-xl text-white/95 max-w-3xl mx-auto"
             style={{
               textShadow:
                 "0 2px 15px rgba(0,0,0,0.6), 0 1px 3px rgba(0,0,0,0.8)",
@@ -128,7 +128,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
             ease: "easeInOut",
           }}
         >
-          <span className="text-white/90 text-xs md:text-sm font-medium tracking-wider uppercase group-hover:text-white transition-colors">
+          <span className="text-label-sm text-white/90 group-hover:text-white transition-colors">
             Scroll to Explore
           </span>
           <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2 group-hover:border-white transition-colors">

@@ -257,10 +257,10 @@ const Navigation = () => {
                     >
                       <Link
                         to={item.path}
-                        className={`relative group px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm ${
+                        className={`relative group px-4 py-2 rounded-lg transition-all duration-200 text-label-md ${
                           isActive
-                            ? "text-blue-600 bg-blue-50"
-                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                            ? "text-blue-600 bg-blue-50 font-semibold"
+                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 font-medium"
                         }`}
                       >
                         <span className="relative z-10">{item.name}</span>
@@ -286,10 +286,10 @@ const Navigation = () => {
                                 <Link
                                   key={subItem.name}
                                   to={subItem.path}
-                                  className={`block px-4 py-3 transition-all duration-200 font-medium text-sm ${
+                                  className={`block px-4 py-3 transition-all duration-200 text-body-md ${
                                     isSubActive
-                                      ? "text-blue-600 bg-blue-50"
-                                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                                      ? "text-blue-600 bg-blue-50 font-semibold"
+                                      : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 font-medium"
                                   }`}
                                 >
                                   {subItem.name}
@@ -308,10 +308,10 @@ const Navigation = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`relative group px-4 py-2 rounded-lg transition-all duration-200 font-semibold text-sm ${
+                    className={`relative group px-4 py-2 rounded-lg transition-all duration-200 text-label-md ${
                       isActive
-                        ? "text-blue-600 bg-blue-50"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
+                        ? "text-blue-600 bg-blue-50 font-semibold"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 font-medium"
                     }`}
                   >
                     <span className="relative z-10">{item.name}</span>
@@ -332,7 +332,7 @@ const Navigation = () => {
                   onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center space-x-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl h-12"
+                  className="flex items-center space-x-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-cta transition-all duration-300 shadow-lg hover:shadow-xl h-12"
                   style={{
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
@@ -347,7 +347,7 @@ const Navigation = () => {
                   onClick={handleEmergencyClick}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center space-x-2 px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg font-medium text-sm transition-all duration-300 shadow-lg hover:shadow-xl h-12"
+                  className="flex items-center space-x-2 px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-cta transition-all duration-300 shadow-lg hover:shadow-xl h-12"
                   style={{
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
@@ -355,8 +355,8 @@ const Navigation = () => {
                 >
                   <FaAmbulance className="text-sm animate-pulse" />
                   <div className="flex flex-col text-left">
-                    <span className="text-sm leading-tight">Emergency</span>
-                    <span className="text-xs opacity-90 leading-tight">
+                    <span className="text-body-sm font-semibold leading-tight">Emergency</span>
+                    <span className="text-body-xs opacity-90 leading-tight">
                       +91 8925931193
                     </span>
                   </div>
@@ -397,7 +397,7 @@ const Navigation = () => {
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg"
+                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg"
                   >
                     <FaCalendarPlus className="text-sm" />
                     <span>Book Appointment</span>
@@ -411,7 +411,7 @@ const Navigation = () => {
                     }}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
-                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl font-semibold text-sm transition-all duration-300 shadow-lg"
+                    className="flex items-center justify-center space-x-2 px-4 py-4 bg-red-600 hover:bg-red-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg"
                   >
                     <FaAmbulance className="text-sm animate-pulse" />
                     <span>Emergency</span>
