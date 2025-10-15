@@ -20,7 +20,7 @@ function Counter({
   end = 0,
   suffix = "",
   duration = 2000,
-  className = "text-xl lg:text-2xl font-bold text-slate-800",
+  className = "text-heading-md text-slate-800",
 }) {
   const [value, setValue] = useState(0);
   const rafRef = useRef(null);
