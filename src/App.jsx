@@ -1,25 +1,12 @@
-/* eslint-disable react/jsx-pascal-case */
+/* eslint-disable no-unused-vars */
+import { lazy, Suspense } from "react";
 import { Routes, Route } from "react-router-dom";
 import { useAppointment } from "./contexts/AppointmentContext";
+
+// Critical UI components - load immediately
 import Navigation from "./Components/ui/Navigation";
-import Home from "./Components/pages/Home";
-import HomeAboutUs from "./Components/sections/HomeAboutUs";
-import AboutUs from "./Components/pages/AboutUs";
-import VirtualTour from "./Components/sections/VirtualTour";
-import PatientTestimonials from "./Components/sections/PatientTestimonials";
-import Specialities from "./Components/pages/Specialities";
-import Services from "./Components/pages/Services";
-import Packages from "./Components/pages/Packages";
-import Gallery from "./Components/pages/Gallery";
-import Rooms from "./Components/pages/Rooms";
-import FounderSection from "./Components/sections/FounderSection";
-import AppointmentBooking from "./Components/sections/AppointmentBooking";
-import Contact from "./Components/sections/Contact";
 import Footer from "./Components/ui/Footer";
-import DoctorsPage from "./Components/pages/DoctorsPage";
-import DepartmentPageLayout from "./Components/pages/departments/DepartmentPageLayout";
 import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
-// FloatingChatbot removed per UX update: appointment button moved to bottom-left
 import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
@@ -27,24 +14,61 @@ import PageWrapper from "./Components/ui/PageWrapper";
 import ErrorBoundary from "./Components/ui/ErrorBoundary";
 import SEO from "./Components/ui/SEO";
 import { PAGE_SEO } from "./data/seoData";
-import NotFound from "./Components/pages/NotFound";
 import { generateAppointmentSchema } from "./utils/seo";
+
+// Lazy-load page components for code splitting
+const Home = lazy(() => import("./Components/pages/Home"));
+const HomeAboutUs = lazy(() => import("./Components/sections/HomeAboutUs"));
+const AboutUs = lazy(() => import("./Components/pages/AboutUs"));
+const VirtualTour = lazy(() => import("./Components/sections/VirtualTour"));
+const PatientTestimonials = lazy(() =>
+  import("./Components/sections/PatientTestimonials")
+);
+const Specialities = lazy(() => import("./Components/pages/Specialities"));
+const Services = lazy(() => import("./Components/pages/Services"));
+const Packages = lazy(() => import("./Components/pages/Packages"));
+const Gallery = lazy(() => import("./Components/pages/Gallery"));
+const Rooms = lazy(() => import("./Components/pages/Rooms"));
+const FounderSection = lazy(() =>
+  import("./Components/sections/FounderSection")
+);
+const AppointmentBooking = lazy(() =>
+  import("./Components/sections/AppointmentBooking")
+);
+const Contact = lazy(() => import("./Components/sections/Contact"));
+const DoctorsPage = lazy(() => import("./Components/pages/DoctorsPage"));
+const DepartmentPageLayout = lazy(() =>
+  import("./Components/pages/departments/DepartmentPageLayout")
+);
+const NotFound = lazy(() => import("./Components/pages/NotFound"));
+
+// Loading component for Suspense fallback
+const LoadingFallback = () => (
+  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
+    <div className="text-center">
+      <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent mb-4"></div>
+      <p className="text-gray-600 font-medium">Loading...</p>
+    </div>
+  </div>
+);
 
 const HomePage = () => {
   return (
     <PageWrapper pageKey="home-page">
       <SEO {...PAGE_SEO.home} />
       <Navigation />
-      <div id="home">
-        <Home />
-      </div>
-      <div id="about">
-        <HomeAboutUs />
-      </div>
-      <FounderSection />
-      <VirtualTour />
-      <PatientTestimonials />
-      <AppointmentBooking />
+      <Suspense fallback={<LoadingFallback />}>
+        <div id="home">
+          <Home />
+        </div>
+        <div id="about">
+          <HomeAboutUs />
+        </div>
+        <FounderSection />
+        <VirtualTour />
+        <PatientTestimonials />
+        <AppointmentBooking />
+      </Suspense>
       <div id="contact">
         <Footer />
       </div>
@@ -64,9 +88,11 @@ const AboutPage = () => {
         ]}
       />
       <Navigation />
-      <div className="pt-20">
-        <AboutUs key="about-us" />
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <AboutUs key="about-us" />
+        </div>
+      </Suspense>
       <Footer />
     </PageWrapper>
   );
@@ -84,9 +110,11 @@ const SpecialitiesPage = () => {
         ]}
       />
       <Navigation />
-      <div className="pt-20">
-        <Specialities key="specialities" />
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <Specialities key="specialities" />
+        </div>
+      </Suspense>
       <Footer />
     </PageWrapper>
   );
@@ -104,9 +132,11 @@ const ServicesPage = () => {
         ]}
       />
       <Navigation />
-      <div className="pt-20">
-        <Services key="services" />
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <Services key="services" />
+        </div>
+      </Suspense>
       <Footer />
     </PageWrapper>
   );
@@ -124,9 +154,11 @@ const PackagesPage = () => {
         ]}
       />
       <Navigation />
-      <div className="pt-20">
-        <Packages key="packages" />
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <Packages key="packages" />
+        </div>
+      </Suspense>
       <Footer />
     </PageWrapper>
   );
@@ -144,9 +176,11 @@ const DoctorsPageWrapper = () => {
         ]}
       />
       <Navigation />
-      <div className="pt-20">
-        <DoctorsPage key="doctors-page-content" />
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <DoctorsPage key="doctors-page-content" />
+        </div>
+      </Suspense>
       <Footer />
     </PageWrapper>
   );
@@ -165,9 +199,11 @@ const ContactPage = () => {
         schema={generateAppointmentSchema()}
       />
       <Navigation />
-      <div className="pt-20">
-        <Contact key="contact-content" />
-      </div>
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <Contact key="contact-content" />
+        </div>
+      </Suspense>
       <Footer />
     </PageWrapper>
   );
@@ -187,12 +223,20 @@ function App() {
           {/* Preferred route, matches sitemap URLs */}
           <Route
             path="/specialities/:departmentSlug"
-            element={<DepartmentPageLayout />}
+            element={
+              <Suspense fallback={<LoadingFallback />}>
+                <DepartmentPageLayout />
+              </Suspense>
+            }
           />
           {/* Backward-compat for older links */}
           <Route
             path="/department/:departmentSlug"
-            element={<DepartmentPageLayout />}
+            element={
+              <Suspense fallback={<LoadingFallback />}>
+                <DepartmentPageLayout />
+              </Suspense>
+            }
           />
           <Route path="/services" element={<ServicesPage />} />
           <Route
@@ -207,9 +251,11 @@ function App() {
                   ]}
                 />
                 <Navigation />
-                <div className="pt-20">
-                  <Gallery />
-                </div>
+                <Suspense fallback={<LoadingFallback />}>
+                  <div className="pt-20">
+                    <Gallery />
+                  </div>
+                </Suspense>
                 <Footer />
               </PageWrapper>
             }
@@ -226,9 +272,11 @@ function App() {
                   ]}
                 />
                 <Navigation />
-                <div className="pt-20">
-                  <Rooms />
-                </div>
+                <Suspense fallback={<LoadingFallback />}>
+                  <div className="pt-20">
+                    <Rooms />
+                  </div>
+                </Suspense>
                 <Footer />
               </PageWrapper>
             }
@@ -236,7 +284,14 @@ function App() {
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/contact" element={<ContactPage />} />
-          <Route path="*" element={<NotFound />} />
+          <Route
+            path="*"
+            element={
+              <Suspense fallback={<LoadingFallback />}>
+                <NotFound />
+              </Suspense>
+            }
+          />
         </Routes>
         <FloatingAppointmentButton />
         <ScrollToTopButton />
