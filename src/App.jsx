@@ -1,3 +1,4 @@
+/* eslint-disable react/jsx-pascal-case */
 import { Routes, Route } from "react-router-dom";
 import { useAppointment } from "./contexts/AppointmentContext";
 import Navigation from "./Components/ui/Navigation";
@@ -24,10 +25,15 @@ import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
 import PageWrapper from "./Components/ui/PageWrapper";
 import ErrorBoundary from "./Components/ui/ErrorBoundary";
+import SEO from "./Components/ui/SEO";
+import { PAGE_SEO } from "./data/seoData";
+import NotFound from "./Components/pages/NotFound";
+import { generateAppointmentSchema } from "./utils/seo";
 
 const HomePage = () => {
   return (
     <PageWrapper pageKey="home-page">
+      <SEO {...PAGE_SEO.home} />
       <Navigation />
       <div id="home">
         <Home />
@@ -50,6 +56,13 @@ const HomePage = () => {
 const AboutPage = () => {
   return (
     <PageWrapper pageKey="about-page">
+      <SEO
+        {...PAGE_SEO.about}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "About Us", url: "/about" },
+        ]}
+      />
       <Navigation />
       <div className="pt-20">
         <AboutUs key="about-us" />
@@ -63,6 +76,13 @@ const AboutPage = () => {
 const SpecialitiesPage = () => {
   return (
     <PageWrapper pageKey="specialities-page">
+      <SEO
+        {...PAGE_SEO.specialities}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Specialities", url: "/specialities" },
+        ]}
+      />
       <Navigation />
       <div className="pt-20">
         <Specialities key="specialities" />
@@ -76,6 +96,13 @@ const SpecialitiesPage = () => {
 const ServicesPage = () => {
   return (
     <PageWrapper pageKey="services-page">
+      <SEO
+        {...PAGE_SEO.services}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Services", url: "/services" },
+        ]}
+      />
       <Navigation />
       <div className="pt-20">
         <Services key="services" />
@@ -89,6 +116,13 @@ const ServicesPage = () => {
 const PackagesPage = () => {
   return (
     <PageWrapper pageKey="packages-page">
+      <SEO
+        {...PAGE_SEO.packages}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Packages", url: "/packages" },
+        ]}
+      />
       <Navigation />
       <div className="pt-20">
         <Packages key="packages" />
@@ -102,6 +136,13 @@ const PackagesPage = () => {
 const DoctorsPageWrapper = () => {
   return (
     <PageWrapper pageKey="doctors-page">
+      <SEO
+        {...PAGE_SEO.doctors}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Doctors", url: "/doctors" },
+        ]}
+      />
       <Navigation />
       <div className="pt-20">
         <DoctorsPage key="doctors-page-content" />
@@ -115,6 +156,14 @@ const DoctorsPageWrapper = () => {
 const ContactPage = () => {
   return (
     <PageWrapper pageKey="contact-page">
+      <SEO
+        {...PAGE_SEO.contact}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Contact", url: "/contact" },
+        ]}
+        schema={generateAppointmentSchema()}
+      />
       <Navigation />
       <div className="pt-20">
         <Contact key="contact-content" />
@@ -135,6 +184,12 @@ function App() {
           <Route path="/" element={<HomePage />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/specialities" element={<SpecialitiesPage />} />
+          {/* Preferred route, matches sitemap URLs */}
+          <Route
+            path="/specialities/:departmentSlug"
+            element={<DepartmentPageLayout />}
+          />
+          {/* Backward-compat for older links */}
           <Route
             path="/department/:departmentSlug"
             element={<DepartmentPageLayout />}
@@ -144,6 +199,13 @@ function App() {
             path="/infrastructure"
             element={
               <PageWrapper pageKey="gallery-page">
+                <SEO
+                  {...PAGE_SEO.infrastructure}
+                  breadcrumbs={[
+                    { name: "Home", url: "/" },
+                    { name: "Infrastructure", url: "/infrastructure" },
+                  ]}
+                />
                 <Navigation />
                 <div className="pt-20">
                   <Gallery />
@@ -156,6 +218,13 @@ function App() {
             path="/rooms"
             element={
               <PageWrapper pageKey="rooms-page">
+                <SEO
+                  {...PAGE_SEO.rooms}
+                  breadcrumbs={[
+                    { name: "Home", url: "/" },
+                    { name: "Rooms & Facilities", url: "/rooms" },
+                  ]}
+                />
                 <Navigation />
                 <div className="pt-20">
                   <Rooms />
@@ -167,6 +236,7 @@ function App() {
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
         <FloatingAppointmentButton />
         <ScrollToTopButton />
