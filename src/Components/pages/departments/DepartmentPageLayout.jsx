@@ -599,7 +599,7 @@ const DepartmentPageLayout = () => {
 
       <Navigation />
 
-      <div className="pt-20 overflow-x-hidden">
+      <div className="pt-20">
         {/* Hero Section */}
         <HeroSection
           backgroundImage={getHeroBgImage(departmentId)}
@@ -609,7 +609,7 @@ const DepartmentPageLayout = () => {
         />
 
         {/* Department Content - Enhanced Medical Professional Design with Infrastructure Photos */}
-        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative overflow-x-hidden">
+        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative">
           {/* Subtle background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-10 left-10 w-32 h-32 border border-blue-300 rounded-full"></div>
@@ -619,12 +619,12 @@ const DepartmentPageLayout = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
               {/* Content Column */}
-              <div className="lg:col-span-2 overflow-x-hidden">
+              <div className="lg:col-span-2">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
-                  className="markdown-content prose prose-lg md:prose-xl max-w-none overflow-x-hidden break-words"
+                  className="markdown-content prose prose-lg md:prose-xl max-w-none break-words"
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}

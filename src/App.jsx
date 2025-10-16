@@ -209,6 +209,50 @@ const ContactPage = () => {
   );
 };
 
+// Infrastructure/Gallery Page - Hospital infrastructure showcase
+const InfrastructurePage = () => {
+  return (
+    <PageWrapper pageKey="gallery-page">
+      <SEO
+        {...PAGE_SEO.infrastructure}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Infrastructure", url: "/infrastructure" },
+        ]}
+      />
+      <Navigation />
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <Gallery />
+        </div>
+      </Suspense>
+      <Footer />
+    </PageWrapper>
+  );
+};
+
+// Rooms Page - Room types and facilities
+const RoomsPage = () => {
+  return (
+    <PageWrapper pageKey="rooms-page">
+      <SEO
+        {...PAGE_SEO.rooms}
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Rooms & Facilities", url: "/rooms" },
+        ]}
+      />
+      <Navigation />
+      <Suspense fallback={<LoadingFallback />}>
+        <div className="pt-20">
+          <Rooms />
+        </div>
+      </Suspense>
+      <Footer />
+    </PageWrapper>
+  );
+};
+
 function App() {
   const { isAppointmentOpen, closeAppointment } = useAppointment();
 
@@ -223,64 +267,16 @@ function App() {
           {/* Preferred route, matches sitemap URLs */}
           <Route
             path="/specialities/:departmentSlug"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <DepartmentPageLayout />
-              </Suspense>
-            }
+            element={<DepartmentPageLayout />}
           />
           {/* Backward-compat for older links */}
           <Route
             path="/department/:departmentSlug"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <DepartmentPageLayout />
-              </Suspense>
-            }
+            element={<DepartmentPageLayout />}
           />
           <Route path="/services" element={<ServicesPage />} />
-          <Route
-            path="/infrastructure"
-            element={
-              <PageWrapper pageKey="gallery-page">
-                <SEO
-                  {...PAGE_SEO.infrastructure}
-                  breadcrumbs={[
-                    { name: "Home", url: "/" },
-                    { name: "Infrastructure", url: "/infrastructure" },
-                  ]}
-                />
-                <Navigation />
-                <Suspense fallback={<LoadingFallback />}>
-                  <div className="pt-20">
-                    <Gallery />
-                  </div>
-                </Suspense>
-                <Footer />
-              </PageWrapper>
-            }
-          />
-          <Route
-            path="/rooms"
-            element={
-              <PageWrapper pageKey="rooms-page">
-                <SEO
-                  {...PAGE_SEO.rooms}
-                  breadcrumbs={[
-                    { name: "Home", url: "/" },
-                    { name: "Rooms & Facilities", url: "/rooms" },
-                  ]}
-                />
-                <Navigation />
-                <Suspense fallback={<LoadingFallback />}>
-                  <div className="pt-20">
-                    <Rooms />
-                  </div>
-                </Suspense>
-                <Footer />
-              </PageWrapper>
-            }
-          />
+          <Route path="/infrastructure" element={<InfrastructurePage />} />
+          <Route path="/rooms" element={<RoomsPage />} />
           <Route path="/doctors" element={<DoctorsPageWrapper />} />
           <Route path="/packages" element={<PackagesPage />} />
           <Route path="/contact" element={<ContactPage />} />
