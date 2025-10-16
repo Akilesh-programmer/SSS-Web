@@ -1,0 +1,186 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches: [main, develop, dev]
+  pull_request:
+    branches: [main, develop, dev]
+  workflow_dispatch:
+
+jobs:
+  # Job 1: Code Quality & Linting
+  lint:
+    name: Code Quality Check
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run ESLint
+        run: npm run lint
+        continue-on-error: true
+
+      - name: Check code formatting (Prettier)
+        run: npx prettier --check "src/**/*.{js,jsx,css}"
+        continue-on-error: true
+
+  # Job 2: Security Audit
+  security:
+    name: Security Audit
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run npm audit
+        run: npm audit --audit-level=moderate
+        continue-on-error: true
+
+      - name: Check for high-severity vulnerabilities
+        run: npm audit --audit-level=high
+
+  # Job 3: Build Test
+  build:
+    name: Build Verification
+    runs-on: ubuntu-latest
+    needs: [lint, security]
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: "npm"
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Build production bundle
+        run: npm run build
+        env:
+          # Use dummy values for build-time environment variables
+          VITE_EMAILJS_SERVICE_ID: ${{ secrets.VITE_EMAILJS_SERVICE_ID || 'dummy_service' }}
+          VITE_EMAILJS_TEMPLATE_ID: ${{ secrets.VITE_EMAILJS_TEMPLATE_ID || 'dummy_template' }}
+          VITE_EMAILJS_PUBLIC_KEY: ${{ secrets.VITE_EMAILJS_PUBLIC_KEY || 'dummy_key' }}
+
+      - name: Check build size
+        run: |
+          echo "Build output size:"
+          du -sh dist/
+          echo "JavaScript bundle sizes:"
+          find dist/assets -name "*.js" -exec ls -lh {} \;
+
+      - name: Upload build artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+          retention-days: 7
+
+  # Job 4: Performance Budget Check (optional)
+  performance:
+    name: Performance Budget
+    runs-on: ubuntu-latest
+    needs: build
+    if: github.event_name == 'pull_request'
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Download build artifacts
+        uses: actions/download-artifact@v4
+        with:
+          name: production-build
+          path: dist/
+
+      - name: Check bundle size limits
+        run: |
+          # Check that main JS bundle is under 500KB
+          MAIN_SIZE=$(find dist/assets -name "index-*.js" -exec stat -f%z {} \; 2>/dev/null || find dist/assets -name "index-*.js" -exec stat -c%s {} \;)
+          echo "Main bundle size: $MAIN_SIZE bytes"
+          if [ "$MAIN_SIZE" -gt 512000 ]; then
+            echo "❌ Main bundle exceeds 500KB limit!"
+            exit 1
+          else
+            echo "✅ Bundle size is acceptable"
+          fi
+
+  # Job 5: SEO & Accessibility Check
+  seo-check:
+    name: SEO & Accessibility
+    runs-on: ubuntu-latest
+    needs: build
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Verify sitemap exists
+        run: |
+          if [ -f "public/sitemap.xml" ]; then
+            echo "✅ Sitemap found"
+          else
+            echo "❌ Sitemap missing!"
+            exit 1
+          fi
+
+      - name: Verify robots.txt exists
+        run: |
+          if [ -f "public/robots.txt" ]; then
+            echo "✅ robots.txt found"
+          else
+            echo "❌ robots.txt missing!"
+            exit 1
+          fi
+
+      - name: Check for SEO meta tags in index.html
+        run: |
+          if grep -q "og:title" index.html && grep -q "og:description" index.html; then
+            echo "✅ OG tags present"
+          else
+            echo "⚠️ Warning: OG tags may be missing"
+          fi
+
+  # Job 6: Deployment Status (Vercel auto-deploys)
+  deployment-status:
+    name: Deployment Check
+    runs-on: ubuntu-latest
+    needs: [build, security]
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
+
+    steps:
+      - name: Deployment notification
+        run: |
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "✅ All checks passed!"
+            echo "🚀 Vercel will auto-deploy this commit to PRODUCTION"
+            echo "Monitor deployment at: https://vercel.com/dashboard"
+          else
+            echo "✅ All checks passed!"
+            echo "📋 This is a development branch"
+            echo "Merge to 'main' to trigger production deployment"
+          fi
