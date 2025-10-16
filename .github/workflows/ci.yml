@@ -170,11 +170,17 @@ jobs:
     name: Deployment Check
     runs-on: ubuntu-latest
     needs: [build, security]
-    if: github.ref == 'refs/heads/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/dev'
 
     steps:
       - name: Deployment notification
         run: |
-          echo "✅ All checks passed!"
-          echo "Vercel will auto-deploy this commit to production"
-          echo "Monitor deployment at: https://vercel.com/dashboard"
+          if [ "${{ github.ref }}" == "refs/heads/main" ]; then
+            echo "✅ All checks passed!"
+            echo "🚀 Vercel will auto-deploy this commit to PRODUCTION"
+            echo "Monitor deployment at: https://vercel.com/dashboard"
+          else
+            echo "✅ All checks passed!"
+            echo "📋 This is a development branch"
+            echo "Merge to 'main' to trigger production deployment"
+          fi
