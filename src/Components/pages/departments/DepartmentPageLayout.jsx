@@ -13,11 +13,17 @@ import Footer from "../../ui/Footer";
 import PageWrapper from "../../ui/PageWrapper";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
 import HeroSection from "../../ui/HeroSection";
+import SEO from "../../ui/SEO";
 import departmentPageData from "../../../data/departmentPageData";
 import {
   departments,
   doctors as doctorsData,
 } from "../../../data/DoctorDepartmentData";
+import {
+  generateMedicalSpecialtySchema,
+  generateMedicalWebPageSchema,
+  insertStructuredData,
+} from "../../../utils/seo";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -549,6 +555,48 @@ const DepartmentPageLayout = () => {
 
   return (
     <PageWrapper pageKey={`department-${departmentId}`}>
+      {/* SEO Component with Department-Specific Schema */}
+      <SEO
+        title={`${department.name} - Expert Care at SSS Super Speciality Hospital Erode`}
+        description={`Comprehensive ${department.name} services at SSS Hospital Erode. Expert doctors, advanced treatments, and state-of-the-art facilities for ${department.name}.`}
+        keywords={[
+          department.name.toLowerCase(),
+          `${department.name.toLowerCase()} erode`,
+          `${department.name.toLowerCase()} hospital`,
+          `best ${department.name.toLowerCase()} erode`,
+          `${department.name.toLowerCase()} specialist`,
+          `${department.name.toLowerCase()} treatment`,
+          "sss hospital",
+        ]}
+        url={`/specialities/${departmentSlug}`}
+        type="website"
+        breadcrumbs={[
+          { name: "Home", url: "/" },
+          { name: "Specialities", url: "/specialities" },
+          { name: department.name, url: `/specialities/${departmentSlug}` },
+        ]}
+        schema={{
+          "@context": "https://schema.org",
+          "@type": "MedicalSpecialty",
+          name: department.name,
+          description: `Expert ${department.name} services at SSS Super Speciality Hospital Erode`,
+          availableAt: {
+            "@type": "Hospital",
+            name: "SSS Super Speciality Hospital",
+            url: "https://ssshospitals.in",
+            address: {
+              "@type": "PostalAddress",
+              streetAddress:
+                "167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar",
+              addressLocality: "Erode",
+              addressRegion: "Tamil Nadu",
+              postalCode: "638009",
+              addressCountry: "IN",
+            },
+          },
+        }}
+      />
+
       <Navigation />
 
       <div className="pt-20 overflow-x-hidden">

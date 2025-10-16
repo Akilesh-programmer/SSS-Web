@@ -1,0 +1,193 @@
+# Robots.txt for SSS Super Speciality Hospital
+# https://ssshospitals.in/robots.txt
+# Updated: October 2025
+
+# ==================================
+# Main Crawler Rules (All Bots)
+# ==================================
+User-agent: *
+Allow: /
+
+# Important pages for crawling
+Allow: /about
+Allow: /specialities
+Allow: /services
+Allow: /doctors
+Allow: /packages
+Allow: /infrastructure
+Allow: /rooms
+Allow: /contact
+
+# Specialty department pages (high priority)
+Allow: /specialities/
+
+# Sitemap location
+Sitemap: https://ssshospitals.in/sitemap.xml
+
+# Crawl delay (be polite to servers)
+Crawl-delay: 1
+
+# Disallow any admin or private areas (if any in future)
+# Disallow: /admin
+# Disallow: /private
+
+# Allow all images (AVIF, WebP, PNG, JPG for image search)
+Allow: /assets/
+Allow: *.avif
+Allow: *.webp
+Allow: *.png
+Allow: *.jpg
+Allow: *.jpeg
+Allow: *.svg
+
+# ==================================
+# Google-specific (Highest Priority)
+# ==================================
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 0
+
+# Google Image Bot
+User-agent: Googlebot-Image
+Allow: /
+Allow: /assets/
+
+# Google Mobile Bot
+User-agent: Googlebot-Mobile
+Allow: /
+Crawl-delay: 0
+
+# ==================================
+# Bing-specific
+# ==================================
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+# Bing Image Bot
+User-agent: msnbot-media
+Allow: /
+Allow: /assets/
+
+# ==================================
+# Social Media Crawlers
+# ==================================
+
+# Facebook Crawler
+User-agent: facebookexternalhit
+Allow: /
+Crawl-delay: 0
+
+# Twitter Crawler
+User-agent: Twitterbot
+Allow: /
+Crawl-delay: 0
+
+# LinkedIn Crawler
+User-agent: LinkedInBot
+Allow: /
+Crawl-delay: 0
+
+# WhatsApp Crawler
+User-agent: WhatsApp
+Allow: /
+Crawl-delay: 0
+
+# ==================================
+# AI/LLM Crawlers (Medical Content)
+# ==================================
+
+# OpenAI GPT Crawler (Allow for medical knowledge)
+User-agent: GPTBot
+Allow: /
+Allow: /specialities/
+Allow: /services/
+Crawl-delay: 2
+
+# ChatGPT User Agent
+User-agent: ChatGPT-User
+Allow: /
+Allow: /specialities/
+Allow: /services/
+Crawl-delay: 2
+
+# Anthropic Claude Crawler
+User-agent: anthropic-ai
+Allow: /
+Allow: /specialities/
+Allow: /services/
+Crawl-delay: 2
+
+# Google Bard/Gemini
+User-agent: Google-Extended
+Allow: /
+Allow: /specialities/
+Allow: /services/
+Crawl-delay: 2
+
+# Common Crawl
+User-agent: CCBot
+Allow: /
+Crawl-delay: 2
+
+# ==================================
+# SEO/Research Tools (Limited Access)
+# ==================================
+
+# Ahrefs Bot (slower crawl)
+User-agent: AhrefsBot
+Allow: /
+Crawl-delay: 10
+
+# Semrush Bot (slower crawl)
+User-agent: SemrushBot
+Allow: /
+Crawl-delay: 10
+
+# Moz Bot
+User-agent: rogerbot
+Allow: /
+Crawl-delay: 5
+
+# Majestic SEO
+User-agent: MJ12bot
+Allow: /
+Crawl-delay: 10
+
+# ==================================
+# Bad Bots / Scrapers (Block)
+# ==================================
+
+# Known Scrapers
+User-agent: BLEXBot
+Disallow: /
+
+User-agent: DataForSeoBot
+Disallow: /
+
+User-agent: DotBot
+Disallow: /
+
+User-agent: MegaIndex
+Disallow: /
+
+User-agent: SiteExplorer
+Disallow: /
+
+User-agent: PetalBot
+Disallow: /
+
+# Generic Scraper Patterns
+User-agent: *Bot*
+Crawl-delay: 10
+
+
+User-agent: Twitterbot
+Allow: /
+
+# Block bad bots (optional - add known bad bots here)
+User-agent: AhrefsBot
+Crawl-delay: 10
+
+User-agent: SemrushBot
+Crawl-delay: 10
