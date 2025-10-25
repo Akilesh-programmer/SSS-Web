@@ -5,6 +5,8 @@ import { useAppointment } from "../../contexts/AppointmentContext";
 import CallModal from "./CallModal";
 const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
+const logoFullLocal = "/assets/logos/sss-full-logo.avif";
+const logoFull = logoFullLocal;
 import { FaBars, FaTimes, FaAmbulance, FaCalendarPlus } from "react-icons/fa";
 
 const Navigation = () => {
@@ -17,10 +19,10 @@ const Navigation = () => {
   // --- Style helpers to avoid repeating large inline objects ---
   const navStyle = (scrolled) => ({
     background: scrolled
-      ? "rgba(255, 255, 255, 0.85)"
-      : "rgba(255, 255, 255, 0.75)",
-    backdropFilter: "blur(20px) saturate(180%)",
-    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+      ? "linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 0.65) 40%, rgba(255, 255, 255, 0.45) 100%)"
+      : "linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 15%, rgba(255, 255, 255, 0.50) 40%, rgba(255, 255, 255, 0.30) 100%)",
+    backdropFilter: "blur(40px) saturate(220%)",
+    WebkitBackdropFilter: "blur(40px) saturate(220%)",
     borderBottom: scrolled
       ? "1px solid rgba(226, 232, 240, 0.8)"
       : "1px solid rgba(226, 232, 240, 0.5)",
@@ -181,59 +183,23 @@ const Navigation = () => {
       >
         <div className="container mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex justify-between items-center h-16 lg:h-18">
-            {/* Professional Logo Section - Full Display */}
+            {/* Professional Logo Section - Full Logo */}
             <motion.div
-              className="flex items-center space-x-3 cursor-pointer relative group"
+              className="flex items-center cursor-pointer relative group py-1"
               onClick={() => handleNavigation("/")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
             >
-              {/* Subtle hover background */}
-              <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-blue-50 to-emerald-50 opacity-0 group-hover:opacity-100 transition-all duration-300 -m-2 p-2"></div>
+              {/* Subtle hover effect */}
+              <div className="absolute inset-0 rounded-lg bg-gradient-to-r from-emerald-50/50 to-blue-50/50 opacity-0 group-hover:opacity-100 transition-all duration-300"></div>
 
-              <div className="relative">
-                <img
-                  src={sssLogo}
-                  alt="SSS Super Speciality Hospital Logo"
-                  className="h-10 w-10 lg:h-12 lg:w-12 rounded-lg object-contain bg-white p-1 shadow-lg ring-1 ring-emerald-200"
-                />
-                {/* Professional overlay */}
-                <div className="absolute inset-0 rounded-lg bg-gradient-to-br from-emerald-100/30 to-transparent pointer-events-none"></div>
-              </div>
+              <img
+                src={logoFull}
+                alt="SSS Super Speciality Hospital"
+                className="relative h-10 w-auto sm:h-11 md:h-12 lg:h-14 object-contain"
+              />
 
-              <div className="relative z-10 text-center flex items-center">
-                <h1 className="font-bold tracking-tight leading-none text-gray-900">
-                  {/* Mobile/Small screens - compact to fit navbar */}
-                  <span className="inline-block w-20 sm:hidden">
-                    <span className="block text-sm font-black leading-none mb-0.5">
-                      SSS
-                    </span>
-                    <span className="block h-0.5 w-16 bg-amber-500 mb-0.5 mx-auto"></span>
-                    <span className="block text-[6px] font-bold tracking-[0.15em] uppercase leading-none mb-0.5">
-                      SUPER SPECIALITY
-                    </span>
-                    <span className="block text-[10px] font-black leading-none">
-                      HOSPITAL
-                    </span>
-                  </span>
-
-                  {/* Medium screens and up - better proportions */}
-                  <span className="hidden sm:inline-block w-28 md:w-30 lg:w-32">
-                    <span className="block text-base md:text-lg lg:text-xl font-black leading-none mb-0.5">
-                      SSS
-                    </span>
-                    <span className="block h-0.5 w-20 md:w-24 lg:w-28 bg-amber-500 mb-0.5 mx-auto"></span>
-                    <span className="block text-[7px] md:text-[8px] lg:text-[9px] font-bold tracking-[0.15em] uppercase leading-none mb-0.5">
-                      SUPER SPECIALITY
-                    </span>
-                    <span className="block text-xs md:text-sm lg:text-base font-black leading-none">
-                      HOSPITAL
-                    </span>
-                  </span>
-
-                  <span className="sr-only">SSS Super Speciality Hospital</span>
-                </h1>
-              </div>
+              <span className="sr-only">SSS Super Speciality Hospital</span>
             </motion.div>
 
             {/* Professional Navigation Links */}
