@@ -1,4 +1,3 @@
-/* eslint-disable react/jsx-pascal-case */
 import Navigation from "../ui/Navigation";
 import Footer from "../ui/Footer";
 import SEO from "../ui/SEO";
