@@ -5,7 +5,7 @@ const founderImgLocal = "/assets/doctors/doctor-2.avif";
 
 const FounderCard = () => {
   const imageSrc = founderImgLocal;
-  const name = "DR. S. SANJITH, MD (DERM)";
+  const name = "Dr. S. SANJITH, MD (DERM)";
   const title = "FOUNDER & MANAGING DIRECTOR";
   const quote = `Our vision at SSS Super Speciality Hospital extends beyond medical treatment – we are committed to creating a healing environment where innovation meets compassion. As we continue to grow and evolve, our dedication remains unwavering: to provide world-class healthcare that transforms lives and strengthens our community. Every patient who walks through our doors receives not just medical expertise, but the care and attention they deserve on their journey to wellness.`;
   const slideInFromLeft = {

@@ -148,13 +148,15 @@ const AboutUs = () => {
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-lg lg:text-xl text-gray-700 leading-relaxed font-medium"
               >
-                SSS Super Speciality Hospital is a leading multi-speciality
-                hospital offering best-in-class medical services. With a
-                paramount focus on patient care, safety, and satisfaction, we
-                are committed to delivering exemplary healthcare services that
-                go beyond conventional standards. Based in Erode, SSS Super
-                Speciality Hospital is an integrated healthcare delivery
-                provider dedicated to excellence in medical care.
+                SSS Super Speciality Hospital is a premier multi-speciality
+                healthcare institution in Erode, renowned for delivering
+                best-in-class medical excellence. With an unwavering focus on
+                patient care, safety, and satisfaction, we combine advanced
+                technology, world-class expertise, and compassionate service to
+                redefine healthcare standards. As an integrated centre of
+                medical excellence, SSS Super Speciality Hospital is committed
+                to innovation, precision, and trust — ensuring exceptional
+                outcomes for every patient.
               </motion.p>
 
               <div className="grid md:grid-cols-2 gap-8 mt-12">
@@ -171,10 +173,11 @@ const AboutUs = () => {
                     </h3>
                   </div>
                   <p className="text-body-md text-gray-600">
-                    Established in May 2025, we began as a multi-speciality
-                    hospital with 25 broad and super-speciality consultants.
-                    Today, we have evolved into a comprehensive 150-bedded
-                    facility.
+                    Established in May 2025, Hospital began its journey as a
+                    multi-speciality centre with 25 broad and super-speciality
+                    consultants. Today, we have evolved into a comprehensive
+                    150-bedded healthcare institution, setting new benchmarks in
+                    medical excellence and patient care.
                   </p>
                 </motion.div>
 
@@ -187,14 +190,16 @@ const AboutUs = () => {
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
                     <h3 className="text-heading-md text-gray-800">
-                      Our Excellence
+                      Our Core Strengths
                     </h3>
                   </div>
                   <p className="text-body-md text-gray-600">
-                    Equipped with state-of-the-art technology and supported by
-                    highly experienced specialists and paramedical staff, we are
-                    the preferred choice for comprehensive healthcare in the
-                    region.
+                    We bring together a highly skilled and dedicated team of
+                    medical experts, state-of-the-art infrastructure and
+                    advanced medical technology, and compassionate patient care
+                    delivered with a human touch. Our comprehensive, integrated
+                    facilities support a patient-centric philosophy focused on
+                    trust and long-term wellness.
                   </p>
                 </motion.div>
               </div>
@@ -271,10 +276,11 @@ const AboutUs = () => {
                       Our Mission
                     </h4>
                     <p className="text-body-lg text-gray-700">
-                      To provide comprehensive, compassionate, and accessible
-                      healthcare services that meet the highest standards of
-                      medical excellence, while fostering a healing environment
-                      that respects the dignity and worth of every individual.
+                      To deliver comprehensive, compassionate, and accessible
+                      healthcare services that uphold the highest standards of
+                      medical excellence, while nurturing a healing environment
+                      that honors the dignity, trust, and well-being of every
+                      individual.
                     </p>
                   </div>
                   <div className="mt-6">
@@ -302,9 +308,9 @@ const AboutUs = () => {
                       Our Vision
                     </h4>
                     <p className="text-body-lg text-gray-700">
-                      To lead healthcare innovation, setting new standards for
-                      excellence and patient satisfaction in our community and
-                      beyond.
+                      To lead healthcare innovation by setting new benchmarks
+                      for excellence and patient satisfaction, both within our
+                      community and beyond.
                     </p>
                   </div>
                   <div className="mt-6">

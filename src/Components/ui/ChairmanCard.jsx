@@ -36,7 +36,7 @@ const ChairmanCard = () => {
           <div className="flex items-center gap-3 mb-6 justify-center lg:justify-start">
             <FaQuoteLeft className="text-3xl text-teal-600" />
             <span className="text-teal-600 font-semibold text-lg">
-              Our Chairman
+              Chairman’s Message
             </span>
           </div>
 
