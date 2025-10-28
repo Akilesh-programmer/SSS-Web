@@ -103,7 +103,7 @@ export default function Footer() {
             </p>
 
             {/* Social Media - Compact */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-center">
               <a
                 href="https://www.instagram.com/sss_superspeciality_hospital"
                 target="_blank"
@@ -149,7 +149,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div>
                 <p className="text-gray-400 text-xs font-medium mb-2 uppercase tracking-wide">
-                  Hospital Lines
+                  <span className="sr-only">Hospital Lines</span>
                 </p>
                 <div className="space-y-1">
                   <a
@@ -170,14 +170,14 @@ export default function Footer() {
               </div>
 
               <div>
-                <p className="text-gray-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                <h4 className="text-lg font-bold mb-0 text-teal-300 flex items-center gap-2">
+                  <FaEnvelope className="text-sm" />
                   Email
-                </p>
+                </h4>
                 <a
                   href="mailto:info@ssshospitals.in"
-                  className="flex items-center gap-2 text-teal-300 hover:text-teal-200 transition-colors text-sm"
+                  className="text-teal-300 hover:text-teal-200 transition-colors text-sm"
                 >
-                  <FaEnvelope className="text-xs" />
                   info@ssshospitals.in
                 </a>
               </div>
@@ -198,9 +198,8 @@ export default function Footer() {
 
           {/* Emergency - Prominent */}
           <div className="lg:col-span-3">
-            <h4 className="text-lg font-bold mb-4 text-red-400 flex items-center gap-2">
-              <FaAmbulance className="text-sm" />
-              Emergency
+            <h4 className="text-lg font-bold mb-4 text-red-400">
+              <span className="sr-only">Emergency</span>
             </h4>
 
             <a
