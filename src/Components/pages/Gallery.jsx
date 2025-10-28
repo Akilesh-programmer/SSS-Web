@@ -438,22 +438,7 @@ const Gallery = () => {
                 </div>
               )}
 
-              {/* Keyboard Hint for Images */}
-              {activeMedia.type === "image" && (
-                <motion.div
-                  className="mt-4 flex items-center justify-center gap-4 text-gray-700 text-sm font-medium bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <span className="hidden md:inline">
-                    Use arrow keys or click buttons to navigate
-                  </span>
-                  <span className="md:hidden">
-                    Tap buttons to navigate images
-                  </span>
-                </motion.div>
-              )}
+              {/* Keyboard hint removed per UX request */}
             </motion.div>
           </motion.div>
         )}
