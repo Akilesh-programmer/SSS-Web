@@ -55,7 +55,10 @@ const FounderSection = () => {
                   the Cure."
                 </blockquote>
 
-                <p className="text-gray-600 leading-relaxed mb-6">
+                <p
+                  className="text-gray-600 leading-relaxed mb-6"
+                  style={{ textAlign: "justify" }}
+                >
                   Dr. S. Sanjith founded SSS Super Speciality Hospital with a
                   vision to bring world-class healthcare to the heart of Erode.
                   With his expertise in dermatology and commitment to

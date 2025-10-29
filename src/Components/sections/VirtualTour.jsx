@@ -162,7 +162,10 @@ const VirtualTour = () => {
           <h2 className="text-display-xl bg-gradient-to-r from-emerald-900 via-teal-800 to-emerald-900 bg-clip-text text-transparent mb-4 sm:mb-6 px-4">
             Take a Virtual Tour
           </h2>
-          <p className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4">
+          <p
+            className="text-base sm:text-lg lg:text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed px-4"
+            style={{ textAlign: "justify" }}
+          >
             Explore our state-of-the-art facilities and modern infrastructure
             that makes SSS Super Speciality Hospital the best choice for your
             healthcare needs.
@@ -300,7 +303,10 @@ const VirtualTour = () => {
                   className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500 origin-left"
                 />
               </h3>
-              <p className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8">
+              <p
+                className="text-gray-600 text-base sm:text-lg lg:text-xl leading-relaxed mb-6 sm:mb-8"
+                style={{ textAlign: "justify" }}
+              >
                 Our hospital features cutting-edge medical technology, spacious
                 patient rooms, and world-class facilities designed to provide
                 the highest standard of care in a comfortable and healing
@@ -352,7 +358,10 @@ const VirtualTour = () => {
                       <h4 className="font-bold text-gray-900 text-base sm:text-lg lg:text-xl mb-1 sm:mb-2 group-hover:text-emerald-700 transition-colors">
                         {feature.title}
                       </h4>
-                      <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
+                      <p
+                        className="text-gray-600 text-sm sm:text-base leading-relaxed"
+                        style={{ textAlign: "justify" }}
+                      >
                         {feature.description}
                       </p>
                     </div>
