@@ -350,7 +350,10 @@ const InfrastructureGallery = () => {
             Hospital Infrastructure
           </h2>
         </div>
-        <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-4 md:px-0">
+        <p
+          className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-4 md:px-0"
+          style={{ textAlign: "justify" }}
+        >
           Explore our state-of-the-art medical facilities and infrastructure
           designed to provide world-class healthcare services
         </p>
@@ -664,7 +667,10 @@ const DepartmentPageLayout = () => {
                         </motion.h3>
                       ),
                       p: ({ children }) => (
-                        <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 font-light tracking-wide break-words">
+                        <p
+                          className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 font-light tracking-wide break-words"
+                          style={{ textAlign: "justify" }}
+                        >
                           {children}
                         </p>
                       ),
@@ -841,7 +847,10 @@ const DepartmentPageLayout = () => {
                 <h2 className="text-display-xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-6">
                   Our Medical Experts
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+                <p
+                  className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light"
+                  style={{ textAlign: "justify" }}
+                >
                   Meet our highly qualified healthcare professionals dedicated
                   to providing exceptional medical care with expertise and
                   compassion
