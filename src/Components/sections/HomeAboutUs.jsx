@@ -102,7 +102,7 @@ const AboutUs = () => {
                 <h4 className="text-heading-sm font-semibold text-gray-900 mb-3">
                   {item.title}
                 </h4>
-                <p className="text-gray-600 leading-relaxed">
+                <p className="text-gray-600 leading-relaxed text-center">
                   {item.description}
                 </p>
               </motion.div>
