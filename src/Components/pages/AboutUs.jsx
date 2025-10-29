@@ -12,6 +12,10 @@ import {
   FaBed,
   FaAmbulance,
   FaUsers,
+  FaAward,
+  FaShieldAlt,
+  FaHandHoldingHeart,
+  FaDollarSign,
 } from "react-icons/fa";
 import ChairmanCard from "../ui/ChairmanCard";
 import FounderCard from "../ui/FounderCard";
@@ -147,6 +151,7 @@ const AboutUs = () => {
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.4 }}
                 className="text-lg lg:text-xl text-gray-700 leading-relaxed font-medium"
+                style={{ textAlign: "justify" }}
               >
                 SSS Super Speciality Hospital is a premier multi-speciality
                 healthcare institution in Erode, renowned for delivering
@@ -172,7 +177,10 @@ const AboutUs = () => {
                       Our Journey
                     </h3>
                   </div>
-                  <p className="text-body-md text-gray-600">
+                  <p
+                    className="text-body-md text-gray-600"
+                    style={{ textAlign: "justify" }}
+                  >
                     Established in May 2025, Hospital began its journey as a
                     multi-speciality centre with 25 broad and super-speciality
                     consultants. Today, we have evolved into a comprehensive
@@ -193,7 +201,10 @@ const AboutUs = () => {
                       Our Core Strengths
                     </h3>
                   </div>
-                  <p className="text-body-md text-gray-600">
+                  <p
+                    className="text-body-md text-gray-600"
+                    style={{ textAlign: "justify" }}
+                  >
                     We bring together a highly skilled and dedicated team of
                     medical experts, state-of-the-art infrastructure and
                     advanced medical technology, and compassionate patient care
@@ -275,7 +286,10 @@ const AboutUs = () => {
                     <h4 className="text-heading-lg text-emerald-900 mb-4">
                       Our Mission
                     </h4>
-                    <p className="text-body-lg text-gray-700">
+                    <p
+                      className="text-body-lg text-gray-700"
+                      style={{ textAlign: "justify" }}
+                    >
                       To deliver comprehensive, compassionate, and accessible
                       healthcare services that uphold the highest standards of
                       medical excellence, while nurturing a healing environment
@@ -307,7 +321,10 @@ const AboutUs = () => {
                     <h4 className="text-heading-lg text-emerald-900 mb-4">
                       Our Vision
                     </h4>
-                    <p className="text-body-lg text-gray-700">
+                    <p
+                      className="text-body-lg text-gray-700"
+                      style={{ textAlign: "justify" }}
+                    >
                       To lead healthcare innovation by setting new benchmarks
                       for excellence and patient satisfaction, both within our
                       community and beyond.
@@ -491,7 +508,10 @@ const AboutUs = () => {
                         </div>
                       </div>
 
-                      <p className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300">
+                      <p
+                        className="text-gray-600 leading-relaxed group-hover:text-gray-700 transition-colors duration-300"
+                        style={{ textAlign: "justify" }}
+                      >
                         {care.description}
                       </p>
 
@@ -507,33 +527,16 @@ const AboutUs = () => {
       </section>
 
       {/* Why Choose Us - Modern Medical Excellence */}
-      <section className="relative py-16 lg:py-24 overflow-hidden">
-        {/* Background image (kept the same), with hero-like black overlay instead of green shade */}
-        <motion.div
-          className="absolute inset-0 bg-cover bg-center bg-no-repeat will-change-transform"
-          initial={{ scale: 1.06, y: -10, opacity: 0.9 }}
-          whileInView={{ scale: 1, y: 0, opacity: 1 }}
-          viewport={{ once: true, amount: 0.2 }}
-          transition={{ duration: 1.2, ease: "easeOut" }}
-          style={{
-            backgroundImage: `url(${BG3})`,
-          }}
-        />
-        {/* Match hero overlay shade */}
-        <div className="absolute inset-0 bg-black/50" />
-
-        {/* Subtle Pattern Overlay */}
-        <div className="absolute inset-0 opacity-10">
-          <div
-            className="absolute inset-0"
-            style={{
-              backgroundImage: `radial-gradient(circle at 2px 2px, rgba(255,255,255,0.3) 1px, transparent 0)`,
-              backgroundSize: "24px 24px",
-            }}
-          />
+      <section className="relative py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-emerald-50 overflow-hidden">
+        {/* Decorative Background Elements */}
+        <div className="absolute inset-0 opacity-40">
+          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-200 rounded-full blur-3xl animate-pulse" />
+          <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl animate-pulse delay-700" />
+          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-teal-200 rounded-full blur-2xl animate-pulse delay-1000" />
         </div>
 
-        <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          {/* Section Header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -541,162 +544,239 @@ const AboutUs = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-12 lg:mb-16"
           >
-            <div className="inline-flex items-center gap-3 bg-white/10 backdrop-blur-sm rounded-full px-6 py-3 mb-6 border border-white/20">
-              <FaHeartbeat className="text-white text-xl" />
+            <motion.div
+              initial={{ scale: 0, rotate: -10 }}
+              whileInView={{ scale: 1, rotate: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.6, type: "spring", stiffness: 200 }}
+              className="inline-flex items-center gap-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full px-6 py-3 mb-6 shadow-lg"
+            >
+              <FaAward className="text-white text-xl" />
               <span className="text-white font-semibold text-sm tracking-wide">
                 EXCELLENCE IN HEALTHCARE
               </span>
-            </div>
+            </motion.div>
 
-            <h2 className="text-display-xl text-white mb-6 leading-tight">
+            <h2 className="text-display-xl bg-gradient-to-r from-gray-800 via-emerald-700 to-gray-800 bg-clip-text text-transparent mb-6 leading-tight">
               Why Choose{" "}
-              <span className="block text-emerald-200">
-                SSS Super Speciality Hospital?
-              </span>
+              <span className="block">SSS Super Speciality Hospital?</span>
             </h2>
 
-            <div className="w-24 h-1 bg-emerald-300 mx-auto rounded-full mb-8" />
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 40 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true, margin: "-100px" }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center"
-          >
-            {/* Left Content */}
-            <div className="space-y-6">
-              <div className="bg-white/95 backdrop-blur-sm rounded-2xl p-8 shadow-xl border border-white/30">
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  At SSS Super Speciality Hospital, we stand as a beacon of
-                  medical excellence, combining{" "}
-                  <strong className="text-emerald-700">
-                    expert healthcare professionals
-                  </strong>{" "}
-                  with state-of-the-art technology to deliver unparalleled
-                  patient care. Our commitment extends beyond treatment to
-                  encompass compassionate service, ensuring every patient
-                  receives personalized attention in our modern, comfortable
-                  environment.
-                </p>
-
-                <p className="text-gray-700 text-lg leading-relaxed mb-6">
-                  With{" "}
-                  <strong className="text-emerald-700">
-                    round-the-clock emergency services
-                  </strong>{" "}
-                  and cutting-edge diagnostic facilities, we provide
-                  comprehensive healthcare solutions under one roof. Our
-                  transparent, affordable pricing model ensures that quality
-                  medical care remains accessible to all, while our experienced
-                  medical team delivers treatments with empathy and
-                  understanding.
-                </p>
-
-                <motion.div
-                  initial="hidden"
-                  whileInView="visible"
-                  viewport={{ once: true }}
-                  variants={staggerContainer}
-                  className="flex flex-wrap gap-3 mt-6"
-                >
-                  {[
-                    "Expert Medical Team",
-                    "Advanced Technology",
-                    "24/7 Emergency Care",
-                    "Affordable Pricing",
-                    "Modern Infrastructure",
-                    "Quality Assurance",
-                  ].map((tag, index) => (
-                    <motion.span
-                      key={tag}
-                      variants={fadeInUp}
-                      className="inline-flex items-center px-3 py-1.5 bg-emerald-100 text-emerald-700 text-sm font-medium rounded-full border border-emerald-200"
-                    >
-                      {tag}
-                    </motion.span>
-                  ))}
-                </motion.div>
-              </div>
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <div className="w-12 h-1 bg-emerald-400 rounded-full" />
+              <FaHeartbeat className="text-emerald-500 text-2xl animate-pulse" />
+              <div className="w-12 h-1 bg-emerald-400 rounded-full" />
             </div>
 
-            {/* Right Stats/Highlights */}
-            <div className="space-y-6">
-              <div className="grid grid-cols-2 gap-4">
-                {[
-                  {
-                    icon: FaUserMd,
-                    number: 50,
-                    suffix: "+",
-                    label: "Expert Doctors",
-                  },
-                  {
-                    icon: FaBed,
-                    number: 150,
-                    suffix: "+",
-                    label: "Hospital Beds",
-                  },
-                  {
-                    icon: FaMicroscope,
-                    number: 25,
-                    suffix: "+",
-                    label: "Specialties",
-                  },
-                  {
-                    icon: FaClock,
-                    number: 24,
-                    label: "Emergency Care",
-                    isDayHour: true,
-                  },
-                ].map((stat, index) => (
-                  <motion.div
-                    key={stat.label}
-                    initial={{ opacity: 0, scale: 0.8 }}
-                    whileInView={{ opacity: 1, scale: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ duration: 0.5, delay: 0.3 + index * 0.1 }}
-                    className="bg-white/90 backdrop-blur-sm rounded-xl p-6 text-center shadow-lg border border-white/40 hover:bg-white/95 transition-all duration-300"
-                  >
-                    <stat.icon className="text-3xl text-emerald-600 mx-auto mb-3" />
-                    <div className="text-heading-lg text-gray-900 mb-1 tabular-nums">
-                      {stat.isDayHour ? (
-                        <span className="whitespace-nowrap">
-                          <AnimatedCounter
-                            end={stat.number}
-                            className="m-0 inline-block text-2xl"
-                          />
-                          <span className="ml-0.5 align-baseline">/7</span>
-                        </span>
-                      ) : (
-                        <AnimatedCounter
-                          end={stat.number}
-                          suffix={stat.suffix || ""}
-                          className="m-0 inline-block text-2xl"
-                        />
-                      )}
-                    </div>
-                    <div className="text-sm text-gray-600 font-medium">
-                      {stat.label}
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+            <p
+              className="text-lg text-gray-600 max-w-3xl mx-auto leading-relaxed"
+              style={{ textAlign: "justify" }}
+            >
+              Discover the reasons why thousands of patients trust us with their
+              health and well-being. Our commitment to excellence, advanced
+              technology, and compassionate care sets us apart.
+            </p>
+          </motion.div>
 
-              <div className="bg-white/90 backdrop-blur-sm rounded-xl p-6 shadow-lg border border-white/40">
-                <div className="flex items-center gap-3 mb-4">
-                  <FaHeartbeat className="text-2xl text-emerald-600" />
-                  <h3 className="text-heading-md text-gray-900">
-                    Patient-Centered Care
-                  </h3>
+          {/* Features Grid - 7 Cards */}
+          <motion.div
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, margin: "-50px" }}
+            variants={staggerContainer}
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
+          >
+            {/* Card 1: Excellence in Care */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaAward className="text-white text-2xl lg:text-3xl" />
                 </div>
-                <p className="text-gray-700 leading-relaxed">
-                  Every aspect of our hospital is designed with patients in mind
-                  - from our comfortable facilities to our compassionate staff
-                  who ensure you receive the highest standard of medical care in
-                  a supportive environment.
-                </p>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
               </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-emerald-700 transition-colors">
+                Excellence in Care
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Expert professionals with advanced technology delivering
+                world-class medical care with precision and expertise.
+              </p>
+            </motion.div>
+
+            {/* Card 2: Comprehensive Services */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaHospital className="text-white text-2xl lg:text-3xl" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
+              </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-blue-700 transition-colors">
+                Comprehensive Services
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Complete healthcare solutions under one roof, from diagnostics
+                to specialized treatments and surgeries.
+              </p>
+            </motion.div>
+
+            {/* Card 3: 24/7 Emergency */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-red-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaAmbulance className="text-white text-2xl lg:text-3xl" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
+              </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-red-700 transition-colors">
+                24/7 Emergency
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Rapid, reliable emergency response available round the clock
+                with our dedicated trauma care team.
+              </p>
+            </motion.div>
+
+            {/* Card 4: Patient First */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-pink-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaHandHoldingHeart className="text-white text-2xl lg:text-3xl" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-pink-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
+              </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-pink-700 transition-colors">
+                Patient First
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Compassionate and personalized attention ensuring every patient
+                receives individualized care and support.
+              </p>
+            </motion.div>
+
+            {/* Card 5: Advanced Diagnostics */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-purple-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaMicroscope className="text-white text-2xl lg:text-3xl" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-purple-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
+              </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-purple-700 transition-colors">
+                Advanced Diagnostics
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Precision through modern facilities with state-of-the-art
+                diagnostic equipment and imaging technology.
+              </p>
+            </motion.div>
+
+            {/* Card 6: Affordable & Transparent */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-green-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaShieldAlt className="text-white text-2xl lg:text-3xl" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
+              </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-green-700 transition-colors">
+                Affordable & Transparent
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Quality care at fair pricing with transparent billing, making
+                healthcare accessible to everyone.
+              </p>
+            </motion.div>
+
+            {/* Card 7: Empathetic Team */}
+            <motion.div
+              variants={fadeInUp}
+              whileHover={{ y: -8, scale: 1.02 }}
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-cyan-100 group"
+            >
+              <div className="relative mb-5">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                  <FaUsers className="text-white text-2xl lg:text-3xl" />
+                </div>
+                <div className="absolute -top-1 -right-1 w-6 h-6 bg-cyan-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
+              </div>
+              <h3 className="text-xl lg:text-2xl font-bold text-gray-900 mb-3 group-hover:text-cyan-700 transition-colors">
+                Empathetic Team
+              </h3>
+              <p
+                className="text-gray-600 leading-relaxed text-sm lg:text-base"
+                style={{ textAlign: "justify" }}
+              >
+                Skilled experts with a human touch, combining medical excellence
+                with genuine care and understanding.
+              </p>
+            </motion.div>
+          </motion.div>
+
+          {/* Bottom CTA/Stats Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-12 lg:mt-16 text-center"
+          >
+            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 lg:p-12 shadow-2xl">
+              <FaHeartbeat className="text-white text-5xl mx-auto mb-4 animate-pulse" />
+              <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
+                Your Health, Our Priority
+              </h3>
+              <p
+                className="text-white/90 text-lg max-w-2xl mx-auto leading-relaxed"
+                style={{ textAlign: "justify" }}
+              >
+                Experience the difference of patient-centered care where
+                cutting-edge medical technology meets compassionate service.
+                Join thousands of satisfied patients who trust us with their
+                health.
+              </p>
             </div>
           </motion.div>
         </div>
