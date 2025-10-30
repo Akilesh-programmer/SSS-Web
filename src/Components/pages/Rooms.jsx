@@ -16,7 +16,7 @@ import HeroSection from "../ui/HeroSection";
 const BG_HERO = "/assets/rooms/rooms-03401.avif";
 
 // Logo for watermark
-const sssLogo = "/assets/logos/sss-full-logo.avif";
+const sssLogo = "/assets/logos/Full-Logo Transparent.avif";
 
 // Room photos
 const ROOM_PHOTOS = [
@@ -348,7 +348,7 @@ const Rooms = () => {
                 <img
                   src={sssLogo}
                   alt="SSS Hospital Logo"
-                  className="absolute top-4 right-4 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-90 drop-shadow-lg pointer-events-none"
+                  className="absolute top-0.5 right-2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-90 drop-shadow-lg pointer-events-none"
                   style={{ objectFit: "contain" }}
                 />
               </div>
