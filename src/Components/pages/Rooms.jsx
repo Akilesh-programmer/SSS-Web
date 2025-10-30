@@ -15,6 +15,9 @@ import HeroSection from "../ui/HeroSection";
 // Hero background - using room photo as requested
 const BG_HERO = "/assets/rooms/rooms-03401.avif";
 
+// Logo for watermark
+const sssLogo = "/assets/logos/sss-full-logo.avif";
+
 // Room photos
 const ROOM_PHOTOS = [
   "/assets/rooms/rooms-7.avif",
@@ -340,6 +343,13 @@ const Rooms = () => {
                   src={selectedImage.src}
                   alt={selectedImage.alt}
                   className="w-full h-full object-contain max-h-[80vh] mx-auto"
+                />
+                {/* SSS Hospital Logo Watermark - All room images */}
+                <img
+                  src={sssLogo}
+                  alt="SSS Hospital Logo"
+                  className="absolute top-4 right-4 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-90 drop-shadow-lg pointer-events-none"
+                  style={{ objectFit: "contain" }}
                 />
               </div>
             </motion.div>
