@@ -523,7 +523,7 @@ const AboutUs = () => {
               </motion.div>
             ))}
           </motion.div>
-        </div>
+        </div>                                        
       </section>
 
       {/* Why Choose Us - Modern Medical Excellence */}
