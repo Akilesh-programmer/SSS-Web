@@ -40,9 +40,6 @@ const INF21 = "/assets/infrastructure/infrastructure-wa0032.avif";
 const hospitalVideo = "/assets/hospital-tour-video.mp4";
 const hospitalImg = "/assets/other/other-sss-hospital.avif";
 
-// Logo for watermark
-const sssLogo = "/assets/logos/Full-Logo Transparent.avif";
-
 // Central list of infrastructure images
 const infrastructureImageList = [
   "Infrastructure_Photos/DSC03356.webp",
@@ -418,17 +415,6 @@ const Gallery = () => {
                         alt={activeMedia.alt || "Infrastructure Photo"}
                         className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
                       />
-                      {/* SSS Hospital Logo Watermark - Images 1-11 and 14-18 (indices 0-10 and 13-17) */}
-                      {[...Array(11).keys(), 13, 14, 15, 16, 17].includes(
-                        currentImageIndex
-                      ) && (
-                        <img
-                          src={sssLogo}
-                          alt="SSS Hospital Logo"
-                          className="absolute top-0.5 right-2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-90 drop-shadow-lg pointer-events-none"
-                          style={{ objectFit: "contain" }}
-                        />
-                      )}
                     </motion.div>
                   </AnimatePresence>
 

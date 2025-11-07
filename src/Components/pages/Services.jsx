@@ -45,9 +45,6 @@ const SERVICE_RIGHT_2 = "/assets/infrastructure/infrastructure-0336899.avif";
 const SERVICE_RIGHT_3 = "/assets/infrastructure/infrastructure-03412.avif";
 const SERVICE_RIGHT_4 = "/assets/infrastructure/infrastructure-03377.avif";
 
-// Logo for watermark
-const sssLogo = "/assets/logos/Full-Logo Transparent.avif";
-
 // BG Photos array for hero backgrounds
 const bgPhotos = [BG1, BG2, BG3, BG4];
 
@@ -715,18 +712,6 @@ const Services = () => {
                       alt={selectedImage.alt}
                       className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
                     />
-                    {/* SSS Hospital Logo Watermark - Conditionally shown based on image category and index */}
-                    {((imageCategory === "left" &&
-                      [2, 3, 4].includes(currentImageIndex)) ||
-                      (imageCategory === "right" &&
-                        [0, 1, 2, 3].includes(currentImageIndex))) && (
-                      <img
-                        src={sssLogo}
-                        alt="SSS Hospital Logo"
-                        className="absolute top-0.5 right-2 w-16 h-16 md:w-20 md:h-20 lg:w-24 lg:h-24 opacity-90 drop-shadow-lg pointer-events-none"
-                        style={{ objectFit: "contain" }}
-                      />
-                    )}
                   </motion.div>
                 </AnimatePresence>
 
