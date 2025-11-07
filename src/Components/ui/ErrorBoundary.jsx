@@ -11,7 +11,13 @@ class ErrorBoundary extends React.Component {
   }
 
   componentDidCatch(error, errorInfo) {
-    console.error("Component Error:", error, errorInfo);
+    // Log errors in development, send to monitoring in production
+    if (import.meta.env.DEV) {
+      console.error("Component Error:", error, errorInfo);
+    } else {
+      // In production, you could send to error tracking service
+      // e.g., Sentry, LogRocket, or Vercel Analytics
+    }
   }
 
   render() {

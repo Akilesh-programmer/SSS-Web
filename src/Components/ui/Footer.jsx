@@ -1,5 +1,4 @@
 import { useRef, useEffect, useState } from "react";
-import React from "react";
 const logoFullLocal = "/assets/logos/sss-full-logo.avif";
 const logoFull = logoFullLocal;
 import PropTypes from "prop-types";
@@ -87,41 +86,24 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Hospital Info - Enhanced */}
           <div className="lg:col-span-4">
-            <div className="flex items-center gap-0 mb-4">
-              <div className="w-36 h-20 md:w-40 md:h-24 rounded-lg bg-white p-1.5 flex items-center justify-center shadow-lg flex-shrink-0">
+            {/* Centered Logo Only */}
+            <div className="flex items-center justify-center mb-4">
+              <div className="w-48 h-24 md:w-56 md:h-28 rounded-lg bg-white p-2 flex items-center justify-center shadow-lg">
                 <img
                   src={logoFull}
-                  alt="SSS Hospital Logo"
+                  alt="SSS Super Speciality Hospital Logo"
                   className="max-w-full max-h-full object-contain rounded-sm"
                 />
               </div>
-              <div className="flex-1">
-                {/* SSS Super Speciality Hospital - Trademark Format */}
-                <h3 className="font-bold tracking-tight leading-none text-white text-center">
-                  <span className="block text-xl md:text-2xl font-black leading-none mb-0.5">
-                    SSS
-                  </span>
-                  <span className="block h-0.5 w-24 md:w-28 bg-amber-500 mb-0.5 mx-auto"></span>
-                  <span className="block text-[9px] md:text-[10px] font-bold tracking-[0.15em] uppercase leading-none mb-0.5 text-teal-300">
-                    SUPER SPECIALITY
-                  </span>
-                  <span className="block text-sm md:text-base font-black leading-none text-teal-200">
-                    HOSPITAL
-                  </span>
-                </h3>
-                <p className="text-gray-400 text-xs font-medium mt-2 text-center">
-                  Excellence in Healthcare
-                </p>
-              </div>
             </div>
 
-            <p className="text-gray-300 text-sm leading-relaxed mb-4">
+            <p className="text-gray-300 text-sm leading-relaxed mb-4 text-center">
               Bringing world-class healthcare to Erode with comprehensive
               medical services available 24/7.
             </p>
 
             {/* Social Media - Compact */}
-            <div className="flex gap-2">
+            <div className="flex gap-2 justify-center">
               <a
                 href="https://www.instagram.com/sss_superspeciality_hospital"
                 target="_blank"
@@ -167,7 +149,7 @@ export default function Footer() {
             <div className="space-y-3">
               <div>
                 <p className="text-gray-400 text-xs font-medium mb-2 uppercase tracking-wide">
-                  Hospital Lines
+                  <span className="sr-only">Hospital Lines</span>
                 </p>
                 <div className="space-y-1">
                   <a
@@ -188,14 +170,14 @@ export default function Footer() {
               </div>
 
               <div>
-                <p className="text-gray-400 text-xs font-medium mb-2 uppercase tracking-wide">
+                <h4 className="text-lg font-bold mb-0 text-teal-300 flex items-center gap-2">
+                  <FaEnvelope className="text-sm" />
                   Email
-                </p>
+                </h4>
                 <a
                   href="mailto:info@ssshospitals.in"
-                  className="flex items-center gap-2 text-teal-300 hover:text-teal-200 transition-colors text-sm"
+                  className="text-teal-300 hover:text-teal-200 transition-colors text-sm"
                 >
-                  <FaEnvelope className="text-xs" />
                   info@ssshospitals.in
                 </a>
               </div>
@@ -216,9 +198,8 @@ export default function Footer() {
 
           {/* Emergency - Prominent */}
           <div className="lg:col-span-3">
-            <h4 className="text-lg font-bold mb-4 text-red-400 flex items-center gap-2">
-              <FaAmbulance className="text-sm" />
-              Emergency
+            <h4 className="text-lg font-bold mb-4 text-red-400">
+              <span className="sr-only">Emergency</span>
             </h4>
 
             <a

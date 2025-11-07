@@ -373,79 +373,108 @@ const SpecialitiesPreview = ({ count = 4 }) => {
             viewport={{ once: true }}
             className="flex gap-4 md:gap-6 overflow-x-auto snap-x snap-mandatory py-6 px-1 scrollbar-hide"
           >
-            {displayedItems.map((dept, idx) => (
-              <div
-                key={dept.id}
-                className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 snap-center px-1"
-              >
-                <motion.div
-                  className="group relative text-center p-4 lg:p-6 rounded-2xl bg-white/95 shadow-lg hover:shadow-2xl border border-transparent hover:border-emerald-100 transition-all duration-300 cursor-default overflow-hidden h-40 sm:h-44 lg:h-48 flex flex-col items-center justify-center"
-                  variants={{
-                    hidden: { opacity: 0, y: 10 },
-                    visible: { opacity: 1, y: 0 },
-                  }}
-                  whileHover={{
-                    y: -6,
-                    boxShadow: "0 20px 40px rgba(2,6,23,0.08)",
-                  }}
-                  transition={{ duration: 0.35 }}
-                >
-                  {/* decorative accent */}
-                  <motion.div
-                    aria-hidden
-                    initial={{ scale: 0.9, opacity: 0 }}
-                    whileInView={{ scale: 1, opacity: 0.06 }}
-                    transition={{
-                      duration: 0.9,
-                      delay: idx * 0.04,
-                      ease: "easeInOut",
-                      repeat: 0,
-                    }}
-                    className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-gradient-to-br from-emerald-200 to-teal-200 opacity-10 pointer-events-none blur-3xl"
-                  />
+            {displayedItems.map((dept, idx) => {
+              const departmentSlug = (dept.name || "")
+                .toLowerCase()
+                .replace(/[^a-z0-9]+/g, "-")
+                .replace(/^-|-$/g, "");
 
-                  <div className="relative z-10 flex flex-col items-center gap-3">
+              return (
+                <div
+                  key={dept.id}
+                  className="flex-shrink-0 w-full sm:w-1/2 lg:w-1/4 snap-center px-1"
+                >
+                  <motion.div
+                    onClick={() => navigate(`/specialities/${departmentSlug}`)}
+                    className="group relative text-center p-4 lg:p-6 rounded-2xl bg-white/95 shadow-lg hover:shadow-2xl border border-transparent hover:border-emerald-100 transition-all duration-300 cursor-pointer overflow-hidden h-auto sm:h-44 lg:h-48 flex flex-col items-center justify-center"
+                    variants={{
+                      hidden: { opacity: 0, y: 10 },
+                      visible: { opacity: 1, y: 0 },
+                    }}
+                    whileHover={{
+                      y: -6,
+                      boxShadow: "0 20px 40px rgba(2,6,23,0.08)",
+                    }}
+                    transition={{ duration: 0.35 }}
+                    role="button"
+                    tabIndex={0}
+                    onKeyDown={(e) => {
+                      if (e.key === "Enter" || e.key === " ") {
+                        e.preventDefault();
+                        navigate(`/specialities/${departmentSlug}`);
+                      }
+                    }}
+                    aria-label={`View ${dept.name} department`}
+                  >
+                    {/* decorative accent */}
                     <motion.div
                       aria-hidden
-                      className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-md text-xl"
-                      // keep icon visible at all times; slightly livelier floating and tilt
-                      initial={{ scale: 1, rotate: 0, y: 0, opacity: 1 }}
-                      animate={{
-                        scale: [1, 1.08, 0.96, 1.06],
-                        rotate: [0, 6, -3, 0],
-                        y: [0, -6, 0, -4],
-                      }}
+                      initial={{ scale: 0.9, opacity: 0 }}
+                      whileInView={{ scale: 1, opacity: 0.06 }}
                       transition={{
-                        duration: 4,
-                        repeat: Infinity,
-                        repeatType: "mirror",
+                        duration: 0.9,
+                        delay: idx * 0.04,
                         ease: "easeInOut",
-                        delay: idx * 0.05,
+                        repeat: 0,
                       }}
-                      whileHover={{ scale: 1.16, rotate: 8 }}
-                    >
-                      <div className="text-xl">
-                        {getDepartmentIcon(dept.name)}
-                      </div>
-                    </motion.div>
-                    <h4 className="text-base sm:text-lg font-semibold text-gray-900 px-2 text-center">
-                      {dept.name}
-                    </h4>
-                  </div>
+                      className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-gradient-to-br from-emerald-200 to-teal-200 opacity-10 pointer-events-none blur-3xl"
+                    />
 
-                  {/* hover shimmer */}
-                  <motion.div
-                    aria-hidden
-                    className="absolute inset-0 pointer-events-none"
-                    initial={{ opacity: 0 }}
-                    whileHover={{ opacity: 1 }}
-                    transition={{ duration: 0.35 }}
-                  >
-                    <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-900 ease-out" />
+                    <div className="relative z-10 flex flex-col items-center gap-3">
+                      <motion.div
+                        aria-hidden
+                        className="flex-shrink-0 w-14 h-14 rounded-lg bg-gradient-to-br from-emerald-500 to-teal-500 flex items-center justify-center text-white shadow-md text-xl"
+                        // keep icon visible at all times; slightly livelier floating and tilt
+                        initial={{ scale: 1, rotate: 0, y: 0, opacity: 1 }}
+                        animate={{
+                          scale: [1, 1.08, 0.96, 1.06],
+                          rotate: [0, 6, -3, 0],
+                          y: [0, -6, 0, -4],
+                        }}
+                        transition={{
+                          duration: 4,
+                          repeat: Infinity,
+                          repeatType: "mirror",
+                          ease: "easeInOut",
+                          delay: idx * 0.05,
+                        }}
+                        whileHover={{ scale: 1.16, rotate: 8 }}
+                      >
+                        <div className="text-xl">
+                          {getDepartmentIcon(dept.name)}
+                        </div>
+                      </motion.div>
+                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 px-2 text-center">
+                        {dept.name}
+                      </h4>
+
+                      {/* Mobile "View Details" button - shown by default on mobile */}
+                      <motion.button
+                        className="mt-3 sm:hidden px-4 py-2 bg-gradient-to-r from-emerald-600 to-teal-500 text-white text-sm font-medium rounded-full shadow-md hover:shadow-lg transition-all"
+                        whileTap={{ scale: 0.95 }}
+                        onClick={(e) => {
+                          e.stopPropagation();
+                          navigate(`/specialities/${departmentSlug}`);
+                        }}
+                      >
+                        View Details
+                      </motion.button>
+                    </div>
+
+                    {/* hover shimmer */}
+                    <motion.div
+                      aria-hidden
+                      className="absolute inset-0 pointer-events-none"
+                      initial={{ opacity: 0 }}
+                      whileHover={{ opacity: 1 }}
+                      transition={{ duration: 0.35 }}
+                    >
+                      <div className="absolute inset-0 -translate-x-full group-hover:translate-x-full bg-gradient-to-r from-transparent via-white/20 to-transparent transition-transform duration-900 ease-out" />
+                    </motion.div>
                   </motion.div>
-                </motion.div>
-              </div>
-            ))}
+                </div>
+              );
+            })}
           </motion.div>
 
           {/* Pagination dots */}

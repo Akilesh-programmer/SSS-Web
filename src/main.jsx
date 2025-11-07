@@ -15,6 +15,6 @@ createRoot(document.getElementById("root")).render(
       </AppointmentProvider>
     </BrowserRouter>
     <Analytics />
-    <SpeedInsights />
+    <SpeedInsights />                                         
   </StrictMode>
 );

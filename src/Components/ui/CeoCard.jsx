@@ -5,7 +5,7 @@ const ceoImg = "/assets/doctors/doctor-3.avif";
 
 const CeoCard = () => {
   const imageSrc = ceoImg;
-  const name = "DR P.SELVAKUMAR, MD., PDCC";
+  const name = "Dr. P.SELVAKUMAR, MD., PDCC";
   const position = "CEO & MEDICAL DIRECTOR";
   const description = `An experienced Anaesthesiologist and ICU leader with a track record of operational excellence across leading tertiary hospitals. Dr. Selvakumar brings strong clinical governance, critical care expertise, and process-driven leadership to SSS Super Speciality Hospital. He trained and led critical care teams at Apollo (Greams Road and Madurai), Velammal Super Speciality, and KMCH before joining SSS in 2024. Dr. Selvakumar brings two decades of anaesthesia and ICU leadership focused on safety, efficiency, and compassionate patient care.`;
   const slideInFromLeft = {

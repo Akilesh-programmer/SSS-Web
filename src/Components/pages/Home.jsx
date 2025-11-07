@@ -164,7 +164,8 @@ export default function Home() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.6, duration: 0.6 }}
-                className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0 text-center lg:text-left px-4 lg:px-0"
+                className="text-lg lg:text-xl text-gray-600 leading-relaxed max-w-lg mx-auto lg:mx-0 px-4 lg:px-0"
+                style={{ textAlign: "justify" }}
               >
                 Experience world-class healthcare with cutting-edge technology
                 and compassionate care at SSS Super Speciality Hospital, Erode.

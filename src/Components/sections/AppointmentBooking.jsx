@@ -93,7 +93,10 @@ const AppointmentBooking = () => {
             <h2 className="text-display-lg text-emerald-900 mb-6">
               Your Health, Our Priority
             </h2>
-            <p className="text-body-xl text-gray-600 max-w-3xl mx-auto">
+            <p
+              className="text-body-xl text-gray-600 max-w-3xl mx-auto"
+              style={{ textAlign: "justify" }}
+            >
               Book your appointment with our world-class medical experts.
               Experience healthcare excellence with state-of-the-art facilities
               and compassionate care.
@@ -141,7 +144,10 @@ const AppointmentBooking = () => {
                 <h3 className="text-heading-xl mb-4 bg-gradient-to-r from-emerald-700 to-teal-700 bg-clip-text text-transparent">
                   Ready to Book Your Appointment?
                 </h3>
-                <p className="text-body-lg text-gray-600 mb-8 max-w-2xl mx-auto">
+                <p
+                  className="text-body-lg text-gray-600 mb-8 max-w-2xl mx-auto"
+                  style={{ textAlign: "justify" }}
+                >
                   Get immediate access to our comprehensive appointment booking
                   system. Choose your preferred doctor, time, and department
                   with just a few clicks.

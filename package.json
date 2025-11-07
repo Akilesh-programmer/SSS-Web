@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "node check-env.js && vite build",
+    "deploy": "node check-env.js && vercel --prod",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-favicons": "node scripts/generate-favicons.js"

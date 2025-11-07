@@ -1,4 +1,4 @@
-import React, { useState, useMemo, useEffect } from "react";
+import React, { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "../ui/HeroSection";
 import {
@@ -111,49 +111,65 @@ const Gallery = () => {
     []
   );
 
-  // Keyboard navigation for modal
+  // Keyboard navigation for modal (images and videos)
   useEffect(() => {
-    if (!activeMedia || activeMedia.type !== "image") return;
+    if (!activeMedia) return;
 
     const handleKeyDown = (e) => {
       if (e.key === "Escape") {
         closeMedia();
-      } else if (e.key === "ArrowLeft") {
-        navigateImage("prev");
-      } else if (e.key === "ArrowRight") {
-        navigateImage("next");
+      }
+
+      // Only handle left/right arrows for image galleries
+      if (activeMedia.type === "image") {
+        if (e.key === "ArrowLeft") {
+          navigateImage("prev");
+        } else if (e.key === "ArrowRight") {
+          navigateImage("next");
+        }
       }
     };
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
+    // Intentionally include navigateImage/closeMedia in deps so handler has latest refs
   }, [activeMedia, currentImageIndex]);
 
-  const openImage = (img) => {
-    const index = images.findIndex((image) => image.id === img.id);
-    setCurrentImageIndex(index);
-    setActiveMedia({ type: "image", src: img.src, alt: img.alt });
-  };
+  const openImage = useCallback(
+    (img) => {
+      const index = images.findIndex((image) => image.id === img.id);
+      setCurrentImageIndex(index);
+      setActiveMedia({ type: "image", src: img.src, alt: img.alt });
+    },
+    [images]
+  );
 
-  const openVideo = () => setActiveMedia({ type: "video", src: videoUrl });
-  const closeMedia = () => setActiveMedia(null);
+  const openVideo = useCallback(
+    () => setActiveMedia({ type: "video", src: videoUrl }),
+    []
+  );
 
-  const navigateImage = (direction) => {
-    let newIndex;
-    if (direction === "prev") {
-      newIndex =
-        currentImageIndex > 0 ? currentImageIndex - 1 : images.length - 1;
-    } else {
-      newIndex =
-        currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0;
-    }
-    setCurrentImageIndex(newIndex);
-    setActiveMedia({
-      type: "image",
-      src: images[newIndex].src,
-      alt: images[newIndex].alt,
-    });
-  };
+  const closeMedia = useCallback(() => setActiveMedia(null), []);
+
+  const navigateImage = useCallback(
+    (direction) => {
+      let newIndex;
+      if (direction === "prev") {
+        newIndex =
+          currentImageIndex > 0 ? currentImageIndex - 1 : images.length - 1;
+      } else {
+        newIndex =
+          currentImageIndex < images.length - 1 ? currentImageIndex + 1 : 0;
+      }
+      setCurrentImageIndex(newIndex);
+      setActiveMedia({
+        type: "image",
+        src: images[newIndex].src,
+        alt: images[newIndex].alt,
+      });
+    },
+    [currentImageIndex, images]
+  );
 
   // Removed old heroVariants (hero redesigned to match site-wide pattern)
 
@@ -238,10 +254,10 @@ const Gallery = () => {
 
         {/* Video Section */}
         <div className="mt-24">
-          <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-8 mb-10">
-            <div>
+          <div className="flex flex-col md:flex-row md:items-center md:justify-center gap-8 mb-10">
+            <div className="text-center">
               <h3 className="text-heading-lg mb-3 bg-gradient-to-r from-emerald-600 to-green-600 bg-clip-text text-transparent">
-                Full Hospital Tour
+                Explore Our Hospital
               </h3>
               <p className="text-gray-600 max-w-2xl leading-relaxed">
                 Immerse yourself in a guided walkthrough of our facility
@@ -249,15 +265,7 @@ const Gallery = () => {
                 patient-centric spaces.
               </p>
             </div>
-            <div>
-              <button
-                onClick={openVideo}
-                className="group flex items-center gap-3 px-6 py-3 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 shadow-lg hover:shadow-xl transition-all border border-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
-              >
-                <FaPlayCircle className="text-white text-xl group-hover:scale-110 transition-transform" />
-                <span>Play Video</span>
-              </button>
-            </div>
+            {/* Right-side play button removed per request */}
           </div>
 
           <div className="max-w-4xl mx-auto">
@@ -265,6 +273,10 @@ const Gallery = () => {
               type="button"
               className="relative w-full text-left rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60 transition-all duration-300"
               onClick={openVideo}
+              onMouseEnter={() => {
+                // Open the video modal automatically on hover
+                openVideo();
+              }}
               aria-label="Open hospital tour video"
             >
               <div className="aspect-video relative">
@@ -438,22 +450,7 @@ const Gallery = () => {
                 </div>
               )}
 
-              {/* Keyboard Hint for Images */}
-              {activeMedia.type === "image" && (
-                <motion.div
-                  className="mt-4 flex items-center justify-center gap-4 text-gray-700 text-sm font-medium bg-white/80 backdrop-blur-md rounded-full px-6 py-3 shadow-lg"
-                  initial={{ opacity: 0, y: 10 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.5 }}
-                >
-                  <span className="hidden md:inline">
-                    Use arrow keys or click buttons to navigate
-                  </span>
-                  <span className="md:hidden">
-                    Tap buttons to navigate images
-                  </span>
-                </motion.div>
-              )}
+              {/* Keyboard hint removed per UX request */}
             </motion.div>
           </motion.div>
         )}

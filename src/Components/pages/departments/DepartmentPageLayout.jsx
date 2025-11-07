@@ -350,7 +350,10 @@ const InfrastructureGallery = () => {
             Hospital Infrastructure
           </h2>
         </div>
-        <p className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-4 md:px-0">
+        <p
+          className="text-gray-600 text-base md:text-lg max-w-2xl mx-auto leading-relaxed px-4 md:px-0"
+          style={{ textAlign: "justify" }}
+        >
           Explore our state-of-the-art medical facilities and infrastructure
           designed to provide world-class healthcare services
         </p>
@@ -505,6 +508,20 @@ const DepartmentPageLayout = () => {
         return doctorDepts.includes(parseInt(departmentId));
       });
 
+      // Custom sorting for Accident & Emergency Care (departmentId: 2)
+      // Move Dr. Karthikeyan (id: 16) to second position
+      if (parseInt(departmentId) === 2) {
+        const karthikeyanIndex = departmentDoctors.findIndex(
+          (doc) => doc.id === 16
+        );
+        if (karthikeyanIndex > 1) {
+          // Remove Dr. Karthikeyan from current position
+          const [karthikeyan] = departmentDoctors.splice(karthikeyanIndex, 1);
+          // Insert at second position (index 1)
+          departmentDoctors.splice(1, 0, karthikeyan);
+        }
+      }
+
       setDoctors(departmentDoctors);
       setIsLoading(false);
     };
@@ -599,7 +616,7 @@ const DepartmentPageLayout = () => {
 
       <Navigation />
 
-      <div className="pt-20 overflow-x-hidden">
+      <div className="pt-20 overflow-x-hidden max-w-full">
         {/* Hero Section */}
         <HeroSection
           backgroundImage={getHeroBgImage(departmentId)}
@@ -609,7 +626,7 @@ const DepartmentPageLayout = () => {
         />
 
         {/* Department Content - Enhanced Medical Professional Design with Infrastructure Photos */}
-        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative overflow-x-hidden">
+        <section className="py-20 bg-gradient-to-br from-white to-blue-50/30 relative overflow-hidden">
           {/* Subtle background pattern */}
           <div className="absolute inset-0 opacity-5">
             <div className="absolute top-10 left-10 w-32 h-32 border border-blue-300 rounded-full"></div>
@@ -619,12 +636,12 @@ const DepartmentPageLayout = () => {
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
             <div className="grid lg:grid-cols-3 gap-12 lg:gap-16">
               {/* Content Column */}
-              <div className="lg:col-span-2 overflow-x-hidden">
+              <div className="lg:col-span-2 min-w-0">
                 <motion.div
                   initial={{ opacity: 0, y: 50 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ duration: 1.0, delay: 0.4, ease: "easeOut" }}
-                  className="markdown-content prose prose-lg md:prose-xl max-w-none overflow-x-hidden break-words"
+                  className="markdown-content prose prose-lg md:prose-xl max-w-none break-words overflow-hidden"
                 >
                   <ReactMarkdown
                     remarkPlugins={[remarkGfm]}
@@ -650,7 +667,10 @@ const DepartmentPageLayout = () => {
                         </motion.h3>
                       ),
                       p: ({ children }) => (
-                        <p className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 font-light tracking-wide break-words">
+                        <p
+                          className="text-gray-600 text-base md:text-lg leading-relaxed mb-8 font-light tracking-wide break-words"
+                          style={{ textAlign: "justify" }}
+                        >
                           {children}
                         </p>
                       ),
@@ -827,7 +847,10 @@ const DepartmentPageLayout = () => {
                 <h2 className="text-display-xl bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent mb-6">
                   Our Medical Experts
                 </h2>
-                <p className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light">
+                <p
+                  className="text-xl text-gray-600 max-w-3xl mx-auto leading-relaxed font-light"
+                  style={{ textAlign: "justify" }}
+                >
                   Meet our highly qualified healthcare professionals dedicated
                   to providing exceptional medical care with expertise and
                   compassion
@@ -894,9 +917,12 @@ const DepartmentPageLayout = () => {
                         <h3 className="text-lg font-bold text-gray-800 mb-2 group-hover:text-emerald-600 transition-colors">
                           {doctor.name}
                         </h3>
-                        <p className="text-emerald-600 font-semibold mb-1 text-sm">
-                          {doctor.specialty}
-                        </p>
+                        {/* Hide specialty for Internal Medicine (departmentId: 10) as both doctors are Diabetologists */}
+                        {departmentId !== 10 && (
+                          <p className="text-emerald-600 font-semibold mb-1 text-sm">
+                            {doctor.specialty}
+                          </p>
+                        )}
                         <p className="text-gray-600 text-xs mb-3">
                           {doctor.designation}
                         </p>
