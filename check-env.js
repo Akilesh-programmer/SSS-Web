@@ -1,5 +1,5 @@
-const env = process.env.NODE_ENV;
+const env = process.env.VITE_APP_ENV;
 
-if (env !== 'production') {
+if (env !== "production") {
   process.exit(1);
 }
