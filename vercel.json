@@ -41,6 +41,14 @@
           "value": "nosniff"
         },
         {
+          "key": "X-Frame-Options",
+          "value": "ALLOW-FROM https://ssshospitals.in"
+        },
+        {
+          "key": "Content-Security-Policy",
+          "value": "frame-ancestors 'self' https://ssshospitals.in https://www.ssshospitals.in"
+        },
+        {
           "key": "X-XSS-Protection",
           "value": "1; mode=block"
         },
