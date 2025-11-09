@@ -5,7 +5,7 @@ import { useAppointment } from "../../contexts/AppointmentContext";
 import CallModal from "./CallModal";
 const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
-const logoFullLocal = "/assets/logos/sss-full-logo.avif";
+const logoFullLocal = "/assets/logos/full-logo.png";
 const logoFull = logoFullLocal;
 import { FaBars, FaTimes, FaAmbulance, FaCalendarPlus } from "react-icons/fa";
 
@@ -19,8 +19,8 @@ const Navigation = () => {
   // --- Style helpers to avoid repeating large inline objects ---
   const navStyle = (scrolled) => ({
     background: scrolled
-      ? "linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 1) 15%, rgba(255, 255, 255, 0.65) 40%, rgba(255, 255, 255, 0.45) 100%)"
-      : "linear-gradient(to right, rgba(255, 255, 255, 1) 0%, rgba(255, 255, 255, 0.95) 15%, rgba(255, 255, 255, 0.50) 40%, rgba(255, 255, 255, 0.30) 100%)",
+      ? "linear-gradient(to right, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.65) 40%, rgba(255, 255, 255, 0.45) 100%)"
+      : "linear-gradient(to right, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 40%, rgba(255, 255, 255, 0.30) 100%)",
     backdropFilter: "blur(40px) saturate(220%)",
     WebkitBackdropFilter: "blur(40px) saturate(220%)",
     borderBottom: scrolled
