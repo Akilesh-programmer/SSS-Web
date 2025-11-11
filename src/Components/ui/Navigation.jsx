@@ -158,21 +158,21 @@ const Navigation = () => {
 
   return (
     <>
-      {/* Mobile overlay moved outside the nav so it blurs the full viewport (including area below the navbar) */}
+      {/* Mobile overlay - Full viewport blur */}
       <AnimatePresence>
         {isMenuOpen && (
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 z-40 lg:hidden"
+            className="fixed inset-0 z-40 xl:hidden"
             style={overlayStyle}
             onClick={() => setIsMenuOpen(false)}
           />
         )}
       </AnimatePresence>
 
-      {/* Professional Hospital Navigation */}
+      {/* Professional Hospital Navigation - Industry Grade Responsive */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0, transition: { duration: 0.25, ease: "easeOut" } }}
@@ -181,11 +181,12 @@ const Navigation = () => {
         }`}
         style={navStyle(isScrolled)}
       >
-        <div className="container mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex justify-between items-center h-16 lg:h-18">
-            {/* Professional Logo Section - Full Logo */}
+        {/* Full-width container with minimal side padding */}
+        <div className="max-w-[1920px] mx-auto px-2 sm:px-3 lg:px-4 xl:px-6 2xl:px-8">
+          <div className="flex items-center justify-between h-14 sm:h-16 xl:h-[4.5rem]">
+            {/* Professional Logo Section - Constrained Size */}
             <motion.div
-              className="flex items-center cursor-pointer relative group py-1"
+              className="flex items-center cursor-pointer relative group shrink-0"
               onClick={() => handleNavigation("/")}
               whileHover={{ scale: 1.01 }}
               whileTap={{ scale: 0.99 }}
@@ -196,14 +197,16 @@ const Navigation = () => {
               <img
                 src={logoFull}
                 alt="SSS Super Speciality Hospital"
-                className="relative h-10 w-auto sm:h-11 md:h-12 lg:h-14 object-contain"
+                className="relative h-8 sm:h-9 md:h-10 lg:h-11 xl:h-12 2xl:h-14 w-auto max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] xl:max-w-[200px] object-contain select-none"
+                loading="eager"
               />
 
               <span className="sr-only">SSS Super Speciality Hospital</span>
             </motion.div>
 
-            {/* Professional Navigation Links */}
-            <div className="hidden lg:flex items-center space-x-1">
+            {/* Desktop Navigation - All items in one continuous flow, centered */}
+            <div className="hidden xl:flex items-center gap-0.5 flex-1 justify-center">
+              {/* Navigation Links */}
               {navItems.map((item) => {
                 const isActive =
                   location.pathname === item.path ||
@@ -223,19 +226,19 @@ const Navigation = () => {
                     >
                       <Link
                         to={item.path}
-                        className={`relative group px-4 py-2 rounded-lg transition-all duration-200 text-label-md ${
+                        className={`relative group px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium whitespace-nowrap ${
                           isActive
                             ? "text-blue-600 bg-blue-50 font-semibold"
-                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 font-medium"
+                            : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                         }`}
                       >
                         <span className="relative z-10">{item.name}</span>
                         {isActive && (
-                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"></div>
+                          <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-blue-600 rounded-full"></div>
                         )}
                       </Link>
 
-                      {/* Dropdown Menu */}
+                      {/* Dropdown Menu - Improved positioning */}
                       <AnimatePresence>
                         {infraDropdownOpen && (
                           <motion.div
@@ -243,7 +246,7 @@ const Navigation = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 w-56 bg-white/95 backdrop-blur-md rounded-xl shadow-lg border border-gray-100 overflow-hidden z-50"
+                            className="absolute top-full left-0 mt-2 min-w-[220px] max-w-[280px] bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 overflow-hidden z-[60]"
                           >
                             {item.dropdown.map((subItem) => {
                               const isSubActive =
@@ -252,7 +255,7 @@ const Navigation = () => {
                                 <Link
                                   key={subItem.name}
                                   to={subItem.path}
-                                  className={`block px-4 py-3 transition-all duration-200 text-body-md ${
+                                  className={`block px-4 py-3 transition-all duration-200 text-sm whitespace-nowrap ${
                                     isSubActive
                                       ? "text-blue-600 bg-blue-50 font-semibold"
                                       : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 font-medium"
@@ -274,87 +277,85 @@ const Navigation = () => {
                   <Link
                     key={item.name}
                     to={item.path}
-                    className={`relative group px-4 py-2 rounded-lg transition-all duration-200 text-label-md ${
+                    className={`relative group px-3 py-2 rounded-lg transition-all duration-200 text-sm font-medium whitespace-nowrap ${
                       isActive
                         ? "text-blue-600 bg-blue-50 font-semibold"
-                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50 font-medium"
+                        : "text-gray-700 hover:text-blue-600 hover:bg-gray-50"
                     }`}
                   >
                     <span className="relative z-10">{item.name}</span>
                     {isActive && (
-                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-8 h-0.5 bg-blue-600 rounded-full"></div>
+                      <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-6 h-0.5 bg-blue-600 rounded-full"></div>
                     )}
                   </Link>
                 );
               })}
-            </div>
 
-            {/* Professional Action Buttons */}
-            <div className="flex items-center space-x-3">
-              {/* Desktop Action Buttons - Matched Heights */}
-              <div className="hidden lg:flex items-center space-x-3">
+              {/* Action Buttons - Same continuous flow with small separator */}
+              <div className="flex items-center gap-1.5 ml-2">
                 {/* Book Appointment Button */}
                 <motion.button
                   onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center space-x-2 px-5 py-3 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-cta transition-all duration-300 shadow-lg hover:shadow-xl h-12"
+                  className="flex items-center gap-2 px-3 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
                   style={{
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
                   }}
+                  aria-label="Book appointment"
                 >
-                  <FaCalendarPlus className="text-lg" />
+                  <FaCalendarPlus className="text-base shrink-0" />
                   <span>Book Appointment</span>
                 </motion.button>
 
-                {/* Emergency Button */}
+                {/* Emergency Button - Two lines enforced */}
                 <motion.button
                   onClick={handleEmergencyClick}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center space-x-2 px-5 py-3 bg-red-600 hover:bg-red-700 text-white rounded-lg text-cta transition-all duration-300 shadow-lg hover:shadow-xl h-12"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
                   style={{
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
                   }}
+                  aria-label="Emergency contact"
                 >
-                  <FaAmbulance className="text-lg animate-pulse" />
-                  <div className="flex flex-col text-left">
-                    <span className="text-body-sm font-semibold leading-tight">
-                      Emergency
-                    </span>
-                    <span className="text-body-xs opacity-90 leading-tight">
+                  <FaAmbulance className="text-base shrink-0 animate-pulse" />
+                  <div className="flex flex-col text-left leading-tight">
+                    <span className="text-xs font-bold">Emergency</span>
+                    <span className="text-[11px] opacity-95 font-medium">
                       +91 8925931193
                     </span>
                   </div>
                 </motion.button>
               </div>
-
-              {/* Mobile Menu Toggle Only */}
-              <motion.button
-                onClick={() => setIsMenuOpen(!isMenuOpen)}
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="lg:hidden p-3 rounded-lg bg-gray-100 hover:bg-gray-200 text-gray-700 transition-all duration-300"
-              >
-                {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
-              </motion.button>
             </div>
+
+            {/* Mobile Menu Toggle - Show when desktop nav is hidden */}
+            <motion.button
+              onClick={() => setIsMenuOpen(!isMenuOpen)}
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              className="xl:hidden p-2.5 rounded-lg bg-white/80 hover:bg-white text-gray-700 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200"
+              aria-label="Toggle navigation menu"
+            >
+              {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+            </motion.button>
           </div>
         </div>
 
-        {/* Professional Mobile Menu with Proper Scrolling */}
+        {/* Professional Mobile Menu - Responsive and Scrollable */}
         <AnimatePresence>
           {isMenuOpen && (
             <motion.div
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="lg:hidden fixed left-0 right-0 z-50 border-t max-h-[calc(100vh-4rem)] overflow-y-auto"
+              className="xl:hidden fixed left-0 right-0 z-50 border-t max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)] overflow-y-auto"
               style={mobileMenuStyle}
             >
-              <div className="container mx-auto px-4 py-6">
+              <div className="max-w-[1920px] mx-auto px-4 py-6">
                 {/* Action Buttons First - Stacked Vertically for Better Mobile UI */}
                 <div className="flex flex-col gap-3 mb-6">
                   {/* Mobile Book Appointment */}
