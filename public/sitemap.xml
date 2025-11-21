@@ -5,7 +5,7 @@
   <!-- Homepage -->
   <url>
     <loc>https://ssshospitals.in/</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>1.0</priority>
     <image:image>
@@ -18,7 +18,7 @@
   <!-- About Us -->
   <url>
     <loc>https://ssshospitals.in/about</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -26,7 +26,7 @@
   <!-- Specialities -->
   <url>
     <loc>https://ssshospitals.in/specialities</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -34,7 +34,7 @@
   <!-- Services -->
   <url>
     <loc>https://ssshospitals.in/services</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-11-21</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.9</priority>
   </url>
@@ -42,7 +42,7 @@
   <!-- Doctors -->
   <url>
     <loc>https://ssshospitals.in/doctors</loc>
-    <lastmod>2025-10-15</lastmod>
+    <lastmod>2025-11-21</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
   </url>
