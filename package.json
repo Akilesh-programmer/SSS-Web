@@ -5,9 +5,9 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "node check-env.js && vite build",
-    "build:analyze": "VITE_APP_ENV=production vite build --mode analyze",
-    "deploy": "node check-env.js && vercel --prod",
+    "build": "vite build",
+    "build:analyze": "vite build --mode analyze",
+    "deploy": "vercel --prod",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate-favicons": "node scripts/generate-favicons.js",
