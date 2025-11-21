@@ -16,9 +16,11 @@ import SEO from "./Components/ui/SEO";
 import { PAGE_SEO } from "./data/seoData";
 import { generateAppointmentSchema } from "./utils/seo";
 
-// Lazy-load page components for code splitting
-const Home = lazy(() => import("./Components/pages/Home"));
-const HomeAboutUs = lazy(() => import("./Components/sections/HomeAboutUs"));
+// Load Home page components immediately for instant render
+import Home from "./Components/pages/Home";
+import HomeAboutUs from "./Components/sections/HomeAboutUs";
+
+// Lazy-load other page components for code splitting
 const AboutUs = lazy(() => import("./Components/pages/AboutUs"));
 const VirtualTour = lazy(() => import("./Components/sections/VirtualTour"));
 const PatientTestimonials = lazy(() =>
@@ -42,28 +44,23 @@ const DepartmentPageLayout = lazy(() =>
 );
 const NotFound = lazy(() => import("./Components/pages/NotFound"));
 
-// Loading component for Suspense fallback
-const LoadingFallback = () => (
-  <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-blue-100">
-    <div className="text-center">
-      <div className="inline-block h-12 w-12 animate-spin rounded-full border-4 border-solid border-blue-600 border-r-transparent mb-4"></div>
-      <p className="text-gray-600 font-medium">Loading...</p>
-    </div>
-  </div>
-);
+// Empty fallback - no visible loader for instant content display
+const LoadingFallback = () => null;
 
 const HomePage = () => {
   return (
-    <PageWrapper pageKey="home-page">
+    <PageWrapper>
       <SEO {...PAGE_SEO.home} />
       <Navigation />
+      {/* Load hero and about immediately */}
+      <div id="home">
+        <Home />
+      </div>
+      <div id="about">
+        <HomeAboutUs />
+      </div>
+      {/* Lazy load below-the-fold content */}
       <Suspense fallback={<LoadingFallback />}>
-        <div id="home">
-          <Home />
-        </div>
-        <div id="about">
-          <HomeAboutUs />
-        </div>
         <FounderSection />
         <VirtualTour />
         <PatientTestimonials />
@@ -79,7 +76,7 @@ const HomePage = () => {
 // About Page - Comprehensive about information
 const AboutPage = () => {
   return (
-    <PageWrapper pageKey="about-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.about}
         breadcrumbs={[
@@ -90,10 +87,10 @@ const AboutPage = () => {
       <Navigation />
       <Suspense fallback={<LoadingFallback />}>
         <div className="pt-20">
-          <AboutUs key="about-us" />
+          <AboutUs />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -101,7 +98,7 @@ const AboutPage = () => {
 // Specialities Page - All specialities and departments
 const SpecialitiesPage = () => {
   return (
-    <PageWrapper pageKey="specialities-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.specialities}
         breadcrumbs={[
@@ -112,10 +109,10 @@ const SpecialitiesPage = () => {
       <Navigation />
       <Suspense fallback={<LoadingFallback />}>
         <div className="pt-20">
-          <Specialities key="specialities" />
+          <Specialities />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -123,7 +120,7 @@ const SpecialitiesPage = () => {
 // Services Page - All medical services
 const ServicesPage = () => {
   return (
-    <PageWrapper pageKey="services-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.services}
         breadcrumbs={[
@@ -134,10 +131,10 @@ const ServicesPage = () => {
       <Navigation />
       <Suspense fallback={<LoadingFallback />}>
         <div className="pt-20">
-          <Services key="services" />
+          <Services />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -145,7 +142,7 @@ const ServicesPage = () => {
 // Packages Page - Health checkup packages
 const PackagesPage = () => {
   return (
-    <PageWrapper pageKey="packages-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.packages}
         breadcrumbs={[
@@ -156,10 +153,10 @@ const PackagesPage = () => {
       <Navigation />
       <Suspense fallback={<LoadingFallback />}>
         <div className="pt-20">
-          <Packages key="packages" />
+          <Packages />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -167,7 +164,7 @@ const PackagesPage = () => {
 // Doctors Page - All doctors and medical team
 const DoctorsPageWrapper = () => {
   return (
-    <PageWrapper pageKey="doctors-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.doctors}
         breadcrumbs={[
@@ -178,10 +175,10 @@ const DoctorsPageWrapper = () => {
       <Navigation />
       <Suspense fallback={<LoadingFallback />}>
         <div className="pt-20">
-          <DoctorsPage key="doctors-page-content" />
+          <DoctorsPage />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -189,7 +186,7 @@ const DoctorsPageWrapper = () => {
 // Contact Page - Enhanced contact information and appointment booking
 const ContactPage = () => {
   return (
-    <PageWrapper pageKey="contact-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.contact}
         breadcrumbs={[
@@ -201,10 +198,10 @@ const ContactPage = () => {
       <Navigation />
       <Suspense fallback={<LoadingFallback />}>
         <div className="pt-20">
-          <Contact key="contact-content" />
+          <Contact />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -212,7 +209,7 @@ const ContactPage = () => {
 // Infrastructure/Gallery Page - Hospital infrastructure showcase
 const InfrastructurePage = () => {
   return (
-    <PageWrapper pageKey="gallery-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.infrastructure}
         breadcrumbs={[
@@ -225,8 +222,8 @@ const InfrastructurePage = () => {
         <div className="pt-20">
           <Gallery />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };
@@ -234,7 +231,7 @@ const InfrastructurePage = () => {
 // Rooms Page - Room types and facilities
 const RoomsPage = () => {
   return (
-    <PageWrapper pageKey="rooms-page">
+    <PageWrapper>
       <SEO
         {...PAGE_SEO.rooms}
         breadcrumbs={[
@@ -247,8 +244,8 @@ const RoomsPage = () => {
         <div className="pt-20">
           <Rooms />
         </div>
+        <Footer />
       </Suspense>
-      <Footer />
     </PageWrapper>
   );
 };

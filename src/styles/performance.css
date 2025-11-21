@@ -1,47 +1,44 @@
-/* Performance optimizations for animations */
+/* Performance optimizations - Industry grade practices */
+
+/* Hardware acceleration for animations */
 .motion-div {
-  transform: translateZ(0);
-  will-change: transform, opacity;
+  transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
+  perspective: 1000px;
 }
 
-.motion-reduced {
-  animation: none !important;
-  transition: none !important;
-}
-
-/* Optimize hover effects */
-.hover-optimized {
-  transform: translateZ(0);
-  transition: transform 0.2s ease-out, box-shadow 0.2s ease-out;
-}
-
-/* Reduce motion for users who prefer it */
+/* Reduce motion for accessibility */
 @media (prefers-reduced-motion: reduce) {
-  .motion-div {
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  .motion-div:hover {
-    transform: none !important;
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
   }
 }
 
-/* Smooth scrolling optimization */
+/* Optimize scroll performance */
 html {
   scroll-behavior: smooth;
 }
 
-/* Optimize scroll performance */
-* {
-  scroll-behavior: smooth;
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
-/* Optimize images for better performance */
+/* Optimize images - content-visibility for better rendering */
 img {
   content-visibility: auto;
-  contain: layout style paint;
+  contain-intrinsic-size: 300px;
+}
+
+/* Lazy load offscreen images */
+img[loading="lazy"] {
+  content-visibility: auto;
 }
 
 /* Mobile-specific optimizations */

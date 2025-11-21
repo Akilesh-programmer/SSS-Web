@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import PropTypes from "prop-types";
 import { useCountAnimation } from "../../hooks/useOptimizedAnimations";
@@ -523,7 +522,7 @@ const AboutUs = () => {
               </motion.div>
             ))}
           </motion.div>
-        </div>                                        
+        </div>
       </section>
 
       {/* Why Choose Us - Modern Medical Excellence */}

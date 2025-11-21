@@ -87,21 +87,32 @@
     <link rel="manifest" href="/site.webmanifest" />
     
     <!-- DNS Prefetch & Preconnect for Performance -->
-    <link rel="dns-prefetch" href="https://fonts.googleapis.com" />
-    <link rel="dns-prefetch" href="https://fonts.gstatic.com" />
-  <!-- Preload hero image to improve LCP on home -->
-  <link rel="preload" as="image" href="/assets/heroes/main-1.avif" imagesrcset="/assets/heroes/main-1.avif" imagesizes="100vw" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="dns-prefetch" href="https://vercel.live" />
+    
+    <!-- Preload critical hero image to improve LCP -->
+    <link rel="preload" as="image" href="/assets/heroes/main-1.avif" fetchpriority="high" type="image/avif" />
+    
+    <!-- Preload critical CSS and fonts -->
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
     
     <!-- Professional Font System - Industry Grade Typography -->
     <!-- Primary: Inter (UI, Body) - Used by: GitHub, Stripe, Vercel, Linear -->
     <!-- Secondary: Plus Jakarta Sans (Headings) - Used by: Modern healthcare sites, SaaS products -->
     <!-- Optimized loading: preconnect + display=swap for performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
       href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
+      media="print"
+      onload="this.media='all'"
     />
+    <noscript>
+      <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
+        rel="stylesheet"
+      />
+    </noscript>
     
     <!-- Structured Data - Medical Organization -->
     <script type="application/ld+json">

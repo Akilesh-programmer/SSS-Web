@@ -1,4 +1,3 @@
-import React from "react";
 import { FaUserMd, FaStethoscope } from "react-icons/fa";
 
 const DefaultDoctorAvatar = ({ size = "large", className = "" }) => {

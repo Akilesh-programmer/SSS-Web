@@ -2,6 +2,14 @@
 @import "./styles/performance.css";
 @import "./styles/typography.css";
 
+/* Root container - optimized for performance */
+#root {
+  max-width: 100%;
+  margin: 0;
+  padding: 0;
+  contain: layout style;
+}
+
 @theme {
   /* Industry-Grade Typography System */
   /* Based on: Mayo Clinic, Cleveland Clinic, Stripe, GitHub, Linear */

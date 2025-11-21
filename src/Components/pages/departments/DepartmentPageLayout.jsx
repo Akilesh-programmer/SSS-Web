@@ -470,85 +470,67 @@ const DepartmentPageLayout = () => {
   const departmentId = findDepartmentIdBySlug(departmentSlug);
   const [department, setDepartment] = useState(null);
   const [doctors, setDoctors] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const loadDepartmentData = () => {
-      // departmentId is computed at component scope from departmentSlug
-      if (!departmentId) {
-        navigate("/specialities");
-        return;
-      }
+    // departmentId is computed at component scope from departmentSlug
+    if (!departmentId) {
+      navigate("/specialities");
+      return;
+    }
 
-      // Find department content
-      const deptContent = departmentPageData.find(
-        (dept) => dept.id === parseInt(departmentId)
+    // Find department content
+    const deptContent = departmentPageData.find(
+      (dept) => dept.id === parseInt(departmentId)
+    );
+
+    // Find department info from departments data
+    const deptInfo = departments.find(
+      (dept) => dept.id === parseInt(departmentId)
+    );
+
+    if (!deptContent || !deptInfo) {
+      navigate("/specialities");
+      return;
+    }
+
+    setDepartment({ ...deptContent, ...deptInfo });
+
+    // Get doctors for this department with improved filtering logic using DoctorDepartmentData
+    const departmentDoctors = doctorsData.filter((doctor) => {
+      // Handle both array and single department cases
+      const doctorDepts = Array.isArray(doctor.department)
+        ? doctor.department
+        : [doctor.department];
+
+      // Check if doctor belongs to this department
+      return doctorDepts.includes(parseInt(departmentId));
+    });
+
+    // Custom sorting for Accident & Emergency Care (departmentId: 2)
+    // Move Dr. Karthikeyan (id: 16) to second position
+    if (parseInt(departmentId) === 2) {
+      const karthikeyanIndex = departmentDoctors.findIndex(
+        (doc) => doc.id === 16
       );
-
-      // Find department info from departments data
-      const deptInfo = departments.find(
-        (dept) => dept.id === parseInt(departmentId)
-      );
-
-      if (!deptContent || !deptInfo) {
-        navigate("/specialities");
-        return;
+      if (karthikeyanIndex > 1) {
+        // Remove Dr. Karthikeyan from current position
+        const [karthikeyan] = departmentDoctors.splice(karthikeyanIndex, 1);
+        // Insert at second position (index 1)
+        departmentDoctors.splice(1, 0, karthikeyan);
       }
+    }
 
-      setDepartment({ ...deptContent, ...deptInfo });
+    setDoctors(departmentDoctors);
+  }, [departmentSlug, navigate, departmentId]);
 
-      // Get doctors for this department with improved filtering logic using DoctorDepartmentData
-      const departmentDoctors = doctorsData.filter((doctor) => {
-        // Handle both array and single department cases
-        const doctorDepts = Array.isArray(doctor.department)
-          ? doctor.department
-          : [doctor.department];
-
-        // Check if doctor belongs to this department
-        return doctorDepts.includes(parseInt(departmentId));
-      });
-
-      // Custom sorting for Accident & Emergency Care (departmentId: 2)
-      // Move Dr. Karthikeyan (id: 16) to second position
-      if (parseInt(departmentId) === 2) {
-        const karthikeyanIndex = departmentDoctors.findIndex(
-          (doc) => doc.id === 16
-        );
-        if (karthikeyanIndex > 1) {
-          // Remove Dr. Karthikeyan from current position
-          const [karthikeyan] = departmentDoctors.splice(karthikeyanIndex, 1);
-          // Insert at second position (index 1)
-          departmentDoctors.splice(1, 0, karthikeyan);
-        }
-      }
-
-      setDoctors(departmentDoctors);
-      setIsLoading(false);
-    };
-
-    loadDepartmentData();
-  }, [departmentSlug, navigate]);
-
-  const handleBackClick = () => {
+  const _handleBackClick = () => {
     navigate("/specialities");
   };
 
   // No inline appointment or call CTAs per request
 
-  if (isLoading) {
-    return (
-      <PageWrapper pageKey="department-loading">
-        <Navigation />
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
-          <div className="text-center">
-            <div className="animate-spin rounded-full h-16 w-16 border-b-2 border-blue-600 mx-auto mb-4"></div>
-            <p className="text-gray-600 text-lg">
-              Loading department information...
-            </p>
-          </div>
-        </div>
-      </PageWrapper>
-    );
+  if (!department) {
+    return null;
   }
 
   if (!department) {
@@ -773,7 +755,9 @@ const DepartmentPageLayout = () => {
                             document.body.appendChild(modal);
                             // Close when clicking on backdrop
                             modal.addEventListener("click", (e) => {
-                              if (e.target === modal) modal.remove();
+                              if (e.target === modal) {
+                                modal.remove();
+                              }
                             });
                           }}
                         >

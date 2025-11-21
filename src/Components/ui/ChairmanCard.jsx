@@ -1,4 +1,3 @@
-import React from "react";
 import { motion } from "framer-motion";
 import { FaQuoteLeft } from "react-icons/fa";
 const chairmanImg = "/assets/doctors/doctor-1.avif";
