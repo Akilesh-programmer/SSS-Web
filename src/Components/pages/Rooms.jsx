@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import ModalPortal from "../ui/ModalPortal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaBed,
@@ -312,40 +313,45 @@ const Rooms = () => {
       </section>
 
       {/* Image Modal */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={() => setSelectedImage(null)}
-          >
+      <ModalPortal>
+        <AnimatePresence>
+          {selectedImage && (
             <motion.div
-              className="relative max-w-5xl max-h-[85vh] w-full"
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              transition={{ type: "spring", stiffness: 160, damping: 18 }}
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={() => setSelectedImage(null)}
+              role="dialog"
+              aria-modal="true"
             >
-              <button
-                onClick={() => setSelectedImage(null)}
-                className="absolute -top-12 right-0 text-white/80 hover:text-white transition-colors"
+              <motion.div
+                className="relative max-w-5xl w-full max-h-[90vh]"
+                initial={{ scale: 0.92, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.92, opacity: 0 }}
+                transition={{ type: "spring", stiffness: 160, damping: 22 }}
+                onClick={(e) => e.stopPropagation()}
               >
-                <FaTimes className="w-8 h-8" />
-              </button>
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50">
-                <img
-                  src={selectedImage.src}
-                  alt={selectedImage.alt}
-                  className="w-full h-full object-contain max-h-[80vh] mx-auto"
-                />
-              </div>
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute top-3 right-3 text-white/90 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 shadow-lg"
+                  aria-label="Close image"
+                >
+                  <FaTimes className="w-5 h-5" />
+                </button>
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/40">
+                  <img
+                    src={selectedImage.src}
+                    alt={selectedImage.alt}
+                    className="w-full h-full object-contain max-h-[85vh] mx-auto"
+                  />
+                </div>
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </ModalPortal>
     </div>
   );
 };

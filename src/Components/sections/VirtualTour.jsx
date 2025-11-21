@@ -1,4 +1,5 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import ModalPortal from "../ui/ModalPortal";
 import {
   FaPlay,
   FaTimes,
@@ -128,6 +129,23 @@ const FloatingIcons = ({ variant = "bg" }) => {
 
 const VirtualTour = () => {
   const [isVideoOpen, setIsVideoOpen] = useState(false);
+
+  // Handle ESC key to close video modal
+  useEffect(() => {
+    const handleEscKey = (event) => {
+      if (event.key === "Escape" && isVideoOpen) {
+        setIsVideoOpen(false);
+      }
+    };
+
+    if (isVideoOpen) {
+      document.addEventListener("keydown", handleEscKey);
+    }
+
+    return () => {
+      document.removeEventListener("keydown", handleEscKey);
+    };
+  }, [isVideoOpen]);
 
   return (
     <section
@@ -372,72 +390,68 @@ const VirtualTour = () => {
           </motion.div>
         </div>
 
-        {/* Video modal with floating icons */}
-        {isVideoOpen && (
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/20 backdrop-blur-md z-[9999] flex items-center justify-center pt-16 sm:pt-20 pb-4 sm:pb-8 px-2 sm:px-4"
-            onClick={() => setIsVideoOpen(false)}
-          >
-            <div className="absolute inset-0 overflow-hidden pointer-events-none">
-              <FloatingIcons variant="modal" />
-            </div>
-
+        {/* Video modal via portal */}
+        <ModalPortal>
+          {isVideoOpen && (
             <motion.div
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.3, ease: "easeOut" }}
-              className="relative w-full max-w-3xl sm:max-w-4xl lg:max-w-5xl mx-auto bg-white/10 backdrop-blur-xl rounded-2xl sm:rounded-3xl overflow-hidden shadow-2xl border border-white/30"
-              onClick={(e) => e.stopPropagation()}
-              style={{ aspectRatio: "16/9" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              className="fixed inset-0 bg-black/40 backdrop-blur-md z-[1000] flex items-center justify-center p-4"
+              onClick={() => setIsVideoOpen(false)}
             >
-              <motion.button
-                onClick={() => setIsVideoOpen(false)}
-                whileHover={{
-                  scale: 1.1,
-                  backgroundColor: "rgba(239, 68, 68, 0.8)",
-                }}
-                whileTap={{ scale: 0.9 }}
-                className="absolute top-2 sm:top-4 right-2 sm:right-4 z-20 w-10 h-10 sm:w-12 sm:h-12 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-red-500/80 transition-all duration-300 border border-white/30 shadow-lg"
-              >
-                <FaTimes className="text-lg sm:text-xl" />
-              </motion.button>
-
+              <div className="absolute inset-0 overflow-hidden pointer-events-none">
+                <FloatingIcons variant="modal" />
+              </div>
               <motion.div
-                initial={{ opacity: 0, y: -20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.5, duration: 0.6 }}
-                className="absolute top-2 sm:top-4 left-2 sm:left-4 z-20 bg-white/20 backdrop-blur-md rounded-lg sm:rounded-xl px-3 sm:px-4 py-1.5 sm:py-2 border border-white/30 shadow-lg"
+                initial={{ scale: 0.9, opacity: 0 }}
+                animate={{ scale: 1, opacity: 1 }}
+                exit={{ scale: 0.9, opacity: 0 }}
+                transition={{ duration: 0.3, ease: "easeOut" }}
+                className="relative w-full max-w-4xl lg:max-w-5xl aspect-video bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/30"
+                onClick={(e) => e.stopPropagation()}
               >
-                <h3 className="text-white font-semibold text-sm sm:text-base">
-                  🎬 SSS Hospital Full Tour
-                </h3>
-                <p className="text-white/80 text-xs sm:text-sm">
-                  Experience our world-class facilities
-                </p>
+                <motion.button
+                  onClick={() => setIsVideoOpen(false)}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.9 }}
+                  className="absolute top-3 right-3 z-20 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-red-500/80 transition-all duration-300 border border-white/30 shadow-lg"
+                  aria-label="Close video"
+                >
+                  <FaTimes className="text-lg" />
+                </motion.button>
+                <motion.div
+                  initial={{ opacity: 0, y: -12 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.35, duration: 0.45 }}
+                  className="absolute top-3 left-3 z-20 bg-white/20 backdrop-blur-md rounded-lg px-4 py-2 border border-white/30 shadow-lg"
+                >
+                  <h3 className="text-white font-semibold text-sm">
+                    🎬 SSS Hospital Full Tour
+                  </h3>
+                  <p className="text-white/80 text-xs">
+                    Explore our facilities
+                  </p>
+                </motion.div>
+                <video
+                  src={hospitalVideo}
+                  controls
+                  autoPlay
+                  className="w-full h-full object-cover"
+                  poster={hospitalImg}
+                >
+                  <track
+                    kind="captions"
+                    src=""
+                    srcLang="en"
+                    label="English captions"
+                  />
+                  Your browser does not support the video tag.
+                </video>
               </motion.div>
-
-              <video
-                src={hospitalVideo}
-                controls
-                autoPlay
-                className="w-full h-full object-cover rounded-3xl"
-                poster={hospitalImg}
-              >
-                <track
-                  kind="captions"
-                  src=""
-                  srcLang="en"
-                  label="English captions"
-                />
-                Your browser does not support the video tag.
-              </video>
             </motion.div>
-          </motion.div>
-        )}
+          )}
+        </ModalPortal>
       </div>
     </section>
   );

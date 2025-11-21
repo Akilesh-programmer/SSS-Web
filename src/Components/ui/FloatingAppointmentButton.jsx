@@ -24,7 +24,6 @@ const FloatingAppointmentButton = () => {
             initial={{ opacity: 0, scale: 0, y: 100 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0, y: 100 }}
-            className="fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-40"
           >
             {/* Main appointment button - simplified, no hover expansion */}
             <motion.button

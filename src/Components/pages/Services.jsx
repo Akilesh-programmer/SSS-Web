@@ -1,4 +1,5 @@
 import { useState, useRef, useMemo, useEffect } from "react";
+import ModalPortal from "../ui/ModalPortal";
 import { motion, AnimatePresence } from "framer-motion";
 import {
   FaAmbulance,
@@ -609,134 +610,138 @@ const Services = () => {
       </section>
 
       {/* Enhanced Image Modal with Navigation - Glossy Transparent Background */}
-      <AnimatePresence>
-        {selectedImage && (
-          <motion.div
-            className="fixed inset-0 flex items-center justify-center z-50 p-4 md:p-8"
-            style={{
-              background: "rgba(255, 255, 255, 0.05)",
-              backdropFilter: "blur(40px) saturate(180%)",
-              WebkitBackdropFilter: "blur(40px) saturate(180%)",
-            }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            onClick={closeModal}
-          >
-            {/* Modal Container */}
+      <ModalPortal>
+        <AnimatePresence>
+          {selectedImage && (
             <motion.div
-              className="relative max-w-6xl max-h-[85vh] w-full flex flex-col"
-              initial={{ scale: 0.9, opacity: 0, y: 20 }}
-              animate={{ scale: 1, opacity: 1, y: 0 }}
-              exit={{ scale: 0.9, opacity: 0, y: 20 }}
-              transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
-              onClick={(e) => e.stopPropagation()}
+              className="fixed inset-0 flex items-center justify-center z-[1000] p-4 md:p-8"
+              style={{
+                background: "rgba(0,0,0,0.5)",
+                backdropFilter: "blur(32px) saturate(160%)",
+                WebkitBackdropFilter: "blur(32px) saturate(160%)",
+              }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              onClick={closeModal}
+              aria-modal="true"
+              role="dialog"
             >
-              {/* Header Bar */}
-              <div className="flex items-center justify-between mb-4 px-2">
-                <motion.div
-                  className="flex items-center gap-3 text-gray-900"
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <div className="bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
-                    <span className="text-sm font-semibold">
-                      {currentImageIndex + 1} /{" "}
-                      {(() => {
-                        if (imageCategory === "left") return leftImages.length;
-                        if (imageCategory === "right")
-                          return rightImages.length;
-                        return allImages.length;
-                      })()}
-                    </span>
-                  </div>
-                </motion.div>
-
-                {/* Close Button */}
-                <motion.button
-                  onClick={closeModal}
-                  className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
-                  whileHover={{ scale: 1.1, rotate: 90 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, rotate: -90 }}
-                  animate={{ opacity: 1, rotate: 0 }}
-                  transition={{ delay: 0.2 }}
-                >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    viewBox="0 0 24 24"
-                    stroke="currentColor"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
-                </motion.button>
-              </div>
-
-              {/* Image Container with Navigation */}
-              <div className="relative flex-1 flex items-center justify-center">
-                {/* Previous Button */}
-                <motion.button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateImage("prev");
-                  }}
-                  className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
-                  whileHover={{ scale: 1.1, x: -5 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.button>
-
-                {/* Image */}
-                <AnimatePresence mode="wait">
+              {/* Modal Container */}
+              <motion.div
+                className="relative max-w-6xl w-full max-h-[90vh] flex flex-col"
+                initial={{ scale: 0.92, opacity: 0, y: 16 }}
+                animate={{ scale: 1, opacity: 1, y: 0 }}
+                exit={{ scale: 0.92, opacity: 0, y: 16 }}
+                transition={{ duration: 0.3, ease: [0.4, 0, 0.2, 1] }}
+                onClick={(e) => e.stopPropagation()}
+              >
+                {/* Header Bar */}
+                <div className="flex items-center justify-between mb-4 px-2">
                   <motion.div
-                    key={selectedImage.id}
-                    className="relative max-w-full max-h-full"
-                    initial={{ opacity: 0, scale: 0.95 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 0.95 }}
-                    transition={{ duration: 0.3 }}
+                    className="flex items-center gap-3 text-gray-900"
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
                   >
-                    <img
-                      src={selectedImage.src}
-                      alt={selectedImage.alt}
-                      className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
-                    />
+                    <div className="bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
+                      <span className="text-sm font-semibold">
+                        {currentImageIndex + 1} /{" "}
+                        {(() => {
+                          if (imageCategory === "left")
+                            return leftImages.length;
+                          if (imageCategory === "right")
+                            return rightImages.length;
+                          return allImages.length;
+                        })()}
+                      </span>
+                    </div>
                   </motion.div>
-                </AnimatePresence>
 
-                {/* Next Button */}
-                <motion.button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateImage("next");
-                  }}
-                  className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
-                  whileHover={{ scale: 1.1, x: 5 }}
-                  whileTap={{ scale: 0.9 }}
-                  initial={{ opacity: 0, x: 20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.3 }}
-                >
-                  <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-                </motion.button>
-              </div>
+                  {/* Close Button */}
+                  <motion.button
+                    onClick={closeModal}
+                    className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
+                    whileHover={{ scale: 1.1, rotate: 90 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, rotate: -90 }}
+                    animate={{ opacity: 1, rotate: 0 }}
+                    transition={{ delay: 0.2 }}
+                  >
+                    <svg
+                      className="w-6 h-6"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M6 18L18 6M6 6l12 12"
+                      />
+                    </svg>
+                  </motion.button>
+                </div>
 
-              {/* Keyboard hint removed per UX request */}
+                {/* Image Container with Navigation */}
+                <div className="relative flex-1 flex items-center justify-center">
+                  {/* Previous Button */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage("prev");
+                    }}
+                    className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                    whileHover={{ scale: 1.1, x: -5 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                  </motion.button>
+
+                  {/* Image */}
+                  <AnimatePresence mode="wait">
+                    <motion.div
+                      key={selectedImage.id}
+                      className="relative max-w-full max-h-full"
+                      initial={{ opacity: 0, scale: 0.95 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      exit={{ opacity: 0, scale: 0.95 }}
+                      transition={{ duration: 0.3 }}
+                    >
+                      <img
+                        src={selectedImage.src}
+                        alt={selectedImage.alt}
+                        className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl"
+                      />
+                    </motion.div>
+                  </AnimatePresence>
+
+                  {/* Next Button */}
+                  <motion.button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage("next");
+                    }}
+                    className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                    whileHover={{ scale: 1.1, x: 5 }}
+                    whileTap={{ scale: 0.9 }}
+                    initial={{ opacity: 0, x: 20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                  >
+                    <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                  </motion.button>
+                </div>
+                {/* Keyboard hint removed per UX request */}
+              </motion.div>
             </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+          )}
+        </AnimatePresence>
+      </ModalPortal>
     </div>
   );
 };

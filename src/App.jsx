@@ -51,7 +51,6 @@ const HomePage = () => {
   return (
     <PageWrapper>
       <SEO {...PAGE_SEO.home} />
-      <Navigation />
       {/* Load hero and about immediately */}
       <div id="home">
         <Home />
@@ -84,11 +83,8 @@ const AboutPage = () => {
           { name: "About Us", url: "/about" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <AboutUs />
-        </div>
+        <AboutUs />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -106,11 +102,8 @@ const SpecialitiesPage = () => {
           { name: "Specialities", url: "/specialities" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <Specialities />
-        </div>
+        <Specialities />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -128,11 +121,8 @@ const ServicesPage = () => {
           { name: "Services", url: "/services" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <Services />
-        </div>
+        <Services />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -150,11 +140,8 @@ const PackagesPage = () => {
           { name: "Packages", url: "/packages" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <Packages />
-        </div>
+        <Packages />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -172,11 +159,8 @@ const DoctorsPageWrapper = () => {
           { name: "Doctors", url: "/doctors" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <DoctorsPage />
-        </div>
+        <DoctorsPage />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -195,11 +179,8 @@ const ContactPage = () => {
         ]}
         schema={generateAppointmentSchema()}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <Contact />
-        </div>
+        <Contact />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -217,11 +198,8 @@ const InfrastructurePage = () => {
           { name: "Infrastructure", url: "/infrastructure" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <Gallery />
-        </div>
+        <Gallery />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -239,11 +217,8 @@ const RoomsPage = () => {
           { name: "Rooms & Facilities", url: "/rooms" },
         ]}
       />
-      <Navigation />
       <Suspense fallback={<LoadingFallback />}>
-        <div className="pt-20">
-          <Rooms />
-        </div>
+        <Rooms />
         <Footer />
       </Suspense>
     </PageWrapper>
@@ -255,45 +230,63 @@ function App() {
 
   return (
     <ErrorBoundary>
-      <div className="font-primary">
+      <div className="font-primary min-h-screen">
         <ScrollToTop />
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/about" element={<AboutPage />} />
-          <Route path="/specialities" element={<SpecialitiesPage />} />
-          {/* Preferred route, matches sitemap URLs */}
-          <Route
-            path="/specialities/:departmentSlug"
-            element={<DepartmentPageLayout />}
-          />
-          {/* Backward-compat for older links */}
-          <Route
-            path="/department/:departmentSlug"
-            element={<DepartmentPageLayout />}
-          />
-          <Route path="/services" element={<ServicesPage />} />
-          <Route path="/infrastructure" element={<InfrastructurePage />} />
-          <Route path="/rooms" element={<RoomsPage />} />
-          <Route path="/doctors" element={<DoctorsPageWrapper />} />
-          <Route path="/packages" element={<PackagesPage />} />
-          <Route path="/contact" element={<ContactPage />} />
-          <Route
-            path="*"
-            element={
-              <Suspense fallback={<LoadingFallback />}>
-                <NotFound />
-              </Suspense>
-            }
-          />
-        </Routes>
-        <FloatingAppointmentButton />
-        <ScrollToTopButton />
+
+        {/* Fixed Navigation at top - sticky behavior without layout shift */}
+        <div className="sticky top-0 z-50">
+          <Navigation />
+        </div>
+
+        {/* Main content area - no top padding, content flows naturally */}
+        <main className="-mt-[3.5rem] sm:-mt-16 xl:-mt-[4.5rem]">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/about" element={<AboutPage />} />
+            <Route path="/specialities" element={<SpecialitiesPage />} />
+            {/* Preferred route, matches sitemap URLs */}
+            <Route
+              path="/specialities/:departmentSlug"
+              element={<DepartmentPageLayout />}
+            />
+            {/* Backward-compat for older links */}
+            <Route
+              path="/department/:departmentSlug"
+              element={<DepartmentPageLayout />}
+            />
+            <Route path="/services" element={<ServicesPage />} />
+            <Route path="/infrastructure" element={<InfrastructurePage />} />
+            <Route path="/rooms" element={<RoomsPage />} />
+            <Route path="/doctors" element={<DoctorsPageWrapper />} />
+            <Route path="/packages" element={<PackagesPage />} />
+            <Route path="/contact" element={<ContactPage />} />
+            <Route
+              path="*"
+              element={
+                <Suspense fallback={<LoadingFallback />}>
+                  <NotFound />
+                </Suspense>
+              }
+            />
+          </Routes>
+        </main>
 
         {/* Global Appointment Popup */}
         <AppointmentPopup
           isOpen={isAppointmentOpen}
           onClose={closeAppointment}
         />
+      </div>
+
+      {/* Fixed floating components - positioned relative to viewport, outside main content flow */}
+      {/* Appointment button on left */}
+      <div className="!fixed !bottom-4 sm:!bottom-6 !left-4 sm:!left-6 !z-40">
+        <FloatingAppointmentButton />
+      </div>
+
+      {/* Scroll to top button on right */}
+      <div className="!fixed !bottom-4 sm:!bottom-6 !right-4 sm:!right-6 !z-40">
+        <ScrollToTopButton />
       </div>
     </ErrorBoundary>
   );

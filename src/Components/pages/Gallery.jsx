@@ -273,10 +273,6 @@ const Gallery = () => {
               type="button"
               className="relative w-full text-left rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60 transition-all duration-300"
               onClick={openVideo}
-              onMouseEnter={() => {
-                // Open the video modal automatically on hover
-                openVideo();
-              }}
               aria-label="Open hospital tour video"
             >
               <div className="aspect-video relative">

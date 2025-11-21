@@ -8,7 +8,6 @@ import {
   FaGraduationCap,
   FaHospital,
 } from "react-icons/fa";
-import Navigation from "../../ui/Navigation";
 import Footer from "../../ui/Footer";
 import PageWrapper from "../../ui/PageWrapper";
 import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
@@ -596,9 +595,7 @@ const DepartmentPageLayout = () => {
         }}
       />
 
-      <Navigation />
-
-      <div className="pt-20 overflow-x-hidden max-w-full">
+      <div className="overflow-x-hidden max-w-full">
         {/* Hero Section */}
         <HeroSection
           backgroundImage={getHeroBgImage(departmentId)}

@@ -172,11 +172,11 @@ const Navigation = () => {
         )}
       </AnimatePresence>
 
-      {/* Professional Hospital Navigation - Industry Grade Responsive */}
+      {/* Navigation bar */}
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0, transition: { duration: 0.25, ease: "easeOut" } }}
-        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-200 ${
+        className={`w-full transition-all duration-200 ${
           isScrolled ? "shadow-2xl" : "shadow-lg"
         }`}
         style={navStyle(isScrolled)}
