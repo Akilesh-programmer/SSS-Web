@@ -5,7 +5,7 @@ import { useAppointment } from "../../contexts/AppointmentContext";
 import CallModal from "./CallModal";
 const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
-const logoFullLocal = "/assets/logos/full-logo.png";
+const logoFullLocal = "/assets/logos/full-logo.avif";
 const logoFull = logoFullLocal;
 import { FaBars, FaTimes, FaAmbulance, FaCalendarPlus } from "react-icons/fa";
 
@@ -197,8 +197,11 @@ const Navigation = () => {
               <img
                 src={logoFull}
                 alt="SSS Super Speciality Hospital"
+                width="200"
+                height="86"
                 className="relative h-8 sm:h-9 md:h-10 lg:h-11 xl:h-12 2xl:h-14 w-auto max-w-[140px] sm:max-w-[160px] lg:max-w-[180px] xl:max-w-[200px] object-contain select-none"
                 loading="eager"
+                fetchpriority="high"
               />
 
               <span className="sr-only">SSS Super Speciality Hospital</span>
