@@ -22,16 +22,24 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
     >
-      {/* Background Image with Subtle Animation */}
+      {/* Background Image with Subtle Animation - Optimized with img tag */}
       <motion.div
-        className="absolute inset-0 w-full h-full bg-cover bg-center bg-no-repeat"
-        style={{
-          backgroundImage: `url(${backgroundImage})`,
-        }}
+        className="absolute inset-0 w-full h-full overflow-hidden"
         initial={{ scale: 1.05 }}
         animate={{ scale: 1 }}
         transition={{ duration: 1.5, ease: "easeOut" }}
-      />
+      >
+        <img
+          src={backgroundImage}
+          alt="Hospital Hero Background"
+          className="w-full h-full object-cover"
+          width="1920"
+          height="1080"
+          loading="eager"
+          fetchpriority="high"
+          decoding="async"
+        />
+      </motion.div>
 
       {/* Optimized Overlay - Balanced for text readability */}
       {/* Base subtle darkening */}

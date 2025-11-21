@@ -87,30 +87,46 @@
     <link rel="manifest" href="/site.webmanifest" />
     
     <!-- DNS Prefetch & Preconnect for Performance -->
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link rel="dns-prefetch" href="https://vercel.live" />
     
-    <!-- Preload critical hero image to improve LCP -->
-    <link rel="preload" as="image" href="/assets/heroes/main-1.avif" fetchpriority="high" type="image/avif" />
+    <!-- Preload critical hero image to improve LCP - with proper dimensions -->
+    <link rel="preload" as="image" href="/assets/heroes/main-1.avif" fetchpriority="high" type="image/avif" imagesrcset="/assets/heroes/main-1.avif 1920w" imagesizes="100vw" />
     
-    <!-- Preload critical CSS and fonts -->
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" />
+    <!-- Preload critical logo for navigation -->
+    <link rel="preload" as="image" href="/assets/logos/sss-full-logo.avif" fetchpriority="high" type="image/avif" />
     
-    <!-- Professional Font System - Industry Grade Typography -->
+    <!-- Inline critical CSS for fastest FCP -->
+    <style>
+      /* Critical CSS for instant rendering - minimal to avoid breaking layouts */
+      html {
+        -webkit-text-size-adjust: 100%;
+        -webkit-font-smoothing: antialiased;
+        -moz-osx-font-smoothing: grayscale;
+      }
+      body {
+        margin: 0;
+        overflow-x: hidden;
+      }
+      #root {
+        min-height: 100vh;
+      }
+    </style>
+    
+    <!-- Professional Font System - Non-blocking load -->
     <!-- Primary: Inter (UI, Body) - Used by: GitHub, Stripe, Vercel, Linear -->
     <!-- Secondary: Plus Jakarta Sans (Headings) - Used by: Modern healthcare sites, SaaS products -->
-    <!-- Optimized loading: preconnect + display=swap for performance -->
     <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
       rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap"
       media="print"
-      onload="this.media='all'"
+      onload="this.media='all';this.onload=null;"
     />
     <noscript>
       <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
         rel="stylesheet"
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Plus+Jakarta+Sans:wght@600;700&display=swap"
       />
     </noscript>
     
