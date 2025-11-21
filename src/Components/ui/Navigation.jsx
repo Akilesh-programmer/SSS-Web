@@ -176,7 +176,7 @@ const Navigation = () => {
       <motion.nav
         initial={{ y: -100 }}
         animate={{ y: 0, transition: { duration: 0.25, ease: "easeOut" } }}
-        className={`w-full transition-all duration-200 ${
+        className={`w-full transition-all duration-200 relative z-50 ${
           isScrolled ? "shadow-2xl" : "shadow-lg"
         }`}
         style={navStyle(isScrolled)}
@@ -352,7 +352,7 @@ const Navigation = () => {
               initial={{ opacity: 0, height: 0 }}
               animate={{ opacity: 1, height: "auto" }}
               exit={{ opacity: 0, height: 0 }}
-              className="xl:hidden fixed left-0 right-0 z-50 border-t max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)] overflow-y-auto"
+              className="xl:hidden fixed left-0 right-0 z-[60] border-t max-h-[calc(100vh-3.5rem)] sm:max-h-[calc(100vh-4rem)] overflow-y-auto"
               style={mobileMenuStyle}
             >
               <div className="max-w-[1920px] mx-auto px-4 py-6">
