@@ -2,7 +2,27 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <!-- Add Search Console and Analytics in deployment as needed -->
+    
+    <!-- Google Tag Manager (Optional - Add GTM ID in production) -->
+    <!-- <script>(function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+    new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+    j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+    'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+    })(window,document,'script','dataLayer','GTM-XXXXXXX');</script> -->
+    <!-- End Google Tag Manager -->
+    
+    <!-- Google Analytics 4 (Optional - Add GA4 ID in production) -->
+    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-XXXXXXXXXX', {
+        'anonymize_ip': true,
+        'cookie_flags': 'SameSite=None;Secure'
+      });
+    </script> -->
+    <!-- End Google Analytics -->
     
     <!-- Primary Meta Tags -->
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -233,9 +253,49 @@
       }
     }
     </script>
+    
+    <!-- Microsoft Clarity (Optional - For user behavior analytics) -->
+    <!-- <script type="text/javascript">
+      (function(c,l,a,r,i,t,y){
+        c[a]=c[a]||function(){(c[a].q=c[a].q||[]).push(arguments)};
+        t=l.createElement(r);t.async=1;t.src="https://www.clarity.ms/tag/"+i;
+        y=l.getElementsByTagName(r)[0];y.parentNode.insertBefore(t,y);
+      })(window, document, "clarity", "script", "CLARITY_ID");
+    </script> -->
+    
+    <!-- Hotjar Tracking Code (Optional - For heatmaps and recordings) -->
+    <!-- <script>
+      (function(h,o,t,j,a,r){
+        h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+        h._hjSettings={hjid:HOTJAR_ID,hjsv:6};
+        a=o.getElementsByTagName('head')[0];
+        r=o.createElement('script');r.async=1;
+        r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+        a.appendChild(r);
+      })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
+    </script> -->
   </head>
   <body>
+    <!-- Google Tag Manager (noscript) -->
+    <!-- <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-XXXXXXX"
+    height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript> -->
+    <!-- End Google Tag Manager (noscript) -->
+    
+    <!-- Skip to main content link for accessibility -->
+    <a href="#main-content" class="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-green-500 focus:text-white">
+      Skip to main content
+    </a>
+    
     <div id="root"></div>
     <script type="module" src="/src/main.jsx"></script>
+    
+    <!-- NoScript fallback -->
+    <noscript>
+      <div style="padding: 20px; text-align: center; background: #fff3cd; border: 1px solid #ffc107;">
+        <h2>JavaScript Required</h2>
+        <p>This website requires JavaScript to be enabled. Please enable JavaScript in your browser settings to continue.</p>
+        <p>For assistance, please call us at <strong>+91-424-2888777</strong></p>
+      </div>
+    </noscript>
   </body>
 </html>

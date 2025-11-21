@@ -37,7 +37,11 @@ export default defineConfig({
     },
 
     rollupOptions: {
+      // Optimize dependencies
+      external: [],
       output: {
+        // Warn if chunk exceeds 500KB
+        experimentalMinChunkSize: 500000,
         // Optimized manual chunking strategy
         manualChunks: (id) => {
           // Vendor chunks
