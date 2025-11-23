@@ -2,6 +2,8 @@
 @import "./styles/performance.css";
 @import "./styles/typography.css";
 
+/* Version: 2.0.1 - iOS Fixed Positioning Fix - Updated: 2025-11-23 */
+
 /* Root container - optimized for performance */
 #root {
   max-width: 100%;
