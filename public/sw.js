@@ -56,9 +56,10 @@ self.addEventListener("fetch", (event) => {
   }
 
   const url = new URL(event.request.url);
-  const isHTMLRequest = event.request.destination === "document" || 
-                        url.pathname.endsWith(".html") || 
-                        url.pathname === "/";
+  const isHTMLRequest =
+    event.request.destination === "document" ||
+    url.pathname.endsWith(".html") ||
+    url.pathname === "/";
 
   // NETWORK-FIRST strategy for HTML files (always get fresh HTML)
   if (isHTMLRequest) {
