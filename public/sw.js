@@ -1,11 +1,10 @@
-// Service Worker for aggressive caching and offline support
-const CACHE_NAME = "sss-hospital-v1";
-const RUNTIME_CACHE = "sss-runtime-v1";
+// Service Worker for caching and offline support
+// Version updated to force cache invalidation after iOS fix
+const CACHE_NAME = "sss-hospital-v2.0.1";
+const RUNTIME_CACHE = "sss-runtime-v2.0.1";
 
-// Assets to cache immediately on install
+// Assets to cache immediately on install (excluding HTML to allow fresh updates)
 const PRECACHE_URLS = [
-  "/",
-  "/index.html",
   "/assets/logos/sss-full-logo.avif",
   "/assets/heroes/main-1.avif",
   "/favicon-192x192.png",
@@ -44,7 +43,7 @@ self.addEventListener("activate", (event) => {
   );
 });
 
-// Fetch event - serve from cache, fallback to network
+// Fetch event - Network-first for HTML, Cache-first for assets
 self.addEventListener("fetch", (event) => {
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
@@ -56,6 +55,36 @@ self.addEventListener("fetch", (event) => {
     return;
   }
 
+  const url = new URL(event.request.url);
+  const isHTMLRequest = event.request.destination === "document" || 
+                        url.pathname.endsWith(".html") || 
+                        url.pathname === "/";
+
+  // NETWORK-FIRST strategy for HTML files (always get fresh HTML)
+  if (isHTMLRequest) {
+    event.respondWith(
+      fetch(event.request)
+        .then((response) => {
+          // Update cache with fresh HTML
+          if (response.status === 200) {
+            const responseClone = response.clone();
+            caches.open(RUNTIME_CACHE).then((cache) => {
+              cache.put(event.request, responseClone);
+            });
+          }
+          return response;
+        })
+        .catch(() => {
+          // Fallback to cached HTML if offline
+          return caches.match(event.request).then((cachedResponse) => {
+            return cachedResponse || caches.match("/index.html");
+          });
+        })
+    );
+    return;
+  }
+
+  // CACHE-FIRST strategy for CSS, JS, images (static assets)
   event.respondWith(
     caches.match(event.request).then((cachedResponse) => {
       if (cachedResponse) {
@@ -72,10 +101,8 @@ self.addEventListener("fetch", (event) => {
             return response;
           })
           .catch(() => {
-            // Fallback for offline
-            if (event.request.destination === "document") {
-              return caches.match("/");
-            }
+            // Return nothing if offline and not cached
+            return new Response("Offline", { status: 503 });
           });
       });
     })
