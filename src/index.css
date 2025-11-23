@@ -67,6 +67,10 @@ h1, h2, h3, h4, h5, h6,
    CRITICAL iOS FIX - HIGHEST PRIORITY
    Placed here to ensure it loads AFTER Tailwind
    and overrides everything
+   
+   CRITICAL FIX: Ensure NO transform on root elements to prevent
+   fixed-position elements from being positioned relative to document
+   instead of viewport
    ============================================ */
 @supports (-webkit-touch-callout: none) {
   /* Force disable ALL animations */
@@ -74,69 +78,79 @@ h1, h2, h3, h4, h5, h6,
     animation: none !important;
   }
   
-  /* CRITICAL: Prevent transform on body/html to avoid stacking context issues */
+  /* CRITICAL: Absolutely NO transform on root hierarchy to preserve viewport-relative positioning */
   html,
   body,
   #root,
-  [id="root"] > div {
-    -webkit-transform: none !important;
-    transform: none !important;
-  }
-  
-  /* Add GPU acceleration ONLY to non-fixed/sticky elements */
-  *:not([style*="position: fixed"]):not([style*="position: sticky"]):not(.fixed):not(.sticky):not([class*="fixed"]):not([class*="sticky"]):not(html):not(body):not(#root):not([id="root"] > div) {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  /* Keep fixed and sticky elements AND their children without transform (critical for positioning) */
-  [style*="position: fixed"],
-  [style*="position: sticky"],
-  .fixed,
-  .sticky,
-  [class*="fixed"],
-  [class*="sticky"],
-  .fixed *,
-  .sticky *,
-  [class*="fixed"] *,
-  [class*="sticky"] * {
+  [id="root"] > *,
+  [id="root"] > div,
+  [id="root"] > div > * {
     -webkit-transform: none !important;
     transform: none !important;
     -webkit-backface-visibility: visible !important;
     backface-visibility: visible !important;
   }
   
-  /* CRITICAL: Ensure Tailwind !important fixed positioning isn't overridden */
+  /* CRITICAL: NO transform on any fixed or sticky positioned elements and their ancestors */
+  [style*="position: fixed"],
+  [style*="position: sticky"],
+  .fixed,
+  .sticky,
+  [class*="fixed"],
+  [class*="sticky"],
+  [role="dialog"],
+  [data-modal],
+  [class*="modal"],
+  [class*="Modal"],
+  [class*="popup"],
+  [class*="Popup"],
+  [class*="overlay"],
+  [class*="Overlay"] {
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* CRITICAL: NO transform on children of fixed/sticky elements */
+  .fixed *,
+  .sticky *,
+  [class*="fixed"] *,
+  [class*="sticky"] *,
+  [style*="position: fixed"] *,
+  [style*="position: sticky"] *,
+  [role="dialog"] *,
+  [data-modal] *,
+  [class*="modal"] *,
+  [class*="Modal"] *,
+  [class*="popup"] *,
+  [class*="Popup"] *,
+  [class*="overlay"] *,
+  [class*="Overlay"] * {
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* CRITICAL: Ensure Tailwind !important utilities work correctly */
   [class*="\\!fixed"],
   [class*="\\!bottom"],
   [class*="\\!top"],
   [class*="\\!left"],
-  [class*="\\!right"] {
+  [class*="\\!right"],
+  [class*="\\!z-"],
+  [class*="\\!inset"] {
     -webkit-transform: none !important;
     transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
   }
   
-  /* Disable hover transforms only (but not on fixed/sticky or their children) */
-  *:hover:not(.fixed):not(.sticky):not([class*="fixed"]):not([class*="sticky"]):not(.fixed *):not(.sticky *):not([class*="fixed"] *):not([class*="sticky"] *),
-  .group:hover *:not(.fixed):not(.sticky):not([class*="fixed"]):not([class*="sticky"]):not(.fixed *):not(.sticky *):not([class*="fixed"] *):not([class*="sticky"] *) {
-    -webkit-transform: translate3d(0, 0, 0) !important;
-    transform: translate3d(0, 0, 0) !important;
-  }
-  
-  /* Preserve positioning for fixed/sticky and their children on hover */
-  .fixed:hover,
-  .sticky:hover,
-  [style*="position: fixed"]:hover,
-  [style*="position: sticky"]:hover,
-  [class*="fixed"]:hover,
-  [class*="sticky"]:hover,
-  .fixed *:hover,
-  .sticky *:hover,
-  [class*="fixed"] *:hover,
-  [class*="sticky"] *:hover {
+  /* Disable all hover transforms on iOS */
+  *:hover {
     -webkit-transform: none !important;
     transform: none !important;
+    scale: none !important;
   }
 }
