@@ -1,7 +1,8 @@
 // Service Worker for caching and offline support
 // Version updated to force cache invalidation after iOS fix
-const CACHE_NAME = "sss-hospital-v2.0.1";
-const RUNTIME_CACHE = "sss-runtime-v2.0.1";
+const SW_VERSION = "2.0.2-ios-layout-fix";
+const CACHE_NAME = `sss-hospital-${SW_VERSION}`;
+const RUNTIME_CACHE = `sss-runtime-${SW_VERSION}`;
 
 // Assets to cache immediately on install (excluding HTML to allow fresh updates)
 const PRECACHE_URLS = [
@@ -40,7 +41,22 @@ self.addEventListener("activate", (event) => {
         );
       })
       .then(() => self.clients.claim())
+      .then(() => {
+        // Broadcast version to all clients
+        return self.clients.matchAll({ type: "window" }).then((clients) => {
+          clients.forEach((client) => {
+            client.postMessage({ type: "SW_VERSION", version: SW_VERSION });
+          });
+        });
+      })
   );
+});
+
+// Listen for skip-waiting message to activate updated SW immediately
+self.addEventListener("message", (event) => {
+  if (event.data && event.data.type === "SKIP_WAITING") {
+    self.skipWaiting();
+  }
 });
 
 // Fetch event - Network-first for HTML, Cache-first for assets
