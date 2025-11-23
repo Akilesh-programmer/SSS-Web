@@ -62,3 +62,95 @@ h1, h2, h3, h4, h5, h6,
 .font-primary {
   font-family: var(--font-sans);
 }
+
+/* ============================================
+   CRITICAL iOS FIX - HIGHEST PRIORITY
+   Placed here to ensure it loads AFTER Tailwind
+   and overrides everything
+   
+   CRITICAL FIX: Ensure NO transform on root elements to prevent
+   fixed-position elements from being positioned relative to document
+   instead of viewport
+   ============================================ */
+@supports (-webkit-touch-callout: none) {
+  /* Force disable ALL animations */
+  * {
+    animation: none !important;
+  }
+  
+  /* CRITICAL: Absolutely NO transform on root hierarchy to preserve viewport-relative positioning */
+  html,
+  body,
+  #root,
+  [id="root"] > *,
+  [id="root"] > div,
+  [id="root"] > div > * {
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* CRITICAL: NO transform on any fixed or sticky positioned elements and their ancestors */
+  [style*="position: fixed"],
+  [style*="position: sticky"],
+  .fixed,
+  .sticky,
+  [class*="fixed"],
+  [class*="sticky"],
+  [role="dialog"],
+  [data-modal],
+  [class*="modal"],
+  [class*="Modal"],
+  [class*="popup"],
+  [class*="Popup"],
+  [class*="overlay"],
+  [class*="Overlay"] {
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* CRITICAL: NO transform on children of fixed/sticky elements */
+  .fixed *,
+  .sticky *,
+  [class*="fixed"] *,
+  [class*="sticky"] *,
+  [style*="position: fixed"] *,
+  [style*="position: sticky"] *,
+  [role="dialog"] *,
+  [data-modal] *,
+  [class*="modal"] *,
+  [class*="Modal"] *,
+  [class*="popup"] *,
+  [class*="Popup"] *,
+  [class*="overlay"] *,
+  [class*="Overlay"] * {
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* CRITICAL: Ensure Tailwind !important utilities work correctly */
+  [class*="\\!fixed"],
+  [class*="\\!bottom"],
+  [class*="\\!top"],
+  [class*="\\!left"],
+  [class*="\\!right"],
+  [class*="\\!z-"],
+  [class*="\\!inset"] {
+    -webkit-transform: none !important;
+    transform: none !important;
+    -webkit-backface-visibility: visible !important;
+    backface-visibility: visible !important;
+  }
+  
+  /* Disable all hover transforms on iOS */
+  *:hover {
+    -webkit-transform: none !important;
+    transform: none !important;
+    scale: none !important;
+  }
+}
