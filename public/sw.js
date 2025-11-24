@@ -1,16 +1,11 @@
 // Service Worker for caching and offline support
-// Version updated to force cache invalidation after iOS fix
-const SW_VERSION = "2.0.2-ios-layout-fix";
+// Experimental mode: NO caching for CSS/JS - always fetch fresh
+const SW_VERSION = "2.3.0-zero-cache";
 const CACHE_NAME = `sss-hospital-${SW_VERSION}`;
-const RUNTIME_CACHE = `sss-runtime-${SW_VERSION}`;
 
-// Assets to cache immediately on install (excluding HTML to allow fresh updates)
-const PRECACHE_URLS = [
-  "/assets/logos/sss-full-logo.avif",
-  "/assets/heroes/main-1.avif",
-  "/favicon-192x192.png",
-  "/favicon-512x512.png",
-];
+// Only cache truly static assets (favicons only - no CSS/JS/HTML/Images)
+// Minimal caching for experimentation
+const PRECACHE_URLS = ["/favicon-192x192.png", "/favicon-512x512.png"];
 
 // Install event - cache critical assets
 self.addEventListener("install", (event) => {
@@ -22,16 +17,14 @@ self.addEventListener("install", (event) => {
   );
 });
 
-// Activate event - clean up old caches
+// Activate event - clean up ALL old caches
 self.addEventListener("activate", (event) => {
-  const currentCaches = [CACHE_NAME, RUNTIME_CACHE];
   event.waitUntil(
     caches
       .keys()
       .then((cacheNames) => {
-        return cacheNames.filter(
-          (cacheName) => !currentCaches.includes(cacheName)
-        );
+        // Delete all caches except the current one
+        return cacheNames.filter((cacheName) => cacheName !== CACHE_NAME);
       })
       .then((cachesToDelete) => {
         return Promise.all(
@@ -59,7 +52,7 @@ self.addEventListener("message", (event) => {
   }
 });
 
-// Fetch event - Network-first for HTML, Cache-first for assets
+// Fetch event - Professional strategy: Network-first for all dynamic assets
 self.addEventListener("fetch", (event) => {
   // Skip cross-origin requests
   if (!event.request.url.startsWith(self.location.origin)) {
@@ -72,56 +65,47 @@ self.addEventListener("fetch", (event) => {
   }
 
   const url = new URL(event.request.url);
-  const isHTMLRequest =
-    event.request.destination === "document" ||
-    url.pathname.endsWith(".html") ||
-    url.pathname === "/";
 
-  // NETWORK-FIRST strategy for HTML files (always get fresh HTML)
-  if (isHTMLRequest) {
+  // Only use cache-first for favicons (truly static)
+  const isFavicon = url.pathname.includes("favicon");
+
+  if (isFavicon) {
+    // CACHE-FIRST only for favicons
     event.respondWith(
-      fetch(event.request)
-        .then((response) => {
-          // Update cache with fresh HTML
-          if (response.status === 200) {
-            const responseClone = response.clone();
-            caches.open(RUNTIME_CACHE).then((cache) => {
-              cache.put(event.request, responseClone);
-            });
-          }
-          return response;
-        })
-        .catch(() => {
-          // Fallback to cached HTML if offline
-          return caches.match(event.request).then((cachedResponse) => {
-            return cachedResponse || caches.match("/index.html");
-          });
-        })
+      caches.match(event.request).then((cachedResponse) => {
+        return cachedResponse || fetch(event.request);
+      })
     );
     return;
   }
 
-  // CACHE-FIRST strategy for CSS, JS, images (static assets)
+  // NETWORK-FIRST strategy for everything else (HTML, CSS, JS, images)
+  // This ensures fresh content on every deployment
   event.respondWith(
-    caches.match(event.request).then((cachedResponse) => {
-      if (cachedResponse) {
-        return cachedResponse;
-      }
-
-      return caches.open(RUNTIME_CACHE).then((cache) => {
-        return fetch(event.request)
-          .then((response) => {
-            // Cache successful responses
-            if (response.status === 200) {
-              cache.put(event.request, response.clone());
-            }
-            return response;
-          })
-          .catch(() => {
-            // Return nothing if offline and not cached
-            return new Response("Offline", { status: 503 });
-          });
-      });
-    })
+    fetch(event.request)
+      .then((response) => {
+        // Don't cache - always fetch fresh
+        // Vite already handles build hashing for cache busting
+        return response;
+      })
+      .catch(() => {
+        // If offline, try cache as fallback
+        return caches.match(event.request).then((cachedResponse) => {
+          if (cachedResponse) {
+            return cachedResponse;
+          }
+          // Return basic offline page for HTML requests
+          if (event.request.destination === "document") {
+            return new Response(
+              "<html><body><h1>Offline</h1><p>Please check your internet connection.</p></body></html>",
+              {
+                status: 503,
+                headers: { "Content-Type": "text/html" },
+              }
+            );
+          }
+          return new Response("Offline", { status: 503 });
+        });
+      })
   );
 });

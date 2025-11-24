@@ -78,23 +78,7 @@
         }
       ]
     },
-    {
-      "source": "/assets/(.*)",
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "public, max-age=31536000, immutable"
-        },
-        {
-          "key": "X-Content-Type-Options",
-          "value": "nosniff"
-        },
-        {
-          "key": "Access-Control-Allow-Origin",
-          "value": "*"
-        }
-      ]
-    },
+
     {
       "source": "/assets/(.*)\\.(avif|webp|jpg|jpeg|png|gif|svg)",
       "headers": [
@@ -178,7 +162,15 @@
       "headers": [
         { 
           "key": "Cache-Control", 
-          "value": "public, max-age=31536000, immutable" 
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
         },
         {
           "key": "Content-Type",
@@ -191,7 +183,15 @@
       "headers": [
         { 
           "key": "Cache-Control", 
-          "value": "public, max-age=31536000, immutable" 
+          "value": "no-cache, no-store, must-revalidate"
+        },
+        {
+          "key": "Pragma",
+          "value": "no-cache"
+        },
+        {
+          "key": "Expires",
+          "value": "0"
         },
         {
           "key": "Content-Type",

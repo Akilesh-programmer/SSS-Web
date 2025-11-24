@@ -29,7 +29,7 @@
     <!-- End Google Analytics -->
     
     <!-- App Version - Force cache invalidation on updates -->
-    <meta name="version" content="2.0.1-ios-fix-20251123" />
+    <meta name="version" content="2.1.0-global-fix-20251124" />
     <meta http-equiv="last-modified" content="2025-11-23T00:00:00Z" />
     
     <!-- Primary Meta Tags -->
@@ -327,49 +327,49 @@
       })(window,document,'https://static.hotjar.com/c/hotjar-','.js?sv=');
     </script> -->
     
-    <!-- CRITICAL iOS POSITIONING FIX - Inline to ensure it's never stripped -->
+    <!-- CRITICAL GLOBAL POSITIONING FIX - Inline to ensure it's never stripped -->
     <style>
-      @supports (-webkit-touch-callout: none) {
-        /* iOS-only: Remove transforms from root to preserve fixed positioning */
-        html, body, #root, #root > *, #root > div, #root > div > * {
-          -webkit-transform: none !important;
-          transform: none !important;
-          -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
-        }
-        
-        /* iOS-only: No transform on fixed/sticky elements */
-        [style*="position: fixed"], [style*="position: sticky"],
-        .fixed, .sticky, [class*="fixed"], [class*="sticky"],
-        [role="dialog"], [data-modal],
-        [class*="modal"], [class*="Modal"],
-        [class*="popup"], [class*="Popup"],
-        [class*="overlay"], [class*="Overlay"] {
-          -webkit-transform: none !important;
-          transform: none !important;
-          -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
-        }
-        
-        /* iOS-only: No transform on children of fixed/sticky */
-        .fixed *, .sticky *, [class*="fixed"] *, [class*="sticky"] *,
-        [style*="position: fixed"] *, [style*="position: sticky"] *,
-        [role="dialog"] *, [data-modal] *,
-        [class*="modal"] *, [class*="Modal"] *,
-        [class*="popup"] *, [class*="Popup"] *,
-        [class*="overlay"] *, [class*="Overlay"] * {
-          -webkit-transform: none !important;
-          transform: none !important;
-          -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
-        }
-        
-        /* iOS-only: Tailwind !important utilities */
-        [class*="\\!fixed"], [class*="\\!bottom"], [class*="\\!top"],
-        [class*="\\!left"], [class*="\\!right"], [class*="\\!z-"], [class*="\\!inset"] {
-          -webkit-transform: none !important;
-          transform: none !important;
-        }
+      /* Applied globally to ALL devices for consistent behavior */
+      
+      /* Remove transforms from root to preserve fixed positioning */
+      html, body, #root, #root > *, #root > div, #root > div > * {
+        -webkit-transform: none !important;
+        transform: none !important;
+        -webkit-backface-visibility: visible !important;
+        backface-visibility: visible !important;
+      }
+      
+      /* No transform on fixed/sticky elements */
+      [style*="position: fixed"], [style*="position: sticky"],
+      .fixed, .sticky, [class*="fixed"], [class*="sticky"],
+      [role="dialog"], [data-modal],
+      [class*="modal"], [class*="Modal"],
+      [class*="popup"], [class*="Popup"],
+      [class*="overlay"], [class*="Overlay"] {
+        -webkit-transform: none !important;
+        transform: none !important;
+        -webkit-backface-visibility: visible !important;
+        backface-visibility: visible !important;
+      }
+      
+      /* No transform on children of fixed/sticky */
+      .fixed *, .sticky *, [class*="fixed"] *, [class*="sticky"] *,
+      [style*="position: fixed"] *, [style*="position: sticky"] *,
+      [role="dialog"] *, [data-modal] *,
+      [class*="modal"] *, [class*="Modal"] *,
+      [class*="popup"] *, [class*="Popup"] *,
+      [class*="overlay"] *, [class*="Overlay"] * {
+        -webkit-transform: none !important;
+        transform: none !important;
+        -webkit-backface-visibility: visible !important;
+        backface-visibility: visible !important;
+      }
+      
+      /* Tailwind !important utilities */
+      [class*="\\!fixed"], [class*="\\!bottom"], [class*="\\!top"],
+      [class*="\\!left"], [class*="\\!right"], [class*="\\!z-"], [class*="\\!inset"] {
+        -webkit-transform: none !important;
+        transform: none !important;
       }
     </style>
   </head>

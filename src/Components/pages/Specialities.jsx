@@ -129,7 +129,7 @@ const Specialities = () => {
 
           {/* Professional Departments Grid */}
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8">
-            {hospitalDepartments.map((department, index) => {
+            {hospitalDepartments.map((department) => {
               const isHovered = hoveredCard === department.id;
 
               return (
@@ -137,14 +137,11 @@ const Specialities = () => {
                   key={department.id}
                   role="button"
                   tabIndex={0}
-                  className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-gray-100 cursor-pointer transition-all duration-300 ease-out opacity-0 animate-fadeInUp ${
+                  className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-gray-100 cursor-pointer transition-all duration-300 ease-out ${
                     isHovered
                       ? "shadow-lg -translate-y-1 scale-102 border-emerald-200"
                       : "hover:shadow-md hover:-translate-y-0.5"
                   }`}
-                  style={{
-                    animationDelay: `${600 + index * 100}ms`,
-                  }}
                   onMouseEnter={() => setHoveredCard(department.id)}
                   onMouseLeave={() => setHoveredCard(null)}
                   onClick={() => handleDepartmentClick(department.name)}
@@ -240,10 +237,7 @@ const Specialities = () => {
           </div>
 
           {/* Bottom Stats */}
-          <div
-            className="mt-20 text-center opacity-0 animate-fadeInUp"
-            style={{ animationDelay: "1000ms" }}
-          >
+          <div className="mt-20 text-center">
             <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-gray-200">
               <FaHospital className="text-emerald-600 w-5 h-5" />
               <span className="text-gray-700 font-medium">

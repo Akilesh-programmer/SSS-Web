@@ -6,8 +6,6 @@ import { useAppointment } from "./contexts/AppointmentContext";
 // Critical UI components - load immediately
 import Navigation from "./Components/ui/Navigation";
 import Footer from "./Components/ui/Footer";
-import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
-import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
 import PageWrapper from "./Components/ui/PageWrapper";
@@ -276,17 +274,6 @@ function App() {
           isOpen={isAppointmentOpen}
           onClose={closeAppointment}
         />
-      </div>
-
-      {/* Fixed floating components - positioned relative to viewport, outside main content flow */}
-      {/* Appointment button on left */}
-      <div className="!fixed !bottom-4 sm:!bottom-6 !left-4 sm:!left-6 !z-40">
-        <FloatingAppointmentButton />
-      </div>
-
-      {/* Scroll to top button on right */}
-      <div className="!fixed !bottom-4 sm:!bottom-6 !right-4 sm:!right-6 !z-40">
-        <ScrollToTopButton />
       </div>
     </ErrorBoundary>
   );

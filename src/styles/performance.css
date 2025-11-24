@@ -1,8 +1,8 @@
 /* Performance optimizations - Industry grade practices */
-/* Version: 2.0.1 - iOS Fixed Positioning Fix - Updated: 2025-11-23 */
+/* Version: 2.1.0 - Global Fixed Positioning & Animation Fix - Updated: 2025-11-24 */
 
 /* ============================================
-   iOS FLICKERING FIX - TARGETED SOLUTION
+   GLOBAL FLICKERING FIX - TARGETED SOLUTION
    
    This file includes TARGETED CSS rules that disable ONLY:
    - Decorative animations (animate-pulse, animate-ping, animate-bounce, animate-spin)
@@ -21,8 +21,8 @@
    ✅ Standard transitions for smooth interactions
    ✅ Hover color changes
    
-   These rules are automatically applied ONLY on iOS devices
-   (iPhone, iPad, iPod) using @supports (-webkit-touch-callout: none)
+   These rules are automatically applied globally to ALL devices
+   for consistent behavior and performance optimization
    
    No JavaScript or component-level changes needed!
    ============================================ */
@@ -240,13 +240,6 @@ img[loading="lazy"] {
   contain: layout style paint;
 }
 
-/* Floating button optimizations */
-.floating-button {
-  transform: translateZ(0);
-  will-change: transform;
-  contain: layout style paint;
-}
-
 /* Glassmorphism effects */
 .glass-effect {
   backdrop-filter: blur(20px);
@@ -280,216 +273,216 @@ img[loading="lazy"] {
 }
 
 /* ============================================
-   COMPREHENSIVE iOS FIX - DISABLE ALL ANIMATIONS & HOVER EFFECTS
-   This section AGGRESSIVELY disables all animations on iOS
+   COMPREHENSIVE GLOBAL FIX - DISABLE ALL ANIMATIONS & HOVER EFFECTS
+   This section AGGRESSIVELY disables all animations on ALL devices
    Backdrop-blur is PRESERVED for glassmorphism effects
    All layout, positioning, colors, sizing remain intact
    
    CRITICAL FIX: NO transform property on any root or ancestor elements
    to ensure fixed-position elements stay viewport-relative
+   
+   Applied globally for consistent behavior across all platforms
    ============================================ */
-@supports (-webkit-touch-callout: none) {
-  /* iOS Device Detection - applies to all iOS devices (iPhone, iPad, iPod) */
-  
-  /* ===== 1. DISABLE ALL CSS ANIMATIONS GLOBALLY ===== */
-  *,
-  *::before,
-  *::after {
-    animation: none !important;
-    animation-duration: 0s !important;
-    animation-delay: 0s !important;
-    animation-iteration-count: 1 !important;
-    animation-fill-mode: none !important;
-    animation-play-state: paused !important;
-  }
-  
-  /* CRITICAL: Absolutely NO transform on root hierarchy - prevents fixed positioning issues */
-  html,
-  body,
-  #root,
-  [id="root"] > *,
-  [id="root"] > div,
-  [id="root"] > div > * {
-    -webkit-transform: none !important;
-    transform: none !important;
-    -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
-  }
-  
-  /* CRITICAL: NO transform on ANY fixed/sticky positioned elements or modal-related elements */
-  [style*="position: fixed"],
-  [style*="position: sticky"],
-  .fixed,
-  .sticky,
-  [class*="fixed"],
-  [class*="sticky"],
-  [role="dialog"],
-  [data-modal],
-  [class*="modal"],
-  [class*="Modal"],
-  [class*="popup"],
-  [class*="Popup"],
-  [class*="overlay"],
-  [class*="Overlay"] {
-    -webkit-transform: none !important;
-    transform: none !important;
-    -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
-  }
-  
-  /* CRITICAL: NO transform on children of fixed/sticky and modal elements */
-  .fixed *,
-  .sticky *,
-  [class*="fixed"] *,
-  [class*="sticky"] *,
-  [style*="position: fixed"] *,
-  [style*="position: sticky"] *,
-  [role="dialog"] *,
-  [data-modal] *,
-  [class*="modal"] *,
-  [class*="Modal"] *,
-  [class*="popup"] *,
-  [class*="Popup"] *,
-  [class*="overlay"] *,
-  [class*="Overlay"] * {
-    -webkit-transform: none !important;
-    transform: none !important;
-    -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
-  }
-  
-  /* CRITICAL: Ensure Tailwind !important utilities work correctly */
-  [class*="\\!fixed"],
-  [class*="\\!bottom"],
-  [class*="\\!top"],
-  [class*="\\!left"],
-  [class*="\\!right"],
-  [class*="\\!z-"],
-  [class*="\\!inset"] {
-    -webkit-transform: none !important;
-    transform: none !important;
-    -webkit-backface-visibility: visible !important;
-    backface-visibility: visible !important;
-  }
-  
-  /* ===== 2. DISABLE ALL TAILWIND ANIMATIONS ===== */
-  [class*="animate-"],
-  .animate-spin,
-  .animate-ping,
-  .animate-pulse,
-  .animate-bounce,
-  .animate-none {
-    animation: none !important;
-  }
-  
-  /* ===== 3. DISABLE ALL HOVER EFFECTS AND TRANSFORMS ===== */
-  *:hover {
-    -webkit-transform: none !important;
-    transform: none !important;
-    scale: none !important;
-  }
-  
-  /* Disable all hover utility classes */
-  [class*="hover:scale"]:hover,
-  [class*="hover:rotate"]:hover,
-  [class*="hover:-rotate"]:hover,
-  [class*="hover:translate"]:hover,
-  [class*="hover:-translate"]:hover,
-  [class*="hover:skew"]:hover {
-    -webkit-transform: none !important;
-    transform: none !important;
-    scale: 1 !important;
-  }
-  
-  /* ===== 4. DISABLE ALL GROUP HOVER EFFECTS ===== */
-  .group:hover [class*="group-hover"],
-  [class*="group-hover"] {
-    -webkit-transform: none !important;
-    transform: none !important;
-    scale: 1 !important;
-    animation: none !important;
-  }
-  
-  /* ===== 5. DISABLE FRAMER MOTION INLINE STYLES ===== */
-  /* Remove transform from inline styles */
-  [style*="transform"],
-  [style*="scale"],
-  [style*="rotate"],
-  [style*="translate"] {
-    -webkit-transform: none !important;
-    transform: none !important;
-  }
-  
-  /* Disable motion on all buttons and links */
-  button,
-  a,
-  button *,
-  a * {
-    animation: none !important;
-    -webkit-transform: none !important;
-    transform: none !important;
-  }
-  
-  button:hover,
-  button:active,
-  button:focus,
-  a:hover,
-  a:active,
-  a:focus {
-    -webkit-transform: none !important;
-    transform: none !important;
-    scale: 1 !important;
-  }
-  
-  /* ===== 6. DISABLE ALL TRANSITION-TRANSFORM ===== */
-  [class*="transition-transform"],
-  [class*="transition-all"] {
-    transition: none !important;
-  }
-  
-  /* ===== 7. DISABLE MOTION SAFE/REDUCE OVERRIDES ===== */
-  [class*="motion-safe"],
-  [class*="motion-reduce"] {
-    animation: none !important;
-    transition: none !important;
-  }
-  
-  /* ===== 8. DISABLE SVG ANIMATIONS ===== */
-  svg,
-  svg * {
-    animation: none !important;
-  }
-  
-  /* ===== 9. DISABLE KEYFRAME ANIMATIONS ===== */
-  /* Target common animation names */
-  [style*="animation"] {
-    animation: none !important;
-  }
-  
-  /* ===== 10. STABILIZE LAYERS (but allow fixed elements to use visible) ===== */
-  * {
-    will-change: auto !important;
-  }
-  
-  /* Only apply backface-visibility: hidden to non-fixed elements */
-  *:not([style*="position: fixed"]):not([style*="position: sticky"]):not(.fixed):not(.sticky):not([class*="fixed"]):not([class*="sticky"]):not(html):not(body):not(#root):not([id="root"] > *) {
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-  
-  /* ===== 11. DISABLE SPIN/PING/PULSE/BOUNCE SPECIFICALLY ===== */
-  /* Even if animation is inline */
-  [class*="spin"],
-  [class*="ping"],
-  [class*="pulse"],
-  [class*="bounce"] {
-    animation: none !important;
-  }
+
+/* ===== 1. DISABLE ALL CSS ANIMATIONS GLOBALLY ===== */
+*,
+*::before,
+*::after {
+  animation: none !important;
+  animation-duration: 0s !important;
+  animation-delay: 0s !important;
+  animation-iteration-count: 1 !important;
+  animation-fill-mode: none !important;
+  animation-play-state: paused !important;
+}
+
+/* CRITICAL: Absolutely NO transform on root hierarchy - prevents fixed positioning issues */
+html,
+body,
+#root,
+[id="root"] > *,
+[id="root"] > div,
+[id="root"] > div > * {
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+}
+
+/* CRITICAL: NO transform on ANY fixed/sticky positioned elements or modal-related elements */
+[style*="position: fixed"],
+[style*="position: sticky"],
+.fixed,
+.sticky,
+[class*="fixed"],
+[class*="sticky"],
+[role="dialog"],
+[data-modal],
+[class*="modal"],
+[class*="Modal"],
+[class*="popup"],
+[class*="Popup"],
+[class*="overlay"],
+[class*="Overlay"] {
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+}
+
+/* CRITICAL: NO transform on children of fixed/sticky and modal elements */
+.fixed *,
+.sticky *,
+[class*="fixed"] *,
+[class*="sticky"] *,
+[style*="position: fixed"] *,
+[style*="position: sticky"] *,
+[role="dialog"] *,
+[data-modal] *,
+[class*="modal"] *,
+[class*="Modal"] *,
+[class*="popup"] *,
+[class*="Popup"] *,
+[class*="overlay"] *,
+[class*="Overlay"] * {
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+}
+
+/* CRITICAL: Ensure Tailwind !important utilities work correctly */
+[class*="\\!fixed"],
+[class*="\\!bottom"],
+[class*="\\!top"],
+[class*="\\!left"],
+[class*="\\!right"],
+[class*="\\!z-"],
+[class*="\\!inset"] {
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+}
+
+/* ===== 2. DISABLE ALL TAILWIND ANIMATIONS ===== */
+[class*="animate-"],
+.animate-spin,
+.animate-ping,
+.animate-pulse,
+.animate-bounce,
+.animate-none {
+  animation: none !important;
+}
+
+/* ===== 3. DISABLE ALL HOVER EFFECTS AND TRANSFORMS ===== */
+*:hover {
+  -webkit-transform: none !important;
+  transform: none !important;
+  scale: none !important;
+}
+
+/* Disable all hover utility classes */
+[class*="hover:scale"]:hover,
+[class*="hover:rotate"]:hover,
+[class*="hover:-rotate"]:hover,
+[class*="hover:translate"]:hover,
+[class*="hover:-translate"]:hover,
+[class*="hover:skew"]:hover {
+  -webkit-transform: none !important;
+  transform: none !important;
+  scale: 1 !important;
+}
+
+/* ===== 4. DISABLE ALL GROUP HOVER EFFECTS ===== */
+.group:hover [class*="group-hover"],
+[class*="group-hover"] {
+  -webkit-transform: none !important;
+  transform: none !important;
+  scale: 1 !important;
+  animation: none !important;
+}
+
+/* ===== 5. DISABLE FRAMER MOTION INLINE STYLES ===== */
+/* Remove transform from inline styles */
+[style*="transform"],
+[style*="scale"],
+[style*="rotate"],
+[style*="translate"] {
+  -webkit-transform: none !important;
+  transform: none !important;
+}
+
+/* Disable motion on all buttons and links */
+button,
+a,
+button *,
+a * {
+  animation: none !important;
+  -webkit-transform: none !important;
+  transform: none !important;
+}
+
+button:hover,
+button:active,
+button:focus,
+a:hover,
+a:active,
+a:focus {
+  -webkit-transform: none !important;
+  transform: none !important;
+  scale: 1 !important;
+}
+
+/* ===== 6. DISABLE ALL TRANSITION-TRANSFORM ===== */
+[class*="transition-transform"],
+[class*="transition-all"] {
+  transition: none !important;
+}
+
+/* ===== 7. DISABLE MOTION SAFE/REDUCE OVERRIDES ===== */
+[class*="motion-safe"],
+[class*="motion-reduce"] {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* ===== 8. DISABLE SVG ANIMATIONS ===== */
+svg,
+svg * {
+  animation: none !important;
+}
+
+/* ===== 9. DISABLE KEYFRAME ANIMATIONS ===== */
+/* Target common animation names */
+[style*="animation"] {
+  animation: none !important;
+}
+
+/* ===== 10. STABILIZE LAYERS (but allow fixed elements to use visible) ===== */
+* {
+  will-change: auto !important;
+}
+
+/* Only apply backface-visibility: hidden to non-fixed elements */
+*:not([style*="position: fixed"]):not([style*="position: sticky"]):not(.fixed):not(.sticky):not([class*="fixed"]):not([class*="sticky"]):not(html):not(body):not(#root):not([id="root"] > *) {
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* ===== 11. DISABLE SPIN/PING/PULSE/BOUNCE SPECIFICALLY ===== */
+/* Even if animation is inline */
+[class*="spin"],
+[class*="ping"],
+[class*="pulse"],
+[class*="bounce"] {
+  animation: none !important;
 }
 
 /* ============================================
-   END iOS TARGETED FIX
+   END GLOBAL TARGETED FIX
    Only decorative animations and hover transforms are disabled.
    Backdrop-blur, layout, positioning, colors, sizing, and transitions are preserved.
+   Applied globally to all devices for consistent behavior.
    ============================================ */
 

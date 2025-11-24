@@ -35,7 +35,7 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
 
     // Reload when controller changes (new SW taking control)
     navigator.serviceWorker.addEventListener("controllerchange", () => {
-      // Force refresh to get latest inline iOS CSS & layout fixes
+      // Force refresh to get latest inline global CSS & layout fixes
       window.location.reload();
     });
 
