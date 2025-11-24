@@ -1,123 +1,97 @@
-/* Performance optimizations - Industry grade practices */
-
 /* ===================================================================
-   APPLE DEVICES ANTI-FLICKERING - GLOBAL RULES
-   Addresses WebKit backdrop-filter bugs and compositing issues
+   UNIVERSAL PERFORMANCE OPTIMIZATIONS
+   Removes ALL flickering triggers for ALL devices
    =================================================================== */
 
-/* Apply to all Apple devices using the is-apple-device class */
-.is-apple-device *,
-.is-apple-device *::before,
-.is-apple-device *::after {
-  /* CRITICAL: Remove ALL backdrop-filter effects */
+/* GLOBAL: Remove ALL backdrop-filter effects (primary flickering cause) */
+*,
+*::before,
+*::after {
+  /* Remove backdrop-filter universally - too expensive on all mobile devices */
   backdrop-filter: none !important;
   -webkit-backdrop-filter: none !important;
   
-  /* CRITICAL: Remove ALL filter effects (including blur) */
-  filter: none !important;
-  -webkit-filter: none !important;
-  
-  /* Force GPU acceleration */
-  backface-visibility: hidden !important;
-  -webkit-backface-visibility: hidden !important;
-  
-  /* Remove perspective that causes layout thrashing */
+  /* Force GPU acceleration globally */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Override ALL Tailwind backdrop-blur classes globally */
+.backdrop-blur-none,
+.backdrop-blur-sm,
+.backdrop-blur,
+.backdrop-blur-md,
+.backdrop-blur-lg,
+.backdrop-blur-xl,
+.backdrop-blur-2xl,
+.backdrop-blur-3xl,
+[class*="backdrop-blur"],
+[style*="backdrop-filter"],
+[style*="backdropFilter"],
+[style*="-webkit-backdrop-filter"] {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Simplify ALL box-shadows (complex shadows cause repaint lag) */
+.shadow-sm {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05) !important;
+}
+
+.shadow,
+.shadow-md {
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.08) !important;
+}
+
+.shadow-lg {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.10) !important;
+}
+
+.shadow-xl {
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.12) !important;
+}
+
+.shadow-2xl {
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Remove perspective globally (causes layer thrashing) */
+* {
   perspective: none !important;
   -webkit-perspective: none !important;
 }
 
-/* Force solid backgrounds on backdrop-blur elements */
-.is-apple-device [class*="backdrop-blur"],
-.is-apple-device [style*="backdrop-filter"],
-.is-apple-device [style*="backdropFilter"] {
-  background-color: rgba(255, 255, 255, 0.98) !important;
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
+/* Optimize sticky positioning (keep only ONE sticky element) */
+.nav-sticky-ios,
+nav[class*="sticky"],
+[class*="sticky"] {
+  position: sticky;
+  transform: translate3d(0, 0, 0);
+  will-change: transform;
 }
 
-/* Dark backgrounds with blur */
-.is-apple-device [class*="bg-black"][class*="backdrop-blur"],
-.is-apple-device [class*="bg-gray"][class*="backdrop-blur"] {
-  background-color: rgba(0, 0, 0, 0.85) !important;
-}
-
-/* Optimize sticky elements */
-.is-apple-device [class*="sticky"],
-.is-apple-device [style*="position: sticky"],
-.is-apple-device [style*="position:sticky"] {
-  transform: translate3d(0, 0, 0) !important;
-  will-change: transform !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-}
-
-/* Optimize fixed elements */
-.is-apple-device [class*="fixed"],
-.is-apple-device [style*="position: fixed"],
-.is-apple-device [style*="position:fixed"] {
-  transform: translate3d(0, 0, 0) !important;
-  will-change: transform !important;
-  -webkit-transform: translate3d(0, 0, 0) !important;
-}
-
-/* Simplify box-shadows on Apple devices */
-.is-apple-device * {
-  /* Override complex box-shadows with simple ones */
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08) !important;
-}
-
-.is-apple-device [class*="shadow-xl"],
-.is-apple-device [class*="shadow-2xl"] {
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
-}
-
-/* Remove mix-blend-mode on Apple devices */
-.is-apple-device [class*="mix-blend"] {
+/* Remove mix-blend-mode globally (expensive on mobile) */
+[class*="mix-blend"] {
   mix-blend-mode: normal !important;
 }
 
-/* Override ALL Tailwind backdrop-blur classes on Apple devices */
-.is-apple-device .backdrop-blur-none,
-.is-apple-device .backdrop-blur-sm,
-.is-apple-device .backdrop-blur,
-.is-apple-device .backdrop-blur-md,
-.is-apple-device .backdrop-blur-lg,
-.is-apple-device .backdrop-blur-xl,
-.is-apple-device .backdrop-blur-2xl,
-.is-apple-device .backdrop-blur-3xl {
-  backdrop-filter: none !important;
-  -webkit-backdrop-filter: none !important;
-}
-
-/* Convert transparent backgrounds to solid on Apple devices */
-.is-apple-device .bg-white\/80,
-.is-apple-device .bg-white\/90,
-.is-apple-device .bg-white\/95 {
-  background-color: rgba(255, 255, 255, 0.98) !important;
-}
-
-.is-apple-device .bg-black\/50,
-.is-apple-device .bg-black\/60,
-.is-apple-device .bg-black\/70,
-.is-apple-device .bg-black\/80 {
-  background-color: rgba(0, 0, 0, 0.90) !important;
-}
-
-/* Optimize animations - use only transform and opacity */
-.is-apple-device * {
-  /* Limit will-change to transform and opacity only */
-  will-change: transform, opacity !important;
+/* Optimize filter effects - remove blur decorations */
+[class*="filter"][class*="blur"],
+.blur-sm,
+.blur,
+.blur-md,
+.blur-lg,
+.blur-xl,
+.blur-2xl,
+.blur-3xl {
+  filter: none !important;
+  -webkit-filter: none !important;
 }
 
 /* Hardware acceleration for animations */
 .motion-div {
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-}
-
-/* Remove perspective on Apple devices in motion-div */
-.is-apple-device .motion-div {
-  perspective: none !important;
-  -webkit-perspective: none !important;
 }
 
 /* Reduce motion for accessibility */
@@ -135,48 +109,36 @@
 /* Optimize scroll performance */
 html {
   scroll-behavior: smooth;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: none;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  html {
-    scroll-behavior: smooth;
-  }
+/* Optimize font rendering */
+* {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
 }
 
-/* Optimize images - content-visibility for better rendering */
+/* Optimize images */
 img {
   content-visibility: auto;
   contain-intrinsic-size: 300px;
 }
 
-/* Lazy load offscreen images */
 img[loading="lazy"] {
   content-visibility: auto;
 }
 
 /* Mobile-specific optimizations */
 @media (max-width: 768px) {
-  /* Prevent horizontal scroll */
   body {
     overflow-x: hidden;
   }
   
-  /* Touch targets for mobile */
   .mobile-touch-target {
     min-height: 44px;
     min-width: 44px;
-  }
-  
-  /* Improve text readability on mobile */
-  .mobile-text-optimize {
-    -webkit-text-size-adjust: 100%;
-    text-size-adjust: 100%;
-  }
-  
-  /* Reduce animation intensity on mobile */
-  .mobile-reduced-animation {
-    animation-duration: 0.3s !important;
-    transition-duration: 0.3s !important;
   }
 }
 
@@ -190,29 +152,9 @@ img[loading="lazy"] {
   display: none;
 }
 
-/* Mobile-responsive containers */
-.mobile-container {
-  padding-left: 1rem;
-  padding-right: 1rem;
-}
-
-@media (min-width: 640px) {
-  .mobile-container {
-    padding-left: 1.5rem;
-    padding-right: 1.5rem;
-  }
-}
-
-@media (min-width: 1024px) {
-  .mobile-container {
-    padding-left: 2rem;
-    padding-right: 2rem;
-  }
-}
-
-/* Optimized heart animations - GPU accelerated using only transform and opacity */
+/* Optimized animations - GPU accelerated using only transform and opacity */
 @keyframes heartPulseWithLines {
-  0% {
+  0%, 100% {
     transform: scale(1) translateZ(0);
     opacity: 1;
   }
@@ -228,68 +170,22 @@ img[loading="lazy"] {
     transform: scale(1.1) translateZ(0);
     opacity: 0.9;
   }
-  100% {
-    transform: scale(1) translateZ(0);
-    opacity: 1;
-  }
-}
-
-@keyframes redLinePulse {
-  0% {
-    transform: scale(1) translateZ(0);
-    opacity: 0.7;
-  }
-  50% {
-    transform: scale(1.5) translateZ(0);
-    opacity: 0;
-  }
-  100% {
-    transform: scale(1) translateZ(0);
-    opacity: 0;
-  }
-}
-
-@keyframes heartbeatRedLines {
-  0%, 100% {
-    transform: scale(1) translateZ(0);
-    opacity: 1;
-  }
-  14% {
-    transform: scale(1.3) translateZ(0);
-    opacity: 0.9;
-  }
-  28% {
-    transform: scale(1) translateZ(0);
-    opacity: 1;
-  }
-  42% {
-    transform: scale(1.3) translateZ(0);
-    opacity: 0.9;
-  }
-}
-
-/* Heart pulse with red lines class */
-.heart-pulse-red {
-  animation: heartbeatRedLines 2s ease-in-out infinite;
-  position: relative;
-}
-
-.heart-pulse-red::before {
-  content: '';
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  width: 100%;
-  height: 100%;
-  border-radius: 50%;
-  transform: translate(-50%, -50%);
-  animation: redLinePulse 2s ease-in-out infinite;
-  pointer-events: none;
-  z-index: -1;
 }
 
 .heart-pulse-subtle {
   animation: heartPulseWithLines 3s ease-in-out infinite;
+}
+
+/* Progressive image fade-in */
+.img-fade-in {
+  opacity: 0;
+  animation: imgFadeIn 0.8s ease forwards;
+}
+
+@keyframes imgFadeIn {
+  to {
+    opacity: 1;
+  }
 }
 
 /* Grid layout optimization */
@@ -298,414 +194,21 @@ img[loading="lazy"] {
   content-visibility: auto;
 }
 
-/* Optimized image grid items */
-.grid-optimized button, .grid-optimized .grid-item-optimized {
-  will-change: transform, opacity;
-  backface-visibility: hidden;
-}
-
-/* Reduce shadow cost on scroll-heavy grids */
-.shadow-md, .shadow-lg, .shadow-xl {
-  transform: translateZ(0);
-}
-
-/* Progressive image fade-in (fallback if animation not provided) */
-.img-fade-in { opacity: 0; animation: imgFadeIn .8s ease forwards; }
-@keyframes imgFadeIn { to { opacity: 1; } }
-
-/* Modal and popup optimizations */
-.modal-backdrop {
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  will-change: backdrop-filter;
-}
-
-.modal-content {
-  transform: translateZ(0);
-  will-change: transform, opacity;
-  contain: layout style paint;
-}
-
-/* Floating button optimizations */
+/* Optimized modal and popup */
+.modal-content,
 .floating-button {
   transform: translateZ(0);
-  will-change: transform;
+  will-change: transform, opacity;
   contain: layout style paint;
-}
-
-/* Glassmorphism effects */
-.glass-effect {
-  backdrop-filter: blur(20px);
-  -webkit-backdrop-filter: blur(20px);
-  background: rgba(255, 255, 255, 0.1);
-  border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-/* Enhanced shadows for depth */
-.shadow-enhanced {
-  box-shadow: 
-    0 10px 25px -5px rgba(0, 0, 0, 0.1),
-    0 20px 40px -10px rgba(0, 0, 0, 0.1),
-    0 0 0 1px rgba(255, 255, 255, 0.1) inset;
 }
 
 /* Smooth button transitions */
 .button-smooth {
-  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+              opacity 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   transform: translateZ(0);
 }
 
 .button-smooth:hover {
   transform: translateY(-2px) translateZ(0);
-}
-
-/* Optimized gradient backgrounds */
-.gradient-optimized {
-  background-attachment: fixed;
-  will-change: auto;
-}
-
-/* ====================================================================
-   APPLE DEVICES FLICKERING FIX - Comprehensive Solution
-   Targets: iOS (iPhone), iPadOS (iPad), macOS (Safari/Chrome)
-   ==================================================================== */
-
-/* Primary navigation sticky positioning with Apple device optimization */
-.nav-sticky-ios {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 50;
-  
-  /* Core GPU acceleration to prevent flickering */
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-  -webkit-perspective: 1000px;
-  perspective: 1000px;
-  
-  /* Optimize rendering performance */
-  will-change: transform;
-  contain: layout;
-  
-  /* Prevent subpixel rendering issues on Apple devices */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-/* ====================================================================
-   iOS SAFARI SPECIFIC FIXES (iPhone & iPad)
-   Detected via: -webkit-touch-callout feature
-   ==================================================================== */
-@supports (-webkit-touch-callout: none) {
-  /* Root body optimizations for iOS */
-  html, body {
-    /* Enable momentum scrolling without flickering */
-    -webkit-overflow-scrolling: touch;
-    /* Prevent elastic bounce from causing repaints */
-    overscroll-behavior-y: none;
-  }
-  
-  /* Navigation bar iOS-specific enhancements */
-  .nav-sticky-ios {
-    /* Force compositing layer */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    
-    /* Prevent layout shift during scroll */
-    contain: strict;
-    content-visibility: auto;
-    
-    /* Isolate from other layers */
-    isolation: isolate;
-  }
-  
-  /* Global hardware acceleration for all elements on iOS */
-  * {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  
-  /* Prevent backdrop-filter flickering on iOS */
-  [style*="backdrop-filter"],
-  [class*="backdrop-blur"],
-  [style*="backdropFilter"] {
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-    -webkit-perspective: 1000px;
-    perspective: 1000px;
-    
-    /* Force layer creation */
-    will-change: backdrop-filter;
-  }
-  
-  /* Optimize all sticky elements on iOS */
-  [class*="sticky"],
-  .sticky,
-  [style*="position: sticky"],
-  [style*="position:sticky"] {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
-}
-
-/* ====================================================================
-   iPHONE SPECIFIC OPTIMIZATIONS (All sizes)
-   Screen widths: 375px - 428px (iPhone SE to iPhone Pro Max)
-   ==================================================================== */
-@media only screen 
-  and (min-device-width: 320px) 
-  and (max-device-width: 896px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-  
-  /* Navigation optimization for smaller screens */
-  .nav-sticky-ios {
-    /* Reduce repaints on scroll */
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    
-    /* Disable will-change after initial render */
-    animation: disableWillChange 0.5s forwards;
-  }
-  
-  /* Prevent over-scrolling issues */
-  body {
-    position: relative;
-    overflow-x: hidden;
-  }
-  
-  /* Optimize font rendering */
-  * {
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-rendering: optimizeLegibility;
-  }
-  
-  /* Fallback for older iOS versions without backdrop-filter support */
-  @supports not (backdrop-filter: blur(10px)) {
-    [style*="backdrop-filter"],
-    [class*="backdrop-blur"] {
-      background: rgba(255, 255, 255, 0.95) !important;
-      -webkit-backdrop-filter: none !important;
-      backdrop-filter: none !important;
-    }
-  }
-}
-
-/* ====================================================================
-   iPAD SPECIFIC OPTIMIZATIONS (All sizes)
-   Screen widths: 768px - 1366px (iPad Mini to iPad Pro 12.9")
-   ==================================================================== */
-@media only screen 
-  and (min-device-width: 768px) 
-  and (max-device-width: 1366px) 
-  and (-webkit-min-device-pixel-ratio: 2) {
-  
-  /* iPad-specific navigation fixes */
-  .nav-sticky-ios {
-    /* Enhanced compositing for larger screens */
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-    contain: layout style paint;
-  }
-  
-  /* Optimize for split-screen mode on iPad */
-  @supports (width: 1px) {
-    .nav-sticky-ios {
-      contain: layout;
-    }
-  }
-}
-
-/* ====================================================================
-   macOS SAFARI OPTIMIZATIONS
-   Detected via: hover capability (desktop/laptop)
-   ==================================================================== */
-@media (hover: hover) and (pointer: fine) {
-  /* macOS Safari-specific fixes */
-  @supports (-webkit-backdrop-filter: blur(10px)) {
-    .nav-sticky-ios {
-      /* Optimize for macOS Retina displays */
-      -webkit-font-smoothing: subpixel-antialiased;
-      
-      /* Prevent flicker on external displays */
-      image-rendering: -webkit-optimize-contrast;
-      image-rendering: crisp-edges;
-    }
-  }
-}
-
-/* ====================================================================
-   GLOBAL APPLE DEVICE OPTIMIZATIONS
-   ==================================================================== */
-
-/* Prevent fixed/absolute element flickering on all Apple devices */
-.fixed, 
-[class*="fixed"],
-.absolute,
-[class*="absolute"] {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* Animation keyframe to disable will-change after initial load */
-@keyframes disableWillChange {
-  to { will-change: auto; }
-}
-
-/* Optimize scroll performance on all Apple devices */
-.nav-sticky-ios.scrolling {
-  will-change: transform;
-}
-
-.nav-sticky-ios:not(.scrolling) {
-  will-change: auto;
-}
-
-/* ====================================================================
-   FRAMER MOTION INTEGRATION (Used throughout the app)
-   Prevent animation flickering on Apple devices
-   ==================================================================== */
-[class*="motion-"] {
-  -webkit-transform: translate3d(0, 0, 0);
-  transform: translate3d(0, 0, 0);
-  -webkit-backface-visibility: hidden;
-  backface-visibility: hidden;
-}
-
-/* Optimize AnimatePresence transitions on iOS */
-@supports (-webkit-touch-callout: none) {
-  [data-projection-id] {
-    -webkit-transform: translateZ(0);
-    transform: translateZ(0);
-    contain: layout style;
-  }
-  
-  /* ====================================================================
-     CRITICAL: Remove ALL backdrop-filter on Apple devices
-     This is the main cause of flickering
-     ==================================================================== */
-  [class*="backdrop-blur"],
-  .backdrop-blur-sm,
-  .backdrop-blur,
-  .backdrop-blur-md,
-  .backdrop-blur-lg,
-  .backdrop-blur-xl,
-  .backdrop-blur-2xl,
-  .backdrop-blur-3xl,
-  [style*="backdrop-filter"],
-  [style*="backdropFilter"],
-  [style*="-webkit-backdrop-filter"] {
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-    /* Increase opacity to compensate for lost blur effect */
-    background-color: rgba(255, 255, 255, 0.98) !important;
-  }
-  
-  /* Keep dark overlays dark */
-  [style*="backdrop-filter"][style*="black"],
-  [class*="backdrop-blur"][class*="bg-black"],
-  [class*="bg-black"][class*="backdrop"] {
-    background-color: rgba(0, 0, 0, 0.75) !important;
-  }
-  
-  /* Navigation specific - use solid white */
-  nav [class*="backdrop-blur"],
-  nav [style*="backdrop-filter"],
-  header [class*="backdrop-blur"],
-  header [style*="backdrop-filter"] {
-    background-color: rgba(255, 255, 255, 0.98) !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-  }
-  
-  /* Modal overlays - solid backgrounds */
-  [class*="modal"] [class*="backdrop-blur"],
-  [class*="modal"] [style*="backdrop-filter"],
-  [role="dialog"] [class*="backdrop-blur"],
-  [role="dialog"] [style*="backdrop-filter"] {
-    background-color: rgba(0, 0, 0, 0.75) !important;
-    -webkit-backdrop-filter: none !important;
-    backdrop-filter: none !important;
-  }
-  
-  /* ====================================================================
-     Remove ALL filter effects on Apple devices (major flickering cause)
-     Disable perspective and 3D transforms
-     Optimize animations and transitions
-     ==================================================================== */
-  /* Consolidated global optimizations for all elements */
-  * {
-    /* Remove all filter effects */
-    filter: none !important;
-    -webkit-filter: none !important;
-    /* Ensure backface is always hidden (prevents flip flickering) */
-    -webkit-backface-visibility: hidden !important;
-    backface-visibility: hidden !important;
-    /* Force GPU acceleration on all elements */
-    -webkit-transform: translate3d(0, 0, 0);
-    transform: translate3d(0, 0, 0);
-  }
-  
-  /* Remove blur from images (if any filter is applied) */
-  img[style*="filter"],
-  img[class*="blur"] {
-    filter: none !important;
-    -webkit-filter: none !important;
-  }
-  
-  /* ====================================================================
-     Optimize box-shadows (heavy performance cost on iOS)
-     ==================================================================== */
-  /* Remove inset shadows entirely (expensive on iOS) */
-  [style*="inset"] {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
-  }
-  
-  /* Simplify heavy multi-layer shadows */
-  [style*="box-shadow"][style*=","][style*=","] {
-    /* If element has 3+ box-shadow layers, simplify to 1 */
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
-  }
-  
-  /* ====================================================================
-     Disable perspective (flickering triggers)
-     ==================================================================== */
-  /* Remove perspective that can cause flickering */
-  [style*="perspective"],
-  [class*="perspective"] {
-    perspective: none !important;
-    -webkit-perspective: none !important;
-  }
-  
-  /* ====================================================================
-     Optimize transitions and animations on Apple devices
-     ==================================================================== */
-  /* Disable complex transitions that can cause flickering */
-  [style*="transition"][style*="filter"],
-  [style*="transition"][style*="backdrop"],
-  [class*="transition"][class*="blur"] {
-    /* Remove problematic transition properties */
-    transition-property: transform, opacity !important;
-    transition-timing-function: ease-out !important;
-  }
-  
-  /* ====================================================================
-     Optimize Framer Motion animations
-     ==================================================================== */
-  /* Prevent motion components from using filters */
-  [data-framer-component],
-  [data-projection-id] {
-    filter: none !important;
-    backdrop-filter: none !important;
-    -webkit-filter: none !important;
-    -webkit-backdrop-filter: none !important;
-  }
 }

@@ -184,7 +184,7 @@ const Rooms = () => {
                     key={image.id}
                     variants={fadeInUp}
                     whileHover={{ y: -4, scale: 1.02 }}
-                    className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 cursor-pointer bg-white"
+                    className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-lg transition-all duration-300 cursor-pointer bg-white"
                     onClick={() => setSelectedImage(image)}
                   >
                     <div className="aspect-[4/3] overflow-hidden">
@@ -220,12 +220,12 @@ const Rooms = () => {
                       key={room.id}
                       variants={fadeInUp}
                       whileHover={{ x: 4, scale: 1.01 }}
-                      className="bg-white rounded-xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden border border-gray-100"
+                      className="bg-white rounded-xl shadow-md hover:shadow transition-all duration-300 overflow-hidden border border-gray-100"
                     >
                       <div
                         className={`flex items-center gap-4 p-5 bg-gradient-to-r ${room.color}`}
                       >
-                        <div className="w-12 h-12 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="w-12 h-12 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
                           <IconComponent className="text-2xl text-white" />
                         </div>
                         <h3 className="text-lg font-bold text-white">
@@ -263,7 +263,7 @@ const Rooms = () => {
                       <div
                         className={`flex items-center gap-3 p-4 bg-gradient-to-r ${room.color}`}
                       >
-                        <div className="w-10 h-10 bg-white/20 backdrop-blur-sm rounded-lg flex items-center justify-center flex-shrink-0">
+                        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center flex-shrink-0">
                           <IconComponent className="text-xl text-white" />
                         </div>
                         <h3 className="text-sm font-bold text-white">
@@ -292,7 +292,7 @@ const Rooms = () => {
                     key={image.id}
                     variants={fadeInUp}
                     whileHover={{ y: -4 }}
-                    className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer bg-white"
+                    className="group relative rounded-xl overflow-hidden shadow-lg hover:shadow transition-all duration-300 cursor-pointer bg-white"
                     onClick={() => setSelectedImage(image)}
                   >
                     <div className="aspect-[4/3] overflow-hidden">
@@ -317,7 +317,7 @@ const Rooms = () => {
         <AnimatePresence>
           {selectedImage && (
             <motion.div
-              className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+              className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/90"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -335,12 +335,12 @@ const Rooms = () => {
               >
                 <button
                   onClick={() => setSelectedImage(null)}
-                  className="absolute top-3 right-3 text-white/90 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 shadow-lg"
+                  className="absolute top-3 right-3 text-white hover:text-gray-200 bg-black/90 rounded-full p-2 shadow-lg"
                   aria-label="Close image"
                 >
                   <FaTimes className="w-5 h-5" />
                 </button>
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/40">
+                <div className="relative rounded-2xl overflow-hidden shadow-lg ring-1 ring-gray-200 bg-black/90">
                   <img
                     src={selectedImage.src}
                     alt={selectedImage.alt}

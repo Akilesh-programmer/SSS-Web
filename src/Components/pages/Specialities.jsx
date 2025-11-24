@@ -116,14 +116,6 @@ const Specialities = () => {
       />
 
       <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-emerald-50 to-teal-50 relative overflow-hidden min-h-screen">
-        {/* Subtle Professional Background Elements - Hidden on Apple devices to prevent flickering */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none is-apple-device:hidden">
-          {/* Gentle floating shapes */}
-          <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-emerald-200/8 to-teal-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float"></div>
-          <div className="absolute top-40 right-10 w-80 h-80 bg-gradient-to-br from-emerald-300/10 to-teal-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float-delayed"></div>
-          <div className="absolute -bottom-8 left-1/3 w-72 h-72 bg-gradient-to-br from-emerald-200/10 to-teal-300/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float-slow"></div>
-        </div>
-
         <div className="container mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           {/* Duplicate header removed (title is shown in hero) */}
 
@@ -137,7 +129,7 @@ const Specialities = () => {
                   key={department.id}
                   role="button"
                   tabIndex={0}
-                  className={`relative bg-white/90 backdrop-blur-sm rounded-2xl p-6 shadow-md border border-gray-100 cursor-pointer transition-all duration-300 ease-out opacity-0 animate-fadeInUp ${
+                  className={`relative bg-white rounded-2xl p-6 shadow-md border border-gray-100 cursor-pointer transition-all duration-300 ease-out opacity-0 animate-fadeInUp ${
                     isHovered
                       ? "shadow-lg -translate-y-1 scale-102 border-emerald-200"
                       : "hover:shadow-md hover:-translate-y-0.5"
@@ -170,14 +162,7 @@ const Specialities = () => {
                         isHovered ? "scale-105" : "scale-100"
                       }`}
                     >
-                      {/* Subtle icon glow */}
-                      <div
-                        className={`absolute inset-0 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-xl blur-lg transition-opacity duration-300 ${
-                          isHovered ? "opacity-20" : "opacity-10"
-                        }`}
-                      ></div>
-
-                      {/* Icon container */}
+                      {/* Icon container - blur glow removed for performance */}
                       <div
                         className={`relative inline-flex p-4 rounded-xl bg-gradient-to-br from-emerald-500 to-teal-600 transition-all duration-300 ${
                           isHovered ? "shadow-lg" : "shadow-md"
@@ -244,7 +229,7 @@ const Specialities = () => {
             className="mt-20 text-center opacity-0 animate-fadeInUp"
             style={{ animationDelay: "1000ms" }}
           >
-            <div className="inline-flex items-center space-x-2 bg-white/60 backdrop-blur-sm rounded-full px-6 py-3 shadow-lg border border-gray-200">
+            <div className="inline-flex items-center space-x-2 bg-white rounded-full px-6 py-3 shadow-lg border border-gray-200">
               <FaHospital className="text-emerald-600 w-5 h-5" />
               <span className="text-gray-700 font-medium">
                 {hospitalDepartments.length} Specialized Departments

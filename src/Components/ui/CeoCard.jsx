@@ -25,7 +25,7 @@ const CeoCard = () => {
         hidden: {},
         visible: { transition: { staggerChildren: 0.15 } },
       }}
-      className="bg-gradient-to-br from-white to-emerald-50 rounded-3xl shadow-2xl overflow-hidden"
+      className="bg-gradient-to-br from-white to-emerald-50 rounded-3xl shadow-lg overflow-hidden"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-stretch py-3 px-4 sm:py-4 sm:px-6 lg:py-5 lg:px-8">
         <motion.div

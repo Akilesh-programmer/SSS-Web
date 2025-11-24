@@ -24,7 +24,7 @@ const TourStat = ({ value, suffix = "", label, icon, delay = 0 }) => {
   return (
     <motion.div
       ref={ref}
-      className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100"
+      className="bg-white rounded-xl p-4 sm:p-6 text-center shadow-lg hover:shadow transition-all duration-300 border border-gray-100"
       whileHover={{ y: -5 }}
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
@@ -198,7 +198,7 @@ const VirtualTour = () => {
             className="relative px-4 sm:px-0"
           >
             {/* Main video container with restored multi-layer border */}
-            <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow-xl sm:shadow-2xl group cursor-pointer hover:shadow-3xl transition-all duration-500">
+            <div className="relative rounded-xl sm:rounded-2xl lg:rounded-3xl overflow-hidden shadow sm:shadow-lg group cursor-pointer hover:shadow-3xl transition-all duration-500">
               {/* Elegant border effect with multiple layers */}
               <div className="absolute inset-0 bg-gradient-to-br from-white via-gray-100 to-white p-1 rounded-xl sm:rounded-2xl lg:rounded-3xl">
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-200/50 via-transparent to-teal-200/50 rounded-xl sm:rounded-2xl lg:rounded-3xl" />
@@ -225,7 +225,7 @@ const VirtualTour = () => {
                     >
                       <div className="relative">
                         <motion.div
-                          className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white/15 rounded-full"
+                          className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white rounded-full"
                           animate={{
                             scale: [1, 1.9, 1],
                             opacity: [0.5, 0, 0.5],
@@ -237,7 +237,7 @@ const VirtualTour = () => {
                           }}
                         />
                         <motion.div
-                          className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white/95 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl sm:shadow-2xl border-2 sm:border-4 border-white/60"
+                          className="relative w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 bg-white rounded-full flex items-center justify-center shadow sm:shadow-lg border-2 sm:border-4 border-gray-100"
                           whileHover={{ scale: 1.15 }}
                         >
                           <FaPlay className="text-emerald-600 text-xl sm:text-2xl lg:text-3xl ml-1 drop-shadow-lg" />
@@ -246,7 +246,7 @@ const VirtualTour = () => {
                     </button>
 
                     {/* Video label and duration */}
-                    <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6 bg-white/95 backdrop-blur-md rounded-lg sm:rounded-xl px-3 sm:px-4 lg:px-6 py-2 sm:py-3 shadow-lg border border-white/20">
+                    <div className="absolute bottom-3 sm:bottom-4 lg:bottom-6 left-3 sm:left-4 lg:left-6 bg-white rounded-lg sm:rounded-xl px-3 sm:px-4 lg:px-6 py-2 sm:py-3 shadow-lg border border-gray-200">
                       <p className="text-emerald-900 font-bold text-sm sm:text-base lg:text-lg">
                         Hospital Full Tour
                       </p>
@@ -255,7 +255,7 @@ const VirtualTour = () => {
                       </p>
                     </div>
 
-                    <div className="absolute top-3 sm:top-4 lg:top-6 right-3 sm:right-4 lg:right-6 bg-black/80 backdrop-blur-sm rounded-md sm:rounded-lg px-2 sm:px-3 py-1">
+                    <div className="absolute top-3 sm:top-4 lg:top-6 right-3 sm:right-4 lg:right-6 bg-black/90 rounded-md sm:rounded-lg px-2 sm:px-3 py-1">
                       <p className="text-white text-xs sm:text-sm font-medium">
                         🕒 3:45
                       </p>
@@ -363,10 +363,10 @@ const VirtualTour = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.5 + index * 0.2, duration: 0.6 }}
                     whileHover={{ x: 10 }}
-                    className="flex items-start gap-3 sm:gap-4 lg:gap-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow-xl transition-all duration-300 border border-gray-100 group"
+                    className="flex items-start gap-3 sm:gap-4 lg:gap-6 bg-white rounded-xl sm:rounded-2xl p-4 sm:p-6 shadow-lg hover:shadow transition-all duration-300 border border-gray-100 group"
                   >
                     <div
-                      className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow-xl transition-shadow`}
+                      className={`w-12 h-12 sm:w-14 sm:h-14 lg:w-16 lg:h-16 bg-gradient-to-br from-emerald-500 to-emerald-600 rounded-xl sm:rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg group-hover:shadow transition-shadow`}
                     >
                       <span className="text-white text-lg sm:text-xl lg:text-2xl">
                         {feature.emoji}
@@ -397,7 +397,7 @@ const VirtualTour = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-md z-[1000] flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/90 z-[1000] flex items-center justify-center p-4"
               onClick={() => setIsVideoOpen(false)}
             >
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
@@ -408,14 +408,14 @@ const VirtualTour = () => {
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
                 transition={{ duration: 0.3, ease: "easeOut" }}
-                className="relative w-full max-w-4xl lg:max-w-5xl aspect-video bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/30"
+                className="relative w-full max-w-4xl lg:max-w-5xl aspect-video bg-gray-900 rounded-2xl overflow-hidden shadow-lg border border-gray-200"
                 onClick={(e) => e.stopPropagation()}
               >
                 <motion.button
                   onClick={() => setIsVideoOpen(false)}
                   whileHover={{ scale: 1.1 }}
                   whileTap={{ scale: 0.9 }}
-                  className="absolute top-3 right-3 z-20 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-red-500/80 transition-all duration-300 border border-white/30 shadow-lg"
+                  className="absolute top-3 right-3 z-20 w-10 h-10 bg-white rounded-full flex items-center justify-center text-gray-800 hover:bg-red-500 hover:text-white transition-all duration-300 border border-gray-200 shadow-lg"
                   aria-label="Close video"
                 >
                   <FaTimes className="text-lg" />
@@ -424,7 +424,7 @@ const VirtualTour = () => {
                   initial={{ opacity: 0, y: -12 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 0.35, duration: 0.45 }}
-                  className="absolute top-3 left-3 z-20 bg-white/20 backdrop-blur-md rounded-lg px-4 py-2 border border-white/30 shadow-lg"
+                  className="absolute top-3 left-3 z-20 bg-gray-900 rounded-lg px-4 py-2 border border-gray-200 shadow-lg"
                 >
                   <h3 className="text-white font-semibold text-sm">
                     🎬 SSS Hospital Full Tour

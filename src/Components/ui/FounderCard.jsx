@@ -25,7 +25,7 @@ const FounderCard = () => {
         hidden: {},
         visible: { transition: { staggerChildren: 0.15 } },
       }}
-      className="bg-gradient-to-br from-emerald-50 to-white rounded-3xl shadow-2xl overflow-hidden mb-12"
+      className="bg-gradient-to-br from-emerald-50 to-white rounded-3xl shadow-lg overflow-hidden mb-12"
     >
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 lg:gap-12 items-start">
         <motion.div

@@ -204,7 +204,7 @@ export default function Footer() {
 
             <a
               href="tel:+918925931193"
-              className="block bg-gradient-to-r from-red-600 to-red-700 rounded-xl p-4 hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-lg hover:shadow-xl transform hover:-translate-y-1"
+              className="block bg-gradient-to-r from-red-600 to-red-700 rounded-xl p-4 hover:from-red-700 hover:to-red-800 transition-all duration-200 shadow-lg hover:shadow transform hover:-translate-y-1"
             >
               <div className="flex items-center gap-3 mb-2">
                 <FaAmbulance className="text-white text-lg" />

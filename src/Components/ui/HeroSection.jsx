@@ -42,11 +42,11 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
       </motion.div>
 
       {/* Optimized Overlay - Balanced for text readability */}
-      {/* Base subtle darkening */}
-      <div className="absolute inset-0 bg-black/25" />
+      {/* Base subtle darkening - converted to solid for performance */}
+      <div className="absolute inset-0 bg-black/90" />
 
       {/* Gradient from bottom for text area */}
-      <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent" />
 
       {/* Subtle vignette for depth */}
       <div
@@ -64,7 +64,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-white/20 backdrop-blur-md rounded-full border border-white/40 mb-6 md:mb-8 shadow-xl"
+            className="inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-white rounded-full border border-gray-200 mb-6 md:mb-8 shadow"
             style={{
               boxShadow:
                 "0 8px 32px rgba(0,0,0,0.3), 0 2px 8px rgba(0,0,0,0.2)",
@@ -94,7 +94,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
           animate={{ y: 0, opacity: 1 }}
           transition={{ duration: 0.8, delay: 0.5 }}
         >
-          <span className="bg-gradient-to-r from-white via-white to-gray-100 bg-clip-text text-transparent drop-shadow-2xl">
+          <span className="bg-gradient-to-r from-white via-white to-gray-100 bg-clip-text text-transparent drop-shadow-lg">
             {title}
           </span>
         </motion.h1>
@@ -139,7 +139,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
           <span className="text-label-sm text-white/90 group-hover:text-white transition-colors">
             Scroll to Explore
           </span>
-          <div className="w-6 h-10 border-2 border-white/50 rounded-full flex items-start justify-center p-2 group-hover:border-white transition-colors">
+          <div className="w-6 h-10 border-2 border-gray-100 rounded-full flex items-start justify-center p-2 group-hover:border-white transition-colors">
             <motion.div
               className="w-1.5 h-1.5 bg-white rounded-full"
               animate={{

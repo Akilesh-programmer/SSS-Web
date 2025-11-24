@@ -109,7 +109,7 @@ const AppointmentBooking = () => {
             whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.1 }}
             viewport={{ once: true, amount: 0.2 }}
-            className="bg-white rounded-3xl shadow-2xl overflow-hidden mb-16 relative"
+            className="bg-white rounded-3xl shadow-lg overflow-hidden mb-16 relative"
           >
             {/* Professional gradient header */}
             <div className="bg-gradient-to-br from-emerald-50 via-teal-50 to-emerald-100 text-gray-800 p-12 relative border-b border-emerald-200/50">
@@ -157,7 +157,7 @@ const AppointmentBooking = () => {
                   onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-cta shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
+                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-cta shadow-lg hover:shadow hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
                 >
                   <FaCalendarAlt className="text-sm sm:text-base" />
                   <span>Book Appointment Now</span>

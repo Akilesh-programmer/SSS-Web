@@ -208,7 +208,7 @@ const Packages = () => {
                   key={pkg.name}
                   variants={cardVariant}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 group relative overflow-hidden"
+                  className="bg-white rounded-3xl shadow hover:shadow-lg transition-all duration-500 border border-gray-100 group relative overflow-hidden"
                 >
                   {/* Top accent line */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />

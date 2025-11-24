@@ -3,7 +3,6 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
 import CallModal from "./CallModal";
-import { isAppleDevice as checkIsAppleDevice } from "../../utils/deviceDetection";
 const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
 const logoFullLocal = "/assets/logos/full-logo.avif";
@@ -18,169 +17,48 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  // --- Style helpers to avoid repeating large inline objects ---
-  // Use centralized Apple device detection to prevent flickering
-  const isAppleDevice = checkIsAppleDevice();
-
+  // Simplified navigation style - NO blur, fully solid backgrounds for all devices
   const navStyle = (scrolled) => ({
-    // Use solid background on Apple devices to prevent flickering, blur for others
-    background: isAppleDevice
-      ? scrolled
-        ? "rgba(255, 255, 255, 0.98)"
-        : "rgba(255, 255, 255, 0.96)"
-      : scrolled
-      ? "linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 40%, rgba(255, 255, 255, 0.90) 100%)"
-      : "linear-gradient(to right, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 40%, rgba(255, 255, 255, 0.85) 100%)",
-    // COMPLETELY REMOVE backdrop-filter on Apple devices to prevent flickering
-    backdropFilter: isAppleDevice ? "none" : "blur(40px) saturate(220%)",
-    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(40px) saturate(220%)",
+    background: "rgb(255, 255, 255)",
     borderBottom: scrolled
       ? "1px solid rgba(226, 232, 240, 0.8)"
       : "1px solid rgba(226, 232, 240, 0.5)",
-    // Simplified box-shadow for Apple devices to reduce GPU load
-    boxShadow: isAppleDevice
-      ? scrolled
-        ? "0 2px 8px rgba(0, 0, 0, 0.1)"
-        : "0 1px 3px rgba(0, 0, 0, 0.08)"
-      : scrolled
-      ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
-      : "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-    // Apple-specific optimizations - force GPU acceleration
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    willChange: isAppleDevice ? "transform" : undefined,
-    // Prevent subpixel rendering issues
-    WebkitFontSmoothing: isAppleDevice ? "antialiased" : undefined,
+    boxShadow: scrolled
+      ? "0 2px 8px rgba(0, 0, 0, 0.10)"
+      : "0 1px 3px rgba(0, 0, 0, 0.08)",
+    transform: "translate3d(0, 0, 0)",
+    willChange: "transform",
   });
 
-  const emergencyStyle = {
-    background: isAppleDevice
-      ? "rgba(220, 38, 38, 0.95)"
-      : "linear-gradient(135deg, rgba(220,38,38,0.92) 0%, rgba(239,68,68,0.95) 50%, rgba(220,38,38,0.92) 100%)",
-    backdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(160%)",
-    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(160%)",
-    border: "1px solid rgba(255,255,255,0.4)",
-    // Simplified box-shadow for Apple devices to reduce GPU load
-    boxShadow: isAppleDevice
-      ? "0 4px 12px rgba(220,38,38,0.4)"
-      : "0 8px 32px rgba(220,38,38,0.35), 0 4px 16px rgba(220,38,38,0.25), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.1)",
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    willChange: isAppleDevice ? "transform" : undefined,
-  };
-
-  const toggleStyle = {
-    background: isAppleDevice
-      ? "rgba(107, 114, 128, 0.2)"
-      : "linear-gradient(135deg, rgba(107,114,128,0.15) 0%, rgba(156,163,175,0.12) 50%, rgba(107,114,128,0.1) 100%)",
-    backdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(140%)",
-    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(140%)",
-    border: "1px solid rgba(255,255,255,0.5)",
-    // Simplified box-shadow for Apple devices to reduce GPU load
-    boxShadow: isAppleDevice
-      ? "0 2px 8px rgba(107,114,128,0.15)"
-      : "0 4px 16px rgba(107,114,128,0.12), 0 2px 8px rgba(107,114,128,0.08), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.05)",
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    willChange: isAppleDevice ? "transform" : undefined,
-  };
-
   const overlayStyle = {
-    background: isAppleDevice
-      ? "rgba(0, 0, 0, 0.5)"
-      : "linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(59,130,246,0.15) 50%, rgba(0,0,0,0.25) 100%)",
-    // COMPLETELY REMOVE backdrop-filter on Apple devices
-    backdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(160%)",
-    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(160%)",
-    // Apple-specific optimization - force GPU acceleration
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    willChange: isAppleDevice ? "transform" : undefined,
+    background: "rgba(0, 0, 0, 0.5)",
+    transform: "translate3d(0, 0, 0)",
   };
 
   const mobileMenuStyle = {
-    background: isAppleDevice
-      ? "rgba(255, 255, 255, 0.98)"
-      : "rgba(255, 255, 255, 0.95)",
-    // COMPLETELY REMOVE backdrop-filter on Apple devices
-    backdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(180%)",
-    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(180%)",
+    background: "rgb(255, 255, 255)",
     borderTop: "1px solid rgba(226, 232, 240, 0.8)",
-    // Simplified box-shadow for Apple devices to reduce GPU load
-    boxShadow: isAppleDevice
-      ? "0 -2px 8px rgba(0, 0, 0, 0.1)"
-      : "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
-    // Apple-specific optimization - force GPU acceleration
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    willChange: isAppleDevice ? "transform" : undefined,
-    // Isolate layer to prevent repaint issues
-    isolation: isAppleDevice ? "isolate" : undefined,
+    boxShadow: "0 -2px 8px rgba(0, 0, 0, 0.10)",
+    transform: "translate3d(0, 0, 0)",
   };
 
   const navLinkStyle = (isActive) => ({
-    background: isActive
-      ? isAppleDevice
-        ? "rgba(59, 130, 246, 0.2)"
-        : "linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(147,197,253,0.16) 50%, rgba(59,130,246,0.14) 100%)"
-      : "transparent",
-    // REMOVE backdrop-filter on Apple devices
-    backdropFilter:
-      isActive && !isAppleDevice
-        ? "blur(30px) saturate(180%) brightness(1.05)"
-        : "none",
-    WebkitBackdropFilter:
-      isActive && !isAppleDevice
-        ? "blur(30px) saturate(180%) brightness(1.05)"
-        : "none",
+    background: isActive ? "rgba(59, 130, 246, 0.15)" : "transparent",
     border: isActive
       ? "1.5px solid rgba(59,130,246,0.35)"
       : "1.5px solid transparent",
-    // Simplified box-shadow for Apple devices to reduce GPU load
-    boxShadow: isActive
-      ? isAppleDevice
-        ? "0 2px 8px rgba(59,130,246,0.2)"
-        : "0 6px 20px rgba(59,130,246,0.18), 0 3px 10px rgba(59,130,246,0.12), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(59,130,246,0.15), inset 0 0 40px rgba(255,255,255,0.1)"
-      : "none",
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    boxShadow: isActive ? "0 2px 8px rgba(59,130,246,0.2)" : "none",
+    transform: "translate3d(0, 0, 0)",
   });
 
   const mobileNavLinkStyle = (isActive) => ({
-    background: isActive
-      ? isAppleDevice
-        ? "rgba(59, 130, 246, 0.25)"
-        : "linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(147,197,253,0.2) 50%, rgba(59,130,246,0.18) 100%)"
-      : "transparent",
-    // REMOVE backdrop-filter on Apple devices
-    backdropFilter:
-      isActive && !isAppleDevice
-        ? "blur(30px) saturate(180%) brightness(1.05)"
-        : "none",
-    WebkitBackdropFilter:
-      isActive && !isAppleDevice
-        ? "blur(30px) saturate(180%) brightness(1.05)"
-        : "none",
+    background: isActive ? "rgba(59, 130, 246, 0.20)" : "transparent",
     border: isActive
       ? "1.5px solid rgba(59,130,246,0.4)"
       : "1.5px solid transparent",
-    // Simplified box-shadow for Apple devices to reduce GPU load
-    boxShadow: isActive
-      ? isAppleDevice
-        ? "0 2px 8px rgba(59,130,246,0.25)"
-        : "0 6px 20px rgba(59,130,246,0.2), 0 3px 10px rgba(59,130,246,0.14), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(59,130,246,0.18), inset 0 0 40px rgba(255,255,255,0.12)"
-      : "none",
-    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
-    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    boxShadow: isActive ? "0 2px 8px rgba(59,130,246,0.25)" : "none",
+    transform: "translate3d(0, 0, 0)",
   });
-
-  // Reusable overlay backgrounds and contact styles
-  const overlayBg =
-    "linear-gradient(135deg, rgba(255,255,255,0.25) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)";
-  const overlayBgSoft =
-    "linear-gradient(135deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, transparent 100%)";
-  const overlayBgStronger =
-    "linear-gradient(135deg, rgba(255,255,255,0.4) 0%, rgba(255,255,255,0.15) 50%, transparent 100%)";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -248,7 +126,7 @@ const Navigation = () => {
         initial={{ y: -100 }}
         animate={{ y: 0, transition: { duration: 0.25, ease: "easeOut" } }}
         className={`w-full transition-all duration-200 relative z-50 ${
-          isScrolled ? "shadow-2xl" : "shadow-lg"
+          isScrolled ? "shadow-lg" : "shadow-lg"
         }`}
         style={navStyle(isScrolled)}
       >
@@ -320,18 +198,9 @@ const Navigation = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className={`absolute top-full left-0 mt-2 min-w-[220px] max-w-[280px] ${
-                              isAppleDevice
-                                ? "bg-white"
-                                : "bg-white/95 backdrop-blur-md"
-                            } rounded-xl shadow-xl border border-gray-100 overflow-hidden z-[60]`}
+                            className="absolute top-full left-0 mt-2 min-w-[220px] max-w-[280px] bg-white rounded-xl shadow border border-gray-100 overflow-hidden z-[60]"
                             style={{
-                              transform: isAppleDevice
-                                ? "translate3d(0, 0, 0)"
-                                : undefined,
-                              WebkitTransform: isAppleDevice
-                                ? "translate3d(0, 0, 0)"
-                                : undefined,
+                              transform: "translate3d(0, 0, 0)",
                             }}
                           >
                             {item.dropdown.map((subItem) => {
@@ -384,7 +253,7 @@ const Navigation = () => {
                   onClick={() => setIsCallModalOpen(true)}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-3 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
+                  className="flex items-center gap-2 px-3 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow whitespace-nowrap"
                   style={{
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
@@ -400,7 +269,7 @@ const Navigation = () => {
                   onClick={handleEmergencyClick}
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
-                  className="flex items-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
+                  className="flex items-center gap-2 px-3 py-1.5 bg-red-600 hover:bg-red-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow whitespace-nowrap"
                   style={{
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
@@ -423,7 +292,7 @@ const Navigation = () => {
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              className="xl:hidden p-2.5 rounded-lg bg-white/80 hover:bg-white text-gray-700 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200"
+              className="xl:hidden p-2.5 rounded-lg bg-white hover:bg-white text-gray-700 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200"
               aria-label="Toggle navigation menu"
             >
               {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}

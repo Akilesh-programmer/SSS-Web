@@ -341,7 +341,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
               whileTap={{ scale: 0.95 }}
               aria-label="Previous specialities"
               onClick={() => scroll("left")}
-              className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/60 text-emerald-600 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-full p-3 shadow-lg border border-gray-100 text-emerald-600 hover:shadow transition-all duration-300"
             >
               <FaChevronLeft className="text-lg" />
             </motion.button>
@@ -352,7 +352,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
               whileTap={{ scale: 0.95 }}
               aria-label="Next specialities"
               onClick={() => scroll("right")}
-              className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/60 text-emerald-600 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-full p-3 shadow-lg border border-gray-100 text-emerald-600 hover:shadow transition-all duration-300"
             >
               <FaChevronRight className="text-lg" />
             </motion.button>
@@ -386,7 +386,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                 >
                   <motion.div
                     onClick={() => navigate(`/specialities/${departmentSlug}`)}
-                    className="group relative text-center p-4 lg:p-6 rounded-2xl bg-white/95 shadow-lg hover:shadow-2xl border border-transparent hover:border-emerald-100 transition-all duration-300 cursor-pointer overflow-hidden h-auto sm:h-44 lg:h-48 flex flex-col items-center justify-center"
+                    className="group relative text-center p-4 lg:p-6 rounded-2xl bg-white shadow-lg hover:shadow-lg border border-transparent hover:border-emerald-100 transition-all duration-300 cursor-pointer overflow-hidden h-auto sm:h-44 lg:h-48 flex flex-col items-center justify-center"
                     variants={{
                       hidden: { opacity: 0, y: 10 },
                       visible: { opacity: 1, y: 0 },
@@ -417,7 +417,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                         ease: "easeInOut",
                         repeat: 0,
                       }}
-                      className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-gradient-to-br from-emerald-200 to-teal-200 opacity-10 pointer-events-none blur-3xl"
+                      className="absolute -right-6 -top-6 w-28 h-28 rounded-full bg-gradient-to-br from-emerald-200 to-teal-200 opacity-10 pointer-events-none"
                     />
 
                     <div className="relative z-10 flex flex-col items-center gap-3">
@@ -508,7 +508,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
             whileHover={{ scale: 1.03 }}
             whileTap={{ scale: 0.98 }}
             onClick={handleSeeAll}
-            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-semibold shadow-lg hover:shadow-xl transition-all duration-300"
+            className="inline-flex items-center gap-3 px-6 py-3 rounded-full bg-gradient-to-r from-emerald-600 to-teal-500 text-white font-semibold shadow-lg hover:shadow transition-all duration-300"
           >
             See all specialities
             <FaArrowRight className="ml-1" />

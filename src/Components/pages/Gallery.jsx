@@ -1,7 +1,6 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "../ui/HeroSection";
-import { isAppleDevice } from "../../utils/deviceDetection";
 import {
   FaHospital,
   FaPlayCircle,
@@ -208,13 +207,13 @@ const Gallery = () => {
           </div>
 
           <div className="flex flex-wrap items-center gap-4 text-sm">
-            <div className="flex items-center gap-2 text-gray-600 bg-white/70 backdrop-blur-sm px-4 py-2 rounded-xl shadow-sm border border-gray-200">
+            <div className="flex items-center gap-2 text-gray-600 bg-white px-4 py-2 rounded-xl shadow-sm border border-gray-200">
               <span className="w-3 h-3 rounded-full bg-emerald-500 animate-pulse shadow"></span>
               <span>{images.length} Photos</span>
             </div>
             <button
               onClick={openVideo}
-              className="group flex items-center gap-3 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 shadow-lg hover:shadow-xl transition-all border border-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
+              className="group flex items-center gap-3 px-5 py-2.5 rounded-xl font-semibold text-white bg-gradient-to-r from-emerald-600 to-green-600 shadow-lg hover:shadow transition-all border border-emerald-500/40 focus:outline-none focus:ring-2 focus:ring-emerald-400/40"
             >
               <FaPlayCircle className="text-white text-lg group-hover:scale-110 transition-transform" />
               <span>Watch Tour Video</span>
@@ -244,7 +243,7 @@ const Gallery = () => {
                 />
               </div>
               {/* Expand Icon Indicator */}
-              <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+              <div className="absolute top-3 right-3 bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow">
                 <FaExpand className="text-emerald-600 text-sm" />
               </div>
               {/* Bottom Gradient Overlay */}
@@ -272,7 +271,7 @@ const Gallery = () => {
           <div className="max-w-4xl mx-auto">
             <button
               type="button"
-              className="relative w-full text-left rounded-2xl overflow-hidden shadow-xl hover:shadow-2xl group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60 transition-all duration-300"
+              className="relative w-full text-left rounded-2xl overflow-hidden shadow hover:shadow-lg group cursor-pointer focus:outline-none focus-visible:ring-4 focus-visible:ring-emerald-400/60 transition-all duration-300"
               onClick={openVideo}
               aria-label="Open hospital tour video"
             >
@@ -289,12 +288,12 @@ const Gallery = () => {
                 <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
                   <div className="relative">
                     <motion.div
-                      className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/20 rounded-full"
+                      className="absolute inset-0 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white rounded-full"
                       animate={{ scale: [1, 1.8, 1], opacity: [0.5, 0, 0.5] }}
                       transition={{ duration: 3, repeat: Infinity }}
                     />
                     <motion.div
-                      className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white/90 backdrop-blur-md rounded-full flex items-center justify-center shadow-xl border-2 sm:border-3 md:border-4 border-white/60"
+                      className="relative w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24 bg-white rounded-full flex items-center justify-center shadow-lg border-2 sm:border-3 md:border-4 border-gray-100"
                       whileHover={{ scale: 1.08 }}
                     >
                       <FaPlayCircle className="text-emerald-600 text-2xl sm:text-3xl md:text-4xl" />
@@ -319,18 +318,7 @@ const Gallery = () => {
       <AnimatePresence>
         {activeMedia && (
           <motion.div
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4"
-            style={{
-              background: isAppleDevice()
-                ? "rgba(0, 0, 0, 0.95)"
-                : "rgba(255, 255, 255, 0.05)",
-              backdropFilter: isAppleDevice()
-                ? "none"
-                : "blur(40px) saturate(180%)",
-              WebkitBackdropFilter: isAppleDevice()
-                ? "none"
-                : "blur(40px) saturate(180%)",
-            }}
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4 bg-black/95"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
@@ -348,7 +336,7 @@ const Gallery = () => {
               <div className="flex items-center justify-between mb-4">
                 {activeMedia.type === "image" && (
                   <motion.div
-                    className="text-gray-900 text-sm font-semibold bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg"
+                    className="text-gray-900 text-sm font-semibold bg-white border border-gray-200 rounded-full px-4 py-2 shadow"
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ delay: 0.1 }}
@@ -361,7 +349,7 @@ const Gallery = () => {
                 {/* Close Button */}
                 <motion.button
                   onClick={closeMedia}
-                  className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
+                  className="bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow"
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   initial={{ opacity: 0, rotate: -90 }}
@@ -393,7 +381,7 @@ const Gallery = () => {
                       e.stopPropagation();
                       navigateImage("prev");
                     }}
-                    className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                    className="absolute left-2 md:left-4 z-20 bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow"
                     whileHover={{ scale: 1.1, x: -5 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, x: -20 }}
@@ -416,7 +404,7 @@ const Gallery = () => {
                       <img
                         src={activeMedia.src}
                         alt={activeMedia.alt || "Infrastructure Photo"}
-                        className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                        className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-lg"
                       />
                     </motion.div>
                   </AnimatePresence>
@@ -427,7 +415,7 @@ const Gallery = () => {
                       e.stopPropagation();
                       navigateImage("next");
                     }}
-                    className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                    className="absolute right-2 md:right-4 z-20 bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow"
                     whileHover={{ scale: 1.1, x: 5 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, x: 20 }}
@@ -439,7 +427,7 @@ const Gallery = () => {
                 </div>
               ) : (
                 /* Video Content */
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50 w-full">
+                <div className="relative rounded-2xl overflow-hidden shadow-lg ring-1 ring-white/10 bg-black/90 w-full">
                   <div className="aspect-video">
                     <video
                       src={activeMedia.src}

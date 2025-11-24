@@ -227,7 +227,7 @@ const Contact = () => {
                   transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.95 }}
-                className={`${action.color} p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg cursor-pointer transition-all duration-300 transform hover:shadow-xl min-h-[140px] sm:min-h-[160px] lg:min-h-[180px] flex flex-col justify-center`}
+                className={`${action.color} p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg cursor-pointer transition-all duration-300 transform hover:shadow min-h-[140px] sm:min-h-[160px] lg:min-h-[180px] flex flex-col justify-center`}
                 onClick={() => handleQuickAction(action)}
               >
                 <motion.div
@@ -289,7 +289,7 @@ const Contact = () => {
                 }}
                 className={`bg-white p-4 sm:p-6 lg:p-8 rounded-xl sm:rounded-2xl shadow-lg border-l-4 ${
                   info.urgent ? "border-red-400" : "border-emerald-400"
-                } hover:shadow-xl transition-all duration-300 cursor-pointer transform min-h-[200px] sm:min-h-[220px] flex flex-col justify-center`}
+                } hover:shadow transition-all duration-300 cursor-pointer transform min-h-[200px] sm:min-h-[220px] flex flex-col justify-center`}
                 onClick={() => handleInfoClick(info)}
               >
                 <motion.div
@@ -370,7 +370,7 @@ const Contact = () => {
                   transition: { duration: 0.2 },
                 }}
                 whileTap={{ scale: 0.9 }}
-                className={`${social.color} p-3 sm:p-4 lg:p-5 rounded-full shadow-lg transition-all duration-300 transform hover:shadow-xl min-w-[48px] min-h-[48px] sm:min-w-[56px] sm:min-h-[56px] lg:min-w-[64px] lg:min-h-[64px] flex items-center justify-center`}
+                className={`${social.color} p-3 sm:p-4 lg:p-5 rounded-full shadow-lg transition-all duration-300 transform hover:shadow min-w-[48px] min-h-[48px] sm:min-w-[56px] sm:min-h-[56px] lg:min-w-[64px] lg:min-h-[64px] flex items-center justify-center`}
               >
                 <motion.div
                   initial={{ rotate: -180 }}

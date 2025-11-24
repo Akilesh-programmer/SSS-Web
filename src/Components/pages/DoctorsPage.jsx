@@ -289,7 +289,7 @@ const DoctorsPage = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="mb-6 lg:mb-8 bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-xl border border-white/20 p-4 sm:p-6 lg:p-8"
+            className="mb-6 lg:mb-8 bg-white rounded-2xl lg:rounded-3xl shadow border border-gray-200 p-4 sm:p-6 lg:p-8"
           >
             {/* Advanced Search Bar with Suggestions */}
             <div className="relative mb-6 lg:mb-8">
@@ -308,7 +308,7 @@ const DoctorsPage = () => {
                   onBlur={() =>
                     setTimeout(() => setShowSuggestions(false), 200)
                   }
-                  className="w-full pl-12 lg:pl-16 pr-12 lg:pr-6 py-4 lg:py-5 border-2 border-emerald-200 rounded-xl lg:rounded-2xl focus:ring-4 focus:ring-emerald-200 focus:border-emerald-500 transition-all duration-300 outline-none text-gray-700 text-sm lg:text-lg bg-white/90 placeholder-gray-500"
+                  className="w-full pl-12 lg:pl-16 pr-12 lg:pr-6 py-4 lg:py-5 border-2 border-emerald-200 rounded-xl lg:rounded-2xl focus:ring-4 focus:ring-emerald-200 focus:border-emerald-500 transition-all duration-300 outline-none text-gray-700 text-sm lg:text-lg bg-white placeholder-gray-500"
                 />
                 {searchTerm && (
                   <button
@@ -330,7 +330,7 @@ const DoctorsPage = () => {
                     initial={{ opacity: 0, y: -10 }}
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
-                    className="absolute top-full left-0 right-0 mt-2 bg-white border border-emerald-200 rounded-xl shadow-xl z-50 max-h-60 overflow-y-auto"
+                    className="absolute top-full left-0 right-0 mt-2 bg-white border border-emerald-200 rounded-xl shadow z-50 max-h-60 overflow-y-auto"
                   >
                     {searchSuggestions.map((suggestion) => (
                       <button
@@ -390,7 +390,7 @@ const DoctorsPage = () => {
                   <FaFilter className="text-sm" />
                   <span className="hidden sm:inline">Filters</span>
                   {selectedDepartments.length > 0 && (
-                    <span className="bg-white/20 text-xs px-2 py-0.5 rounded-full">
+                    <span className="bg-white text-emerald-600 text-xs px-2 py-0.5 rounded-full">
                       {selectedDepartments.length}
                     </span>
                   )}
@@ -524,7 +524,7 @@ const DoctorsPage = () => {
                       animate="visible"
                       custom={staggerIndex}
                       whileHover={{ scale: 1.02, y: -5 }}
-                      className="bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer p-4 sm:p-6"
+                      className="bg-white rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-lg transition-all duration-300 overflow-hidden group border border-gray-200 cursor-pointer p-4 sm:p-6"
                       onClick={() => handleDoctorClick(doctor)}
                     >
                       {/* Grid View */}
@@ -627,7 +627,7 @@ const DoctorsPage = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/90 z-50 flex items-center justify-center p-4"
             onClick={closeModal}
           >
             <motion.div
@@ -635,14 +635,14 @@ const DoctorsPage = () => {
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
               transition={{ type: "spring", damping: 25, stiffness: 300 }}
-              className="bg-white rounded-3xl shadow-2xl max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              className="bg-white rounded-3xl shadow-lg max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Modal Header */}
               <div className="relative bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 p-6 sm:p-8 rounded-t-3xl">
                 <button
                   onClick={closeModal}
-                  className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
+                  className="absolute top-4 right-4 w-10 h-10 bg-white hover:bg-gray-100 rounded-full flex items-center justify-center transition-colors"
                 >
                   <FaTimes className="text-lg" />
                 </button>
@@ -653,7 +653,7 @@ const DoctorsPage = () => {
                       <img
                         src={selectedDoctor.image}
                         alt={selectedDoctor.name}
-                        className="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-lg"
+                        className="w-full h-full rounded-full object-cover border-4 border-gray-200 shadow-lg"
                       />
                     </div>
                   ) : (
@@ -665,9 +665,7 @@ const DoctorsPage = () => {
 
                   <div className="text-center sm:text-left flex-1">
                     <div className="flex items-center gap-3 justify-center sm:justify-start mb-2">
-                      <h2 className="text-heading-lg">
-                        {selectedDoctor.name}
-                      </h2>
+                      <h2 className="text-heading-lg">{selectedDoctor.name}</h2>
                       {selectedDoctor.isFounder && (
                         <span className="bg-amber-100 text-amber-800 text-xs px-3 py-1 rounded-full font-bold ring-1 ring-amber-200">
                           Founder

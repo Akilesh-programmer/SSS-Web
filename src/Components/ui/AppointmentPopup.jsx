@@ -1,7 +1,6 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
-import { isAppleDevice } from "../../utils/deviceDetection";
 import {
   FaCalendarAlt,
   FaUserMd,
@@ -271,19 +270,12 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={handleClose}
         >
-          {/* Backdrop - NO blur on Apple devices */}
+          {/* Backdrop - solid for better performance */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="absolute inset-0"
-            style={{
-              background: isAppleDevice()
-                ? "rgba(0, 0, 0, 0.85)"
-                : "rgba(0, 0, 0, 0.5)",
-              backdropFilter: isAppleDevice() ? "none" : "blur(10px)",
-              WebkitBackdropFilter: isAppleDevice() ? "none" : "blur(10px)",
-            }}
+            className="absolute inset-0 bg-black/85"
           />
 
           {/* Floating decorative elements */}
@@ -339,7 +331,7 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
             transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+            className="relative bg-white rounded-3xl shadow-lg max-w-4xl w-full max-h-[90vh] overflow-hidden"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Close Button */}

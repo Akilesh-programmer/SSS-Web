@@ -217,7 +217,7 @@ export default function Home() {
               className="relative order-1 lg:order-2"
             >
               {/* Main hospital image */}
-              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500 mx-0 sm:mx-2 lg:mx-0">
+              <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-lg hover:shadow-3xl transition-shadow duration-500 mx-0 sm:mx-2 lg:mx-0">
                 <img
                   src={hospitalImg}
                   alt="SSS Hospital"
@@ -230,7 +230,7 @@ export default function Home() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   transition={{ delay: 1.2, duration: 0.6 }}
-                  className="absolute bottom-2 left-1 lg:bottom-3 lg:left-2 bg-white/95 backdrop-blur-sm rounded-lg p-2 lg:p-3 shadow"
+                  className="absolute bottom-2 left-1 lg:bottom-3 lg:left-2 bg-white rounded-lg p-2 lg:p-3 shadow"
                 >
                   <p className="text-emerald-600 font-semibold text-[10px] lg:text-xs">
                     Best Hospital in Erode

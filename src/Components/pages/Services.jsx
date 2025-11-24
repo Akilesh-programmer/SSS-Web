@@ -1,7 +1,6 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import ModalPortal from "../ui/ModalPortal";
 import { motion, AnimatePresence } from "framer-motion";
-import { isAppleDevice } from "../../utils/deviceDetection";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -303,7 +302,7 @@ const Services = () => {
                   {leftImages.map((image, index) => (
                     <motion.div
                       key={image.id}
-                      className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer group"
+                      className="relative overflow-hidden rounded-2xl shadow cursor-pointer group"
                       onClick={() => openModal(image, "left")}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -320,7 +319,7 @@ const Services = () => {
                         />
                       </div>
                       {/* View Indicator */}
-                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                      <div className="absolute top-3 right-3 bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow">
                         <FaImages className="text-emerald-600 text-sm" />
                       </div>
                     </motion.div>
@@ -341,7 +340,7 @@ const Services = () => {
                   <div className="text-center mb-12">
                     {/* Animated Badge */}
                     <motion.div
-                      className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 via-green-100 to-emerald-100 rounded-full px-6 py-3 mb-6 border border-emerald-200 shadow-lg"
+                      className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-100 via-green-100 to-emerald-100 rounded-full px-6 py-3 mb-6 border border-emerald-200 shadow"
                       initial={{ scale: 0.9, opacity: 0 }}
                       whileInView={{ scale: 1, opacity: 1 }}
                       viewport={{ once: true }}
@@ -414,8 +413,7 @@ const Services = () => {
                             transition={{ duration: 0.3 }}
                           >
                             <IconComponent className="text-white text-base relative z-10" />
-                            {/* Icon Glow */}
-                            <div className="absolute inset-0 bg-white/20 rounded-xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                            {/* Icon Glow - removed blur for performance */}
                           </motion.div>
 
                           <h3 className="text-label-md text-gray-800 group-hover:text-emerald-600 transition-colors px-2 relative z-10">
@@ -446,7 +444,7 @@ const Services = () => {
                   {rightImages.map((image, index) => (
                     <motion.div
                       key={image.id}
-                      className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer group"
+                      className="relative overflow-hidden rounded-2xl shadow cursor-pointer group"
                       onClick={() => openModal(image, "right")}
                       initial={{ opacity: 0, y: 20 }}
                       whileInView={{ opacity: 1, y: 0 }}
@@ -463,7 +461,7 @@ const Services = () => {
                         />
                       </div>
                       {/* View Indicator */}
-                      <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow-lg">
+                      <div className="absolute top-3 right-3 bg-white rounded-full p-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300 shadow">
                         <FaImages className="text-emerald-600 text-sm" />
                       </div>
                     </motion.div>
@@ -522,7 +520,7 @@ const Services = () => {
                       key={service.name}
                       variants={itemVariants}
                       whileTap={{ scale: 0.97 }}
-                      className="bg-white rounded-2xl shadow-lg border border-gray-100 group active:shadow-xl p-5 flex flex-col items-center justify-center text-center min-h-[130px] transition-all duration-300 hover:border-emerald-200 relative overflow-hidden touch-manipulation"
+                      className="bg-white rounded-2xl shadow border border-gray-100 group active:shadow p-5 flex flex-col items-center justify-center text-center min-h-[130px] transition-all duration-300 hover:border-emerald-200 relative overflow-hidden touch-manipulation"
                     >
                       {/* Background Gradient on Touch/Hover */}
                       <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300" />
@@ -533,7 +531,7 @@ const Services = () => {
                         whileTap={{ scale: 1.1, rotate: 5 }}
                       >
                         <IconComponent className="text-lg relative z-10" />
-                        <div className="absolute inset-0 bg-white/20 rounded-2xl blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                        {/* Icon glow removed for performance */}
                       </motion.div>
 
                       <h3 className="text-body-md text-gray-800 group-hover:text-emerald-600 group-active:text-emerald-600 transition-colors relative z-10">
@@ -582,7 +580,7 @@ const Services = () => {
                 {allImages.map((image, index) => (
                   <motion.div
                     key={image.id}
-                    className="relative overflow-hidden rounded-2xl shadow-lg cursor-pointer group touch-manipulation"
+                    className="relative overflow-hidden rounded-2xl shadow cursor-pointer group touch-manipulation"
                     onClick={() => openModal(image)}
                     initial={{ opacity: 0, y: 20 }}
                     whileInView={{ opacity: 1, y: 0 }}
@@ -599,7 +597,7 @@ const Services = () => {
                       />
                     </div>
                     {/* View Icon */}
-                    <div className="absolute top-3 right-3 bg-white/90 backdrop-blur-sm rounded-full p-2.5 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 shadow-lg">
+                    <div className="absolute top-3 right-3 bg-white rounded-full p-2.5 opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-300 shadow">
                       <FaImages className="text-emerald-600 text-sm" />
                     </div>
                   </motion.div>
@@ -615,18 +613,7 @@ const Services = () => {
         <AnimatePresence>
           {selectedImage && (
             <motion.div
-              className="fixed inset-0 flex items-center justify-center z-[1000] p-4 md:p-8"
-              style={{
-                background: isAppleDevice()
-                  ? "rgba(0, 0, 0, 0.95)"
-                  : "rgba(0, 0, 0, 0.5)",
-                backdropFilter: isAppleDevice()
-                  ? "none"
-                  : "blur(32px) saturate(160%)",
-                WebkitBackdropFilter: isAppleDevice()
-                  ? "none"
-                  : "blur(32px) saturate(160%)",
-              }}
+              className="fixed inset-0 flex items-center justify-center z-[1000] p-4 md:p-8 bg-black/90"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -651,7 +638,7 @@ const Services = () => {
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ delay: 0.2 }}
                   >
-                    <div className="bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
+                    <div className="bg-white border border-gray-200 rounded-full px-4 py-2 shadow">
                       <span className="text-sm font-semibold">
                         {currentImageIndex + 1} /{" "}
                         {(() => {
@@ -668,7 +655,7 @@ const Services = () => {
                   {/* Close Button */}
                   <motion.button
                     onClick={closeModal}
-                    className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
+                    className="bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow"
                     whileHover={{ scale: 1.1, rotate: 90 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, rotate: -90 }}
@@ -699,7 +686,7 @@ const Services = () => {
                       e.stopPropagation();
                       navigateImage("prev");
                     }}
-                    className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                    className="absolute left-2 md:left-4 z-20 bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow"
                     whileHover={{ scale: 1.1, x: -5 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, x: -20 }}
@@ -722,7 +709,7 @@ const Services = () => {
                       <img
                         src={selectedImage.src}
                         alt={selectedImage.alt}
-                        className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-2xl"
+                        className="max-w-full max-h-[75vh] object-contain rounded-2xl shadow-lg"
                       />
                     </motion.div>
                   </AnimatePresence>
@@ -733,7 +720,7 @@ const Services = () => {
                       e.stopPropagation();
                       navigateImage("next");
                     }}
-                    className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                    className="absolute right-2 md:right-4 z-20 bg-white hover:bg-gray-50 border border-gray-200 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow"
                     whileHover={{ scale: 1.1, x: 5 }}
                     whileTap={{ scale: 0.9 }}
                     initial={{ opacity: 0, x: 20 }}

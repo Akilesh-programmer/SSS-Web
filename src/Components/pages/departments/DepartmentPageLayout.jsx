@@ -1,7 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import { isAppleDevice } from "../../../utils/deviceDetection";
 import {
   FaUserMd,
   FaImages,
@@ -415,18 +414,11 @@ const InfrastructureGallery = () => {
         </div>
       )}
 
-      {/* Modal for enlarged view - NO blur on Apple devices */}
+      {/* Modal for enlarged view - solid background for performance */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90"
           onClick={closeModal}
-          style={{
-            background: isAppleDevice()
-              ? "rgba(0, 0, 0, 0.9)"
-              : "rgba(0, 0, 0, 0.3)",
-            backdropFilter: isAppleDevice() ? "none" : "blur(8px)",
-            WebkitBackdropFilter: isAppleDevice() ? "none" : "blur(8px)",
-          }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -438,13 +430,13 @@ const InfrastructureGallery = () => {
             <img
               src={selectedImage.src}
               alt={selectedImage.alt}
-              className="max-w-full max-h-full object-contain rounded-lg shadow-2xl"
+              className="max-w-full max-h-full object-contain rounded-lg shadow-lg"
             />
             {/* Fixed top-right close button (below navbar) */}
             <button
               onClick={closeModal}
               aria-label="Close image"
-              className="fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70"
+              className="fixed top-4 right-4 z-[60] text-gray-900 bg-white rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow ring-1 ring-white/70"
             >
               <svg
                 xmlns="http://www.w3.org/2000/svg"
@@ -699,7 +691,7 @@ const DepartmentPageLayout = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true, amount: 0.3 }}
                   transition={{ duration: 1.0, delay: 0.2, ease: "easeOut" }}
-                  className="sticky top-24 h-[calc(100vh-6rem)] flex items-center justify-center"
+                  className="h-[calc(100vh-6rem)] flex items-center justify-center"
                 >
                   {/* Department Infrastructure heading removed per request */}
                   <motion.div
@@ -728,28 +720,20 @@ const DepartmentPageLayout = () => {
                           }}
                           className="group cursor-pointer mx-auto w-full"
                           onClick={() => {
-                            // Create modal backdrop - NO blur on Apple devices
+                            // Create modal backdrop - solid background for performance
                             const modal = document.createElement("div");
                             modal.className =
-                              "fixed inset-0 z-50 flex items-center justify-center p-4";
-                            // Apply backdrop blur only on non-Apple devices
-                            if (isAppleDevice()) {
-                              modal.style.background = "rgba(0, 0, 0, 0.9)";
-                            } else {
-                              modal.style.background = "rgba(0, 0, 0, 0.3)";
-                              modal.style.backdropFilter = "blur(8px)";
-                              modal.style.WebkitBackdropFilter = "blur(8px)";
-                            }
+                              "fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90";
                             modal.innerHTML = `
                           <div class="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center">
-                            <img src="${photo.src}" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />
+                            <img src="${photo.src}" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-lg" />
                           </div>
                         `;
                             // Create a fixed close button positioned under the navbar so it's outside the image
                             const closeBtn = document.createElement("button");
                             closeBtn.setAttribute("aria-label", "Close image");
                             closeBtn.className =
-                              "fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70";
+                              "fixed top-4 right-4 z-[60] text-gray-900 bg-white rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow ring-1 ring-white/70";
                             closeBtn.innerHTML = `
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5' aria-hidden='true'>
                               <line x1='18' y1='6' x2='6' y2='18' />
@@ -771,7 +755,7 @@ const DepartmentPageLayout = () => {
                             });
                           }}
                         >
-                          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow-xl hover:shadow-2xl transition-all duration-300 w-full">
+                          <div className="relative overflow-hidden rounded-2xl bg-gradient-to-br from-white to-blue-50 shadow hover:shadow-lg transition-all duration-300 w-full">
                             <div className="aspect-[4/3] w-full">
                               <img
                                 src={photo.src}
@@ -781,7 +765,7 @@ const DepartmentPageLayout = () => {
                             </div>
                             <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent group-hover:from-black/40 transition-all duration-300 flex items-center justify-center">
                               <div className="opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                                <div className="bg-white/95 rounded-full p-4 shadow-lg backdrop-blur-sm">
+                                <div className="bg-white rounded-full p-4 shadow-lg">
                                   <svg
                                     className="w-6 h-6 text-gray-800"
                                     fill="none"
@@ -873,7 +857,7 @@ const DepartmentPageLayout = () => {
                         bounce: 0.1,
                       }}
                       whileHover={{ scale: 1.02, y: -5 }}
-                      className="bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-2xl transition-all duration-300 overflow-hidden group border border-white/20 cursor-pointer p-4 sm:p-6"
+                      className="bg-white rounded-2xl lg:rounded-3xl shadow-lg hover:shadow-lg transition-all duration-300 overflow-hidden group border border-gray-200 cursor-pointer p-4 sm:p-6"
                     >
                       {/* Grid View - Exact DoctorsPage Design */}
                       <div className="relative text-center mb-4">

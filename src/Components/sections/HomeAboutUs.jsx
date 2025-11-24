@@ -93,7 +93,7 @@ const AboutUs = () => {
                 initial={{ opacity: 0, y: 20 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow-xl transition-shadow group"
+                className="bg-white rounded-xl p-6 shadow-lg border border-gray-100 hover:shadow transition-shadow group"
               >
                 <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
                   {item.icon}

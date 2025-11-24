@@ -129,7 +129,7 @@ const OptimizedImageGrid = ({
             whileHover={{ y: -6, scale: 1.02 }}
             whileTap={{ scale: 0.97 }}
             onClick={() => onItemClick && onItemClick(item, index)}
-            className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow-xl transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 bg-gradient-to-br from-emerald-50 to-white"
+            className="group relative rounded-2xl overflow-hidden shadow-md hover:shadow transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-500 bg-gradient-to-br from-emerald-50 to-white"
             style={{ willChange: "transform, opacity" }}
             onAnimationComplete={() => animatedOnceRef.current.add(index)}
           >
@@ -156,7 +156,7 @@ const OptimizedImageGrid = ({
               <div className="absolute inset-0 bg-gradient-to-br from-black/0 via-black/0 to-black/40 opacity-0 group-hover:opacity-80 transition-opacity duration-500 pointer-events-none" />
               {/* Icon */}
               <div className="absolute inset-0 flex items-center justify-center opacity-0 group-hover:opacity-100 transition-all duration-500 pointer-events-none">
-                <div className="bg-white/90 text-gray-800 rounded-full p-3 shadow-lg backdrop-blur-md ring-1 ring-emerald-200/60 scale-75 group-hover:scale-100 transition-transform">
+                <div className="bg-white text-gray-800 rounded-full p-3 shadow-lg ring-1 ring-emerald-200/60 scale-75 group-hover:scale-100 transition-transform">
                   <svg
                     className="w-5 h-5"
                     fill="none"

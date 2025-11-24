@@ -220,30 +220,7 @@ const DoctorsSection = ({ limit }) => {
       id="doctors-section"
       className="py-20 bg-gradient-to-br from-blue-50 via-white to-emerald-50 scroll-mt-20 lg:scroll-mt-24 relative overflow-hidden"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.4, scale: 1 }}
-          transition={{ duration: 0.6 }}
-          viewport={{ once: true }}
-          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-blue-200 to-emerald-200 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.3, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.1 }}
-          viewport={{ once: true }}
-          className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-emerald-200 to-blue-200 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.2, scale: 1 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-blue-300 to-teal-300 rounded-full blur-2xl"
-        />
-      </div>
+      {/* Background decorative blur elements removed for performance */}
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <motion.div
@@ -320,7 +297,7 @@ const DoctorsSection = ({ limit }) => {
               whileTap={{ scale: 0.95 }}
               aria-label="Previous doctors"
               onClick={() => scroll("left")}
-              className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/60 text-blue-600 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-full p-3 shadow-lg border border-gray-100 text-blue-600 hover:shadow transition-all duration-300"
             >
               <FaChevronLeft className="text-lg" />
             </motion.button>
@@ -338,7 +315,7 @@ const DoctorsSection = ({ limit }) => {
               whileTap={{ scale: 0.95 }}
               aria-label="Next doctors"
               onClick={() => scroll("right")}
-              className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/60 text-blue-600 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-full p-3 shadow-lg border border-gray-100 text-blue-600 hover:shadow transition-all duration-300"
             >
               <FaChevronRight className="text-lg" />
             </motion.button>
@@ -373,7 +350,7 @@ const DoctorsSection = ({ limit }) => {
                   whileTap={{ scale: 0.98 }}
                   className="group flex-shrink-0 w-80 sm:w-96 snap-center"
                 >
-                  <div className="bg-white/80 backdrop-blur-sm rounded-2xl p-6 shadow-lg border border-white/60 h-full transition-all duration-300 group-hover:shadow-xl group-hover:bg-white/90">
+                  <div className="bg-white rounded-2xl p-6 shadow-lg border border-gray-100 h-full transition-all duration-300 group-hover:shadow group-hover:bg-white">
                     {/* Doctor Image */}
                     <div className="relative mb-6">
                       <motion.div
@@ -475,7 +452,7 @@ const DoctorsSection = ({ limit }) => {
               whileHover={{ scale: 1.03 }}
               whileTap={{ scale: 0.98 }}
               onClick={() => navigate("/doctors")}
-              className="inline-flex items-center justify-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-semibold shadow-lg hover:shadow-2xl transition-all duration-300"
+              className="inline-flex items-center justify-center gap-3 px-5 py-3 rounded-full bg-gradient-to-r from-blue-600 to-emerald-500 text-white font-semibold shadow-lg hover:shadow-lg transition-all duration-300"
             >
               See all doctors
               <FaArrowRight className="ml-1" />

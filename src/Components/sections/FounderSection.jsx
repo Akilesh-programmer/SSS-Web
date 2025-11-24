@@ -11,7 +11,7 @@ const FounderSection = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
           viewport={{ once: false, amount: 0.3 }}
-          className="bg-white rounded-2xl shadow-xl overflow-hidden"
+          className="bg-white rounded-2xl shadow overflow-hidden"
         >
           <div className="flex flex-col lg:flex-row">
             {/* Founder Image */}

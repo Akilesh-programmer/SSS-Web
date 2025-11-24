@@ -168,7 +168,7 @@ const AboutUs = () => {
                   initial={{ opacity: 0, x: -30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.6, duration: 0.8 }}
-                  className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
+                  className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 bg-emerald-500 rounded-full"></div>
@@ -192,7 +192,7 @@ const AboutUs = () => {
                   initial={{ opacity: 0, x: 30 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ delay: 0.8, duration: 0.8 }}
-                  className="bg-white/70 backdrop-blur-sm rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
+                  className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg border border-emerald-100"
                 >
                   <div className="flex items-center gap-3 mb-4">
                     <div className="w-3 h-3 bg-teal-500 rounded-full"></div>
@@ -338,7 +338,7 @@ const AboutUs = () => {
               {/* Decorative separator for larger screens */}
               <div className="hidden md:flex absolute inset-y-0 left-1/2 transform -translate-x-1/2 items-center pointer-events-none">
                 <div className="h-3/4 border-l-2 border-emerald-400 border-dotted opacity-90" />
-                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white/95 border-2 border-emerald-300" />
+                <div className="absolute left-1/2 top-1/2 transform -translate-x-1/2 -translate-y-1/2 w-3 h-3 rounded-full bg-white border-2 border-emerald-300" />
               </div>
             </div>
           </motion.div>
@@ -347,11 +347,7 @@ const AboutUs = () => {
 
       {/* Care Units & Facilities */}
       <section className="py-12 lg:py-16 bg-gradient-to-r from-slate-100 via-gray-50 to-blue-50 relative overflow-hidden">
-        {/* Background decoration */}
-        <div className="absolute inset-0 pointer-events-none">
-          <div className="absolute top-10 left-10 w-40 h-40 bg-white/30 rounded-full blur-3xl" />
-          <div className="absolute bottom-10 right-10 w-32 h-32 bg-slate-100/40 rounded-full blur-2xl" />
-        </div>
+        {/* Background decoration - blur effects removed for performance */}
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <motion.div
@@ -364,7 +360,7 @@ const AboutUs = () => {
               initial={{ scale: 0 }}
               whileInView={{ scale: 1 }}
               transition={{ delay: 0.2, duration: 0.6 }}
-              className="inline-block bg-white/60 backdrop-blur-sm rounded-full px-6 py-2 mb-6 border border-slate-200/30"
+              className="inline-block bg-white rounded-full px-6 py-2 mb-6 border border-slate-200/30"
             >
               <span className="text-slate-600 font-semibold text-sm">
                 🏥 SPECIALIZED CARE UNITS
@@ -395,7 +391,7 @@ const AboutUs = () => {
               <motion.div
                 key={unit.label}
                 variants={fadeInUp}
-                className="text-center bg-white/70 backdrop-blur-sm rounded-2xl p-6 border border-slate-200/40 hover:bg-white/80 hover:shadow-md transition-all duration-300"
+                className="text-center bg-white rounded-2xl p-6 border border-slate-200/40 hover:bg-white hover:shadow-md transition-all duration-300"
               >
                 <unit.icon className="text-4xl lg:text-5xl text-slate-500 mb-4 mx-auto" />
                 <div className="text-heading-xl text-slate-700 mb-2">
@@ -484,14 +480,14 @@ const AboutUs = () => {
                 key={care.title}
                 variants={fadeInUp}
                 whileHover={{ y: -8, scale: 1.02 }}
-                className="group bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-500 border border-emerald-100 relative overflow-hidden"
+                className="group bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-500 border border-emerald-100 relative overflow-hidden"
               >
                 {/* Background gradient on hover */}
                 <div className="absolute inset-0 bg-gradient-to-br from-emerald-50 to-teal-50 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
 
                 <div className="relative z-10">
                   <div className="flex items-start gap-4">
-                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300">
+                    <div className="flex-shrink-0 w-14 h-14 bg-gradient-to-br from-emerald-500 to-teal-500 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300">
                       <care.icon className="text-white text-xl" />
                     </div>
 
@@ -527,12 +523,7 @@ const AboutUs = () => {
 
       {/* Why Choose Us - Modern Medical Excellence */}
       <section className="relative py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-emerald-50 overflow-hidden">
-        {/* Decorative Background Elements */}
-        <div className="absolute inset-0 opacity-40">
-          <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-200 rounded-full blur-3xl animate-pulse" />
-          <div className="absolute bottom-20 right-10 w-40 h-40 bg-blue-200 rounded-full blur-3xl animate-pulse delay-700" />
-          <div className="absolute top-1/2 left-1/3 w-24 h-24 bg-teal-200 rounded-full blur-2xl animate-pulse delay-1000" />
-        </div>
+        {/* Decorative blur elements removed for performance */}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
@@ -589,10 +580,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-emerald-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-emerald-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-emerald-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaAward className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-emerald-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -613,10 +604,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-blue-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-blue-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaHospital className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-blue-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -637,10 +628,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-red-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-red-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-red-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-red-500 to-orange-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaAmbulance className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-red-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -661,10 +652,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-pink-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-pink-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-pink-500 to-rose-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaHandHoldingHeart className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-pink-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -685,10 +676,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-purple-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-purple-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-purple-500 to-violet-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaMicroscope className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-purple-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -709,10 +700,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-green-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-green-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-green-500 to-teal-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaShieldAlt className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-green-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -733,10 +724,10 @@ const AboutUs = () => {
             <motion.div
               variants={fadeInUp}
               whileHover={{ y: -8, scale: 1.02 }}
-              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-2xl transition-all duration-300 border border-cyan-100 group"
+              className="bg-white rounded-2xl p-6 lg:p-8 shadow-lg hover:shadow-lg transition-all duration-300 border border-cyan-100 group"
             >
               <div className="relative mb-5">
-                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow-xl transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
+                <div className="w-16 h-16 lg:w-20 lg:h-20 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-2xl flex items-center justify-center shadow-lg group-hover:shadow transition-shadow duration-300 group-hover:scale-110 transform transition-transform">
                   <FaUsers className="text-white text-2xl lg:text-3xl" />
                 </div>
                 <div className="absolute -top-1 -right-1 w-6 h-6 bg-cyan-200 rounded-full opacity-0 group-hover:opacity-100 transition-opacity animate-ping" />
@@ -762,7 +753,7 @@ const AboutUs = () => {
             transition={{ duration: 0.8, delay: 0.4 }}
             className="mt-12 lg:mt-16 text-center"
           >
-            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 lg:p-12 shadow-2xl">
+            <div className="bg-gradient-to-r from-emerald-500 to-teal-500 rounded-2xl p-8 lg:p-12 shadow-lg">
               <FaHeartbeat className="text-white text-5xl mx-auto mb-4 animate-pulse" />
               <h3 className="text-2xl lg:text-3xl font-bold text-white mb-4">
                 Your Health, Our Priority

@@ -232,9 +232,9 @@ function App() {
         <ScrollToTop />
 
         {/* Navigation with iOS-optimized sticky positioning */}
-        <nav className="nav-sticky-ios">
+        <div className="sticky top-0 z-50">
           <Navigation />
-        </nav>
+        </div>
 
         {/* Main content area - no top padding, content flows naturally */}
         <main className="-mt-[3.5rem] sm:-mt-16 xl:-mt-[4.5rem]">

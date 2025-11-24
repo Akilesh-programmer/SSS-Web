@@ -158,30 +158,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
       id="testimonials"
       className="py-20 bg-gradient-to-br from-slate-50 via-white to-emerald-50 scroll-mt-20 lg:scroll-mt-24 relative overflow-hidden"
     >
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.4, scale: 1 }}
-          transition={{ duration: 1.2 }}
-          viewport={{ once: true }}
-          className="absolute top-20 left-10 w-32 h-32 bg-gradient-to-br from-emerald-200 to-blue-200 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.3, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.2 }}
-          viewport={{ once: true }}
-          className="absolute bottom-20 right-10 w-40 h-40 bg-gradient-to-br from-blue-200 to-emerald-200 rounded-full blur-3xl"
-        />
-        <motion.div
-          initial={{ opacity: 0, scale: 0.8 }}
-          whileInView={{ opacity: 0.2, scale: 1 }}
-          transition={{ duration: 1.2, delay: 0.4 }}
-          viewport={{ once: true }}
-          className="absolute top-1/2 left-1/3 w-24 h-24 bg-gradient-to-br from-emerald-300 to-teal-300 rounded-full blur-2xl"
-        />
-      </div>
+      {/* Background decorative blur elements removed for performance */}
 
       <div className="max-w-7xl mx-auto px-4 relative z-10">
         <motion.div
@@ -246,7 +223,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
               whileTap={{ scale: 0.95 }}
               aria-label="Previous testimonials"
               onClick={() => scroll("left")}
-              className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/60 text-emerald-600 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-full p-3 shadow-lg border border-gray-100 text-emerald-600 hover:shadow transition-all duration-300"
             >
               <FaChevronLeft className="text-lg" />
             </motion.button>
@@ -264,7 +241,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
               whileTap={{ scale: 0.95 }}
               aria-label="Next testimonials"
               onClick={() => scroll("right")}
-              className="bg-white/90 backdrop-blur-md rounded-full p-3 shadow-lg border border-white/60 text-emerald-600 hover:shadow-xl transition-all duration-300"
+              className="bg-white rounded-full p-3 shadow-lg border border-gray-100 text-emerald-600 hover:shadow transition-all duration-300"
             >
               <FaChevronRight className="text-lg" />
             </motion.button>
@@ -311,7 +288,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                   onClick={() => setActive(d)}
                   aria-haspopup="dialog"
                   aria-expanded={active === d}
-                  className="min-w-[85vw] sm:min-w-[350px] lg:min-w-[400px] bg-white/80 backdrop-blur-lg rounded-3xl p-8 shadow-xl border border-white/50 snap-start cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 relative text-left hover:shadow-2xl group"
+                  className="min-w-[85vw] sm:min-w-[350px] lg:min-w-[400px] bg-white rounded-3xl p-8 shadow border border-gray-100 snap-start cursor-pointer transition-all duration-300 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 relative text-left hover:shadow-lg group"
                   style={{
                     background:
                       "linear-gradient(135deg, rgba(255,255,255,0.9) 0%, rgba(248,250,252,0.95) 50%, rgba(255,255,255,0.9) 100%)",
@@ -464,7 +441,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                   animate={{ opacity: 1 }}
                   exit={{ opacity: 0 }}
                   type="button"
-                  className="absolute inset-0 bg-black/60 backdrop-blur-md"
+                  className="absolute inset-0 bg-black/90"
                   onClick={() => setActive(null)}
                   aria-label="Close testimonials modal"
                 />
@@ -475,7 +452,7 @@ const PatientTestimonials = ({ limit = 6 }) => {
                   exit={{ y: 50, opacity: 0, scale: 0.9 }}
                   transition={{ duration: 0.4, ease: "easeOut" }}
                   /* place modal lower on small screens and limit its height so header and bottom buttons remain visible */
-                  className="relative max-w-4xl w-full bg-white/95 backdrop-blur-xl rounded-3xl shadow-2xl z-10 border border-white/60 mt-20 sm:mt-0 overflow-hidden"
+                  className="relative max-w-4xl w-full bg-white rounded-3xl shadow-lg z-10 border border-gray-100 mt-20 sm:mt-0 overflow-hidden"
                   role="dialog"
                   aria-modal="true"
                   style={{
@@ -496,12 +473,12 @@ const PatientTestimonials = ({ limit = 6 }) => {
                     whileTap={{ scale: 0.95 }}
                     onClick={() => setActive(null)}
                     aria-label="Close testimonial"
-                    className="absolute right-4 top-4 sm:top-6 sm:right-6 z-40 text-gray-500 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-full p-2 bg-white/90 backdrop-blur-sm shadow-lg border border-white/60"
+                    className="absolute right-4 top-4 sm:top-6 sm:right-6 z-40 text-gray-500 hover:text-gray-700 focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-400 rounded-full p-2 bg-white shadow-lg border border-gray-100"
                   >
                     <FaTimes className="text-lg" />
                   </motion.button>
-                  {/* inner scrollable content */}
-                  <div className="overflow-auto max-h-[calc(100vh-160px)] p-6 sm:p-8">
+                  {/* Content area - no nested scroll to prevent flickering */}
+                  <div className="p-6 sm:p-8">
                     <div className="flex items-start space-x-6">
                       {/* removed modal quote icon per request to fit content */}
                       <div className="pr-16 sm:pr-20 flex-1">
