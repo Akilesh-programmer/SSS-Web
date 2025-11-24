@@ -6,8 +6,6 @@ import { useAppointment } from "./contexts/AppointmentContext";
 // Critical UI components - load immediately
 import Navigation from "./Components/ui/Navigation";
 import Footer from "./Components/ui/Footer";
-import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
-import ScrollToTopButton from "./Components/ui/ScrollToTopButton";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
 import PageWrapper from "./Components/ui/PageWrapper";
@@ -233,10 +231,10 @@ function App() {
       <div className="font-primary min-h-screen">
         <ScrollToTop />
 
-        {/* Fixed Navigation at top - sticky behavior without layout shift */}
-        <div className="sticky top-0 z-50">
+        {/* Navigation with iOS-optimized sticky positioning */}
+        <nav className="nav-sticky-ios">
           <Navigation />
-        </div>
+        </nav>
 
         {/* Main content area - no top padding, content flows naturally */}
         <main className="-mt-[3.5rem] sm:-mt-16 xl:-mt-[4.5rem]">
@@ -276,17 +274,6 @@ function App() {
           isOpen={isAppointmentOpen}
           onClose={closeAppointment}
         />
-      </div>
-
-      {/* Fixed floating components - positioned relative to viewport, outside main content flow */}
-      {/* Appointment button on left */}
-      <div className="!fixed !bottom-4 sm:!bottom-6 !left-4 sm:!left-6 !z-40">
-        <FloatingAppointmentButton />
-      </div>
-
-      {/* Scroll to top button on right */}
-      <div className="!fixed !bottom-4 sm:!bottom-6 !right-4 sm:!right-6 !z-40">
-        <ScrollToTopButton />
       </div>
     </ErrorBoundary>
   );

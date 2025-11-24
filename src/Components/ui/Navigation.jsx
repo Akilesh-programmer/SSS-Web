@@ -17,18 +17,32 @@ const Navigation = () => {
   const navigate = useNavigate();
   const location = useLocation();
   // --- Style helpers to avoid repeating large inline objects ---
+  // Detect if user is on Apple device to optimize backdrop-filter
+  const isAppleDevice =
+    typeof navigator !== "undefined" &&
+    (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
+      (navigator.userAgent.includes("Mac") && "ontouchend" in document));
+
   const navStyle = (scrolled) => ({
     background: scrolled
-      ? "linear-gradient(to right, rgba(255, 255, 255, 0.65) 0%, rgba(255, 255, 255, 0.65) 40%, rgba(255, 255, 255, 0.45) 100%)"
-      : "linear-gradient(to right, rgba(255, 255, 255, 0.50) 0%, rgba(255, 255, 255, 0.50) 40%, rgba(255, 255, 255, 0.30) 100%)",
-    backdropFilter: "blur(40px) saturate(220%)",
-    WebkitBackdropFilter: "blur(40px) saturate(220%)",
+      ? "linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 40%, rgba(255, 255, 255, 0.90) 100%)"
+      : "linear-gradient(to right, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 40%, rgba(255, 255, 255, 0.85) 100%)",
+    // Use lighter backdrop-filter on Apple devices to prevent flickering
+    backdropFilter: isAppleDevice
+      ? "blur(20px) saturate(180%)"
+      : "blur(40px) saturate(220%)",
+    WebkitBackdropFilter: isAppleDevice
+      ? "blur(20px) saturate(180%)"
+      : "blur(40px) saturate(220%)",
     borderBottom: scrolled
       ? "1px solid rgba(226, 232, 240, 0.8)"
       : "1px solid rgba(226, 232, 240, 0.5)",
     boxShadow: scrolled
       ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
       : "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
+    // Apple-specific optimizations
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
   });
 
   const emergencyStyle = {
@@ -53,18 +67,34 @@ const Navigation = () => {
 
   const overlayStyle = {
     background:
-      "linear-gradient(135deg, rgba(0,0,0,0.2) 0%, rgba(59,130,246,0.12) 50%, rgba(0,0,0,0.18) 100%)",
-    backdropFilter: "blur(16px) saturate(160%)",
-    WebkitBackdropFilter: "blur(16px) saturate(160%)",
+      "linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(59,130,246,0.15) 50%, rgba(0,0,0,0.25) 100%)",
+    backdropFilter: isAppleDevice
+      ? "blur(8px) saturate(140%)"
+      : "blur(16px) saturate(160%)",
+    WebkitBackdropFilter: isAppleDevice
+      ? "blur(8px) saturate(140%)"
+      : "blur(16px) saturate(160%)",
+    // Apple-specific optimization
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
   };
 
   const mobileMenuStyle = {
-    background: "rgba(255, 255, 255, 0.95)",
-    backdropFilter: "blur(20px) saturate(180%)",
-    WebkitBackdropFilter: "blur(20px) saturate(180%)",
+    background: isAppleDevice
+      ? "rgba(255, 255, 255, 0.98)"
+      : "rgba(255, 255, 255, 0.95)",
+    backdropFilter: isAppleDevice
+      ? "blur(10px) saturate(150%)"
+      : "blur(20px) saturate(180%)",
+    WebkitBackdropFilter: isAppleDevice
+      ? "blur(10px) saturate(150%)"
+      : "blur(20px) saturate(180%)",
     borderTop: "1px solid rgba(226, 232, 240, 0.8)",
     boxShadow:
       "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
+    // Apple-specific optimization
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
   };
 
   const navLinkStyle = (isActive) => ({

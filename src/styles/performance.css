@@ -251,3 +251,227 @@ img[loading="lazy"] {
   background-attachment: fixed;
   will-change: auto;
 }
+
+/* ====================================================================
+   APPLE DEVICES FLICKERING FIX - Comprehensive Solution
+   Targets: iOS (iPhone), iPadOS (iPad), macOS (Safari/Chrome)
+   ==================================================================== */
+
+/* Primary navigation sticky positioning with Apple device optimization */
+.nav-sticky-ios {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 50;
+  
+  /* Core GPU acceleration to prevent flickering */
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+  -webkit-perspective: 1000px;
+  perspective: 1000px;
+  
+  /* Optimize rendering performance */
+  will-change: transform;
+  contain: layout;
+  
+  /* Prevent subpixel rendering issues on Apple devices */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* ====================================================================
+   iOS SAFARI SPECIFIC FIXES (iPhone & iPad)
+   Detected via: -webkit-touch-callout feature
+   ==================================================================== */
+@supports (-webkit-touch-callout: none) {
+  /* Root body optimizations for iOS */
+  html, body {
+    /* Enable momentum scrolling without flickering */
+    -webkit-overflow-scrolling: touch;
+    /* Prevent elastic bounce from causing repaints */
+    overscroll-behavior-y: none;
+  }
+  
+  /* Navigation bar iOS-specific enhancements */
+  .nav-sticky-ios {
+    /* Force compositing layer */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    
+    /* Prevent layout shift during scroll */
+    contain: strict;
+    content-visibility: auto;
+    
+    /* Isolate from other layers */
+    isolation: isolate;
+  }
+  
+  /* Global hardware acceleration for all elements on iOS */
+  * {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Prevent backdrop-filter flickering on iOS */
+  [style*="backdrop-filter"],
+  [class*="backdrop-blur"],
+  [style*="backdropFilter"] {
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000px;
+    perspective: 1000px;
+    
+    /* Force layer creation */
+    will-change: backdrop-filter;
+  }
+  
+  /* Optimize all sticky elements on iOS */
+  [class*="sticky"],
+  .sticky,
+  [style*="position: sticky"],
+  [style*="position:sticky"] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+  }
+}
+
+/* ====================================================================
+   iPHONE SPECIFIC OPTIMIZATIONS (All sizes)
+   Screen widths: 375px - 428px (iPhone SE to iPhone Pro Max)
+   ==================================================================== */
+@media only screen 
+  and (min-device-width: 320px) 
+  and (max-device-width: 896px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  
+  /* Navigation optimization for smaller screens */
+  .nav-sticky-ios {
+    /* Reduce repaints on scroll */
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    
+    /* Disable will-change after initial render */
+    animation: disableWillChange 0.5s forwards;
+  }
+  
+  /* Prevent over-scrolling issues */
+  body {
+    position: relative;
+    overflow-x: hidden;
+  }
+  
+  /* Optimize font rendering */
+  * {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+  
+  /* Fallback for older iOS versions without backdrop-filter support */
+  @supports not (backdrop-filter: blur(10px)) {
+    [style*="backdrop-filter"],
+    [class*="backdrop-blur"] {
+      background: rgba(255, 255, 255, 0.95) !important;
+      -webkit-backdrop-filter: none !important;
+      backdrop-filter: none !important;
+    }
+  }
+}
+
+/* ====================================================================
+   iPAD SPECIFIC OPTIMIZATIONS (All sizes)
+   Screen widths: 768px - 1366px (iPad Mini to iPad Pro 12.9")
+   ==================================================================== */
+@media only screen 
+  and (min-device-width: 768px) 
+  and (max-device-width: 1366px) 
+  and (-webkit-min-device-pixel-ratio: 2) {
+  
+  /* iPad-specific navigation fixes */
+  .nav-sticky-ios {
+    /* Enhanced compositing for larger screens */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+    contain: layout style paint;
+  }
+  
+  /* Optimize for split-screen mode on iPad */
+  @supports (width: 1px) {
+    .nav-sticky-ios {
+      contain: layout;
+    }
+  }
+}
+
+/* ====================================================================
+   macOS SAFARI OPTIMIZATIONS
+   Detected via: hover capability (desktop/laptop)
+   ==================================================================== */
+@media (hover: hover) and (pointer: fine) {
+  /* macOS Safari-specific fixes */
+  @supports (-webkit-backdrop-filter: blur(10px)) {
+    .nav-sticky-ios {
+      /* Optimize for macOS Retina displays */
+      -webkit-font-smoothing: subpixel-antialiased;
+      
+      /* Prevent flicker on external displays */
+      image-rendering: -webkit-optimize-contrast;
+      image-rendering: crisp-edges;
+    }
+  }
+}
+
+/* ====================================================================
+   GLOBAL APPLE DEVICE OPTIMIZATIONS
+   ==================================================================== */
+
+/* Prevent fixed/absolute element flickering on all Apple devices */
+.fixed, 
+[class*="fixed"],
+.absolute,
+[class*="absolute"] {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Animation keyframe to disable will-change after initial load */
+@keyframes disableWillChange {
+  to { will-change: auto; }
+}
+
+/* Optimize scroll performance on all Apple devices */
+.nav-sticky-ios.scrolling {
+  will-change: transform;
+}
+
+.nav-sticky-ios:not(.scrolling) {
+  will-change: auto;
+}
+
+/* ====================================================================
+   FRAMER MOTION INTEGRATION (Used throughout the app)
+   Prevent animation flickering on Apple devices
+   ==================================================================== */
+[class*="motion-"] {
+  -webkit-transform: translate3d(0, 0, 0);
+  transform: translate3d(0, 0, 0);
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+/* Optimize AnimatePresence transitions on iOS */
+@supports (-webkit-touch-callout: none) {
+  [data-projection-id] {
+    -webkit-transform: translateZ(0);
+    transform: translateZ(0);
+    contain: layout style;
+  }
+}
