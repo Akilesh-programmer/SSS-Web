@@ -6,6 +6,10 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/react";
 import "./index.css";
 import App from "./App.jsx";
+import { addAppleDeviceClass } from "./utils/deviceDetection";
+
+// Add Apple device class for iOS-specific styling
+addAppleDeviceClass();
 
 // Register service worker for caching and offline support
 if ("serviceWorker" in navigator && import.meta.env.PROD) {

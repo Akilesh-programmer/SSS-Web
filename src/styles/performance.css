@@ -1,10 +1,123 @@
 /* Performance optimizations - Industry grade practices */
 
+/* ===================================================================
+   APPLE DEVICES ANTI-FLICKERING - GLOBAL RULES
+   Addresses WebKit backdrop-filter bugs and compositing issues
+   =================================================================== */
+
+/* Apply to all Apple devices using the is-apple-device class */
+.is-apple-device *,
+.is-apple-device *::before,
+.is-apple-device *::after {
+  /* CRITICAL: Remove ALL backdrop-filter effects */
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  
+  /* CRITICAL: Remove ALL filter effects (including blur) */
+  filter: none !important;
+  -webkit-filter: none !important;
+  
+  /* Force GPU acceleration */
+  backface-visibility: hidden !important;
+  -webkit-backface-visibility: hidden !important;
+  
+  /* Remove perspective that causes layout thrashing */
+  perspective: none !important;
+  -webkit-perspective: none !important;
+}
+
+/* Force solid backgrounds on backdrop-blur elements */
+.is-apple-device [class*="backdrop-blur"],
+.is-apple-device [style*="backdrop-filter"],
+.is-apple-device [style*="backdropFilter"] {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Dark backgrounds with blur */
+.is-apple-device [class*="bg-black"][class*="backdrop-blur"],
+.is-apple-device [class*="bg-gray"][class*="backdrop-blur"] {
+  background-color: rgba(0, 0, 0, 0.85) !important;
+}
+
+/* Optimize sticky elements */
+.is-apple-device [class*="sticky"],
+.is-apple-device [style*="position: sticky"],
+.is-apple-device [style*="position:sticky"] {
+  transform: translate3d(0, 0, 0) !important;
+  will-change: transform !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+}
+
+/* Optimize fixed elements */
+.is-apple-device [class*="fixed"],
+.is-apple-device [style*="position: fixed"],
+.is-apple-device [style*="position:fixed"] {
+  transform: translate3d(0, 0, 0) !important;
+  will-change: transform !important;
+  -webkit-transform: translate3d(0, 0, 0) !important;
+}
+
+/* Simplify box-shadows on Apple devices */
+.is-apple-device * {
+  /* Override complex box-shadows with simple ones */
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.08) !important;
+}
+
+.is-apple-device [class*="shadow-xl"],
+.is-apple-device [class*="shadow-2xl"] {
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Remove mix-blend-mode on Apple devices */
+.is-apple-device [class*="mix-blend"] {
+  mix-blend-mode: normal !important;
+}
+
+/* Override ALL Tailwind backdrop-blur classes on Apple devices */
+.is-apple-device .backdrop-blur-none,
+.is-apple-device .backdrop-blur-sm,
+.is-apple-device .backdrop-blur,
+.is-apple-device .backdrop-blur-md,
+.is-apple-device .backdrop-blur-lg,
+.is-apple-device .backdrop-blur-xl,
+.is-apple-device .backdrop-blur-2xl,
+.is-apple-device .backdrop-blur-3xl {
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+}
+
+/* Convert transparent backgrounds to solid on Apple devices */
+.is-apple-device .bg-white\/80,
+.is-apple-device .bg-white\/90,
+.is-apple-device .bg-white\/95 {
+  background-color: rgba(255, 255, 255, 0.98) !important;
+}
+
+.is-apple-device .bg-black\/50,
+.is-apple-device .bg-black\/60,
+.is-apple-device .bg-black\/70,
+.is-apple-device .bg-black\/80 {
+  background-color: rgba(0, 0, 0, 0.90) !important;
+}
+
+/* Optimize animations - use only transform and opacity */
+.is-apple-device * {
+  /* Limit will-change to transform and opacity only */
+  will-change: transform, opacity !important;
+}
+
 /* Hardware acceleration for animations */
 .motion-div {
   transform: translate3d(0, 0, 0);
   backface-visibility: hidden;
-  perspective: 1000px;
+}
+
+/* Remove perspective on Apple devices in motion-div */
+.is-apple-device .motion-div {
+  perspective: none !important;
+  -webkit-perspective: none !important;
 }
 
 /* Reduce motion for accessibility */
@@ -473,5 +586,126 @@ img[loading="lazy"] {
     -webkit-transform: translateZ(0);
     transform: translateZ(0);
     contain: layout style;
+  }
+  
+  /* ====================================================================
+     CRITICAL: Remove ALL backdrop-filter on Apple devices
+     This is the main cause of flickering
+     ==================================================================== */
+  [class*="backdrop-blur"],
+  .backdrop-blur-sm,
+  .backdrop-blur,
+  .backdrop-blur-md,
+  .backdrop-blur-lg,
+  .backdrop-blur-xl,
+  .backdrop-blur-2xl,
+  .backdrop-blur-3xl,
+  [style*="backdrop-filter"],
+  [style*="backdropFilter"],
+  [style*="-webkit-backdrop-filter"] {
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+    /* Increase opacity to compensate for lost blur effect */
+    background-color: rgba(255, 255, 255, 0.98) !important;
+  }
+  
+  /* Keep dark overlays dark */
+  [style*="backdrop-filter"][style*="black"],
+  [class*="backdrop-blur"][class*="bg-black"],
+  [class*="bg-black"][class*="backdrop"] {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+  }
+  
+  /* Navigation specific - use solid white */
+  nav [class*="backdrop-blur"],
+  nav [style*="backdrop-filter"],
+  header [class*="backdrop-blur"],
+  header [style*="backdrop-filter"] {
+    background-color: rgba(255, 255, 255, 0.98) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* Modal overlays - solid backgrounds */
+  [class*="modal"] [class*="backdrop-blur"],
+  [class*="modal"] [style*="backdrop-filter"],
+  [role="dialog"] [class*="backdrop-blur"],
+  [role="dialog"] [style*="backdrop-filter"] {
+    background-color: rgba(0, 0, 0, 0.75) !important;
+    -webkit-backdrop-filter: none !important;
+    backdrop-filter: none !important;
+  }
+  
+  /* ====================================================================
+     Remove ALL filter effects on Apple devices (major flickering cause)
+     Disable perspective and 3D transforms
+     Optimize animations and transitions
+     ==================================================================== */
+  /* Consolidated global optimizations for all elements */
+  * {
+    /* Remove all filter effects */
+    filter: none !important;
+    -webkit-filter: none !important;
+    /* Ensure backface is always hidden (prevents flip flickering) */
+    -webkit-backface-visibility: hidden !important;
+    backface-visibility: hidden !important;
+    /* Force GPU acceleration on all elements */
+    -webkit-transform: translate3d(0, 0, 0);
+    transform: translate3d(0, 0, 0);
+  }
+  
+  /* Remove blur from images (if any filter is applied) */
+  img[style*="filter"],
+  img[class*="blur"] {
+    filter: none !important;
+    -webkit-filter: none !important;
+  }
+  
+  /* ====================================================================
+     Optimize box-shadows (heavy performance cost on iOS)
+     ==================================================================== */
+  /* Remove inset shadows entirely (expensive on iOS) */
+  [style*="inset"] {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Simplify heavy multi-layer shadows */
+  [style*="box-shadow"][style*=","][style*=","] {
+    /* If element has 3+ box-shadow layers, simplify to 1 */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12) !important;
+  }
+  
+  /* ====================================================================
+     Disable perspective (flickering triggers)
+     ==================================================================== */
+  /* Remove perspective that can cause flickering */
+  [style*="perspective"],
+  [class*="perspective"] {
+    perspective: none !important;
+    -webkit-perspective: none !important;
+  }
+  
+  /* ====================================================================
+     Optimize transitions and animations on Apple devices
+     ==================================================================== */
+  /* Disable complex transitions that can cause flickering */
+  [style*="transition"][style*="filter"],
+  [style*="transition"][style*="backdrop"],
+  [class*="transition"][class*="blur"] {
+    /* Remove problematic transition properties */
+    transition-property: transform, opacity !important;
+    transition-timing-function: ease-out !important;
+  }
+  
+  /* ====================================================================
+     Optimize Framer Motion animations
+     ==================================================================== */
+  /* Prevent motion components from using filters */
+  [data-framer-component],
+  [data-projection-id] {
+    filter: none !important;
+    backdrop-filter: none !important;
+    -webkit-filter: none !important;
+    -webkit-backdrop-filter: none !important;
   }
 }

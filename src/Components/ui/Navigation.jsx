@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
 import CallModal from "./CallModal";
+import { isAppleDevice as checkIsAppleDevice } from "../../utils/deviceDetection";
 const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
 const logoFullLocal = "/assets/logos/full-logo.avif";
@@ -16,121 +17,161 @@ const Navigation = () => {
   const [infraDropdownOpen, setInfraDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
+
   // --- Style helpers to avoid repeating large inline objects ---
-  // Detect if user is on Apple device to optimize backdrop-filter
-  const isAppleDevice =
-    typeof navigator !== "undefined" &&
-    (/iPad|iPhone|iPod/.test(navigator.userAgent) ||
-      (navigator.userAgent.includes("Mac") && "ontouchend" in document));
+  // Use centralized Apple device detection to prevent flickering
+  const isAppleDevice = checkIsAppleDevice();
 
   const navStyle = (scrolled) => ({
-    background: scrolled
+    // Use solid background on Apple devices to prevent flickering, blur for others
+    background: isAppleDevice
+      ? scrolled
+        ? "rgba(255, 255, 255, 0.98)"
+        : "rgba(255, 255, 255, 0.96)"
+      : scrolled
       ? "linear-gradient(to right, rgba(255, 255, 255, 0.95) 0%, rgba(255, 255, 255, 0.95) 40%, rgba(255, 255, 255, 0.90) 100%)"
       : "linear-gradient(to right, rgba(255, 255, 255, 0.90) 0%, rgba(255, 255, 255, 0.90) 40%, rgba(255, 255, 255, 0.85) 100%)",
-    // Use lighter backdrop-filter on Apple devices to prevent flickering
-    backdropFilter: isAppleDevice
-      ? "blur(20px) saturate(180%)"
-      : "blur(40px) saturate(220%)",
-    WebkitBackdropFilter: isAppleDevice
-      ? "blur(20px) saturate(180%)"
-      : "blur(40px) saturate(220%)",
+    // COMPLETELY REMOVE backdrop-filter on Apple devices to prevent flickering
+    backdropFilter: isAppleDevice ? "none" : "blur(40px) saturate(220%)",
+    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(40px) saturate(220%)",
     borderBottom: scrolled
       ? "1px solid rgba(226, 232, 240, 0.8)"
       : "1px solid rgba(226, 232, 240, 0.5)",
-    boxShadow: scrolled
+    // Simplified box-shadow for Apple devices to reduce GPU load
+    boxShadow: isAppleDevice
+      ? scrolled
+        ? "0 2px 8px rgba(0, 0, 0, 0.1)"
+        : "0 1px 3px rgba(0, 0, 0, 0.08)"
+      : scrolled
       ? "0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06)"
       : "0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06)",
-    // Apple-specific optimizations
+    // Apple-specific optimizations - force GPU acceleration
     transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
     WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    willChange: isAppleDevice ? "transform" : undefined,
+    // Prevent subpixel rendering issues
+    WebkitFontSmoothing: isAppleDevice ? "antialiased" : undefined,
   });
 
   const emergencyStyle = {
-    background:
-      "linear-gradient(135deg, rgba(220,38,38,0.92) 0%, rgba(239,68,68,0.95) 50%, rgba(220,38,38,0.92) 100%)",
-    backdropFilter: "blur(20px) saturate(160%)",
-    WebkitBackdropFilter: "blur(20px) saturate(160%)",
+    background: isAppleDevice
+      ? "rgba(220, 38, 38, 0.95)"
+      : "linear-gradient(135deg, rgba(220,38,38,0.92) 0%, rgba(239,68,68,0.95) 50%, rgba(220,38,38,0.92) 100%)",
+    backdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(160%)",
+    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(160%)",
     border: "1px solid rgba(255,255,255,0.4)",
-    boxShadow:
-      "0 8px 32px rgba(220,38,38,0.35), 0 4px 16px rgba(220,38,38,0.25), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.1)",
+    // Simplified box-shadow for Apple devices to reduce GPU load
+    boxShadow: isAppleDevice
+      ? "0 4px 12px rgba(220,38,38,0.4)"
+      : "0 8px 32px rgba(220,38,38,0.35), 0 4px 16px rgba(220,38,38,0.25), inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -1px 0 rgba(0,0,0,0.1)",
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    willChange: isAppleDevice ? "transform" : undefined,
   };
 
   const toggleStyle = {
-    background:
-      "linear-gradient(135deg, rgba(107,114,128,0.15) 0%, rgba(156,163,175,0.12) 50%, rgba(107,114,128,0.1) 100%)",
-    backdropFilter: "blur(16px) saturate(140%)",
-    WebkitBackdropFilter: "blur(16px) saturate(140%)",
+    background: isAppleDevice
+      ? "rgba(107, 114, 128, 0.2)"
+      : "linear-gradient(135deg, rgba(107,114,128,0.15) 0%, rgba(156,163,175,0.12) 50%, rgba(107,114,128,0.1) 100%)",
+    backdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(140%)",
+    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(140%)",
     border: "1px solid rgba(255,255,255,0.5)",
-    boxShadow:
-      "0 4px 16px rgba(107,114,128,0.12), 0 2px 8px rgba(107,114,128,0.08), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.05)",
+    // Simplified box-shadow for Apple devices to reduce GPU load
+    boxShadow: isAppleDevice
+      ? "0 2px 8px rgba(107,114,128,0.15)"
+      : "0 4px 16px rgba(107,114,128,0.12), 0 2px 8px rgba(107,114,128,0.08), inset 0 1px 0 rgba(255,255,255,0.7), inset 0 -1px 0 rgba(0,0,0,0.05)",
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    willChange: isAppleDevice ? "transform" : undefined,
   };
 
   const overlayStyle = {
-    background:
-      "linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(59,130,246,0.15) 50%, rgba(0,0,0,0.25) 100%)",
-    backdropFilter: isAppleDevice
-      ? "blur(8px) saturate(140%)"
-      : "blur(16px) saturate(160%)",
-    WebkitBackdropFilter: isAppleDevice
-      ? "blur(8px) saturate(140%)"
-      : "blur(16px) saturate(160%)",
-    // Apple-specific optimization
+    background: isAppleDevice
+      ? "rgba(0, 0, 0, 0.5)"
+      : "linear-gradient(135deg, rgba(0,0,0,0.3) 0%, rgba(59,130,246,0.15) 50%, rgba(0,0,0,0.25) 100%)",
+    // COMPLETELY REMOVE backdrop-filter on Apple devices
+    backdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(160%)",
+    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(16px) saturate(160%)",
+    // Apple-specific optimization - force GPU acceleration
     transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
     WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    willChange: isAppleDevice ? "transform" : undefined,
   };
 
   const mobileMenuStyle = {
     background: isAppleDevice
       ? "rgba(255, 255, 255, 0.98)"
       : "rgba(255, 255, 255, 0.95)",
-    backdropFilter: isAppleDevice
-      ? "blur(10px) saturate(150%)"
-      : "blur(20px) saturate(180%)",
-    WebkitBackdropFilter: isAppleDevice
-      ? "blur(10px) saturate(150%)"
-      : "blur(20px) saturate(180%)",
+    // COMPLETELY REMOVE backdrop-filter on Apple devices
+    backdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(180%)",
+    WebkitBackdropFilter: isAppleDevice ? "none" : "blur(20px) saturate(180%)",
     borderTop: "1px solid rgba(226, 232, 240, 0.8)",
-    boxShadow:
-      "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
-    // Apple-specific optimization
+    // Simplified box-shadow for Apple devices to reduce GPU load
+    boxShadow: isAppleDevice
+      ? "0 -2px 8px rgba(0, 0, 0, 0.1)"
+      : "0 -4px 6px -1px rgba(0, 0, 0, 0.1), 0 -2px 4px -1px rgba(0, 0, 0, 0.06)",
+    // Apple-specific optimization - force GPU acceleration
     transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
     WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    willChange: isAppleDevice ? "transform" : undefined,
+    // Isolate layer to prevent repaint issues
+    isolation: isAppleDevice ? "isolate" : undefined,
   };
 
   const navLinkStyle = (isActive) => ({
     background: isActive
-      ? "linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(147,197,253,0.16) 50%, rgba(59,130,246,0.14) 100%)"
+      ? isAppleDevice
+        ? "rgba(59, 130, 246, 0.2)"
+        : "linear-gradient(135deg, rgba(59,130,246,0.2) 0%, rgba(147,197,253,0.16) 50%, rgba(59,130,246,0.14) 100%)"
       : "transparent",
-    backdropFilter: isActive
-      ? "blur(30px) saturate(180%) brightness(1.05)"
-      : "none",
-    WebkitBackdropFilter: isActive
-      ? "blur(30px) saturate(180%) brightness(1.05)"
-      : "none",
+    // REMOVE backdrop-filter on Apple devices
+    backdropFilter:
+      isActive && !isAppleDevice
+        ? "blur(30px) saturate(180%) brightness(1.05)"
+        : "none",
+    WebkitBackdropFilter:
+      isActive && !isAppleDevice
+        ? "blur(30px) saturate(180%) brightness(1.05)"
+        : "none",
     border: isActive
       ? "1.5px solid rgba(59,130,246,0.35)"
       : "1.5px solid transparent",
+    // Simplified box-shadow for Apple devices to reduce GPU load
     boxShadow: isActive
-      ? "0 6px 20px rgba(59,130,246,0.18), 0 3px 10px rgba(59,130,246,0.12), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(59,130,246,0.15), inset 0 0 40px rgba(255,255,255,0.1)"
+      ? isAppleDevice
+        ? "0 2px 8px rgba(59,130,246,0.2)"
+        : "0 6px 20px rgba(59,130,246,0.18), 0 3px 10px rgba(59,130,246,0.12), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(59,130,246,0.15), inset 0 0 40px rgba(255,255,255,0.1)"
       : "none",
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
   });
 
   const mobileNavLinkStyle = (isActive) => ({
     background: isActive
-      ? "linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(147,197,253,0.2) 50%, rgba(59,130,246,0.18) 100%)"
+      ? isAppleDevice
+        ? "rgba(59, 130, 246, 0.25)"
+        : "linear-gradient(135deg, rgba(59,130,246,0.25) 0%, rgba(147,197,253,0.2) 50%, rgba(59,130,246,0.18) 100%)"
       : "transparent",
-    backdropFilter: isActive
-      ? "blur(30px) saturate(180%) brightness(1.05)"
-      : "none",
-    WebkitBackdropFilter: isActive
-      ? "blur(30px) saturate(180%) brightness(1.05)"
-      : "none",
+    // REMOVE backdrop-filter on Apple devices
+    backdropFilter:
+      isActive && !isAppleDevice
+        ? "blur(30px) saturate(180%) brightness(1.05)"
+        : "none",
+    WebkitBackdropFilter:
+      isActive && !isAppleDevice
+        ? "blur(30px) saturate(180%) brightness(1.05)"
+        : "none",
     border: isActive
       ? "1.5px solid rgba(59,130,246,0.4)"
       : "1.5px solid transparent",
+    // Simplified box-shadow for Apple devices to reduce GPU load
     boxShadow: isActive
-      ? "0 6px 20px rgba(59,130,246,0.2), 0 3px 10px rgba(59,130,246,0.14), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(59,130,246,0.18), inset 0 0 40px rgba(255,255,255,0.12)"
+      ? isAppleDevice
+        ? "0 2px 8px rgba(59,130,246,0.25)"
+        : "0 6px 20px rgba(59,130,246,0.2), 0 3px 10px rgba(59,130,246,0.14), inset 0 2px 0 rgba(255,255,255,0.6), inset 0 -2px 0 rgba(59,130,246,0.18), inset 0 0 40px rgba(255,255,255,0.12)"
       : "none",
+    transform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
+    WebkitTransform: isAppleDevice ? "translate3d(0, 0, 0)" : undefined,
   });
 
   // Reusable overlay backgrounds and contact styles
@@ -279,7 +320,19 @@ const Navigation = () => {
                             animate={{ opacity: 1, y: 0 }}
                             exit={{ opacity: 0, y: -10 }}
                             transition={{ duration: 0.2 }}
-                            className="absolute top-full left-0 mt-2 min-w-[220px] max-w-[280px] bg-white/95 backdrop-blur-md rounded-xl shadow-xl border border-gray-100 overflow-hidden z-[60]"
+                            className={`absolute top-full left-0 mt-2 min-w-[220px] max-w-[280px] ${
+                              isAppleDevice
+                                ? "bg-white"
+                                : "bg-white/95 backdrop-blur-md"
+                            } rounded-xl shadow-xl border border-gray-100 overflow-hidden z-[60]`}
+                            style={{
+                              transform: isAppleDevice
+                                ? "translate3d(0, 0, 0)"
+                                : undefined,
+                              WebkitTransform: isAppleDevice
+                                ? "translate3d(0, 0, 0)"
+                                : undefined,
+                            }}
                           >
                             {item.dropdown.map((subItem) => {
                               const isSubActive =

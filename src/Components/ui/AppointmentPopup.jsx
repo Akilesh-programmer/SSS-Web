@@ -1,6 +1,7 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import emailjs from "@emailjs/browser";
+import { isAppleDevice } from "../../utils/deviceDetection";
 import {
   FaCalendarAlt,
   FaUserMd,
@@ -270,12 +271,19 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
           className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={handleClose}
         >
-          {/* Backdrop with blur effect */}
+          {/* Backdrop - NO blur on Apple devices */}
           <motion.div
-            initial={{ backdropFilter: "blur(0px)" }}
-            animate={{ backdropFilter: "blur(10px)" }}
-            exit={{ backdropFilter: "blur(0px)" }}
-            className="absolute inset-0 bg-black/50"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="absolute inset-0"
+            style={{
+              background: isAppleDevice()
+                ? "rgba(0, 0, 0, 0.85)"
+                : "rgba(0, 0, 0, 0.5)",
+              backdropFilter: isAppleDevice() ? "none" : "blur(10px)",
+              WebkitBackdropFilter: isAppleDevice() ? "none" : "blur(10px)",
+            }}
           />
 
           {/* Floating decorative elements */}

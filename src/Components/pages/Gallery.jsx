@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "../ui/HeroSection";
+import { isAppleDevice } from "../../utils/deviceDetection";
 import {
   FaHospital,
   FaPlayCircle,
@@ -318,11 +319,17 @@ const Gallery = () => {
       <AnimatePresence>
         {activeMedia && (
           <motion.div
-            className="fixed inset-0 z-[999] flex items-center justify-center p-4 backdrop-blur-2xl"
+            className="fixed inset-0 z-[999] flex items-center justify-center p-4"
             style={{
-              background: "rgba(255, 255, 255, 0.05)",
-              backdropFilter: "blur(40px) saturate(180%)",
-              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+              background: isAppleDevice()
+                ? "rgba(0, 0, 0, 0.95)"
+                : "rgba(255, 255, 255, 0.05)",
+              backdropFilter: isAppleDevice()
+                ? "none"
+                : "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: isAppleDevice()
+                ? "none"
+                : "blur(40px) saturate(180%)",
             }}
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}

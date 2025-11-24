@@ -1,6 +1,7 @@
 import { useState, useRef, useMemo, useEffect } from "react";
 import ModalPortal from "../ui/ModalPortal";
 import { motion, AnimatePresence } from "framer-motion";
+import { isAppleDevice } from "../../utils/deviceDetection";
 import {
   FaAmbulance,
   FaHeartbeat,
@@ -616,9 +617,15 @@ const Services = () => {
             <motion.div
               className="fixed inset-0 flex items-center justify-center z-[1000] p-4 md:p-8"
               style={{
-                background: "rgba(0,0,0,0.5)",
-                backdropFilter: "blur(32px) saturate(160%)",
-                WebkitBackdropFilter: "blur(32px) saturate(160%)",
+                background: isAppleDevice()
+                  ? "rgba(0, 0, 0, 0.95)"
+                  : "rgba(0, 0, 0, 0.5)",
+                backdropFilter: isAppleDevice()
+                  ? "none"
+                  : "blur(32px) saturate(160%)",
+                WebkitBackdropFilter: isAppleDevice()
+                  ? "none"
+                  : "blur(32px) saturate(160%)",
               }}
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}

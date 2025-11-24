@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
+import { isAppleDevice } from "../../../utils/deviceDetection";
 import {
   FaUserMd,
   FaImages,
@@ -414,12 +415,18 @@ const InfrastructureGallery = () => {
         </div>
       )}
 
-      {/* Modal for enlarged view (blurred backdrop instead of heavy black shade) */}
+      {/* Modal for enlarged view - NO blur on Apple devices */}
       {selectedImage && (
         <div
-          className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent"
+          className="fixed inset-0 z-50 flex items-center justify-center p-4"
           onClick={closeModal}
-          style={{ backdropFilter: "blur(8px)" }}
+          style={{
+            background: isAppleDevice()
+              ? "rgba(0, 0, 0, 0.9)"
+              : "rgba(0, 0, 0, 0.3)",
+            backdropFilter: isAppleDevice() ? "none" : "blur(8px)",
+            WebkitBackdropFilter: isAppleDevice() ? "none" : "blur(8px)",
+          }}
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
@@ -721,12 +728,18 @@ const DepartmentPageLayout = () => {
                           }}
                           className="group cursor-pointer mx-auto w-full"
                           onClick={() => {
-                            // Create a blurred backdrop modal (no heavy black shade)
+                            // Create modal backdrop - NO blur on Apple devices
                             const modal = document.createElement("div");
                             modal.className =
-                              "fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent";
-                            // Apply backdrop blur inline for broader compatibility
-                            modal.style.backdropFilter = "blur(8px)";
+                              "fixed inset-0 z-50 flex items-center justify-center p-4";
+                            // Apply backdrop blur only on non-Apple devices
+                            if (isAppleDevice()) {
+                              modal.style.background = "rgba(0, 0, 0, 0.9)";
+                            } else {
+                              modal.style.background = "rgba(0, 0, 0, 0.3)";
+                              modal.style.backdropFilter = "blur(8px)";
+                              modal.style.WebkitBackdropFilter = "blur(8px)";
+                            }
                             modal.innerHTML = `
                           <div class="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center">
                             <img src="${photo.src}" alt="" class="max-w-full max-h-full object-contain rounded-lg shadow-2xl" />

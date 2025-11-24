@@ -116,8 +116,8 @@ const Specialities = () => {
       />
 
       <section className="py-16 lg:py-24 bg-gradient-to-br from-gray-50 via-emerald-50 to-teal-50 relative overflow-hidden min-h-screen">
-        {/* Subtle Professional Background Elements */}
-        <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        {/* Subtle Professional Background Elements - Hidden on Apple devices to prevent flickering */}
+        <div className="absolute inset-0 overflow-hidden pointer-events-none is-apple-device:hidden">
           {/* Gentle floating shapes */}
           <div className="absolute top-20 left-10 w-64 h-64 bg-gradient-to-br from-emerald-200/8 to-teal-300/8 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float"></div>
           <div className="absolute top-40 right-10 w-80 h-80 bg-gradient-to-br from-emerald-300/10 to-teal-400/10 rounded-full mix-blend-multiply filter blur-3xl animate-gentle-float-delayed"></div>
