@@ -329,46 +329,33 @@
     
     <!-- CRITICAL iOS POSITIONING FIX - Inline to ensure it's never stripped -->
     <style>
+      /* Inline iOS layout correction v2.0.3 - uncompromising fix */
       @supports (-webkit-touch-callout: none) {
-        /* iOS-only: Remove transforms from root to preserve fixed positioning */
-        html, body, #root, #root > *, #root > div, #root > div > * {
+        /* 1. Neutralize transforms everywhere first */
+        html, body, #root, #root * {
           -webkit-transform: none !important;
           transform: none !important;
-          -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
         }
-        
-        /* iOS-only: No transform on fixed/sticky elements */
+        /* 2. Ensure fixed/sticky elements truly attach to viewport */
         [style*="position: fixed"], [style*="position: sticky"],
         .fixed, .sticky, [class*="fixed"], [class*="sticky"],
-        [role="dialog"], [data-modal],
-        [class*="modal"], [class*="Modal"],
-        [class*="popup"], [class*="Popup"],
-        [class*="overlay"], [class*="Overlay"] {
+        [role="dialog"], [data-modal], [class*="modal"], [class*="popup"], [class*="overlay"],
+        [class*="Modal"], [class*="Popup"], [class*="Overlay"],
+        .fixed *, .sticky *, [class*="fixed"] *, [class*="sticky"] * {
           -webkit-transform: none !important;
           transform: none !important;
-          -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
         }
-        
-        /* iOS-only: No transform on children of fixed/sticky */
-        .fixed *, .sticky *, [class*="fixed"] *, [class*="sticky"] *,
-        [style*="position: fixed"] *, [style*="position: sticky"] *,
-        [role="dialog"] *, [data-modal] *,
-        [class*="modal"] *, [class*="Modal"] *,
-        [class*="popup"] *, [class*="Popup"] *,
-        [class*="overlay"] *, [class*="Overlay"] * {
+        /* 3. Remove any translate/scale injected inline by libraries */
+        [style*="translate"], [style*="scale"], [style*="rotate"], [style*="transform"] {
           -webkit-transform: none !important;
           transform: none !important;
-          -webkit-backface-visibility: visible !important;
-          backface-visibility: visible !important;
         }
-        
-        /* iOS-only: Tailwind !important utilities */
-        [class*="\\!fixed"], [class*="\\!bottom"], [class*="\\!top"],
-        [class*="\\!left"], [class*="\\!right"], [class*="\\!z-"], [class*="\\!inset"] {
-          -webkit-transform: none !important;
-          transform: none !important;
+        /* 4. Kill GPU hacks that might recreate containing blocks */
+        [style*="will-change"], [style*="perspective"], [style*="backface-visibility"] {
+          will-change: auto !important;
+          perspective: none !important;
+          backface-visibility: visible !important;
+          -webkit-backface-visibility: visible !important;
         }
       }
     </style>
