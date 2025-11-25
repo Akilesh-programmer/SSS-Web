@@ -45,6 +45,24 @@ if ("serviceWorker" in navigator && import.meta.env.PROD) {
         // console.info("SW active version:", event.data.version);
       }
     });
+
+    // Schedule periodic cache cleanup (every 24 hours)
+    setInterval(() => {
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: "CACHE_CLEANUP",
+        });
+      }
+    }, 24 * 60 * 60 * 1000); // 24 hours
+
+    // Initial cleanup on load (after 5 seconds to not block initial render)
+    setTimeout(() => {
+      if (navigator.serviceWorker.controller) {
+        navigator.serviceWorker.controller.postMessage({
+          type: "CACHE_CLEANUP",
+        });
+      }
+    }, 5000);
   });
 }
 
