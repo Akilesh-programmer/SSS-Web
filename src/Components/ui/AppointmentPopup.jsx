@@ -261,329 +261,328 @@ const AppointmentPopup = ({ isOpen, onClose }) => {
   );
 
   return (
-    <AnimatePresence>
-      {isOpen && (
+    isOpen && (
+      <div
+        style={{
+          position: "fixed",
+          top: 0,
+          left: 0,
+          right: 0,
+          bottom: 0,
+          zIndex: 50,
+        }}
+        className="flex items-center justify-center p-4"
+        onClick={handleClose}
+      >
+        {/* Backdrop with blur effect */}
         <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
-          onClick={handleClose}
+          initial={{ backdropFilter: "blur(0px)" }}
+          animate={{ backdropFilter: "blur(10px)" }}
+          exit={{ backdropFilter: "blur(0px)" }}
+          className="absolute inset-0 bg-black/50"
+        />
+
+        {/* Floating decorative elements */}
+        <div className="absolute inset-0 pointer-events-none">
+          {[...Array(16)].map((_, i) => {
+            const icons = [
+              <FaHeart className="text-3xl text-emerald-300" />,
+              <FaStethoscope className="text-3xl text-blue-300" />,
+              <FaHeartbeat className="text-3xl text-red-300" />,
+              <FaUserMd className="text-3xl text-indigo-300" />,
+              <FaSyringe className="text-3xl text-green-300" />,
+              <FaHospital className="text-3xl text-purple-300" />,
+              <FaMicroscope className="text-3xl text-cyan-300" />,
+              <FaHandHoldingMedical className="text-3xl text-pink-300" />,
+              <FaCapsules className="text-3xl text-yellow-300" />,
+              <FaCalendarAlt className="text-3xl text-orange-300" />,
+            ];
+
+            return (
+              <motion.div
+                key={i}
+                className="absolute"
+                initial={{ opacity: 0, scale: 0 }}
+                animate={{
+                  opacity: [0, 0.4, 0],
+                  scale: [0, 1.2, 0],
+                  rotate: [0, 180, 360],
+                  x: [0, Math.sin(i) * 20, 0],
+                  y: [0, Math.cos(i) * 20, 0],
+                }}
+                transition={{
+                  delay: i * 0.3,
+                  duration: 6,
+                  repeat: Infinity,
+                  repeatDelay: 1,
+                  ease: "easeInOut",
+                }}
+                style={{
+                  left: `${5 + ((i * 6) % 90)}%`,
+                  top: `${10 + ((i * 7) % 80)}%`,
+                  filter: "drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2))",
+                }}
+              >
+                {icons[i % icons.length]}
+              </motion.div>
+            );
+          })}
+        </div>
+
+        {/* Modal Content */}
+        <div
+          className="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
+          onClick={(e) => e.stopPropagation()}
         >
-          {/* Backdrop with blur effect */}
-          <motion.div
-            initial={{ backdropFilter: "blur(0px)" }}
-            animate={{ backdropFilter: "blur(10px)" }}
-            exit={{ backdropFilter: "blur(0px)" }}
-            className="absolute inset-0 bg-black/50"
-          />
-
-          {/* Floating decorative elements */}
-          <div className="absolute inset-0 pointer-events-none">
-            {[...Array(16)].map((_, i) => {
-              const icons = [
-                <FaHeart className="text-3xl text-emerald-300" />,
-                <FaStethoscope className="text-3xl text-blue-300" />,
-                <FaHeartbeat className="text-3xl text-red-300" />,
-                <FaUserMd className="text-3xl text-indigo-300" />,
-                <FaSyringe className="text-3xl text-green-300" />,
-                <FaHospital className="text-3xl text-purple-300" />,
-                <FaMicroscope className="text-3xl text-cyan-300" />,
-                <FaHandHoldingMedical className="text-3xl text-pink-300" />,
-                <FaCapsules className="text-3xl text-yellow-300" />,
-                <FaCalendarAlt className="text-3xl text-orange-300" />,
-              ];
-
-              return (
-                <motion.div
-                  key={i}
-                  className="absolute"
-                  initial={{ opacity: 0, scale: 0 }}
-                  animate={{
-                    opacity: [0, 0.4, 0],
-                    scale: [0, 1.2, 0],
-                    rotate: [0, 180, 360],
-                    x: [0, Math.sin(i) * 20, 0],
-                    y: [0, Math.cos(i) * 20, 0],
-                  }}
-                  transition={{
-                    delay: i * 0.3,
-                    duration: 6,
-                    repeat: Infinity,
-                    repeatDelay: 1,
-                    ease: "easeInOut",
-                  }}
-                  style={{
-                    left: `${5 + ((i * 6) % 90)}%`,
-                    top: `${10 + ((i * 7) % 80)}%`,
-                    filter: "drop-shadow(0 4px 12px rgba(0, 0, 0, 0.2))",
-                  }}
-                >
-                  {icons[i % icons.length]}
-                </motion.div>
-              );
-            })}
-          </div>
-
-          {/* Modal Content */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 50 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0.8, y: 50 }}
-            transition={{ type: "spring", damping: 25, stiffness: 300 }}
-            className="relative bg-white rounded-3xl shadow-2xl max-w-4xl w-full max-h-[90vh] overflow-hidden"
-            onClick={(e) => e.stopPropagation()}
+          {/* Close Button */}
+          <button
+            onClick={handleClose}
+            className="absolute top-6 right-6 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors group"
           >
-            {/* Close Button */}
-            <button
-              onClick={handleClose}
-              className="absolute top-6 right-6 z-10 w-10 h-10 bg-gray-100 hover:bg-gray-200 rounded-full flex items-center justify-center transition-colors group"
-            >
-              <FaTimes className="text-gray-600 group-hover:text-gray-800" />
-            </button>
+            <FaTimes className="text-gray-600 group-hover:text-gray-800" />
+          </button>
 
-            {/* Header with gradient */}
-            <div className="bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-600 text-white p-8 relative overflow-hidden">
-              {/* Background pattern */}
-              <div className="absolute inset-0 opacity-10">
-                <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
-              </div>
-
-              <div className="relative">
-                <motion.h2
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  className="text-heading-xl flex items-center gap-3 mb-2"
-                >
-                  <motion.div
-                    animate={{ rotate: [0, -10, 10, 0] }}
-                    transition={{
-                      duration: 2,
-                      repeat: Infinity,
-                      repeatDelay: 3,
-                    }}
-                  >
-                    <FaCalendarAlt />
-                  </motion.div>
-                  Book Your Appointment
-                </motion.h2>
-                <motion.p
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: 0.1 }}
-                  className="text-emerald-100"
-                >
-                  Schedule your consultation with our expert medical team
-                </motion.p>
-              </div>
+          {/* Header with gradient */}
+          <div className="bg-gradient-to-r from-emerald-600 via-emerald-700 to-teal-600 text-white p-8 relative overflow-hidden">
+            {/* Background pattern */}
+            <div className="absolute inset-0 opacity-10">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-transparent"></div>
             </div>
 
-            {/* Content */}
-            <div className="overflow-y-auto max-h-[calc(90vh-140px)]">
-              {isSubmitted ? (
-                <SuccessScreen />
-              ) : (
-                <form onSubmit={handleSubmit} className="p-8">
-                  <div className="grid md:grid-cols-2 gap-8">
-                    {/* Personal Information */}
-                    <motion.div
-                      initial={{ opacity: 0, x: -30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.2 }}
-                      className="space-y-6"
-                    >
-                      <h4 className="text-heading-md text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
-                        <FaUser className="text-emerald-600" />
-                        Personal Information
-                      </h4>
+            <div className="relative">
+              <motion.h2
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                className="text-heading-xl flex items-center gap-3 mb-2"
+              >
+                <motion.div
+                  animate={{ rotate: [0, -10, 10, 0] }}
+                  transition={{
+                    duration: 2,
+                    repeat: Infinity,
+                    repeatDelay: 3,
+                  }}
+                >
+                  <FaCalendarAlt />
+                </motion.div>
+                Book Your Appointment
+              </motion.h2>
+              <motion.p
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: 0.1 }}
+                className="text-emerald-100"
+              >
+                Schedule your consultation with our expert medical team
+              </motion.p>
+            </div>
+          </div>
 
+          {/* Content */}
+          <div className="overflow-y-auto max-h-[calc(90vh-140px)]">
+            {isSubmitted ? (
+              <SuccessScreen />
+            ) : (
+              <form onSubmit={handleSubmit} className="p-8">
+                <div className="grid md:grid-cols-2 gap-8">
+                  {/* Personal Information */}
+                  <motion.div
+                    initial={{ opacity: 0, x: -30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.2 }}
+                    className="space-y-6"
+                  >
+                    <h4 className="text-heading-md text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
+                      <FaUser className="text-emerald-600" />
+                      Personal Information
+                    </h4>
+
+                    <div>
+                      <label className="text-label-md block font-medium text-gray-700 mb-2">
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
+                        placeholder="Enter your full name"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-label-md block font-medium text-gray-700 mb-2">
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
+                        placeholder="Enter your email"
+                      />
+                    </div>
+
+                    <div>
+                      <label className="text-label-md block font-medium text-gray-700 mb-2">
+                        Phone Number *
+                      </label>
+                      <input
+                        type="tel"
+                        name="phone"
+                        value={formData.phone}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
+                        placeholder="+91 9876543210"
+                      />
+                    </div>
+                  </motion.div>
+
+                  {/* Appointment Details */}
+                  <motion.div
+                    initial={{ opacity: 0, x: 30 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ delay: 0.3 }}
+                    className="space-y-6"
+                  >
+                    <h4 className="text-heading-md text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
+                      <FaUserMd className="text-emerald-600" />
+                      Appointment Details
+                    </h4>
+
+                    <div>
+                      <label className="text-label-md block font-medium text-gray-700 mb-2">
+                        Department *
+                      </label>
+                      <select
+                        name="department"
+                        value={formData.department}
+                        onChange={handleInputChange}
+                        required
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
+                      >
+                        <option value="">Select Department</option>
+                        {departments.map((dept) => (
+                          <option key={dept} value={dept}>
+                            {dept}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    <div>
+                      <label className="text-label-md block font-medium text-gray-700 mb-2">
+                        Preferred Doctor (Optional)
+                      </label>
+                      <input
+                        type="text"
+                        name="doctor"
+                        value={formData.doctor}
+                        onChange={handleInputChange}
+                        className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
+                        placeholder="Any specific doctor preference"
+                      />
+                    </div>
+
+                    <div className="grid grid-cols-2 gap-4">
                       <div>
                         <label className="text-label-md block font-medium text-gray-700 mb-2">
-                          Full Name *
+                          Preferred Date *
                         </label>
                         <input
-                          type="text"
-                          name="name"
-                          value={formData.name}
+                          type="date"
+                          name="date"
+                          value={formData.date}
                           onChange={handleInputChange}
+                          min={minDate}
                           required
                           className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                          placeholder="Enter your full name"
                         />
                       </div>
 
                       <div>
                         <label className="text-label-md block font-medium text-gray-700 mb-2">
-                          Email Address *
-                        </label>
-                        <input
-                          type="email"
-                          name="email"
-                          value={formData.email}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                          placeholder="Enter your email"
-                        />
-                      </div>
-
-                      <div>
-                        <label className="text-label-md block font-medium text-gray-700 mb-2">
-                          Phone Number *
-                        </label>
-                        <input
-                          type="tel"
-                          name="phone"
-                          value={formData.phone}
-                          onChange={handleInputChange}
-                          required
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                          placeholder="+91 9876543210"
-                        />
-                      </div>
-                    </motion.div>
-
-                    {/* Appointment Details */}
-                    <motion.div
-                      initial={{ opacity: 0, x: 30 }}
-                      animate={{ opacity: 1, x: 0 }}
-                      transition={{ delay: 0.3 }}
-                      className="space-y-6"
-                    >
-                      <h4 className="text-heading-md text-gray-900 flex items-center gap-3 border-b border-gray-200 pb-3">
-                        <FaUserMd className="text-emerald-600" />
-                        Appointment Details
-                      </h4>
-
-                      <div>
-                        <label className="text-label-md block font-medium text-gray-700 mb-2">
-                          Department *
+                          Preferred Time *
                         </label>
                         <select
-                          name="department"
-                          value={formData.department}
+                          name="time"
+                          value={formData.time}
                           onChange={handleInputChange}
                           required
                           className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
                         >
-                          <option value="">Select Department</option>
-                          {departments.map((dept) => (
-                            <option key={dept} value={dept}>
-                              {dept}
+                          <option value="">Select Time</option>
+                          {timeSlots.map((time) => (
+                            <option key={time} value={time}>
+                              {time}
                             </option>
                           ))}
                         </select>
                       </div>
-
-                      <div>
-                        <label className="text-label-md block font-medium text-gray-700 mb-2">
-                          Preferred Doctor (Optional)
-                        </label>
-                        <input
-                          type="text"
-                          name="doctor"
-                          value={formData.doctor}
-                          onChange={handleInputChange}
-                          className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                          placeholder="Any specific doctor preference"
-                        />
-                      </div>
-
-                      <div className="grid grid-cols-2 gap-4">
-                        <div>
-                          <label className="text-label-md block font-medium text-gray-700 mb-2">
-                            Preferred Date *
-                          </label>
-                          <input
-                            type="date"
-                            name="date"
-                            value={formData.date}
-                            onChange={handleInputChange}
-                            min={minDate}
-                            required
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                          />
-                        </div>
-
-                        <div>
-                          <label className="text-label-md block font-medium text-gray-700 mb-2">
-                            Preferred Time *
-                          </label>
-                          <select
-                            name="time"
-                            value={formData.time}
-                            onChange={handleInputChange}
-                            required
-                            className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                          >
-                            <option value="">Select Time</option>
-                            {timeSlots.map((time) => (
-                              <option key={time} value={time}>
-                                {time}
-                              </option>
-                            ))}
-                          </select>
-                        </div>
-                      </div>
-                    </motion.div>
-                  </div>
-
-                  {/* Message */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.4 }}
-                    className="mt-8"
-                  >
-                    <label className="text-label-md block font-medium text-gray-700 mb-2">
-                      Additional Message (Optional)
-                    </label>
-                    <textarea
-                      name="message"
-                      value={formData.message}
-                      onChange={handleInputChange}
-                      rows={4}
-                      className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
-                      placeholder="Any specific symptoms, concerns, or additional information..."
-                    />
+                    </div>
                   </motion.div>
+                </div>
 
-                  {/* Submit Button */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ delay: 0.5 }}
-                    className="mt-8 text-center"
+                {/* Message */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.4 }}
+                  className="mt-8"
+                >
+                  <label className="text-label-md block font-medium text-gray-700 mb-2">
+                    Additional Message (Optional)
+                  </label>
+                  <textarea
+                    name="message"
+                    value={formData.message}
+                    onChange={handleInputChange}
+                    rows={4}
+                    className="w-full px-4 py-3 border-2 border-gray-200 rounded-xl focus:ring-2 focus:ring-emerald-500 focus:border-emerald-500 transition-all duration-200 hover:border-gray-300"
+                    placeholder="Any specific symptoms, concerns, or additional information..."
+                  />
+                </motion.div>
+
+                {/* Submit Button */}
+                <motion.div
+                  initial={{ opacity: 0, y: 20 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ delay: 0.5 }}
+                  className="mt-8 text-center"
+                >
+                  <button
+                    type="submit"
+                    disabled={isSubmitting}
+                    className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3 mx-auto"
                   >
-                    <button
-                      type="submit"
-                      disabled={isSubmitting}
-                      className="bg-gradient-to-r from-emerald-600 to-emerald-700 text-white px-10 py-4 rounded-xl font-semibold text-lg hover:shadow-lg transform hover:scale-105 transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed disabled:transform-none flex items-center gap-3 mx-auto"
-                    >
-                      {isSubmitting ? (
-                        <>
-                          <FaSpinner className="animate-spin" />
-                          Sending Request...
-                        </>
-                      ) : (
-                        <>
-                          <FaCalendarAlt />
-                          Book Appointment
-                        </>
-                      )}
-                    </button>
-                    <p className="text-sm text-gray-600 mt-4">
-                      * Required fields. We'll contact you within 24 hours to
-                      confirm your appointment.
-                    </p>
-                  </motion.div>
-                </form>
-              )}
-            </div>
-          </motion.div>
-        </motion.div>
-      )}
-    </AnimatePresence>
+                    {isSubmitting ? (
+                      <>
+                        <FaSpinner className="animate-spin" />
+                        Sending Request...
+                      </>
+                    ) : (
+                      <>
+                        <FaCalendarAlt />
+                        Book Appointment
+                      </>
+                    )}
+                  </button>
+                  <p className="text-sm text-gray-600 mt-4">
+                    * Required fields. We'll contact you within 24 hours to
+                    confirm your appointment.
+                  </p>
+                </motion.div>
+              </form>
+            )}
+          </div>
+        </div>
+      </div>
+    )
   );
 };
 

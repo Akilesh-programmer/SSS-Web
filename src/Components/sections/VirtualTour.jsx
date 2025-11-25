@@ -393,46 +393,40 @@ const VirtualTour = () => {
         {/* Video modal via portal */}
         <ModalPortal>
           {isVideoOpen && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/40 backdrop-blur-md z-[1000] flex items-center justify-center p-4"
+            <div
+              style={{
+                position: "fixed",
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                zIndex: 1000,
+              }}
+              className="bg-black/40 backdrop-blur-md flex items-center justify-center p-4"
               onClick={() => setIsVideoOpen(false)}
             >
               <div className="absolute inset-0 overflow-hidden pointer-events-none">
                 <FloatingIcons variant="modal" />
               </div>
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                transition={{ duration: 0.3, ease: "easeOut" }}
+              <div
                 className="relative w-full max-w-4xl lg:max-w-5xl aspect-video bg-white/10 backdrop-blur-xl rounded-2xl overflow-hidden shadow-2xl border border-white/30"
                 onClick={(e) => e.stopPropagation()}
               >
-                <motion.button
+                <button
                   onClick={() => setIsVideoOpen(false)}
-                  whileHover={{ scale: 1.1 }}
-                  whileTap={{ scale: 0.9 }}
                   className="absolute top-3 right-3 z-20 w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center text-white hover:bg-red-500/80 transition-all duration-300 border border-white/30 shadow-lg"
                   aria-label="Close video"
                 >
                   <FaTimes className="text-lg" />
-                </motion.button>
-                <motion.div
-                  initial={{ opacity: 0, y: -12 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ delay: 0.35, duration: 0.45 }}
-                  className="absolute top-3 left-3 z-20 bg-white/20 backdrop-blur-md rounded-lg px-4 py-2 border border-white/30 shadow-lg"
-                >
+                </button>
+                <div className="absolute top-3 left-3 z-20 bg-white/20 backdrop-blur-md rounded-lg px-4 py-2 border border-white/30 shadow-lg">
                   <h3 className="text-white font-semibold text-sm">
                     🎬 SSS Hospital Full Tour
                   </h3>
                   <p className="text-white/80 text-xs">
                     Explore our facilities
                   </p>
-                </motion.div>
+                </div>
                 <video
                   src={hospitalVideo}
                   controls
@@ -448,8 +442,8 @@ const VirtualTour = () => {
                   />
                   Your browser does not support the video tag.
                 </video>
-              </motion.div>
-            </motion.div>
+              </div>
+            </div>
           )}
         </ModalPortal>
       </div>

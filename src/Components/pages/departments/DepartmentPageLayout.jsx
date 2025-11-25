@@ -724,8 +724,13 @@ const DepartmentPageLayout = () => {
                             // Create a blurred backdrop modal (no heavy black shade)
                             const modal = document.createElement("div");
                             modal.className =
-                              "fixed inset-0 z-50 flex items-center justify-center p-4 bg-transparent";
-                            // Apply backdrop blur inline for broader compatibility
+                              "z-50 flex items-center justify-center p-4 bg-transparent";
+                            // Apply inline styles for fixed positioning and backdrop blur
+                            modal.style.position = "fixed";
+                            modal.style.top = "0";
+                            modal.style.left = "0";
+                            modal.style.right = "0";
+                            modal.style.bottom = "0";
                             modal.style.backdropFilter = "blur(8px)";
                             modal.innerHTML = `
                           <div class="relative max-w-4xl max-h-[90vh] w-full h-full flex items-center justify-center">
@@ -736,7 +741,10 @@ const DepartmentPageLayout = () => {
                             const closeBtn = document.createElement("button");
                             closeBtn.setAttribute("aria-label", "Close image");
                             closeBtn.className =
-                              "fixed top-4 right-4 z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70";
+                              "z-[60] text-gray-900 bg-white/90 rounded-full w-12 h-12 flex items-center justify-center hover:scale-105 transition-transform shadow-xl ring-1 ring-white/70";
+                            closeBtn.style.position = "fixed";
+                            closeBtn.style.top = "1rem";
+                            closeBtn.style.right = "1rem";
                             closeBtn.innerHTML = `
                             <svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='w-5 h-5' aria-hidden='true'>
                               <line x1='18' y1='6' x2='6' y2='18' />
@@ -754,6 +762,7 @@ const DepartmentPageLayout = () => {
                             modal.addEventListener("click", (e) => {
                               if (e.target === modal) {
                                 modal.remove();
+                                closeBtn.remove();
                               }
                             });
                           }}

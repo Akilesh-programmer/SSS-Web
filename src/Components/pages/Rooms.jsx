@@ -314,43 +314,42 @@ const Rooms = () => {
 
       {/* Image Modal */}
       <ModalPortal>
-        <AnimatePresence>
-          {selectedImage && (
-            <motion.div
-              className="fixed inset-0 z-[1000] flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              onClick={() => setSelectedImage(null)}
-              role="dialog"
-              aria-modal="true"
+        {selectedImage && (
+          <div
+            className="flex items-center justify-center p-4 bg-black/70 backdrop-blur-sm"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 1000,
+            }}
+            onClick={() => setSelectedImage(null)}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div
+              className="relative max-w-5xl w-full max-h-[90vh]"
+              onClick={(e) => e.stopPropagation()}
             >
-              <motion.div
-                className="relative max-w-5xl w-full max-h-[90vh]"
-                initial={{ scale: 0.92, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.92, opacity: 0 }}
-                transition={{ type: "spring", stiffness: 160, damping: 22 }}
-                onClick={(e) => e.stopPropagation()}
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="absolute top-3 right-3 text-white/90 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 shadow-lg"
+                aria-label="Close image"
               >
-                <button
-                  onClick={() => setSelectedImage(null)}
-                  className="absolute top-3 right-3 text-white/90 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 shadow-lg"
-                  aria-label="Close image"
-                >
-                  <FaTimes className="w-5 h-5" />
-                </button>
-                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/40">
-                  <img
-                    src={selectedImage.src}
-                    alt={selectedImage.alt}
-                    className="w-full h-full object-contain max-h-[85vh] mx-auto"
-                  />
-                </div>
-              </motion.div>
-            </motion.div>
-          )}
-        </AnimatePresence>
+                <FaTimes className="w-5 h-5" />
+              </button>
+              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/40">
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="w-full h-full object-contain max-h-[85vh] mx-auto"
+                />
+              </div>
+            </div>
+          </div>
+        )}
       </ModalPortal>
     </div>
   );

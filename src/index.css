@@ -93,6 +93,25 @@ body,
   transform: none !important;
   -webkit-backface-visibility: visible !important;
   backface-visibility: visible !important;
+  -webkit-perspective: none !important;
+  perspective: none !important;
+  will-change: auto !important;
+}
+
+/* CRITICAL: NO transform on root elements even during hover */
+html:hover,
+body:hover,
+#root:hover,
+[id="root"] > *:hover,
+[id="root"] > div:hover,
+[id="root"] > div > *:hover {
+  -webkit-transform: none !important;
+  transform: none !important;
+  -webkit-backface-visibility: visible !important;
+  backface-visibility: visible !important;
+  -webkit-perspective: none !important;
+  perspective: none !important;
+  will-change: auto !important;
 }
 
 /* CRITICAL: NO transform on any fixed or sticky positioned elements and their ancestors */
@@ -156,4 +175,23 @@ body,
   -webkit-transform: none !important;
   transform: none !important;
   scale: none !important;
+}
+
+/* CRITICAL: Force body to NEVER have any transform-creating properties */
+body,
+body * {
+  -webkit-perspective: none !important;
+  perspective: none !important;
+  -webkit-perspective-origin: 50% 50% !important;
+  perspective-origin: 50% 50% !important;
+}
+
+/* CRITICAL: Disable ALL Tailwind transform utilities on ALL elements */
+[class*="transform"],
+[class*="-translate"],
+[class*="rotate"],
+[class*="scale"],
+[class*="skew"] {
+  -webkit-transform: none !important;
+  transform: none !important;
 }
