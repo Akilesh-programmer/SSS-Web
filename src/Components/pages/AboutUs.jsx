@@ -526,7 +526,7 @@ const AboutUs = () => {
       </section>
 
       {/* Why Choose Us - Modern Medical Excellence */}
-      <section className="relative py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-emerald-50 overflow-hidden">
+      <section className="relative py-16 lg:py-24 bg-gradient-to-br from-slate-50 via-white to-emerald-50 overflow-visible">
         {/* Decorative Background Elements */}
         <div className="absolute inset-0 opacity-40">
           <div className="absolute top-20 left-10 w-32 h-32 bg-emerald-200 rounded-full blur-3xl animate-pulse" />
@@ -556,9 +556,13 @@ const AboutUs = () => {
               </span>
             </motion.div>
 
-            <h2 className="text-display-xl bg-gradient-to-r from-gray-800 via-emerald-700 to-gray-800 bg-clip-text text-transparent mb-6 leading-tight">
-              Why Choose{" "}
-              <span className="block">SSS Super Speciality Hospital?</span>
+            <h2 className="text-display-xl mb-6 leading-tight">
+              <span className="bg-gradient-to-r from-gray-900 via-emerald-600 to-gray-900 bg-clip-text text-transparent">
+                Why Choose{" "}
+              </span>
+              <span className="block bg-gradient-to-r from-gray-900 via-emerald-600 to-gray-900 bg-clip-text text-transparent">
+                SSS Super Speciality Hospital?
+              </span>
             </h2>
 
             <div className="flex items-center justify-center gap-2 mb-4">
@@ -583,7 +587,7 @@ const AboutUs = () => {
             whileInView="visible"
             viewport={{ once: true, margin: "-50px" }}
             variants={staggerContainer}
-            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 lg:gap-8"
+            className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 lg:gap-8 mb-8"
           >
             {/* Card 1: Excellence in Care */}
             <motion.div
