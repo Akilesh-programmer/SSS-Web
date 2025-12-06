@@ -9,6 +9,7 @@ import Footer from "./Components/ui/Footer";
 import AppointmentPopup from "./Components/ui/AppointmentPopup";
 import ScrollToTop from "./Components/ui/ScrollToTop";
 import PageWrapper from "./Components/ui/PageWrapper";
+import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton";
 import ErrorBoundary from "./Components/ui/ErrorBoundary";
 import SEO from "./Components/ui/SEO";
 import { PAGE_SEO } from "./data/seoData";
@@ -274,6 +275,7 @@ function App() {
           isOpen={isAppointmentOpen}
           onClose={closeAppointment}
         />
+        <FloatingAppointmentButton />
       </div>
     </ErrorBoundary>
   );

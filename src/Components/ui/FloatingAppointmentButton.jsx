@@ -18,49 +18,52 @@ const FloatingAppointmentButton = () => {
 
   return (
     <>
-      <AnimatePresence>
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, scale: 0, y: 100 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            exit={{ opacity: 0, scale: 0, y: 100 }}
-          >
-            {/* Main appointment button - simplified, no hover expansion */}
-            <motion.button
-              onClick={handleButtonClick}
-              className="group relative bg-gradient-to-r from-emerald-500 to-emerald-600 hover:from-emerald-600 hover:to-emerald-700 text-white w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full shadow-lg hover:shadow-xl transition-all duration-300 transform hover:scale-110"
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.95 }}
-              aria-label="Book Appointment"
+      {/* Fixed wrapper - always visible bottom-right */}
+      <div className="fixed bottom-6 right-6 sm:bottom-8 sm:right-8 z-[70]">
+        <AnimatePresence>
+          {isVisible && (
+            <motion.div
+              initial={{ opacity: 0, scale: 0, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0, y: 20 }}
             >
-              <FaCalendarAlt className="text-lg sm:text-2xl" />
+              {/* Main appointment button - simplified, no hover expansion */}
+              <motion.button
+                onClick={handleButtonClick}
+                className="group relative bg-gradient-to-r from-emerald-500 to-emerald-600 text-white w-14 h-14 sm:w-16 sm:h-16 flex items-center justify-center rounded-full shadow-lg transition-all duration-300"
+                whileHover={{ scale: 1.06 }}
+                whileTap={{ scale: 0.95 }}
+                aria-label="Book Appointment"
+              >
+                <FaCalendarAlt className="text-lg sm:text-2xl" />
 
-              {/* Pulse animation */}
-              <motion.div
-                className="absolute inset-0 rounded-full"
-                animate={{
-                  scale: [1, 1.4, 1],
-                  opacity: [0, 0.6, 0],
-                }}
-                style={{
-                  backgroundColor: "rgba(16, 185, 129, 0.3)",
-                }}
-                transition={{
-                  duration: 2,
-                  repeat: Infinity,
-                  ease: "easeInOut",
-                }}
-              />
+                {/* Pulse animation (purely decorative) */}
+                <motion.div
+                  className="absolute inset-0 rounded-full pointer-events-none"
+                  animate={{
+                    scale: [1, 1.35, 1],
+                    opacity: [0, 0.45, 0],
+                  }}
+                  style={{
+                    backgroundColor: "rgba(16,185,129,0.28)",
+                  }}
+                  transition={{
+                    duration: 2.2,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
 
-              {/* Tooltip - hidden on mobile (appears to the right when button is on left) */}
-              <span className="hidden sm:block absolute left-20 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
-                Book Appointment
-                <span className="absolute -left-3 top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
-              </span>
-            </motion.button>
-          </motion.div>
-        )}
-      </AnimatePresence>
+                {/* Tooltip - hidden on mobile */}
+                <span className="hidden sm:block absolute left-20 top-1/2 -translate-y-1/2 bg-gray-900 text-white px-4 py-2 rounded-lg text-sm whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none">
+                  Book Appointment
+                  <span className="absolute -left-3 top-1/2 -translate-y-1/2 border-4 border-transparent border-r-gray-900" />
+                </span>
+              </motion.button>
+            </motion.div>
+          )}
+        </AnimatePresence>
+      </div>
 
       {/* Call Modal */}
       <CallModal
