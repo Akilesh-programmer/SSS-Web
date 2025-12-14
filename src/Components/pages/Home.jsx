@@ -107,122 +107,110 @@ export default function Home() {
 
   return (
     <>
-      {/* Award Announcement Hero Section - Full Screen, starts after navbar */}
+      {/* Award Announcement Hero Section - Professional responsive hero */}
       {/* Counteract the negative margin from App.jsx for home page only */}
       <motion.section
-        className="relative h-[96vh] sm:h-screen w-full flex items-end overflow-hidden mt-14 sm:mt-16 xl:mt-18"
+        className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-screen mt-14 sm:mt-16 xl:mt-18 overflow-hidden"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Background Image - Different images for mobile and desktop */}
-        <motion.div
-          className="absolute inset-0 w-full h-full overflow-hidden"
-          initial={{ scale: 1.05 }}
-          animate={{ scale: 1 }}
-          transition={{ duration: 1.5, ease: "easeOut" }}
-        >
-          {/* Mobile image */}
-          <img
-            src="/assets/heroes/home-3.webp"
-            alt="SSS Hospital Award Ceremony"
-            className="sm:hidden w-full h-full object-cover object-center"
-            width="1920"
-            height="1080"
-            loading="eager"
-            fetchpriority="high"
-            decoding="async"
-          />
-          {/* Desktop image */}
+        {/* Background Image - Absolute positioned with object-cover */}
+        <div className="absolute inset-0 w-full h-full">
           <img
             src="/assets/heroes/home-1.webp"
             alt="SSS Hospital Award Ceremony"
-            className="hidden sm:block w-full h-full object-cover object-center"
+            className="w-full h-full object-cover object-center"
             width="1920"
             height="1080"
             loading="eager"
             fetchpriority="high"
             decoding="async"
           />
-        </motion.div>
+        </div>
 
-        {/* Gradient overlay - stronger at bottom for text readability */}
-        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
-        <div
-          className="absolute inset-0"
-          style={{
-            boxShadow: "inset 0 -150px 200px rgba(0,0,0,0.4)",
-          }}
-        />
+        {/* Overlay Container - gradient and shadows for text readability */}
+        <div className="absolute inset-0 pointer-events-none">
+          {/* Gradient overlay - stronger at bottom for text readability */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          <div
+            className="absolute inset-0"
+            style={{
+              boxShadow: "inset 0 -150px 200px rgba(0,0,0,0.4)",
+            }}
+          />
 
-        {/* Award Badge - Top-left on desktop, top on mobile */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="absolute z-10 top-6 left-4 md:left-6 lg:left-8 lg:top-8 inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-emerald-500/95 to-teal-500/95 backdrop-blur-md rounded-full border border-white/40 shadow-2xl"
-        >
-          <FaAward className="text-base md:text-xl mr-2 md:mr-3 drop-shadow-lg animate-pulse" />
-          <span className="text-xs md:text-sm lg:text-base font-semibold drop-shadow-lg tracking-wide text-white">
-            🏆 NALAM VIRUTHUGAL 2025 WINNER
-          </span>
-        </motion.div>
+          {/* Award Badge - Top-left on desktop, top on mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="absolute z-10 top-6 left-4 md:left-6 lg:left-8 lg:top-8 inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-emerald-500/95 to-teal-500/95 backdrop-blur-md rounded-full border border-white/40 shadow-2xl pointer-events-auto"
+          >
+            <FaAward className="text-base md:text-xl mr-2 md:mr-3 drop-shadow-lg animate-pulse" />
+            <span className="text-xs md:text-sm lg:text-base font-semibold drop-shadow-lg tracking-wide text-white">
+              🏆 NALAM VIRUTHUGAL 2025 WINNER
+            </span>
+          </motion.div>
 
-        {/* Hero Content - Positioned in bottom half of screen */}
-        <div className="relative z-10 text-white px-4 md:px-6 lg:px-0 lg:pr-28 w-full pb-16 md:pb-20 lg:pb-24">
-          <div className="w-full lg:flex lg:justify-end">
-            {/* Content container - left on mobile, right on desktop with small gap from button */}
-            <div className="max-w-3xl">
-              {/* Main Title */}
-              <motion.h1
-                className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 md:mb-5 leading-tight"
-                style={{
-                  textShadow:
-                    "0 2px 10px rgba(0,0,0,0.4), 0 3px 20px rgba(0,0,0,0.3)",
-                }}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.5 }}
-              >
-                <span className="bg-gradient-to-r from-white via-white to-gray-100 bg-clip-text text-transparent drop-shadow-lg">
-                  Best Emerging Hospital in Erode
-                </span>
-              </motion.h1>
+          {/* Hero Content - Positioned at bottom with proper container */}
+          <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-auto">
+            <div className="container mx-auto px-4 md:px-6 lg:px-8 pb-12 md:pb-16 lg:pb-20">
+              <div className="flex justify-start lg:justify-end">
+                {/* Content container - responsive width and positioning */}
+                <div className="max-w-3xl w-full lg:w-auto text-white">
+                  {/* Main Title */}
+                  <motion.h1
+                    className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 md:mb-5 leading-tight"
+                    style={{
+                      textShadow:
+                        "0 2px 10px rgba(0,0,0,0.4), 0 3px 20px rgba(0,0,0,0.3)",
+                    }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.5 }}
+                  >
+                    <span className="bg-gradient-to-r from-white via-white to-gray-100 bg-clip-text text-transparent drop-shadow-lg">
+                      Best Emerging Hospital in Erode
+                    </span>
+                  </motion.h1>
 
-              {/* Subtitle */}
-              <motion.p
-                className="text-sm md:text-base lg:text-lg text-white/95 mb-4 md:mb-6 leading-relaxed max-w-2xl"
-                style={{
-                  textShadow:
-                    "0 1px 8px rgba(0,0,0,0.5), 0 2px 12px rgba(0,0,0,0.4)",
-                }}
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.7 }}
-              >
-                Honoured by Hon. Minister for Health & Family Welfare,{" "}
-                <span className="inline-block">Thiru Ma. Subramanian,</span>{" "}
-                Government of Tamil Nadu
-              </motion.p>
+                  {/* Subtitle */}
+                  <motion.p
+                    className="text-sm md:text-base lg:text-lg text-white/95 mb-4 md:mb-6 leading-relaxed max-w-2xl"
+                    style={{
+                      textShadow:
+                        "0 1px 8px rgba(0,0,0,0.5), 0 2px 12px rgba(0,0,0,0.4)",
+                    }}
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.7 }}
+                  >
+                    Honoured by Hon. Minister for Health & Family Welfare,{" "}
+                    <span className="inline-block">Thiru Ma. Subramanian,</span>{" "}
+                    Government of Tamil Nadu
+                  </motion.p>
 
-              {/* Recognition Text */}
-              <motion.div
-                initial={{ y: 20, opacity: 0 }}
-                animate={{ y: 0, opacity: 1 }}
-                transition={{ duration: 0.8, delay: 0.9 }}
-                className="flex items-start gap-3 bg-white/15 backdrop-blur-md rounded-xl p-4 md:p-5 lg:p-6 border border-white/30 shadow-2xl max-w-2xl"
-              >
-                <FaHeartbeat className="text-emerald-400 text-lg md:text-xl lg:text-2xl mt-1 flex-shrink-0 animate-pulse" />
-                <p
-                  className="text-xs md:text-sm lg:text-base text-white/95 leading-relaxed"
-                  style={{
-                    textShadow: "0 1px 6px rgba(0,0,0,0.4)",
-                  }}
-                >
-                  A testament to our dedicated team delivering world-class,
-                  compassionate healthcare to our community.
-                </p>
-              </motion.div>
+                  {/* Recognition Text */}
+                  <motion.div
+                    initial={{ y: 20, opacity: 0 }}
+                    animate={{ y: 0, opacity: 1 }}
+                    transition={{ duration: 0.8, delay: 0.9 }}
+                    className="flex items-start gap-3 bg-white/15 backdrop-blur-md rounded-xl p-4 md:p-5 lg:p-6 border border-white/30 shadow-2xl max-w-2xl"
+                  >
+                    <FaHeartbeat className="text-emerald-400 text-lg md:text-xl lg:text-2xl mt-1 flex-shrink-0 animate-pulse" />
+                    <p
+                      className="text-xs md:text-sm lg:text-base text-white/95 leading-relaxed"
+                      style={{
+                        textShadow: "0 1px 6px rgba(0,0,0,0.4)",
+                      }}
+                    >
+                      A testament to our dedicated team delivering world-class,
+                      compassionate healthcare to our community.
+                    </p>
+                  </motion.div>
+                </div>
+              </div>
             </div>
           </div>
         </div>
