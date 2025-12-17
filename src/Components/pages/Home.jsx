@@ -110,42 +110,45 @@ export default function Home() {
       {/* Award Announcement Hero Section - Professional responsive hero */}
       {/* Counteract the negative margin from App.jsx for home page only */}
       <motion.section
-        className="relative w-full min-h-[500px] sm:min-h-[600px] md:min-h-[700px] lg:min-h-[800px] xl:min-h-screen mt-14 sm:mt-16 xl:mt-18 overflow-hidden"
+        className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[70vh] lg:min-h-[85vh] xl:min-h-screen mt-14 sm:mt-16 xl:mt-18 overflow-hidden bg-gray-900"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ duration: 0.8, ease: "easeOut" }}
       >
-        {/* Background Image - Absolute positioned with object-cover */}
+        {/* Background Image - Optimized for award ceremony focal point */}
         <div className="absolute inset-0 w-full h-full">
           <img
             src="/assets/heroes/home-1.webp"
-            alt="SSS Hospital Award Ceremony"
-            className="w-full h-full object-cover object-center"
+            alt="SSS Hospital Award Ceremony - Best Emerging Hospital in Erode"
+            className="w-full h-full object-cover object-[50%_35%]"
             width="1920"
             height="1080"
             loading="eager"
             fetchpriority="high"
             decoding="async"
+            style={{ willChange: "transform" }}
           />
         </div>
 
-        {/* Overlay Container - gradient and shadows for text readability */}
+        {/* Overlay Container - Enhanced gradients for optimal text readability */}
         <div className="absolute inset-0 pointer-events-none">
-          {/* Gradient overlay - stronger at bottom for text readability */}
-          <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+          {/* Multi-layer gradient overlay for professional look */}
+          <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/10" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-transparent" />
           <div
             className="absolute inset-0"
             style={{
-              boxShadow: "inset 0 -150px 200px rgba(0,0,0,0.4)",
+              boxShadow:
+                "inset 0 -200px 250px rgba(0,0,0,0.5), inset 0 0 120px rgba(0,0,0,0.15)",
             }}
           />
 
-          {/* Award Badge - Top-left on desktop, top on mobile */}
+          {/* Award Badge - Top-left on desktop only (hidden on mobile) */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.3 }}
-            className="absolute z-10 top-6 left-4 md:left-6 lg:left-8 lg:top-8 inline-flex items-center px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-emerald-500/95 to-teal-500/95 backdrop-blur-md rounded-full border border-white/40 shadow-2xl pointer-events-auto"
+            className="hidden md:inline-flex absolute z-10 top-6 left-4 md:left-6 lg:left-8 lg:top-8 items-center px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-emerald-500/95 to-teal-500/95 backdrop-blur-md rounded-full border border-white/40 shadow-2xl pointer-events-auto"
           >
             <FaAward className="text-base md:text-xl mr-2 md:mr-3 drop-shadow-lg animate-pulse" />
             <span className="text-xs md:text-sm lg:text-base font-semibold drop-shadow-lg tracking-wide text-white">
@@ -153,26 +156,24 @@ export default function Home() {
             </span>
           </motion.div>
 
-          {/* Hero Content - Positioned at bottom with proper container */}
+          {/* Hero Content - Positioned at bottom with professional spacing */}
           <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-auto">
-            <div className="container mx-auto px-4 md:px-6 lg:px-8 pb-12 md:pb-16 lg:pb-20">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
               <div className="flex justify-start lg:justify-end">
-                {/* Content container - responsive width and positioning */}
+                {/* Content container - optimized for readability and visual hierarchy */}
                 <div className="max-w-3xl w-full lg:w-auto text-white">
-                  {/* Main Title */}
+                  {/* Main Title - Desktop only (hidden on mobile) */}
                   <motion.h1
-                    className="text-2xl md:text-3xl lg:text-4xl xl:text-5xl font-bold mb-3 md:mb-5 leading-tight"
+                    className="hidden md:block text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white"
                     style={{
                       textShadow:
-                        "0 2px 10px rgba(0,0,0,0.4), 0 3px 20px rgba(0,0,0,0.3)",
+                        "0 3px 15px rgba(0,0,0,0.6), 0 5px 30px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.8)",
                     }}
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.5 }}
                   >
-                    <span className="bg-gradient-to-r from-white via-white to-gray-100 bg-clip-text text-transparent drop-shadow-lg">
-                      Best Emerging Hospital in Erode
-                    </span>
+                    Best Emerging Hospital in Erode
                   </motion.h1>
 
                   {/* Subtitle */}
@@ -196,13 +197,13 @@ export default function Home() {
                     initial={{ y: 20, opacity: 0 }}
                     animate={{ y: 0, opacity: 1 }}
                     transition={{ duration: 0.8, delay: 0.9 }}
-                    className="flex items-start gap-3 bg-white/15 backdrop-blur-md rounded-xl p-4 md:p-5 lg:p-6 border border-white/30 shadow-2xl max-w-2xl"
+                    className="flex items-start gap-3 sm:gap-4 bg-white/20 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 border border-white/40 shadow-2xl max-w-2xl"
                   >
-                    <FaHeartbeat className="text-emerald-400 text-lg md:text-xl lg:text-2xl mt-1 flex-shrink-0 animate-pulse" />
+                    <FaHeartbeat className="text-emerald-400 text-xl md:text-2xl lg:text-2xl mt-0.5 sm:mt-1 flex-shrink-0 animate-pulse" />
                     <p
-                      className="text-xs md:text-sm lg:text-base text-white/95 leading-relaxed"
+                      className="text-sm sm:text-base md:text-base lg:text-lg text-white/95 leading-relaxed"
                       style={{
-                        textShadow: "0 1px 6px rgba(0,0,0,0.4)",
+                        textShadow: "0 2px 8px rgba(0,0,0,0.5)",
                       }}
                     >
                       A testament to our dedicated team delivering world-class,
@@ -215,6 +216,44 @@ export default function Home() {
           </div>
         </div>
       </motion.section>
+
+      {/* Mobile-only content below image */}
+      <div className="md:hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden">
+        {/* Decorative background elements */}
+        <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/40 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal-100/40 rounded-full blur-2xl"></div>
+
+        <div className="relative z-10 max-w-3xl mx-auto px-4 py-10">
+          {/* Award Badge - Mobile */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.3 }}
+            className="flex justify-center mb-6"
+          >
+            <div className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full shadow-lg hover:shadow-xl transition-shadow duration-300">
+              <FaAward className="text-lg mr-2.5 text-white animate-pulse" />
+              <span className="text-sm font-bold tracking-wide text-white">
+                🏆 NALAM VIRUTHUGAL 2025 WINNER
+              </span>
+            </div>
+          </motion.div>
+
+          {/* Main Title - Mobile */}
+          <motion.h1
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="text-3xl font-bold leading-tight text-center text-gray-900 mb-0"
+          >
+            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+              Best Emerging Hospital
+            </span>
+            <br />
+            <span className="text-gray-800">in Erode</span>
+          </motion.h1>
+        </div>
+      </div>
 
       {/* Original Home Content Section - Now appears after hero */}
       <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden">
