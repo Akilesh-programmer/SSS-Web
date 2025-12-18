@@ -109,12 +109,7 @@ export default function Home() {
     <>
       {/* Award Announcement Hero Section - Professional responsive hero */}
       {/* Counteract the negative margin from App.jsx for home page only */}
-      <motion.section
-        className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[70vh] lg:min-h-[85vh] xl:min-h-screen mt-14 sm:mt-16 xl:mt-18 overflow-hidden bg-gray-900"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8, ease: "easeOut" }}
-      >
+      <section className="relative w-full min-h-[400px] sm:min-h-[500px] md:min-h-[70vh] lg:min-h-[85vh] xl:min-h-screen mt-14 sm:mt-16 xl:mt-18 overflow-hidden bg-gray-900">
         {/* Background Image - Optimized for award ceremony focal point */}
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -143,79 +138,65 @@ export default function Home() {
             }}
           />
 
-          {/* Award Badge - Top-left on desktop only (hidden on mobile) */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.3 }}
-            className="hidden md:inline-flex absolute z-10 top-6 left-4 md:left-6 lg:left-8 lg:top-8 items-center px-4 md:px-6 py-2.5 md:py-3 bg-gradient-to-r from-emerald-500/95 to-teal-500/95 backdrop-blur-md rounded-full border border-white/40 shadow-2xl pointer-events-auto"
-          >
-            <FaAward className="text-base md:text-xl mr-2 md:mr-3 drop-shadow-lg animate-pulse" />
-            <span className="text-xs md:text-sm lg:text-base font-semibold drop-shadow-lg tracking-wide text-white">
+          {/* Award Badge - Top-right on desktop (hidden on mobile) */}
+          <div className="hidden md:inline-flex absolute z-10 top-8 right-8 lg:top-10 lg:right-10 items-center px-6 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 backdrop-blur-md rounded-full border border-white/50 shadow-2xl pointer-events-auto">
+            <FaAward className="text-xl mr-3 text-white" />
+            <span className="text-sm lg:text-base font-bold tracking-wide text-white">
               🏆 NALAM VIRUTHUGAL 2025 WINNER
             </span>
-          </motion.div>
+          </div>
 
-          {/* Hero Content - Positioned at bottom with professional spacing */}
-          <div className="absolute inset-x-0 bottom-0 z-10 pointer-events-auto">
-            <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-8 lg:px-10 xl:px-12 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
-              <div className="flex justify-start lg:justify-end">
-                {/* Content container - optimized for readability and visual hierarchy */}
-                <div className="max-w-3xl w-full lg:w-auto text-white">
-                  {/* Main Title - Desktop only (hidden on mobile) */}
-                  <motion.h1
-                    className="hidden md:block text-3xl sm:text-4xl md:text-4xl lg:text-5xl xl:text-6xl font-bold mb-4 md:mb-6 leading-tight text-white"
+          {/* Hero Content - Positioned far left at bottom */}
+          <div className="absolute left-0 bottom-0 z-10 pointer-events-auto">
+            <div className="px-6 md:px-8 lg:px-12 xl:px-16 pb-8 sm:pb-20 md:pb-24 lg:pb-32">
+              {/* Content container - positioned far left with limited width */}
+              <div className="max-w-md lg:max-w-lg xl:max-w-xl text-white">
+                {/* Main Title - Desktop only (hidden on mobile) */}
+                <h1
+                  className="hidden md:block text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight text-white"
+                  style={{
+                    textShadow: "0 4px 20px rgba(0,0,0,0.8)",
+                  }}
+                >
+                  Best Emerging Hospital in Erode
+                </h1>
+
+                {/* Subtitle */}
+                <p
+                  className="text-base md:text-lg lg:text-xl text-white/95 leading-relaxed"
+                  style={{
+                    textShadow: "0 2px 10px rgba(0,0,0,0.7)",
+                  }}
+                >
+                  Honoured by Hon. Minister for Health & Family Welfare,{" "}
+                  <span className="inline-block">Thiru Ma. Subramanian,</span>{" "}
+                  Government of Tamil Nadu
+                </p>
+              </div>
+            </div>
+          </div>
+
+          {/* Recognition Text - Positioned on right side (Desktop only) */}
+          <div className="hidden md:block absolute right-0 bottom-0 z-10 pointer-events-auto">
+            <div className="px-6 md:px-8 lg:px-12 xl:px-16 pb-16 sm:pb-20 md:pb-24 lg:pb-32">
+              <div className="max-w-md lg:max-w-lg text-white">
+                <div className="flex items-start gap-4 bg-white/25 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-2xl">
+                  <FaHeartbeat className="text-emerald-400 text-2xl mt-1 flex-shrink-0" />
+                  <p
+                    className="text-base lg:text-lg text-white leading-relaxed"
                     style={{
-                      textShadow:
-                        "0 3px 15px rgba(0,0,0,0.6), 0 5px 30px rgba(0,0,0,0.4), 0 1px 3px rgba(0,0,0,0.8)",
+                      textShadow: "0 2px 8px rgba(0,0,0,0.6)",
                     }}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.5 }}
                   >
-                    Best Emerging Hospital in Erode
-                  </motion.h1>
-
-                  {/* Subtitle */}
-                  <motion.p
-                    className="text-sm md:text-base lg:text-lg text-white/95 mb-4 md:mb-6 leading-relaxed max-w-2xl"
-                    style={{
-                      textShadow:
-                        "0 1px 8px rgba(0,0,0,0.5), 0 2px 12px rgba(0,0,0,0.4)",
-                    }}
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.7 }}
-                  >
-                    Honoured by Hon. Minister for Health & Family Welfare,{" "}
-                    <span className="inline-block">Thiru Ma. Subramanian,</span>{" "}
-                    Government of Tamil Nadu
-                  </motion.p>
-
-                  {/* Recognition Text */}
-                  <motion.div
-                    initial={{ y: 20, opacity: 0 }}
-                    animate={{ y: 0, opacity: 1 }}
-                    transition={{ duration: 0.8, delay: 0.9 }}
-                    className="flex items-start gap-3 sm:gap-4 bg-white/20 backdrop-blur-lg rounded-xl sm:rounded-2xl p-4 sm:p-5 md:p-6 border border-white/40 shadow-2xl max-w-2xl"
-                  >
-                    <FaHeartbeat className="text-emerald-400 text-xl md:text-2xl lg:text-2xl mt-0.5 sm:mt-1 flex-shrink-0 animate-pulse" />
-                    <p
-                      className="text-sm sm:text-base md:text-base lg:text-lg text-white/95 leading-relaxed"
-                      style={{
-                        textShadow: "0 2px 8px rgba(0,0,0,0.5)",
-                      }}
-                    >
-                      A testament to our dedicated team delivering world-class,
-                      compassionate healthcare to our community.
-                    </p>
-                  </motion.div>
+                    A testament to our dedicated team delivering world-class,
+                    compassionate healthcare to our community.
+                  </p>
                 </div>
               </div>
             </div>
           </div>
         </div>
-      </motion.section>
+      </section>
 
       {/* Mobile-only content below image */}
       <div className="md:hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden">
@@ -223,7 +204,7 @@ export default function Home() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/40 rounded-full blur-3xl"></div>
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal-100/40 rounded-full blur-2xl"></div>
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 py-10">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 py-4">
           {/* Award Badge - Mobile */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
@@ -244,14 +225,54 @@ export default function Home() {
             initial={{ y: 20, opacity: 0 }}
             animate={{ y: 0, opacity: 1 }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-3xl font-bold leading-tight text-center text-gray-900 mb-0"
+            className="text-3xl sm:text-4xl font-bold leading-tight text-center mb-4"
           >
-            <span className="bg-gradient-to-r from-emerald-600 to-teal-600 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-emerald-600 via-emerald-500 to-teal-600 bg-clip-text text-transparent drop-shadow-sm">
               Best Emerging Hospital
             </span>
             <br />
-            <span className="text-gray-800">in Erode</span>
+            <span className="bg-gradient-to-r from-gray-800 to-gray-600 bg-clip-text text-transparent">
+              in Erode
+            </span>
           </motion.h1>
+
+          {/* Honoured By Text - Mobile */}
+          <motion.p
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="text-center text-sm sm:text-base leading-relaxed mb-6"
+          >
+            <span className="block mb-1">
+              <span className="text-gray-600 font-medium">Honoured by</span>{" "}
+              <span className="text-emerald-700 font-semibold">
+                Hon. Minister for Health & Family Welfare,
+              </span>
+            </span>
+            <span className="block">
+              <span className="text-teal-700 font-bold text-base sm:text-lg">
+                Thiru Ma. Subramanian,
+              </span>{" "}
+              <span className="text-gray-600 font-medium">
+                Government of Tamil Nadu
+              </span>
+            </span>
+          </motion.p>
+
+          {/* Recognition Text - Mobile */}
+          <motion.div
+            initial={{ y: 20, opacity: 0 }}
+            animate={{ y: 0, opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.7 }}
+            className="flex items-center justify-center gap-3 text-center"
+          >
+            <FaHeartbeat className="text-emerald-500 text-xl flex-shrink-0" />
+            <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium italic">
+              A testament to our dedicated team delivering world-class,
+              compassionate healthcare to our community.
+            </p>
+            <FaHeartbeat className="text-emerald-500 text-xl flex-shrink-0" />
+          </motion.div>
         </div>
       </div>
 
