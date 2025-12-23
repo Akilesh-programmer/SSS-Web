@@ -114,7 +114,7 @@ export default function Home() {
         <div className="absolute inset-0 w-full h-full">
           <img
             src="/assets/heroes/home-1.webp"
-            alt="SSS Hospital Award Ceremony - Best Emerging Hospital in Erode"
+            alt="SSS Hospital Award Ceremony - BEST EMERGING HOSPITAL IN ERODE"
             className="w-full h-full object-cover object-[50%_35%]"
             width="1920"
             height="1080"
@@ -158,7 +158,7 @@ export default function Home() {
                     textShadow: "0 4px 20px rgba(0,0,0,0.8)",
                   }}
                 >
-                  Best Emerging Hospital in Erode
+                  BEST EMERGING HOSPITAL IN ERODE
                 </h1>
 
                 {/* Subtitle */}
