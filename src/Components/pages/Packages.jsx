@@ -4,7 +4,6 @@ import {
   FaCheck,
   FaHeartbeat,
   FaShieldAlt,
-  FaTint,
   FaFileMedical,
   FaBookMedical,
 } from "react-icons/fa";
@@ -42,139 +41,130 @@ const Packages = () => {
 
   const packages = [
     {
-      name: "Diabetic Health Checkup",
-      price: "₹900",
-      icon: FaTint,
-      color: "bg-red-500",
-      tests: [
-        "CBC",
-        "FBS",
-        "PPBS",
-        "HbA1C",
-        "Sr. CREATININE",
-        "URINE COMPLETE",
-        "ALPHA - CONSUMABLES",
-        "DIET COUNSELLING",
-      ],
-    },
-    {
-      name: "Basic Master Health Checkup",
-      price: "₹1,250",
+      name: "Regular Health Checkup",
+      price: "₹4,500",
       icon: FaStethoscope,
       color: "bg-emerald-500",
       tests: [
-        "CBC",
-        "FBS",
-        "PPBS",
-        "HbA1C",
-        "LIPID PROFILE",
-        "RFT",
-        "TSH",
-        "URINE COMPLETE",
-        "ALPHA - CONSUMABLES",
-        "ECG",
-        "DIET COUNSELLING",
+        { no: "1", test: "CBC" },
+        { no: "2", test: "FBS, PPBS" },
+        { no: "3", test: "HbA1C" },
+        { no: "4", test: "RFT" },
+        { no: "5", test: "LFT" },
+        { no: "6", test: "LIPID PROFILE" },
+        { no: "7", test: "FT3, FT4, TSH" },
+        { no: "8", test: "URINE COMPLETE" },
+        { no: "9", test: "CHEST X-RAY" },
+        { no: "10", test: "ECG" },
+        { no: "11", test: "ECHO" },
+        { no: "12", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "13", test: "GEN MEDICINE OPINION" },
+        { no: "14", test: "OPTHAL OPINION" },
+        { no: "15", test: "DIET COUNSELLING" },
       ],
     },
     {
-      name: "Employment Checkup",
-      price: "₹1,400",
-      icon: FaFileMedical,
-      color: "bg-blue-500",
-      tests: [
-        "CBC",
-        "RBS",
-        "HbA1C",
-        "URINE COMPLETE",
-        "RFT",
-        "ALPHA - CONSUMABLES",
-        "ECG",
-        "CHEST X-RAY",
-        "GEN MEDICINE OPINION",
-        "DIET COUNSELLING",
-      ],
-    },
-    {
-      name: "Advanced Health Checkup",
-      price: "₹4,250",
+      name: "Advanced Health Checkup for Men",
+      price: "₹5,300",
       icon: FaShieldAlt,
       color: "bg-purple-500",
       tests: [
-        "CBC",
-        "FBS",
-        "PPBS",
-        "HbA1C",
-        "LIPID PROFILE",
-        "RFT",
-        "LFT",
-        "TSH",
-        "FT3, FT4",
-        "URINE COMPLETE",
-        "ALPHA - CONSUMABLES",
-        "CHEST X-RAY",
-        "ECG",
-        "ECHO",
-        "USG (ABDOMEN & PELVIC)",
-        "GEN MEDICINE OPINION",
-        "OPTHAL OPINION",
-        "DIET COUNSELLING",
+        { no: "1", test: "CBC" },
+        { no: "2", test: "FBS, PPBS" },
+        { no: "3", test: "HbA1C" },
+        { no: "4", test: "RFT" },
+        { no: "5", test: "LFT" },
+        { no: "6", test: "LIPID PROFILE" },
+        { no: "7", test: "FT3, FT4, TSH" },
+        { no: "8", test: "URINE COMPLETE" },
+        { no: "9", test: "CHEST X-RAY" },
+        { no: "10", test: "ECG" },
+        { no: "11", test: "ECHO" },
+        { no: "12", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "13", test: "PSA" },
+        { no: "14", test: "GEN MEDICINE OPINION" },
+        { no: "15", test: "OPTHAL OPINION" },
+        { no: "16", test: "DENTAL OPINION" },
+        { no: "17", test: "DIET COUNSELLING" },
       ],
     },
     {
-      name: "Comprehensive Health Checkup (Without TMT)",
-      price: "₹5,300",
-      icon: FaBookMedical,
-      color: "bg-indigo-500",
-      tests: [
-        "CBC",
-        "FBS",
-        "PPBS",
-        "HbA1C",
-        "LIPID PROFILE",
-        "RFT",
-        "LFT",
-        "TSH",
-        "FT3, FT4",
-        "URINE COMPLETE",
-        "PSA",
-        "ALPHA - CONSUMABLES",
-        "ECG",
-        "ECHO",
-        "USG (ABDOMEN & PELVIC)",
-        "CHEST X-RAY",
-        "GEN MEDICINE OPINION",
-        "OPTHAL OPINION",
-        "DENTAL OPINION",
-        "DIET COUNSELLING",
-      ],
-    },
-    {
-      name: "Comprehensive Health Checkup (With TMT)",
+      name: "Comprehensive Health Checkup for Men",
       price: "₹6,500",
       icon: FaHeartbeat,
       color: "bg-teal-500",
       tests: [
-        "CBC",
-        "FBS",
-        "PPBS",
-        "HbA1C",
-        "LIPID PROFILE",
-        "RFT",
-        "LFT",
-        "TSH",
-        "FT3, FT4",
-        "URINE COMPLETE",
-        "PSA",
-        "ALPHA - CONSUMABLES",
-        "ECG",
-        "ECHO",
-        "USG (ABDOMEN & PELVIC)",
-        "CHEST X-RAY",
-        "TMT",
-        "GEN MEDICINE OPINION",
-        "OPTHAL OPINION",
-        "DENTAL OPINION",
-        "DIET COUNSELLING",
+        { no: "1", test: "CBC" },
+        { no: "2", test: "FBS, PPBS" },
+        { no: "3", test: "HbA1C" },
+        { no: "4", test: "RFT" },
+        { no: "5", test: "LFT" },
+        { no: "6", test: "LIPID PROFILE" },
+        { no: "7", test: "FT3, FT4, TSH" },
+        { no: "8", test: "URINE COMPLETE" },
+        { no: "9", test: "CHEST X-RAY" },
+        { no: "10", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "11", test: "ECG" },
+        { no: "12", test: "ECHO" },
+        { no: "13", test: "TMT" },
+        { no: "14", test: "PSA" },
+        { no: "15", test: "GEN MEDICINE OPINION" },
+        { no: "16", test: "OPTHAL OPINION" },
+        { no: "17", test: "DENTAL OPINION" },
+        { no: "18", test: "DIET COUNSELLING" },
+      ],
+    },
+    {
+      name: "Advanced Health Checkup for Women",
+      price: "₹5,300",
+      icon: FaFileMedical,
+      color: "bg-indigo-500",
+      tests: [
+        { no: "1", test: "CBC" },
+        { no: "2", test: "FBS, PPBS" },
+        { no: "3", test: "HbA1C" },
+        { no: "4", test: "RFT" },
+        { no: "5", test: "LFT" },
+        { no: "6", test: "LIPID PROFILE" },
+        { no: "7", test: "FT3, FT4, TSH" },
+        { no: "8", test: "URINE COMPLETE" },
+        { no: "9", test: "CHEST X-RAY" },
+        { no: "10", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "11", test: "ECG" },
+        { no: "12", test: "ECHO" },
+        { no: "13", test: "PAP SMEAR" },
+        { no: "14", test: "GEN MEDICINE OPINION" },
+        { no: "15", test: "GYNAECOLOGY OPINION" },
+        { no: "16", test: "OPTHAL OPINION" },
+        { no: "17", test: "DENTAL OPINION" },
+        { no: "18", test: "DIET COUNSELLING" },
+      ],
+    },
+    {
+      name: "Comprehensive Health Checkup for Women",
+      price: "₹6,500",
+      icon: FaBookMedical,
+      color: "bg-red-500",
+      tests: [
+        { no: "1", test: "CBC" },
+        { no: "2", test: "FBS, PPBS" },
+        { no: "3", test: "HbA1C" },
+        { no: "4", test: "RFT" },
+        { no: "5", test: "LFT" },
+        { no: "6", test: "LIPID PROFILE" },
+        { no: "7", test: "FT3, FT4, TSH" },
+        { no: "8", test: "URINE COMPLETE" },
+        { no: "9", test: "CHEST X-RAY" },
+        { no: "10", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "11", test: "ECG" },
+        { no: "12", test: "ECHO" },
+        { no: "13", test: "TMT" },
+        { no: "14", test: "PAP SMEAR" },
+        { no: "15", test: "GEN MEDICINE OPINION" },
+        { no: "16", test: "GYNAECOLOGY OPINION" },
+        { no: "17", test: "OPTHAL OPINION" },
+        { no: "18", test: "DENTAL OPINION" },
+        { no: "19", test: "DIET COUNSELLING" },
       ],
     },
   ];
@@ -184,8 +174,8 @@ const Packages = () => {
       {/* Hero Section */}
       <HeroSection
         backgroundImage={getHeroBgImage()}
-        badge={{ icon: FaBookMedical, text: "Health Packages" }}
-        title="Health Check Packages"
+        badge={{ icon: FaBookMedical, text: "Master Health Checkup" }}
+        title="Master Health Checkup - Package"
         subtitle="Comprehensive Health Screenings for Your Well-being"
       />
 
@@ -201,7 +191,7 @@ const Packages = () => {
             variants={staggerContainer}
             className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
           >
-            {packages.map((pkg, index) => {
+            {packages.map((pkg) => {
               const IconComponent = pkg.icon;
               return (
                 <motion.div
@@ -243,14 +233,22 @@ const Packages = () => {
                         Tests Included:
                       </h4>
                       <div className="max-h-64 overflow-y-auto custom-scrollbar">
-                        {pkg.tests.map((test) => (
+                        {pkg.tests.map((testItem, idx) => (
                           <div
-                            key={pkg.name + "-" + test}
+                            key={
+                              pkg.name +
+                              "-" +
+                              testItem.no +
+                              "-" +
+                              testItem.test +
+                              "-" +
+                              idx
+                            }
                             className="flex items-start text-gray-600 py-1"
                           >
                             <FaCheck className="text-emerald-500 mr-3 text-xs flex-shrink-0 mt-1" />
                             <span className="text-sm font-medium leading-relaxed">
-                              {test}
+                              {testItem.no}. {testItem.test}
                             </span>
                           </div>
                         ))}
