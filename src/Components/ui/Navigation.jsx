@@ -335,16 +335,29 @@ const Navigation = () => {
               </div>
             </div>
 
-            {/* Mobile Menu Toggle - Show when desktop nav is hidden */}
-            <motion.button
-              onClick={() => setIsMenuOpen(!isMenuOpen)}
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="xl:hidden p-2.5 rounded-lg bg-white/80 hover:bg-white text-gray-700 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200"
-              aria-label="Toggle navigation menu"
-            >
-              {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
-            </motion.button>
+            {/* Right side: NABH Badge + Mobile Toggle */}
+            <div className="flex items-center gap-2 shrink-0">
+              {/* NABH Badge - Always visible */}
+              <img
+                src="/NABH.jpeg"
+                alt="NABH Accredited"
+                width="48"
+                height="48"
+                className="h-8 sm:h-9 xl:h-10 2xl:h-11 w-auto object-contain select-none rounded-sm"
+                loading="eager"
+              />
+
+              {/* Mobile Menu Toggle - Show when desktop nav is hidden */}
+              <motion.button
+                onClick={() => setIsMenuOpen(!isMenuOpen)}
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="xl:hidden p-2.5 rounded-lg bg-white/80 hover:bg-white text-gray-700 transition-all duration-300 shadow-md hover:shadow-lg border border-gray-200"
+                aria-label="Toggle navigation menu"
+              >
+                {isMenuOpen ? <FaTimes size={20} /> : <FaBars size={20} />}
+              </motion.button>
+            </div>
           </div>
         </div>
 

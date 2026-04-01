@@ -86,13 +86,21 @@ export default function Footer() {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
           {/* Hospital Info - Enhanced */}
           <div className="lg:col-span-4">
-            {/* Centered Logo Only */}
+            {/* Centered Logo with NABH Badge */}
             <div className="flex items-center justify-center mb-4">
-              <div className="w-48 h-24 md:w-56 md:h-28 rounded-lg bg-white p-2 flex items-center justify-center shadow-lg">
+              <div className="rounded-lg bg-white p-2 flex items-center justify-center shadow-lg gap-2 sm:gap-3">
                 <img
                   src={logoFull}
                   alt="SSS Super Speciality Hospital Logo"
-                  className="max-w-full max-h-full object-contain rounded-sm"
+                  className="h-16 sm:h-18 md:h-20 w-auto object-contain rounded-sm"
+                />
+                {/* Vertical divider */}
+                <div className="h-10 sm:h-12 md:h-14 w-px bg-gradient-to-b from-transparent via-gray-300 to-transparent shrink-0"></div>
+                {/* NABH Badge */}
+                <img
+                  src="/NABH.jpeg"
+                  alt="NABH Accredited Hospital"
+                  className="h-12 sm:h-14 md:h-16 w-auto object-contain rounded-sm"
                 />
               </div>
             </div>
