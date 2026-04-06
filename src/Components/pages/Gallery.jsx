@@ -1,6 +1,7 @@
 import { useState, useMemo, useEffect, useCallback } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import HeroSection from "../ui/HeroSection";
+import ModalPortal from "../ui/ModalPortal";
 import {
   FaHospital,
   FaPlayCircle,
@@ -315,110 +316,112 @@ const Gallery = () => {
       </div>
 
       {/* Enhanced Modal with Navigation - Glossy Transparent Background */}
-      {activeMedia && (
-        <div
-          className="flex items-center justify-center p-4 backdrop-blur-2xl"
-          style={{
-            position: "fixed",
-            top: 0,
-            left: 0,
-            right: 0,
-            bottom: 0,
-            zIndex: 999,
-            background: "rgba(255, 255, 255, 0.05)",
-            backdropFilter: "blur(40px) saturate(180%)",
-            WebkitBackdropFilter: "blur(40px) saturate(180%)",
-          }}
-          onClick={closeMedia}
-        >
+      <ModalPortal>
+        {activeMedia && (
           <div
-            className="relative w-full max-w-5xl mx-auto flex flex-col px-2 sm:px-4 md:px-6"
-            onClick={(e) => e.stopPropagation()}
+            className="flex items-center justify-center p-4 backdrop-blur-2xl"
+            style={{
+              position: "fixed",
+              top: 0,
+              left: 0,
+              right: 0,
+              bottom: 0,
+              zIndex: 999,
+              background: "rgba(255, 255, 255, 0.05)",
+              backdropFilter: "blur(40px) saturate(180%)",
+              WebkitBackdropFilter: "blur(40px) saturate(180%)",
+            }}
+            onClick={closeMedia}
           >
-            {/* Header with Counter and Close Button */}
-            <div className="flex items-center justify-between mb-4">
-              {activeMedia.type === "image" && (
-                <div className="text-gray-900 text-sm font-semibold bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
-                  {currentImageIndex + 1} / {images.length}
+            <div
+              className="relative w-full max-w-5xl mx-auto flex flex-col px-2 sm:px-4 md:px-6"
+              onClick={(e) => e.stopPropagation()}
+            >
+              {/* Header with Counter and Close Button */}
+              <div className="flex items-center justify-between mb-4">
+                {activeMedia.type === "image" && (
+                  <div className="text-gray-900 text-sm font-semibold bg-white/90 backdrop-blur-md border border-white/40 rounded-full px-4 py-2 shadow-lg">
+                    {currentImageIndex + 1} / {images.length}
+                  </div>
+                )}
+                {activeMedia.type === "video" && <div />}
+
+                {/* Close Button */}
+                <button
+                  onClick={closeMedia}
+                  className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
+                >
+                  <svg
+                    className="w-6 h-6"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M6 18L18 6M6 6l12 12"
+                    />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Content with Navigation for Images */}
+              {activeMedia.type === "image" ? (
+                <div className="relative flex-1 flex items-center justify-center">
+                  {/* Previous Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage("prev");
+                    }}
+                    className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                  >
+                    <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
+                  </button>
+
+                  {/* Image */}
+                  <div className="relative max-w-full max-h-full">
+                    <img
+                      src={activeMedia.src}
+                      alt={activeMedia.alt || "Infrastructure Photo"}
+                      className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
+                    />
+                  </div>
+
+                  {/* Next Button */}
+                  <button
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      navigateImage("next");
+                    }}
+                    className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
+                  >
+                    <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
+                  </button>
+                </div>
+              ) : (
+                /* Video Content */
+                <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50 w-full">
+                  <div className="aspect-video">
+                    <video
+                      src={activeMedia.src}
+                      className="w-full h-full object-contain"
+                      controls
+                      autoPlay
+                    >
+                      <track kind="captions" label="English captions" />
+                    </video>
+                  </div>
                 </div>
               )}
-              {activeMedia.type === "video" && <div />}
 
-              {/* Close Button */}
-              <button
-                onClick={closeMedia}
-                className="bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 text-gray-900 transition-all duration-300 group shadow-lg"
-              >
-                <svg
-                  className="w-6 h-6"
-                  fill="none"
-                  viewBox="0 0 24 24"
-                  stroke="currentColor"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M6 18L18 6M6 6l12 12"
-                  />
-                </svg>
-              </button>
+              {/* Keyboard hint removed per UX request */}
             </div>
-
-            {/* Content with Navigation for Images */}
-            {activeMedia.type === "image" ? (
-              <div className="relative flex-1 flex items-center justify-center">
-                {/* Previous Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateImage("prev");
-                  }}
-                  className="absolute left-2 md:left-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
-                >
-                  <FaChevronLeft className="w-5 h-5 md:w-6 md:h-6" />
-                </button>
-
-                {/* Image */}
-                <div className="relative max-w-full max-h-full">
-                  <img
-                    src={activeMedia.src}
-                    alt={activeMedia.alt || "Infrastructure Photo"}
-                    className="max-w-full max-h-[70vh] object-contain rounded-2xl shadow-2xl"
-                  />
-                </div>
-
-                {/* Next Button */}
-                <button
-                  onClick={(e) => {
-                    e.stopPropagation();
-                    navigateImage("next");
-                  }}
-                  className="absolute right-2 md:right-4 z-20 bg-white/90 hover:bg-white backdrop-blur-md border border-white/40 rounded-full p-3 md:p-4 text-gray-900 transition-all duration-300 group shadow-lg"
-                >
-                  <FaChevronRight className="w-5 h-5 md:w-6 md:h-6" />
-                </button>
-              </div>
-            ) : (
-              /* Video Content */
-              <div className="relative rounded-2xl overflow-hidden shadow-2xl ring-1 ring-white/10 bg-black/50 w-full">
-                <div className="aspect-video">
-                  <video
-                    src={activeMedia.src}
-                    className="w-full h-full object-contain"
-                    controls
-                    autoPlay
-                  >
-                    <track kind="captions" label="English captions" />
-                  </video>
-                </div>
-              </div>
-            )}
-
-            {/* Keyboard hint removed per UX request */}
           </div>
-        </div>
-      )}
+        )}
+      </ModalPortal>
     </div>
   );
 };
