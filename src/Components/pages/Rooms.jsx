@@ -335,7 +335,7 @@ const Rooms = () => {
             >
               <button
                 onClick={() => setSelectedImage(null)}
-                className="absolute top-3 right-3 text-white/90 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 shadow-lg"
+                className="absolute top-3 right-3 z-10 text-white/90 hover:text-white bg-black/40 backdrop-blur-md rounded-full p-2 shadow-lg"
                 aria-label="Close image"
               >
                 <FaTimes className="w-5 h-5" />

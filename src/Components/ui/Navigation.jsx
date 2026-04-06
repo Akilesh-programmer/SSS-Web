@@ -2,17 +2,16 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Link, useNavigate, useLocation } from "react-router-dom";
 import { useAppointment } from "../../contexts/AppointmentContext";
-import CallModal from "./CallModal";
 const sssLogoLocal = "/assets/logos/sss-logo.avif";
 const sssLogo = sssLogoLocal;
 const logoFullLocal = "/assets/logos/full-logo.avif";
 const logoFull = logoFullLocal;
-import { FaBars, FaTimes, FaAmbulance, FaCalendarPlus } from "react-icons/fa";
+import { FaBars, FaTimes, FaAmbulance, FaPhone } from "react-icons/fa";
 
 const Navigation = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-  const [isCallModalOpen, setIsCallModalOpen] = useState(false);
+
   const [infraDropdownOpen, setInfraDropdownOpen] = useState(false);
   const navigate = useNavigate();
   const location = useLocation();
@@ -297,8 +296,8 @@ const Navigation = () => {
               {/* Action Buttons - Same continuous flow with small separator */}
               <div className="flex items-center gap-1.5 ml-2">
                 {/* Book Appointment Button */}
-                <motion.button
-                  onClick={() => setIsCallModalOpen(true)}
+                <motion.a
+                  href="tel:+917729888777"
                   whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   className="flex items-center gap-2 px-3 py-2.5 bg-emerald-600 hover:bg-emerald-700 text-white rounded-lg text-sm font-semibold transition-all duration-300 shadow-lg hover:shadow-xl whitespace-nowrap"
@@ -306,11 +305,11 @@ const Navigation = () => {
                     textShadow:
                       "0 1px 3px rgba(0,0,0,0.3), 0 2px 6px rgba(0,0,0,0.2)",
                   }}
-                  aria-label="Book appointment"
+                  aria-label="Call to book appointment"
                 >
-                  <FaCalendarPlus className="text-base shrink-0" />
+                  <FaPhone className="text-base shrink-0" />
                   <span>Book Appointment</span>
-                </motion.button>
+                </motion.a>
 
                 {/* Emergency Button - Two lines enforced */}
                 <motion.button
@@ -375,20 +374,18 @@ const Navigation = () => {
                 {/* Action Buttons First - Stacked Vertically for Better Mobile UI */}
                 <div className="flex flex-col gap-3 mb-6">
                   {/* Mobile Book Appointment */}
-                  <motion.button
-                    onClick={() => {
-                      setIsMenuOpen(false);
-                      setIsCallModalOpen(true);
-                    }}
+                  <motion.a
+                    href="tel:+917729888777"
+                    onClick={() => setIsMenuOpen(false)}
                     whileHover={{ scale: 1.02 }}
                     whileTap={{ scale: 0.98 }}
                     className="flex items-center justify-center space-x-3 px-6 py-4 bg-emerald-600 hover:bg-emerald-700 text-white rounded-xl text-cta transition-all duration-300 shadow-lg w-full"
                   >
-                    <FaCalendarPlus className="text-xl" />
+                    <FaPhone className="text-xl" />
                     <span className="text-base font-semibold">
                       Book Appointment
                     </span>
-                  </motion.button>
+                  </motion.a>
 
                   {/* Mobile Emergency Button */}
                   <motion.button
@@ -495,16 +492,6 @@ const Navigation = () => {
           )}
         </AnimatePresence>
       </motion.nav>
-
-      {/* Call Modal for Book Appointment */}
-      <CallModal
-        isOpen={isCallModalOpen}
-        onClose={() => setIsCallModalOpen(false)}
-        title="Book Appointment"
-        primaryNumber="0424 - 2888777"
-        secondaryNumber="+91 7729 888777"
-        whatsappNumber="+91 7729 888777"
-      />
     </>
   );
 };
