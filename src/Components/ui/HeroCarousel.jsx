@@ -9,12 +9,14 @@ import {
   FaInfoCircle,
 } from "react-icons/fa";
 
-const SLIDE_DURATION = 7000;
+const SLIDE_DURATION = 5000;
 const TOTAL_SLIDES = 2;
 
-/* Height classes that fit exactly within viewport minus navbar.
-   Navbar heights: mobile 3.5rem, sm 4rem, xl 4.5rem */
-const HERO_H = "h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] xl:h-[calc(100vh-4.5rem)]";
+/* Height classes:
+   Mobile: min-height so image is fully visible without cropping.
+   Desktop (md+): fill viewport minus navbar height. */
+const HERO_H_MOBILE = "min-h-[400px] sm:min-h-[500px]";
+const HERO_H_DESKTOP = "md:h-[calc(100vh-4rem)] xl:h-[calc(100vh-4.5rem)]";
 
 /**
  * HeroCarousel — Cinematic crossfade between Award Hero and CMCHIS slide.
@@ -84,48 +86,51 @@ export default function HeroCarousel() {
       </AnimatePresence>
 
       {/* ── NAVIGATION CONTROLS ── */}
-      {/* Arrows — desktop only */}
+      {/* Side arrows — all screens. Mobile: positioned within hero image area. Desktop: mid-height. */}
       <button
         onClick={prevSlide}
         aria-label="Previous slide"
-        className="hidden md:flex absolute left-5 lg:left-8 top-1/2 z-30 w-11 h-11 items-center justify-center rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white/80 hover:bg-white/25 hover:text-white transition-colors cursor-pointer"
+        className="flex absolute left-2 sm:left-4 lg:left-8 top-[12rem] sm:top-[15rem] md:top-1/2 z-30 w-8 h-8 md:w-11 md:h-11 items-center justify-center rounded-full bg-black/30 md:bg-white/15 backdrop-blur-md border border-white/25 text-white hover:bg-black/50 md:hover:bg-white/25 transition-colors cursor-pointer"
         style={{ marginTop: "-1.375rem" }}
       >
-        <FaChevronLeft className="text-sm" />
+        <FaChevronLeft className="text-xs md:text-sm" />
       </button>
       <button
         onClick={nextSlide}
         aria-label="Next slide"
-        className="hidden md:flex absolute right-5 lg:right-8 top-1/2 z-30 w-11 h-11 items-center justify-center rounded-full bg-white/15 backdrop-blur-md border border-white/25 text-white/80 hover:bg-white/25 hover:text-white transition-colors cursor-pointer"
+        className="flex absolute right-2 sm:right-4 lg:right-8 top-[12rem] sm:top-[15rem] md:top-1/2 z-30 w-8 h-8 md:w-11 md:h-11 items-center justify-center rounded-full bg-black/30 md:bg-white/15 backdrop-blur-md border border-white/25 text-white hover:bg-black/50 md:hover:bg-white/25 transition-colors cursor-pointer"
         style={{ marginTop: "-1.375rem" }}
       >
-        <FaChevronRight className="text-sm" />
+        <FaChevronRight className="text-xs md:text-sm" />
       </button>
 
       {/* Bottom bar: dots + progress */}
-      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-0 right-0 z-30 flex flex-col items-center gap-2.5">
-        {/* Dots */}
-        <div className="flex gap-2.5">
-          {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
-            <button
-              key={i}
-              onClick={() => goToSlide(i)}
-              aria-label={`Go to slide ${i + 1}`}
-              className={`rounded-full transition-all duration-300 cursor-pointer border-0 ${
-                currentSlide === i
-                  ? "w-8 h-2.5 bg-white"
-                  : "w-2.5 h-2.5 bg-white/40 hover:bg-white/60"
-              }`}
+      <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-0 right-0 z-30 flex justify-center">
+        <div className="flex flex-col items-center gap-2 bg-black/40 md:bg-transparent backdrop-blur-md md:backdrop-blur-none rounded-full px-4 py-2 md:px-0 md:py-0">
+          {/* Dots */}
+          <div className="flex gap-2.5">
+            {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goToSlide(i)}
+                aria-label={`Go to slide ${i + 1}`}
+                className={`rounded-full transition-all duration-300 cursor-pointer border-0 ${
+                  currentSlide === i
+                    ? "w-8 h-2.5 bg-white"
+                    : "w-2.5 h-2.5 bg-white/50 hover:bg-white/70"
+                }`}
+              />
+            ))}
+          </div>
+
+          {/* Progress bar */}
+          <div className="w-24 sm:w-32 h-[3px] bg-white/30 rounded-full overflow-hidden">
+            <div
+              ref={progressRef}
+              className="h-full bg-white/80 rounded-full"
+              style={{ width: "0%" }}
             />
-          ))}
-        </div>
-        {/* Progress bar */}
-        <div className="w-24 sm:w-32 h-[3px] bg-white/20 rounded-full overflow-hidden">
-          <div
-            ref={progressRef}
-            className="h-full bg-white/70 rounded-full"
-            style={{ width: "0%" }}
-          />
+          </div>
         </div>
       </div>
     </div>
@@ -144,7 +149,7 @@ function SlideAward() {
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
       <section
-        className={`relative w-full ${HERO_H} mt-14 sm:mt-16 xl:mt-18 overflow-hidden bg-gray-900`}
+        className={`relative w-full ${HERO_H_MOBILE} ${HERO_H_DESKTOP} mt-14 sm:mt-16 xl:mt-18 overflow-hidden bg-gray-900`}
       >
         <div className="absolute inset-0 w-full h-full">
           <img
@@ -181,7 +186,7 @@ function SlideAward() {
 
           {/* Hero Content — bottom-left */}
           <div className="absolute left-0 bottom-0 z-10 pointer-events-auto">
-            <div className="px-6 md:px-8 lg:px-12 xl:px-16 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+            <div className="px-6 md:px-8 lg:px-12 xl:px-16 pb-20 sm:pb-24 md:pb-28 lg:pb-32">
               <div className="max-w-md lg:max-w-lg xl:max-w-xl text-white">
                 <h1
                   className="hidden md:block text-4xl lg:text-5xl xl:text-6xl font-bold mb-6 leading-tight text-white"
@@ -203,7 +208,7 @@ function SlideAward() {
 
           {/* Recognition — bottom-right (desktop) */}
           <div className="hidden md:block absolute right-0 bottom-0 z-10 pointer-events-auto">
-            <div className="px-6 md:px-8 lg:px-12 xl:px-16 pb-16 sm:pb-20 md:pb-24 lg:pb-28">
+            <div className="px-6 md:px-8 lg:px-12 xl:px-16 pb-20 sm:pb-24 md:pb-28 lg:pb-32">
               <div className="max-w-md lg:max-w-lg text-white">
                 <div className="flex items-start gap-4 bg-white/25 backdrop-blur-xl rounded-2xl p-6 border border-white/50 shadow-2xl">
                   <FaHeartbeat className="text-emerald-400 text-2xl mt-1 flex-shrink-0" />
@@ -226,7 +231,7 @@ function SlideAward() {
         <div className="absolute top-0 right-0 w-32 h-32 bg-emerald-100/40 rounded-full blur-3xl" />
         <div className="absolute bottom-0 left-0 w-24 h-24 bg-teal-100/40 rounded-full blur-2xl" />
 
-        <div className="relative z-10 max-w-3xl mx-auto px-4 py-4">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 pt-4 pb-16">
           <div className="flex justify-center mb-6">
             <div className="inline-flex items-center px-5 py-3 bg-gradient-to-r from-emerald-500 to-teal-500 rounded-full shadow-lg">
               <FaAward className="text-lg mr-2.5 text-white" />
@@ -289,7 +294,7 @@ function SlideCMCHIS() {
       transition={{ duration: 0.8, ease: "easeInOut" }}
     >
       <section
-        className={`relative w-full ${HERO_H} mt-14 sm:mt-16 xl:mt-18 overflow-hidden`}
+        className={`relative w-full ${HERO_H_MOBILE} ${HERO_H_DESKTOP} mt-14 sm:mt-16 xl:mt-18 overflow-hidden`}
         style={{
           background:
             "linear-gradient(135deg, #022c22 0%, #0a3d2e 25%, #064e3b 50%, #0d5040 75%, #052e16 100%)",
@@ -326,7 +331,7 @@ function SlideCMCHIS() {
         </div>
 
         {/* Content container — vertically centered */}
-        <div className="relative z-10 flex items-center justify-center h-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 py-6 sm:py-8">
+        <div className="relative z-10 flex items-center justify-center min-h-[400px] sm:min-h-[500px] md:h-full px-4 sm:px-6 md:px-8 lg:px-12 xl:px-16 pt-6 sm:pt-8 pb-20 sm:pb-24 md:pb-16">
           <div className="max-w-7xl w-full mx-auto">
             <div className="grid md:grid-cols-2 gap-6 md:gap-10 lg:gap-14 items-center">
               {/* Left — CMCHIS Image in glass card */}
@@ -424,7 +429,7 @@ function SlideCMCHIS() {
 
       {/* Mobile extra info strip */}
       <div className="md:hidden bg-gradient-to-br from-emerald-50 via-white to-teal-50 relative overflow-hidden">
-        <div className="relative z-10 max-w-3xl mx-auto px-4 py-4">
+        <div className="relative z-10 max-w-3xl mx-auto px-4 pt-4 pb-16">
           <div className="flex items-center justify-center gap-3 text-center">
             <FaShieldAlt className="text-emerald-500 text-xl flex-shrink-0" />
             <p className="text-sm sm:text-base text-gray-700 leading-relaxed font-medium italic">
