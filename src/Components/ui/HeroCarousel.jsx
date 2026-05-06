@@ -19,24 +19,58 @@ const HERO_H_MOBILE = "min-h-[400px] sm:min-h-[500px]";
 const HERO_H_DESKTOP = "md:h-[calc(100vh-4rem)] xl:h-[calc(100vh-4.5rem)]";
 
 /**
- * HeroCarousel — Cinematic crossfade between Award Hero and CMCHIS slide.
- * Uses opacity-only animations (no transforms) for compatibility with global CSS.
+ * Slide transition variants — horizontal swipe feel.
+ * `direction`: 1 = forward (slide from right), -1 = backward (slide from left).
+ */
+const slideVariants = {
+  enter: (direction) => ({
+    x: direction > 0 ? "100%" : "-100%",
+    opacity: 0.3,
+  }),
+  center: {
+    x: 0,
+    opacity: 1,
+  },
+  exit: (direction) => ({
+    x: direction > 0 ? "-100%" : "100%",
+    opacity: 0.3,
+  }),
+};
+
+const slideTransition = {
+  x: { type: "spring", stiffness: 300, damping: 30 },
+  opacity: { duration: 0.25 },
+};
+
+/**
+ * HeroCarousel — Swipeable carousel with physical drag feel.
+ * Slides follow finger during drag, then complete or snap back on release.
  */
 export default function HeroCarousel() {
   const [currentSlide, setCurrentSlide] = useState(0);
+  const [direction, setDirection] = useState(1);
   const [isPaused, setIsPaused] = useState(false);
+  const [dragOffset, setDragOffset] = useState(0);
+  const isDragging = useRef(false);
   const progressRef = useRef(null);
   const timerRef = useRef(null);
+  const containerRef = useRef(null);
 
-  const goToSlide = useCallback((index) => {
-    setCurrentSlide(index);
-  }, []);
+  const goToSlide = useCallback(
+    (index) => {
+      setDirection(index > currentSlide ? 1 : -1);
+      setCurrentSlide(index);
+    },
+    [currentSlide]
+  );
 
   const nextSlide = useCallback(() => {
+    setDirection(1);
     setCurrentSlide((prev) => (prev + 1) % TOTAL_SLIDES);
   }, []);
 
   const prevSlide = useCallback(() => {
+    setDirection(-1);
     setCurrentSlide((prev) => (prev - 1 + TOTAL_SLIDES) % TOTAL_SLIDES);
   }, []);
 
@@ -73,20 +107,80 @@ export default function HeroCarousel() {
     return () => window.removeEventListener("keydown", handleKey);
   }, [nextSlide, prevSlide]);
 
+  // ── Touch / swipe with real-time drag ──
+  const touchStartRef = useRef({ x: 0, y: 0 });
+  const lockedAxis = useRef(null); // "horizontal" | "vertical" | null
+
+  const handleTouchStart = useCallback((e) => {
+    const touch = e.touches[0];
+    touchStartRef.current = { x: touch.clientX, y: touch.clientY };
+    isDragging.current = true;
+    lockedAxis.current = null;
+    setDragOffset(0);
+    setIsPaused(true);
+  }, []);
+
+  const handleTouchMove = useCallback((e) => {
+    if (!isDragging.current) return;
+    const touch = e.touches[0];
+    const deltaX = touch.clientX - touchStartRef.current.x;
+    const deltaY = touch.clientY - touchStartRef.current.y;
+
+    // Lock axis after first significant movement
+    if (!lockedAxis.current && (Math.abs(deltaX) > 10 || Math.abs(deltaY) > 10)) {
+      lockedAxis.current = Math.abs(deltaX) >= Math.abs(deltaY) ? "horizontal" : "vertical";
+    }
+
+    if (lockedAxis.current === "horizontal") {
+      e.preventDefault(); // Prevent vertical scroll while swiping horizontally
+      setDragOffset(deltaX);
+    }
+  }, []);
+
+  const handleTouchEnd = useCallback(
+    () => {
+      if (!isDragging.current) return;
+      isDragging.current = false;
+      const containerWidth = containerRef.current?.offsetWidth || window.innerWidth;
+      const threshold = containerWidth * 0.2; // 20% of width to trigger slide change
+
+      if (lockedAxis.current === "horizontal" && Math.abs(dragOffset) > threshold) {
+        if (dragOffset < 0) {
+          nextSlide();
+        } else {
+          prevSlide();
+        }
+      }
+      // Reset drag offset (snap back or new slide takes over)
+      setDragOffset(0);
+      lockedAxis.current = null;
+      setIsPaused(false);
+    },
+    [dragOffset, nextSlide, prevSlide]
+  );
+
   return (
     <div
-      className="relative overflow-hidden"
+      ref={containerRef}
+      className="relative overflow-hidden touch-pan-y"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchEnd={handleTouchEnd}
     >
       {/* ── SLIDES ── */}
-      <AnimatePresence mode="wait">
-        {currentSlide === 0 && <SlideAward key="award" />}
-        {currentSlide === 1 && <SlideCMCHIS key="cmchis" />}
+      <AnimatePresence initial={false} custom={direction} mode="wait">
+        {currentSlide === 0 && (
+          <SlideAward key="award" direction={direction} dragOffset={dragOffset} />
+        )}
+        {currentSlide === 1 && (
+          <SlideCMCHIS key="cmchis" direction={direction} dragOffset={dragOffset} />
+        )}
       </AnimatePresence>
 
       {/* ── NAVIGATION CONTROLS ── */}
-      {/* Side arrows — all screens. Mobile: positioned within hero image area. Desktop: mid-height. */}
+      {/* Side arrows — all screens */}
       <button
         onClick={prevSlide}
         aria-label="Previous slide"
