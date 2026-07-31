@@ -6,10 +6,10 @@
 
 [![Live Site](https://img.shields.io/badge/Live-ssshospitals.in-10b981?style=for-the-badge)](https://ssshospitals.in)
 [![React](https://img.shields.io/badge/React-19.1.1-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
-[![Vite](https://img.shields.io/badge/Vite-7.1.2-646CFF?style=for-the-badge&logo=vite)](https://vitejs.dev/)
+[![Vite](https://img.shields.io/badge/Vite-7.2.4-646CFF?style=for-the-badge&logo=vite)](https://vite.dev/)
 [![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-000000?style=for-the-badge&logo=vercel)](https://vercel.com)
 
-[Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Performance](#-performance) • [Contributing](#-contributing)
+[Features](#-features) • [Tech Stack](#-tech-stack) • [Getting Started](#-getting-started) • [Prerendering System](#-prerendering--static-site-generation-ssg) • [Deployment](#-deployment) • [SEO & Schema](#-seo--structured-data)
 
 </div>
 
@@ -20,296 +20,198 @@
 - [About](#-about)
 - [Features](#-features)
 - [Tech Stack](#-tech-stack)
-- [Performance](#-performance)
+- [Prerendering & Static Site Generation (SSG)](#-prerendering--static-site-generation-ssg)
 - [Getting Started](#-getting-started)
 - [Project Structure](#-project-structure)
-- [Development](#-development)
+- [Development Workflow](#-development-workflow)
 - [Deployment](#-deployment)
-- [SEO & Analytics](#-seo--analytics)
-- [Security](#-security)
+- [SEO & Structured Data](#-seo--structured-data)
+- [Security & Performance](#-security--performance)
 - [Accessibility](#-accessibility)
-- [Contributing](#-contributing)
+- [Contact](#-contact)
 
 ---
 
 ## 🏥 About
 
-SSS Super Speciality Hospital's official website - A modern, high-performance web application showcasing our comprehensive healthcare services, medical departments, expert doctors, and facilities. Built with cutting-edge web technologies to provide the best user experience for patients and visitors.
+SSS Super Speciality Hospital's official website is a modern, high-performance web application showcasing our healthcare services, medical departments, expert doctors, and facilities. 
 
-### Key Objectives
-
-- **Patient-Centric Design**: Easy navigation and appointment booking
-- **Performance**: Lightning-fast load times (95+ Lighthouse score)
-- **Accessibility**: WCAG 2.1 AA compliant
-- **SEO Optimized**: Rich structured data and semantic HTML
-- **Mobile-First**: Responsive design for all devices
-- **Security**: Industry-standard security headers and practices
+To solve the limitations of standard Single Page Applications (SPAs) where search engine crawlers index a near-blank page due to client-side rendering (CSR), this project uses a build-time **Static Site Generation (SSG) Pre-rendering Engine**. This compiles all pages into fully-rendered static HTML files containing metadata and structured JSON-LD schemas.
 
 ---
 
 ## ✨ Features
 
 ### 🎨 **User Experience**
-
-- ⚡ **Instant Page Loads**: Advanced code splitting and lazy loading
-- 📱 **Fully Responsive**: Optimized for mobile, tablet, and desktop
-- 🎭 **Smooth Animations**: Framer Motion for delightful interactions
-- 🌙 **Progressive Web App**: Offline support with service worker
-- ♿ **Accessible**: Keyboard navigation, screen reader support
+- ⚡ **Instant Page Loads**: Pre-rendered static pages hosted on Vercel's global CDN.
+- 📱 **Fully Responsive**: Optimized for mobile devices, tablets, and desktops.
+- 🎭 **Smooth Animations**: Interactive elements powered by Framer Motion.
+- 🖼️ **Optimized Media**: AVIF next-gen formats for infrastructure images, with explicit width/height and descriptive alt tags.
 
 ### 🏥 **Healthcare Features**
-
-- 📅 **Online Appointment Booking**: Quick and easy appointment scheduling
-- 👨‍⚕️ **Doctor Profiles**: Detailed information about 50+ specialists
-- 🏢 **20+ Departments**: Comprehensive specialty coverage
-- 🛏️ **Room Gallery**: Virtual tour of facilities
-- 💬 **Patient Testimonials**: Real feedback from patients
-- 📞 **Quick Contact**: Click-to-call and WhatsApp integration
-
-### 🔧 **Technical Excellence**
-
-- ⚙️ **Modern React 19**: Latest features and hooks
-- 🚀 **Vite Build Tool**: Ultra-fast HMR and build times
-- 📦 **Optimized Bundles**: Code splitting, tree shaking
-- 🖼️ **AVIF Images**: Next-gen image format for 50% smaller files
-- 📊 **Analytics Integration**: Vercel Analytics & Speed Insights
-- 🛡️ **Security Headers**: CSP, HSTS, XSS protection
-- 🔐 **HIPAA Compliant**: Healthcare data protection standards
+- 📞 **Direct CTA Booking**: Navbar and home page "Book Appointment" buttons redirect directly to call routing (`tel:+917729888777`).
+- 👨‍⚕️ **Doctor Profiles**: Dynamic profiles with Physician schemas.
+- 🏢 **23 Departments**: Specialized department layouts with custom content, doctors lists, and FAQs.
+- 💬 **Bilingual CMCHIS Slide**: Highlighting Govt of Tamil Nadu health scheme availability.
+- 🛡️ **NABH Accreditation**: Accredited badge and organization credentials displayed prominently.
 
 ---
 
 ## 🛠️ Tech Stack
 
-### **Frontend**
+### **Core Stack**
+- **React**: `v19.1.1` (UI Library)
+- **React Router Dom**: `v7.8.2` (Client-side routing)
+- **Vite**: `v7.2.4` (Development server & bundler)
+- **TailwindCSS**: `v4.1.12` (Utility styling)
+- **Framer Motion**: `v12.23.12` (Animations)
 
-| Technology    | Version  | Purpose      |
-| ------------- | -------- | ------------ |
-| React         | 19.1.1   | UI Framework |
-| Vite          | 7.1.2    | Build Tool   |
-| TailwindCSS   | 4.1.12   | Styling      |
-| Framer Motion | 12.23.12 | Animations   |
-| React Router  | 7.8.2    | Routing      |
-
-### **Performance & Optimization**
-
-- **Code Splitting**: Automatic route-based splitting
-- **Lazy Loading**: On-demand component loading
-- **Image Optimization**: AVIF format with fallbacks
-- **Service Worker**: Aggressive caching strategy
-- **Bundle Analysis**: Terser minification & tree shaking
-
-### **SEO & Analytics**
-
-- **Vercel Analytics**: Real-time visitor analytics
-- **Speed Insights**: Performance monitoring
-- **Structured Data**: JSON-LD schemas for Google
-- **Sitemap**: Auto-generated XML sitemap
+### **Prerendering & Build System**
+- **Rollup Prerenderer**: `@prerenderer/rollup-plugin` (ESM-compliant build prerenderer)
+- **Puppeteer Renderer**: `@prerenderer/renderer-puppeteer` (Headless Chrome rendering)
+- **Prebuilt script**: `scripts/vercel-prebuilt.js` (Prebuilt Build Output API tool)
 
 ---
 
-## ⚡ Performance
+## ⚙️ Prerendering & Static Site Generation (SSG)
 
-Our website achieves exceptional performance metrics:
+Standard Vite SPAs compile into a single `index.html` with a blank `#root` container. This project integrates `@prerenderer/rollup-plugin` to generate static files at build time:
 
-### Lighthouse Scores (Desktop)
-
-```
-🟢 Performance:    98/100
-🟢 Accessibility:  95/100
-🟢 Best Practices: 100/100
-🟢 SEO:            100/100
-```
-
-### Key Metrics
-
-| Metric                             | Target  | Achieved |
-| ---------------------------------- | ------- | -------- |
-| **First Contentful Paint (FCP)**   | < 1.8s  | ~0.8s    |
-| **Largest Contentful Paint (LCP)** | < 2.5s  | ~1.2s    |
-| **Time to Interactive (TTI)**      | < 3.8s  | ~2.0s    |
-| **Total Blocking Time (TBT)**      | < 200ms | ~50ms    |
-| **Cumulative Layout Shift (CLS)**  | < 0.1   | ~0.001   |
+1. **Compilation**: Vite builds the app assets.
+2. **Mount Event**: In `src/main.jsx`, React mounts and dispatches a `custom-render-trigger` event to the document window after 300ms.
+3. **Headless Chrome**: Puppeteer boots up a headless Chrome browser, loads all **34 routes** individually, waits for the trigger event, fetches the fully rendered DOM (with titles, meta tags, and structured JSON-LD schemas injected), and saves it to `.html` index files under the `dist` folder.
+4. **Conditional Bypassing**: To avoid missing library errors (`libnspr4.so`) on Vercel's remote build containers, the prerendering plugin is dynamically skipped when `process.env.VERCEL === '1'` is detected. Prerendering runs locally on your development machine where Chromium can launch.
 
 ---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
-- **Node.js**: v18.0.0 or higher
-- **npm**: v9.0.0 or higher
+- **Node.js**: v20.x or higher
+- **npm**: v10.x or higher
 
 ### Installation
-
 1. **Clone the repository**
-
-```bash
-git clone https://github.com/Akilesh-programmer/SSS-Web.git
-cd SSS-Web
-```
-
+   ```bash
+   git clone https://github.com/Akilesh-programmer/SSS-Web.git
+   cd SSS-Web
+   ```
 2. **Install dependencies**
-
-```bash
-npm install
-```
-
-3. **Set up environment variables**
-
-```bash
-cp .env.example .env
-```
-
-Edit `.env` with your configuration
-
-4. **Start development server**
-
-```bash
-npm run dev
-```
-
-Visit `http://localhost:5173`
-
-### Quick Commands
-
-```bash
-npm run dev              # Start dev server
-npm run build            # Build for production
-npm run preview          # Preview production build
-npm run lint             # Run ESLint
-npm run deploy           # Deploy to Vercel
-```
+   ```bash
+   npm install
+   ```
+3. **Start the local development server**
+   ```bash
+   npm run dev
+   ```
+   Visit `http://localhost:5173`
 
 ---
 
 ## 📁 Project Structure
 
-```
+```text
 SSS-Web/
-├── index.html                # HTML entry point
-├── vite.config.js            # Vite configuration
-├── vercel.json               # Vercel deployment config
-├── package.json              # Dependencies & scripts
-├── public/                   # Static assets
-│   ├── robots.txt
-│   ├── sitemap.xml
-│   ├── sw.js                 # Service worker
-│   └── assets/               # Images, icons
-├── src/                      # Source code
-│   ├── main.jsx              # Application entry
-│   ├── App.jsx               # Root component
-│   ├── Components/           # React components
-│   ├── contexts/             # React contexts
-│   ├── data/                 # Static data
-│   ├── hooks/                # Custom hooks
-│   └── utils/                # Utility functions
-└── scripts/                  # Build scripts
+├── index.html                # Entry point template
+├── vite.config.js            # Vite configurations (prerendering + code-splitting)
+├── package.json              # Package metadata and scripts
+├── public/                   # Static assets (copied directly to dist/)
+│   ├── vercel.json           # Permanent 301 redirects and routing rules
+│   ├── robots.txt            # Search crawler directives
+│   ├── sitemap.xml           # XML sitemap with all routes
+│   └── assets/               # Local icons & images
+├── scripts/
+│   ├── vercel-prebuilt.js    # Prepares local dist folder in Vercel Prebuilt format
+│   └── analyze-build.js      # Reports build size statistics
+├── src/                      # React application
+│   ├── main.jsx              # React mounting and prerender dispatch trigger
+│   ├── App.jsx               # Page router configuration
+│   ├── Components/
+│   │   ├── pages/            # Home, About, Doctors, Specialties, Rooms pages
+│   │   ├── sections/         # CTA, Testimonials, Tours sections
+│   │   └── ui/               # Footer, Navigation, SEO tags, Popups
+│   ├── data/                 # SEO meta templates, FAQs, doctors data
+│   └── utils/                # Schema builders and meta tag injectors
 ```
 
 ---
 
-## 💻 Development
+## 💻 Development Workflow
 
-### Code Style
+When modifying code or updating SEO copy, follow these steps to deploy correctly:
 
-- **JavaScript**: ES6+ features, functional components
-- **Styling**: TailwindCSS utility-first approach
-- **Components**: Small, reusable, single responsibility
+### 1. Write Code and Test Locally
+Launch your dev server and check visual changes:
+```bash
+npm run dev
+```
 
-### Best Practices
-
-1. Use PropTypes for type checking
-2. Lazy load routes and heavy components
-3. Optimize images before adding
-4. Update SEO data for new pages
-5. Test accessibility with keyboard navigation
-
----
-
-## 🌐 Deployment
-
-### Automatic Deployment (Vercel)
-
-- **Production**: Automatic on push to `main`
-- **Preview**: Automatic for pull requests
-- **Domain**: https://ssshospitals.in
-
-### Manual Deployment
-
+### 2. Run Local Build
+Compile the site locally to verify pre-rendering compiles all 34 routes:
 ```bash
 npm run build
+```
+*(Verify generated files are populated inside `dist/`)*
+
+### 3. Commit and Push to Git
+Commit files to your git branch:
+```bash
+git add .
+git commit -m "feat: updated cardiology department content"
+git push origin main
+```
+*Note: Pushing triggers Vercel CI, which compiles without crashing because the remote build bypasses Puppeteer.*
+
+### 4. Deploy Pre-rendered Site to Vercel
+To publish your local pre-rendered HTML files to production, run:
+```bash
 npm run deploy
 ```
+This script automates:
+- `npm run build`: Compiles and pre-renders locally.
+- `node scripts/vercel-prebuilt.js`: Copies `dist` into `.vercel/output/static`.
+- `npx vercel deploy --prebuilt --prod --yes`: Uploads the static folder directly to Vercel production without remote build overrides.
 
 ---
 
-## 📊 SEO & Analytics
+## 📊 SEO & Structured Data
 
-### SEO Features
+The website is fully optimized for local search metrics targeting **Erode, Tamil Nadu** and surrounding service towns.
 
-- ✅ Structured Data (Organization, LocalBusiness, Medical schemas)
-- ✅ Dynamic Meta Tags (OG tags, Twitter Cards)
-- ✅ XML Sitemap with all pages
-- ✅ Robots.txt for proper crawling
-- ✅ Canonical URLs
-- ✅ Mobile-friendly design
+### Metas & Canonicals
+- **Unique Titles & Meta Descriptions**: Custom metadata applied to all pages. Brand keywords are front-loaded.
+- **Self-Referencing Canonical Tags**: Injected dynamically into `<head>` to prevent duplicate content indexing.
+- **Alt Text**: Descriptive attributes placed on all infrastructure images.
 
-### Analytics
-
-- Vercel Analytics (built-in)
-- Google Search Console integration
-- Core Web Vitals tracking
+### JSON-LD Schema Implementations
+- **Hospital Schema** (`Hospital` / `MedicalOrganization` on homepage): Name, character-for-character exact NAP, geo-coordinates, emergency services flag, available procedures, and NABH credentials.
+- **Physician Schema** (`Physician` on doctor profiles): Name, medical specialty, qualifications, licensing body, and affiliated hospital.
+- **MedicalWebPage Schema** (`MedicalWebPage` on department views): Last reviewed dates, medical specialty details.
+- **FAQPage Schema** (`FAQPage` on department views): Pre-rendered accordion FAQs to secure rich snippets.
 
 ---
 
-## 🔒 Security
-
-### Implemented Measures
-
-- ✅ HTTPS Only with HSTS
-- ✅ Content Security Policy (CSP)
-- ✅ XSS Protection headers
-- ✅ Frame protection (X-Frame-Options)
-- ✅ Input validation and sanitization
-- ✅ Rate limiting on forms
-
-See [SECURITY.md](SECURITY.md) for vulnerability reporting.
+## 🔒 Security & Performance
+- **Image Formats**: AVIF next-gen formats for 50%+ asset size reduction.
+- **HSTS / CSP**: Configured inside `vercel.json` to enforce secure headers.
+- **Caching**: Service worker (`sw.js`) caches critical assets for offline support.
 
 ---
 
 ## ♿ Accessibility
-
-### WCAG 2.1 AA Compliance
-
-- ✅ Keyboard navigation support
-- ✅ Screen reader compatibility
-- ✅ Color contrast ratios (4.5:1 minimum)
-- ✅ Focus indicators
-- ✅ Alt text for images
-- ✅ Semantic HTML structure
-
----
-
-## 🤝 Contributing
-
-We welcome contributions! Please:
-
-1. Fork the repository
-2. Create a feature branch
-3. Commit your changes
-4. Push to the branch
-5. Open a Pull Request
+- Alt tags on all images.
+- ARIA accessibility label descriptions on phone and ambulance buttons.
+- Semantic HTML tags for clean document nesting (H1 -> H2 -> H3).
 
 ---
 
 ## 📞 Contact
 
 **SSS Super Speciality Hospital**
-
 - 🌐 Website: [ssshospitals.in](https://ssshospitals.in)
+- 📍 Address: 167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar, Erode - 638009
 - 📧 Email: info@ssshospitals.in
-- 📱 Phone: +91-424-2888777
-- 🚨 Emergency: +91-89259-31193
+- 🚨 Emergency: +91 89259 31193
 
 ---
 
@@ -317,6 +219,6 @@ We welcome contributions! Please:
 
 **Built with ❤️ for better healthcare accessibility**
 
-© 2025 SSS Super Speciality Hospital. All rights reserved.
+© 2026 SSS Super Speciality Hospital. All rights reserved.
 
 </div>
