@@ -1,6 +1,6 @@
 # Robots.txt for SSS Super Speciality Hospital
 # https://ssshospitals.in/robots.txt
-# Updated: October 2025
+# Updated: July 2026
 
 # ==================================
 # Main Crawler Rules (All Bots)
@@ -27,9 +27,9 @@ Sitemap: https://ssshospitals.in/sitemap.xml
 # Crawl delay (be polite to servers)
 Crawl-delay: 1
 
-# Disallow any admin or private areas (if any in future)
-# Disallow: /admin
-# Disallow: /private
+# Block old temp/staging URLs
+Disallow: /temp28may25/
+Disallow: /temp*/
 
 # Allow all images (AVIF, WebP, PNG, JPG for image search)
 Allow: /assets/
@@ -176,18 +176,3 @@ Disallow: /
 
 User-agent: PetalBot
 Disallow: /
-
-# Generic Scraper Patterns
-User-agent: *Bot*
-Crawl-delay: 10
-
-
-User-agent: Twitterbot
-Allow: /
-
-# Block bad bots (optional - add known bad bots here)
-User-agent: AhrefsBot
-Crawl-delay: 10
-
-User-agent: SemrushBot
-Crawl-delay: 10

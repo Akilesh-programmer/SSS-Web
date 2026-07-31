@@ -153,15 +153,15 @@ const AppointmentBooking = () => {
                   with just a few clicks.
                 </p>
 
-                <motion.button
-                  onClick={() => setIsCallModalOpen(true)}
+                <motion.a
+                  href="tel:+917729888777"
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white px-6 sm:px-8 lg:px-10 py-3 sm:py-4 rounded-xl sm:rounded-2xl text-cta shadow-lg hover:shadow-xl hover:from-emerald-700 hover:to-teal-700 transition-all duration-300 flex items-center gap-2 sm:gap-3 mx-auto w-full sm:w-auto max-w-sm sm:max-w-none justify-center"
+                  className="inline-flex items-center justify-center gap-2 sm:gap-3 px-6 sm:px-8 lg:px-10 py-3 sm:py-4 bg-gradient-to-r from-emerald-600 to-teal-600 hover:from-emerald-700 hover:to-teal-700 text-white rounded-xl sm:rounded-2xl text-cta shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer text-center mx-auto"
                 >
                   <FaCalendarAlt className="text-sm sm:text-base" />
                   <span>Book Appointment Now</span>
-                </motion.button>
+                </motion.a>
 
                 {/* Hospital Stats (compact on small screens) */}
                 <div className="grid grid-cols-2 md:grid-cols-4 gap-3 mt-8 items-stretch">

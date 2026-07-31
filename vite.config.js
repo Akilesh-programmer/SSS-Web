@@ -1,10 +1,66 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import tailwindcss from "@tailwindcss/vite";
+import prerender from "@prerenderer/rollup-plugin";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __dirname = path.dirname(fileURLToPath(import.meta.url));
+
+const isRemoteBuild = process.env.VERCEL === "1" && process.env.CI === "true";
 
 // https://vite.dev/config/
 export default defineConfig({
-  plugins: [react(), tailwindcss()],
+  plugins: [
+    react(),
+    tailwindcss(),
+    !isRemoteBuild &&
+      prerender({
+        routes: [
+          "/",
+          "/about",
+          "/specialities",
+          "/services",
+          "/infrastructure",
+          "/rooms",
+          "/doctors",
+          "/packages",
+          "/contact",
+          "/specialities/accident-emergency-care",
+          "/specialities/anaesthesiology",
+          "/specialities/cardiology",
+          "/specialities/dermatology-cosmetology",
+          "/specialities/dental-oral-and-maxillofacial-surgery",
+          "/specialities/ent-head-neck",
+          "/specialities/general-surgery",
+          "/specialities/gastroenterology",
+          "/specialities/internal-medicine",
+          "/specialities/master-health-check-up",
+          "/specialities/neonatology",
+          "/specialities/nephrology",
+          "/specialities/neurology",
+          "/specialities/neurosurgery",
+          "/specialities/obstetrics-gynaecology",
+          "/specialities/orthopaedics",
+          "/specialities/paediatric-surgery",
+          "/specialities/paediatrics",
+          "/specialities/physiotherapy",
+          "/specialities/plastic-surgery",
+          "/specialities/pulmonology",
+          "/specialities/psychiatry",
+          "/specialities/radiology",
+          "/specialities/urology",
+          "/specialities/vascular-surgery",
+        ],
+        renderer: "@prerenderer/renderer-puppeteer",
+        rendererOptions: {
+          maxConcurrentRoutes: 4,
+          renderAfterDocumentEvent: "custom-render-trigger",
+          timeout: 20000,
+          headless: true,
+        },
+      }),
+  ].filter(Boolean),
 
   // Optimize build for better performance
   build: {
