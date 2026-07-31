@@ -7,7 +7,7 @@ import { fileURLToPath } from "url";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
-const isRemoteBuild = process.env.VERCEL === "1" && process.env.CI === "true";
+const isRemoteBuild = process.env.VERCEL === "1";
 
 // https://vite.dev/config/
 export default defineConfig({
