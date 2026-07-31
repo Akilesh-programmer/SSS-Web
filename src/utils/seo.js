@@ -36,6 +36,22 @@ export const SITE_CONFIG = {
   established: "2025",
   languages: ["en", "ta"],
   acceptsHealthInsurance: true,
+  serviceAreaTowns: [
+    "Erode",
+    "Perundurai",
+    "Bhavani",
+    "Gobichettipalayam",
+    "Sathyamangalam",
+    "Kangayam",
+    "Dharapuram",
+  ],
+  accreditations: [
+    {
+      name: "NABH",
+      fullName: "National Accreditation Board for Hospitals & Healthcare Providers",
+      url: "https://www.nabh.co",
+    },
+  ],
 };
 
 // Medical specialities and services keywords
@@ -285,10 +301,12 @@ export const generateOrganizationSchema = () => {
       "@type": "MedicalProcedure",
       name: service,
     })),
-    hasCredential: {
+    hasCredential: SITE_CONFIG.accreditations.map((acc) => ({
       "@type": "EducationalOccupationalCredential",
-      credentialCategory: "Medical License",
-    },
+      credentialCategory: acc.name,
+      name: acc.fullName,
+    })),
+    isAcceptingNewPatients: true,
     acceptsHealthInsurance: SITE_CONFIG.acceptsHealthInsurance,
   };
 };
@@ -339,6 +357,15 @@ export const generateLocalBusinessSchema = () => {
     hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
     isAccessibleForFree: false,
     publicAccess: true,
+    isAcceptingNewPatients: true,
+    availableService: {
+      "@type": "MedicalProcedure",
+      name: "24/7 Emergency Care",
+    },
+    areaServed: SITE_CONFIG.serviceAreaTowns.map((town) => ({
+      "@type": "City",
+      name: town,
+    })),
   };
 };
 
@@ -362,6 +389,26 @@ export const generateBreadcrumbSchema = (breadcrumbs) => {
  * Insert JSON-LD schema into document
  */
 export const insertStructuredData = (schema) => {
+  // Handle array of schemas
+  if (Array.isArray(schema)) {
+    schema.forEach((s, index) => {
+      const type = s["@type"] || "unknown";
+      const scriptId = `schema-${type.toLowerCase()}-${index}`;
+      let script = document.getElementById(scriptId);
+
+      if (!script) {
+        script = document.createElement("script");
+        script.id = scriptId;
+        script.type = "application/ld+json";
+        document.head.appendChild(script);
+      }
+
+      script.textContent = JSON.stringify(s, null, 2);
+    });
+    return;
+  }
+
+  // Handle single schema object
   const scriptId = `schema-${schema["@type"].toLowerCase()}`;
   let script = document.getElementById(scriptId);
 
@@ -408,32 +455,41 @@ export const generateFAQSchema = (faqs) => {
  * Generate Physician Schema for doctor profiles
  */
 export const generatePhysicianSchema = (doctor) => {
+  const speciality = doctor.specialty || doctor.speciality;
   return {
     "@context": "https://schema.org",
     "@type": "Physician",
     name: doctor.name,
-    honorificPrefix: doctor.title || "Dr.",
-    image: doctor.image || SITE_CONFIG.image,
-    description: doctor.description || doctor.bio,
-    medicalSpecialty: doctor.specialty || doctor.speciality,
+    honorificPrefix: "Dr.",
+    image: doctor.image
+      ? `${SITE_CONFIG.url}${doctor.image}`
+      : SITE_CONFIG.image,
+    description:
+      doctor.description ||
+      doctor.bio ||
+      `${doctor.name}, ${doctor.designation || speciality} at ${SITE_CONFIG.name}, Erode. Qualification: ${doctor.qualification || "MBBS"}.`,
+    medicalSpecialty: speciality,
+    jobTitle: doctor.designation || speciality,
+    qualifications: doctor.qualification,
     worksFor: {
       "@type": "Hospital",
       name: SITE_CONFIG.name,
       url: SITE_CONFIG.url,
     },
-    alumniOf: doctor.education
-      ? {
-          "@type": "EducationalOrganization",
-          name: doctor.education,
-        }
-      : undefined,
+    memberOf: {
+      "@type": "MedicalOrganization",
+      name: SITE_CONFIG.name,
+    },
     address: {
       "@type": "PostalAddress",
+      streetAddress: SITE_CONFIG.address.street,
       addressLocality: SITE_CONFIG.address.city,
       addressRegion: SITE_CONFIG.address.state,
+      postalCode: SITE_CONFIG.address.postalCode,
       addressCountry: SITE_CONFIG.address.country,
     },
     availableLanguage: doctor.languages || ["English", "Tamil"],
+    isAcceptingNewPatients: true,
   };
 };
 
@@ -506,11 +562,64 @@ export const generateMedicalWebPageSchema = (page) => {
     url: `${SITE_CONFIG.url}${page.url}`,
     lastReviewed: page.lastReviewed || new Date().toISOString().split("T")[0],
     specialty: page.specialty || "General Medicine",
+    about: {
+      "@type": "MedicalSpecialty",
+      name: page.specialty || "General Medicine",
+    },
+    reviewedBy: page.reviewedBy
+      ? {
+          "@type": "Physician",
+          name: page.reviewedBy.name,
+          jobTitle: page.reviewedBy.designation,
+          qualifications: page.reviewedBy.qualification,
+          worksFor: {
+            "@type": "Hospital",
+            name: SITE_CONFIG.name,
+          },
+        }
+      : {
+          "@type": "Organization",
+          name: SITE_CONFIG.name,
+        },
+    mainContentOfPage: {
+      "@type": "WebPageElement",
+      cssSelector: ".department-content",
+    },
+    speakable: {
+      "@type": "SpeakableSpecification",
+      cssSelector: ["h1", "h2", ".department-content p:first-of-type"],
+    },
+  };
+};
+
+/**
+ * Generate comprehensive department page schema
+ * Combines MedicalWebPage + MedicalSpecialty + Physician schemas
+ */
+export const generateDepartmentPageSchema = (department, doctors = []) => {
+  const schemas = [];
+
+  // MedicalWebPage schema
+  schemas.push({
+    "@context": "https://schema.org",
+    "@type": "MedicalWebPage",
+    name: `${department.name} Department`,
+    description: `Comprehensive ${department.name} services at ${SITE_CONFIG.name}, Erode`,
+    url: `${SITE_CONFIG.url}/specialities/${department.slug}`,
+    lastReviewed: new Date().toISOString().split("T")[0],
+    specialty: department.name,
     reviewedBy: {
       "@type": "Organization",
       name: SITE_CONFIG.name,
     },
-  };
+  });
+
+  // Physician schemas for each doctor
+  doctors.forEach((doctor) => {
+    schemas.push(generatePhysicianSchema(doctor));
+  });
+
+  return schemas;
 };
 
 /**

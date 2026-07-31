@@ -80,7 +80,7 @@ Counter.propTypes = {
 
 export default function Footer() {
   return (
-    <footer className="bg-slate-900 text-slate-50">
+    <footer className="bg-slate-900 text-slate-50" itemScope itemType="https://schema.org/Hospital">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
         {/* Main Footer Content */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-12 gap-6 lg:gap-8">
@@ -99,16 +99,37 @@ export default function Footer() {
                 {/* NABH Badge */}
                 <img
                   src="/NABH.jpeg"
-                  alt="NABH Accredited Hospital"
+                  alt="NABH Accredited Hospital - National Accreditation Board for Hospitals"
                   className="h-12 sm:h-14 md:h-16 w-auto object-contain rounded-sm"
                 />
               </div>
             </div>
 
-            <p className="text-gray-300 text-sm leading-relaxed mb-4 text-center">
+            <p className="text-gray-300 text-sm leading-relaxed mb-3 text-center" itemProp="description">
               Bringing world-class healthcare to Erode with comprehensive
-              medical services available 24/7.
+              medical services available 24/7. Serving patients from Erode,
+              Perundurai, Bhavani & surrounding areas.
             </p>
+
+            {/* Key Department Links for Internal Linking */}
+            <div className="flex flex-wrap gap-1.5 justify-center mb-4">
+              {[
+                { name: "Cardiology", href: "/specialities/cardiology" },
+                { name: "Orthopaedics", href: "/specialities/orthopaedics" },
+                { name: "Neurology", href: "/specialities/neurology" },
+                { name: "OB-GYN", href: "/specialities/obstetrics-gynaecology" },
+                { name: "Gastro", href: "/specialities/gastroenterology" },
+                { name: "Nephrology", href: "/specialities/nephrology" },
+              ].map((dept) => (
+                <a
+                  key={dept.name}
+                  href={dept.href}
+                  className="text-xs bg-slate-800 text-teal-300 px-2 py-1 rounded hover:bg-slate-700 transition-colors"
+                >
+                  {dept.name}
+                </a>
+              ))}
+            </div>
 
             {/* Social Media - Compact */}
             <div className="flex gap-2 justify-center">
@@ -116,6 +137,7 @@ export default function Footer() {
                 href="https://www.instagram.com/sss_superspeciality_hospital"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow SSS Hospital on Instagram"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-pink-600 transition-colors"
               >
                 <FaInstagram className="text-sm" />
@@ -124,6 +146,7 @@ export default function Footer() {
                 href="https://x.com/sss_hospital_ed"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow SSS Hospital on X (Twitter)"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-500 transition-colors"
               >
                 <SiX className="text-sm" />
@@ -132,6 +155,7 @@ export default function Footer() {
                 href="https://www.facebook.com/SSS.Superspeciality.Hospital"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Follow SSS Hospital on Facebook"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-blue-600 transition-colors"
               >
                 <FaFacebook className="text-sm" />
@@ -140,6 +164,7 @@ export default function Footer() {
                 href="https://www.youtube.com/@SSSHospital-ed"
                 target="_blank"
                 rel="noopener noreferrer"
+                aria-label="Watch SSS Hospital on YouTube"
                 className="w-9 h-9 bg-slate-800 rounded-lg flex items-center justify-center hover:bg-red-600 transition-colors"
               >
                 <FaYoutube className="text-sm" />
@@ -163,6 +188,7 @@ export default function Footer() {
                   <a
                     href="tel:04242888777"
                     className="flex items-center gap-2 text-teal-300 hover:text-teal-200 transition-colors text-sm"
+                    itemProp="telephone"
                   >
                     <FaPhoneAlt className="text-xs" />
                     0424 - 2888777
@@ -185,6 +211,7 @@ export default function Footer() {
                 <a
                   href="mailto:info@ssshospitals.in"
                   className="text-teal-300 hover:text-teal-200 transition-colors text-sm"
+                  itemProp="email"
                 >
                   info@ssshospitals.in
                 </a>
@@ -226,19 +253,21 @@ export default function Footer() {
           </div>
 
           {/* Location - Compact */}
-          <div className="lg:col-span-2">
+          <div className="lg:col-span-2" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
             <h4 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
               <FaMapMarkerAlt className="text-sm" />
               Location
             </h4>
 
             <div className="text-gray-300 text-sm leading-relaxed mb-4">
-              <div className="font-semibold text-white mb-1">Address</div>
-              <span>167/2C1, Perundurai Road, </span>
+              <div className="font-semibold text-white mb-1" itemProp="name">SSS Super Speciality Hospital</div>
+              <span itemProp="streetAddress">167/2C1, Perundurai Road, </span>
               <span className="whitespace-nowrap">
                 Opp to SBI Bank, URC Nagar,
               </span>
-              <span> Erode - 638 009</span>
+              <span> <span itemProp="addressLocality">Erode</span> - <span itemProp="postalCode">638 009</span></span>
+              <meta itemProp="addressRegion" content="Tamil Nadu" />
+              <meta itemProp="addressCountry" content="IN" />
             </div>
 
             <div className="mt-2 flex justify-center lg:justify-start">
@@ -259,7 +288,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 mt-8 pt-4">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <div className="text-slate-400 text-sm">
-              © 2025 SSS Super Speciality Hospital. All rights reserved.
+              © 2026 SSS Super Speciality Hospital. All rights reserved.
             </div>
           </div>
         </div>

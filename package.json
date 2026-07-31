@@ -19,7 +19,7 @@
     "check:security": "npm audit",
     "check:size": "npm run build && node scripts/analyze-build.js",
     "generate-favicons": "node scripts/generate-favicons.js",
-    "deploy": "vercel --prod",
+    "deploy": "npm run build && node scripts/vercel-prebuilt.js && npx vercel deploy --prebuilt --prod --yes",
     "deploy:preview": "vercel",
     "serve": "node server.js",
     "validate": "npm run lint && npm run format:check && npm run build"
@@ -41,6 +41,8 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.33.0",
+    "@prerenderer/renderer-puppeteer": "^1.2.4",
+    "@prerenderer/rollup-plugin": "^0.3.12",
     "@types/react": "^19.1.10",
     "@types/react-dom": "^19.1.7",
     "@vitejs/plugin-react": "^5.0.0",

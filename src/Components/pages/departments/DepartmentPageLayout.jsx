@@ -7,6 +7,8 @@ import {
   FaExpand,
   FaGraduationCap,
   FaHospital,
+  FaChevronDown,
+  FaQuestionCircle,
 } from "react-icons/fa";
 import Footer from "../../ui/Footer";
 import PageWrapper from "../../ui/PageWrapper";
@@ -14,15 +16,13 @@ import DefaultDoctorAvatar from "../../ui/DefaultDoctorAvatar";
 import HeroSection from "../../ui/HeroSection";
 import SEO from "../../ui/SEO";
 import departmentPageData from "../../../data/departmentPageData";
+import { DEPARTMENT_SEO_TEMPLATE } from "../../../data/seoData";
+import departmentFAQs from "../../../data/departmentFAQs";
 import {
   departments,
   doctors as doctorsData,
 } from "../../../data/DoctorDepartmentData";
-import {
-  generateMedicalSpecialtySchema,
-  generateMedicalWebPageSchema,
-  insertStructuredData,
-} from "../../../utils/seo";
+import { generatePhysicianSchema } from "../../../utils/seo";
 import ReactMarkdown from "react-markdown";
 import remarkGfm from "remark-gfm";
 
@@ -168,27 +168,27 @@ const getHeroBgImage = (departmentId) => {
 
 // Infrastructure photos for content integration
 const infrastructurePhotos = [
-  { src: INF1, alt: "" },
-  { src: INF2, alt: "" },
-  { src: INF3, alt: "" },
-  { src: INF4, alt: "" },
-  { src: INF5, alt: "" },
-  { src: INF6, alt: "" },
-  { src: INF7, alt: "" },
-  { src: INF8, alt: "" },
-  { src: INF9, alt: "" },
-  { src: INF10, alt: "" },
-  { src: INF11, alt: "" },
-  { src: INF12, alt: "" },
-  { src: INF13, alt: "" },
-  { src: INF14, alt: "" },
-  { src: INF15, alt: "" },
-  { src: INF16, alt: "" },
-  { src: INF17, alt: "" },
-  { src: INF18, alt: "" },
-  { src: INF19, alt: "" },
-  { src: INF20, alt: "" },
-  { src: INF21, alt: "" },
+  { src: INF1, alt: "Modern medical facility at SSS Hospital Erode" },
+  { src: INF2, alt: "State-of-the-art operation theatre at SSS Hospital" },
+  { src: INF3, alt: "Advanced diagnostic equipment at SSS Hospital Erode" },
+  { src: INF4, alt: "Patient care ward at SSS Super Speciality Hospital" },
+  { src: INF5, alt: "Emergency care unit at SSS Hospital Erode" },
+  { src: INF6, alt: "Hospital corridor and nursing station at SSS Hospital" },
+  { src: INF7, alt: "Laboratory and diagnostics at SSS Hospital Erode" },
+  { src: INF8, alt: "Reception area at SSS Super Speciality Hospital" },
+  { src: INF9, alt: "Advanced medical infrastructure at SSS Hospital" },
+  { src: INF10, alt: "SSS Super Speciality Hospital building exterior" },
+  { src: INF11, alt: "ICU facility at SSS Hospital Erode" },
+  { src: INF12, alt: "Patient room at SSS Super Speciality Hospital" },
+  { src: INF13, alt: "Pharmacy at SSS Hospital Erode" },
+  { src: INF14, alt: "Waiting area at SSS Super Speciality Hospital" },
+  { src: INF15, alt: "Medical equipment at SSS Hospital Erode" },
+  { src: INF16, alt: "Consultation room at SSS Super Speciality Hospital" },
+  { src: INF17, alt: "Radiology department at SSS Hospital Erode" },
+  { src: INF18, alt: "Dialysis unit at SSS Super Speciality Hospital" },
+  { src: INF19, alt: "Physiotherapy centre at SSS Hospital Erode" },
+  { src: INF20, alt: "Blood bank facility at SSS Hospital" },
+  { src: INF21, alt: "Ambulance service at SSS Super Speciality Hospital" },
 ];
 
 // Function to get infrastructure photos for each department (different sets)
@@ -462,6 +462,48 @@ const InfrastructureGallery = () => {
   );
 };
 
+// FAQ Accordion Item Component
+const FAQItem = ({ faq, index }) => {
+  const [isOpen, setIsOpen] = useState(false);
+
+  return (
+    <motion.div
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.4, delay: index * 0.1 }}
+      className="bg-white rounded-xl shadow-sm border border-gray-100 overflow-hidden"
+    >
+      <button
+        onClick={() => setIsOpen(!isOpen)}
+        className="w-full flex items-center justify-between p-5 text-left hover:bg-gray-50 transition-colors"
+        aria-expanded={isOpen}
+      >
+        <span className="text-base font-semibold text-gray-800 pr-4">
+          {faq.question}
+        </span>
+        <FaChevronDown
+          className={`text-blue-600 text-sm shrink-0 transition-transform duration-300 ${
+            isOpen ? "rotate-180" : ""
+          }`}
+        />
+      </button>
+      <motion.div
+        initial={false}
+        animate={{
+          height: isOpen ? "auto" : 0,
+          opacity: isOpen ? 1 : 0,
+        }}
+        transition={{ duration: 0.3 }}
+        className="overflow-hidden"
+      >
+        <div className="px-5 pb-5 text-gray-600 text-sm leading-relaxed border-t border-gray-100 pt-4">
+          {faq.answer}
+        </div>
+      </motion.div>
+    </motion.div>
+  );
+};
+
 const DepartmentPageLayout = () => {
   const { departmentSlug } = useParams();
   const navigate = useNavigate();
@@ -554,46 +596,101 @@ const DepartmentPageLayout = () => {
   return (
     <PageWrapper pageKey={`department-${departmentId}`}>
       {/* SEO Component with Department-Specific Schema */}
-      <SEO
-        title={`${department.name} - Expert Care at SSS Super Speciality Hospital Erode`}
-        description={`Comprehensive ${department.name} services at SSS Hospital Erode. Expert doctors, advanced treatments, and state-of-the-art facilities for ${department.name}.`}
-        keywords={[
-          department.name.toLowerCase(),
-          `${department.name.toLowerCase()} erode`,
-          `${department.name.toLowerCase()} hospital`,
-          `best ${department.name.toLowerCase()} erode`,
-          `${department.name.toLowerCase()} specialist`,
-          `${department.name.toLowerCase()} treatment`,
-          "sss hospital",
-        ]}
-        url={`/specialities/${departmentSlug}`}
-        type="website"
-        breadcrumbs={[
-          { name: "Home", url: "/" },
-          { name: "Specialities", url: "/specialities" },
-          { name: department.name, url: `/specialities/${departmentSlug}` },
-        ]}
-        schema={{
-          "@context": "https://schema.org",
-          "@type": "MedicalSpecialty",
-          name: department.name,
-          description: `Expert ${department.name} services at SSS Super Speciality Hospital Erode`,
-          availableAt: {
-            "@type": "Hospital",
-            name: "SSS Super Speciality Hospital",
-            url: "https://ssshospitals.in",
-            address: {
-              "@type": "PostalAddress",
-              streetAddress:
-                "167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar",
-              addressLocality: "Erode",
-              addressRegion: "Tamil Nadu",
-              postalCode: "638009",
-              addressCountry: "IN",
+      {(() => {
+        const seoTemplate = DEPARTMENT_SEO_TEMPLATE[departmentSlug];
+        const seoTitle = seoTemplate
+          ? seoTemplate.title
+          : `${department.name} - Expert Care at SSS Super Speciality Hospital Erode`;
+        const seoDescription = seoTemplate
+          ? seoTemplate.description
+          : `Comprehensive ${department.name} services at SSS Hospital Erode. Expert doctors, advanced treatments, and state-of-the-art facilities for ${department.name}.`;
+        const seoKeywords = seoTemplate
+          ? seoTemplate.keywords
+          : [
+              department.name.toLowerCase(),
+              `${department.name.toLowerCase()} erode`,
+              `best ${department.name.toLowerCase()} erode`,
+              "sss hospital",
+            ];
+
+        // Build combined schema array
+        const schemaArray = [
+          {
+            "@context": "https://schema.org",
+            "@type": "MedicalWebPage",
+            name: `${department.name} Department`,
+            description: seoDescription,
+            url: `https://ssshospitals.in/specialities/${departmentSlug}`,
+            lastReviewed: new Date().toISOString().split("T")[0],
+            specialty: department.name,
+            reviewedBy: {
+              "@type": "Organization",
+              name: "SSS Super Speciality Hospital",
             },
           },
-        }}
-      />
+          {
+            "@context": "https://schema.org",
+            "@type": "MedicalSpecialty",
+            name: department.name,
+            description: `Expert ${department.name} services at SSS Super Speciality Hospital Erode`,
+            availableAt: {
+              "@type": "Hospital",
+              name: "SSS Super Speciality Hospital",
+              url: "https://ssshospitals.in",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress:
+                  "167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar",
+                addressLocality: "Erode",
+                addressRegion: "Tamil Nadu",
+                postalCode: "638009",
+                addressCountry: "IN",
+              },
+            },
+          },
+        ];
+
+        // Add Physician schemas for each doctor
+        doctors.forEach((doctor) => {
+          schemaArray.push(generatePhysicianSchema(doctor));
+        });
+
+        // Add FAQPage schema if FAQs exist
+        const faqs = departmentFAQs[departmentSlug];
+        if (faqs && faqs.length > 0) {
+          schemaArray.push({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: {
+                "@type": "Answer",
+                text: faq.answer,
+              },
+            })),
+          });
+        }
+
+        return (
+          <SEO
+            title={seoTitle}
+            description={seoDescription}
+            keywords={seoKeywords}
+            url={`/specialities/${departmentSlug}`}
+            type="website"
+            breadcrumbs={[
+              { name: "Home", url: "/" },
+              { name: "Specialities", url: "/specialities" },
+              {
+                name: department.name,
+                url: `/specialities/${departmentSlug}`,
+              },
+            ]}
+            schema={schemaArray}
+          />
+        );
+      })()}
 
       <div className="overflow-x-hidden max-w-full">
         {/* Hero Section */}
@@ -954,6 +1051,33 @@ const DepartmentPageLayout = () => {
         )}
 
         {/* Contact CTA Section intentionally removed per request */}
+
+        {/* Department FAQ Section */}
+        {departmentFAQs[departmentSlug] &&
+          departmentFAQs[departmentSlug].length > 0 && (
+            <section className="py-16 bg-gradient-to-br from-gray-50 to-blue-50/30">
+              <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div className="text-center mb-12">
+                  <div className="flex items-center justify-center mb-4">
+                    <FaQuestionCircle className="text-2xl md:text-3xl text-blue-600 mr-2 md:mr-3" />
+                    <h2 className="text-display-lg text-gray-800">
+                      Frequently Asked Questions
+                    </h2>
+                  </div>
+                  <p className="text-gray-600 text-base md:text-lg">
+                    Common questions about {department.name} at SSS Hospital
+                    Erode
+                  </p>
+                </div>
+
+                <div className="space-y-4">
+                  {departmentFAQs[departmentSlug].map((faq, index) => (
+                    <FAQItem key={index} faq={faq} index={index} />
+                  ))}
+                </div>
+              </div>
+            </section>
+          )}
       </div>
 
       <Footer />

@@ -77,3 +77,11 @@ createRoot(document.getElementById("root")).render(
     <SpeedInsights />
   </StrictMode>
 );
+
+// Dispatch custom render event for vite-plugin-prerender
+if (typeof window !== "undefined") {
+  setTimeout(() => {
+    document.dispatchEvent(new Event("custom-render-trigger"));
+  }, 300);
+}
+
