@@ -131,6 +131,20 @@ git push origin dev
 
 ---
 
+> [!IMPORTANT]
+> # 🚨 MANDATORY POST-DEPLOYMENT STEP: RESUBMIT SITEMAP!
+> 
+> ### **AFTER EVERY SINGLE DEPLOYMENT, YOU MUST RESUBMIT THE SITEMAP IN GOOGLE SEARCH CONSOLE:**
+> 
+> 1. Open **[Google Search Console](https://search.google.com/search-console)**
+> 2. Go to **Sitemaps** (under *Indexing*)
+> 3. Enter URL: **`https://ssshospitals.in/sitemap.xml`**
+> 4. Click **SUBMIT**
+> 
+> **Why this is critical:** Resubmitting forces Googlebot to immediately queue all 34 pre-rendered static pages for crawling, updating titles, descriptions, and schemas in search results right away!
+
+---
+
 ## Critical: Vercel Auto-Builds Are Disabled
 
 ### The Problem
@@ -441,6 +455,9 @@ After confirming the deployment is working correctly:
 │                                                  │
 │  Deploy to production:    npm run deploy          │
 │  Push to Git:             git push origin dev     │
+│                                                  │
+│  🚨 MANDATORY: RESUBMIT SITEMAP IN GSC AFTER DEPLOY │
+│     https://ssshospitals.in/sitemap.xml          │
 │                                                  │
 │  ⚠️  NEVER rely on Vercel auto-builds            │
 │  ⚠️  ALWAYS deploy locally (Puppeteer needs it)  │

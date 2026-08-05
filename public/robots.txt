@@ -27,9 +27,9 @@ Sitemap: https://ssshospitals.in/sitemap.xml
 # Crawl delay (be polite to servers)
 Crawl-delay: 1
 
-# Block old temp/staging URLs
-Disallow: /temp28may25/
-Disallow: /temp*/
+# Allow Googlebot to crawl old temp URLs so it sees the 308 Permanent Redirects
+Allow: /temp28may25/
+Allow: /temp*/
 
 # Allow all images (AVIF, WebP, PNG, JPG for image search)
 Allow: /assets/
