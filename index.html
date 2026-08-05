@@ -167,7 +167,170 @@
       />
     </noscript>
     
-    <!-- Structured Data - Managed dynamically by SEO component (utils/seo.js) -->
+    <!-- Structured Data - Medical Organization -->
+    <script id="schema-medicalorganization" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "MedicalOrganization",
+      "name": "SSS Super Speciality Hospital",
+      "alternateName": "SSS Hospital",
+      "url": "https://ssshospitals.in",
+      "logo": "https://ssshospitals.in/assets/logos/sss-full-logo.avif",
+      "image": "https://ssshospitals.in/assets/heroes/main-1.avif",
+      "description": "Leading multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and compassionate healthcare services.",
+      "email": "info@ssshospitals.in",
+      "telephone": "+91-424-2888777",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar",
+        "addressLocality": "Erode",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "638009",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "11.3410",
+        "longitude": "77.7172"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "sameAs": [
+        "https://www.facebook.com/SSS.Superspeciality.Hospital",
+        "https://www.instagram.com/sss_superspeciality_hospital",
+        "https://x.com/sss_hospital_ed",
+        "https://www.youtube.com/@SSSHospital-ed"
+      ],
+      "contactPoint": [
+        {
+          "@type": "ContactPoint",
+          "telephone": "+91-424-2888777",
+          "contactType": "customer service",
+          "availableLanguage": ["English", "Tamil", "Hindi"]
+        },
+        {
+          "@type": "ContactPoint",
+          "telephone": "+91-89259-31193",
+          "contactType": "emergency",
+          "availableLanguage": ["English", "Tamil", "Hindi"]
+        }
+      ]
+    }
+    </script>
+    
+    <!-- Structured Data - Local Business / Hospital -->
+    <script id="schema-hospital" type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Hospital",
+      "name": "SSS Super Speciality Hospital",
+      "alternateName": "SSS Hospital Erode",
+      "description": "Best multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, expert doctors, and state-of-the-art facilities.",
+      "url": "https://ssshospitals.in",
+      "logo": "https://ssshospitals.in/assets/logos/sss-full-logo.avif",
+      "image": [
+        "https://ssshospitals.in/assets/heroes/main-1.avif",
+        "https://ssshospitals.in/assets/infrastructure/infrastructure-1.avif",
+        "https://ssshospitals.in/assets/infrastructure/infrastructure-2.avif"
+      ],
+      "telephone": "+91-424-2888777",
+      "priceRange": "₹₹",
+      "address": {
+        "@type": "PostalAddress",
+        "streetAddress": "167/2C1, Perundurai Road, Opp to SBI Bank, URC Nagar",
+        "addressLocality": "Erode",
+        "addressRegion": "Tamil Nadu",
+        "postalCode": "638009",
+        "addressCountry": "IN"
+      },
+      "geo": {
+        "@type": "GeoCoordinates",
+        "latitude": "11.3410",
+        "longitude": "77.7172"
+      },
+      "openingHoursSpecification": {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+        "opens": "00:00",
+        "closes": "23:59"
+      },
+      "hasMap": "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "reviewCount": "250",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "medicalSpecialty": [
+        "Accident & Emergency Care",
+        "Anaesthesiology",
+        "Cardiology",
+        "Dermatology and Cosmetology",
+        "Dental & Oral and Maxillofacial Surgery",
+        "ENT & Head & Neck",
+        "General Surgery",
+        "Gastroenterology",
+        "Internal Medicine",
+        "Master Health Check up",
+        "Nephrology",
+        "Neurology",
+        "Neuro Surgery",
+        "Obstetrics & Gynaecology",
+        "Orthopaedics",
+        "Ophthalmology",
+        "Paediatrics",
+        "Physiotherapy",
+        "Plastic Surgery",
+        "Pulmonology",
+        "Psychiatry",
+        "Radiology",
+        "Urology",
+        "Vascular Surgery"
+      ],
+      "availableService": [
+        {
+          "@type": "MedicalProcedure",
+          "name": "24/7 Emergency Care"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Master Health Checkup"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Dialysis"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Laparoscopic Surgery"
+        },
+        {
+          "@type": "MedicalProcedure",
+          "name": "Joint Replacement Surgery"
+        }
+      ],
+      "hasCredential": {
+        "@type": "EducationalOccupationalCredential",
+        "credentialCategory": "NABH",
+        "name": "National Accreditation Board for Hospitals & Healthcare Providers"
+      },
+      "isAcceptingNewPatients": true,
+      "areaServed": [
+        { "@type": "City", "name": "Erode" },
+        { "@type": "City", "name": "Perundurai" },
+        { "@type": "City", "name": "Bhavani" },
+        { "@type": "City", "name": "Gobichettipalayam" },
+        { "@type": "City", "name": "Sathyamangalam" },
+        { "@type": "City", "name": "Kangayam" },
+        { "@type": "City", "name": "Dharapuram" }
+      ]
+    }
+    </script>
     
     <!-- Structured Data - WebSite for Sitelinks Search Box -->
     <script type="application/ld+json">

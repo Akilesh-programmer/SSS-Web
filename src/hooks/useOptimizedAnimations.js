@@ -91,11 +91,22 @@ export const useCountAnimation = (endValue, duration = 2000) => {
   const ref = useRef(null);
 
   useEffect(() => {
+    // Detect if running inside Puppeteer SSG pre-renderer
+    const isPrerendering =
+      typeof window !== "undefined" &&
+      (window.__PRERENDER_INJECTED ||
+        navigator.userAgent.includes("HeadlessChrome") ||
+        navigator.userAgent.includes("Puppeteer") ||
+        navigator.userAgent.includes("Prerender"));
+
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
-          setCount(0);
+          // If pre-rendering, keep endValue so static HTML contains real numbers
+          if (!isPrerendering) {
+            setCount(0);
+          }
           let startTime = null;
 
           const animate = (timestamp) => {
@@ -103,7 +114,9 @@ export const useCountAnimation = (endValue, duration = 2000) => {
             const progress = (timestamp - startTime) / duration;
 
             if (progress < 1) {
-              setCount(Math.floor(endValue * progress));
+              if (!isPrerendering) {
+                setCount(Math.floor(endValue * progress));
+              }
               requestAnimationFrame(animate);
             } else {
               setCount(endValue);

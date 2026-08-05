@@ -48,16 +48,28 @@ function Counter({
 
   useEffect(() => {
     if (!visible) return;
+    
+    // Detect if running inside Puppeteer SSG pre-renderer
+    const isPrerendering =
+      typeof window !== "undefined" &&
+      (window.__PRERENDER_INJECTED ||
+        navigator.userAgent.includes("HeadlessChrome") ||
+        navigator.userAgent.includes("Puppeteer") ||
+        navigator.userAgent.includes("Prerender"));
+
     let startTs = null;
 
-    // Reset to 0 when visible so animation starts from 0 in real browser
-    setValue(0);
+    if (!isPrerendering) {
+      setValue(0);
+    }
 
     const step = (ts) => {
       if (!startTs) startTs = ts;
       const progress = Math.min((ts - startTs) / duration, 1);
       const current = Math.round(progress * end);
-      setValue(current);
+      if (!isPrerendering) {
+        setValue(current);
+      }
       if (progress < 1) {
         rafRef.current = requestAnimationFrame(step);
       }
