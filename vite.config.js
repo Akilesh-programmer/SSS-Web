@@ -58,6 +58,13 @@ export default defineConfig({
           timeout: 20000,
           headless: true,
         },
+        postProcess(renderedRoute) {
+          // Replace dev server URLs (e.g. http://127.0.0.1:8000/assets/...) with relative paths (/assets/...)
+          renderedRoute.html = renderedRoute.html.replace(
+            /http:\/\/(127\.0\.0\.1|localhost):\d+/g,
+            ""
+          );
+        },
       }),
   ].filter(Boolean),
 
