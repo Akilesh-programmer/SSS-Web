@@ -47,13 +47,28 @@ function Counter({
 
   useEffect(() => {
     if (!started) return;
+
+    // Detect if running inside Puppeteer SSG pre-renderer
+    const isPrerendering =
+      typeof window !== "undefined" &&
+      (window.__PRERENDER_INJECTED ||
+        navigator.userAgent.includes("HeadlessChrome") ||
+        navigator.userAgent.includes("Puppeteer") ||
+        navigator.userAgent.includes("Prerender"));
+
     let startTs = null;
-    setValue(0);
+
+    if (!isPrerendering) {
+      setValue(0);
+    }
+
     const step = (ts) => {
       if (!startTs) startTs = ts;
       const progress = Math.min((ts - startTs) / duration, 1);
       const current = Math.round(progress * end);
-      setValue(current);
+      if (!isPrerendering) {
+        setValue(current);
+      }
       if (progress < 1) rafRef.current = requestAnimationFrame(step);
     };
     rafRef.current = requestAnimationFrame(step);
@@ -289,7 +304,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 mt-8 pt-4">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <div className="text-slate-400 text-sm">
-              © 2026 SSS Super Speciality Hospital. All rights reserved.
+              © {new Date().getFullYear()} SSS Super Speciality Hospital. All rights reserved.
             </div>
           </div>
         </div>

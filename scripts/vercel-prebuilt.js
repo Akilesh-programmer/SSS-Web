@@ -151,8 +151,29 @@ async function preparePrebuilt() {
     path.join(vercelOutputDir, "config.json"),
     JSON.stringify(config, null, 2)
   );
+
+  // Clean any leftover dev server origins (http://127.0.0.1:8000) from all prebuilt HTML files
+  cleanLocalhostFromHtml(distDir);
+  cleanLocalhostFromHtml(vercelStaticDir);
   
   console.log("Vercel prebuilt output ready!");
+}
+
+// Helper to recursively strip dev server origins (http://127.0.0.1:8000) from HTML files
+function cleanLocalhostFromHtml(dir) {
+  if (!fs.existsSync(dir)) return;
+  fs.readdirSync(dir).forEach((file) => {
+    const filePath = path.join(dir, file);
+    if (fs.lstatSync(filePath).isDirectory()) {
+      cleanLocalhostFromHtml(filePath);
+    } else if (file.endsWith(".html")) {
+      let content = fs.readFileSync(filePath, "utf8");
+      if (/http:\/\/(127\.0\.0\.1|localhost):\d+/g.test(content)) {
+        content = content.replace(/http:\/\/(127\.0\.0\.1|localhost):\d+/g, "");
+        fs.writeFileSync(filePath, content, "utf8");
+      }
+    }
+  });
 }
 
 preparePrebuilt().catch((err) => {
