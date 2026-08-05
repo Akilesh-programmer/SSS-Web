@@ -14,14 +14,15 @@ import {
 } from "react-icons/fa";
 import { SiX } from "react-icons/si";
 
-// Small Counter component: counts 0 -> end over `duration` ms when visible
+// Small Counter component — renders final value for SSG, counts 0 -> end in browser
 function Counter({
   end = 0,
   suffix = "",
   duration = 2000,
   className = "text-heading-md text-slate-800",
 }) {
-  const [value, setValue] = useState(0);
+  // Initialize with end value so pre-rendered HTML shows the real number (not 0)
+  const [value, setValue] = useState(end);
   const rafRef = useRef(null);
   const elRef = useRef(null);
   const [started, setStarted] = useState(false);
@@ -36,7 +37,6 @@ function Counter({
         } else if (!entry.isIntersecting && started) {
           // Reset when element goes out of view
           setStarted(false);
-          setValue(0);
         }
       },
       { threshold: 0.3 }
@@ -48,6 +48,7 @@ function Counter({
   useEffect(() => {
     if (!started) return;
     let startTs = null;
+    setValue(0);
     const step = (ts) => {
       if (!startTs) startTs = ts;
       const progress = Math.min((ts - startTs) / duration, 1);

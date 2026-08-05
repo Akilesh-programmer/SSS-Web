@@ -85,21 +85,17 @@ export const staggeredVariants = {
 
 // Hook for viewport-triggered counting animations with route-aware reset
 export const useCountAnimation = (endValue, duration = 2000) => {
-  const [count, setCount] = useState(0);
+  // Initialize with end value so pre-rendered HTML shows the real number (not 0)
+  const [count, setCount] = useState(endValue);
   const [hasAnimated, setHasAnimated] = useState(false);
   const ref = useRef(null);
-
-  // Reset animation state when component mounts (route change)
-  useEffect(() => {
-    setHasAnimated(false);
-    setCount(0);
-  }, []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting && !hasAnimated) {
           setHasAnimated(true);
+          setCount(0);
           let startTime = null;
 
           const animate = (timestamp) => {
@@ -118,7 +114,6 @@ export const useCountAnimation = (endValue, duration = 2000) => {
         } else if (!entry.isIntersecting && hasAnimated) {
           // Reset when element goes out of view
           setHasAnimated(false);
-          setCount(0);
         }
       },
       { threshold: 0.3, rootMargin: "0px 0px -50px 0px" }

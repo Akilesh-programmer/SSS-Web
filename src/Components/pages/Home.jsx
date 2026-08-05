@@ -15,7 +15,7 @@ const hospitalImg = "/assets/other/other-sss-hospital.avif";
 import PropTypes from "prop-types";
 import HeroCarousel from "../ui/HeroCarousel";
 
-// Small counter component that animates from 0 -> end when `start` becomes true
+// Small counter component — renders final value for SSG, animates 0 -> end in browser
 function Counter({
   end = 0,
   suffix = "",
@@ -23,7 +23,8 @@ function Counter({
   duration = 2000,
   className = "text-heading-md text-gray-900",
 }) {
-  const [value, setValue] = useState(0);
+  // Initialize with end value so pre-rendered HTML shows the real number (not 0)
+  const [value, setValue] = useState(end);
   const rafRef = useRef(null);
   const containerRef = useRef(null);
   const [visible, setVisible] = useState(false);
@@ -48,6 +49,9 @@ function Counter({
   useEffect(() => {
     if (!visible) return;
     let startTs = null;
+
+    // Reset to 0 when visible so animation starts from 0 in real browser
+    setValue(0);
 
     const step = (ts) => {
       if (!startTs) startTs = ts;
