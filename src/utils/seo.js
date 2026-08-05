@@ -264,6 +264,7 @@ export const generateOrganizationSchema = () => {
       latitude: SITE_CONFIG.coordinates.latitude,
       longitude: SITE_CONFIG.coordinates.longitude,
     },
+    openingHours: "Mo-Su 00:00-24:00",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: [
@@ -276,7 +277,7 @@ export const generateOrganizationSchema = () => {
         "Sunday",
       ],
       opens: "00:00",
-      closes: "23:59",
+      closes: "24:00",
     },
     sameAs: Object.values(SITE_CONFIG.social),
     contactPoint: [
@@ -340,6 +341,7 @@ export const generateLocalBusinessSchema = () => {
       latitude: SITE_CONFIG.coordinates.latitude,
       longitude: SITE_CONFIG.coordinates.longitude,
     },
+    openingHours: "Mo-Su 00:00-24:00",
     openingHoursSpecification: {
       "@type": "OpeningHoursSpecification",
       dayOfWeek: [
@@ -352,7 +354,7 @@ export const generateLocalBusinessSchema = () => {
         "Sunday",
       ],
       opens: "00:00",
-      closes: "23:59",
+      closes: "24:00",
     },
     hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
     isAccessibleForFree: false,
