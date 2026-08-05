@@ -288,9 +288,47 @@ const createSlug = (name) => {
     .replace(/[^\w-]+/g, "");
 };
 
+// Map of slug variations to department ID for robust routing and SEO aliases
+const slugAliasMap = {
+  "accident-emergency-care": 2,
+  "anaesthesiology": 3,
+  "cardiology": 4,
+  "dermatology-cosmetology": 5,
+  "dermatology-and-cosmetology": 5,
+  "dental-oral-and-maxillofacial-surgery": 6,
+  "dental-oral-surgery": 6,
+  "ent-head-neck": 7,
+  "ent": 7,
+  "general-surgery": 8,
+  "gastroenterology": 9,
+  "internal-medicine": 10,
+  "master-health-check-up": 11,
+  "nephrology": 12,
+  "neurology": 13,
+  "neuro-surgery": 14,
+  "neurosurgery": 14,
+  "obstetrics-gynaecology": 15,
+  "orthopaedics": 16,
+  "ophthalmology": 17,
+  "paediatrics": 18,
+  "physiotherapy": 20,
+  "physiotherapy-rehabilitation": 20,
+  "plastic-surgery": 21,
+  "pulmonology": 22,
+  "psychiatry": 23,
+  "radiology": 24,
+  "urology": 25,
+  "vascular-surgery": 26,
+};
+
 // Function to find department ID from slug
 const findDepartmentIdBySlug = (slug) => {
-  const department = departments.find((dept) => createSlug(dept.name) === slug);
+  if (!slug) return null;
+  const cleanSlug = slug.toLowerCase().trim();
+  if (slugAliasMap[cleanSlug]) {
+    return slugAliasMap[cleanSlug];
+  }
+  const department = departments.find((dept) => createSlug(dept.name) === cleanSlug);
   return department ? department.id : null;
 };
 
