@@ -24,8 +24,33 @@ const SEO = ({
   schema = null,
   noindex = false,
 }) => {
+  // Synchronous execution for SSG pre-rendering (Puppeteer captures DOM immediately during build)
+  if (typeof document !== "undefined") {
+    const metaTags = generateMetaTags({
+      title,
+      description,
+      keywords,
+      image,
+      url,
+      type,
+      noindex,
+    });
+
+    applyMetaTags(metaTags);
+    insertStructuredData(generateOrganizationSchema());
+    insertStructuredData(generateLocalBusinessSchema());
+
+    if (breadcrumbs && breadcrumbs.length > 0) {
+      insertStructuredData(generateBreadcrumbSchema(breadcrumbs));
+    }
+
+    if (schema) {
+      insertStructuredData(schema);
+    }
+  }
+
   useEffect(() => {
-    // Generate and apply meta tags
+    // Generate and apply meta tags on client-side route changes
     const metaTags = generateMetaTags({
       title,
       description,
@@ -53,12 +78,6 @@ const SEO = ({
     if (schema) {
       insertStructuredData(schema);
     }
-
-    // Cleanup function
-    return () => {
-      // Meta tags will be replaced by next page
-      // Structured data will be updated by next page
-    };
   }, [
     title,
     description,

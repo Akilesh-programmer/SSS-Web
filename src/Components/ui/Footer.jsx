@@ -304,7 +304,7 @@ export default function Footer() {
         <div className="border-t border-slate-800 mt-8 pt-4">
           <div className="flex flex-col md:flex-row justify-center items-center gap-4">
             <div className="text-slate-400 text-sm">
-              © 2026 SSS Super Speciality Hospital. All rights reserved.
+              © {new Date().getFullYear()} SSS Super Speciality Hospital. All rights reserved.
             </div>
           </div>
         </div>

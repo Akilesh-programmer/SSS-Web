@@ -206,7 +206,7 @@ export const SITE_CONFIG = {
     privacyPolicyUrl: "/privacy-policy",
     termsOfServiceUrl: "/terms-of-service",
     disclaimerUrl: "/disclaimer",
-    copyrightYear: "2025",
+    copyrightYear: new Date().getFullYear().toString(),
     registrationNumber: "REG/SSS/2025/XXX", // Update with actual registration
   },
 
