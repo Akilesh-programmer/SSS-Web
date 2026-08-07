@@ -23,6 +23,7 @@ const SEO = ({
   breadcrumbs = [],
   schema = null,
   noindex = false,
+  includeGlobalSchemas = false,
 }) => {
   // Synchronous execution for SSG pre-rendering (Puppeteer captures DOM immediately during build)
   if (typeof document !== "undefined") {
@@ -37,8 +38,12 @@ const SEO = ({
     });
 
     applyMetaTags(metaTags);
-    insertStructuredData(generateOrganizationSchema());
-    insertStructuredData(generateLocalBusinessSchema());
+
+    // Only inject global organization/hospital schemas on the homepage
+    if (includeGlobalSchemas) {
+      insertStructuredData(generateOrganizationSchema());
+      insertStructuredData(generateLocalBusinessSchema());
+    }
 
     if (breadcrumbs && breadcrumbs.length > 0) {
       insertStructuredData(generateBreadcrumbSchema(breadcrumbs));
@@ -63,11 +68,11 @@ const SEO = ({
 
     applyMetaTags(metaTags);
 
-    // Add organization schema (always present)
-    insertStructuredData(generateOrganizationSchema());
-
-    // Add local business schema (always present)
-    insertStructuredData(generateLocalBusinessSchema());
+    // Only inject global organization/hospital schemas on the homepage
+    if (includeGlobalSchemas) {
+      insertStructuredData(generateOrganizationSchema());
+      insertStructuredData(generateLocalBusinessSchema());
+    }
 
     // Add breadcrumbs if provided
     if (breadcrumbs && breadcrumbs.length > 0) {
@@ -88,6 +93,7 @@ const SEO = ({
     breadcrumbs,
     schema,
     noindex,
+    includeGlobalSchemas,
   ]);
 
   // This component doesn't render anything
@@ -109,6 +115,7 @@ SEO.propTypes = {
   ),
   schema: PropTypes.object,
   noindex: PropTypes.bool,
+  includeGlobalSchemas: PropTypes.bool,
 };
 
 export default SEO;

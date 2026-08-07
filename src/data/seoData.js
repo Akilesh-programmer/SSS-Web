@@ -11,7 +11,7 @@ export const PAGE_SEO = {
     title:
       "SSS Super Speciality Hospital - Best Multi-Speciality Hospital in Erode, Tamil Nadu",
     description:
-      "SSS Super Speciality Hospital is the leading multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments across 20+ specialities, expert doctors, and state-of-the-art facilities. Book an appointment today.",
+      "SSS Super Speciality Hospital — leading NABH-certified multi-speciality hospital in Erode with 24/7 emergency care, 20+ specialities & expert doctors. Book now!",
     keywords: [
       "sss hospital erode",
       "best hospital in erode",
@@ -396,6 +396,19 @@ export const DEPARTMENT_SEO_TEMPLATE = {
     ],
   },
   "physiotherapy-rehabilitation": {
+    title: "Physiotherapy & Rehabilitation | SSS Hospital Erode",
+    description:
+      "Expert physiotherapy & rehabilitation at SSS Hospital Erode. Post-surgery rehab, sports injury recovery, back pain & stroke rehabilitation. Book a physiotherapy session.",
+    keywords: [
+      "physiotherapy erode",
+      "best physiotherapist in erode",
+      "rehabilitation center erode",
+      "sports injury rehab erode",
+      "back pain treatment erode",
+    ],
+  },
+  // Alias — sitemap uses /specialities/physiotherapy
+  "physiotherapy": {
     title: "Physiotherapy & Rehabilitation | SSS Hospital Erode",
     description:
       "Expert physiotherapy & rehabilitation at SSS Hospital Erode. Post-surgery rehab, sports injury recovery, back pain & stroke rehabilitation. Book a physiotherapy session.",

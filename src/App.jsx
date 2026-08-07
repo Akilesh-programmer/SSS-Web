@@ -49,7 +49,7 @@ const LoadingFallback = () => null;
 const HomePage = () => {
   return (
     <PageWrapper>
-      <SEO {...PAGE_SEO.home} />
+      <SEO {...PAGE_SEO.home} includeGlobalSchemas={true} />
       {/* Load hero and about immediately */}
       <div id="home">
         <Home />

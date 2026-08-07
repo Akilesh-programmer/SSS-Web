@@ -21,6 +21,11 @@
       "permanent": true
     },
     {
+      "source": "/specialities/physiotherapy-rehabilitation",
+      "destination": "/specialities/physiotherapy",
+      "permanent": true
+    },
+    {
       "source": "/home",
       "destination": "/",
       "permanent": true
