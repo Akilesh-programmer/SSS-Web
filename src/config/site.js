@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   siteName: "SSS Super Speciality Hospital",
   siteUrl: "https://ssshospitals.in",
   description:
-    "Leading multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and state-of-the-art facilities.",
+    "Leading NABH-certified multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and state-of-the-art facilities.",
 
   // Contact Information
   contact: {
@@ -96,7 +96,7 @@ export const SITE_CONFIG = {
       "SSS Super Speciality Hospital - Best Multi-Speciality Hospital in Erode",
     titleTemplate: "%s | SSS Hospital",
     defaultDescription:
-      "Leading multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments across 20+ specialities, expert doctors, and state-of-the-art facilities.",
+      "Leading NABH-certified multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments across 20+ specialities, expert doctors, and state-of-the-art facilities.",
     keywords: [
       "hospital in erode",
       "best hospital in erode",
@@ -194,7 +194,7 @@ export const SITE_CONFIG = {
   // Facilities
   facilities: {
     beds: "150+",
-    doctors: "50+",
+    doctors: "29+",
     specialities: "20+",
     operationTheaters: "5",
     icuBeds: "30",
@@ -207,13 +207,13 @@ export const SITE_CONFIG = {
     termsOfServiceUrl: "/terms-of-service",
     disclaimerUrl: "/disclaimer",
     copyrightYear: new Date().getFullYear().toString(),
-    registrationNumber: "REG/SSS/2025/XXX", // Update with actual registration
+    registrationNumber: "", // TODO: Add actual hospital registration number when available
   },
 
   // Compliance
   compliance: {
     hipaa: true,
-    nabh: false, // Set to true if accredited
+    nabh: true, // NABH Certified
     nabl: false, // Set to true if accredited
     iso: false, // Set to true if certified
   },

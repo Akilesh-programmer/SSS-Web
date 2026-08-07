@@ -1,6 +1,6 @@
 # Robots.txt for SSS Super Speciality Hospital
 # https://ssshospitals.in/robots.txt
-# Updated: July 2026
+# Updated: August 2026
 
 # ==================================
 # Main Crawler Rules (All Bots)

@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   name: "SSS Super Speciality Hospital",
   shortName: "SSS Hospital",
   description:
-    "Leading multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and compassionate healthcare services with expert doctors and state-of-the-art facilities.",
+    "Leading NABH-certified multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and compassionate healthcare services with expert doctors and state-of-the-art facilities.",
   url: "https://ssshospitals.in",
   logo: "https://ssshospitals.in/assets/logos/sss-full-logo.avif",
   image: "https://ssshospitals.in/assets/heroes/main-1.avif",
@@ -50,6 +50,7 @@ export const SITE_CONFIG = {
       name: "NABH",
       fullName: "National Accreditation Board for Hospitals & Healthcare Providers",
       url: "https://www.nabh.co",
+      status: "Certified",
     },
   ],
 };
@@ -278,6 +279,7 @@ export const generateOrganizationSchema = () => {
       ],
       opens: "00:00",
       closes: "24:00",
+      description: "Open 24 hours a day, 7 days a week. We never close.",
     },
     sameAs: Object.values(SITE_CONFIG.social),
     contactPoint: [
@@ -355,6 +357,7 @@ export const generateLocalBusinessSchema = () => {
       ],
       opens: "00:00",
       closes: "24:00",
+      description: "Open 24 hours a day, 7 days a week. We never close.",
     },
     hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
     isAccessibleForFree: false,
