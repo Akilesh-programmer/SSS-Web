@@ -55,7 +55,7 @@ async function preparePrebuilt() {
   };
 
   // Load and compile redirects, rewrites, and headers from vercel.json if available
-  const vercelJsonPath = path.join(projectRoot, "public", "vercel.json");
+  const vercelJsonPath = path.join(projectRoot, "vercel.json");
   if (fs.existsSync(vercelJsonPath)) {
     try {
       const vercelJson = JSON.parse(fs.readFileSync(vercelJsonPath, "utf8"));
