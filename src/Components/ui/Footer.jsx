@@ -1,4 +1,5 @@
 import { useRef, useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 const logoFullLocal = "/assets/logos/sss-full-logo.avif";
 const logoFull = logoFullLocal;
 import PropTypes from "prop-types";
@@ -137,13 +138,13 @@ export default function Footer() {
                 { name: "Gastro", href: "/specialities/gastroenterology" },
                 { name: "Nephrology", href: "/specialities/nephrology" },
               ].map((dept) => (
-                <a
+                <Link
                   key={dept.name}
-                  href={dept.href}
+                  to={dept.href}
                   className="text-xs bg-slate-800 text-teal-300 px-2 py-1 rounded hover:bg-slate-700 transition-colors"
                 >
                   {dept.name}
-                </a>
+                </Link>
               ))}
             </div>
 

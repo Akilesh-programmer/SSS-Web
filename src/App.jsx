@@ -13,7 +13,8 @@ import FloatingAppointmentButton from "./Components/ui/FloatingAppointmentButton
 import ErrorBoundary from "./Components/ui/ErrorBoundary";
 import SEO from "./Components/ui/SEO";
 import { PAGE_SEO } from "./data/seoData";
-import { generateAppointmentSchema } from "./utils/seo";
+import { generateAppointmentSchema, generateDoctorListSchema } from "./utils/seo";
+import { doctors } from "./data/DoctorDepartmentData";
 
 // Load Home page components immediately for instant render
 import Home from "./Components/pages/Home";
@@ -59,14 +60,29 @@ const HomePage = () => {
       </div>
       {/* Lazy load below-the-fold content */}
       <Suspense fallback={<LoadingFallback />}>
-        <FounderSection />
-        <VirtualTour />
-        <PatientTestimonials />
-        <AppointmentBooking />
-      </Suspense>
-      <div id="contact">
+        <div id="specialities">
+          <Specialities />
+        </div>
+        <div id="services">
+          <Services />
+        </div>
+        <div id="founder">
+          <FounderSection />
+        </div>
+        <div id="virtual-tour">
+          <VirtualTour />
+        </div>
+        <div id="testimonials">
+          <PatientTestimonials />
+        </div>
+        <div id="appointment">
+          <AppointmentBooking />
+        </div>
+        <div id="contact">
+          <Contact />
+        </div>
         <Footer />
-      </div>
+      </Suspense>
     </PageWrapper>
   );
 };
@@ -157,6 +173,7 @@ const DoctorsPageWrapper = () => {
           { name: "Home", url: "/" },
           { name: "Doctors", url: "/doctors" },
         ]}
+        schema={generateDoctorListSchema(doctors)}
       />
       <Suspense fallback={<LoadingFallback />}>
         <DoctorsPage />

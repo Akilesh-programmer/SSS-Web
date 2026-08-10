@@ -6,6 +6,7 @@ import {
   insertStructuredData,
   generateOrganizationSchema,
   generateLocalBusinessSchema,
+  generateHospitalWithRatingSchema,
   generateBreadcrumbSchema,
 } from "../../utils/seo";
 
@@ -43,6 +44,7 @@ const SEO = ({
     if (includeGlobalSchemas) {
       insertStructuredData(generateOrganizationSchema());
       insertStructuredData(generateLocalBusinessSchema());
+      insertStructuredData(generateHospitalWithRatingSchema());
     }
 
     if (breadcrumbs && breadcrumbs.length > 0) {
@@ -72,6 +74,7 @@ const SEO = ({
     if (includeGlobalSchemas) {
       insertStructuredData(generateOrganizationSchema());
       insertStructuredData(generateLocalBusinessSchema());
+      insertStructuredData(generateHospitalWithRatingSchema());
     }
 
     // Add breadcrumbs if provided
