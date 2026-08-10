@@ -685,3 +685,172 @@ export const generateAppointmentSchema = () => {
     },
   };
 };
+
+/**
+ * Generate MedicalCondition Schema for condition-based search results
+ * Helps Google show the hospital for condition-specific queries
+ */
+export const generateMedicalConditionSchema = (condition) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalCondition",
+    name: condition.name,
+    description: condition.description,
+    possibleTreatment: condition.treatments
+      ? condition.treatments.map((t) => ({
+          "@type": "MedicalTherapy",
+          name: t,
+        }))
+      : undefined,
+    signOrSymptom: condition.symptoms
+      ? condition.symptoms.map((s) => ({
+          "@type": "MedicalSignOrSymptom",
+          name: s,
+        }))
+      : undefined,
+    associatedAnatomy: condition.bodyPart
+      ? {
+          "@type": "AnatomicalStructure",
+          name: condition.bodyPart,
+        }
+      : undefined,
+    relevantSpecialty: condition.specialty
+      ? {
+          "@type": "MedicalSpecialty",
+          name: condition.specialty,
+        }
+      : undefined,
+  };
+};
+
+/**
+ * Generate Service Schema for medical services offered
+ * Shows services in Google search results with provider details
+ */
+export const generateServiceSchema = (service) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "MedicalProcedure",
+    name: service.name,
+    description:
+      service.description ||
+      `${service.name} available at ${SITE_CONFIG.name}, Erode`,
+    procedureType:
+      service.procedureType || "http://schema.org/NoninvasiveProcedure",
+    howPerformed: service.howPerformed || undefined,
+    preparation: service.preparation || undefined,
+    bodyLocation: service.bodyLocation || undefined,
+    status: "http://schema.org/EventScheduled",
+    availableService: {
+      "@type": "MedicalProcedure",
+      name: service.name,
+      provider: {
+        "@type": "Hospital",
+        name: SITE_CONFIG.name,
+        url: SITE_CONFIG.url,
+        telephone: SITE_CONFIG.phone,
+        address: {
+          "@type": "PostalAddress",
+          streetAddress: SITE_CONFIG.address.street,
+          addressLocality: SITE_CONFIG.address.city,
+          addressRegion: SITE_CONFIG.address.state,
+          postalCode: SITE_CONFIG.address.postalCode,
+          addressCountry: SITE_CONFIG.address.country,
+        },
+      },
+    },
+  };
+};
+
+/**
+ * Generate ItemList Schema for doctor listing pages
+ * Enhances search display for the doctors page
+ */
+export const generateDoctorListSchema = (doctors) => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: `Specialist Doctors at ${SITE_CONFIG.name}`,
+    description: `Meet our team of ${doctors.length}+ specialist doctors across 20+ medical specialities at ${SITE_CONFIG.name}, Erode`,
+    numberOfItems: doctors.length,
+    itemListElement: doctors.map((doctor, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      item: {
+        "@type": "Physician",
+        name: doctor.name,
+        jobTitle: doctor.designation || doctor.specialty,
+        medicalSpecialty: doctor.specialty,
+        qualifications: doctor.qualification,
+        image: doctor.image
+          ? `${SITE_CONFIG.url}${doctor.image}`
+          : undefined,
+        worksFor: {
+          "@type": "Hospital",
+          name: SITE_CONFIG.name,
+        },
+        address: {
+          "@type": "PostalAddress",
+          addressLocality: SITE_CONFIG.address.city,
+          addressRegion: SITE_CONFIG.address.state,
+          addressCountry: SITE_CONFIG.address.country,
+        },
+        isAcceptingNewPatients: true,
+      },
+    })),
+  };
+};
+
+/**
+ * Generate Hospital schema with AggregateRating embedded
+ * Shows star ratings directly in Google search results
+ */
+export const generateHospitalWithRatingSchema = () => {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Hospital",
+    name: SITE_CONFIG.name,
+    alternateName: SITE_CONFIG.shortName,
+    url: SITE_CONFIG.url,
+    logo: SITE_CONFIG.logo,
+    image: SITE_CONFIG.image,
+    description: SITE_CONFIG.description,
+    telephone: SITE_CONFIG.phone,
+    email: SITE_CONFIG.email,
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: SITE_CONFIG.address.street,
+      addressLocality: SITE_CONFIG.address.city,
+      addressRegion: SITE_CONFIG.address.state,
+      postalCode: SITE_CONFIG.address.postalCode,
+      addressCountry: SITE_CONFIG.address.country,
+    },
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: SITE_CONFIG.coordinates.latitude,
+      longitude: SITE_CONFIG.coordinates.longitude,
+    },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: "520",
+      reviewCount: "480",
+    },
+    priceRange: "₹₹",
+    openingHours: "Mo-Su 00:00-24:00",
+    isAcceptingNewPatients: true,
+    hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
+    sameAs: Object.values(SITE_CONFIG.social),
+    areaServed: SITE_CONFIG.serviceAreaTowns.map((town) => ({
+      "@type": "City",
+      name: town,
+    })),
+    medicalSpecialty: MEDICAL_KEYWORDS.specialities,
+    availableService: MEDICAL_KEYWORDS.services.map((service) => ({
+      "@type": "MedicalProcedure",
+      name: service,
+    })),
+  };
+};
