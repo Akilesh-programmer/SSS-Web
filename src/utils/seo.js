@@ -315,16 +315,24 @@ export const generateOrganizationSchema = () => {
 };
 
 /**
- * Generate JSON-LD structured data for local business
+ * Generate JSON-LD structured data for Hospital / Local Business
+ * Unified authoritative Hospital schema containing full address, 24/7 hours, 
+ * NABH accreditation, and 4.8-star AggregateRating
  */
-export const generateLocalBusinessSchema = () => {
+export const generateHospitalSchema = () => {
   return {
     "@context": "https://schema.org",
     "@type": "Hospital",
     "@id": `${SITE_CONFIG.url}/#hospital`,
     name: SITE_CONFIG.name,
+    alternateName: SITE_CONFIG.shortName,
     url: SITE_CONFIG.url,
-    logo: SITE_CONFIG.logo,
+    logo: {
+      "@type": "ImageObject",
+      url: SITE_CONFIG.logo,
+      width: 512,
+      height: 512,
+    },
     image: SITE_CONFIG.image,
     description: SITE_CONFIG.description,
     telephone: SITE_CONFIG.phone,
@@ -359,20 +367,56 @@ export const generateLocalBusinessSchema = () => {
       closes: "24:00",
       description: "Open 24 hours a day, 7 days a week. We never close.",
     },
+    aggregateRating: {
+      "@type": "AggregateRating",
+      ratingValue: "4.8",
+      bestRating: "5",
+      worstRating: "1",
+      ratingCount: "520",
+      reviewCount: "480",
+    },
     hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
     isAccessibleForFree: false,
     publicAccess: true,
     isAcceptingNewPatients: true,
-    availableService: {
+    acceptsHealthInsurance: SITE_CONFIG.acceptsHealthInsurance,
+    hasCredential: SITE_CONFIG.accreditations.map((acc) => ({
+      "@type": "EducationalOccupationalCredential",
+      credentialCategory: acc.name,
+      name: acc.fullName,
+    })),
+    sameAs: Object.values(SITE_CONFIG.social),
+    contactPoint: [
+      {
+        "@type": "ContactPoint",
+        telephone: SITE_CONFIG.phone,
+        contactType: "customer service",
+        availableLanguage: ["English", "Tamil", "Hindi"],
+        areaServed: "IN",
+      },
+      {
+        "@type": "ContactPoint",
+        telephone: SITE_CONFIG.emergencyPhone,
+        contactType: "emergency",
+        availableLanguage: ["English", "Tamil", "Hindi"],
+        areaServed: "IN",
+      },
+    ],
+    availableService: MEDICAL_KEYWORDS.services.map((service) => ({
       "@type": "MedicalProcedure",
-      name: "24/7 Emergency Care",
-    },
+      name: service,
+    })),
+    medicalSpecialty: MEDICAL_KEYWORDS.specialities,
     areaServed: SITE_CONFIG.serviceAreaTowns.map((town) => ({
       "@type": "City",
       name: town,
     })),
   };
 };
+
+// Aliases for backward compatibility
+export const generateLocalBusinessSchema = generateHospitalSchema;
+export const generateHospitalWithRatingSchema = generateHospitalSchema;
 
 /**
  * Generate breadcrumb schema
@@ -801,56 +845,4 @@ export const generateDoctorListSchema = (doctors) => {
   };
 };
 
-/**
- * Generate Hospital schema with AggregateRating embedded
- * Shows star ratings directly in Google search results
- */
-export const generateHospitalWithRatingSchema = () => {
-  return {
-    "@context": "https://schema.org",
-    "@type": "Hospital",
-    name: SITE_CONFIG.name,
-    alternateName: SITE_CONFIG.shortName,
-    url: SITE_CONFIG.url,
-    logo: SITE_CONFIG.logo,
-    image: SITE_CONFIG.image,
-    description: SITE_CONFIG.description,
-    telephone: SITE_CONFIG.phone,
-    email: SITE_CONFIG.email,
-    address: {
-      "@type": "PostalAddress",
-      streetAddress: SITE_CONFIG.address.street,
-      addressLocality: SITE_CONFIG.address.city,
-      addressRegion: SITE_CONFIG.address.state,
-      postalCode: SITE_CONFIG.address.postalCode,
-      addressCountry: SITE_CONFIG.address.country,
-    },
-    geo: {
-      "@type": "GeoCoordinates",
-      latitude: SITE_CONFIG.coordinates.latitude,
-      longitude: SITE_CONFIG.coordinates.longitude,
-    },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "520",
-      reviewCount: "480",
-    },
-    priceRange: "₹₹",
-    openingHours: "Mo-Su 00:00-24:00",
-    isAcceptingNewPatients: true,
-    hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
-    sameAs: Object.values(SITE_CONFIG.social),
-    areaServed: SITE_CONFIG.serviceAreaTowns.map((town) => ({
-      "@type": "City",
-      name: town,
-    })),
-    medicalSpecialty: MEDICAL_KEYWORDS.specialities,
-    availableService: MEDICAL_KEYWORDS.services.map((service) => ({
-      "@type": "MedicalProcedure",
-      name: service,
-    })),
-  };
-};
+
