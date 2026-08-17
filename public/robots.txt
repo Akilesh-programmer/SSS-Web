@@ -94,41 +94,47 @@ Allow: /
 Crawl-delay: 0
 
 # ==================================
-# AI/LLM Crawlers (Medical Content)
+# AI/LLM Crawlers & AI Search Engines
 # ==================================
 
-# OpenAI GPT Crawler (Allow for medical knowledge)
+# OpenAI SearchBot (ChatGPT Search in real-time)
+User-agent: OAI-SearchBot
+Allow: /
+Crawl-delay: 0
+
+# OpenAI GPT Crawler (Medical knowledge base)
 User-agent: GPTBot
 Allow: /
-Allow: /specialities/
-Allow: /services/
-Crawl-delay: 2
+Crawl-delay: 0
 
 # ChatGPT User Agent
 User-agent: ChatGPT-User
 Allow: /
-Allow: /specialities/
-Allow: /services/
-Crawl-delay: 2
+Crawl-delay: 0
 
-# Anthropic Claude Crawler
+# Anthropic Claude Crawler & Search
+User-agent: ClaudeBot
+Allow: /
+Crawl-delay: 0
+
 User-agent: anthropic-ai
 Allow: /
-Allow: /specialities/
-Allow: /services/
-Crawl-delay: 2
+Crawl-delay: 0
 
-# Google Bard/Gemini
+# Perplexity AI Search
+User-agent: PerplexityBot
+Allow: /
+Crawl-delay: 0
+
+# Google Bard / Gemini
 User-agent: Google-Extended
 Allow: /
-Allow: /specialities/
-Allow: /services/
-Crawl-delay: 2
+Crawl-delay: 0
 
 # Common Crawl
 User-agent: CCBot
 Allow: /
-Crawl-delay: 2
+Crawl-delay: 1
 
 # ==================================
 # SEO/Research Tools (Limited Access)

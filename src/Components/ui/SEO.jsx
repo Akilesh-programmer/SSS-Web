@@ -40,11 +40,10 @@ const SEO = ({
     applyMetaTags(metaTags);
 
     // Always inject organization + hospital schemas on every page
-    // AI crawlers (ChatGPT, Claude, Gemini) may only visit a subset of pages,
-    // so every page must carry the hospital's identity data (name, address, hours, phone)
+    // AI crawlers (ChatGPT, Claude, Gemini) and Googlebots may visit any page directly,
+    // so every page must carry the hospital's authoritative entity data (name, address, hours, rating, phone)
     insertStructuredData(generateOrganizationSchema());
-    insertStructuredData(generateLocalBusinessSchema());
-    insertStructuredData(generateHospitalWithRatingSchema());
+    insertStructuredData(generateHospitalSchema());
 
     if (breadcrumbs && breadcrumbs.length > 0) {
       insertStructuredData(generateBreadcrumbSchema(breadcrumbs));
@@ -70,8 +69,7 @@ const SEO = ({
 
     // Always inject organization + hospital schemas on every page
     insertStructuredData(generateOrganizationSchema());
-    insertStructuredData(generateLocalBusinessSchema());
-    insertStructuredData(generateHospitalWithRatingSchema());
+    insertStructuredData(generateHospitalSchema());
 
     if (breadcrumbs && breadcrumbs.length > 0) {
       insertStructuredData(generateBreadcrumbSchema(breadcrumbs));
