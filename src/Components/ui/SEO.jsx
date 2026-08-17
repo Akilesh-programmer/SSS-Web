@@ -24,7 +24,6 @@ const SEO = ({
   breadcrumbs = [],
   schema = null,
   noindex = false,
-  includeGlobalSchemas = false,
 }) => {
   // Synchronous execution for SSG pre-rendering (Puppeteer captures DOM immediately during build)
   if (typeof document !== "undefined") {
@@ -40,12 +39,12 @@ const SEO = ({
 
     applyMetaTags(metaTags);
 
-    // Only inject global organization/hospital schemas on the homepage
-    if (includeGlobalSchemas) {
-      insertStructuredData(generateOrganizationSchema());
-      insertStructuredData(generateLocalBusinessSchema());
-      insertStructuredData(generateHospitalWithRatingSchema());
-    }
+    // Always inject organization + hospital schemas on every page
+    // AI crawlers (ChatGPT, Claude, Gemini) may only visit a subset of pages,
+    // so every page must carry the hospital's identity data (name, address, hours, phone)
+    insertStructuredData(generateOrganizationSchema());
+    insertStructuredData(generateLocalBusinessSchema());
+    insertStructuredData(generateHospitalWithRatingSchema());
 
     if (breadcrumbs && breadcrumbs.length > 0) {
       insertStructuredData(generateBreadcrumbSchema(breadcrumbs));
@@ -57,7 +56,6 @@ const SEO = ({
   }
 
   useEffect(() => {
-    // Generate and apply meta tags on client-side route changes
     const metaTags = generateMetaTags({
       title,
       description,
@@ -70,19 +68,15 @@ const SEO = ({
 
     applyMetaTags(metaTags);
 
-    // Only inject global organization/hospital schemas on the homepage
-    if (includeGlobalSchemas) {
-      insertStructuredData(generateOrganizationSchema());
-      insertStructuredData(generateLocalBusinessSchema());
-      insertStructuredData(generateHospitalWithRatingSchema());
-    }
+    // Always inject organization + hospital schemas on every page
+    insertStructuredData(generateOrganizationSchema());
+    insertStructuredData(generateLocalBusinessSchema());
+    insertStructuredData(generateHospitalWithRatingSchema());
 
-    // Add breadcrumbs if provided
     if (breadcrumbs && breadcrumbs.length > 0) {
       insertStructuredData(generateBreadcrumbSchema(breadcrumbs));
     }
 
-    // Add custom schema if provided
     if (schema) {
       insertStructuredData(schema);
     }
@@ -96,7 +90,6 @@ const SEO = ({
     breadcrumbs,
     schema,
     noindex,
-    includeGlobalSchemas,
   ]);
 
   // This component doesn't render anything
@@ -118,7 +111,6 @@ SEO.propTypes = {
   ),
   schema: PropTypes.object,
   noindex: PropTypes.bool,
-  includeGlobalSchemas: PropTypes.bool,
 };
 
 export default SEO;
