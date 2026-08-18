@@ -5,8 +5,7 @@ import {
   applyMetaTags,
   insertStructuredData,
   generateOrganizationSchema,
-  generateLocalBusinessSchema,
-  generateHospitalWithRatingSchema,
+  generateHospitalSchema,
   generateBreadcrumbSchema,
 } from "../../utils/seo";
 
