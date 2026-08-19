@@ -11,7 +11,7 @@ export const SITE_CONFIG = {
     "Leading NABH-certified multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and compassionate healthcare services with expert doctors and state-of-the-art facilities.",
   url: "https://ssshospitals.in",
   logo: "https://ssshospitals.in/assets/logos/sss-full-logo.avif",
-  image: "https://ssshospitals.in/assets/heroes/main-1.avif",
+  image: "https://ssshospitals.in/assets/og-image.jpg",
   email: "info@ssshospitals.in",
   phone: "+91 424 2888777",
   emergencyPhone: "+91 89259 31193",
@@ -120,18 +120,18 @@ export const generateMetaTags = ({
   modifiedTime,
   noindex = false,
 }) => {
-  const fullTitle = title.includes(SITE_CONFIG.shortName)
+  // Only append suffix if title doesn't already contain the brand name
+  // AND is short enough that appending won't exceed ~60 chars (Google's display limit)
+  const fullTitle = title.includes(SITE_CONFIG.shortName) || title.length >= 50
     ? title
     : `${title} | ${SITE_CONFIG.shortName}`;
 
   const fullUrl = url ? `${SITE_CONFIG.url}${url}` : SITE_CONFIG.url;
 
+  // Use only page-specific keywords — do NOT append the massive general keyword list
+  // to every page. Google ignores meta keywords, and excessive keywords signal spam.
   const allKeywords = [
-    ...keywords,
-    ...MEDICAL_KEYWORDS.general,
-    SITE_CONFIG.name,
-    "erode hospital",
-    "tamil nadu healthcare",
+    ...keywords.slice(0, 15), // Limit to top 15 most relevant keywords per page
   ].join(", ");
 
   return {
@@ -316,8 +316,8 @@ export const generateOrganizationSchema = () => {
 
 /**
  * Generate JSON-LD structured data for Hospital / Local Business
- * Unified authoritative Hospital schema containing full address, 24/7 hours, 
- * NABH accreditation, and 4.8-star AggregateRating
+ * Unified authoritative Hospital schema containing full address, 24/7 hours,
+ * NABH accreditation, and contact information
  */
 export const generateHospitalSchema = () => {
   return {
@@ -367,14 +367,10 @@ export const generateHospitalSchema = () => {
       closes: "24:00",
       description: "Open 24 hours a day, 7 days a week. We never close.",
     },
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "4.8",
-      bestRating: "5",
-      worstRating: "1",
-      ratingCount: "520",
-      reviewCount: "480",
-    },
+    // NOTE: AggregateRating removed — Google requires ratings to reflect genuine,
+    // collected reviews. Hardcoded values violate Rich Results guidelines and can
+    // trigger a manual penalty. Add this back only when you have a real review
+    // aggregation system that pulls from Google Business Profile or similar.
     hasMap: "https://maps.app.goo.gl/2xkTddYbxgtg8dec7",
     isAccessibleForFree: false,
     publicAccess: true,
