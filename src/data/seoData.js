@@ -29,7 +29,7 @@ const withTowns = (base, towns = NEARBY_TOWNS) =>
 export const PAGE_SEO = {
   home: {
     title:
-      "SSS Super Speciality Hospital - Best Multi-Speciality Hospital in Erode, Tamil Nadu",
+      "SSS Hospital Erode — Best Multi-Speciality Hospital 24/7",
     description:
       "SSS Super Speciality Hospital — leading NABH-certified multi-speciality hospital in Erode with 24/7 emergency care, 20+ specialities & expert doctors. Book now!",
     keywords: [
