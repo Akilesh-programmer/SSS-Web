@@ -83,9 +83,9 @@ const AboutUs = () => {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.4 }}
         >
-          <h3 className="text-heading-xl text-center text-emerald-900 mb-8">
+          <h2 className="text-heading-xl text-center text-emerald-900 mb-8">
             Why Choose SSS Super Speciality Hospital?
-          </h3>
+          </h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {whyChooseUs.map((item, index) => (
               <motion.div
@@ -98,9 +98,9 @@ const AboutUs = () => {
                 <div className="mb-4 group-hover:scale-110 transition-transform duration-300">
                   {item.icon}
                 </div>
-                <h4 className="text-heading-sm font-semibold text-gray-900 mb-3">
+                <h3 className="text-heading-sm font-semibold text-gray-900 mb-3">
                   {item.title}
-                </h4>
+                </h3>
                 <p className="text-gray-600 leading-relaxed text-center">
                   {item.description}
                 </p>

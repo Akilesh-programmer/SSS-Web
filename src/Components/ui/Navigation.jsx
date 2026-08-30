@@ -438,6 +438,7 @@ const Navigation = () => {
                             }`}
                           >
                             <div
+                              aria-hidden="true"
                               className={`w-2 h-2 rounded-full transition-all duration-300 ${
                                 isActive
                                   ? "bg-blue-600"
@@ -450,7 +451,7 @@ const Navigation = () => {
                           <div className="space-y-1">
                             {/* Infrastructure Parent Label */}
                             <div className="flex items-center space-x-3 p-4 text-gray-800 font-semibold rounded-xl bg-gray-50">
-                              <div className="w-2 h-2 rounded-full bg-gray-400"></div>
+                              <div aria-hidden="true" className="w-2 h-2 rounded-full bg-gray-400"></div>
                               <span>{item.name}</span>
                             </div>
                             {/* Dropdown items */}

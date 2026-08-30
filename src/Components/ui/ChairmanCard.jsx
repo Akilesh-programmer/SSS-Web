@@ -61,6 +61,10 @@ const ChairmanCard = () => {
               <img
                 src={imageSrc}
                 alt={name}
+                width="384"
+                height="384"
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover rounded-xl"
               />
             </div>

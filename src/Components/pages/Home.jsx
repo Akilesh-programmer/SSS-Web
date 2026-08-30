@@ -243,8 +243,12 @@ export default function Home() {
                 <div className="relative rounded-2xl lg:rounded-3xl overflow-hidden shadow-2xl hover:shadow-3xl transition-shadow duration-500 mx-0 sm:mx-2 lg:mx-0">
                   <img
                     src={hospitalImg}
-                    alt="SSS Hospital"
+                    alt="SSS Super Speciality Hospital building - Modern healthcare facility in Erode"
                     className="w-full h-96 sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-center transition-transform duration-700 hover:scale-105"
+                    width="800"
+                    height="576"
+                    loading="lazy"
+                    decoding="async"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-black/5 to-transparent"></div>
 
