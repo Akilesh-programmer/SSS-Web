@@ -53,9 +53,9 @@ export default defineConfig({
         ],
         renderer: "@prerenderer/renderer-puppeteer",
         rendererOptions: {
-          maxConcurrentRoutes: 4,
+          maxConcurrentRoutes: 1,
           renderAfterDocumentEvent: "custom-render-trigger",
-          timeout: 20000,
+          timeout: 60000,
           headless: true,
         },
         postProcess(renderedRoute) {
@@ -103,7 +103,6 @@ export default defineConfig({
       external: [],
       output: {
         // Warn if chunk exceeds 500KB
-        experimentalMinChunkSize: 500000,
         // Optimized manual chunking strategy
         manualChunks: (id) => {
           // Vendor chunks
@@ -215,7 +214,7 @@ export default defineConfig({
     minifyWhitespace: true,
     treeShaking: true,
     // Drop console in production via esbuild too
-    drop: import.meta.env?.PROD ? ["console", "debugger"] : [],
+    drop: process.env.NODE_ENV === "production" ? ["console", "debugger"] : [],
   },
 
   // Experimental features for better performance

@@ -8,7 +8,7 @@ export const SITE_CONFIG = {
   name: "SSS Super Speciality Hospital",
   shortName: "SSS Hospital",
   description:
-    "Leading NABH-certified multi-speciality hospital in Erode offering 24/7 emergency care, advanced medical treatments, and compassionate healthcare services with expert doctors and state-of-the-art facilities.",
+    "NABH-certified multi-speciality hospital in Erode with 150+ beds, 29+ specialist doctors, and 24/7 emergency care. Offering advanced medical treatments and compassionate healthcare services.",
   url: "https://ssshospitals.in",
   logo: "https://ssshospitals.in/assets/logos/sss-full-logo.avif",
   image: "https://ssshospitals.in/assets/og-image.jpg",
@@ -128,17 +128,10 @@ export const generateMetaTags = ({
 
   const fullUrl = url ? `${SITE_CONFIG.url}${url}` : SITE_CONFIG.url;
 
-  // Use only page-specific keywords — do NOT append the massive general keyword list
-  // to every page. Google ignores meta keywords, and excessive keywords signal spam.
-  const allKeywords = [
-    ...keywords.slice(0, 15), // Limit to top 15 most relevant keywords per page
-  ].join(", ");
-
   return {
     // Basic meta tags
     title: fullTitle,
     description,
-    keywords: allKeywords,
     author,
     robots: noindex
       ? "noindex, nofollow"

@@ -439,12 +439,16 @@ const PatientTestimonials = ({ limit = 6 }) => {
                         inline: "center",
                       });
                   }}
-                  className={`w-4 h-4 sm:w-5 sm:h-5 rounded-lg transition-all duration-300 shadow-md ${
-                    currentIndex === i
-                      ? "bg-gradient-to-r from-emerald-500 to-emerald-600 scale-125 shadow-emerald-500/50"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                />
+                  className="w-11 h-11 flex items-center justify-center cursor-pointer border-0 bg-transparent p-0 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 rounded-full"
+                >
+                  <span
+                    className={`w-3 h-3 sm:w-4 sm:h-4 rounded-lg block transition-all duration-300 shadow-md ${
+                      currentIndex === i
+                        ? "bg-gradient-to-r from-emerald-500 to-emerald-600 scale-125 shadow-emerald-500/50"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                  />
+                </motion.button>
               );
             })}
           </motion.div>

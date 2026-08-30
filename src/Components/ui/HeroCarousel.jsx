@@ -163,6 +163,9 @@ export default function HeroCarousel() {
     <div
       ref={containerRef}
       className="relative overflow-hidden touch-pan-y"
+      role="region"
+      aria-roledescription="carousel"
+      aria-label="Hospital highlights carousel"
       onMouseEnter={() => setIsPaused(true)}
       onMouseLeave={() => setIsPaused(false)}
       onTouchStart={handleTouchStart}
@@ -201,19 +204,23 @@ export default function HeroCarousel() {
       {/* Bottom bar: dots + progress */}
       <div className="absolute bottom-4 sm:bottom-6 md:bottom-8 left-0 right-0 z-30 flex justify-center">
         <div className="flex flex-col items-center gap-2 bg-black/40 md:bg-transparent backdrop-blur-md md:backdrop-blur-none rounded-full px-4 py-2 md:px-0 md:py-0">
-          {/* Dots */}
-          <div className="flex gap-2.5">
+          <div className="flex items-center gap-1">
             {Array.from({ length: TOTAL_SLIDES }).map((_, i) => (
               <button
                 key={i}
+                type="button"
                 onClick={() => goToSlide(i)}
                 aria-label={`Go to slide ${i + 1}`}
-                className={`rounded-full transition-all duration-300 cursor-pointer border-0 ${
-                  currentSlide === i
-                    ? "w-8 h-2.5 bg-white"
-                    : "w-2.5 h-2.5 bg-white/50 hover:bg-white/70"
-                }`}
-              />
+                className="w-11 h-11 flex items-center justify-center cursor-pointer border-0 bg-transparent p-0 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-white rounded-full"
+              >
+                <span
+                  className={`rounded-full transition-all duration-300 block ${
+                    currentSlide === i
+                      ? "w-8 h-2.5 bg-white"
+                      : "w-2.5 h-2.5 bg-white/50 hover:bg-white/70"
+                  }`}
+                />
+              </button>
             ))}
           </div>
 
@@ -443,6 +450,8 @@ function SlideCMCHIS() {
                       src="/assets/CMCHIS.jpg"
                       alt="CMCHIS - முதலமைச்சரின் விரிவான மருத்துவ காப்பீட்டு திட்டம் - Chief Minister's Comprehensive Health Insurance Scheme"
                       className="w-full max-w-[300px] sm:max-w-[340px] lg:max-w-[400px] h-auto rounded-xl lg:rounded-2xl"
+                      width="400"
+                      height="400"
                       loading="lazy"
                       decoding="async"
                     />

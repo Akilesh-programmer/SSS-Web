@@ -385,6 +385,10 @@ const DoctorsSection = ({ limit }) => {
                           <img
                             src={doctor.image}
                             alt={doctor.name}
+                            width="160"
+                            height="160"
+                            loading="lazy"
+                            decoding="async"
                             className="w-full h-full rounded-full object-cover border-4 border-blue-100 transition-colors duration-300"
                           />
                         ) : (
@@ -444,8 +448,10 @@ const DoctorsSection = ({ limit }) => {
               return (
                 <motion.button
                   key={dotKey}
+                  type="button"
                   whileHover={{ scale: 1.2 }}
                   whileTap={{ scale: 0.9 }}
+                  aria-label={`Go to doctor ${idx + 1}`}
                   onClick={() => {
                     const el = listRef.current;
                     if (el) {
@@ -457,14 +463,18 @@ const DoctorsSection = ({ limit }) => {
                       });
                     }
                   }}
-                  className={`${
-                    paginationConfig.size
-                  } rounded-full transition-all duration-300 ${
-                    idx === currentIndex
-                      ? "bg-blue-600 scale-125"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                />
+                  className="w-11 h-11 flex items-center justify-center cursor-pointer border-0 bg-transparent p-0 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-blue-600 rounded-full"
+                >
+                  <span
+                    className={`${
+                      paginationConfig.size
+                    } rounded-full transition-all duration-300 block ${
+                      idx === currentIndex
+                        ? "bg-blue-600 scale-125"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                  />
+                </motion.button>
               );
             })}
           </motion.div>

@@ -109,6 +109,10 @@ export default function Footer() {
                 <img
                   src={logoFull}
                   alt="SSS Super Speciality Hospital Logo"
+                  width="200"
+                  height="80"
+                  loading="lazy"
+                  decoding="async"
                   className="h-16 sm:h-18 md:h-20 w-auto object-contain rounded-sm"
                 />
                 {/* Vertical divider */}
@@ -117,6 +121,10 @@ export default function Footer() {
                 <img
                   src="/NABH.jpeg"
                   alt="NABH Accredited Hospital - National Accreditation Board for Hospitals"
+                  width="64"
+                  height="64"
+                  loading="lazy"
+                  decoding="async"
                   className="h-12 sm:h-14 md:h-16 w-auto object-contain rounded-sm"
                 />
               </div>
@@ -191,10 +199,10 @@ export default function Footer() {
 
           {/* Contact Information - Streamlined */}
           <div className="lg:col-span-3">
-            <h4 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
+            <h2 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
               <FaPhoneAlt className="text-sm" />
               Contact
-            </h4>
+            </h2>
 
             <div className="space-y-3">
               <div>
@@ -221,10 +229,10 @@ export default function Footer() {
               </div>
 
               <div>
-                <h4 className="text-lg font-bold mb-0 text-teal-300 flex items-center gap-2">
+                <h2 className="text-lg font-bold mb-0 text-teal-300 flex items-center gap-2">
                   <FaEnvelope className="text-sm" />
                   Email
-                </h4>
+                </h2>
                 <a
                   href="mailto:info@ssshospitals.in"
                   className="text-teal-300 hover:text-teal-200 transition-colors text-sm"
@@ -250,9 +258,9 @@ export default function Footer() {
 
           {/* Emergency - Prominent */}
           <div className="lg:col-span-3">
-            <h4 className="text-lg font-bold mb-4 text-red-400">
-              <span className="sr-only">Emergency</span>
-            </h4>
+            <h2 className="text-lg font-bold mb-4 text-red-400 flex items-center gap-2">
+              <span>Emergency</span>
+            </h2>
 
             <a
               href="tel:+918925931193"
@@ -271,10 +279,10 @@ export default function Footer() {
 
           {/* Location - Compact */}
           <div className="lg:col-span-2" itemProp="address" itemScope itemType="https://schema.org/PostalAddress">
-            <h4 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
+            <h2 className="text-lg font-bold mb-4 text-teal-300 flex items-center gap-2">
               <FaMapMarkerAlt className="text-sm" />
               Location
-            </h4>
+            </h2>
 
             <div className="text-gray-300 text-sm leading-relaxed mb-4">
               <div className="font-semibold text-white mb-1" itemProp="name">SSS Super Speciality Hospital</div>
@@ -292,7 +300,7 @@ export default function Footer() {
                 href="https://maps.app.goo.gl/2xkTddYbxgtg8dec7"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center gap-2 bg-teal-600 hover:bg-teal-700 text-white px-3 py-2 rounded-lg transition-colors text-xs font-medium"
+                className="inline-flex items-center gap-2 bg-teal-700 hover:bg-teal-800 text-white px-3 py-2 rounded-lg transition-colors text-xs font-medium"
               >
                 <FaMapMarkerAlt className="text-xs" />
                 Directions

@@ -535,6 +535,10 @@ const DoctorsPage = () => {
                             <img
                               src={doctor.image}
                               alt={doctor.name}
+                              width="128"
+                              height="128"
+                              loading="lazy"
+                              decoding="async"
                               className="w-full h-full rounded-full object-cover shadow-lg border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors"
                             />
                           </div>
@@ -644,6 +648,7 @@ const DoctorsPage = () => {
                 <div className="relative bg-gradient-to-r from-emerald-100 to-teal-100 text-emerald-800 p-6 sm:p-8 rounded-t-3xl">
                   <button
                     onClick={closeModal}
+                    aria-label="Close doctor details modal"
                     className="absolute top-4 right-4 w-10 h-10 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors"
                   >
                     <FaTimes className="text-lg" />
@@ -655,6 +660,10 @@ const DoctorsPage = () => {
                         <img
                           src={selectedDoctor.image}
                           alt={selectedDoctor.name}
+                          width="128"
+                          height="128"
+                          loading="lazy"
+                          decoding="async"
                           className="w-full h-full rounded-full object-cover border-4 border-white/30 shadow-lg"
                         />
                       </div>

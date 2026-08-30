@@ -29,7 +29,6 @@ const SEO = ({
     const metaTags = generateMetaTags({
       title,
       description,
-      keywords,
       image,
       url,
       type,
@@ -57,7 +56,6 @@ const SEO = ({
     const metaTags = generateMetaTags({
       title,
       description,
-      keywords,
       image,
       url,
       type,

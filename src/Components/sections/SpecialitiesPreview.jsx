@@ -317,9 +317,9 @@ const SpecialitiesPreview = ({ count = 4 }) => {
           transition={{ duration: 0.6 }}
           className="text-center mb-8"
         >
-          <h3 className="text-heading-xl text-emerald-900">
+          <h2 className="text-heading-xl text-emerald-900">
             Our Key Specialities
-          </h3>
+          </h2>
           <p className="text-gray-600 max-w-2xl mx-auto mt-3">
             A selection of our major departments delivering advanced care and
             expert teams.
@@ -444,9 +444,9 @@ const SpecialitiesPreview = ({ count = 4 }) => {
                           {getDepartmentIcon(dept.name)}
                         </div>
                       </motion.div>
-                      <h4 className="text-base sm:text-lg font-semibold text-gray-900 px-2 text-center">
+                      <h3 className="text-base sm:text-lg font-semibold text-gray-900 px-2 text-center">
                         {dept.name}
-                      </h4>
+                      </h3>
 
                       {/* Mobile "View Details" button - shown by default on mobile */}
                       <motion.button
@@ -488,16 +488,21 @@ const SpecialitiesPreview = ({ count = 4 }) => {
               return (
                 <button
                   key={dotKey}
+                  type="button"
                   onClick={makeGoToIndex(idx)}
                   aria-label={`Go to ${item.name}`}
-                  className={`${
-                    paginationConfig.size
-                  } rounded-full transition-all duration-300 ${
-                    idx === currentIndex
-                      ? "bg-emerald-600 scale-125"
-                      : "bg-gray-300 hover:bg-gray-400"
-                  }`}
-                />
+                  className="w-11 h-11 flex items-center justify-center cursor-pointer border-0 bg-transparent p-0 transition-opacity focus:outline-none focus-visible:ring-2 focus-visible:ring-emerald-600 rounded-full"
+                >
+                  <span
+                    className={`${
+                      paginationConfig.size
+                    } rounded-full transition-all duration-300 block ${
+                      idx === currentIndex
+                        ? "bg-emerald-600 scale-125"
+                        : "bg-gray-300 hover:bg-gray-400"
+                    }`}
+                  />
+                </button>
               );
             })}
           </div>
