@@ -108,7 +108,7 @@ const AboutUs = () => {
           <>
             <FaHospital className="text-lg md:text-xl mr-2 md:mr-3 text-emerald-300" />
             <span className="text-xs md:text-sm font-semibold tracking-wider uppercase text-white">
-              Excellence in Healthcare Since 1990
+              Excellence in Healthcare
             </span>
           </>
         }
