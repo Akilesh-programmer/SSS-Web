@@ -18,6 +18,7 @@ import { doctors } from "./data/DoctorDepartmentData";
 
 // Load Home page components immediately for instant render
 import Home from "./Components/pages/Home";
+import AwardBanner from "./Components/sections/AwardBanner";
 import HomeAboutUs from "./Components/sections/HomeAboutUs";
 
 // Lazy-load other page components for code splitting
@@ -43,6 +44,7 @@ const DepartmentPageLayout = lazy(() =>
   import("./Components/pages/departments/DepartmentPageLayout")
 );
 const NotFound = lazy(() => import("./Components/pages/NotFound"));
+const CMCHISSection = lazy(() => import("./Components/sections/CMCHISSection"));
 
 // Empty fallback - no visible loader for instant content display
 const LoadingFallback = () => null;
@@ -55,11 +57,13 @@ const HomePage = () => {
       <div id="home">
         <Home />
       </div>
+      <AwardBanner />
       <div id="about">
         <HomeAboutUs />
       </div>
       {/* Lazy load below-the-fold content */}
       <Suspense fallback={<LoadingFallback />}>
+        <CMCHISSection />
         <div id="specialities">
           <Specialities />
         </div>

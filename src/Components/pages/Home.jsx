@@ -13,7 +13,6 @@ import {
 } from "react-icons/fa";
 const hospitalImg = "/assets/other/other-sss-hospital.avif";
 import PropTypes from "prop-types";
-import HeroCarousel from "../ui/HeroCarousel";
 
 // Small counter component — renders final value for SSG, animates 0 -> end in browser
 function Counter({
@@ -124,11 +123,8 @@ export default function Home() {
 
   return (
     <>
-      {/* Hero Carousel — Award + CMCHIS crossfade */}
-      <HeroCarousel />
-
-      {/* Original Home Content Section - Now appears after hero */}
-      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden">
+      {/* Main Hero Section — Hospital building + tagline */}
+      <div className="h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] xl:h-[calc(100vh-4.5rem)] bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden mt-14 sm:mt-16 xl:mt-18">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-4 lg:left-10 w-16 h-16 lg:w-32 lg:h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse"></div>
@@ -136,7 +132,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 w-8 h-8 lg:w-16 lg:h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse"></div>
         </div>
 
-        <div className="relative z-10 flex items-center pt-20 lg:pt-24 pb-8 min-h-screen">
+        <div className="relative z-10 flex items-center pt-8 sm:pt-10 lg:pt-12 pb-8 h-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Content */}
