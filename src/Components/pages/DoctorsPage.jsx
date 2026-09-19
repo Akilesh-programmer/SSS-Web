@@ -238,11 +238,13 @@ const DoctorsPage = () => {
       .join("")
       .slice(0, 2);
     const sizeClasses =
-      size === "large" ? "w-32 h-32 text-3xl" : "w-16 h-16 text-lg";
+      size === "large"
+        ? "w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32 text-2xl sm:text-3xl mx-auto"
+        : "w-16 h-16 text-lg mx-auto";
 
     return (
       <div
-        className={`${sizeClasses} bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg`}
+        className={`${sizeClasses} bg-gradient-to-br from-emerald-500 to-teal-500 rounded-full flex items-center justify-center text-white font-bold shadow-lg border-4 border-emerald-200 group-hover:border-emerald-300 transition-colors`}
       >
         {initials}
       </div>

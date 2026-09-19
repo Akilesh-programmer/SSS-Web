@@ -4,19 +4,19 @@ const DefaultDoctorAvatar = ({ size = "large", className = "" }) => {
   const sizeClasses = {
     small: "w-12 h-12",
     medium: "w-20 h-20",
-    large: "w-32 h-32",
+    large: "w-24 h-24 sm:w-28 sm:h-28 lg:w-32 lg:h-32",
     xlarge: "w-48 h-48",
   };
 
   const iconSizes = {
     small: "text-lg",
     medium: "text-2xl",
-    large: "text-4xl",
+    large: "text-3xl sm:text-4xl",
     xlarge: "text-6xl",
   };
 
   return (
-    <div className={`${sizeClasses[size]} ${className} relative`}>
+    <div className={`${sizeClasses[size]} ${className} relative mx-auto`}>
       {/* Main container with professional gradient */}
       <div className="w-full h-full bg-gradient-to-br from-emerald-100 via-teal-50 to-emerald-100 rounded-full flex items-center justify-center border-3 border-emerald-200 shadow-lg relative overflow-hidden">
         {/* Background pattern */}
