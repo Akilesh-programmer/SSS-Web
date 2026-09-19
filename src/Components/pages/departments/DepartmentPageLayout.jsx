@@ -108,6 +108,9 @@ const URO_INFRA = "/assets/departments/nephrology_sidew.avif"; // side (was dupl
 // Vascular Surgery (Department ID: 26)
 const VASC_HERO = "/assets/departments/vascular_back.avif"; // back
 const VASC_INFRA = "/assets/departments/vascular_side.avif"; // side
+// Medical and Hemato Oncology (Department ID: 27)
+const ONCO_HERO = "/assets/infrastructure/infrastructure-03412.avif"; // hero background
+const ONCO_INFRA = "/assets/infrastructure/infrastructure-03377.avif"; // side image
 const INF1 = "/assets/infrastructure/infrastructure-03356.avif";
 const INF2 = "/assets/infrastructure/infrastructure-03360.avif";
 const INF3 = "/assets/infrastructure/infrastructure-03365.avif";
@@ -162,6 +165,7 @@ const getHeroBgImage = (departmentId) => {
   if (departmentId === 24) return RADIO_HERO; // Radiology
   if (departmentId === 25) return URO_HERO; // Urology
   if (departmentId === 26) return VASC_HERO; // Vascular Surgery
+  if (departmentId === 27) return ONCO_HERO; // Medical and Hemato Oncology
 
   return bgPhotos[(departmentId - 1) % bgPhotos.length];
 };
@@ -271,6 +275,9 @@ const getDepartmentInfraPhotos = (departmentId) => {
   if (departmentId === 26) {
     return [{ src: VASC_INFRA, alt: "Vascular Surgery Department" }];
   }
+  if (departmentId === 27) {
+    return [{ src: ONCO_INFRA, alt: "Medical and Hemato Oncology Department" }];
+  }
 
   const startIndex = ((departmentId - 1) * 3) % infrastructurePhotos.length;
   return [
@@ -319,6 +326,9 @@ const slugAliasMap = {
   "radiology": 24,
   "urology": 25,
   "vascular-surgery": 26,
+  "medical-and-hemato-oncology": 27,
+  "medical-oncology": 27,
+  "hemato-oncology": 27,
 };
 
 // Function to find department ID from slug
@@ -584,20 +594,6 @@ const DepartmentPageLayout = () => {
       // Check if doctor belongs to this department
       return doctorDepts.includes(parseInt(departmentId));
     });
-
-    // Custom sorting for Accident & Emergency Care (departmentId: 2)
-    // Move Dr. Karthikeyan (id: 16) to second position
-    if (parseInt(departmentId) === 2) {
-      const karthikeyanIndex = departmentDoctors.findIndex(
-        (doc) => doc.id === 16
-      );
-      if (karthikeyanIndex > 1) {
-        // Remove Dr. Karthikeyan from current position
-        const [karthikeyan] = departmentDoctors.splice(karthikeyanIndex, 1);
-        // Insert at second position (index 1)
-        departmentDoctors.splice(1, 0, karthikeyan);
-      }
-    }
 
     setDoctors(departmentDoctors);
   }, [departmentSlug, navigate, departmentId]);

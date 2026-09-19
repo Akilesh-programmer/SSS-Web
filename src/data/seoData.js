@@ -438,4 +438,17 @@ export const DEPARTMENT_SEO_TEMPLATE = {
       "dvt treatment erode",
     ],
   },
+
+  "medical-and-hemato-oncology": {
+    title: "Medical & Hemato Oncology | Cancer Treatment | SSS Super Speciality Hospital Erode",
+    description:
+      "Expert cancer care at SSS Hospital Erode. Chemotherapy, immunotherapy, targeted therapy for solid tumors & blood cancers by specialist oncologist Dr. Nirmal Arasu.",
+    keywords: [
+      "oncologist erode",
+      "cancer treatment erode",
+      "chemotherapy hospital erode",
+      "blood cancer treatment erode",
+      "best cancer doctor erode",
+    ],
+  },
 };

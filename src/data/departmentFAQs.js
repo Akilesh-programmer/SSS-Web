@@ -771,6 +771,37 @@ const departmentFAQs = {
         "Yes, our vascular surgery and plastic surgery departments work together to provide comprehensive diabetic foot care including wound management, vascular assessment, angioplasty for blocked leg arteries, bypass surgery, debridement, skin grafting, and limb salvage procedures. Early referral prevents amputations.",
     },
   ],
+
+  // ═══════════════════════════════════════
+  // Medical and Hemato Oncology (ID: 27)
+  // ═══════════════════════════════════════
+  "medical-and-hemato-oncology": [
+    {
+      question: "Is cancer treatment available at SSS Hospital Erode?",
+      answer:
+        "Yes, SSS Super Speciality Hospital now has a dedicated Medical and Hemato Oncology department led by Dr. Nirmal Arasu (MBBS, MD Gen Med, DM Medical Oncology). We provide comprehensive cancer care including chemotherapy, immunotherapy, targeted therapy, and hormonal therapy for both solid tumors and blood cancers. Our oncologist works with a multidisciplinary team to create personalised treatment plans for every patient.",
+    },
+    {
+      question: "What types of cancer does SSS Hospital treat?",
+      answer:
+        "Our Medical Oncology department treats a wide range of cancers including breast cancer, lung cancer, colon and rectal cancer, stomach cancer, head and neck cancers, lymphomas (Hodgkin and non-Hodgkin), leukemias, multiple myeloma, and other solid and blood-related cancers. We also manage complex blood disorders like myelodysplastic syndromes and severe anemias.",
+    },
+    {
+      question: "What is the difference between medical oncology and surgical oncology?",
+      answer:
+        "Medical oncology focuses on treating cancer using systemic therapies like chemotherapy, immunotherapy, and targeted therapy — medicines that work throughout the body. Surgical oncology involves physically removing tumors through surgery. At SSS Hospital, our medical oncologist coordinates closely with surgeons and other specialists to ensure each patient receives the most effective combination of treatments.",
+    },
+    {
+      question: "Is chemotherapy safe and what are the side effects?",
+      answer:
+        "Modern chemotherapy protocols are designed to be as safe and effective as possible. While side effects like nausea, fatigue, hair loss, and lowered blood counts can occur, our oncology team at SSS Hospital actively manages these with supportive medications and close monitoring. Newer targeted therapies and immunotherapies often have fewer side effects compared to traditional chemotherapy.",
+    },
+    {
+      question: "Does SSS Hospital provide blood cancer treatment in Erode?",
+      answer:
+        "Yes, our Hemato Oncology services cover the diagnosis and treatment of all blood cancers including leukemia, lymphoma, and multiple myeloma. Dr. Nirmal Arasu is trained in DM Medical Oncology and provides specialised care including bone marrow biopsy, flow cytometry evaluation, and tailored chemotherapy and immunotherapy protocols for blood cancer patients in Erode and surrounding areas.",
+    },
+  ],
 };
 
 export default departmentFAQs;

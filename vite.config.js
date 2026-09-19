@@ -50,6 +50,7 @@ export default defineConfig({
           "/specialities/radiology",
           "/specialities/urology",
           "/specialities/vascular-surgery",
+          "/specialities/medical-and-hemato-oncology",
         ],
         renderer: "@prerenderer/renderer-puppeteer",
         rendererOptions: {

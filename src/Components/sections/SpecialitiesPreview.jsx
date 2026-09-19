@@ -251,6 +251,7 @@ const SpecialitiesPreview = ({ count = 4 }) => {
     "Master Health Check up": <FaFileMedical />,
     Urology: <FaFlask />,
     "Vascular Surgery": <FaHeart />,
+    "Medical and Hemato Oncology": <FaMicroscope />,
   };
 
   const getDepartmentIcon = (name) => departmentIcons[name] || <FaHospital />;

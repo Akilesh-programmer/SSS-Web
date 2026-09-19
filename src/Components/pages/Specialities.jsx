@@ -89,6 +89,7 @@ const Specialities = () => {
     Radiology: <FaXRay className="w-8 h-8" />,
     Urology: <FaFlask className="w-8 h-8" />,
     "Vascular Surgery": <FaHeart className="w-8 h-8" />,
+    "Medical and Hemato Oncology": <FaMicroscope className="w-8 h-8" />,
   };
 
   // Get icon for department
