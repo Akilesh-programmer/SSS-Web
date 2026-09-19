@@ -99,40 +99,47 @@ export const departments = [
     id: 26,
     name: "Vascular Surgery",
   },
+  {
+    id: 27,
+    name: "Medical and Hemato Oncology",
+  },
 ];
 
-// Using public assets for better performance during deployment
-const doc1 = "/assets/doctors/doctor-2.avif"; // Founder (id 1)
-const doc2 = "/assets/doctors/doctor-3.avif"; // CEO (id 2)
-const doc3 = "/assets/doctors/doctor-7.avif";
-const doc4 = "/assets/doctors/doctor-12.avif";
-const doc5 = "/assets/doctors/doctor-10.avif";
-const doc6 = "/assets/doctors/doctor-33.avif";
-const doc7 = "/assets/doctors/doctor-11.avif";
-const doc8 = "/assets/doctors/doctor-13.avif";
-const doc9 = "/assets/doctors/doctor-14.avif";
-const doc10 = "/assets/doctors/doctor-15.avif";
-const doc11 = "/assets/doctors/doctor-16.avif";
-const doc12 = "/assets/doctors/doctor-17.avif";
-const doc13 = "/assets/doctors/doctor-8.avif";
-const doc14 = "/assets/doctors/doctor-9.avif";
-const doc15 = "/assets/doctors/doctor-4.avif";
-const doc16 = "/assets/doctors/doctor-5.avif";
-const doc17 = "/assets/doctors/doctor-6.avif";
-const doc18 = "/assets/doctors/doctor-18.avif";
-const doc19 = "/assets/doctors/doctor-19.avif";
-const doc20 = "/assets/doctors/doctor-20.avif";
-const doc21 = "/assets/doctors/doctor-21.avif";
-const doc22 = "/assets/doctors/doctor-22.avif";
-const doc23 = "/assets/doctors/doctor-23.avif";
-const doc24 = "/assets/doctors/doctor-24.avif";
-const doc25 = "/assets/doctors/doctor-25.avif";
-const doc26 = "/assets/doctors/doctor-26.avif";
-const doc27 = "/assets/doctors/doctor-29.avif";
-const doc28 = "/assets/doctors/doctor-27.avif";
-const doc29 = "/assets/doctors/doctor-28.avif";
+// Doctor images — using public assets for better performance during deployment
+// Existing doctor photos (unchanged)
+const IMG_SANJITH = "/assets/doctors/doctor-2.avif";
+const IMG_SELVAKUMAR = "/assets/doctors/doctor-3.avif";
+const IMG_PRASATH = "/assets/doctors/doctor-6.avif";
+const IMG_PARVATHAVARDHINI = "/assets/doctors/doctor-13.avif";
+const IMG_NATARAJAN = "/assets/doctors/doctor-7.avif";
+const IMG_SILAMBARASAN = "/assets/doctors/doctor-8.avif";
+const IMG_KISHORE = "/assets/doctors/doctor-9.avif";
+const IMG_KANCHANADEVI = "/assets/doctors/doctor-14.avif";
+const IMG_PREMAKUMARI = "/assets/doctors/doctor-12.avif";
+const IMG_PRAVEEN = "/assets/doctors/doctor-11.avif";
+const IMG_SATHISH = "/assets/doctors/doctor-33.avif";
+const IMG_JEYTURUVAN = "/assets/doctors/doctor-19.avif";
+const IMG_CHANDRASEKAR = "/assets/doctors/doctor-26.avif";
+const IMG_YUVARAJA = "/assets/doctors/doctor-16.avif";
+const IMG_SURESH = "/assets/doctors/doctor-20.avif";
+const IMG_VIGGNESH = "/assets/doctors/doctor-21.avif";
+const IMG_GOKUL = "/assets/doctors/doctor-28.avif";
+const IMG_ASHWIN = "/assets/doctors/doctor-27.avif";
+const IMG_SINDOORY = "/assets/doctors/doctor-22.avif";
+const IMG_DEEPICA = "/assets/doctors/doctor-29.avif";
+const IMG_DHARUN = "/assets/doctors/doctor-17.avif";
 
+// New doctor photos — user will provide these as .avif files
+const IMG_KAARVENTHAN = "/assets/doctors/doctor-36.avif";
+const IMG_GOWTHAM = "/assets/doctors/doctor-37.avif";
+const IMG_HARIPRASATH = "/assets/doctors/doctor-38.avif";
+const IMG_NIVETHITHA = "/assets/doctors/doctor-40.avif";
+const IMG_NARENDHRAKUMAR = "/assets/doctors/doctor-43.avif";
+const IMG_PRIYADHARSHINI = "/assets/doctors/doctor-44.avif";
+
+// Doctors ordered per Excel "Dr LIST.xlsx" (S.NO order)
 export const doctors = [
+  // 1. Dr S. Sanjith — Founder (EXISTING — data unchanged)
   {
     id: 1,
     name: "Dr. S. Sanjith",
@@ -140,9 +147,10 @@ export const doctors = [
     designation: "Founder & Managing Director, Consultant Dermatologist",
     department: [5],
     qualification: "MD (DERM)",
-    image: doc1,
+    image: IMG_SANJITH,
     isFounder: true,
   },
+  // 2. Dr P. Selvakumar — CEO (EXISTING — data unchanged)
   {
     id: 2,
     name: "Dr. P. Selvakumar",
@@ -150,60 +158,65 @@ export const doctors = [
     designation: "CEO & Medical Director, Senior Consultant",
     department: [2, 3],
     qualification: "MD, PDCC",
-    image: doc2,
+    image: IMG_SELVAKUMAR,
     isFounder: false,
   },
+  // 3. Dr N. Prasath Kumaran (EXISTING — data unchanged)
   {
     id: 3,
-    name: "Dr. S. Natarajan",
-    specialty: "Orthopedic Surgeon",
-    designation: "Senior Consultant, Orthopedic Surgeon",
-    department: [16],
-    qualification: "MBBS, MS (ORTHO), D.ORTHO",
-    image: doc3,
+    name: "Dr. N. Prasath Kumaran",
+    specialty: "Anaesthesiologist",
+    designation: "Emergency, Critical Care & Anaesthesia",
+    department: [2, 3],
+    qualification: "MBBS, MD (ANAES)",
+    image: IMG_PRASATH,
     isFounder: false,
   },
+  // 4. Dr L. Rajeswari (NEW — no photo)
   {
     id: 4,
-    name: "Dr. R. Premakumari",
-    specialty: "Obstetrician & Gynaecologist",
-    designation: "Senior Consultant, Obstetrician & Gynaecologist",
-    department: [15],
-    qualification: "MBBS, MD (OG)",
-    image: doc4,
+    name: "Dr. L. Rajeswari",
+    specialty: "Anaesthesiologist & Critical Care",
+    designation: "Consultant Anaesthesiologist & Critical Care Physician",
+    department: [2, 3],
+    qualification: "MBBS, MD, IDCCM",
+    image: null,
     isFounder: false,
   },
+  // 5. Dr Sankarnarayanan (NEW — no photo)
   {
     id: 5,
-    name: "Dr. N. Padmanaban",
-    specialty: "Interventional Cardiologist",
-    designation: "Senior Consultant, Interventional Cardiologist",
-    department: [4],
-    qualification: "MBBS, MD, DM (CARDIO)",
-    image: doc5,
+    name: "Dr. Sankarnarayanan",
+    specialty: "Anaesthesiologist & Critical Care",
+    designation: "Consultant Anaesthesiologist & Critical Care Physician",
+    department: [2, 3],
+    qualification: "MBBS, MD (Anes)",
+    image: null,
     isFounder: false,
   },
+  // 6. Dr Kaarventhan (NEW — photo to be provided)
   {
     id: 6,
-    name: "Dr. K. L. Sathish Kumar",
-    specialty: "Gastroenterologist",
-    designation:
-      "Sr. Consultant Endoscopist, Surgical Gastroenterologist & Laproscopic Surgeon",
-    department: [9, 8],
-    qualification: "MBBS, MS (Gen Surg), FRCS (Ed), DBB (Surg Gastro), FMAS",
-    image: doc6,
+    name: "Dr. Kaarventhan",
+    specialty: "Emergency Medicine",
+    designation: "Consultant Emergency Physician",
+    department: [2],
+    qualification: "MEM",
+    image: IMG_KAARVENTHAN,
     isFounder: false,
   },
+  // 7. Dr Gowtham (NEW — photo to be provided)
   {
     id: 7,
-    name: "Dr. M. Praveen Kumar",
-    specialty: "Interventional Cardiologist",
-    designation: "Consultant Interventional Cardiologist",
-    department: [4],
-    qualification: "MBBS, MD, DM (CARDIO)",
-    image: doc7,
+    name: "Dr. Gowtham",
+    specialty: "Emergency Medicine",
+    designation: "Consultant Emergency Physician",
+    department: [2],
+    qualification: "MRCEM",
+    image: IMG_GOWTHAM,
     isFounder: false,
   },
+  // 8. Dr E. Parvathavardhini (EXISTING — data unchanged)
   {
     id: 8,
     name: "Dr. E. Parvathavardhini",
@@ -212,221 +225,324 @@ export const doctors = [
       "Senior Consultant Pediatrician & Neonatologist / Lactation Consultant",
     department: [18],
     qualification: "MBBS, MD (PAED)",
-    image: doc8,
+    image: IMG_PARVATHAVARDHINI,
     isFounder: false,
   },
+  // 9. Dr S. Natarajan (EXISTING — data unchanged)
   {
     id: 9,
-    name: "Dr. V. Kanchanadevi",
-    specialty: "Diabetologist",
-    designation: "Senior Consultant - Internal Medicine and Diabetologist",
-    department: [10],
-    qualification: "MBBS, MD (Internal Medicine & DIAB)",
-    image: doc9,
+    name: "Dr. S. Natarajan",
+    specialty: "Orthopedic Surgeon",
+    designation: "Senior Consultant, Orthopedic Surgeon",
+    department: [16],
+    qualification: "MBBS, MS (ORTHO), D.ORTHO",
+    image: IMG_NATARAJAN,
     isFounder: false,
   },
+  // 10. Dr M. Silambarasan (EXISTING — data unchanged)
   {
     id: 10,
-    name: "Dr. T. R. Sharath",
-    specialty: "Diabetologist",
-    designation: "Consultant - Internal Medicine and Diabetologist",
-    department: [10],
-    qualification: "MBBS, MD (Internal Medicine)",
-    image: doc10,
-    isFounder: false,
-  },
-  {
-    id: 11,
-    name: "Dr. K. Yuvaraja",
-    specialty: "Nephrologist",
-    designation: "Consultant - Nephrologist & Renal Transplant Physician",
-    department: [12],
-    qualification: "MBBS, MD, DM (Nephro)",
-    image: doc11,
-    isFounder: false,
-  },
-  {
-    id: 12,
-    name: "Dr. S. Dharun Kumar",
-    specialty: "Urologist & Andrologist",
-    designation:
-      "Consultant - Urologist & Andrologist, Renal Transplant Surgeon",
-    department: [25],
-    qualification: "MBBS, MS, MCH (Urology)",
-    image: doc12,
-    isFounder: false,
-  },
-  {
-    id: 13,
     name: "Dr. M. Silambarasan",
     specialty: "Orthopaedic & Arthroscopic Surgeon",
     designation: "Consultant - Orthopaedic & Arthroscopic Surgeon",
     department: [16],
     qualification: "MBBS, MS (ORTHO), FASM, ISAKOS",
-    image: doc13,
+    image: IMG_SILAMBARASAN,
     isFounder: false,
   },
+  // 11. Dr V. Kishore (EXISTING — data unchanged)
   {
-    id: 14,
+    id: 11,
     name: "Dr. V. Kishore",
     specialty: "Orthopaedics",
     designation: "Consultant Orthopaedic, Hand &  Microsurgeon",
     department: [16],
     qualification:
       "MBBS, MS (ORTHO), DNB (ORTHO), MNAMS, MRCS, MCH(Hand & Microsurgery)",
-    image: doc14,
+    image: IMG_KISHORE,
     isFounder: false,
   },
+  // 12. Dr V. Kanchanadevi (EXISTING — data unchanged)
+  {
+    id: 12,
+    name: "Dr. V. Kanchanadevi",
+    specialty: "Diabetologist",
+    designation: "Senior Consultant - Internal Medicine and Diabetologist",
+    department: [10],
+    qualification: "MBBS, MD (Internal Medicine & DIAB)",
+    image: IMG_KANCHANADEVI,
+    isFounder: false,
+  },
+  // 13. Dr Hariprasath (NEW — photo to be provided)
+  {
+    id: 13,
+    name: "Dr. Hariprasath",
+    specialty: "General Medicine & Diabetology",
+    designation: "Consultant Physician & Diabetologist",
+    department: [10],
+    qualification: "MBBS, MD (Gen Med)",
+    image: IMG_HARIPRASATH,
+    isFounder: false,
+  },
+  // 14. Dr R. Premakumari (EXISTING — data unchanged)
+  {
+    id: 14,
+    name: "Dr. R. Premakumari",
+    specialty: "Obstetrician & Gynaecologist",
+    designation: "Senior Consultant, Obstetrician & Gynaecologist",
+    department: [15],
+    qualification: "MBBS, MD (OG)",
+    image: IMG_PREMAKUMARI,
+    isFounder: false,
+  },
+  // 15. Dr M. Praveen Kumar (EXISTING — data unchanged)
   {
     id: 15,
-    name: "Dr. V. C. Dhayanethi",
-    specialty: "Anaesthesiologist",
-    designation: "Consultant - Emergency, Critical Care & Anaesthesia",
-    department: [3, 2],
-    qualification: "MBBS, MD, DNB",
-    image: doc15,
+    name: "Dr. M. Praveen Kumar",
+    specialty: "Interventional Cardiologist",
+    designation: "Consultant Interventional Cardiologist",
+    department: [4],
+    qualification: "MBBS, MD, DM (CARDIO)",
+    image: IMG_PRAVEEN,
     isFounder: false,
   },
+  // 16. Dr R. K. L. Sathish Kumar (EXISTING — data unchanged)
   {
     id: 16,
-    name: "Dr. R. Karthikeyan",
-    specialty: "Emergency & Critical Care",
-    designation: "Consultant - Emergency & Critical Care",
-    department: [2],
-    qualification: "MBBS, MRCEM, MEM, F.DIAB",
-    image: doc16,
+    name: "Dr. K. L. Sathish Kumar",
+    specialty: "Gastroenterologist",
+    designation:
+      "Sr. Consultant Endoscopist, Surgical Gastroenterologist & Laproscopic Surgeon",
+    department: [9, 8],
+    qualification: "MBBS, MS (Gen Surg), FRCS (Ed), DBB (Surg Gastro), FMAS",
+    image: IMG_SATHISH,
     isFounder: false,
   },
+  // 17. Dr Raveenthran (NEW — no photo)
   {
     id: 17,
-    name: "Dr. N. Prasath Kumaran",
-    specialty: "Anaesthesiologist",
-    designation: "Emergency, Critical Care & Anaesthesia",
-    department: [2, 3],
-    qualification: "MBBS, MD (ANAES)",
-    image: doc17,
+    name: "Dr. Raveenthran",
+    specialty: "Oral & Maxillofacial Surgery",
+    designation: "Consultant Oral & Maxillofacial Surgeon",
+    department: [6],
+    qualification: "BDS, MDS",
+    image: null,
     isFounder: false,
   },
+  // 18. Dr M. Jeyturuvan (EXISTING — data unchanged)
   {
     id: 18,
-    name: "Dr. Shravanthi Mantra",
-    specialty: "ENT",
-    designation: "Consultant - ENT Surgeon",
-    department: [7],
-    qualification: "MBBS, MS (ENT)",
-    image: doc18,
-    isFounder: false,
-  },
-  {
-    id: 19,
     name: "Dr. M. Jeyturuvan",
     specialty: "Dental",
     designation: "Consultant - Dental & OMFS Surgeon",
     department: [6],
     qualification: "BDS, MDS",
-    image: doc19,
+    image: IMG_JEYTURUVAN,
     isFounder: false,
   },
+  // 19. Dr S. Chandrasekar (EXISTING — data unchanged)
   {
-    id: 20,
-    name: "Dr. C. P. Suresh",
-    specialty: "Neurologist",
-    designation: "Consultant - Neurologist",
-    department: [13],
-    qualification: "MBBS, MD (PAED), DM (NEURO)",
-    image: doc20,
-    isFounder: false,
-  },
-  {
-    id: 21,
-    name: "Dr. P. Viggnesh",
-    specialty: "Neurologist",
-    designation: "Consultant - Brain & Spine Surgeon",
-    department: [13, 14],
-    qualification: "MBBS, MS, MCH, (NEURO SURGERY)",
-    image: doc21,
-    isFounder: false,
-  },
-  {
-    id: 22,
-    name: "Dr. S. M. Sindoory",
-    specialty: "Ophthalmologist",
-    designation: "Consultant - PHACO Comprehensive Ophthalmologist",
-    department: [17],
-    qualification: "MBBS, DO",
-    image: doc22,
-    isFounder: false,
-  },
-  {
-    id: 23,
-    name: "Dr. Sindhu Karthikeyan",
-    specialty: "Radiologist",
-    designation: "Consultant - Radiologist",
-    department: [24],
-    qualification: "MBBS, DNB (Radiology)",
-    image: doc23,
-    isFounder: false,
-  },
-  {
-    id: 24,
-    name: "Dr. Revathy",
-    specialty: "Master Health Checkup",
-    designation: "Consultant - Master Health Checkup",
-    department: [11],
-    qualification: "MBBS, DCH",
-    image: doc24,
-    isFounder: false,
-  },
-  {
-    id: 25,
-    name: "Dr. K. Senthil Kumar",
-    specialty: "General Surgeon",
-    designation: "Consultant - General Surgeon",
-    department: [8],
-    qualification: "MBBS, MS (GEN Surgery), FIAGES, FALS (HERNIA)",
-    image: doc25,
-    isFounder: false,
-  },
-  {
-    id: 26,
+    id: 19,
     name: "Dr. S. Chandrasekar",
     specialty: "Pulmonologist",
     designation: "Senior Consultant Pulmonologist",
     department: [22],
     qualification: "MBBS, DTED, DNB, EDARM",
-    image: doc26,
+    image: IMG_CHANDRASEKAR,
     isFounder: false,
   },
+  // 20. Dr Nivethitha (NEW — photo to be provided)
+  {
+    id: 20,
+    name: "Dr. Nivethitha",
+    specialty: "Interventional Pulmonologist",
+    designation: "Consultant Interventional Pulmonologist",
+    department: [22],
+    qualification: "MBBS, MD (Resp)",
+    image: IMG_NIVETHITHA,
+    isFounder: false,
+  },
+  // 21. Dr Roopak Visakan Raja (NEW — no photo)
+  {
+    id: 21,
+    name: "Dr. Roopak Visakan Raja",
+    specialty: "ENT, Head & Neck Onco Surgery",
+    designation: "Consultant ENT, Head & Neck Onco Surgeon",
+    department: [7],
+    qualification: "MBBS, MS (ENT), FHNO (Head, Neck), PDCC (Skull Base Sx)",
+    image: null,
+    isFounder: false,
+  },
+  // 22. Dr K. Yuvaraja (EXISTING — data unchanged)
+  {
+    id: 22,
+    name: "Dr. K. Yuvaraja",
+    specialty: "Nephrologist",
+    designation: "Consultant - Nephrologist & Renal Transplant Physician",
+    department: [12],
+    qualification: "MBBS, MD, DM (Nephro)",
+    image: IMG_YUVARAJA,
+    isFounder: false,
+  },
+  // 23. Dr Harish (NEW — no photo)
+  {
+    id: 23,
+    name: "Dr. Harish",
+    specialty: "Nephrologist",
+    designation: "Consultant Nephrologist & Renal Transplant Physician",
+    department: [12],
+    qualification: "MBBS, MD, DM (Nephro)",
+    image: null,
+    isFounder: false,
+  },
+  // 24. Dr C. P. Suresh (EXISTING — data unchanged)
+  {
+    id: 24,
+    name: "Dr. C. P. Suresh",
+    specialty: "Neurologist",
+    designation: "Consultant - Neurologist",
+    department: [13],
+    qualification: "MBBS, MD (PAED), DM (NEURO)",
+    image: IMG_SURESH,
+    isFounder: false,
+  },
+  // 25. Dr P. Viggnesh (EXISTING — data unchanged)
+  {
+    id: 25,
+    name: "Dr. P. Viggnesh",
+    specialty: "Neurologist",
+    designation: "Consultant - Brain & Spine Surgeon",
+    department: [13, 14],
+    qualification: "MBBS, MS, MCH, (NEURO SURGERY)",
+    image: IMG_VIGGNESH,
+    isFounder: false,
+  },
+  // 26. Dr Narendhrakumar (NEW — photo to be provided)
+  {
+    id: 26,
+    name: "Dr. Narendhrakumar",
+    specialty: "Interventional Neuro Surgeon",
+    designation:
+      "Consultant Interventional Neuro Surgeon & Endoscopic Spine Surgeon",
+    department: [14],
+    qualification:
+      "MBBS, MS, MRCS (UK), MCh (AIIMS Delhi), DrNB (Neuro Surgery), FINR (Delhi), FESS (South Korea)",
+    image: IMG_NARENDHRAKUMAR,
+    isFounder: false,
+  },
+  // 27. Dr Priyadharshini (NEW — photo to be provided)
   {
     id: 27,
-    name: "Dr. A. Deepica Kumar",
-    specialty: "Psychiatrist",
-    designation: "Consultant Psychiatrist",
-    department: [23],
-    qualification: "MBBS, MD (Psychiatry)",
-    image: doc27,
+    name: "Dr. Priyadharshini",
+    specialty: "Plastic & Cosmetic Surgeon",
+    designation: "Consultant Plastic Reconstructive & Cosmetic Surgeon",
+    department: [21],
+    qualification:
+      "MBBS, MS, DrNB (Plastic Surgery) MAMC Delhi, IAAPS Aesthetic Fellowship Delhi",
+    image: IMG_PRIYADHARSHINI,
     isFounder: false,
   },
+  // 28. Dr S. Gokul Balaji (EXISTING — data unchanged)
   {
     id: 28,
-    name: "Dr. Ashwin Raja",
-    specialty: "Plastic Surgery",
-    designation:
-      "Consultant - Plastic Reconstructive Aesthetic Hand Diabetic Foot & Microvascular Surgeon",
-    department: [21],
-    qualification: "MBBS, MS, MCH (Plastic Surgery)",
-    image: doc28,
-    isFounder: false,
-  },
-  {
-    id: 29,
     name: "Dr. S. Gokul Balaji",
     specialty: "Plastic Surgeon",
     designation: "Consultant - Plastic Surgeon",
     department: [21],
     qualification:
       "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
-    image: doc29,
+    image: IMG_GOKUL,
+    isFounder: false,
+  },
+  // 29. Dr Ashwin Raja (EXISTING — data unchanged)
+  {
+    id: 29,
+    name: "Dr. Ashwin Raja",
+    specialty: "Plastic Surgery",
+    designation:
+      "Consultant - Plastic Reconstructive Aesthetic Hand Diabetic Foot & Microvascular Surgeon",
+    department: [21],
+    qualification: "MBBS, MS, MCH (Plastic Surgery)",
+    image: IMG_ASHWIN,
+    isFounder: false,
+  },
+  // 30. Dr S. Vijay Kumar (NEW — no photo)
+  {
+    id: 30,
+    name: "Dr. S. Vijay Kumar",
+    specialty: "Ophthalmologist",
+    designation:
+      "Senior Consultant Ophthalmologist, Phaco-Refractive Surgeon, Minimally Invasive Glaucoma Surgeon and Medical Retina",
+    department: [17],
+    qualification: "MBBS, MS, FICO",
+    image: null,
+    isFounder: false,
+  },
+  // 31. Dr S. M. Sindoory (EXISTING — data unchanged)
+  {
+    id: 31,
+    name: "Dr. S. M. Sindoory",
+    specialty: "Ophthalmologist",
+    designation: "Consultant - PHACO Comprehensive Ophthalmologist",
+    department: [17],
+    qualification: "MBBS, DO",
+    image: IMG_SINDOORY,
+    isFounder: false,
+  },
+  // 32. Dr A. Deepica Kumar (EXISTING — data unchanged)
+  {
+    id: 32,
+    name: "Dr. A. Deepica Kumar",
+    specialty: "Psychiatrist",
+    designation: "Consultant Psychiatrist",
+    department: [23],
+    qualification: "MBBS, MD (Psychiatry)",
+    image: IMG_DEEPICA,
+    isFounder: false,
+  },
+  // 33. Dr Harish Priya (NEW — no photo)
+  {
+    id: 33,
+    name: "Dr. Harish Priya",
+    specialty: "Radiologist",
+    designation: "Consultant Radiologist",
+    department: [24],
+    qualification: "MBBS, DMRD, DNB (Radiology)",
+    image: null,
+    isFounder: false,
+  },
+  // 34. Dr S. Dharun Kumar (EXISTING — data unchanged)
+  {
+    id: 34,
+    name: "Dr. S. Dharun Kumar",
+    specialty: "Urologist & Andrologist",
+    designation:
+      "Consultant - Urologist & Andrologist, Renal Transplant Surgeon",
+    department: [25],
+    qualification: "MBBS, MS, MCH (Urology)",
+    image: IMG_DHARUN,
+    isFounder: false,
+  },
+  // 35. Dr Mohammed Minnathulla (NEW — no photo)
+  {
+    id: 35,
+    name: "Dr. Mohammed Minnathulla",
+    specialty: "Cardiothoracic & Vascular Surgeon",
+    designation: "Consultant Cardiothoracic and Vascular Surgeon",
+    department: [26],
+    qualification: "MBBS, MS, MCh (CTVS)",
+    image: null,
+    isFounder: false,
+  },
+  // 36. Dr Nirmal Arasu (NEW — no photo)
+  {
+    id: 36,
+    name: "Dr. Nirmal Arasu",
+    specialty: "Medical & Hemato Oncologist",
+    designation: "Consultant Medical & Hemato Oncologist",
+    department: [27],
+    qualification: "MBBS, MD (Gen Med), DM (Med Onco)",
+    image: null,
     isFounder: false,
   },
 ];
