@@ -124,7 +124,7 @@ export default function Home() {
   return (
     <>
       {/* Main Hero Section — Hospital building + tagline */}
-      <div className="h-[calc(100vh-3.5rem)] sm:h-[calc(100vh-4rem)] xl:h-[calc(100vh-4.5rem)] bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden mt-14 sm:mt-16 xl:mt-18">
+      <div className="min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-4.5rem)] h-auto lg:h-[calc(100vh-4.5rem)] bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden mt-14 sm:mt-16 xl:mt-[4.5rem]">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-4 lg:left-10 w-16 h-16 lg:w-32 lg:h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse"></div>
@@ -132,7 +132,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 w-8 h-8 lg:w-16 lg:h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse"></div>
         </div>
 
-        <div className="relative z-10 flex items-center pt-8 sm:pt-10 lg:pt-12 pb-8 h-full">
+        <div className="relative z-10 flex items-center pt-4 sm:pt-6 lg:pt-0 pb-10 sm:pb-12 lg:pb-0 min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] lg:min-h-0 h-full">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Content */}
@@ -240,7 +240,7 @@ export default function Home() {
                   <img
                     src={hospitalImg}
                     alt="SSS Super Speciality Hospital building - Modern healthcare facility in Erode"
-                    className="w-full h-96 sm:h-[28rem] lg:h-[32rem] xl:h-[36rem] object-cover object-center transition-transform duration-700 hover:scale-105"
+                    className="w-full h-64 sm:h-80 md:h-96 lg:h-[32rem] xl:h-[36rem] object-cover object-center transition-transform duration-700 hover:scale-105"
                     width="800"
                     height="576"
                     loading="lazy"
