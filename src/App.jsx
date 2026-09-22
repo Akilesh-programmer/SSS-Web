@@ -19,6 +19,7 @@ import { doctors } from "./data/DoctorDepartmentData";
 // Load Home page components immediately for instant render
 import Home from "./Components/pages/Home";
 import AwardBanner from "./Components/sections/AwardBanner";
+import TimesAwardSection from "./Components/sections/TimesAwardSection";
 import HomeAboutUs from "./Components/sections/HomeAboutUs";
 
 // Lazy-load other page components for code splitting
@@ -58,6 +59,7 @@ const HomePage = () => {
         <Home />
       </div>
       <AwardBanner />
+      <TimesAwardSection />
       <div id="about">
         <HomeAboutUs />
       </div>

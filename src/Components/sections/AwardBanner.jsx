@@ -101,6 +101,20 @@ const AwardBanner = () => {
             </p>
             <FaHeartbeat className="text-emerald-500 text-sm sm:text-base hidden sm:block" />
           </motion.div>
+
+          {/* Times Award teaser */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.7 }}
+            viewport={{ once: true }}
+            className="mt-4 inline-flex items-center gap-2 px-4 py-2 bg-amber-50/80 backdrop-blur-sm rounded-lg border border-amber-200/60 shadow-sm"
+          >
+            <FaAward className="text-amber-500 text-sm" />
+            <p className="text-xs text-amber-700 font-semibold">
+              Also recognised: Times Healthcare Achievers Tamil Nadu 2026
+            </p>
+          </motion.div>
         </div>
       </div>
     </section>
