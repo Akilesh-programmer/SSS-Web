@@ -611,8 +611,7 @@ const DepartmentPageLayout = () => {
   if (!department) {
     return (
       <PageWrapper pageKey="department-not-found">
-        <Navigation />
-        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 to-white pt-14 sm:pt-16 xl:pt-[4.5rem]">
           <div className="text-center">
             <h1 className="text-heading-xl text-gray-800 mb-4">
               Department Not Found

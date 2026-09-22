@@ -3,7 +3,7 @@ import SEO from "../ui/SEO";
 
 const NotFound = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col pt-14 sm:pt-16 xl:pt-[4.5rem]">
       <SEO
         title="Page Not Found"
         description="The page you are looking for doesn't exist."

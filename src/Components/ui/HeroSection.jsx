@@ -17,7 +17,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
 
   return (
     <motion.section
-      className="relative h-screen w-full flex items-center justify-center overflow-hidden"
+      className="relative min-h-[520px] h-screen w-full flex flex-col items-center justify-center overflow-hidden pt-14 sm:pt-16 xl:pt-[4.5rem] pb-12"
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       transition={{ duration: 0.8, ease: "easeOut" }}
@@ -57,7 +57,7 @@ const HeroSection = ({ backgroundImage, badge, title, subtitle }) => {
       />
 
       {/* Hero Content */}
-      <div className="relative z-10 text-center text-white px-4 md:px-6 max-w-5xl mx-auto">
+      <div className="relative z-10 text-center text-white px-4 md:px-6 max-w-5xl mx-auto my-auto">
         {/* Badge */}
         {badge && (
           <motion.div
