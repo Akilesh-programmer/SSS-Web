@@ -295,7 +295,7 @@ const DoctorsPage = () => {
             className="mb-6 lg:mb-8 bg-white/95 backdrop-blur-sm rounded-2xl lg:rounded-3xl shadow-xl border border-white/20 p-4 sm:p-6 lg:p-8"
           >
             {/* Advanced Search Bar with Suggestions */}
-            <div className="relative mb-6 lg:mb-8">
+            <div className="relative mb-6 lg:mb-8 z-20">
               <div className="relative">
                 <FaSearch className="absolute left-4 lg:left-6 top-1/2 transform -translate-y-1/2 text-emerald-500 text-base lg:text-lg z-10" />
                 <input

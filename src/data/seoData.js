@@ -13,7 +13,7 @@ export const PAGE_SEO = {
     title:
       "SSS Super Speciality Hospital - Best Multi-Speciality Hospital in Erode, Tamil Nadu",
     description:
-      "SSS Super Speciality Hospital — NABH-certified multi-speciality hospital in Erode with 24/7 emergency care, 20+ specialities, 29+ expert doctors & 150+ beds. Book now!",
+      "SSS Super Speciality Hospital — NABH-certified multi-speciality hospital in Erode. Times Healthcare Achievers Tamil Nadu 2026 winner. 24/7 emergency care, 20+ specialities, 29+ expert doctors & 150+ beds.",
     keywords: [
       "sss hospital erode",
       "sss super speciality hospital",
@@ -21,6 +21,8 @@ export const PAGE_SEO = {
       "multi speciality hospital erode",
       "NABH hospital erode",
       "24/7 emergency hospital erode",
+      "Times Healthcare Achievers 2026",
+      "award winning hospital erode",
     ],
     url: "/",
     type: "website",
