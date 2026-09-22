@@ -124,7 +124,7 @@ export default function Home() {
   return (
     <>
       {/* Main Hero Section — Hospital building + tagline */}
-      <div className="min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-4.5rem)] h-auto lg:h-[calc(100vh-4.5rem)] bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden mt-14 sm:mt-16 xl:mt-[4.5rem]">
+      <div className="min-h-screen bg-gradient-to-br from-emerald-50 via-white to-gray-50 relative overflow-hidden pt-14 sm:pt-16 xl:pt-[4.5rem]">
         {/* Background decorative elements */}
         <div className="absolute inset-0 overflow-hidden pointer-events-none">
           <div className="absolute top-20 left-4 lg:left-10 w-16 h-16 lg:w-32 lg:h-32 bg-emerald-100 rounded-full opacity-20 animate-pulse"></div>
@@ -132,7 +132,7 @@ export default function Home() {
           <div className="absolute top-1/2 left-1/4 w-8 h-8 lg:w-16 lg:h-16 bg-emerald-200 rounded-full opacity-10 animate-pulse"></div>
         </div>
 
-        <div className="relative z-10 flex items-center pt-4 sm:pt-6 lg:pt-0 pb-10 sm:pb-12 lg:pb-0 min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] lg:min-h-0 h-full">
+        <div className="relative z-10 flex items-center py-8 sm:py-10 lg:py-12 min-h-[calc(100vh-3.5rem)] sm:min-h-[calc(100vh-4rem)] xl:min-h-[calc(100vh-4.5rem)]">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 w-full">
             <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-center">
               {/* Left Content */}
