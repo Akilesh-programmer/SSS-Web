@@ -137,7 +137,7 @@ const IMG_NIVETHITHA = "/assets/doctors/doctor-40.avif";
 const IMG_NARENDHRAKUMAR = "/assets/doctors/doctor-43.avif";
 const IMG_PRIYADHARSHINI = "/assets/doctors/doctor-44.avif";
 
-// Doctors ordered per Excel "Dr LIST.xlsx" (S.NO order)
+// Doctors ordered per user specification
 export const doctors = [
   // 1. Dr S. Sanjith — Founder (EXISTING — data unchanged)
   {
@@ -161,20 +161,9 @@ export const doctors = [
     image: IMG_SELVAKUMAR,
     isFounder: false,
   },
-  // 3. Dr N. Prasath Kumaran (EXISTING — data unchanged)
+  // 3. Dr L. Rajeswari (NEW — no photo)
   {
     id: 3,
-    name: "Dr. N. Prasath Kumaran",
-    specialty: "Anaesthesiologist",
-    designation: "Emergency, Critical Care & Anaesthesia",
-    department: [2, 3],
-    qualification: "MBBS, MD (ANAES)",
-    image: IMG_PRASATH,
-    isFounder: false,
-  },
-  // 4. Dr L. Rajeswari (NEW — no photo)
-  {
-    id: 4,
     name: "Dr. L. Rajeswari",
     specialty: "Anaesthesiologist & Critical Care",
     designation: "Consultant Anaesthesiologist & Critical Care Physician",
@@ -183,9 +172,9 @@ export const doctors = [
     image: null,
     isFounder: false,
   },
-  // 5. Dr Sankarnarayanan (NEW — no photo)
+  // 4. Dr Sankarnarayanan (NEW — no photo)
   {
-    id: 5,
+    id: 4,
     name: "Dr. Sankarnarayanan",
     specialty: "Anaesthesiologist & Critical Care",
     designation: "Consultant Anaesthesiologist & Critical Care Physician",
@@ -194,9 +183,9 @@ export const doctors = [
     image: null,
     isFounder: false,
   },
-  // 6. Dr Kaarventhan (NEW — photo to be provided)
+  // 5. Dr Kaarventhan (NEW — photo to be provided)
   {
-    id: 6,
+    id: 5,
     name: "Dr. Kaarventhan",
     specialty: "Emergency Medicine",
     designation: "Consultant Emergency Physician",
@@ -205,9 +194,9 @@ export const doctors = [
     image: IMG_KAARVENTHAN,
     isFounder: false,
   },
-  // 7. Dr Gowtham (NEW — photo to be provided)
+  // 6. Dr Gowtham (NEW — photo to be provided)
   {
-    id: 7,
+    id: 6,
     name: "Dr. Gowtham",
     specialty: "Emergency Medicine",
     designation: "Consultant Emergency Physician",
@@ -216,9 +205,9 @@ export const doctors = [
     image: IMG_GOWTHAM,
     isFounder: false,
   },
-  // 8. Dr E. Parvathavardhini (EXISTING — data unchanged)
+  // 7. Dr E. Parvathavardhini (EXISTING — data unchanged)
   {
-    id: 8,
+    id: 7,
     name: "Dr. E. Parvathavardhini",
     specialty: "Pediatrician & Neonatologist",
     designation:
@@ -228,20 +217,9 @@ export const doctors = [
     image: IMG_PARVATHAVARDHINI,
     isFounder: false,
   },
-  // 9. Dr S. Natarajan (EXISTING — data unchanged)
+  // 8. Dr M. Silambarasan (EXISTING — data unchanged)
   {
-    id: 9,
-    name: "Dr. S. Natarajan",
-    specialty: "Orthopedic Surgeon",
-    designation: "Senior Consultant, Orthopedic Surgeon",
-    department: [16],
-    qualification: "MBBS, MS (ORTHO), D.ORTHO",
-    image: IMG_NATARAJAN,
-    isFounder: false,
-  },
-  // 10. Dr M. Silambarasan (EXISTING — data unchanged)
-  {
-    id: 10,
+    id: 8,
     name: "Dr. M. Silambarasan",
     specialty: "Orthopaedic & Arthroscopic Surgeon",
     designation: "Consultant - Orthopaedic & Arthroscopic Surgeon",
@@ -250,9 +228,9 @@ export const doctors = [
     image: IMG_SILAMBARASAN,
     isFounder: false,
   },
-  // 11. Dr V. Kishore (EXISTING — data unchanged)
+  // 9. Dr V. Kishore (EXISTING — data unchanged)
   {
-    id: 11,
+    id: 9,
     name: "Dr. V. Kishore",
     specialty: "Orthopaedics",
     designation: "Consultant Orthopaedic, Hand &  Microsurgeon",
@@ -262,9 +240,9 @@ export const doctors = [
     image: IMG_KISHORE,
     isFounder: false,
   },
-  // 12. Dr V. Kanchanadevi (EXISTING — data unchanged)
+  // 10. Dr V. Kanchanadevi (EXISTING — data unchanged)
   {
-    id: 12,
+    id: 10,
     name: "Dr. V. Kanchanadevi",
     specialty: "Diabetologist",
     designation: "Senior Consultant - Internal Medicine and Diabetologist",
@@ -273,9 +251,9 @@ export const doctors = [
     image: IMG_KANCHANADEVI,
     isFounder: false,
   },
-  // 13. Dr Hariprasath (NEW — photo to be provided)
+  // 11. Dr Hariprasath (NEW — photo to be provided)
   {
-    id: 13,
+    id: 11,
     name: "Dr. Hariprasath",
     specialty: "General Medicine & Diabetology",
     designation: "Consultant Physician & Diabetologist",
@@ -284,9 +262,9 @@ export const doctors = [
     image: IMG_HARIPRASATH,
     isFounder: false,
   },
-  // 14. Dr R. Premakumari (EXISTING — data unchanged)
+  // 12. Dr R. Premakumari (EXISTING — data unchanged)
   {
-    id: 14,
+    id: 12,
     name: "Dr. R. Premakumari",
     specialty: "Obstetrician & Gynaecologist",
     designation: "Senior Consultant, Obstetrician & Gynaecologist",
@@ -295,9 +273,20 @@ export const doctors = [
     image: IMG_PREMAKUMARI,
     isFounder: false,
   },
-  // 15. Dr M. Praveen Kumar (EXISTING — data unchanged)
+  // 13. Dr S. Natarajan (EXISTING — data unchanged)
   {
-    id: 15,
+    id: 13,
+    name: "Dr. S. Natarajan",
+    specialty: "Orthopedic Surgeon",
+    designation: "Senior Consultant, Orthopedic Surgeon",
+    department: [16],
+    qualification: "MBBS, MS (ORTHO), D.ORTHO",
+    image: IMG_NATARAJAN,
+    isFounder: false,
+  },
+  // 14. Dr M. Praveen Kumar (EXISTING — data unchanged)
+  {
+    id: 14,
     name: "Dr. M. Praveen Kumar",
     specialty: "Interventional Cardiologist",
     designation: "Consultant Interventional Cardiologist",
@@ -306,9 +295,9 @@ export const doctors = [
     image: IMG_PRAVEEN,
     isFounder: false,
   },
-  // 16. Dr R. K. L. Sathish Kumar (EXISTING — data unchanged)
+  // 15. Dr K. L. Sathish Kumar (EXISTING — data unchanged)
   {
-    id: 16,
+    id: 15,
     name: "Dr. K. L. Sathish Kumar",
     specialty: "Gastroenterologist",
     designation:
@@ -318,9 +307,9 @@ export const doctors = [
     image: IMG_SATHISH,
     isFounder: false,
   },
-  // 17. Dr Raveenthran (NEW — no photo)
+  // 16. Dr Raveenthran (NEW — no photo)
   {
-    id: 17,
+    id: 16,
     name: "Dr. Raveenthran",
     specialty: "Oral & Maxillofacial Surgery",
     designation: "Consultant Oral & Maxillofacial Surgeon",
@@ -329,9 +318,9 @@ export const doctors = [
     image: null,
     isFounder: false,
   },
-  // 18. Dr M. Jeyturuvan (EXISTING — data unchanged)
+  // 17. Dr M. Jeyturuvan (EXISTING — data unchanged)
   {
-    id: 18,
+    id: 17,
     name: "Dr. M. Jeyturuvan",
     specialty: "Dental",
     designation: "Consultant - Dental & OMFS Surgeon",
@@ -340,9 +329,9 @@ export const doctors = [
     image: IMG_JEYTURUVAN,
     isFounder: false,
   },
-  // 19. Dr S. Chandrasekar (EXISTING — data unchanged)
+  // 18. Dr S. Chandrasekar (EXISTING — data unchanged)
   {
-    id: 19,
+    id: 18,
     name: "Dr. S. Chandrasekar",
     specialty: "Pulmonologist",
     designation: "Senior Consultant Pulmonologist",
@@ -351,9 +340,9 @@ export const doctors = [
     image: IMG_CHANDRASEKAR,
     isFounder: false,
   },
-  // 20. Dr Nivethitha (NEW — photo to be provided)
+  // 19. Dr Nivethitha (NEW — photo to be provided)
   {
-    id: 20,
+    id: 19,
     name: "Dr. Nivethitha",
     specialty: "Interventional Pulmonologist",
     designation: "Consultant Interventional Pulmonologist",
@@ -362,9 +351,9 @@ export const doctors = [
     image: IMG_NIVETHITHA,
     isFounder: false,
   },
-  // 21. Dr Roopak Visakan Raja (NEW — no photo)
+  // 20. Dr Roopak Visakan Raja (NEW — no photo)
   {
-    id: 21,
+    id: 20,
     name: "Dr. Roopak Visakan Raja",
     specialty: "ENT, Head & Neck Onco Surgery",
     designation: "Consultant ENT, Head & Neck Onco Surgeon",
@@ -373,9 +362,9 @@ export const doctors = [
     image: null,
     isFounder: false,
   },
-  // 22. Dr K. Yuvaraja (EXISTING — data unchanged)
+  // 21. Dr K. Yuvaraja (EXISTING — data unchanged)
   {
-    id: 22,
+    id: 21,
     name: "Dr. K. Yuvaraja",
     specialty: "Nephrologist",
     designation: "Consultant - Nephrologist & Renal Transplant Physician",
@@ -384,9 +373,9 @@ export const doctors = [
     image: IMG_YUVARAJA,
     isFounder: false,
   },
-  // 23. Dr Harish (NEW — no photo)
+  // 22. Dr Harish (NEW — no photo)
   {
-    id: 23,
+    id: 22,
     name: "Dr. Harish",
     specialty: "Nephrologist",
     designation: "Consultant Nephrologist & Renal Transplant Physician",
@@ -395,9 +384,9 @@ export const doctors = [
     image: null,
     isFounder: false,
   },
-  // 24. Dr C. P. Suresh (EXISTING — data unchanged)
+  // 23. Dr C. P. Suresh (EXISTING — data unchanged)
   {
-    id: 24,
+    id: 23,
     name: "Dr. C. P. Suresh",
     specialty: "Neurologist",
     designation: "Consultant - Neurologist",
@@ -406,9 +395,9 @@ export const doctors = [
     image: IMG_SURESH,
     isFounder: false,
   },
-  // 25. Dr P. Viggnesh (EXISTING — data unchanged)
+  // 24. Dr P. Viggnesh (EXISTING — data unchanged)
   {
-    id: 25,
+    id: 24,
     name: "Dr. P. Viggnesh",
     specialty: "Neurologist",
     designation: "Consultant - Brain & Spine Surgeon",
@@ -417,9 +406,9 @@ export const doctors = [
     image: IMG_VIGGNESH,
     isFounder: false,
   },
-  // 26. Dr Narendhrakumar (NEW — photo to be provided)
+  // 25. Dr Narendhrakumar (NEW — photo to be provided)
   {
-    id: 26,
+    id: 25,
     name: "Dr. Narendhrakumar",
     specialty: "Interventional Neuro Surgeon",
     designation:
@@ -430,9 +419,9 @@ export const doctors = [
     image: IMG_NARENDHRAKUMAR,
     isFounder: false,
   },
-  // 27. Dr Priyadharshini (NEW — photo to be provided)
+  // 26. Dr Priyadharshini (NEW — photo to be provided)
   {
-    id: 27,
+    id: 26,
     name: "Dr. Priyadharshini",
     specialty: "Plastic & Cosmetic Surgeon",
     designation: "Consultant Plastic Reconstructive & Cosmetic Surgeon",
@@ -442,9 +431,9 @@ export const doctors = [
     image: IMG_PRIYADHARSHINI,
     isFounder: false,
   },
-  // 28. Dr S. Gokul Balaji (EXISTING — data unchanged)
+  // 27. Dr S. Gokul Balaji (EXISTING — data unchanged)
   {
-    id: 28,
+    id: 27,
     name: "Dr. S. Gokul Balaji",
     specialty: "Plastic Surgeon",
     designation: "Consultant - Plastic Surgeon",
@@ -452,6 +441,17 @@ export const doctors = [
     qualification:
       "MBBS, MS, MCH (Plastic & Reconstructive Surgery), F.Cosmetic Surgery & Clinical Aesthetics",
     image: IMG_GOKUL,
+    isFounder: false,
+  },
+  // 28. Dr N. Prasath Kumaran (EXISTING — data unchanged)
+  {
+    id: 28,
+    name: "Dr. N. Prasath Kumaran",
+    specialty: "Anaesthesiologist",
+    designation: "Emergency, Critical Care & Anaesthesia",
+    department: [2, 3],
+    qualification: "MBBS, MD (ANAES)",
+    image: IMG_PRASATH,
     isFounder: false,
   },
   // 29. Dr Ashwin Raja (EXISTING — data unchanged)
