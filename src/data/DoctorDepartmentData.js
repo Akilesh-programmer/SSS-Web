@@ -136,6 +136,7 @@ const IMG_HARIPRASATH = "/assets/doctors/doctor-38.avif";
 const IMG_NIVETHITHA = "/assets/doctors/doctor-40.avif";
 const IMG_NARENDHRAKUMAR = "/assets/doctors/doctor-43.avif";
 const IMG_PRIYADHARSHINI = "/assets/doctors/doctor-44.avif";
+const IMG_HARISH_PRIYA = "/assets/doctors/doctor-45.avif";
 
 // Doctors ordered per user specification
 export const doctors = [
@@ -500,7 +501,7 @@ export const doctors = [
     image: IMG_DEEPICA,
     isFounder: false,
   },
-  // 33. Dr Harish Priya (NEW — no photo)
+  // 33. Dr Harish Priya (photo added)
   {
     id: 33,
     name: "Dr. Harish Priya",
@@ -508,7 +509,7 @@ export const doctors = [
     designation: "Consultant Radiologist",
     department: [24],
     qualification: "MBBS, DMRD, DNB (Radiology)",
-    image: null,
+    image: IMG_HARISH_PRIYA,
     isFounder: false,
   },
   // 34. Dr S. Dharun Kumar (EXISTING — data unchanged)
