@@ -4,7 +4,6 @@ import {
   FaCheck,
   FaHeartbeat,
   FaShieldAlt,
-  FaFileMedical,
   FaBookMedical,
 } from "react-icons/fa";
 import HeroSection from "../ui/HeroSection";
@@ -41,8 +40,8 @@ const Packages = () => {
 
   const packages = [
     {
-      name: "Regular Health Checkup",
-      price: "₹4,999",
+      name: "Executive Health Checkup",
+      price: "₹5,999",
       icon: FaStethoscope,
       color: "bg-emerald-500",
       tests: [
@@ -54,73 +53,22 @@ const Packages = () => {
         { no: "6", test: "LIPID PROFILE" },
         { no: "7", test: "FT3, FT4, TSH" },
         { no: "8", test: "URINE COMPLETE" },
-        { no: "9", test: "CHEST X-RAY" },
-        { no: "10", test: "ECG" },
-        { no: "11", test: "ECHO" },
-        { no: "12", test: "USG (ABDOMEN & PELVIC)" },
-        { no: "13", test: "GENERAL PHYSICIAN OPINION" },
-        { no: "14", test: "OPHTHALMOLOGIST OPINION" },
-        { no: "15", test: "DIET COUNSELLING" },
-      ],
-    },
-    {
-      name: "Advanced Health Checkup for Men",
-      price: "₹6,999",
-      icon: FaShieldAlt,
-      color: "bg-purple-500",
-      tests: [
-        { no: "1", test: "CBC" },
-        { no: "2", test: "FBS, PPBS" },
-        { no: "3", test: "HbA1C" },
-        { no: "4", test: "RFT" },
-        { no: "5", test: "LFT" },
-        { no: "6", test: "LIPID PROFILE" },
-        { no: "7", test: "FT3, FT4, TSH" },
-        { no: "8", test: "URINE COMPLETE" },
-        { no: "9", test: "Sr. CALCIUM" },
+        { no: "9", test: "URIC ACID" },
         { no: "10", test: "CHEST X-RAY" },
-        { no: "11", test: "USG (ABDOMEN & PELVIC)" },
-        { no: "12", test: "ECG" },
-        { no: "13", test: "ECHO" },
-        { no: "14", test: "TMT" },
-        { no: "15", test: "PSA" },
-        { no: "16", test: "GENERAL PHYSICIAN OPINION" },
+        { no: "11", test: "ECG" },
+        { no: "12", test: "ECHO" },
+        { no: "13", test: "TMT" },
+        { no: "14", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "15", test: "GENERAL PHYSICIAN OPINION" },
+        { no: "16", test: "DENTIST OPINION" },
         { no: "17", test: "OPHTHALMOLOGIST OPINION" },
-        { no: "18", test: "DENTIST OPINION" },
-        { no: "19", test: "DIET COUNSELLING" },
+        { no: "18", test: "DIET COUNSELLING" },
+        { no: "19", test: "BREAKFAST" },
       ],
     },
     {
-      name: "Advanced Health Checkup for Women",
-      price: "₹6,999",
-      icon: FaFileMedical,
-      color: "bg-indigo-500",
-      tests: [
-        { no: "1", test: "CBC" },
-        { no: "2", test: "FBS, PPBS" },
-        { no: "3", test: "HbA1C" },
-        { no: "4", test: "RFT" },
-        { no: "5", test: "LFT" },
-        { no: "6", test: "LIPID PROFILE" },
-        { no: "7", test: "FT3, FT4, TSH" },
-        { no: "8", test: "URINE COMPLETE" },
-        { no: "9", test: "Sr. CALCIUM" },
-        { no: "10", test: "CHEST X-RAY" },
-        { no: "11", test: "USG (ABDOMEN & PELVIC)" },
-        { no: "12", test: "ECG" },
-        { no: "13", test: "ECHO" },
-        { no: "14", test: "TMT" },
-        { no: "15", test: "PAP SMEAR" },
-        { no: "16", test: "GENERAL PHYSICIAN OPINION" },
-        { no: "17", test: "GYNAECOLOGIST OPINION" },
-        { no: "18", test: "OPHTHALMOLOGIST OPINION" },
-        { no: "19", test: "DENTIST OPINION" },
-        { no: "20", test: "DIET COUNSELLING" },
-      ],
-    },
-    {
-      name: "Comprehensive Health Checkup for Men",
-      price: "₹8,999",
+      name: "Comprehensive Health Checkup for Men / Women",
+      price: "₹7,999",
       icon: FaHeartbeat,
       color: "bg-teal-500",
       tests: [
@@ -132,8 +80,8 @@ const Packages = () => {
         { no: "6", test: "LIPID PROFILE" },
         { no: "7", test: "FT3, FT4, TSH" },
         { no: "8", test: "URINE COMPLETE" },
-        { no: "9", test: "Sr. CALCIUM" },
-        { no: "10", test: "URIC ACID" },
+        { no: "9", test: "URIC ACID" },
+        { no: "10", test: "Sr. CALCIUM" },
         { no: "11", test: "VIT B12" },
         { no: "12", test: "VIT D" },
         { no: "13", test: "CHEST X-RAY" },
@@ -141,18 +89,21 @@ const Packages = () => {
         { no: "15", test: "ECG" },
         { no: "16", test: "ECHO" },
         { no: "17", test: "TMT" },
-        { no: "18", test: "PSA" },
+        { no: "18", test: "PSA / PAP SMEAR" },
         { no: "19", test: "GENERAL PHYSICIAN OPINION" },
-        { no: "20", test: "OPHTHALMOLOGIST OPINION" },
-        { no: "21", test: "DENTIST OPINION" },
-        { no: "22", test: "DIET COUNSELLING" },
+        { no: "20", test: "GYNAECOLOGIST OPINION" },
+        { no: "21", test: "OPHTHALMOLOGIST OPINION" },
+        { no: "22", test: "DENTIST OPINION" },
+        { no: "23", test: "CARDIOLOGIST OPINION" },
+        { no: "24", test: "DIET COUNSELLING" },
+        { no: "25", test: "BREAKFAST" },
       ],
     },
     {
-      name: "Comprehensive Health Checkup for Women",
+      name: "Premium Health Checkup for Men / Women",
       price: "₹8,999",
-      icon: FaBookMedical,
-      color: "bg-red-500",
+      icon: FaShieldAlt,
+      color: "bg-purple-500",
       tests: [
         { no: "1", test: "CBC" },
         { no: "2", test: "FBS, PPBS" },
@@ -162,21 +113,25 @@ const Packages = () => {
         { no: "6", test: "LIPID PROFILE" },
         { no: "7", test: "FT3, FT4, TSH" },
         { no: "8", test: "URINE COMPLETE" },
-        { no: "9", test: "Sr. CALCIUM" },
-        { no: "10", test: "URIC ACID" },
+        { no: "9", test: "URIC ACID" },
+        { no: "10", test: "Sr. CALCIUM" },
         { no: "11", test: "VIT B12" },
         { no: "12", test: "VIT D" },
-        { no: "13", test: "CHEST X-RAY" },
-        { no: "14", test: "USG (ABDOMEN & PELVIC)" },
-        { no: "15", test: "ECG" },
-        { no: "16", test: "ECHO" },
-        { no: "17", test: "TMT" },
-        { no: "18", test: "PAP SMEAR" },
-        { no: "19", test: "GENERAL PHYSICIAN OPINION" },
-        { no: "20", test: "GYNAECOLOGIST OPINION" },
-        { no: "21", test: "OPHTHALMOLOGIST OPINION" },
-        { no: "22", test: "DENTIST OPINION" },
-        { no: "23", test: "DIET COUNSELLING" },
+        { no: "13", test: "LIPOPROTEIN (A)" },
+        { no: "14", test: "APOLIPOPROTEIN (B)" },
+        { no: "15", test: "CHEST X-RAY" },
+        { no: "16", test: "USG (ABDOMEN & PELVIC)" },
+        { no: "17", test: "ECG" },
+        { no: "18", test: "ECHO" },
+        { no: "19", test: "TMT" },
+        { no: "20", test: "PSA / PAP SMEAR" },
+        { no: "21", test: "GENERAL PHYSICIAN OPINION" },
+        { no: "22", test: "GYNAECOLOGIST OPINION" },
+        { no: "23", test: "OPHTHALMOLOGIST OPINION" },
+        { no: "24", test: "DENTIST OPINION" },
+        { no: "25", test: "CARDIOLOGIST OPINION" },
+        { no: "26", test: "DIET COUNSELLING" },
+        { no: "27", test: "BREAKFAST" },
       ],
     },
   ];
@@ -194,14 +149,12 @@ const Packages = () => {
       {/* Packages Content Section */}
       <section className="py-20 bg-gradient-to-br from-white to-emerald-50/30 relative">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-          {/* Duplicate header removed (title is shown in hero) */}
-
           {/* Packages Grid */}
           <motion.div
             initial="hidden"
             animate="visible"
             variants={staggerContainer}
-            className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8"
+            className="grid grid-cols-1 lg:grid-cols-3 gap-6 lg:gap-8"
           >
             {packages.map((pkg) => {
               const IconComponent = pkg.icon;
@@ -210,13 +163,13 @@ const Packages = () => {
                   key={pkg.name}
                   variants={cardVariant}
                   whileHover={{ y: -8, scale: 1.02 }}
-                  className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 group relative overflow-hidden"
+                  className="bg-white rounded-3xl shadow-xl hover:shadow-2xl transition-all duration-500 border border-gray-100 group relative overflow-hidden flex flex-col"
                 >
                   {/* Top accent line */}
                   <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-500 to-teal-500" />
 
                   {/* Card content */}
-                  <div className="p-6 lg:p-8">
+                  <div className="p-6 lg:p-8 flex flex-col flex-1">
                     {/* Icon and header */}
                     <div className="flex items-center justify-between mb-6">
                       <div
@@ -235,16 +188,16 @@ const Packages = () => {
                     </div>
 
                     {/* Package Name */}
-                    <h3 className="text-heading-md text-gray-800 mb-6 group-hover:text-emerald-600 transition-colors leading-tight">
+                    <h3 className="text-heading-md text-gray-800 mb-6 group-hover:text-emerald-600 transition-colors leading-tight min-h-[3.5rem] flex items-center">
                       {pkg.name}
                     </h3>
 
                     {/* Tests List */}
-                    <div className="space-y-3">
+                    <div className="space-y-3 flex-1 flex flex-col">
                       <h4 className="font-semibold text-gray-700 text-lg mb-4 border-b border-gray-100 pb-2">
                         Tests Included:
                       </h4>
-                      <div className="max-h-64 overflow-y-auto custom-scrollbar">
+                      <div className="max-h-80 overflow-y-auto custom-scrollbar pr-1">
                         {pkg.tests.map((testItem, idx) => (
                           <div
                             key={
