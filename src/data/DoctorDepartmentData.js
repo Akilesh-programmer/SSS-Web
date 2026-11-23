@@ -134,7 +134,7 @@ const IMG_KAARVENTHAN = "/assets/doctors/doctor-36.avif";
 const IMG_GOWTHAM = "/assets/doctors/doctor-37.avif";
 const IMG_HARIPRASATH = "/assets/doctors/doctor-38.avif";
 const IMG_NIVETHITHA = "/assets/doctors/doctor-40.avif";
-const IMG_NARENDHRAKUMAR = "/assets/doctors/doctor-43.avif";
+const IMG_NARENDRAKUMAR = "/assets/doctors/doctor-43.avif";
 const IMG_PRIYADHARSHINI = "/assets/doctors/doctor-44.avif";
 const IMG_HARISH_PRIYA = "/assets/doctors/doctor-45.avif";
 
@@ -308,14 +308,14 @@ export const doctors = [
     image: IMG_SATHISH,
     isFounder: false,
   },
-  // 16. Dr Raveenthran (NEW — no photo)
+  // 16. Dr K. Raveendharan (NEW — no photo)
   {
     id: 16,
-    name: "Dr. Raveenthran",
+    name: "Dr. K. Raveendharan",
     specialty: "Oral & Maxillofacial Surgery",
     designation: "Consultant Oral & Maxillofacial Surgeon",
     department: [6],
-    qualification: "BDS, MDS",
+    qualification: "BDS., MDS (OMFS).,",
     image: null,
     isFounder: false,
   },
@@ -407,17 +407,17 @@ export const doctors = [
     image: IMG_VIGGNESH,
     isFounder: false,
   },
-  // 25. Dr Narendhrakumar (NEW — photo to be provided)
+  // 25. Dr Narendrakumar (NEW — photo to be provided)
   {
     id: 25,
-    name: "Dr. Narendhrakumar",
+    name: "Dr. Narendrakumar",
     specialty: "Interventional Neuro Surgeon",
     designation:
       "Consultant Interventional Neuro Surgeon & Endoscopic Spine Surgeon",
     department: [14],
     qualification:
       "MBBS, MS, MRCS (UK), MCh (AIIMS Delhi), DrNB (Neuro Surgery), FINR (Delhi), FESS (South Korea)",
-    image: IMG_NARENDHRAKUMAR,
+    image: IMG_NARENDRAKUMAR,
     isFounder: false,
   },
   // 26. Dr Priyadharshini (NEW — photo to be provided)
