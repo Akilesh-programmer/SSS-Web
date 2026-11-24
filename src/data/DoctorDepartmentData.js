@@ -137,6 +137,8 @@ const IMG_NIVETHITHA = "/assets/doctors/doctor-40.avif";
 const IMG_NARENDRAKUMAR = "/assets/doctors/doctor-43.avif";
 const IMG_PRIYADHARSHINI = "/assets/doctors/doctor-44.avif";
 const IMG_HARISH_PRIYA = "/assets/doctors/doctor-45.avif";
+const IMG_ROOPAK = "/assets/doctors/doctor-46.avif";
+const IMG_NIRMAL_ARASU = "/assets/doctors/doctor-47.avif";
 
 // Doctors ordered per user specification
 export const doctors = [
@@ -352,7 +354,7 @@ export const doctors = [
     image: IMG_NIVETHITHA,
     isFounder: false,
   },
-  // 20. Dr Roopak Visakan Raja (NEW — no photo)
+  // 20. Dr Roopak Visakan Raja (photo added)
   {
     id: 20,
     name: "Dr. Roopak Visakan Raja",
@@ -360,7 +362,7 @@ export const doctors = [
     designation: "Consultant ENT, Head & Neck Onco Surgeon",
     department: [7],
     qualification: "MBBS, MS (ENT), FHNO (Head, Neck), PDCC (Skull Base Sx)",
-    image: null,
+    image: IMG_ROOPAK,
     isFounder: false,
   },
   // 21. Dr K. Yuvaraja (EXISTING — data unchanged)
@@ -535,7 +537,7 @@ export const doctors = [
     image: null,
     isFounder: false,
   },
-  // 36. Dr Nirmal Arasu (NEW — no photo)
+  // 36. Dr Nirmal Arasu (photo added)
   {
     id: 36,
     name: "Dr. Nirmal Arasu",
@@ -543,7 +545,7 @@ export const doctors = [
     designation: "Consultant Medical & Hemato Oncologist",
     department: [27],
     qualification: "MBBS, MD (Gen Med), DM (Med Onco)",
-    image: null,
+    image: IMG_NIRMAL_ARASU,
     isFounder: false,
   },
 ];
