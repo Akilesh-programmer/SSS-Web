@@ -164,17 +164,6 @@ export const doctors = [
     image: IMG_SELVAKUMAR,
     isFounder: false,
   },
-  // 3. Dr L. Rajeswari (NEW — no photo)
-  {
-    id: 3,
-    name: "Dr. L. Rajeswari",
-    specialty: "Anaesthesiologist & Critical Care",
-    designation: "Consultant Anaesthesiologist & Critical Care Physician",
-    department: [2, 3],
-    qualification: "MBBS, MD, IDCCM",
-    image: null,
-    isFounder: false,
-  },
   // 4. Dr Sankarnarayanan (NEW — no photo)
   {
     id: 4,
