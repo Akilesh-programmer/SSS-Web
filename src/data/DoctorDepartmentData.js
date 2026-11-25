@@ -139,6 +139,7 @@ const IMG_PRIYADHARSHINI = "/assets/doctors/doctor-44.avif";
 const IMG_HARISH_PRIYA = "/assets/doctors/doctor-45.avif";
 const IMG_ROOPAK = "/assets/doctors/doctor-46.avif";
 const IMG_NIRMAL_ARASU = "/assets/doctors/doctor-47.avif";
+const IMG_HARISH = "/assets/doctors/doctor-48.avif";
 
 // Doctors ordered per user specification
 export const doctors = [
@@ -365,7 +366,7 @@ export const doctors = [
     image: IMG_YUVARAJA,
     isFounder: false,
   },
-  // 22. Dr Harish (NEW — no photo)
+  // 22. Dr Harish (photo added)
   {
     id: 22,
     name: "Dr. Harish",
@@ -373,7 +374,7 @@ export const doctors = [
     designation: "Consultant Nephrologist & Renal Transplant Physician",
     department: [12],
     qualification: "MBBS, MD, DM (Nephro)",
-    image: null,
+    image: IMG_HARISH,
     isFounder: false,
   },
   // 23. Dr C. P. Suresh (EXISTING — data unchanged)
@@ -535,6 +536,17 @@ export const doctors = [
     department: [27],
     qualification: "MBBS, MD (Gen Med), DM (Med Onco)",
     image: IMG_NIRMAL_ARASU,
+    isFounder: false,
+  },
+  // 37. Dr V. K. Shobana (NEW — no photo)
+  {
+    id: 37,
+    name: "Dr. V. K. Shobana",
+    specialty: "Anaesthesiologist & Critical Care",
+    designation: "Consultant Anaesthesiologist & Critical Care Physician",
+    department: [2, 3],
+    qualification: "MBBS, MD (Anaes)",
+    image: null,
     isFounder: false,
   },
 ];
