@@ -140,6 +140,7 @@ const IMG_HARISH_PRIYA = "/assets/doctors/doctor-45.avif";
 const IMG_ROOPAK = "/assets/doctors/doctor-46.avif";
 const IMG_NIRMAL_ARASU = "/assets/doctors/doctor-47.avif";
 const IMG_HARISH = "/assets/doctors/doctor-48.avif";
+const IMG_MOHAMMED_MINNATHULLA = "/assets/doctors/doctor-49.avif";
 
 // Doctors ordered per user specification
 export const doctors = [
@@ -516,7 +517,7 @@ export const doctors = [
     image: IMG_DHARUN,
     isFounder: false,
   },
-  // 35. Dr Mohammed Minnathulla (NEW — no photo)
+  // 35. Dr Mohammed Minnathulla (photo added)
   {
     id: 35,
     name: "Dr. Mohammed Minnathulla",
@@ -524,7 +525,7 @@ export const doctors = [
     designation: "Consultant Cardiothoracic and Vascular Surgeon",
     department: [26],
     qualification: "MBBS, MS, MCh (CTVS)",
-    image: null,
+    image: IMG_MOHAMMED_MINNATHULLA,
     isFounder: false,
   },
   // 36. Dr Nirmal Arasu (photo added)
