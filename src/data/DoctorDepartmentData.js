@@ -141,6 +141,7 @@ const IMG_ROOPAK = "/assets/doctors/doctor-46.avif";
 const IMG_NIRMAL_ARASU = "/assets/doctors/doctor-47.avif";
 const IMG_HARISH = "/assets/doctors/doctor-48.avif";
 const IMG_MOHAMMED_MINNATHULLA = "/assets/doctors/doctor-49.avif";
+const IMG_RAVEENDHARAN = "/assets/doctors/doctor-50.avif";
 
 // Doctors ordered per user specification
 export const doctors = [
@@ -301,7 +302,7 @@ export const doctors = [
     image: IMG_SATHISH,
     isFounder: false,
   },
-  // 16. Dr K. Raveendharan (NEW — no photo)
+  // 16. Dr K. Raveendharan (photo added)
   {
     id: 16,
     name: "Dr. K. Raveendharan",
@@ -309,7 +310,7 @@ export const doctors = [
     designation: "Consultant Oral & Maxillofacial Surgeon",
     department: [6],
     qualification: "BDS., MDS (OMFS).,",
-    image: null,
+    image: IMG_RAVEENDHARAN,
     isFounder: false,
   },
   // 17. Dr M. Jeyturuvan (EXISTING — data unchanged)
