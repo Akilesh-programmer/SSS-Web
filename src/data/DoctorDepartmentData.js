@@ -142,6 +142,8 @@ const IMG_NIRMAL_ARASU = "/assets/doctors/doctor-47.avif";
 const IMG_HARISH = "/assets/doctors/doctor-48.avif";
 const IMG_MOHAMMED_MINNATHULLA = "/assets/doctors/doctor-49.avif";
 const IMG_RAVEENDHARAN = "/assets/doctors/doctor-50.avif";
+const IMG_SHOBANA = "/assets/doctors/doctor-51.avif";
+const IMG_SANKARNARAYANAN = "/assets/doctors/doctor-52.avif";
 
 // Doctors ordered per user specification
 export const doctors = [
@@ -167,7 +169,7 @@ export const doctors = [
     image: IMG_SELVAKUMAR,
     isFounder: false,
   },
-  // 4. Dr Sankarnarayanan (NEW — no photo)
+  // 4. Dr Sankarnarayanan (photo added)
   {
     id: 4,
     name: "Dr. Sankarnarayanan",
@@ -175,7 +177,7 @@ export const doctors = [
     designation: "Consultant Anaesthesiologist & Critical Care Physician",
     department: [2, 3],
     qualification: "MBBS, MD (Anes)",
-    image: null,
+    image: IMG_SANKARNARAYANAN,
     isFounder: false,
   },
   // 5. Dr Kaarventhan (NEW — photo to be provided)
@@ -540,7 +542,7 @@ export const doctors = [
     image: IMG_NIRMAL_ARASU,
     isFounder: false,
   },
-  // 37. Dr V. K. Shobana (NEW — no photo)
+  // 37. Dr V. K. Shobana (photo added)
   {
     id: 37,
     name: "Dr. V. K. Shobana",
@@ -548,7 +550,7 @@ export const doctors = [
     designation: "Consultant Anaesthesiologist & Critical Care Physician",
     department: [2, 3],
     qualification: "MBBS, MD (Anaes)",
-    image: null,
+    image: IMG_SHOBANA,
     isFounder: false,
   },
 ];
